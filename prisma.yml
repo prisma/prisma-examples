@@ -1,0 +1,9 @@
+datamodel: datamodel.graphql
+
+generate:
+  - generator: schema
+    output: prisma.graphql
+  - generator: typescript
+    output: src/prisma.ts
+
+endpoint: https://bucky-27701.herokuapp.com/tt/dev
