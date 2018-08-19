@@ -312,9 +312,9 @@ export interface CatPreviousValuesNode {
 }
 
 export interface CatPreviousValues extends Promise<CatPreviousValuesNode> {
-  id: ID_Output
-  name: String
-  color: String
+  id: () => Promise<ID_Output>
+  name: () => Promise<String>
+  color: () => Promise<String>
 }
 
 export interface BatchPayloadNode {
@@ -322,7 +322,7 @@ export interface BatchPayloadNode {
 }
 
 export interface BatchPayload extends Promise<BatchPayloadNode> {
-  count: Long
+  count: () => Promise<Long>
 }
 
 export interface MasterNode extends Node {
@@ -330,7 +330,7 @@ export interface MasterNode extends Node {
 }
 
 export interface Master extends Promise<MasterNode>, Node {
-  id: ID_Output
+  id: () => Promise<ID_Output>
   catz: (args?: { where?: CatWhereInput, orderBy?: CatOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => Promise<Array<CatNode>>
 }
 
@@ -350,21 +350,21 @@ export interface PageInfoNode {
 
  */
 export interface PageInfo extends Promise<PageInfoNode> {
-  hasNextPage: Boolean
-  hasPreviousPage: Boolean
-  startCursor: String
-  endCursor: String
+  hasNextPage: () => Promise<Boolean>
+  hasPreviousPage: () => Promise<Boolean>
+  startCursor: () => Promise<String>
+  endCursor: () => Promise<String>
 }
 
 export interface MasterSubscriptionPayloadNode {
   mutation: MutationType
-  updatedFields?: String
+  updatedFields?: String[]
 }
 
 export interface MasterSubscriptionPayload extends Promise<MasterSubscriptionPayloadNode> {
-  mutation: MutationType
+  mutation: () => Promise<MutationType>
   node: () => Master
-  updatedFields: String
+  updatedFields: () => Promise<String[]>
   previousValues: () => MasterPreviousValues
 }
 
@@ -373,7 +373,7 @@ export interface AggregateCatNode {
 }
 
 export interface AggregateCat extends Promise<AggregateCatNode> {
-  count: Int
+  count: () => Promise<Int>
 }
 
 export interface CatNode extends Node {
@@ -383,9 +383,9 @@ export interface CatNode extends Node {
 }
 
 export interface Cat extends Promise<CatNode>, Node {
-  id: ID_Output
-  name: String
-  color: String
+  id: () => Promise<ID_Output>
+  name: () => Promise<String>
+  color: () => Promise<String>
   favBrother: (args?: { where?: CatWhereInput }) => Cat
 }
 
@@ -421,7 +421,7 @@ export interface CatEdgeNode {
  */
 export interface CatEdge extends Promise<CatEdgeNode> {
   node: () => Cat
-  cursor: String
+  cursor: () => Promise<String>
 }
 
 export interface MasterPreviousValuesNode {
@@ -429,7 +429,7 @@ export interface MasterPreviousValuesNode {
 }
 
 export interface MasterPreviousValues extends Promise<MasterPreviousValuesNode> {
-  id: ID_Output
+  id: () => Promise<ID_Output>
 }
 
 /*
@@ -452,13 +452,13 @@ export interface CatConnection extends Promise<CatConnectionNode> {
 
 export interface CatSubscriptionPayloadNode {
   mutation: MutationType
-  updatedFields?: String
+  updatedFields?: String[]
 }
 
 export interface CatSubscriptionPayload extends Promise<CatSubscriptionPayloadNode> {
-  mutation: MutationType
+  mutation: () => Promise<MutationType>
   node: () => Cat
-  updatedFields: String
+  updatedFields: () => Promise<String[]>
   previousValues: () => CatPreviousValues
 }
 
@@ -476,7 +476,7 @@ export interface MasterEdgeNode {
  */
 export interface MasterEdge extends Promise<MasterEdgeNode> {
   node: () => Master
-  cursor: String
+  cursor: () => Promise<String>
 }
 
 export interface AggregateMasterNode {
@@ -484,7 +484,7 @@ export interface AggregateMasterNode {
 }
 
 export interface AggregateMaster extends Promise<AggregateMasterNode> {
-  count: Int
+  count: () => Promise<Int>
 }
 
 /*
