@@ -1,0 +1,10 @@
+type House {
+  id: ID! @unique
+  windows: [Window!]!
+  name: String!
+}
+
+type Window {
+  id: ID! @unique
+  size: Int!
+}
