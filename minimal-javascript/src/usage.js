@@ -1,4 +1,4 @@
-import { Prisma } from './prisma'
+import { Prisma } from '../generated/prisma'
 ;(async () => {
   const prisma = new Prisma()
 

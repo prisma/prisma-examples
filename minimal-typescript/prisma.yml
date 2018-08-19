@@ -2,6 +2,6 @@ datamodel: datamodel.graphql
 
 generate:
   - generator: typescript
-    output: src/prisma.ts
+    output: ./generated/prisma.ts
 
 endpoint: https://eu1.prisma.sh/lol/prisma/dev

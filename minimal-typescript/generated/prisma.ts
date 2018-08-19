@@ -635,175 +635,175 @@ export type MutationType =   'CREATED' |
   'DELETED'
 
 export interface MasterCreateInput {
-  catz: CatCreateManyInput
+  catz?: CatCreateManyInput
 }
 
 export interface MasterWhereInput {
-  AND: MasterWhereInput[] | MasterWhereInput
-  OR: MasterWhereInput[] | MasterWhereInput
-  NOT: MasterWhereInput[] | MasterWhereInput
-  id: ID_Input
-  id_not: ID_Input
-  id_in: ID_Input[] | ID_Input
-  id_not_in: ID_Input[] | ID_Input
-  id_lt: ID_Input
-  id_lte: ID_Input
-  id_gt: ID_Input
-  id_gte: ID_Input
-  id_contains: ID_Input
-  id_not_contains: ID_Input
-  id_starts_with: ID_Input
-  id_not_starts_with: ID_Input
-  id_ends_with: ID_Input
-  id_not_ends_with: ID_Input
-  catz_every: CatWhereInput
-  catz_some: CatWhereInput
-  catz_none: CatWhereInput
+  AND?: MasterWhereInput[] | MasterWhereInput
+  OR?: MasterWhereInput[] | MasterWhereInput
+  NOT?: MasterWhereInput[] | MasterWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  catz_every?: CatWhereInput
+  catz_some?: CatWhereInput
+  catz_none?: CatWhereInput
 }
 
 export interface CatUpsertWithWhereUniqueNestedInput {
-  where?: CatWhereUniqueInput
-  update?: CatUpdateDataInput
-  create?: CatCreateInput
+  where: CatWhereUniqueInput
+  update: CatUpdateDataInput
+  create: CatCreateInput
 }
 
 export interface CatCreateInput {
-  name?: String
-  color?: String
-  favBrother: CatCreateOneInput
+  name: String
+  color: String
+  favBrother?: CatCreateOneInput
 }
 
 export interface CatUpsertNestedInput {
-  update?: CatUpdateDataInput
-  create?: CatCreateInput
+  update: CatUpdateDataInput
+  create: CatCreateInput
 }
 
 export interface CatCreateOneInput {
-  create: CatCreateInput
-  connect: CatWhereUniqueInput
+  create?: CatCreateInput
+  connect?: CatWhereUniqueInput
 }
 
 export interface CatUpdateOneInput {
-  create: CatCreateInput
-  connect: CatWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: CatUpdateDataInput
-  upsert: CatUpsertNestedInput
+  create?: CatCreateInput
+  connect?: CatWhereUniqueInput
+  disconnect?: Boolean
+  delete?: Boolean
+  update?: CatUpdateDataInput
+  upsert?: CatUpsertNestedInput
 }
 
 export interface CatSubscriptionWhereInput {
-  AND: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput
-  OR: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput
-  NOT: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput
-  mutation_in: MutationType[] | MutationType
-  updatedFields_contains: String
-  updatedFields_contains_every: String[] | String
-  updatedFields_contains_some: String[] | String
-  node: CatWhereInput
+  AND?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput
+  OR?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput
+  NOT?: CatSubscriptionWhereInput[] | CatSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: CatWhereInput
 }
 
 export interface CatUpdateDataInput {
-  name: String
-  color: String
-  favBrother: CatUpdateOneInput
+  name?: String
+  color?: String
+  favBrother?: CatUpdateOneInput
 }
 
 export interface MasterWhereUniqueInput {
-  id: ID_Input
+  id?: ID_Input
 }
 
 export interface MasterSubscriptionWhereInput {
-  AND: MasterSubscriptionWhereInput[] | MasterSubscriptionWhereInput
-  OR: MasterSubscriptionWhereInput[] | MasterSubscriptionWhereInput
-  NOT: MasterSubscriptionWhereInput[] | MasterSubscriptionWhereInput
-  mutation_in: MutationType[] | MutationType
-  updatedFields_contains: String
-  updatedFields_contains_every: String[] | String
-  updatedFields_contains_some: String[] | String
-  node: MasterWhereInput
+  AND?: MasterSubscriptionWhereInput[] | MasterSubscriptionWhereInput
+  OR?: MasterSubscriptionWhereInput[] | MasterSubscriptionWhereInput
+  NOT?: MasterSubscriptionWhereInput[] | MasterSubscriptionWhereInput
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: MasterWhereInput
 }
 
 export interface CatCreateManyInput {
-  create: CatCreateInput[] | CatCreateInput
-  connect: CatWhereUniqueInput[] | CatWhereUniqueInput
+  create?: CatCreateInput[] | CatCreateInput
+  connect?: CatWhereUniqueInput[] | CatWhereUniqueInput
 }
 
 export interface MasterUpdateInput {
-  catz: CatUpdateManyInput
+  catz?: CatUpdateManyInput
 }
 
 export interface CatUpdateManyInput {
-  create: CatCreateInput[] | CatCreateInput
-  connect: CatWhereUniqueInput[] | CatWhereUniqueInput
-  disconnect: CatWhereUniqueInput[] | CatWhereUniqueInput
-  delete: CatWhereUniqueInput[] | CatWhereUniqueInput
-  update: CatUpdateWithWhereUniqueNestedInput[] | CatUpdateWithWhereUniqueNestedInput
-  upsert: CatUpsertWithWhereUniqueNestedInput[] | CatUpsertWithWhereUniqueNestedInput
+  create?: CatCreateInput[] | CatCreateInput
+  connect?: CatWhereUniqueInput[] | CatWhereUniqueInput
+  disconnect?: CatWhereUniqueInput[] | CatWhereUniqueInput
+  delete?: CatWhereUniqueInput[] | CatWhereUniqueInput
+  update?: CatUpdateWithWhereUniqueNestedInput[] | CatUpdateWithWhereUniqueNestedInput
+  upsert?: CatUpsertWithWhereUniqueNestedInput[] | CatUpsertWithWhereUniqueNestedInput
 }
 
 export interface CatUpdateWithWhereUniqueNestedInput {
-  where?: CatWhereUniqueInput
-  data?: CatUpdateDataInput
+  where: CatWhereUniqueInput
+  data: CatUpdateDataInput
 }
 
 export interface CatUpdateInput {
-  name: String
-  color: String
-  favBrother: CatUpdateOneInput
+  name?: String
+  color?: String
+  favBrother?: CatUpdateOneInput
 }
 
 export interface CatWhereUniqueInput {
-  id: ID_Input
+  id?: ID_Input
 }
 
 export interface CatWhereInput {
-  AND: CatWhereInput[] | CatWhereInput
-  OR: CatWhereInput[] | CatWhereInput
-  NOT: CatWhereInput[] | CatWhereInput
-  id: ID_Input
-  id_not: ID_Input
-  id_in: ID_Input[] | ID_Input
-  id_not_in: ID_Input[] | ID_Input
-  id_lt: ID_Input
-  id_lte: ID_Input
-  id_gt: ID_Input
-  id_gte: ID_Input
-  id_contains: ID_Input
-  id_not_contains: ID_Input
-  id_starts_with: ID_Input
-  id_not_starts_with: ID_Input
-  id_ends_with: ID_Input
-  id_not_ends_with: ID_Input
-  name: String
-  name_not: String
-  name_in: String[] | String
-  name_not_in: String[] | String
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  color: String
-  color_not: String
-  color_in: String[] | String
-  color_not_in: String[] | String
-  color_lt: String
-  color_lte: String
-  color_gt: String
-  color_gte: String
-  color_contains: String
-  color_not_contains: String
-  color_starts_with: String
-  color_not_starts_with: String
-  color_ends_with: String
-  color_not_ends_with: String
-  favBrother: CatWhereInput
+  AND?: CatWhereInput[] | CatWhereInput
+  OR?: CatWhereInput[] | CatWhereInput
+  NOT?: CatWhereInput[] | CatWhereInput
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  name?: String
+  name_not?: String
+  name_in?: String[] | String
+  name_not_in?: String[] | String
+  name_lt?: String
+  name_lte?: String
+  name_gt?: String
+  name_gte?: String
+  name_contains?: String
+  name_not_contains?: String
+  name_starts_with?: String
+  name_not_starts_with?: String
+  name_ends_with?: String
+  name_not_ends_with?: String
+  color?: String
+  color_not?: String
+  color_in?: String[] | String
+  color_not_in?: String[] | String
+  color_lt?: String
+  color_lte?: String
+  color_gt?: String
+  color_gte?: String
+  color_contains?: String
+  color_not_contains?: String
+  color_starts_with?: String
+  color_not_starts_with?: String
+  color_ends_with?: String
+  color_not_ends_with?: String
+  favBrother?: CatWhereInput
 }
 
 /*
