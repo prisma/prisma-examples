@@ -10,4 +10,4 @@ A minimal TypeScript example shows the pure generation workflow together with a 
 
 ## [express-rest](https://github.com/prisma/orm-examples/tree/master/express-rest)
 
-Coming soon
+An example including a house with windows
