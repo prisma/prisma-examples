@@ -11,7 +11,3 @@ A minimal TypeScript example shows the pure generation workflow together with a 
 ## [express-rest](https://github.com/prisma/orm-examples/tree/master/express-rest)
 
 An example including a house with windows
-
-## [graphql](https://github.com/schickling/demo-app)
-
-A simple GraphQL Server with Catz.
