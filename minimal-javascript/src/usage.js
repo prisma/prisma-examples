@@ -1,8 +1,8 @@
-import { Prisma } from '../generated/prisma'
+const { Prisma } = require('../generated/prisma')
 ;(async () => {
   const prisma = new Prisma()
 
-  const result = await prisma.query.cats()
+  const result = await prisma.cats()
 
   console.log(result)
 })()
