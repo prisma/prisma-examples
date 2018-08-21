@@ -2,40 +2,32 @@ import { GraphQLResolveInfo, GraphQLSchema } from 'graphql'
 import { IResolvers } from 'graphql-tools/dist/Interfaces'
 import { BasePrismaOptions, Options } from 'prisma-lib'
 
-export interface Query {
-    houses: (args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => Promise<Array<HouseNode>> ,
-    windows: (args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => Promise<Array<WindowNode>> ,
-    house: (args: { where: HouseWhereUniqueInput }) => House ,
-    window: (args: { where: WindowWhereUniqueInput }) => Window ,
-    housesConnection: (args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => HouseConnection ,
-    windowsConnection: (args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => WindowConnection ,
-    node: (args: { id: ID_Output }) => Node 
-  }
+export interface Query     houses: (args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => Promise<Array<HouseNode>>;
+    windows: (args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => Promise<Array<WindowNode>>;
+    house: (where: HouseWhereUniqueInput) => House;
+    window: (where: WindowWhereUniqueInput) => Window;
+    housesConnection: (args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => HouseConnection;
+    windowsConnection: (args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }) => WindowConnection;
+    node: (args: { id: ID_Output }) => Node
 
-export interface Mutation {
-    createHouse: (args: { data: HouseCreateInput }) => House ,
-    createWindow: (args: { data: WindowCreateInput }) => Window ,
-    updateHouse: (args: { data: HouseUpdateInput, where: HouseWhereUniqueInput }) => House ,
-    updateWindow: (args: { data: WindowUpdateInput, where: WindowWhereUniqueInput }) => Window ,
-    deleteHouse: (args: { where: HouseWhereUniqueInput }) => House ,
-    deleteWindow: (args: { where: WindowWhereUniqueInput }) => Window ,
-    upsertHouse: (args: { where: HouseWhereUniqueInput, create: HouseCreateInput, update: HouseUpdateInput }) => House ,
-    upsertWindow: (args: { where: WindowWhereUniqueInput, create: WindowCreateInput, update: WindowUpdateInput }) => Window ,
-    updateManyHouses: (args: { data: HouseUpdateInput, where?: HouseWhereInput }) => BatchPayload ,
-    updateManyWindows: (args: { data: WindowUpdateInput, where?: WindowWhereInput }) => BatchPayload ,
-    deleteManyHouses: (args?: { where?: HouseWhereInput }) => BatchPayload ,
-    deleteManyWindows: (args?: { where?: WindowWhereInput }) => BatchPayload 
-  }
+export interface Mutation     createHouse: (data: HouseCreateInput) => House;
+    createWindow: (data: WindowCreateInput) => Window;
+    updateHouse: (args: { data: HouseUpdateInput, where: HouseWhereUniqueInput }) => House;
+    updateWindow: (args: { data: WindowUpdateInput, where: WindowWhereUniqueInput }) => Window;
+    deleteHouse: (where: HouseWhereUniqueInput) => House;
+    deleteWindow: (where: WindowWhereUniqueInput) => Window;
+    upsertHouse: (args: { where: HouseWhereUniqueInput, create: HouseCreateInput, update: HouseUpdateInput }) => House;
+    upsertWindow: (args: { where: WindowWhereUniqueInput, create: WindowCreateInput, update: WindowUpdateInput }) => Window;
+    updateManyHouses: (args: { data: HouseUpdateInput, where?: HouseWhereInput }) => BatchPayload;
+    updateManyWindows: (args: { data: WindowUpdateInput, where?: WindowWhereInput }) => BatchPayload;
+    deleteManyHouses: (where?: HouseWhereInput) => BatchPayload;
+    deleteManyWindows: (where?: WindowWhereInput) => BatchPayload
 
-export interface Subscription {
-    house: <T = Promise<Partial<HouseSubscriptionPayloadNode | null>>>(args?: { where?: HouseSubscriptionWhereInput , info?: GraphQLResolveInfo, options?: Options}) => Promise<AsyncIterator<T>> ,
-    window: <T = Promise<Partial<WindowSubscriptionPayloadNode | null>>>(args?: { where?: WindowSubscriptionWhereInput , info?: GraphQLResolveInfo, options?: Options}) => Promise<AsyncIterator<T>> 
-  }
+export interface Subscription     house: <T = Promise<Partial<HouseSubscriptionPayloadNode | null>>>(where?: HouseSubscriptionWhereInput) => Promise<AsyncIterator<T>>;
+    window: <T = Promise<Partial<WindowSubscriptionPayloadNode | null>>>(where?: WindowSubscriptionWhereInput) => Promise<AsyncIterator<T>>
 
-export interface Exists {
-  House: (where?: HouseWhereInput) => Promise<boolean>
-  Window: (where?: WindowWhereInput) => Promise<boolean>
-}
+export interface Exists   house: (where?: HouseWhereInput) => Promise<boolean>
+  window: (where?: WindowWhereInput) => Promise<boolean>
 
 export interface Node {}
 
@@ -67,30 +59,26 @@ export interface Delegate {
   subscription: Subscription
 }
 
-export interface DelegateQuery {
-    houses: <T = Promise<Array<HouseNode>>>(args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    windows: <T = Promise<Array<WindowNode>>>(args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    house: <T = Promise<Partial<HouseNode | null>>>(args: { where: HouseWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    window: <T = Promise<Partial<WindowNode | null>>>(args: { where: WindowWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    housesConnection: <T = Promise<Partial<HouseConnectionNode>>>(args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    windowsConnection: <T = Promise<Partial<WindowConnectionNode>>>(args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    node: <T = Promise<Partial<NodeNode | null>>>(args: { id: ID_Output , info?: GraphQLResolveInfo, options?: Options}) => T 
-  }
+export interface DelegateQuery     houses: <T = Promise<Array<HouseNode>>>(args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T;
+    windows: <T = Promise<Array<WindowNode>>>(args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T;
+    house: <T = Promise<Partial<HouseNode | null>>>(where: HouseWhereUniqueInput) => T;
+    window: <T = Promise<Partial<WindowNode | null>>>(where: WindowWhereUniqueInput) => T;
+    housesConnection: <T = Promise<Partial<HouseConnectionNode>>>(args?: { where?: HouseWhereInput, orderBy?: HouseOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T;
+    windowsConnection: <T = Promise<Partial<WindowConnectionNode>>>(args?: { where?: WindowWhereInput, orderBy?: WindowOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int , info?: GraphQLResolveInfo, options?: Options}) => T;
+    node: <T = Promise<Partial<NodeNode | null>>>(args: { id: ID_Output , info?: GraphQLResolveInfo, options?: Options}) => T
 
-export interface DelegateMutation {
-    createHouse: <T = Promise<Partial<HouseNode>>>(args: { data: HouseCreateInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    createWindow: <T = Promise<Partial<WindowNode>>>(args: { data: WindowCreateInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    updateHouse: <T = Promise<Partial<HouseNode | null>>>(args: { data: HouseUpdateInput, where: HouseWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    updateWindow: <T = Promise<Partial<WindowNode | null>>>(args: { data: WindowUpdateInput, where: WindowWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    deleteHouse: <T = Promise<Partial<HouseNode | null>>>(args: { where: HouseWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    deleteWindow: <T = Promise<Partial<WindowNode | null>>>(args: { where: WindowWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    upsertHouse: <T = Promise<Partial<HouseNode>>>(args: { where: HouseWhereUniqueInput, create: HouseCreateInput, update: HouseUpdateInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    upsertWindow: <T = Promise<Partial<WindowNode>>>(args: { where: WindowWhereUniqueInput, create: WindowCreateInput, update: WindowUpdateInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    updateManyHouses: <T = Promise<Partial<BatchPayloadNode>>>(args: { data: HouseUpdateInput, where?: HouseWhereInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    updateManyWindows: <T = Promise<Partial<BatchPayloadNode>>>(args: { data: WindowUpdateInput, where?: WindowWhereInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    deleteManyHouses: <T = Promise<Partial<BatchPayloadNode>>>(args?: { where?: HouseWhereInput , info?: GraphQLResolveInfo, options?: Options}) => T ,
-    deleteManyWindows: <T = Promise<Partial<BatchPayloadNode>>>(args?: { where?: WindowWhereInput , info?: GraphQLResolveInfo, options?: Options}) => T 
-  }
+export interface DelegateMutation     createHouse: <T = Promise<Partial<HouseNode>>>(where: HouseCreateInput) => T;
+    createWindow: <T = Promise<Partial<WindowNode>>>(where: WindowCreateInput) => T;
+    updateHouse: <T = Promise<Partial<HouseNode | null>>>(args: { data: HouseUpdateInput, where: HouseWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T;
+    updateWindow: <T = Promise<Partial<WindowNode | null>>>(args: { data: WindowUpdateInput, where: WindowWhereUniqueInput , info?: GraphQLResolveInfo, options?: Options}) => T;
+    deleteHouse: <T = Promise<Partial<HouseNode | null>>>(where: HouseWhereUniqueInput) => T;
+    deleteWindow: <T = Promise<Partial<WindowNode | null>>>(where: WindowWhereUniqueInput) => T;
+    upsertHouse: <T = Promise<Partial<HouseNode>>>(args: { where: HouseWhereUniqueInput, create: HouseCreateInput, update: HouseUpdateInput , info?: GraphQLResolveInfo, options?: Options}) => T;
+    upsertWindow: <T = Promise<Partial<WindowNode>>>(args: { where: WindowWhereUniqueInput, create: WindowCreateInput, update: WindowUpdateInput , info?: GraphQLResolveInfo, options?: Options}) => T;
+    updateManyHouses: <T = Promise<Partial<BatchPayloadNode>>>(args: { data: HouseUpdateInput, where?: HouseWhereInput , info?: GraphQLResolveInfo, options?: Options}) => T;
+    updateManyWindows: <T = Promise<Partial<BatchPayloadNode>>>(args: { data: WindowUpdateInput, where?: WindowWhereInput , info?: GraphQLResolveInfo, options?: Options}) => T;
+    deleteManyHouses: <T = Promise<Partial<BatchPayloadNode>>>(where?: HouseWhereInput) => T;
+    deleteManyWindows: <T = Promise<Partial<BatchPayloadNode>>>(where?: WindowWhereInput) => T
 
 export interface BindingConstructor<T> {
   new(options?: BasePrismaOptions): T
