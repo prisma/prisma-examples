@@ -12,6 +12,6 @@ A minimal TypeScript example shows the pure generation workflow together with a 
 
 An example including a house with windows
 
-## [graphql](https://github.com/schickling/demo-app)
+## [orm-tutorial](https://github.com/prisma/orm-examples/tree/master/orm-tutorial)
 
-A simple GraphQL Server with Catz.
+A simple GraphQL Server with Catz. It's based on [this tutorial](https://github.com/timsuchanek/orm-tutorial/tree/master).
