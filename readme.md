@@ -1,4 +1,4 @@
-# Prisma ORM Examples
+# Prisma Examples
 
 ## [minimal-javascript](https://github.com/prisma/orm-examples/tree/master/minimal-javascript)
 
