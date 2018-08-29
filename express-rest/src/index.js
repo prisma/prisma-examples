@@ -8,7 +8,7 @@ const prisma = new Prisma({ debug: true })
 app.use(bodyParser.json())
 
 app.post(`/house`, async (req, res) => {
-  const result = await prisma.createHouse({ data: req.body })
+  const result = await prisma.createHouse(req.body)
   res.json(result)
 })
 
