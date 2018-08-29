@@ -14,7 +14,7 @@ app.post(`/house`, async (req, res) => {
 
 app.get(`/house/:id`, async (req, res) => {
   const { id } = req.params
-  const houses = await prisma.house({ where: { id } })
+  const houses = await prisma.house({ id })
   res.json(houses)
 })
 
