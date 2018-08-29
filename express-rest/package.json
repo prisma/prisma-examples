@@ -14,5 +14,9 @@
   },
   "devDependencies": {
     "prisma": "^1.15.0-alpha.26"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "prisma": "cd prisma && prisma"
   }
 }
