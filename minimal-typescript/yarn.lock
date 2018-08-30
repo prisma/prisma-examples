@@ -2636,9 +2636,9 @@ prisma-lib@0.1.18:
     subscriptions-transport-ws "^0.9.14"
     ws "^6.0.0"
 
-prisma-lib@0.1.19:
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/prisma-lib/-/prisma-lib-0.1.19.tgz#0adc920b2acb62f1fa1556139ddf53caeabd5cf4"
+prisma-lib@0.1.20:
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/prisma-lib/-/prisma-lib-0.1.20.tgz#74d779f0c691cf0253f23e17c7140b834fdd89fa"
   dependencies:
     "@types/node" "^10.7.0"
     apollo-link-error "^1.1.0"
