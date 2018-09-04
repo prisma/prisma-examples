@@ -1,0 +1,15 @@
+type Query {
+  masters: [Master!]!
+}
+
+type Master {
+  id: ID!
+  catz: [Cat!]!
+}
+
+type Cat {
+  id: ID!
+  name: String!
+  color: String!
+  favBrother: Cat
+}
