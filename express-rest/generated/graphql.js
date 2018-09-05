@@ -1,11 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var prisma_lib_1 = require("prisma-lib");
-/**
- * Type Defs
- */
-
-const typeDefs = `type AggregateHouse {
+module.exports = {
+        typeDefs: `type AggregateHouse {
   count: Int!
 }
 
@@ -467,6 +461,5 @@ input WindowWhereUniqueInput {
   id: ID
 }
 `
-
-exports.Prisma = prisma_lib_1.makePrismaBindingClass({typeDefs, endpoint: 'https://eu1.prisma.sh/lol/house/dev'});
-exports.prisma = new exports.Prisma();
+      }
+    

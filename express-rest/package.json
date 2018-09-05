@@ -13,7 +13,7 @@
     "prisma-lib": "0.1.19"
   },
   "devDependencies": {
-    "prisma": "^1.15.0-alpha.26"
+    "prisma": "^1.17.0-alpha.15"
   },
   "scripts": {
     "start": "node src/index.js",

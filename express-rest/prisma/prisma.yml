@@ -1,7 +1,7 @@
 datamodel: datamodel.graphql
 
 generate:
-  - generator: javascript
-    output: ../generated/prisma.js
+  - generator: javascript-client
+    output: ../generated
 
-endpoint: https://eu1.prisma.sh/lol/house/dev
+endpoint: http://localhost:4466/house/dev
