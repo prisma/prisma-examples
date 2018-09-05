@@ -1,11 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var prisma_lib_1 = require("prisma-lib");
-/**
- * Type Defs
- */
-
-const typeDefs = `type AggregateCat {
+module.exports = {
+        typeDefs: `type AggregateCat {
   count: Int!
 }
 
@@ -510,6 +504,5 @@ type Subscription {
   cat(where: CatSubscriptionWhereInput): CatSubscriptionPayload
 }
 `
-
-exports.Prisma = prisma_lib_1.makePrismaBindingClass({typeDefs, endpoint: 'https://eu1.prisma.sh/lol/prisma/dev'});
-exports.prisma = new exports.Prisma();
+      }
+    
