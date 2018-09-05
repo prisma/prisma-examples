@@ -3,4 +3,4 @@ generate:
   - generator: typescript-client
     output: ../src/generated
 
-endpoint: http://localhost:4466/tut/dev
+endpoint: https://eu1.prisma.sh/lol/tut/dev

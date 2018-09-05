@@ -4,4 +4,4 @@ generate:
   - generator: typescript-client
     output: ./generated
 
-endpoint: http://localhost:4466/prisma-ts/dev
+endpoint: https://eu1.prisma.sh/lol/prisma/dev
