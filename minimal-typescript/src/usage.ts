@@ -1,25 +1,22 @@
-import { Prisma } from '../generated'
-const prisma = new Prisma({debug: true})
+import { prisma } from '../generated'
 
 ;(async () => {
 
-  for (let i = 0; i < 3; i++) {
-    const before = Date.now()
-    const result = await prisma
-      .cat({ id: 'cjky74byofp1n0b07ux4038oe' })
-      .favBrother()
-    console.log(`Needed ${Date.now() - before}`)
-  }
+  const result = await prisma
+    .cat({ id: 'cjky74byofp1n0b07ux4038oe' })
+    .favBrother()
+  
+  console.log(result)
 
-
-  // await prisma.createMaster({
-  //   catz: {
-  //     create: [
-  //       {
-  //         color: 'red',
-  //         name: 'Bob',
-  //       },
-  //     ],
-  //   },
-  // })
+  await prisma.createMaster({
+    catz: {
+      create: [
+        {
+          color: 'red',
+          name: 'Bob',
+        },
+      ],
+    },
+  })
+  
 })()
