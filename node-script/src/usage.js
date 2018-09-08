@@ -1,4 +1,4 @@
-const { Prisma } = require('../generated')
+const { Prisma } = require('./generated')
 ;(async () => {
   const prisma = new Prisma()
 
