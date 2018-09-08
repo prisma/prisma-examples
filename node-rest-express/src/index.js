@@ -1,7 +1,8 @@
 const express = require('express')
-const app = express()
-const { Prisma } = require('../generated')
 const bodyParser = require('body-parser')
+const { Prisma } = require('./generated')
+
+const app = express()
 
 const prisma = new Prisma({ debug: true })
 
