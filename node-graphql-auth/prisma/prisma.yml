@@ -1,0 +1,5 @@
+endpoint: http://localhost:4466/authentication
+datamodel: datamodel.graphql
+generate:
+    - generator: javascript-client
+      output: ../src/generated
