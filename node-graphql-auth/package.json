@@ -1,13 +1,12 @@
 {
-  "name": "typescript-graphql-auth",
+  "name": "node-graphql-auth",
   "version": "1.0.0",
   "description": "This example demonstrates how to implement a GraphQL server with an email-password-based authentication workflow based on Prisma & graphql-yoga.",
   "main": "index.js",
-  "repository": "https://github.com/prismagraphql/prisma/tree/master/examples",
   "author": "Prisma",
   "license": "Apache 2",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "babel-node src/index.js",
     "prisma": "cd prisma && prisma",
     "graphql-resolver-codegen": "graphql-resolver-codegen"
   },
@@ -21,6 +20,8 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^2.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "graphql-resolver-codegen": "^0.1.6",
     "prisma": "^1.17.0-alpha.32",
     "ts-node": "^7.0.1",
