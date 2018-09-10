@@ -25,8 +25,7 @@ func (r *Resolver) SpecialMaster() SpecialMasterResolver {
 type catResolver struct{ *Resolver }
 
 func (r *catResolver) FavBrother(ctx context.Context, obj *Cat) (*Cat, error) {
-	// TODO: use nil + check pointer
-	result, err := r.Prisma.Cat(&prisma.CatWhereUniqueInput{ID: &obj.ID}).FavBrother(&prisma.FavBrotherParams{}).Exec()
+	result, err := r.Prisma.Cat(&prisma.CatWhereUniqueInput{ID: &obj.ID}).FavBrother(nil).Exec()
 	favBrother := Cat{
 		ID:    result.ID,
 		Color: result.Color,
@@ -38,8 +37,7 @@ func (r *catResolver) FavBrother(ctx context.Context, obj *Cat) (*Cat, error) {
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Masters(ctx context.Context) ([]SpecialMaster, error) {
-	// TODO: use nil
-	result, err := r.Prisma.Masters(&prisma.MastersParams{}).Exec()
+	result, err := r.Prisma.Masters(nil).Exec()
 	specialMasters := make([]SpecialMaster, len(result))
 	for i, v := range result {
 		specialMasters[i] = SpecialMaster{
@@ -52,8 +50,7 @@ func (r *queryResolver) Masters(ctx context.Context) ([]SpecialMaster, error) {
 type specialMasterResolver struct{ *Resolver }
 
 func (r *specialMasterResolver) CatBrothers(ctx context.Context, obj *SpecialMaster) ([]Cat, error) {
-	// TODO: use nil
-	result, err := r.Prisma.Master(&prisma.MasterWhereUniqueInput{ID: &obj.ID}).Catz(&prisma.CatzParams{}).Exec()
+	result, err := r.Prisma.Master(&prisma.MasterWhereUniqueInput{ID: &obj.ID}).Catz(nil).Exec()
 	catBrothers := make([]Cat, len(result))
 	for i, v := range result {
 		catBrothers[i] = Cat{

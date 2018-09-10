@@ -53,6 +53,9 @@ type PrismaOptions struct {
 }
 
 func New(options *PrismaOptions) Client {
+	if options == nil {
+		return Client{}
+	}
 	return Client{
 		Endpoint: options.Endpoint,
 		Debug:    options.Debug,

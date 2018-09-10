@@ -18,7 +18,9 @@ func main() {
 		port = defaultPort
 	}
 
-	client := prisma.New(&prisma.PrismaOptions{})
+	client := prisma.New(&prisma.PrismaOptions{
+		Debug: true,
+	})
 	resolver := go_graphql.Resolver{
 		Prisma: &client,
 	}
