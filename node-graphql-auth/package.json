@@ -4,7 +4,6 @@
   "description": "This example demonstrates how to implement a GraphQL server with an email-password-based authentication workflow based on Prisma & graphql-yoga.",
   "main": "index.js",
   "author": "Prisma",
-  "license": "Apache 2",
   "scripts": {
     "start": "node src/index.js",
     "prisma": "cd prisma && prisma"
