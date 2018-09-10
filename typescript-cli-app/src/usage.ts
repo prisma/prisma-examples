@@ -11,9 +11,7 @@ const TodoCommand = async () => {
   }
 
   if (command === "list") {
-    const todoResponse = await prisma.todoes();
-
-    const todoes = todoResponse.todoes;
+    const todoes = await prisma.todoes();
 
     if (todoes.length === 0) {
       return "Nothing in Todo list, please use add command to add a Todo";

@@ -3750,9 +3750,27 @@ prisma-json-schema@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/prisma-json-schema/-/prisma-json-schema-0.0.1.tgz#0802e156a293faefdf21e5e41beb8d3681f45cb1"
 
-prisma-lib@0.1.31, prisma-lib@^0.1.31:
+prisma-lib@0.1.31:
   version "0.1.31"
   resolved "https://registry.yarnpkg.com/prisma-lib/-/prisma-lib-0.1.31.tgz#b0a547a61aa689198719b4c3b68596bdb763d170"
+  dependencies:
+    "@types/node" "^10.7.0"
+    apollo-link-error "^1.1.0"
+    apollo-link-ws "^1.0.8"
+    debug "^3.1.0"
+    graphql-import "^0.6.0"
+    graphql-tag "^2.9.2"
+    graphql-tools "3.1.1"
+    http-link-dataloader "^0.1.4"
+    jsonwebtoken "^8.3.0"
+    object-path-immutable "^3.0.0"
+    subscriptions-transport-ws "^0.9.14"
+    uppercamelcase "^3.0.0"
+    ws "^6.0.0"
+
+prisma-lib@^0.1.32:
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/prisma-lib/-/prisma-lib-0.1.32.tgz#a2b6b788f3caa615dcf39150d41fef6a5128ac5b"
   dependencies:
     "@types/node" "^10.7.0"
     apollo-link-error "^1.1.0"
