@@ -12,10 +12,17 @@ yarn global add prisma
 npm install -g prisma
 ```
 
-### 2. Clone example & Install dependencies
+### 2. Download example & Install dependencies
+
+Clone the repository:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git
+```
+
+Install Node dependencies:
+
+```
 cd prisma-examples/node-graphql-auth
 yarn install # or `npm install`
 ```
