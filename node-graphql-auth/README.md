@@ -57,7 +57,7 @@ yarn start
 
 The easiest way to explore this deployed service and play with the API generated from the data model is by using the [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### Explore your GraphQL API
+### 5. Explore the API of your GraphQL server
 
 #### Open a Playground
 
