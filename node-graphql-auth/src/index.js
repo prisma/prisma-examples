@@ -8,7 +8,7 @@ const server = new GraphQLServer({
   context: req => {
     return {
       ...req,
-      db: new Prisma()
+      prisma: new Prisma()
     };
   }
 });
