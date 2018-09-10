@@ -3,9 +3,13 @@ const { Mutation } = require("./Mutation");
 const { AuthPayload } = require("./AuthPayload");
 const { User } = require("./User");
 
-export const resolvers = {
+const resolvers = {
   Query,
   Mutation,
   AuthPayload,
   User
 };
+
+module.export = {
+  resolvers
+}

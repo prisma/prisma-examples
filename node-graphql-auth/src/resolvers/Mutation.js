@@ -2,7 +2,7 @@ const { hash, compare } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 const { APP_SECRET } = require("../utils");
 
-export const Mutation = {
+const Mutation = {
   signup: async (_, { name, email, password }, ctx) => {
     const hashedPassword = await hash(password, 10);
     const user = await ctx.db.createUser({
@@ -34,3 +34,7 @@ export const Mutation = {
     };
   }
 };
+
+module.export = {
+  Mutation
+}

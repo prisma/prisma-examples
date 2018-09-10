@@ -1,6 +1,6 @@
 const { verify } = require("jsonwebtoken");
 
-export const APP_SECRET = "appsecret321";
+const APP_SECRET = "appsecret321";
 
 class AuthError extends Error {
   constructor() {
@@ -8,7 +8,7 @@ class AuthError extends Error {
   }
 }
 
-export function getUserId(ctx) {
+function getUserId(ctx) {
   const Authorization = ctx.request.get("Authorization");
   if (Authorization) {
     const token = Authorization.replace("Bearer ", "");
@@ -17,4 +17,9 @@ export function getUserId(ctx) {
   }
 
   throw new AuthError();
+}
+
+module.exports = {
+  getUserId,
+  APP_SECRET
 }
