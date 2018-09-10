@@ -3,7 +3,7 @@ const { resolvers } = require("./resolvers");
 const { Prisma } = require("./generated/prisma");
 
 const server = new GraphQLServer({
-  typeDefs: "./schema/schema.graphql",
+  typeDefs: "src/schema/schema.graphql",
   resolvers,
   context: req => {
     return {
