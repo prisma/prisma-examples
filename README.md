@@ -5,7 +5,7 @@ This repository contains a number of ready-to-run examples demonstrating various
 | Demo | Language | Description |
 |:------|:----------:|:-------------|
 | [`flow-script`](flow-script) | [flow](https://flow.org/) | Simple usage in script |
-| [go-cli-app](go-cli-app) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple CLI todo list app in Go |
+| [`go-cli-app`](go-cli-app) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple CLI todo list app in Go |
 | [`go-graphql`](go-graphql) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) |  |
 | [`node-cli-app`](node-cli-app) | JavaScript ([Node.JS](https://nodejs.org/en/)) | |
 | [`node-graphql-auth`](node-graphql-auth) |  JavaScript ([Node.JS](https://nodejs.org/en/)) | |
