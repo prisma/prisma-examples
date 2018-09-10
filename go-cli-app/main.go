@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/prisma/prisma-examples/go-cli-app/client"
+	"github.com/prisma/prisma-examples/go-cli-app/prisma-client"
 )
 
 func main() {

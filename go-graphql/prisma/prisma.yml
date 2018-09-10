@@ -1,4 +1,4 @@
-endpoint: http://localhost:4466/go-orm/dev 
+endpoint: https://eu1.prisma.sh/demo/go-graphql/dev
 datamodel: datamodel.prisma
 generate:
   - generator: go-client
