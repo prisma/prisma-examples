@@ -3,7 +3,7 @@ type Query {
 }
 
 type SpecialMaster {
-  id: String!
+  id: ID!
   catBrothers: [Cat!]!
 }
 
