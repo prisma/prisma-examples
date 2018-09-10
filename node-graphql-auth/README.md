@@ -27,7 +27,7 @@ cd prisma-examples/node-graphql-auth
 yarn install # or `npm install`
 ```
 
-### 3. Deploy the Prisma database service
+### 3. Deploy the Prisma API
 
 You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
 
@@ -57,7 +57,7 @@ To deploy your service to a demo server (rather than locally with Docker), follo
 yarn start
 ```
 
-The easiest way to explore this deployed service and play with the API generated from the data model is by using the [GraphQL Playground](https://github.com/prisma/graphql-playground).
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
 ### 5. Explore the API of your GraphQL server
 

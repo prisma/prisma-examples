@@ -1,6 +1,6 @@
-# node-graphql-schema-delegation
+# node-rest-express
 
-This example demonstrates how to use **GraphQL schema delegation** with the Prisma client.
+This example demonstrates how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and Prisma.
 
 ## Get started
 
@@ -23,9 +23,11 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node-graphql-schema-delegation
+cd prisma-examples/node-rest-express
 yarn install # or `npm install`
 ```
+
+### 3. Deploy the Prisma API
 
 You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
 
@@ -55,4 +57,4 @@ To deploy your service to a demo server (rather than locally with Docker), follo
 yarn start
 ```
 
-Navigate to [`http://localhost:4000`](http://localhost:4000) to explore the GraphQL API of this example.
+The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/houses`](http://localhost:3000/houses).
