@@ -1,5 +1,5 @@
 endpoint: http://localhost:4466/authentication
-datamodel: datamodel.graphql
+datamodel: datamodel.prisma
 generate:
     - generator: typescript-client
       output: ../src/generated

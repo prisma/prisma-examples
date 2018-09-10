@@ -1,7 +1,5 @@
-datamodel: datamodel.graphql
-
+endpoint: https://eu1.prisma.sh/lol/prisma/dev
+datamodel: datamodel.prisma
 generate:
   - generator: javascript-client
     output: ./generated
-
-endpoint: https://eu1.prisma.sh/lol/prisma/dev
