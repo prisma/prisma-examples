@@ -1,0 +1,24 @@
+{
+  "name": "node-graphql-schema-delegation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "graphql-resolver-codegen": "^0.1.6",
+    "prisma": "^1.17.0-alpha.32",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "graphql": "^0.13.2",
+    "graphql-yoga": "^1.16.1",
+    "prisma-lib": "^0.1.32"
+  },
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "prisma": "cd prisma && prisma",
+    "graphql-resolver-codegen": "graphql-resolver-codegen"
+  }
+}
