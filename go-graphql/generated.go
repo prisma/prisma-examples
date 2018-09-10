@@ -1918,7 +1918,7 @@ var parsedSchema = gqlparser.MustLoadSchema(
 }
 
 type SpecialMaster {
-  id: String!
+  id: ID!
   catBrothers: [Cat!]!
 }
 
