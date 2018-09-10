@@ -1,4 +1,4 @@
-import { getUserId } from "../utils";
+const { getUserId } = require("../utils");
 
 export const Query = {
   me: (_, {}, ctx) => {

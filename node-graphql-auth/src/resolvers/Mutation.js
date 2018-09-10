@@ -1,6 +1,6 @@
-import { hash, compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
-import { APP_SECRET } from "../utils";
+const { hash, compare } = require("bcrypt");
+const { sign } = require("jsonwebtoken");
+const { APP_SECRET } = require("../utils");
 
 export const Mutation = {
   signup: async (_, { name, email, password }, ctx) => {

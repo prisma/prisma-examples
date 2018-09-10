@@ -1,4 +1,4 @@
-import { verify } from "jsonwebtoken";
+const { verify } = require("jsonwebtoken");
 
 export const APP_SECRET = "appsecret321";
 
@@ -12,7 +12,7 @@ export function getUserId(ctx) {
   const Authorization = ctx.request.get("Authorization");
   if (Authorization) {
     const token = Authorization.replace("Bearer ", "");
-    const verifiedToken: any = verify(token, APP_SECRET);
+    const verifiedToken = verify(token, APP_SECRET);
     return verifiedToken && verifiedToken.userId;
   }
 
