@@ -26,8 +26,7 @@ You will now deploy the Prisma API that's backing this example. This requires yo
 
 ```
 docker-compose up -d
-cd prisma
-prisma deploy
+yarn prisma deploy
 ```
 
 <details>
@@ -35,10 +34,9 @@ prisma deploy
 
 To deploy your service to a demo server (rather than locally with Docker), follow these steps:
 
-- Run the following commands:
+- Run the following command:
   ```
-  cd prisma
-  prisma deploy --new
+  yarn prisma deploy --new
   ```
 - In the interactive CLI wizard: 
   - Select the **Demo server**
@@ -48,10 +46,7 @@ To deploy your service to a demo server (rather than locally with Docker), follo
 
 ### 4. Start the server
 
-Navigate back into the root directory and start the server with these commands:
-
 ```
-cd ..
 yarn start
 ```
 

@@ -355,5 +355,5 @@ export type Long = string
  * Type Defs
 */
 
-export const Prisma = makePrismaBindingClass<BindingConstructor<Prisma>>({typeDefs, endpoint: 'http://localhost:4466/authentication'})
+export const Prisma = makePrismaBindingClass<BindingConstructor<Prisma>>({typeDefs, endpoint: 'http://localhost:4466'})
 export const prisma = new Prisma()

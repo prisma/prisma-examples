@@ -1,1 +1,1 @@
-# typescript-graphql-schema-delegation
+# node-graphql-schema-delegation

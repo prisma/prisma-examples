@@ -1,5 +1,5 @@
-endpoint: http://localhost:4466/authentication
+endpoint: http://localhost:4466
 datamodel: datamodel.prisma
 generate:
     - generator: javascript-client
-      output: ../src/generated
+      output: ../src/generated/prisma
