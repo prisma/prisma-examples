@@ -12,7 +12,7 @@ yarn global add prisma
 npm install -g prisma
 ```
 
-### 2. Download the example & install dependencies
+### 2. Clone example & Install dependencies
 
 ```
 git clone git@github.com:prisma/prisma-examples.git
@@ -22,10 +22,10 @@ yarn install # or `npm install`
 
 ### 3. Deploy the Prisma database service
 
-You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine - if you don't have Docker follow the collapsed instructions below the code block):
+You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
 
-```sh
-docker-compose up
+```
+docker-compose up -d
 cd prisma
 prisma deploy
 ```
