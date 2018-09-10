@@ -25,13 +25,14 @@ func (r *Resolver) SpecialMaster() SpecialMasterResolver {
 type catResolver struct{ *Resolver }
 
 func (r *catResolver) FavBrother(ctx context.Context, obj *Cat) (*Cat, error) {
-	// TODO: use nil
+	// TODO: use nil + check pointer
 	result, err := r.Prisma.Cat(&prisma.CatWhereUniqueInput{ID: &obj.ID}).FavBrother(&prisma.FavBrotherParams{}).Exec()
 	favBrother := Cat{
 		ID:    result.ID,
 		Color: result.Color,
 		Name:  result.Name,
 	}
+	return &favBrother, err
 }
 
 type queryResolver struct{ *Resolver }

@@ -1165,7 +1165,7 @@ const (
 
 // CatCreateInput input struct docs
 type CatCreateInput struct {
-	Name       *string            `json:"name,omitempty"`
+	Name       string             `json:"name,omitempty"`
 	Color      *string            `json:"color,omitempty"`
 	FavBrother *CatCreateOneInput `json:"favBrother,omitempty"`
 }
