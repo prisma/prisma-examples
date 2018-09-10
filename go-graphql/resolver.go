@@ -25,14 +25,21 @@ func (r *Resolver) SpecialMaster() SpecialMasterResolver {
 type catResolver struct{ *Resolver }
 
 func (r *catResolver) FavBrother(ctx context.Context, obj *Cat) (*Cat, error) {
-	panic("not implemented")
+	// TODO: use nil
+	result, err := r.Prisma.Cat(&prisma.CatWhereUniqueInput{ID: &obj.ID}).FavBrother(&prisma.FavBrotherParams{}).Exec()
+	favBrother := Cat{
+		ID:    result.ID,
+		Color: result.Color,
+		Name:  result.Name,
+	}
 }
 
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Masters(ctx context.Context) ([]SpecialMaster, error) {
-	result, err := r.Prisma.Masters(nil).Exec()
-	specialMasters := []SpecialMaster{}
+	// TODO: use nil
+	result, err := r.Prisma.Masters(&prisma.MastersParams{}).Exec()
+	specialMasters := make([]SpecialMaster, len(result))
 	for i, v := range result {
 		specialMasters[i] = SpecialMaster{
 			ID: v.ID,
@@ -44,13 +51,15 @@ func (r *queryResolver) Masters(ctx context.Context) ([]SpecialMaster, error) {
 type specialMasterResolver struct{ *Resolver }
 
 func (r *specialMasterResolver) CatBrothers(ctx context.Context, obj *SpecialMaster) ([]Cat, error) {
-	result, err := r.Prisma.Master(&prisma.MasterWhereUniqueInput{ID: &obj.ID}).Catz(nil, nil, nil, nil, nil, nil, nil).Exec()
-	catBrothers := []Cat{}
+	// TODO: use nil
+	result, err := r.Prisma.Master(&prisma.MasterWhereUniqueInput{ID: &obj.ID}).Catz(&prisma.CatzParams{}).Exec()
+	catBrothers := make([]Cat, len(result))
 	for i, v := range result {
-		catBrothers[i] = SpecialMaster{
-			ID: v.ID,
+		catBrothers[i] = Cat{
+			ID:    v.ID,
+			Color: v.Color,
+			Name:  v.Name,
 		}
 	}
 	return catBrothers, err
-	// panic("not implemented")
 }

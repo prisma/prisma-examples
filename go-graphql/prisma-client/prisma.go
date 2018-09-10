@@ -1515,51 +1515,27 @@ type MasterExec struct {
 	stack  []Instruction
 }
 
+type CatzParams struct {
+	where   *CatWhereInput
+	orderBy *CatOrderByInput
+	skip    *int32
+	after   *string
+	before  *string
+	first   *int32
+	last    *int32
+}
+
 // Catz docs - executable for types
-func (instance *MasterExec) Catz(where *CatWhereInput, orderBy *CatOrderByInput, skip *int32, after *string, before *string, first *int32, last *int32) *CatExec {
+func (instance *MasterExec) Catz(params *CatzParams) *CatExecArray {
 	var args []GraphQLArg
+
 	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "CatWhereInput",
-		Value:    where,
+		Name:     "catz",
+		Key:      "catz",
+		TypeName: "Cat",
+		Value:    params,
 	})
-	args = append(args, GraphQLArg{
-		Name:     "orderBy",
-		Key:      "orderBy",
-		TypeName: "CatOrderByInput",
-		Value:    orderBy,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "skip",
-		Key:      "skip",
-		TypeName: "Int",
-		Value:    skip,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "after",
-		Key:      "after",
-		TypeName: "String",
-		Value:    after,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "before",
-		Key:      "before",
-		TypeName: "String",
-		Value:    before,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "first",
-		Key:      "first",
-		TypeName: "Int",
-		Value:    first,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "last",
-		Key:      "last",
-		TypeName: "Int",
-		Value:    last,
-	})
+
 	instance.stack = append(instance.stack, Instruction{
 		Name: "catz",
 		Field: GraphQLField{
@@ -1570,7 +1546,7 @@ func (instance *MasterExec) Catz(where *CatWhereInput, orderBy *CatOrderByInput,
 		Operation: "",
 		Args:      args,
 	})
-	return &CatExec{
+	return &CatExecArray{
 		client: instance.client,
 		stack:  instance.stack,
 	}
@@ -1713,7 +1689,6 @@ func (instance MasterExecArray) Exec() ([]Master, error) {
 // Master docs - generated with types
 type Master struct {
 	ID string `json:"id"`
-	// Catz *Cat   `json:"catz"`
 }
 
 // CatConnectionExec docs
@@ -1743,7 +1718,7 @@ func (instance *CatConnectionExec) PageInfo() *PageInfoExec {
 }
 
 // Edges docs - executable for types
-func (instance *CatConnectionExec) Edges() *CatEdgeExec {
+func (instance *CatConnectionExec) Edges() *CatEdgeExecArray {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
@@ -1756,7 +1731,7 @@ func (instance *CatConnectionExec) Edges() *CatEdgeExec {
 		Operation: "",
 		Args:      args,
 	})
-	return &CatEdgeExec{
+	return &CatEdgeExecArray{
 		client: instance.client,
 		stack:  instance.stack,
 	}
@@ -1918,9 +1893,6 @@ func (instance CatConnectionExecArray) Exec() ([]CatConnection, error) {
 
 // CatConnection docs - generated with types
 type CatConnection struct {
-	PageInfo  *PageInfo     `json:"pageInfo"`
-	Edges     *CatEdge      `json:"edges"`
-	Aggregate *AggregateCat `json:"aggregate"`
 }
 
 // CatPreviousValuesExec docs
@@ -2252,10 +2224,7 @@ func (instance CatSubscriptionPayloadExecArray) Exec() ([]CatSubscriptionPayload
 
 // CatSubscriptionPayload docs - generated with types
 type CatSubscriptionPayload struct {
-	Mutation       *MutationType      `json:"mutation"`
-	Node           *Cat               `json:"node,omitempty"`
-	UpdatedFields  string             `json:"updatedFields"`
-	PreviousValues *CatPreviousValues `json:"previousValues,omitempty"`
+	UpdatedFields string `json:"updatedFields"`
 }
 
 // AggregateCatExec docs
@@ -2409,15 +2378,21 @@ type CatExec struct {
 	stack  []Instruction
 }
 
+type FavBrotherParams struct {
+	where *CatWhereInput
+}
+
 // FavBrother docs - executable for types
-func (instance *CatExec) FavBrother(where *CatWhereInput) *CatExec {
+func (instance *CatExec) FavBrother(params *FavBrotherParams) *CatExec {
 	var args []GraphQLArg
+
 	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "CatWhereInput",
-		Value:    where,
+		Name:     "favBrother",
+		Key:      "favBrother",
+		TypeName: "Cat",
+		Value:    params,
 	})
+
 	instance.stack = append(instance.stack, Instruction{
 		Name: "favBrother",
 		Field: GraphQLField{
@@ -2573,7 +2548,6 @@ type Cat struct {
 	ID    string `json:"id"`
 	Name  string `json:"name"`
 	Color string `json:"color"`
-	// FavBrother *Cat   `json:"favBrother,omitempty"`
 }
 
 // CatEdgeExec docs
@@ -2738,7 +2712,6 @@ func (instance CatEdgeExecArray) Exec() ([]CatEdge, error) {
 
 // CatEdge docs - generated with types
 type CatEdge struct {
-	Node   *Cat   `json:"node"`
 	Cursor string `json:"cursor"`
 }
 
@@ -3217,10 +3190,7 @@ func (instance MasterSubscriptionPayloadExecArray) Exec() ([]MasterSubscriptionP
 
 // MasterSubscriptionPayload docs - generated with types
 type MasterSubscriptionPayload struct {
-	Mutation       *MutationType         `json:"mutation"`
-	Node           *Master               `json:"node,omitempty"`
-	UpdatedFields  string                `json:"updatedFields"`
-	PreviousValues *MasterPreviousValues `json:"previousValues,omitempty"`
+	UpdatedFields string `json:"updatedFields"`
 }
 
 // MasterConnectionExec docs
@@ -3250,7 +3220,7 @@ func (instance *MasterConnectionExec) PageInfo() *PageInfoExec {
 }
 
 // Edges docs - executable for types
-func (instance *MasterConnectionExec) Edges() *MasterEdgeExec {
+func (instance *MasterConnectionExec) Edges() *MasterEdgeExecArray {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
@@ -3263,7 +3233,7 @@ func (instance *MasterConnectionExec) Edges() *MasterEdgeExec {
 		Operation: "",
 		Args:      args,
 	})
-	return &MasterEdgeExec{
+	return &MasterEdgeExecArray{
 		client: instance.client,
 		stack:  instance.stack,
 	}
@@ -3425,9 +3395,6 @@ func (instance MasterConnectionExecArray) Exec() ([]MasterConnection, error) {
 
 // MasterConnection docs - generated with types
 type MasterConnection struct {
-	PageInfo  *PageInfo        `json:"pageInfo"`
-	Edges     *MasterEdge      `json:"edges"`
-	Aggregate *AggregateMaster `json:"aggregate"`
 }
 
 // MasterEdgeExec docs
@@ -3592,8 +3559,7 @@ func (instance MasterEdgeExecArray) Exec() ([]MasterEdge, error) {
 
 // MasterEdge docs - generated with types
 type MasterEdge struct {
-	Node   *Master `json:"node"`
-	Cursor string  `json:"cursor"`
+	Cursor string `json:"cursor"`
 }
 
 // AggregateMasterExec docs

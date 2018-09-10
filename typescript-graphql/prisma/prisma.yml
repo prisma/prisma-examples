@@ -2,4 +2,4 @@ endpoint: https://eu1.prisma.sh/lol/tut/dev
 datamodel: datamodel.prisma
 generate:
   - generator: typescript-client
-    output: ../src/generated
+    output: ../src/generated/prisma
