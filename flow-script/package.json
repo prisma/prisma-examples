@@ -1,0 +1,23 @@
+{
+  "name": "flow-script",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prisma": "cd prisma && prisma",
+    "start": "babel-node src/usage.js",
+    "flow": "flow"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "flow-bin": "^0.80.0",
+    "prisma": "^1.17.0-alpha.38"
+  },
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "prisma-lib": "^0.1.34"
+  }
+}

@@ -1,0 +1,7 @@
+datamodel: datamodel.graphql
+
+generate:
+  - generator: flow-client
+    output: ../src/generated
+
+endpoint: https://eu1.prisma.sh/lol/prisma/dev

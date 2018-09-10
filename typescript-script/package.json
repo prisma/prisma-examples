@@ -5,15 +5,15 @@
   "license": "MIT",
   "dependencies": {
     "graphql": "^0.13.2",
-    "prisma-lib": "0.1.20"
+    "prisma-lib": "^0.1.33"
   },
   "devDependencies": {
-    "prisma": "^1.15.0-alpha.25",
+    "prisma": "^1.17.0-alpha.34",
     "ts-node": "^7.0.1",
     "typescript": "3.0.1"
   },
   "scripts": {
-    "prisma": "prisma",
+    "prisma": "cd prisma && prisma",
     "start": "ts-node src/usage.ts"
   }
 }
