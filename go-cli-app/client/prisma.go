@@ -2,13 +2,10 @@
 package prisma
 
 import (
-	"bytes"
 	"context"
 	"fmt"
-	"log"
 	"reflect"
 	"strconv"
-	"text/template"
 
 	"github.com/machinebox/graphql"
 	"github.com/mitchellh/mapstructure"
@@ -17,226 +14,71 @@ import (
 // ID docs
 type ID struct{}
 
-// GraphQLField docs
-type GraphQLField struct {
-	Name       string
-	TypeName   string
-	TypeFields []string
-}
-
-// GraphQLArg docs
-type GraphQLArg struct {
-	Name     string
-	Key      string
-	TypeName string
-	Value    interface{}
-}
-
-// Instruction docs
-type Instruction struct {
-	Name      string
-	Field     GraphQLField
-	Operation string
-	Args      []GraphQLArg
-}
-
-func isZeroOfUnderlyingType(x interface{}) bool {
-	return reflect.DeepEqual(x, reflect.Zero(reflect.TypeOf(x)).Interface())
-}
-
-func isArray(i interface{}) bool {
-	v := reflect.ValueOf(i)
-	switch v.Kind() {
-	case reflect.Array:
-		return true
-	case reflect.Slice:
-		return true
-	default:
-		return false
-	}
-}
-
-// DB Type to represent the client
-type DB struct {
-	Endpoint string
-	Debug    bool
-	Exists   Exists
-}
-
-// Exists docs
-// TODO: Handle scoping better
-type Exists struct {
-	Endpoint string
-	Debug    bool
-}
-
-// ProcessInstructions docs
-func (db *DB) ProcessInstructions(stack []Instruction) string {
-	query := make(map[string]interface{})
-	// TODO: This needs to handle arg name collisions across instructions
-	argsByInstruction := make(map[string][]GraphQLArg)
-	var allArgs []GraphQLArg
-	firstInstruction := stack[0]
-	for i := len(stack) - 1; i >= 0; i-- {
-		instruction := stack[i]
-		if db.Debug {
-			fmt.Println("Instruction: ", instruction)
-		}
-		if len(query) == 0 {
-			query[instruction.Name] = instruction.Field.TypeFields
-			argsByInstruction[instruction.Name] = instruction.Args
-			for _, arg := range instruction.Args {
-				allArgs = append(allArgs, arg)
-			}
-		} else {
-			previousInstruction := stack[i+1]
-			query[instruction.Name] = map[string]interface{}{
-				previousInstruction.Name: query[previousInstruction.Name],
-			}
-			argsByInstruction[instruction.Name] = instruction.Args
-			for _, arg := range instruction.Args {
-				allArgs = append(allArgs, arg)
-			}
-			delete(query, previousInstruction.Name)
-		}
-	}
-
-	if db.Debug {
-		fmt.Println("Final Query:", query)
-		fmt.Println("Final Args By Instruction:", argsByInstruction)
-		fmt.Println("Final All Args:", allArgs)
-	}
-
-	// TODO: Make this recursive - current depth = 3
-	queryTemplateString := `
-  {{ $.operation }} {{ $.operationName }} 
-  	{{- if eq (len $.allArgs) 0 }} {{ else }} ( {{ end }}
-    	{{- range $_, $arg := $.allArgs }}
-			${{ $arg.Name }}: {{ $arg.TypeName }}, 
-		{{- end }}
-	{{- if eq (len $.allArgs) 0 }} {{ else }} ) {{ end }}
-    {
-    {{- range $k, $v := $.query }}
-    {{- if isArray $v }}
-	  {{- $k }}
-	  {{- range $argKey, $argValue := $.argsByInstruction }}
-	  {{- if eq $argKey $k }}
-	  	{{- if eq (len $argValue) 0 }} {{ else }} ( {{ end }}
-				{{- range $k, $arg := $argValue}}
-					{{ $arg.Key }}: ${{ $arg.Name }},
-				{{- end }}
-		{{- if eq (len $argValue) 0 }} {{ else }} ) {{ end }}
-			{{- end }}
-		{{- end }}
-	  {
-        {{- range $k1, $v1 := $v }}
-          {{ $v1 }}
-        {{end}}
-      }
-    {{- else }}
-	  {{ $k }} 
-	  {{- range $argKey, $argValue := $.argsByInstruction }}
-	  	{{- if eq $argKey $k }}
-	  		{{- if eq (len $argValue) 0 }} {{ else }} ( {{ end }}
-            {{- range $k, $arg := $argValue}}
-              {{ $arg.Key }}: ${{ $arg.Name }},
-            {{- end }}
-			{{- if eq (len $argValue) 0 }} {{ else }} ) {{ end }}
-          {{- end }}
-        {{- end }}
-		{
-        {{- range $k, $v := $v }}
-        {{- if isArray $v }}
-		  {{ $k }} 
-		  {{- range $argKey, $argValue := $.argsByInstruction }}
-		  {{- if eq $argKey $k }}
-			{{- if eq (len $argValue) 0 }} {{ else }} ( {{ end }}
-                {{- range $k, $arg := $argValue}}
-                  {{ $arg.Key }}: ${{ $arg.Name }},
-                {{- end }}
-				{{- if eq (len $argValue) 0 }} {{ else }} ) {{ end }} 
-              {{- end }}
-            {{- end }}
-			{ 
-            {{- range $k1, $v1 := $v }}
-              {{ $v1 }}
-            {{end}}
-          }
-        {{- else }}
-		  {{ $k }} 
-		  {{- range $argKey, $argValue := $.argsByInstruction }}
-		  {{- if eq $argKey $k }}
-		  	{{- if eq (len $argValue) 0 }} {{ else }} ( {{ end }}
-                {{- range $k, $arg := $argValue}}
-                  {{ $arg.Key }}: ${{ $arg.Name }},
-                {{- end }}
-				{{- if eq (len $argValue) 0 }} {{ else }} ) {{ end }} 
-              {{- end }}
-            {{- end }}
-			{
-            {{- range $k, $v := $v }}
-              {{- if isArray $v }}
-                {{ $k }} { 
-                  {{- range $k1, $v1 := $v }}
-                    {{ $v1 }}
-                  {{end}}
-                }
-              {{- else }}
-				{{ $k }} 
-				{{- range $argKey, $argValue := $.argsByInstruction }}
-				{{- if eq $argKey $k }}
-					{{- if eq (len $argValue) 0 }} {{ else }} ( {{ end }}
-                      {{- range $k, $arg := $argValue}}
-                        {{ $arg.Key }}: ${{ $arg.Name }},
-                      {{- end }}
-					  {{- if eq (len $argValue) 0 }} {{ else }} ) {{ end }} 
-                    {{- end }}
-                  {{- end }}
-				  {
-                  id
-                }
-              {{- end }}
-              {{- end }}
-          }
-        {{- end }}
-        {{- end }}
-      }
-    {{- end }}
-    {{- end }}
-    }
-  `
-
-	templateFunctions := template.FuncMap{
-		"isArray": isArray,
-	}
-
-	queryTemplate, err := template.New("query").Funcs(templateFunctions).Parse(queryTemplateString)
-	var queryBytes bytes.Buffer
-	var data = make(map[string]interface{})
-	data = map[string]interface{}{
-		"query":             query,
-		"argsByInstruction": argsByInstruction,
-		"allArgs":           allArgs,
-		"operation":         firstInstruction.Operation,
-		"operationName":     firstInstruction.Name,
-	}
-	queryTemplate.Execute(&queryBytes, data)
-
-	if db.Debug {
-		fmt.Println("Query String: ", queryBytes.String())
-	}
-	if err == nil {
-		return queryBytes.String()
-	}
-	return "Failed to generate query"
-}
-
 // Queries
 
-// LinksParams docs
-type LinksParams struct {
-	Where   *LinkWhereInput   `json:"where,omitempty"`
-	OrderBy *LinkOrderByInput `json:"orderBy,omitempty"`
+// Exists
+
+// Todo exists docs
+func (exists *Exists) Todo(params *TodoWhereUniqueInput) bool {
+	client := Client{
+		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
+		Debug:    exists.Debug,
+	}
+	data, err := client.Todo(
+		params,
+	).Exec()
+	if err != nil {
+		if client.Debug {
+			fmt.Println("Error Exists", err)
+		}
+		return false
+	}
+	if isZeroOfUnderlyingType(data) {
+		return false
+	}
+	return true
+}
+
+// TodoParams docs
+type TodoParams struct {
+	Where *TodoWhereUniqueInput `json:"where"`
+}
+
+// Todo docs
+func (client Client) Todo(params *TodoWhereUniqueInput) *TodoExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "todo",
+		Field: GraphQLField{
+			Name:       "todo",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
+		},
+		Operation: "query",
+		Args:      args,
+	})
+
+	return &TodoExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// TodosParams docs
+type TodosParams struct {
+	Where   *TodoWhereInput   `json:"where,omitempty"`
+	OrderBy *TodoOrderByInput `json:"orderBy,omitempty"`
 	Skip    *int32            `json:"skip,omitempty"`
 	After   *string           `json:"after,omitempty"`
 	Before  *string           `json:"before,omitempty"`
@@ -244,8 +86,8 @@ type LinksParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-// Links docs
-func (db DB) Links(params *LinksParams) *LinkExecArray {
+// Todos docs
+func (client Client) Todos(params *TodosParams) *TodoExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -253,7 +95,7 @@ func (db DB) Links(params *LinksParams) *LinkExecArray {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "LinkWhereInput",
+			TypeName: "TodoWhereInput",
 			Value:    *params.Where,
 		})
 	}
@@ -261,7 +103,7 @@ func (db DB) Links(params *LinksParams) *LinkExecArray {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
-			TypeName: "LinkOrderByInput",
+			TypeName: "TodoOrderByInput",
 			Value:    *params.OrderBy,
 		})
 	}
@@ -307,19 +149,193 @@ func (db DB) Links(params *LinksParams) *LinkExecArray {
 	}
 
 	stack = append(stack, Instruction{
-		Name: "links",
+		Name: "todos",
 		Field: GraphQLField{
-			Name:       "links",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
+			Name:       "todos",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
 		},
 		Operation: "query",
 		Args:      args,
 	})
 
-	return &LinkExecArray{
-		db:    db,
-		stack: stack,
+	return &TodoExecArray{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// Exists
+
+// TodosConnection exists docs
+func (exists *Exists) TodosConnection(params *TodoWhereInput) bool {
+	client := Client{
+		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
+		Debug:    exists.Debug,
+	}
+	data, err := client.TodosConnection(
+		&TodosConnectionParams{
+			Where: params,
+		},
+	).Exec()
+	if err != nil {
+		if client.Debug {
+			fmt.Println("Error Exists", err)
+		}
+		return false
+	}
+	if isZeroOfUnderlyingType(data) {
+		return false
+	}
+	return true
+}
+
+// TodosConnectionParams docs
+type TodosConnectionParams struct {
+	Where   *TodoWhereInput   `json:"where,omitempty"`
+	OrderBy *TodoOrderByInput `json:"orderBy,omitempty"`
+	Skip    *int32            `json:"skip,omitempty"`
+	After   *string           `json:"after,omitempty"`
+	Before  *string           `json:"before,omitempty"`
+	First   *int32            `json:"first,omitempty"`
+	Last    *int32            `json:"last,omitempty"`
+}
+
+// TodosConnection docs
+func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnectionExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereInput",
+			Value:    *params.Where,
+		})
+	}
+	if params.OrderBy != nil {
+		args = append(args, GraphQLArg{
+			Name:     "orderBy",
+			Key:      "orderBy",
+			TypeName: "TodoOrderByInput",
+			Value:    *params.OrderBy,
+		})
+	}
+	if params.Skip != nil {
+		args = append(args, GraphQLArg{
+			Name:     "skip",
+			Key:      "skip",
+			TypeName: "Int",
+			Value:    *params.Skip,
+		})
+	}
+	if params.After != nil {
+		args = append(args, GraphQLArg{
+			Name:     "after",
+			Key:      "after",
+			TypeName: "String",
+			Value:    *params.After,
+		})
+	}
+	if params.Before != nil {
+		args = append(args, GraphQLArg{
+			Name:     "before",
+			Key:      "before",
+			TypeName: "String",
+			Value:    *params.Before,
+		})
+	}
+	if params.First != nil {
+		args = append(args, GraphQLArg{
+			Name:     "first",
+			Key:      "first",
+			TypeName: "Int",
+			Value:    *params.First,
+		})
+	}
+	if params.Last != nil {
+		args = append(args, GraphQLArg{
+			Name:     "last",
+			Key:      "last",
+			TypeName: "Int",
+			Value:    *params.Last,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "todosConnection",
+		Field: GraphQLField{
+			Name:       "todosConnection",
+			TypeName:   "TodoConnection",
+			TypeFields: []string{},
+		},
+		Operation: "query",
+		Args:      args,
+	})
+
+	return &TodoConnectionExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// Exists
+
+// User exists docs
+func (exists *Exists) User(params *UserWhereUniqueInput) bool {
+	client := Client{
+		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
+		Debug:    exists.Debug,
+	}
+	data, err := client.User(
+		params,
+	).Exec()
+	if err != nil {
+		if client.Debug {
+			fmt.Println("Error Exists", err)
+		}
+		return false
+	}
+	if isZeroOfUnderlyingType(data) {
+		return false
+	}
+	return true
+}
+
+// UserParams docs
+type UserParams struct {
+	Where *UserWhereUniqueInput `json:"where"`
+}
+
+// User docs
+func (client Client) User(params *UserWhereUniqueInput) *UserExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "UserWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "user",
+		Field: GraphQLField{
+			Name:       "user",
+			TypeName:   "User",
+			TypeFields: []string{"id", "name"},
+		},
+		Operation: "query",
+		Args:      args,
+	})
+
+	return &UserExec{
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -335,7 +351,7 @@ type UsersParams struct {
 }
 
 // Users docs
-func (db DB) Users(params *UsersParams) *UserExecArray {
+func (client Client) Users(params *UsersParams) *UserExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -401,233 +417,15 @@ func (db DB) Users(params *UsersParams) *UserExecArray {
 		Field: GraphQLField{
 			Name:       "users",
 			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "query",
 		Args:      args,
 	})
 
 	return &UserExecArray{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// Exists
-
-// Link exists docs
-func (exists *Exists) Link(params *LinkWhereUniqueInput) bool {
-	// TODO: Reference to DB in a better way
-	db := DB{
-		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
-		Debug:    exists.Debug,
-	}
-	data := db.Link(
-		params,
-	).Exec()
-	if isZeroOfUnderlyingType(data) {
-		return false
-	}
-	return true
-}
-
-// LinkParams docs
-type LinkParams struct {
-	Where *LinkWhereUniqueInput `json:"where"`
-}
-
-// Link docs
-func (db DB) Link(params *LinkWhereUniqueInput) *LinkExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "LinkWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "link",
-		Field: GraphQLField{
-			Name:       "link",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
-		},
-		Operation: "query",
-		Args:      args,
-	})
-
-	return &LinkExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// Exists
-
-// User exists docs
-func (exists *Exists) User(params *UserWhereUniqueInput) bool {
-	// TODO: Reference to DB in a better way
-	db := DB{
-		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
-		Debug:    exists.Debug,
-	}
-	data := db.User(
-		params,
-	).Exec()
-	if isZeroOfUnderlyingType(data) {
-		return false
-	}
-	return true
-}
-
-// UserParams docs
-type UserParams struct {
-	Where *UserWhereUniqueInput `json:"where"`
-}
-
-// User docs
-func (db DB) User(params *UserWhereUniqueInput) *UserExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "user",
-		Field: GraphQLField{
-			Name:       "user",
-			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
-		},
-		Operation: "query",
-		Args:      args,
-	})
-
-	return &UserExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// Exists
-
-// LinksConnection exists docs
-func (exists *Exists) LinksConnection(params *LinkWhereInput) bool {
-	// TODO: Reference to DB in a better way
-	db := DB{
-		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
-		Debug:    exists.Debug,
-	}
-	data := db.LinksConnection(
-		&LinksConnectionParams{
-			Where: params,
-		},
-	).Exec()
-	if isZeroOfUnderlyingType(data) {
-		return false
-	}
-	return true
-}
-
-// LinksConnectionParams docs
-type LinksConnectionParams struct {
-	Where   *LinkWhereInput   `json:"where,omitempty"`
-	OrderBy *LinkOrderByInput `json:"orderBy,omitempty"`
-	Skip    *int32            `json:"skip,omitempty"`
-	After   *string           `json:"after,omitempty"`
-	Before  *string           `json:"before,omitempty"`
-	First   *int32            `json:"first,omitempty"`
-	Last    *int32            `json:"last,omitempty"`
-}
-
-// LinksConnection docs
-func (db DB) LinksConnection(params *LinksConnectionParams) *LinkConnectionExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "LinkWhereInput",
-			Value:    *params.Where,
-		})
-	}
-	if params.OrderBy != nil {
-		args = append(args, GraphQLArg{
-			Name:     "orderBy",
-			Key:      "orderBy",
-			TypeName: "LinkOrderByInput",
-			Value:    *params.OrderBy,
-		})
-	}
-	if params.Skip != nil {
-		args = append(args, GraphQLArg{
-			Name:     "skip",
-			Key:      "skip",
-			TypeName: "Int",
-			Value:    *params.Skip,
-		})
-	}
-	if params.After != nil {
-		args = append(args, GraphQLArg{
-			Name:     "after",
-			Key:      "after",
-			TypeName: "String",
-			Value:    *params.After,
-		})
-	}
-	if params.Before != nil {
-		args = append(args, GraphQLArg{
-			Name:     "before",
-			Key:      "before",
-			TypeName: "String",
-			Value:    *params.Before,
-		})
-	}
-	if params.First != nil {
-		args = append(args, GraphQLArg{
-			Name:     "first",
-			Key:      "first",
-			TypeName: "Int",
-			Value:    *params.First,
-		})
-	}
-	if params.Last != nil {
-		args = append(args, GraphQLArg{
-			Name:     "last",
-			Key:      "last",
-			TypeName: "Int",
-			Value:    *params.Last,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "linksConnection",
-		Field: GraphQLField{
-			Name:       "linksConnection",
-			TypeName:   "LinkConnection",
-			TypeFields: []string{},
-		},
-		Operation: "query",
-		Args:      args,
-	})
-
-	return &LinkConnectionExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -635,16 +433,21 @@ func (db DB) LinksConnection(params *LinksConnectionParams) *LinkConnectionExec 
 
 // UsersConnection exists docs
 func (exists *Exists) UsersConnection(params *UserWhereInput) bool {
-	// TODO: Reference to DB in a better way
-	db := DB{
+	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
-	data := db.UsersConnection(
+	data, err := client.UsersConnection(
 		&UsersConnectionParams{
 			Where: params,
 		},
 	).Exec()
+	if err != nil {
+		if client.Debug {
+			fmt.Println("Error Exists", err)
+		}
+		return false
+	}
 	if isZeroOfUnderlyingType(data) {
 		return false
 	}
@@ -663,7 +466,7 @@ type UsersConnectionParams struct {
 }
 
 // UsersConnection docs
-func (db DB) UsersConnection(params *UsersConnectionParams) *UserConnectionExec {
+func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnectionExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -736,8 +539,8 @@ func (db DB) UsersConnection(params *UsersConnectionParams) *UserConnectionExec 
 	})
 
 	return &UserConnectionExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -747,7 +550,7 @@ type NodeParams struct {
 }
 
 // Node docs
-func (db DB) Node(params *ID) *NodeExec {
+func (client Client) Node(params *ID) *NodeExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -772,20 +575,20 @@ func (db DB) Node(params *ID) *NodeExec {
 	})
 
 	return &NodeExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
 // Mutations
 
-// CreateLinkParams docs
-type CreateLinkParams struct {
-	Data *LinkCreateInput `json:"data"`
+// CreateTodoParams docs
+type CreateTodoParams struct {
+	Data *TodoCreateInput `json:"data"`
 }
 
-// CreateLink docs
-func (db DB) CreateLink(params *LinkCreateInput) *LinkExec {
+// CreateTodo docs
+func (client Client) CreateTodo(params *TodoCreateInput) *TodoExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -793,25 +596,241 @@ func (db DB) CreateLink(params *LinkCreateInput) *LinkExec {
 		args = append(args, GraphQLArg{
 			Name:     "data",
 			Key:      "data",
-			TypeName: "LinkCreateInput!",
+			TypeName: "TodoCreateInput!",
 			Value:    *params,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "createLink",
+		Name: "createTodo",
 		Field: GraphQLField{
-			Name:       "createLink",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
+			Name:       "createTodo",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &LinkExec{
-		db:    db,
-		stack: stack,
+	return &TodoExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// UpdateTodoParams docs
+type UpdateTodoParams struct {
+	Data  *TodoUpdateInput      `json:"data"`
+	Where *TodoWhereUniqueInput `json:"where"`
+}
+
+// UpdateTodo docs
+func (client Client) UpdateTodo(params *UpdateTodoParams) *TodoExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params.Data != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "TodoUpdateInput!",
+			Value:    *params.Data,
+		})
+	}
+	if params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereUniqueInput!",
+			Value:    *params.Where,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "updateTodo",
+		Field: GraphQLField{
+			Name:       "updateTodo",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
+		},
+		Operation: "mutation",
+		Args:      args,
+	})
+
+	return &TodoExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// UpdateManyTodosParams docs
+type UpdateManyTodosParams struct {
+	Data  *TodoUpdateInput `json:"data"`
+	Where *TodoWhereInput  `json:"where,omitempty"`
+}
+
+// UpdateManyTodos docs
+func (client Client) UpdateManyTodos(params *UpdateManyTodosParams) *BatchPayloadExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params.Data != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "TodoUpdateInput!",
+			Value:    *params.Data,
+		})
+	}
+	if params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereInput",
+			Value:    *params.Where,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "updateManyTodos",
+		Field: GraphQLField{
+			Name:       "updateManyTodos",
+			TypeName:   "BatchPayload",
+			TypeFields: []string{"count"},
+		},
+		Operation: "mutation",
+		Args:      args,
+	})
+
+	return &BatchPayloadExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// UpsertTodoParams docs
+type UpsertTodoParams struct {
+	Where  *TodoWhereUniqueInput `json:"where"`
+	Create *TodoCreateInput      `json:"create"`
+	Update *TodoUpdateInput      `json:"update"`
+}
+
+// UpsertTodo docs
+func (client Client) UpsertTodo(params *UpsertTodoParams) *TodoExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereUniqueInput!",
+			Value:    *params.Where,
+		})
+	}
+	if params.Create != nil {
+		args = append(args, GraphQLArg{
+			Name:     "create",
+			Key:      "create",
+			TypeName: "TodoCreateInput!",
+			Value:    *params.Create,
+		})
+	}
+	if params.Update != nil {
+		args = append(args, GraphQLArg{
+			Name:     "update",
+			Key:      "update",
+			TypeName: "TodoUpdateInput!",
+			Value:    *params.Update,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "upsertTodo",
+		Field: GraphQLField{
+			Name:       "upsertTodo",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
+		},
+		Operation: "mutation",
+		Args:      args,
+	})
+
+	return &TodoExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// DeleteTodoParams docs
+type DeleteTodoParams struct {
+	Where *TodoWhereUniqueInput `json:"where"`
+}
+
+// DeleteTodo docs
+func (client Client) DeleteTodo(params *TodoWhereUniqueInput) *TodoExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "deleteTodo",
+		Field: GraphQLField{
+			Name:       "deleteTodo",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
+		},
+		Operation: "mutation",
+		Args:      args,
+	})
+
+	return &TodoExec{
+		client: client,
+		stack:  stack,
+	}
+}
+
+// DeleteManyTodosParams docs
+type DeleteManyTodosParams struct {
+	Where *TodoWhereInput `json:"where,omitempty"`
+}
+
+// DeleteManyTodos docs
+func (client Client) DeleteManyTodos(params *TodoWhereInput) *BatchPayloadExec {
+
+	stack := make([]Instruction, 0)
+	var args []GraphQLArg
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "TodoWhereInput",
+			Value:    *params,
+		})
+	}
+
+	stack = append(stack, Instruction{
+		Name: "deleteManyTodos",
+		Field: GraphQLField{
+			Name:       "deleteManyTodos",
+			TypeName:   "BatchPayload",
+			TypeFields: []string{"count"},
+		},
+		Operation: "mutation",
+		Args:      args,
+	})
+
+	return &BatchPayloadExec{
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -821,7 +840,7 @@ type CreateUserParams struct {
 }
 
 // CreateUser docs
-func (db DB) CreateUser(params *UserCreateInput) *UserExec {
+func (client Client) CreateUser(params *UserCreateInput) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -839,60 +858,15 @@ func (db DB) CreateUser(params *UserCreateInput) *UserExec {
 		Field: GraphQLField{
 			Name:       "createUser",
 			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
 	return &UserExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// UpdateLinkParams docs
-type UpdateLinkParams struct {
-	Data  *LinkUpdateInput      `json:"data"`
-	Where *LinkWhereUniqueInput `json:"where"`
-}
-
-// UpdateLink docs
-func (db DB) UpdateLink(params *UpdateLinkParams) *LinkExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "LinkUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "LinkWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "updateLink",
-		Field: GraphQLField{
-			Name:       "updateLink",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &LinkExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -903,7 +877,7 @@ type UpdateUserParams struct {
 }
 
 // UpdateUser docs
-func (db DB) UpdateUser(params *UpdateUserParams) *UserExec {
+func (client Client) UpdateUser(params *UpdateUserParams) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -929,141 +903,60 @@ func (db DB) UpdateUser(params *UpdateUserParams) *UserExec {
 		Field: GraphQLField{
 			Name:       "updateUser",
 			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
 	return &UserExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
-// DeleteLinkParams docs
-type DeleteLinkParams struct {
-	Where *LinkWhereUniqueInput `json:"where"`
+// UpdateManyUsersParams docs
+type UpdateManyUsersParams struct {
+	Data  *UserUpdateInput `json:"data"`
+	Where *UserWhereInput  `json:"where,omitempty"`
 }
 
-// DeleteLink docs
-func (db DB) DeleteLink(params *LinkWhereUniqueInput) *LinkExec {
+// UpdateManyUsers docs
+func (client Client) UpdateManyUsers(params *UpdateManyUsersParams) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
+	if params.Data != nil {
 		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "LinkWhereUniqueInput!",
-			Value:    *params,
+			Name:     "data",
+			Key:      "data",
+			TypeName: "UserUpdateInput!",
+			Value:    *params.Data,
 		})
 	}
-
-	stack = append(stack, Instruction{
-		Name: "deleteLink",
-		Field: GraphQLField{
-			Name:       "deleteLink",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &LinkExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// DeleteUserParams docs
-type DeleteUserParams struct {
-	Where *UserWhereUniqueInput `json:"where"`
-}
-
-// DeleteUser docs
-func (db DB) DeleteUser(params *UserWhereUniqueInput) *UserExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "deleteUser",
-		Field: GraphQLField{
-			Name:       "deleteUser",
-			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &UserExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// UpsertLinkParams docs
-type UpsertLinkParams struct {
-	Where  *LinkWhereUniqueInput `json:"where"`
-	Create *LinkCreateInput      `json:"create"`
-	Update *LinkUpdateInput      `json:"update"`
-}
-
-// UpsertLink docs
-func (db DB) UpsertLink(params *UpsertLinkParams) *LinkExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
 	if params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "LinkWhereUniqueInput!",
+			TypeName: "UserWhereInput",
 			Value:    *params.Where,
-		})
-	}
-	if params.Create != nil {
-		args = append(args, GraphQLArg{
-			Name:     "create",
-			Key:      "create",
-			TypeName: "LinkCreateInput!",
-			Value:    *params.Create,
-		})
-	}
-	if params.Update != nil {
-		args = append(args, GraphQLArg{
-			Name:     "update",
-			Key:      "update",
-			TypeName: "LinkUpdateInput!",
-			Value:    *params.Update,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "upsertLink",
+		Name: "updateManyUsers",
 		Field: GraphQLField{
-			Name:       "upsertLink",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
+			Name:       "updateManyUsers",
+			TypeName:   "BatchPayload",
+			TypeFields: []string{"count"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &LinkExec{
-		db:    db,
-		stack: stack,
+	return &BatchPayloadExec{
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -1075,7 +968,7 @@ type UpsertUserParams struct {
 }
 
 // UpsertUser docs
-func (db DB) UpsertUser(params *UpsertUserParams) *UserExec {
+func (client Client) UpsertUser(params *UpsertUserParams) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -1109,115 +1002,25 @@ func (db DB) UpsertUser(params *UpsertUserParams) *UserExec {
 		Field: GraphQLField{
 			Name:       "upsertUser",
 			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
 	return &UserExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
-// UpdateManyLinksParams docs
-type UpdateManyLinksParams struct {
-	Data  *LinkUpdateInput `json:"data"`
-	Where *LinkWhereInput  `json:"where,omitempty"`
+// DeleteUserParams docs
+type DeleteUserParams struct {
+	Where *UserWhereUniqueInput `json:"where"`
 }
 
-// UpdateManyLinks docs
-func (db DB) UpdateManyLinks(params *UpdateManyLinksParams) *BatchPayloadExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "LinkUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "LinkWhereInput",
-			Value:    *params.Where,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "updateManyLinks",
-		Field: GraphQLField{
-			Name:       "updateManyLinks",
-			TypeName:   "BatchPayload",
-			TypeFields: []string{"count"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &BatchPayloadExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// UpdateManyUsersParams docs
-type UpdateManyUsersParams struct {
-	Data  *UserUpdateInput `json:"data"`
-	Where *UserWhereInput  `json:"where,omitempty"`
-}
-
-// UpdateManyUsers docs
-func (db DB) UpdateManyUsers(params *UpdateManyUsersParams) *BatchPayloadExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "UserUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereInput",
-			Value:    *params.Where,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "updateManyUsers",
-		Field: GraphQLField{
-			Name:       "updateManyUsers",
-			TypeName:   "BatchPayload",
-			TypeFields: []string{"count"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &BatchPayloadExec{
-		db:    db,
-		stack: stack,
-	}
-}
-
-// DeleteManyLinksParams docs
-type DeleteManyLinksParams struct {
-	Where *LinkWhereInput `json:"where,omitempty"`
-}
-
-// DeleteManyLinks docs
-func (db DB) DeleteManyLinks(params *LinkWhereInput) *BatchPayloadExec {
+// DeleteUser docs
+func (client Client) DeleteUser(params *UserWhereUniqueInput) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -1225,25 +1028,25 @@ func (db DB) DeleteManyLinks(params *LinkWhereInput) *BatchPayloadExec {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "LinkWhereInput",
+			TypeName: "UserWhereUniqueInput!",
 			Value:    *params,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "deleteManyLinks",
+		Name: "deleteUser",
 		Field: GraphQLField{
-			Name:       "deleteManyLinks",
-			TypeName:   "BatchPayload",
-			TypeFields: []string{"count"},
+			Name:       "deleteUser",
+			TypeName:   "User",
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &BatchPayloadExec{
-		db:    db,
-		stack: stack,
+	return &UserExec{
+		client: client,
+		stack:  stack,
 	}
 }
 
@@ -1253,7 +1056,7 @@ type DeleteManyUsersParams struct {
 }
 
 // DeleteManyUsers docs
-func (db DB) DeleteManyUsers(params *UserWhereInput) *BatchPayloadExec {
+func (client Client) DeleteManyUsers(params *UserWhereInput) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -1278,47 +1081,47 @@ func (db DB) DeleteManyUsers(params *UserWhereInput) *BatchPayloadExec {
 	})
 
 	return &BatchPayloadExec{
-		db:    db,
-		stack: stack,
+		client: client,
+		stack:  stack,
 	}
 }
 
 // Types
 
-// LinkOrderByInput docs
-type LinkOrderByInput string
+// TodoOrderByInput docs
+type TodoOrderByInput string
 
 const (
 
-	// IDAscLinkOrderByInput docs
-	IDAscLinkOrderByInput LinkOrderByInput = "id_ASC"
+	// IDAscTodoOrderByInput docs
+	IDAscTodoOrderByInput TodoOrderByInput = "id_ASC"
 
-	// IDDescLinkOrderByInput docs
-	IDDescLinkOrderByInput LinkOrderByInput = "id_DESC"
+	// IDDescTodoOrderByInput docs
+	IDDescTodoOrderByInput TodoOrderByInput = "id_DESC"
 
-	// CreatedAtAscLinkOrderByInput docs
-	CreatedAtAscLinkOrderByInput LinkOrderByInput = "createdAt_ASC"
+	// TextAscTodoOrderByInput docs
+	TextAscTodoOrderByInput TodoOrderByInput = "text_ASC"
 
-	// CreatedAtDescLinkOrderByInput docs
-	CreatedAtDescLinkOrderByInput LinkOrderByInput = "createdAt_DESC"
+	// TextDescTodoOrderByInput docs
+	TextDescTodoOrderByInput TodoOrderByInput = "text_DESC"
 
-	// DescriptionAscLinkOrderByInput docs
-	DescriptionAscLinkOrderByInput LinkOrderByInput = "description_ASC"
+	// DoneAscTodoOrderByInput docs
+	DoneAscTodoOrderByInput TodoOrderByInput = "done_ASC"
 
-	// DescriptionDescLinkOrderByInput docs
-	DescriptionDescLinkOrderByInput LinkOrderByInput = "description_DESC"
+	// DoneDescTodoOrderByInput docs
+	DoneDescTodoOrderByInput TodoOrderByInput = "done_DESC"
 
-	// UrlAscLinkOrderByInput docs
-	UrlAscLinkOrderByInput LinkOrderByInput = "url_ASC"
+	// CreatedAtAscTodoOrderByInput docs
+	CreatedAtAscTodoOrderByInput TodoOrderByInput = "createdAt_ASC"
 
-	// UrlDescLinkOrderByInput docs
-	UrlDescLinkOrderByInput LinkOrderByInput = "url_DESC"
+	// CreatedAtDescTodoOrderByInput docs
+	CreatedAtDescTodoOrderByInput TodoOrderByInput = "createdAt_DESC"
 
-	// UpdatedAtAscLinkOrderByInput docs
-	UpdatedAtAscLinkOrderByInput LinkOrderByInput = "updatedAt_ASC"
+	// UpdatedAtAscTodoOrderByInput docs
+	UpdatedAtAscTodoOrderByInput TodoOrderByInput = "updatedAt_ASC"
 
-	// UpdatedAtDescLinkOrderByInput docs
-	UpdatedAtDescLinkOrderByInput LinkOrderByInput = "updatedAt_DESC"
+	// UpdatedAtDescTodoOrderByInput docs
+	UpdatedAtDescTodoOrderByInput TodoOrderByInput = "updatedAt_DESC"
 )
 
 // UserOrderByInput docs
@@ -1338,23 +1141,17 @@ const (
 	// NameDescUserOrderByInput docs
 	NameDescUserOrderByInput UserOrderByInput = "name_DESC"
 
-	// EmailAscUserOrderByInput docs
-	EmailAscUserOrderByInput UserOrderByInput = "email_ASC"
+	// CreatedAtAscUserOrderByInput docs
+	CreatedAtAscUserOrderByInput UserOrderByInput = "createdAt_ASC"
 
-	// EmailDescUserOrderByInput docs
-	EmailDescUserOrderByInput UserOrderByInput = "email_DESC"
+	// CreatedAtDescUserOrderByInput docs
+	CreatedAtDescUserOrderByInput UserOrderByInput = "createdAt_DESC"
 
 	// UpdatedAtAscUserOrderByInput docs
 	UpdatedAtAscUserOrderByInput UserOrderByInput = "updatedAt_ASC"
 
 	// UpdatedAtDescUserOrderByInput docs
 	UpdatedAtDescUserOrderByInput UserOrderByInput = "updatedAt_DESC"
-
-	// CreatedAtAscUserOrderByInput docs
-	CreatedAtAscUserOrderByInput UserOrderByInput = "createdAt_ASC"
-
-	// CreatedAtDescUserOrderByInput docs
-	CreatedAtDescUserOrderByInput UserOrderByInput = "createdAt_DESC"
 )
 
 // MutationType docs
@@ -1372,258 +1169,167 @@ const (
 	DeletedMutationType MutationType = "DELETED"
 )
 
-// UserCreateOneWithoutLinksInput input struct docs
-type UserCreateOneWithoutLinksInput struct {
-	Create  *UserCreateWithoutLinksInput `json:"create,omitempty"`
-	Connect *UserWhereUniqueInput        `json:"connect,omitempty"`
+// UserUpdateDataInput input struct docs
+type UserUpdateDataInput struct {
+	Name *string `json:"name,omitempty"`
 }
 
-// LinkWhereInput input struct docs
-type LinkWhereInput struct {
-	And                      *LinkWhereInput `json:"AND,omitempty"`
-	Or                       *LinkWhereInput `json:"OR,omitempty"`
-	Not                      *LinkWhereInput `json:"NOT,omitempty"`
-	ID                       *string         `json:"id,omitempty"`
-	IDNot                    *string         `json:"id_not,omitempty"`
-	IDIn                     *string         `json:"id_in,omitempty"`
-	IDNotIn                  *string         `json:"id_not_in,omitempty"`
-	IDLt                     *string         `json:"id_lt,omitempty"`
-	IDLte                    *string         `json:"id_lte,omitempty"`
-	IDGt                     *string         `json:"id_gt,omitempty"`
-	IDGte                    *string         `json:"id_gte,omitempty"`
-	IDContains               *string         `json:"id_contains,omitempty"`
-	IDNotContains            *string         `json:"id_not_contains,omitempty"`
-	IDStartsWith             *string         `json:"id_starts_with,omitempty"`
-	IDNotStartsWith          *string         `json:"id_not_starts_with,omitempty"`
-	IDEndsWith               *string         `json:"id_ends_with,omitempty"`
-	IDNotEndsWith            *string         `json:"id_not_ends_with,omitempty"`
-	CreatedAt                *string         `json:"createdAt,omitempty"`
-	CreatedAtNot             *string         `json:"createdAt_not,omitempty"`
-	CreatedAtIn              *string         `json:"createdAt_in,omitempty"`
-	CreatedAtNotIn           *string         `json:"createdAt_not_in,omitempty"`
-	CreatedAtLt              *string         `json:"createdAt_lt,omitempty"`
-	CreatedAtLte             *string         `json:"createdAt_lte,omitempty"`
-	CreatedAtGt              *string         `json:"createdAt_gt,omitempty"`
-	CreatedAtGte             *string         `json:"createdAt_gte,omitempty"`
-	Description              *string         `json:"description,omitempty"`
-	DescriptionNot           *string         `json:"description_not,omitempty"`
-	DescriptionIn            *string         `json:"description_in,omitempty"`
-	DescriptionNotIn         *string         `json:"description_not_in,omitempty"`
-	DescriptionLt            *string         `json:"description_lt,omitempty"`
-	DescriptionLte           *string         `json:"description_lte,omitempty"`
-	DescriptionGt            *string         `json:"description_gt,omitempty"`
-	DescriptionGte           *string         `json:"description_gte,omitempty"`
-	DescriptionContains      *string         `json:"description_contains,omitempty"`
-	DescriptionNotContains   *string         `json:"description_not_contains,omitempty"`
-	DescriptionStartsWith    *string         `json:"description_starts_with,omitempty"`
-	DescriptionNotStartsWith *string         `json:"description_not_starts_with,omitempty"`
-	DescriptionEndsWith      *string         `json:"description_ends_with,omitempty"`
-	DescriptionNotEndsWith   *string         `json:"description_not_ends_with,omitempty"`
-	Url                      *string         `json:"url,omitempty"`
-	UrlNot                   *string         `json:"url_not,omitempty"`
-	UrlIn                    *string         `json:"url_in,omitempty"`
-	UrlNotIn                 *string         `json:"url_not_in,omitempty"`
-	UrlLt                    *string         `json:"url_lt,omitempty"`
-	UrlLte                   *string         `json:"url_lte,omitempty"`
-	UrlGt                    *string         `json:"url_gt,omitempty"`
-	UrlGte                   *string         `json:"url_gte,omitempty"`
-	UrlContains              *string         `json:"url_contains,omitempty"`
-	UrlNotContains           *string         `json:"url_not_contains,omitempty"`
-	UrlStartsWith            *string         `json:"url_starts_with,omitempty"`
-	UrlNotStartsWith         *string         `json:"url_not_starts_with,omitempty"`
-	UrlEndsWith              *string         `json:"url_ends_with,omitempty"`
-	UrlNotEndsWith           *string         `json:"url_not_ends_with,omitempty"`
-	PostedBy                 *UserWhereInput `json:"postedBy,omitempty"`
+// TodoWhereUniqueInput input struct docs
+type TodoWhereUniqueInput struct {
+	ID *string `json:"id,omitempty"`
 }
 
-// LinkCreateManyWithoutPostedByInput input struct docs
-type LinkCreateManyWithoutPostedByInput struct {
-	Create  *LinkCreateWithoutPostedByInput `json:"create,omitempty"`
-	Connect *LinkWhereUniqueInput           `json:"connect,omitempty"`
-}
-
-// UserWhereInput input struct docs
-type UserWhereInput struct {
-	And                *UserWhereInput `json:"AND,omitempty"`
-	Or                 *UserWhereInput `json:"OR,omitempty"`
-	Not                *UserWhereInput `json:"NOT,omitempty"`
-	ID                 *string         `json:"id,omitempty"`
-	IDNot              *string         `json:"id_not,omitempty"`
-	IDIn               *string         `json:"id_in,omitempty"`
-	IDNotIn            *string         `json:"id_not_in,omitempty"`
-	IDLt               *string         `json:"id_lt,omitempty"`
-	IDLte              *string         `json:"id_lte,omitempty"`
-	IDGt               *string         `json:"id_gt,omitempty"`
-	IDGte              *string         `json:"id_gte,omitempty"`
-	IDContains         *string         `json:"id_contains,omitempty"`
-	IDNotContains      *string         `json:"id_not_contains,omitempty"`
-	IDStartsWith       *string         `json:"id_starts_with,omitempty"`
-	IDNotStartsWith    *string         `json:"id_not_starts_with,omitempty"`
-	IDEndsWith         *string         `json:"id_ends_with,omitempty"`
-	IDNotEndsWith      *string         `json:"id_not_ends_with,omitempty"`
-	Name               *string         `json:"name,omitempty"`
-	NameNot            *string         `json:"name_not,omitempty"`
-	NameIn             *string         `json:"name_in,omitempty"`
-	NameNotIn          *string         `json:"name_not_in,omitempty"`
-	NameLt             *string         `json:"name_lt,omitempty"`
-	NameLte            *string         `json:"name_lte,omitempty"`
-	NameGt             *string         `json:"name_gt,omitempty"`
-	NameGte            *string         `json:"name_gte,omitempty"`
-	NameContains       *string         `json:"name_contains,omitempty"`
-	NameNotContains    *string         `json:"name_not_contains,omitempty"`
-	NameStartsWith     *string         `json:"name_starts_with,omitempty"`
-	NameNotStartsWith  *string         `json:"name_not_starts_with,omitempty"`
-	NameEndsWith       *string         `json:"name_ends_with,omitempty"`
-	NameNotEndsWith    *string         `json:"name_not_ends_with,omitempty"`
-	Email              *string         `json:"email,omitempty"`
-	EmailNot           *string         `json:"email_not,omitempty"`
-	EmailIn            *string         `json:"email_in,omitempty"`
-	EmailNotIn         *string         `json:"email_not_in,omitempty"`
-	EmailLt            *string         `json:"email_lt,omitempty"`
-	EmailLte           *string         `json:"email_lte,omitempty"`
-	EmailGt            *string         `json:"email_gt,omitempty"`
-	EmailGte           *string         `json:"email_gte,omitempty"`
-	EmailContains      *string         `json:"email_contains,omitempty"`
-	EmailNotContains   *string         `json:"email_not_contains,omitempty"`
-	EmailStartsWith    *string         `json:"email_starts_with,omitempty"`
-	EmailNotStartsWith *string         `json:"email_not_starts_with,omitempty"`
-	EmailEndsWith      *string         `json:"email_ends_with,omitempty"`
-	EmailNotEndsWith   *string         `json:"email_not_ends_with,omitempty"`
-	LinksEvery         *LinkWhereInput `json:"links_every,omitempty"`
-	LinksSome          *LinkWhereInput `json:"links_some,omitempty"`
-	LinksNone          *LinkWhereInput `json:"links_none,omitempty"`
+// TodoUpdateInput input struct docs
+type TodoUpdateInput struct {
+	Text *string             `json:"text,omitempty"`
+	Done *bool               `json:"done,omitempty"`
+	User *UserUpdateOneInput `json:"user,omitempty"`
 }
 
 // UserUpdateInput input struct docs
 type UserUpdateInput struct {
-	Name  *string                             `json:"name,omitempty"`
-	Email *string                             `json:"email,omitempty"`
-	Links *LinkUpdateManyWithoutPostedByInput `json:"links,omitempty"`
-}
-
-// LinkCreateWithoutPostedByInput input struct docs
-type LinkCreateWithoutPostedByInput struct {
-	Description *string `json:"description,omitempty"`
-	Url         *string `json:"url,omitempty"`
-}
-
-// UserUpsertWithoutLinksInput input struct docs
-type UserUpsertWithoutLinksInput struct {
-	Update *UserUpdateWithoutLinksDataInput `json:"update,omitempty"`
-	Create *UserCreateWithoutLinksInput     `json:"create,omitempty"`
-}
-
-// LinkSubscriptionWhereInput input struct docs
-type LinkSubscriptionWhereInput struct {
-	And                        *LinkSubscriptionWhereInput `json:"AND,omitempty"`
-	Or                         *LinkSubscriptionWhereInput `json:"OR,omitempty"`
-	Not                        *LinkSubscriptionWhereInput `json:"NOT,omitempty"`
-	MutationIn                 *MutationType               `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                     `json:"updatedFields_contains,omitempty"`
-	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every,omitempty"`
-	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some,omitempty"`
-	Node                       *LinkWhereInput             `json:"node,omitempty"`
-}
-
-// UserUpdateWithoutLinksDataInput input struct docs
-type UserUpdateWithoutLinksDataInput struct {
-	Name  *string `json:"name,omitempty"`
-	Email *string `json:"email,omitempty"`
-}
-
-// UserWhereUniqueInput input struct docs
-type UserWhereUniqueInput struct {
-	ID    *string `json:"id,omitempty"`
-	Email *string `json:"email,omitempty"`
-}
-
-// UserUpdateOneWithoutLinksInput input struct docs
-type UserUpdateOneWithoutLinksInput struct {
-	Create     *UserCreateWithoutLinksInput     `json:"create,omitempty"`
-	Connect    *UserWhereUniqueInput            `json:"connect,omitempty"`
-	Disconnect *bool                            `json:"disconnect,omitempty"`
-	Delete     *bool                            `json:"delete,omitempty"`
-	Update     *UserUpdateWithoutLinksDataInput `json:"update,omitempty"`
-	Upsert     *UserUpsertWithoutLinksInput     `json:"upsert,omitempty"`
-}
-
-// LinkUpdateWithoutPostedByDataInput input struct docs
-type LinkUpdateWithoutPostedByDataInput struct {
-	Description *string `json:"description,omitempty"`
-	Url         *string `json:"url,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // UserCreateInput input struct docs
 type UserCreateInput struct {
-	Name  *string                             `json:"name,omitempty"`
-	Email *string                             `json:"email,omitempty"`
-	Links *LinkCreateManyWithoutPostedByInput `json:"links,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
-// UserCreateWithoutLinksInput input struct docs
-type UserCreateWithoutLinksInput struct {
-	Name  *string `json:"name,omitempty"`
-	Email *string `json:"email,omitempty"`
+// UserWhereInput input struct docs
+type UserWhereInput struct {
+	ID                *string         `json:"id,omitempty"`
+	IDNot             *string         `json:"id_not,omitempty"`
+	IDIn              *string         `json:"id_in,omitempty"`
+	IDNotIn           *string         `json:"id_not_in,omitempty"`
+	IDLt              *string         `json:"id_lt,omitempty"`
+	IDLte             *string         `json:"id_lte,omitempty"`
+	IDGt              *string         `json:"id_gt,omitempty"`
+	IDGte             *string         `json:"id_gte,omitempty"`
+	IDContains        *string         `json:"id_contains,omitempty"`
+	IDNotContains     *string         `json:"id_not_contains,omitempty"`
+	IDStartsWith      *string         `json:"id_starts_with,omitempty"`
+	IDNotStartsWith   *string         `json:"id_not_starts_with,omitempty"`
+	IDEndsWith        *string         `json:"id_ends_with,omitempty"`
+	IDNotEndsWith     *string         `json:"id_not_ends_with,omitempty"`
+	Name              *string         `json:"name,omitempty"`
+	NameNot           *string         `json:"name_not,omitempty"`
+	NameIn            *string         `json:"name_in,omitempty"`
+	NameNotIn         *string         `json:"name_not_in,omitempty"`
+	NameLt            *string         `json:"name_lt,omitempty"`
+	NameLte           *string         `json:"name_lte,omitempty"`
+	NameGt            *string         `json:"name_gt,omitempty"`
+	NameGte           *string         `json:"name_gte,omitempty"`
+	NameContains      *string         `json:"name_contains,omitempty"`
+	NameNotContains   *string         `json:"name_not_contains,omitempty"`
+	NameStartsWith    *string         `json:"name_starts_with,omitempty"`
+	NameNotStartsWith *string         `json:"name_not_starts_with,omitempty"`
+	NameEndsWith      *string         `json:"name_ends_with,omitempty"`
+	NameNotEndsWith   *string         `json:"name_not_ends_with,omitempty"`
+	And               *UserWhereInput `json:"AND,omitempty"`
+	Or                *UserWhereInput `json:"OR,omitempty"`
+	Not               *UserWhereInput `json:"NOT,omitempty"`
 }
 
-// LinkUpdateInput input struct docs
-type LinkUpdateInput struct {
-	Description *string                         `json:"description,omitempty"`
-	Url         *string                         `json:"url,omitempty"`
-	PostedBy    *UserUpdateOneWithoutLinksInput `json:"postedBy,omitempty"`
+// TodoCreateInput input struct docs
+type TodoCreateInput struct {
+	Text *string             `json:"text,omitempty"`
+	Done *bool               `json:"done,omitempty"`
+	User *UserCreateOneInput `json:"user,omitempty"`
 }
 
-// LinkCreateInput input struct docs
-type LinkCreateInput struct {
-	Description *string                         `json:"description,omitempty"`
-	Url         *string                         `json:"url,omitempty"`
-	PostedBy    *UserCreateOneWithoutLinksInput `json:"postedBy,omitempty"`
+// UserCreateOneInput input struct docs
+type UserCreateOneInput struct {
+	Create  *UserCreateInput      `json:"create,omitempty"`
+	Connect *UserWhereUniqueInput `json:"connect,omitempty"`
 }
 
-// LinkUpdateWithWhereUniqueWithoutPostedByInput input struct docs
-type LinkUpdateWithWhereUniqueWithoutPostedByInput struct {
-	Where *LinkWhereUniqueInput               `json:"where,omitempty"`
-	Data  *LinkUpdateWithoutPostedByDataInput `json:"data,omitempty"`
+// TodoSubscriptionWhereInput input struct docs
+type TodoSubscriptionWhereInput struct {
+	MutationIn                 *MutationType               `json:"mutation_in,omitempty"`
+	UpdatedFieldsContains      *string                     `json:"updatedFields_contains,omitempty"`
+	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every,omitempty"`
+	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some,omitempty"`
+	Node                       *TodoWhereInput             `json:"node,omitempty"`
+	And                        *TodoSubscriptionWhereInput `json:"AND,omitempty"`
+	Or                         *TodoSubscriptionWhereInput `json:"OR,omitempty"`
+	Not                        *TodoSubscriptionWhereInput `json:"NOT,omitempty"`
 }
 
-// LinkUpsertWithWhereUniqueWithoutPostedByInput input struct docs
-type LinkUpsertWithWhereUniqueWithoutPostedByInput struct {
-	Where  *LinkWhereUniqueInput               `json:"where,omitempty"`
-	Update *LinkUpdateWithoutPostedByDataInput `json:"update,omitempty"`
-	Create *LinkCreateWithoutPostedByInput     `json:"create,omitempty"`
-}
-
-// LinkWhereUniqueInput input struct docs
-type LinkWhereUniqueInput struct {
+// UserWhereUniqueInput input struct docs
+type UserWhereUniqueInput struct {
 	ID *string `json:"id,omitempty"`
+}
+
+// UserUpsertNestedInput input struct docs
+type UserUpsertNestedInput struct {
+	Update *UserUpdateDataInput `json:"update,omitempty"`
+	Create *UserCreateInput     `json:"create,omitempty"`
+}
+
+// TodoWhereInput input struct docs
+type TodoWhereInput struct {
+	ID                *string         `json:"id,omitempty"`
+	IDNot             *string         `json:"id_not,omitempty"`
+	IDIn              *string         `json:"id_in,omitempty"`
+	IDNotIn           *string         `json:"id_not_in,omitempty"`
+	IDLt              *string         `json:"id_lt,omitempty"`
+	IDLte             *string         `json:"id_lte,omitempty"`
+	IDGt              *string         `json:"id_gt,omitempty"`
+	IDGte             *string         `json:"id_gte,omitempty"`
+	IDContains        *string         `json:"id_contains,omitempty"`
+	IDNotContains     *string         `json:"id_not_contains,omitempty"`
+	IDStartsWith      *string         `json:"id_starts_with,omitempty"`
+	IDNotStartsWith   *string         `json:"id_not_starts_with,omitempty"`
+	IDEndsWith        *string         `json:"id_ends_with,omitempty"`
+	IDNotEndsWith     *string         `json:"id_not_ends_with,omitempty"`
+	Text              *string         `json:"text,omitempty"`
+	TextNot           *string         `json:"text_not,omitempty"`
+	TextIn            *string         `json:"text_in,omitempty"`
+	TextNotIn         *string         `json:"text_not_in,omitempty"`
+	TextLt            *string         `json:"text_lt,omitempty"`
+	TextLte           *string         `json:"text_lte,omitempty"`
+	TextGt            *string         `json:"text_gt,omitempty"`
+	TextGte           *string         `json:"text_gte,omitempty"`
+	TextContains      *string         `json:"text_contains,omitempty"`
+	TextNotContains   *string         `json:"text_not_contains,omitempty"`
+	TextStartsWith    *string         `json:"text_starts_with,omitempty"`
+	TextNotStartsWith *string         `json:"text_not_starts_with,omitempty"`
+	TextEndsWith      *string         `json:"text_ends_with,omitempty"`
+	TextNotEndsWith   *string         `json:"text_not_ends_with,omitempty"`
+	Done              *bool           `json:"done,omitempty"`
+	DoneNot           *bool           `json:"done_not,omitempty"`
+	User              *UserWhereInput `json:"user,omitempty"`
+	And               *TodoWhereInput `json:"AND,omitempty"`
+	Or                *TodoWhereInput `json:"OR,omitempty"`
+	Not               *TodoWhereInput `json:"NOT,omitempty"`
+}
+
+// UserUpdateOneInput input struct docs
+type UserUpdateOneInput struct {
+	Create  *UserCreateInput       `json:"create,omitempty"`
+	Update  *UserUpdateDataInput   `json:"update,omitempty"`
+	Upsert  *UserUpsertNestedInput `json:"upsert,omitempty"`
+	Delete  *bool                  `json:"delete,omitempty"`
+	Connect *UserWhereUniqueInput  `json:"connect,omitempty"`
 }
 
 // UserSubscriptionWhereInput input struct docs
 type UserSubscriptionWhereInput struct {
-	And                        *UserSubscriptionWhereInput `json:"AND,omitempty"`
-	Or                         *UserSubscriptionWhereInput `json:"OR,omitempty"`
-	Not                        *UserSubscriptionWhereInput `json:"NOT,omitempty"`
 	MutationIn                 *MutationType               `json:"mutation_in,omitempty"`
 	UpdatedFieldsContains      *string                     `json:"updatedFields_contains,omitempty"`
 	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every,omitempty"`
 	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some,omitempty"`
 	Node                       *UserWhereInput             `json:"node,omitempty"`
-}
-
-// LinkUpdateManyWithoutPostedByInput input struct docs
-type LinkUpdateManyWithoutPostedByInput struct {
-	Create     *LinkCreateWithoutPostedByInput                `json:"create,omitempty"`
-	Connect    *LinkWhereUniqueInput                          `json:"connect,omitempty"`
-	Disconnect *LinkWhereUniqueInput                          `json:"disconnect,omitempty"`
-	Delete     *LinkWhereUniqueInput                          `json:"delete,omitempty"`
-	Update     *LinkUpdateWithWhereUniqueWithoutPostedByInput `json:"update,omitempty"`
-	Upsert     *LinkUpsertWithWhereUniqueWithoutPostedByInput `json:"upsert,omitempty"`
+	And                        *UserSubscriptionWhereInput `json:"AND,omitempty"`
+	Or                         *UserSubscriptionWhereInput `json:"OR,omitempty"`
+	Not                        *UserSubscriptionWhereInput `json:"NOT,omitempty"`
 }
 
 // NodeExec docs
 type NodeExec struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // Node docs
@@ -1631,693 +1337,24 @@ type Node interface {
 	ID() string
 }
 
-// UserPreviousValuesExec docs
-type UserPreviousValuesExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance UserPreviousValuesExec) Exec() UserPreviousValues {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData UserPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// UserPreviousValuesExecArray docs
-type UserPreviousValuesExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance UserPreviousValuesExecArray) Exec() []UserPreviousValues {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []UserPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// UserPreviousValues docs - generated with types
-type UserPreviousValues struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
-}
-
-// LinkConnectionExec docs
-type LinkConnectionExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// PageInfo docs - executable for types
-func (instance *LinkConnectionExec) PageInfo() *PageInfoExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "pageInfo",
-		Field: GraphQLField{
-			Name:       "pageInfo",
-			TypeName:   "PageInfo",
-			TypeFields: []string{"hasNextPage", "hasPreviousPage", "startCursor", "endCursor"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &PageInfoExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Edges docs - executable for types
-func (instance *LinkConnectionExec) Edges() *LinkEdgeExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "edges",
-		Field: GraphQLField{
-			Name:       "edges",
-			TypeName:   "LinkEdge",
-			TypeFields: []string{"cursor"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &LinkEdgeExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Aggregate docs - executable for types
-func (instance *LinkConnectionExec) Aggregate() *AggregateLinkExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "aggregate",
-		Field: GraphQLField{
-			Name:       "aggregate",
-			TypeName:   "AggregateLink",
-			TypeFields: []string{"count"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &AggregateLinkExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Exec docs
-func (instance LinkConnectionExec) Exec() LinkConnection {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData LinkConnection
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkConnectionExecArray docs
-type LinkConnectionExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance LinkConnectionExecArray) Exec() []LinkConnection {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []LinkConnection
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkConnection docs - generated with types
-type LinkConnection struct {
-	PageInfo  *PageInfo      `json:"pageInfo"`
-	Edges     *LinkEdge      `json:"edges"`
-	Aggregate *AggregateLink `json:"aggregate"`
-}
-
-// LinkExec docs
-type LinkExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// PostedBy docs - executable for types
-func (instance *LinkExec) PostedBy(where *UserWhereInput) *UserExec {
-	var args []GraphQLArg
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "UserWhereInput",
-		Value:    where,
-	})
-	instance.stack = append(instance.stack, Instruction{
-		Name: "postedBy",
-		Field: GraphQLField{
-			Name:       "postedBy",
-			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &UserExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Exec docs
-func (instance LinkExec) Exec() Link {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData Link
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkExecArray docs
-type LinkExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance LinkExecArray) Exec() []Link {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []Link
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// Link docs - generated with types
-type Link struct {
-	ID          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	Description string `json:"description"`
-	Url         string `json:"url"`
-	PostedBy    *User  `json:"postedBy,omitempty"`
-}
-
-// BatchPayloadExec docs
-type BatchPayloadExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance BatchPayloadExec) Exec() BatchPayload {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData BatchPayload
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// BatchPayloadExecArray docs
-type BatchPayloadExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance BatchPayloadExecArray) Exec() []BatchPayload {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []BatchPayload
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// BatchPayload docs - generated with types
-type BatchPayload struct {
-	Count int64 `json:"count"`
-}
-
 // AggregateUserExec docs
 type AggregateUserExec struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // Exec docs
-func (instance AggregateUserExec) Exec() AggregateUser {
+func (instance AggregateUserExec) Exec() (AggregateUser, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
 		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for argKey := range instruction.Args {
 			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
 			isUnique := false
@@ -2327,28 +1364,29 @@ func (instance AggregateUserExec) Exec() AggregateUser {
 					if existingArg.Name == arg.Name {
 						isUnique = false
 						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
+						if instance.client.Debug {
 							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
 						}
 						break
 					}
 				}
 			}
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Arg Name: ", arg.Name)
 			}
 			allArgs = append(allArgs, *arg)
 			variables[arg.Name] = arg.Value
 		}
 	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -2358,11 +1396,11 @@ func (instance AggregateUserExec) Exec() AggregateUser {
 	if !isArray(dataType) {
 		unpackedData := data
 		for _, instruction := range instance.stack {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
 			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
 				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
@@ -2370,47 +1408,47 @@ func (instance AggregateUserExec) Exec() AggregateUser {
 			genericData = unpackedData
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
 	var decodedData AggregateUser
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
 // AggregateUserExecArray docs
 type AggregateUserExecArray struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // Exec docs
-func (instance AggregateUserExecArray) Exec() []AggregateUser {
-	query := instance.db.ProcessInstructions(instance.stack)
+func (instance AggregateUserExecArray) Exec() ([]AggregateUser, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for _, arg := range instruction.Args {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
-			// TODO: Need to handle arg.Name collisions
 			variables[arg.Name] = arg.Value
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -2427,16 +1465,16 @@ func (instance AggregateUserExecArray) Exec() []AggregateUser {
 			}
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
 	var decodedData []AggregateUser
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
 // AggregateUser docs - generated with types
@@ -2444,1008 +1482,10 @@ type AggregateUser struct {
 	Count int32 `json:"count"`
 }
 
-// LinkSubscriptionPayloadExec docs
-type LinkSubscriptionPayloadExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Node docs - executable for types
-func (instance *LinkSubscriptionPayloadExec) Node() *LinkExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "node",
-		Field: GraphQLField{
-			Name:       "node",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &LinkExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// PreviousValues docs - executable for types
-func (instance *LinkSubscriptionPayloadExec) PreviousValues() *LinkPreviousValuesExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "previousValues",
-		Field: GraphQLField{
-			Name:       "previousValues",
-			TypeName:   "LinkPreviousValues",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &LinkPreviousValuesExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Exec docs
-func (instance LinkSubscriptionPayloadExec) Exec() LinkSubscriptionPayload {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData LinkSubscriptionPayload
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkSubscriptionPayloadExecArray docs
-type LinkSubscriptionPayloadExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance LinkSubscriptionPayloadExecArray) Exec() []LinkSubscriptionPayload {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []LinkSubscriptionPayload
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkSubscriptionPayload docs - generated with types
-type LinkSubscriptionPayload struct {
-	Mutation       *MutationType       `json:"mutation"`
-	Node           *Link               `json:"node,omitempty"`
-	UpdatedFields  string              `json:"updatedFields"`
-	PreviousValues *LinkPreviousValues `json:"previousValues,omitempty"`
-}
-
-// LinkPreviousValuesExec docs
-type LinkPreviousValuesExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance LinkPreviousValuesExec) Exec() LinkPreviousValues {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData LinkPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkPreviousValuesExecArray docs
-type LinkPreviousValuesExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance LinkPreviousValuesExecArray) Exec() []LinkPreviousValues {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []LinkPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// LinkPreviousValues docs - generated with types
-type LinkPreviousValues struct {
-	ID          string `json:"id"`
-	CreatedAt   string `json:"createdAt"`
-	Description string `json:"description"`
-	Url         string `json:"url"`
-}
-
-// AggregateLinkExec docs
-type AggregateLinkExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance AggregateLinkExec) Exec() AggregateLink {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData AggregateLink
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// AggregateLinkExecArray docs
-type AggregateLinkExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance AggregateLinkExecArray) Exec() []AggregateLink {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []AggregateLink
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// AggregateLink docs - generated with types
-type AggregateLink struct {
-	Count int32 `json:"count"`
-}
-
-// UserEdgeExec docs
-type UserEdgeExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Node docs - executable for types
-func (instance *UserEdgeExec) Node() *UserExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "node",
-		Field: GraphQLField{
-			Name:       "node",
-			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &UserExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Exec docs
-func (instance UserEdgeExec) Exec() UserEdge {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData UserEdge
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// UserEdgeExecArray docs
-type UserEdgeExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance UserEdgeExecArray) Exec() []UserEdge {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []UserEdge
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// UserEdge docs - generated with types
-type UserEdge struct {
-	Node   *User  `json:"node"`
-	Cursor string `json:"cursor"`
-}
-
-// UserExec docs
-type UserExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Links docs - executable for types
-func (instance *UserExec) Links(where *LinkWhereInput, orderBy *LinkOrderByInput, skip *Int, after *String, before *String, first *Int, last *Int) *LinkExec {
-	var args []GraphQLArg
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "LinkWhereInput",
-		Value:    where,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "orderBy",
-		Key:      "orderBy",
-		TypeName: "LinkOrderByInput",
-		Value:    orderBy,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "skip",
-		Key:      "skip",
-		TypeName: "Int",
-		Value:    skip,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "after",
-		Key:      "after",
-		TypeName: "String",
-		Value:    after,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "before",
-		Key:      "before",
-		TypeName: "String",
-		Value:    before,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "first",
-		Key:      "first",
-		TypeName: "Int",
-		Value:    first,
-	})
-	args = append(args, GraphQLArg{
-		Name:     "last",
-		Key:      "last",
-		TypeName: "Int",
-		Value:    last,
-	})
-	instance.stack = append(instance.stack, Instruction{
-		Name: "links",
-		Field: GraphQLField{
-			Name:       "links",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &LinkExec{
-		db:    instance.db,
-		stack: instance.stack,
-	}
-}
-
-// Exec docs
-func (instance UserExec) Exec() User {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData User
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// UserExecArray docs
-type UserExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance UserExecArray) Exec() []User {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []User
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// User docs - generated with types
-type User struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
-	Links *Link  `json:"links"`
-}
-
-// PageInfoExec docs
-type PageInfoExec struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance PageInfoExec) Exec() PageInfo {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.db.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.db.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData PageInfo
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// PageInfoExecArray docs
-type PageInfoExecArray struct {
-	db    DB
-	stack []Instruction
-}
-
-// Exec docs
-func (instance PageInfoExecArray) Exec() []PageInfo {
-	query := instance.db.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.db.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.db.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			// TODO: Need to handle arg.Name collisions
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
-		fmt.Println("Data Exec:", data)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
-			}
-		}
-	}
-	if instance.db.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []PageInfo
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData
-}
-
-// PageInfo docs - generated with types
-type PageInfo struct {
-	HasNextPage     bool   `json:"hasNextPage"`
-	HasPreviousPage bool   `json:"hasPreviousPage"`
-	StartCursor     string `json:"startCursor,omitempty"`
-	EndCursor       string `json:"endCursor,omitempty"`
-}
-
 // UserSubscriptionPayloadExec docs
 type UserSubscriptionPayloadExec struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // Node docs - executable for types
@@ -3457,14 +1497,14 @@ func (instance *UserSubscriptionPayloadExec) Node() *UserExec {
 		Field: GraphQLField{
 			Name:       "node",
 			TypeName:   "User",
-			TypeFields: []string{"id", "name", "email"},
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "",
 		Args:      args,
 	})
 	return &UserExec{
-		db:    instance.db,
-		stack: instance.stack,
+		client: instance.client,
+		stack:  instance.stack,
 	}
 }
 
@@ -3477,29 +1517,29 @@ func (instance *UserSubscriptionPayloadExec) PreviousValues() *UserPreviousValue
 		Field: GraphQLField{
 			Name:       "previousValues",
 			TypeName:   "UserPreviousValues",
-			TypeFields: []string{"id", "name", "email"},
+			TypeFields: []string{"id", "name"},
 		},
 		Operation: "",
 		Args:      args,
 	})
 	return &UserPreviousValuesExec{
-		db:    instance.db,
-		stack: instance.stack,
+		client: instance.client,
+		stack:  instance.stack,
 	}
 }
 
 // Exec docs
-func (instance UserSubscriptionPayloadExec) Exec() UserSubscriptionPayload {
+func (instance UserSubscriptionPayloadExec) Exec() (UserSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
 		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for argKey := range instruction.Args {
 			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
 			isUnique := false
@@ -3509,28 +1549,29 @@ func (instance UserSubscriptionPayloadExec) Exec() UserSubscriptionPayload {
 					if existingArg.Name == arg.Name {
 						isUnique = false
 						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
+						if instance.client.Debug {
 							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
 						}
 						break
 					}
 				}
 			}
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Arg Name: ", arg.Name)
 			}
 			allArgs = append(allArgs, *arg)
 			variables[arg.Name] = arg.Value
 		}
 	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -3540,11 +1581,11 @@ func (instance UserSubscriptionPayloadExec) Exec() UserSubscriptionPayload {
 	if !isArray(dataType) {
 		unpackedData := data
 		for _, instruction := range instance.stack {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
 			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
 				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
@@ -3552,47 +1593,47 @@ func (instance UserSubscriptionPayloadExec) Exec() UserSubscriptionPayload {
 			genericData = unpackedData
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
 	var decodedData UserSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
 // UserSubscriptionPayloadExecArray docs
 type UserSubscriptionPayloadExecArray struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // Exec docs
-func (instance UserSubscriptionPayloadExecArray) Exec() []UserSubscriptionPayload {
-	query := instance.db.ProcessInstructions(instance.stack)
+func (instance UserSubscriptionPayloadExecArray) Exec() ([]UserSubscriptionPayload, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for _, arg := range instruction.Args {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
-			// TODO: Need to handle arg.Name collisions
 			variables[arg.Name] = arg.Value
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -3609,16 +1650,16 @@ func (instance UserSubscriptionPayloadExecArray) Exec() []UserSubscriptionPayloa
 			}
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
 	var decodedData []UserSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
 // UserSubscriptionPayload docs - generated with types
@@ -3629,44 +1670,64 @@ type UserSubscriptionPayload struct {
 	PreviousValues *UserPreviousValues `json:"previousValues,omitempty"`
 }
 
-// LinkEdgeExec docs
-type LinkEdgeExec struct {
-	db    DB
-	stack []Instruction
+// TodoSubscriptionPayloadExec docs
+type TodoSubscriptionPayloadExec struct {
+	client Client
+	stack  []Instruction
 }
 
 // Node docs - executable for types
-func (instance *LinkEdgeExec) Node() *LinkExec {
+func (instance *TodoSubscriptionPayloadExec) Node() *TodoExec {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
 		Name: "node",
 		Field: GraphQLField{
 			Name:       "node",
-			TypeName:   "Link",
-			TypeFields: []string{"id", "createdAt", "description", "url"},
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
 		},
 		Operation: "",
 		Args:      args,
 	})
-	return &LinkExec{
-		db:    instance.db,
-		stack: instance.stack,
+	return &TodoExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// PreviousValues docs - executable for types
+func (instance *TodoSubscriptionPayloadExec) PreviousValues() *TodoPreviousValuesExec {
+	var args []GraphQLArg
+
+	instance.stack = append(instance.stack, Instruction{
+		Name: "previousValues",
+		Field: GraphQLField{
+			Name:       "previousValues",
+			TypeName:   "TodoPreviousValues",
+			TypeFields: []string{"id", "text", "done"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &TodoPreviousValuesExec{
+		client: instance.client,
+		stack:  instance.stack,
 	}
 }
 
 // Exec docs
-func (instance LinkEdgeExec) Exec() LinkEdge {
+func (instance TodoSubscriptionPayloadExec) Exec() (TodoSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
 		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for argKey := range instruction.Args {
 			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
 			isUnique := false
@@ -3676,28 +1737,29 @@ func (instance LinkEdgeExec) Exec() LinkEdge {
 					if existingArg.Name == arg.Name {
 						isUnique = false
 						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
+						if instance.client.Debug {
 							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
 						}
 						break
 					}
 				}
 			}
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Arg Name: ", arg.Name)
 			}
 			allArgs = append(allArgs, *arg)
 			variables[arg.Name] = arg.Value
 		}
 	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -3707,11 +1769,11 @@ func (instance LinkEdgeExec) Exec() LinkEdge {
 	if !isArray(dataType) {
 		unpackedData := data
 		for _, instruction := range instance.stack {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
 			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
 				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
@@ -3719,47 +1781,47 @@ func (instance LinkEdgeExec) Exec() LinkEdge {
 			genericData = unpackedData
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData LinkEdge
+	var decodedData TodoSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
-// LinkEdgeExecArray docs
-type LinkEdgeExecArray struct {
-	db    DB
-	stack []Instruction
+// TodoSubscriptionPayloadExecArray docs
+type TodoSubscriptionPayloadExecArray struct {
+	client Client
+	stack  []Instruction
 }
 
 // Exec docs
-func (instance LinkEdgeExecArray) Exec() []LinkEdge {
-	query := instance.db.ProcessInstructions(instance.stack)
+func (instance TodoSubscriptionPayloadExecArray) Exec() ([]TodoSubscriptionPayload, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for _, arg := range instruction.Args {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
-			// TODO: Need to handle arg.Name collisions
 			variables[arg.Name] = arg.Value
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -3776,28 +1838,1264 @@ func (instance LinkEdgeExecArray) Exec() []LinkEdge {
 			}
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData []LinkEdge
+	var decodedData []TodoSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
-// LinkEdge docs - generated with types
-type LinkEdge struct {
-	Node   *Link  `json:"node"`
+// TodoSubscriptionPayload docs - generated with types
+type TodoSubscriptionPayload struct {
+	Mutation       *MutationType       `json:"mutation"`
+	Node           *Todo               `json:"node,omitempty"`
+	UpdatedFields  string              `json:"updatedFields"`
+	PreviousValues *TodoPreviousValues `json:"previousValues,omitempty"`
+}
+
+// BatchPayloadExec docs
+type BatchPayloadExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance BatchPayloadExec) Exec() (BatchPayload, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData BatchPayload
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// BatchPayloadExecArray docs
+type BatchPayloadExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance BatchPayloadExecArray) Exec() ([]BatchPayload, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []BatchPayload
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// BatchPayload docs - generated with types
+type BatchPayload struct {
+	Count int64 `json:"count"`
+}
+
+// UserPreviousValuesExec docs
+type UserPreviousValuesExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance UserPreviousValuesExec) Exec() (UserPreviousValues, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData UserPreviousValues
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// UserPreviousValuesExecArray docs
+type UserPreviousValuesExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance UserPreviousValuesExecArray) Exec() ([]UserPreviousValues, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []UserPreviousValues
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// UserPreviousValues docs - generated with types
+type UserPreviousValues struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+// AggregateTodoExec docs
+type AggregateTodoExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance AggregateTodoExec) Exec() (AggregateTodo, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData AggregateTodo
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// AggregateTodoExecArray docs
+type AggregateTodoExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance AggregateTodoExecArray) Exec() ([]AggregateTodo, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []AggregateTodo
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// AggregateTodo docs - generated with types
+type AggregateTodo struct {
+	Count int32 `json:"count"`
+}
+
+// TodoPreviousValuesExec docs
+type TodoPreviousValuesExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance TodoPreviousValuesExec) Exec() (TodoPreviousValues, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData TodoPreviousValues
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoPreviousValuesExecArray docs
+type TodoPreviousValuesExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance TodoPreviousValuesExecArray) Exec() ([]TodoPreviousValues, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []TodoPreviousValues
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoPreviousValues docs - generated with types
+type TodoPreviousValues struct {
+	ID   string `json:"id"`
+	Text string `json:"text"`
+	Done bool   `json:"done"`
+}
+
+// TodoExec docs
+type TodoExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// User docs - executable for types
+func (instance *TodoExec) User(where *UserWhereInput) *UserExec {
+	var args []GraphQLArg
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "UserWhereInput",
+		Value:    where,
+	})
+	instance.stack = append(instance.stack, Instruction{
+		Name: "user",
+		Field: GraphQLField{
+			Name:       "user",
+			TypeName:   "User",
+			TypeFields: []string{"id", "name"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &UserExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// Exec docs
+func (instance TodoExec) Exec() (Todo, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData Todo
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoExecArray docs
+type TodoExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance TodoExecArray) Exec() ([]Todo, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []Todo
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// Todo docs - generated with types
+type Todo struct {
+	ID   string `json:"id"`
+	Text string `json:"text"`
+	Done bool   `json:"done"`
+	User *User  `json:"user"`
+}
+
+// UserExec docs
+type UserExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance UserExec) Exec() (User, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData User
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// UserExecArray docs
+type UserExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance UserExecArray) Exec() ([]User, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []User
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// User docs - generated with types
+type User struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+// UserEdgeExec docs
+type UserEdgeExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Node docs - executable for types
+func (instance *UserEdgeExec) Node() *UserExec {
+	var args []GraphQLArg
+
+	instance.stack = append(instance.stack, Instruction{
+		Name: "node",
+		Field: GraphQLField{
+			Name:       "node",
+			TypeName:   "User",
+			TypeFields: []string{"id", "name"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &UserExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// Exec docs
+func (instance UserEdgeExec) Exec() (UserEdge, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData UserEdge
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// UserEdgeExecArray docs
+type UserEdgeExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance UserEdgeExecArray) Exec() ([]UserEdge, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []UserEdge
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// UserEdge docs - generated with types
+type UserEdge struct {
+	Node   *User  `json:"node"`
+	Cursor string `json:"cursor"`
+}
+
+// TodoEdgeExec docs
+type TodoEdgeExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Node docs - executable for types
+func (instance *TodoEdgeExec) Node() *TodoExec {
+	var args []GraphQLArg
+
+	instance.stack = append(instance.stack, Instruction{
+		Name: "node",
+		Field: GraphQLField{
+			Name:       "node",
+			TypeName:   "Todo",
+			TypeFields: []string{"id", "text", "done"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &TodoExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// Exec docs
+func (instance TodoEdgeExec) Exec() (TodoEdge, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData TodoEdge
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoEdgeExecArray docs
+type TodoEdgeExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance TodoEdgeExecArray) Exec() ([]TodoEdge, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []TodoEdge
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoEdge docs - generated with types
+type TodoEdge struct {
+	Node   *Todo  `json:"node"`
 	Cursor string `json:"cursor"`
 }
 
 // UserConnectionExec docs
 type UserConnectionExec struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // PageInfo docs - executable for types
@@ -3815,8 +3113,8 @@ func (instance *UserConnectionExec) PageInfo() *PageInfoExec {
 		Args:      args,
 	})
 	return &PageInfoExec{
-		db:    instance.db,
-		stack: instance.stack,
+		client: instance.client,
+		stack:  instance.stack,
 	}
 }
 
@@ -3835,8 +3133,8 @@ func (instance *UserConnectionExec) Edges() *UserEdgeExec {
 		Args:      args,
 	})
 	return &UserEdgeExec{
-		db:    instance.db,
-		stack: instance.stack,
+		client: instance.client,
+		stack:  instance.stack,
 	}
 }
 
@@ -3855,23 +3153,23 @@ func (instance *UserConnectionExec) Aggregate() *AggregateUserExec {
 		Args:      args,
 	})
 	return &AggregateUserExec{
-		db:    instance.db,
-		stack: instance.stack,
+		client: instance.client,
+		stack:  instance.stack,
 	}
 }
 
 // Exec docs
-func (instance UserConnectionExec) Exec() UserConnection {
+func (instance UserConnectionExec) Exec() (UserConnection, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
 		instruction := &instance.stack[instructionKey]
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for argKey := range instruction.Args {
 			arg := &instruction.Args[argKey]
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
 			isUnique := false
@@ -3881,28 +3179,29 @@ func (instance UserConnectionExec) Exec() UserConnection {
 					if existingArg.Name == arg.Name {
 						isUnique = false
 						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.db.Debug {
+						if instance.client.Debug {
 							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
 						}
 						break
 					}
 				}
 			}
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Arg Name: ", arg.Name)
 			}
 			allArgs = append(allArgs, *arg)
 			variables[arg.Name] = arg.Value
 		}
 	}
-	query := instance.db.ProcessInstructions(instance.stack)
-	if instance.db.Debug {
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -3912,11 +3211,11 @@ func (instance UserConnectionExec) Exec() UserConnection {
 	if !isArray(dataType) {
 		unpackedData := data
 		for _, instruction := range instance.stack {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
 			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
 				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
@@ -3924,47 +3223,47 @@ func (instance UserConnectionExec) Exec() UserConnection {
 			genericData = unpackedData
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
 	var decodedData UserConnection
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
 // UserConnectionExecArray docs
 type UserConnectionExecArray struct {
-	db    DB
-	stack []Instruction
+	client Client
+	stack  []Instruction
 }
 
 // Exec docs
-func (instance UserConnectionExecArray) Exec() []UserConnection {
-	query := instance.db.ProcessInstructions(instance.stack)
+func (instance UserConnectionExecArray) Exec() ([]UserConnection, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
-		if instance.db.Debug {
+		if instance.client.Debug {
 			fmt.Println("Instruction Exec: ", instruction)
 		}
 		for _, arg := range instruction.Args {
-			if instance.db.Debug {
+			if instance.client.Debug {
 				fmt.Println("Instruction Arg Exec: ", instruction)
 			}
-			// TODO: Need to handle arg.Name collisions
 			variables[arg.Name] = arg.Value
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Query Exec:", query)
 		fmt.Println("Variables Exec:", variables)
 	}
-	data := instance.db.GraphQL(query, variables)
-	if instance.db.Debug {
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
 		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
 	}
 
 	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
@@ -3981,16 +3280,16 @@ func (instance UserConnectionExecArray) Exec() []UserConnection {
 			}
 		}
 	}
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
 	var decodedData []UserConnection
 	mapstructure.Decode(genericData, &decodedData)
-	if instance.db.Debug {
+	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
 	}
-	return decodedData
+	return decodedData, err
 }
 
 // UserConnection docs - generated with types
@@ -4000,13 +3299,368 @@ type UserConnection struct {
 	Aggregate *AggregateUser `json:"aggregate"`
 }
 
+// TodoConnectionExec docs
+type TodoConnectionExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// PageInfo docs - executable for types
+func (instance *TodoConnectionExec) PageInfo() *PageInfoExec {
+	var args []GraphQLArg
+
+	instance.stack = append(instance.stack, Instruction{
+		Name: "pageInfo",
+		Field: GraphQLField{
+			Name:       "pageInfo",
+			TypeName:   "PageInfo",
+			TypeFields: []string{"hasNextPage", "hasPreviousPage", "startCursor", "endCursor"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &PageInfoExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// Edges docs - executable for types
+func (instance *TodoConnectionExec) Edges() *TodoEdgeExec {
+	var args []GraphQLArg
+
+	instance.stack = append(instance.stack, Instruction{
+		Name: "edges",
+		Field: GraphQLField{
+			Name:       "edges",
+			TypeName:   "TodoEdge",
+			TypeFields: []string{"cursor"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &TodoEdgeExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// Aggregate docs - executable for types
+func (instance *TodoConnectionExec) Aggregate() *AggregateTodoExec {
+	var args []GraphQLArg
+
+	instance.stack = append(instance.stack, Instruction{
+		Name: "aggregate",
+		Field: GraphQLField{
+			Name:       "aggregate",
+			TypeName:   "AggregateTodo",
+			TypeFields: []string{"count"},
+		},
+		Operation: "",
+		Args:      args,
+	})
+	return &AggregateTodoExec{
+		client: instance.client,
+		stack:  instance.stack,
+	}
+}
+
+// Exec docs
+func (instance TodoConnectionExec) Exec() (TodoConnection, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData TodoConnection
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoConnectionExecArray docs
+type TodoConnectionExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance TodoConnectionExecArray) Exec() ([]TodoConnection, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []TodoConnection
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// TodoConnection docs - generated with types
+type TodoConnection struct {
+	PageInfo  *PageInfo      `json:"pageInfo"`
+	Edges     *TodoEdge      `json:"edges"`
+	Aggregate *AggregateTodo `json:"aggregate"`
+}
+
+// PageInfoExec docs
+type PageInfoExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance PageInfoExec) Exec() (PageInfo, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData PageInfo
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// PageInfoExecArray docs
+type PageInfoExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance PageInfoExecArray) Exec() ([]PageInfo, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		for _, instruction := range instance.stack {
+			unpackedData := data[instruction.Name]
+			if isArray(unpackedData) {
+				genericData = (unpackedData).([]interface{})
+			} else {
+				genericData = (unpackedData).(map[string]interface{})
+			}
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []PageInfo
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// PageInfo docs - generated with types
+type PageInfo struct {
+	HasNextPage     bool   `json:"hasNextPage"`
+	HasPreviousPage bool   `json:"hasPreviousPage"`
+	StartCursor     string `json:"startCursor,omitempty"`
+	EndCursor       string `json:"endCursor,omitempty"`
+}
+
 // GraphQL Send a GraphQL operation request
-func (db DB) GraphQL(query string, variables map[string]interface{}) map[string]interface{} {
+func (client Client) GraphQL(query string, variables map[string]interface{}) (map[string]interface{}, error) {
 	// TODO: Add auth support
 
 	req := graphql.NewRequest(query)
-	client := graphql.NewClient(
-		(map[bool]string{true: db.Endpoint, false: "http://localhost:4466/go-orm/dev"})[db.Endpoint != ""],
+	gqlClient := graphql.NewClient(
+		(map[bool]string{true: client.Endpoint, false: "http://localhost:4466/go-orm/dev"})[client.Endpoint != ""],
 	)
 
 	for key, value := range variables {
@@ -4017,11 +3671,11 @@ func (db DB) GraphQL(query string, variables map[string]interface{}) map[string]
 
 	// var respData ResponseStruct
 	var respData map[string]interface{}
-	if err := client.Run(ctx, req, &respData); err != nil {
-		if db.Debug {
+	if err := gqlClient.Run(ctx, req, &respData); err != nil {
+		if client.Debug {
 			fmt.Println("GraphQL Response:", respData)
 		}
-		log.Fatal(err)
+		return nil, err
 	}
-	return respData
+	return respData, nil
 }
