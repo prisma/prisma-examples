@@ -1,4 +1,4 @@
-package go_graphql
+package main
 
 type Cat struct {
 	ID    string `json:"id"`

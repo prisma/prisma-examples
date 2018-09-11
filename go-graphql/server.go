@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/99designs/gqlgen/handler"
-	go_graphql "github.com/prisma/prisma-examples/go-graphql"
 	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
 )
 
@@ -21,12 +20,12 @@ func main() {
 	client := prisma.New(&prisma.PrismaOptions{
 		Debug: true,
 	})
-	resolver := go_graphql.Resolver{
+	resolver := Resolver{
 		Prisma: &client,
 	}
 
 	http.Handle("/", handler.Playground("GraphQL playground", "/query"))
-	http.Handle("/query", handler.GraphQL(go_graphql.NewExecutableSchema(go_graphql.Config{Resolvers: &resolver})))
+	http.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))

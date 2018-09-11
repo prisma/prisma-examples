@@ -1,6 +1,6 @@
 //go:generate gorunpkg github.com/99designs/gqlgen
 
-package go_graphql
+package main
 
 import (
 	context "context"
