@@ -12,7 +12,6 @@ for d in */ ; do
     rm -rf node_modules
     yarn install
     yarn add --dev prisma@alpha -E
-    yarn remove prisma-lib
     yarn add prisma-client-lib -E
     yarn prisma generate
   fi
