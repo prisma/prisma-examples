@@ -1,10 +1,9 @@
 import { prisma } from './generated'
-
 ;(async () => {
-
-  const result = await prisma
-    .cat({ id: 'cjky74byofp1n0b07ux4038oe' })
-    .favBrother()
+  const result = await prisma.cats(
+    {},
+    `fragment Cat on Cat { id name favBrother { id } }`,
+  )
 
   console.log(result)
 
@@ -18,5 +17,4 @@ import { prisma } from './generated'
       ],
     },
   })
-
 })()

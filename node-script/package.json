@@ -5,13 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "graphql": "^0.13.2",
-    "prisma-lib": "0.1.19"
+    "prisma-client-lib": "0.1.45"
   },
   "devDependencies": {
-    "prisma": "^1.15.0-alpha.26"
+    "prisma": "1.17.0-alpha.52"
   },
   "scripts": {
-    "prisma": "prisma",
+    "prisma": "cd prisma && prisma",
     "start": "node src/usage.js"
   }
 }

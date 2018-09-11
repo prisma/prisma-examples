@@ -19,7 +19,7 @@ type ID struct{}
 // Exists
 
 // Todo exists docs
-func (exists *Exists) Todo(params *TodoWhereUniqueInput) bool {
+func (exists *Exists) Todo(params TodoWhereUniqueInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
@@ -41,22 +41,21 @@ func (exists *Exists) Todo(params *TodoWhereUniqueInput) bool {
 
 // TodoParams docs
 type TodoParams struct {
-	Where *TodoWhereUniqueInput `json:"where"`
+	Where TodoWhereUniqueInput `json:"where"`
 }
 
-// Todo docs
-func (client Client) Todo(params *TodoWhereUniqueInput) *TodoExec {
+// Todo docs - generated while printing operation - query
+func (client Client) Todo(params TodoWhereUniqueInput) *TodoExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "TodoWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "TodoWhereUniqueInput!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "todo",
@@ -75,8 +74,8 @@ func (client Client) Todo(params *TodoWhereUniqueInput) *TodoExec {
 	}
 }
 
-// TodosParams docs
-type TodosParams struct {
+// TodoesParams docs
+type TodoesParams struct {
 	Where   *TodoWhereInput   `json:"where,omitempty"`
 	OrderBy *TodoOrderByInput `json:"orderBy,omitempty"`
 	Skip    *int32            `json:"skip,omitempty"`
@@ -86,12 +85,13 @@ type TodosParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-// Todos docs
-func (client Client) Todos(params *TodosParams) *TodoExecArray {
+// Todoes docs - generated while printing operation - query
+func (client Client) Todoes(params *TodoesParams) *TodoExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Where != nil {
+
+	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
@@ -99,7 +99,8 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 			Value:    *params.Where,
 		})
 	}
-	if params.OrderBy != nil {
+
+	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
@@ -107,7 +108,8 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 			Value:    *params.OrderBy,
 		})
 	}
-	if params.Skip != nil {
+
+	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
 			Key:      "skip",
@@ -115,7 +117,8 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 			Value:    *params.Skip,
 		})
 	}
-	if params.After != nil {
+
+	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
 			Key:      "after",
@@ -123,7 +126,8 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 			Value:    *params.After,
 		})
 	}
-	if params.Before != nil {
+
+	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
 			Key:      "before",
@@ -131,7 +135,8 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 			Value:    *params.Before,
 		})
 	}
-	if params.First != nil {
+
+	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
 			Key:      "first",
@@ -139,7 +144,8 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 			Value:    *params.First,
 		})
 	}
-	if params.Last != nil {
+
+	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
 			Key:      "last",
@@ -149,9 +155,9 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 	}
 
 	stack = append(stack, Instruction{
-		Name: "todos",
+		Name: "todoes",
 		Field: GraphQLField{
-			Name:       "todos",
+			Name:       "todoes",
 			TypeName:   "Todo",
 			TypeFields: []string{"id", "text", "done"},
 		},
@@ -167,15 +173,15 @@ func (client Client) Todos(params *TodosParams) *TodoExecArray {
 
 // Exists
 
-// TodosConnection exists docs
-func (exists *Exists) TodosConnection(params *TodoWhereInput) bool {
+// TodoesConnection exists docs
+func (exists *Exists) TodoesConnection(params TodoWhereInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
-	data, err := client.TodosConnection(
-		&TodosConnectionParams{
-			Where: params,
+	data, err := client.TodoesConnection(
+		&TodoesConnectionParams{
+			Where: &params,
 		},
 	).Exec()
 	if err != nil {
@@ -190,8 +196,8 @@ func (exists *Exists) TodosConnection(params *TodoWhereInput) bool {
 	return true
 }
 
-// TodosConnectionParams docs
-type TodosConnectionParams struct {
+// TodoesConnectionParams docs
+type TodoesConnectionParams struct {
 	Where   *TodoWhereInput   `json:"where,omitempty"`
 	OrderBy *TodoOrderByInput `json:"orderBy,omitempty"`
 	Skip    *int32            `json:"skip,omitempty"`
@@ -201,12 +207,13 @@ type TodosConnectionParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-// TodosConnection docs
-func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnectionExec {
+// TodoesConnection docs - generated while printing operation - query
+func (client Client) TodoesConnection(params *TodoesConnectionParams) *TodoConnectionExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Where != nil {
+
+	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
@@ -214,7 +221,8 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 			Value:    *params.Where,
 		})
 	}
-	if params.OrderBy != nil {
+
+	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
@@ -222,7 +230,8 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 			Value:    *params.OrderBy,
 		})
 	}
-	if params.Skip != nil {
+
+	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
 			Key:      "skip",
@@ -230,7 +239,8 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 			Value:    *params.Skip,
 		})
 	}
-	if params.After != nil {
+
+	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
 			Key:      "after",
@@ -238,7 +248,8 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 			Value:    *params.After,
 		})
 	}
-	if params.Before != nil {
+
+	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
 			Key:      "before",
@@ -246,7 +257,8 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 			Value:    *params.Before,
 		})
 	}
-	if params.First != nil {
+
+	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
 			Key:      "first",
@@ -254,7 +266,8 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 			Value:    *params.First,
 		})
 	}
-	if params.Last != nil {
+
+	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
 			Key:      "last",
@@ -264,9 +277,9 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 	}
 
 	stack = append(stack, Instruction{
-		Name: "todosConnection",
+		Name: "todoesConnection",
 		Field: GraphQLField{
-			Name:       "todosConnection",
+			Name:       "todoesConnection",
 			TypeName:   "TodoConnection",
 			TypeFields: []string{},
 		},
@@ -283,7 +296,7 @@ func (client Client) TodosConnection(params *TodosConnectionParams) *TodoConnect
 // Exists
 
 // User exists docs
-func (exists *Exists) User(params *UserWhereUniqueInput) bool {
+func (exists *Exists) User(params UserWhereUniqueInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
@@ -305,22 +318,21 @@ func (exists *Exists) User(params *UserWhereUniqueInput) bool {
 
 // UserParams docs
 type UserParams struct {
-	Where *UserWhereUniqueInput `json:"where"`
+	Where UserWhereUniqueInput `json:"where"`
 }
 
-// User docs
-func (client Client) User(params *UserWhereUniqueInput) *UserExec {
+// User docs - generated while printing operation - query
+func (client Client) User(params UserWhereUniqueInput) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "UserWhereUniqueInput!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "user",
@@ -350,12 +362,13 @@ type UsersParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-// Users docs
+// Users docs - generated while printing operation - query
 func (client Client) Users(params *UsersParams) *UserExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Where != nil {
+
+	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
@@ -363,7 +376,8 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 			Value:    *params.Where,
 		})
 	}
-	if params.OrderBy != nil {
+
+	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
@@ -371,7 +385,8 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 			Value:    *params.OrderBy,
 		})
 	}
-	if params.Skip != nil {
+
+	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
 			Key:      "skip",
@@ -379,7 +394,8 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 			Value:    *params.Skip,
 		})
 	}
-	if params.After != nil {
+
+	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
 			Key:      "after",
@@ -387,7 +403,8 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 			Value:    *params.After,
 		})
 	}
-	if params.Before != nil {
+
+	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
 			Key:      "before",
@@ -395,7 +412,8 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 			Value:    *params.Before,
 		})
 	}
-	if params.First != nil {
+
+	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
 			Key:      "first",
@@ -403,7 +421,8 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 			Value:    *params.First,
 		})
 	}
-	if params.Last != nil {
+
+	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
 			Key:      "last",
@@ -432,14 +451,14 @@ func (client Client) Users(params *UsersParams) *UserExecArray {
 // Exists
 
 // UsersConnection exists docs
-func (exists *Exists) UsersConnection(params *UserWhereInput) bool {
+func (exists *Exists) UsersConnection(params UserWhereInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "http://localhost:4466/go-orm/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
 	data, err := client.UsersConnection(
 		&UsersConnectionParams{
-			Where: params,
+			Where: &params,
 		},
 	).Exec()
 	if err != nil {
@@ -465,12 +484,13 @@ type UsersConnectionParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-// UsersConnection docs
+// UsersConnection docs - generated while printing operation - query
 func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnectionExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Where != nil {
+
+	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
@@ -478,7 +498,8 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 			Value:    *params.Where,
 		})
 	}
-	if params.OrderBy != nil {
+
+	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
@@ -486,7 +507,8 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 			Value:    *params.OrderBy,
 		})
 	}
-	if params.Skip != nil {
+
+	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
 			Key:      "skip",
@@ -494,7 +516,8 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 			Value:    *params.Skip,
 		})
 	}
-	if params.After != nil {
+
+	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
 			Key:      "after",
@@ -502,7 +525,8 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 			Value:    *params.After,
 		})
 	}
-	if params.Before != nil {
+
+	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
 			Key:      "before",
@@ -510,7 +534,8 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 			Value:    *params.Before,
 		})
 	}
-	if params.First != nil {
+
+	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
 			Key:      "first",
@@ -518,7 +543,8 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 			Value:    *params.First,
 		})
 	}
-	if params.Last != nil {
+
+	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
 			Key:      "last",
@@ -546,22 +572,21 @@ func (client Client) UsersConnection(params *UsersConnectionParams) *UserConnect
 
 // NodeParams docs
 type NodeParams struct {
-	ID *string `json:"id"`
+	ID string `json:"id"`
 }
 
-// Node docs
-func (client Client) Node(params *ID) *NodeExec {
+// Node docs - generated while printing operation - query
+func (client Client) Node(params ID) *NodeExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "id",
-			Key:      "id",
-			TypeName: "ID!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "id",
+		Key:      "id",
+		TypeName: "ID!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "node",
@@ -584,22 +609,21 @@ func (client Client) Node(params *ID) *NodeExec {
 
 // CreateTodoParams docs
 type CreateTodoParams struct {
-	Data *TodoCreateInput `json:"data"`
+	Data TodoCreateInput `json:"data"`
 }
 
-// CreateTodo docs
-func (client Client) CreateTodo(params *TodoCreateInput) *TodoExec {
+// CreateTodo docs - generated while printing operation - mutation
+func (client Client) CreateTodo(params TodoCreateInput) *TodoExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "TodoCreateInput!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "data",
+		Key:      "data",
+		TypeName: "TodoCreateInput!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "createTodo",
@@ -620,31 +644,29 @@ func (client Client) CreateTodo(params *TodoCreateInput) *TodoExec {
 
 // UpdateTodoParams docs
 type UpdateTodoParams struct {
-	Data  *TodoUpdateInput      `json:"data"`
-	Where *TodoWhereUniqueInput `json:"where"`
+	Data  TodoUpdateInput      `json:"data"`
+	Where TodoWhereUniqueInput `json:"where"`
 }
 
-// UpdateTodo docs
+// UpdateTodo docs - generated while printing operation - mutation
 func (client Client) UpdateTodo(params *UpdateTodoParams) *TodoExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "TodoUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "TodoWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "data",
+		Key:      "data",
+		TypeName: "TodoUpdateInput!",
+		Value:    params.Data,
+	})
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "TodoWhereUniqueInput!",
+		Value:    params.Where,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "updateTodo",
@@ -663,26 +685,26 @@ func (client Client) UpdateTodo(params *UpdateTodoParams) *TodoExec {
 	}
 }
 
-// UpdateManyTodosParams docs
-type UpdateManyTodosParams struct {
-	Data  *TodoUpdateInput `json:"data"`
-	Where *TodoWhereInput  `json:"where,omitempty"`
+// UpdateManyTodoesParams docs
+type UpdateManyTodoesParams struct {
+	Data  TodoUpdateInput `json:"data"`
+	Where *TodoWhereInput `json:"where,omitempty"`
 }
 
-// UpdateManyTodos docs
-func (client Client) UpdateManyTodos(params *UpdateManyTodosParams) *BatchPayloadExec {
+// UpdateManyTodoes docs - generated while printing operation - mutation
+func (client Client) UpdateManyTodoes(params *UpdateManyTodoesParams) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "TodoUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
+
+	args = append(args, GraphQLArg{
+		Name:     "data",
+		Key:      "data",
+		TypeName: "TodoUpdateInput!",
+		Value:    params.Data,
+	})
+
+	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
@@ -692,9 +714,9 @@ func (client Client) UpdateManyTodos(params *UpdateManyTodosParams) *BatchPayloa
 	}
 
 	stack = append(stack, Instruction{
-		Name: "updateManyTodos",
+		Name: "updateManyTodoes",
 		Field: GraphQLField{
-			Name:       "updateManyTodos",
+			Name:       "updateManyTodoes",
 			TypeName:   "BatchPayload",
 			TypeFields: []string{"count"},
 		},
@@ -710,40 +732,37 @@ func (client Client) UpdateManyTodos(params *UpdateManyTodosParams) *BatchPayloa
 
 // UpsertTodoParams docs
 type UpsertTodoParams struct {
-	Where  *TodoWhereUniqueInput `json:"where"`
-	Create *TodoCreateInput      `json:"create"`
-	Update *TodoUpdateInput      `json:"update"`
+	Where  TodoWhereUniqueInput `json:"where"`
+	Create TodoCreateInput      `json:"create"`
+	Update TodoUpdateInput      `json:"update"`
 }
 
-// UpsertTodo docs
+// UpsertTodo docs - generated while printing operation - mutation
 func (client Client) UpsertTodo(params *UpsertTodoParams) *TodoExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "TodoWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
-	if params.Create != nil {
-		args = append(args, GraphQLArg{
-			Name:     "create",
-			Key:      "create",
-			TypeName: "TodoCreateInput!",
-			Value:    *params.Create,
-		})
-	}
-	if params.Update != nil {
-		args = append(args, GraphQLArg{
-			Name:     "update",
-			Key:      "update",
-			TypeName: "TodoUpdateInput!",
-			Value:    *params.Update,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "TodoWhereUniqueInput!",
+		Value:    params.Where,
+	})
+
+	args = append(args, GraphQLArg{
+		Name:     "create",
+		Key:      "create",
+		TypeName: "TodoCreateInput!",
+		Value:    params.Create,
+	})
+
+	args = append(args, GraphQLArg{
+		Name:     "update",
+		Key:      "update",
+		TypeName: "TodoUpdateInput!",
+		Value:    params.Update,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "upsertTodo",
@@ -764,22 +783,21 @@ func (client Client) UpsertTodo(params *UpsertTodoParams) *TodoExec {
 
 // DeleteTodoParams docs
 type DeleteTodoParams struct {
-	Where *TodoWhereUniqueInput `json:"where"`
+	Where TodoWhereUniqueInput `json:"where"`
 }
 
-// DeleteTodo docs
-func (client Client) DeleteTodo(params *TodoWhereUniqueInput) *TodoExec {
+// DeleteTodo docs - generated while printing operation - mutation
+func (client Client) DeleteTodo(params TodoWhereUniqueInput) *TodoExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "TodoWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "TodoWhereUniqueInput!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "deleteTodo",
@@ -798,16 +816,17 @@ func (client Client) DeleteTodo(params *TodoWhereUniqueInput) *TodoExec {
 	}
 }
 
-// DeleteManyTodosParams docs
-type DeleteManyTodosParams struct {
+// DeleteManyTodoesParams docs
+type DeleteManyTodoesParams struct {
 	Where *TodoWhereInput `json:"where,omitempty"`
 }
 
-// DeleteManyTodos docs
-func (client Client) DeleteManyTodos(params *TodoWhereInput) *BatchPayloadExec {
+// DeleteManyTodoes docs - generated while printing operation - mutation
+func (client Client) DeleteManyTodoes(params *TodoWhereInput) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
+
 	if params != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -818,9 +837,9 @@ func (client Client) DeleteManyTodos(params *TodoWhereInput) *BatchPayloadExec {
 	}
 
 	stack = append(stack, Instruction{
-		Name: "deleteManyTodos",
+		Name: "deleteManyTodoes",
 		Field: GraphQLField{
-			Name:       "deleteManyTodos",
+			Name:       "deleteManyTodoes",
 			TypeName:   "BatchPayload",
 			TypeFields: []string{"count"},
 		},
@@ -836,22 +855,21 @@ func (client Client) DeleteManyTodos(params *TodoWhereInput) *BatchPayloadExec {
 
 // CreateUserParams docs
 type CreateUserParams struct {
-	Data *UserCreateInput `json:"data"`
+	Data UserCreateInput `json:"data"`
 }
 
-// CreateUser docs
-func (client Client) CreateUser(params *UserCreateInput) *UserExec {
+// CreateUser docs - generated while printing operation - mutation
+func (client Client) CreateUser(params UserCreateInput) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "UserCreateInput!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "data",
+		Key:      "data",
+		TypeName: "UserCreateInput!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "createUser",
@@ -872,31 +890,29 @@ func (client Client) CreateUser(params *UserCreateInput) *UserExec {
 
 // UpdateUserParams docs
 type UpdateUserParams struct {
-	Data  *UserUpdateInput      `json:"data"`
-	Where *UserWhereUniqueInput `json:"where"`
+	Data  UserUpdateInput      `json:"data"`
+	Where UserWhereUniqueInput `json:"where"`
 }
 
-// UpdateUser docs
+// UpdateUser docs - generated while printing operation - mutation
 func (client Client) UpdateUser(params *UpdateUserParams) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "UserUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "data",
+		Key:      "data",
+		TypeName: "UserUpdateInput!",
+		Value:    params.Data,
+	})
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "UserWhereUniqueInput!",
+		Value:    params.Where,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "updateUser",
@@ -917,24 +933,24 @@ func (client Client) UpdateUser(params *UpdateUserParams) *UserExec {
 
 // UpdateManyUsersParams docs
 type UpdateManyUsersParams struct {
-	Data  *UserUpdateInput `json:"data"`
-	Where *UserWhereInput  `json:"where,omitempty"`
+	Data  UserUpdateInput `json:"data"`
+	Where *UserWhereInput `json:"where,omitempty"`
 }
 
-// UpdateManyUsers docs
+// UpdateManyUsers docs - generated while printing operation - mutation
 func (client Client) UpdateManyUsers(params *UpdateManyUsersParams) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "UserUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params.Where != nil {
+
+	args = append(args, GraphQLArg{
+		Name:     "data",
+		Key:      "data",
+		TypeName: "UserUpdateInput!",
+		Value:    params.Data,
+	})
+
+	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
@@ -962,40 +978,37 @@ func (client Client) UpdateManyUsers(params *UpdateManyUsersParams) *BatchPayloa
 
 // UpsertUserParams docs
 type UpsertUserParams struct {
-	Where  *UserWhereUniqueInput `json:"where"`
-	Create *UserCreateInput      `json:"create"`
-	Update *UserUpdateInput      `json:"update"`
+	Where  UserWhereUniqueInput `json:"where"`
+	Create UserCreateInput      `json:"create"`
+	Update UserUpdateInput      `json:"update"`
 }
 
-// UpsertUser docs
+// UpsertUser docs - generated while printing operation - mutation
 func (client Client) UpsertUser(params *UpsertUserParams) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
-	if params.Create != nil {
-		args = append(args, GraphQLArg{
-			Name:     "create",
-			Key:      "create",
-			TypeName: "UserCreateInput!",
-			Value:    *params.Create,
-		})
-	}
-	if params.Update != nil {
-		args = append(args, GraphQLArg{
-			Name:     "update",
-			Key:      "update",
-			TypeName: "UserUpdateInput!",
-			Value:    *params.Update,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "UserWhereUniqueInput!",
+		Value:    params.Where,
+	})
+
+	args = append(args, GraphQLArg{
+		Name:     "create",
+		Key:      "create",
+		TypeName: "UserCreateInput!",
+		Value:    params.Create,
+	})
+
+	args = append(args, GraphQLArg{
+		Name:     "update",
+		Key:      "update",
+		TypeName: "UserUpdateInput!",
+		Value:    params.Update,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "upsertUser",
@@ -1016,22 +1029,21 @@ func (client Client) UpsertUser(params *UpsertUserParams) *UserExec {
 
 // DeleteUserParams docs
 type DeleteUserParams struct {
-	Where *UserWhereUniqueInput `json:"where"`
+	Where UserWhereUniqueInput `json:"where"`
 }
 
-// DeleteUser docs
-func (client Client) DeleteUser(params *UserWhereUniqueInput) *UserExec {
+// DeleteUser docs - generated while printing operation - mutation
+func (client Client) DeleteUser(params UserWhereUniqueInput) *UserExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "UserWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
+
+	args = append(args, GraphQLArg{
+		Name:     "where",
+		Key:      "where",
+		TypeName: "UserWhereUniqueInput!",
+		Value:    params,
+	})
 
 	stack = append(stack, Instruction{
 		Name: "deleteUser",
@@ -1055,11 +1067,12 @@ type DeleteManyUsersParams struct {
 	Where *UserWhereInput `json:"where,omitempty"`
 }
 
-// DeleteManyUsers docs
+// DeleteManyUsers docs - generated while printing operation - mutation
 func (client Client) DeleteManyUsers(params *UserWhereInput) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
+
 	if params != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -1171,61 +1184,61 @@ const (
 
 // UserUpdateDataInput input struct docs
 type UserUpdateDataInput struct {
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name"`
 }
 
 // TodoWhereUniqueInput input struct docs
 type TodoWhereUniqueInput struct {
-	ID *string `json:"id,omitempty"`
+	ID *string `json:"id"`
 }
 
 // TodoUpdateInput input struct docs
 type TodoUpdateInput struct {
-	Text *string             `json:"text,omitempty"`
-	Done *bool               `json:"done,omitempty"`
+	Text *string             `json:"text"`
+	Done *bool               `json:"done"`
 	User *UserUpdateOneInput `json:"user,omitempty"`
 }
 
 // UserUpdateInput input struct docs
 type UserUpdateInput struct {
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name"`
 }
 
 // UserCreateInput input struct docs
 type UserCreateInput struct {
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 }
 
 // UserWhereInput input struct docs
 type UserWhereInput struct {
-	ID                *string         `json:"id,omitempty"`
-	IDNot             *string         `json:"id_not,omitempty"`
-	IDIn              *string         `json:"id_in,omitempty"`
-	IDNotIn           *string         `json:"id_not_in,omitempty"`
-	IDLt              *string         `json:"id_lt,omitempty"`
-	IDLte             *string         `json:"id_lte,omitempty"`
-	IDGt              *string         `json:"id_gt,omitempty"`
-	IDGte             *string         `json:"id_gte,omitempty"`
-	IDContains        *string         `json:"id_contains,omitempty"`
-	IDNotContains     *string         `json:"id_not_contains,omitempty"`
-	IDStartsWith      *string         `json:"id_starts_with,omitempty"`
-	IDNotStartsWith   *string         `json:"id_not_starts_with,omitempty"`
-	IDEndsWith        *string         `json:"id_ends_with,omitempty"`
-	IDNotEndsWith     *string         `json:"id_not_ends_with,omitempty"`
-	Name              *string         `json:"name,omitempty"`
-	NameNot           *string         `json:"name_not,omitempty"`
-	NameIn            *string         `json:"name_in,omitempty"`
-	NameNotIn         *string         `json:"name_not_in,omitempty"`
-	NameLt            *string         `json:"name_lt,omitempty"`
-	NameLte           *string         `json:"name_lte,omitempty"`
-	NameGt            *string         `json:"name_gt,omitempty"`
-	NameGte           *string         `json:"name_gte,omitempty"`
-	NameContains      *string         `json:"name_contains,omitempty"`
-	NameNotContains   *string         `json:"name_not_contains,omitempty"`
-	NameStartsWith    *string         `json:"name_starts_with,omitempty"`
-	NameNotStartsWith *string         `json:"name_not_starts_with,omitempty"`
-	NameEndsWith      *string         `json:"name_ends_with,omitempty"`
-	NameNotEndsWith   *string         `json:"name_not_ends_with,omitempty"`
+	ID                *string         `json:"id"`
+	IDNot             *string         `json:"id_not"`
+	IDIn              *string         `json:"id_in"`
+	IDNotIn           *string         `json:"id_not_in"`
+	IDLt              *string         `json:"id_lt"`
+	IDLte             *string         `json:"id_lte"`
+	IDGt              *string         `json:"id_gt"`
+	IDGte             *string         `json:"id_gte"`
+	IDContains        *string         `json:"id_contains"`
+	IDNotContains     *string         `json:"id_not_contains"`
+	IDStartsWith      *string         `json:"id_starts_with"`
+	IDNotStartsWith   *string         `json:"id_not_starts_with"`
+	IDEndsWith        *string         `json:"id_ends_with"`
+	IDNotEndsWith     *string         `json:"id_not_ends_with"`
+	Name              *string         `json:"name"`
+	NameNot           *string         `json:"name_not"`
+	NameIn            *string         `json:"name_in"`
+	NameNotIn         *string         `json:"name_not_in"`
+	NameLt            *string         `json:"name_lt"`
+	NameLte           *string         `json:"name_lte"`
+	NameGt            *string         `json:"name_gt"`
+	NameGte           *string         `json:"name_gte"`
+	NameContains      *string         `json:"name_contains"`
+	NameNotContains   *string         `json:"name_not_contains"`
+	NameStartsWith    *string         `json:"name_starts_with"`
+	NameNotStartsWith *string         `json:"name_not_starts_with"`
+	NameEndsWith      *string         `json:"name_ends_with"`
+	NameNotEndsWith   *string         `json:"name_not_ends_with"`
 	And               *UserWhereInput `json:"AND,omitempty"`
 	Or                *UserWhereInput `json:"OR,omitempty"`
 	Not               *UserWhereInput `json:"NOT,omitempty"`
@@ -1233,9 +1246,9 @@ type UserWhereInput struct {
 
 // TodoCreateInput input struct docs
 type TodoCreateInput struct {
-	Text *string             `json:"text,omitempty"`
-	Done *bool               `json:"done,omitempty"`
-	User *UserCreateOneInput `json:"user,omitempty"`
+	Text string             `json:"text"`
+	Done bool               `json:"done"`
+	User UserCreateOneInput `json:"user,omitempty"`
 }
 
 // UserCreateOneInput input struct docs
@@ -1247,9 +1260,9 @@ type UserCreateOneInput struct {
 // TodoSubscriptionWhereInput input struct docs
 type TodoSubscriptionWhereInput struct {
 	MutationIn                 *MutationType               `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                     `json:"updatedFields_contains,omitempty"`
-	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every,omitempty"`
-	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some,omitempty"`
+	UpdatedFieldsContains      *string                     `json:"updatedFields_contains"`
+	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every"`
+	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some"`
 	Node                       *TodoWhereInput             `json:"node,omitempty"`
 	And                        *TodoSubscriptionWhereInput `json:"AND,omitempty"`
 	Or                         *TodoSubscriptionWhereInput `json:"OR,omitempty"`
@@ -1258,47 +1271,47 @@ type TodoSubscriptionWhereInput struct {
 
 // UserWhereUniqueInput input struct docs
 type UserWhereUniqueInput struct {
-	ID *string `json:"id,omitempty"`
+	ID *string `json:"id"`
 }
 
 // UserUpsertNestedInput input struct docs
 type UserUpsertNestedInput struct {
-	Update *UserUpdateDataInput `json:"update,omitempty"`
-	Create *UserCreateInput     `json:"create,omitempty"`
+	Update UserUpdateDataInput `json:"update,omitempty"`
+	Create UserCreateInput     `json:"create,omitempty"`
 }
 
 // TodoWhereInput input struct docs
 type TodoWhereInput struct {
-	ID                *string         `json:"id,omitempty"`
-	IDNot             *string         `json:"id_not,omitempty"`
-	IDIn              *string         `json:"id_in,omitempty"`
-	IDNotIn           *string         `json:"id_not_in,omitempty"`
-	IDLt              *string         `json:"id_lt,omitempty"`
-	IDLte             *string         `json:"id_lte,omitempty"`
-	IDGt              *string         `json:"id_gt,omitempty"`
-	IDGte             *string         `json:"id_gte,omitempty"`
-	IDContains        *string         `json:"id_contains,omitempty"`
-	IDNotContains     *string         `json:"id_not_contains,omitempty"`
-	IDStartsWith      *string         `json:"id_starts_with,omitempty"`
-	IDNotStartsWith   *string         `json:"id_not_starts_with,omitempty"`
-	IDEndsWith        *string         `json:"id_ends_with,omitempty"`
-	IDNotEndsWith     *string         `json:"id_not_ends_with,omitempty"`
-	Text              *string         `json:"text,omitempty"`
-	TextNot           *string         `json:"text_not,omitempty"`
-	TextIn            *string         `json:"text_in,omitempty"`
-	TextNotIn         *string         `json:"text_not_in,omitempty"`
-	TextLt            *string         `json:"text_lt,omitempty"`
-	TextLte           *string         `json:"text_lte,omitempty"`
-	TextGt            *string         `json:"text_gt,omitempty"`
-	TextGte           *string         `json:"text_gte,omitempty"`
-	TextContains      *string         `json:"text_contains,omitempty"`
-	TextNotContains   *string         `json:"text_not_contains,omitempty"`
-	TextStartsWith    *string         `json:"text_starts_with,omitempty"`
-	TextNotStartsWith *string         `json:"text_not_starts_with,omitempty"`
-	TextEndsWith      *string         `json:"text_ends_with,omitempty"`
-	TextNotEndsWith   *string         `json:"text_not_ends_with,omitempty"`
-	Done              *bool           `json:"done,omitempty"`
-	DoneNot           *bool           `json:"done_not,omitempty"`
+	ID                *string         `json:"id"`
+	IDNot             *string         `json:"id_not"`
+	IDIn              *string         `json:"id_in"`
+	IDNotIn           *string         `json:"id_not_in"`
+	IDLt              *string         `json:"id_lt"`
+	IDLte             *string         `json:"id_lte"`
+	IDGt              *string         `json:"id_gt"`
+	IDGte             *string         `json:"id_gte"`
+	IDContains        *string         `json:"id_contains"`
+	IDNotContains     *string         `json:"id_not_contains"`
+	IDStartsWith      *string         `json:"id_starts_with"`
+	IDNotStartsWith   *string         `json:"id_not_starts_with"`
+	IDEndsWith        *string         `json:"id_ends_with"`
+	IDNotEndsWith     *string         `json:"id_not_ends_with"`
+	Text              *string         `json:"text"`
+	TextNot           *string         `json:"text_not"`
+	TextIn            *string         `json:"text_in"`
+	TextNotIn         *string         `json:"text_not_in"`
+	TextLt            *string         `json:"text_lt"`
+	TextLte           *string         `json:"text_lte"`
+	TextGt            *string         `json:"text_gt"`
+	TextGte           *string         `json:"text_gte"`
+	TextContains      *string         `json:"text_contains"`
+	TextNotContains   *string         `json:"text_not_contains"`
+	TextStartsWith    *string         `json:"text_starts_with"`
+	TextNotStartsWith *string         `json:"text_not_starts_with"`
+	TextEndsWith      *string         `json:"text_ends_with"`
+	TextNotEndsWith   *string         `json:"text_not_ends_with"`
+	Done              *bool           `json:"done"`
+	DoneNot           *bool           `json:"done_not"`
 	User              *UserWhereInput `json:"user,omitempty"`
 	And               *TodoWhereInput `json:"AND,omitempty"`
 	Or                *TodoWhereInput `json:"OR,omitempty"`
@@ -1310,16 +1323,16 @@ type UserUpdateOneInput struct {
 	Create  *UserCreateInput       `json:"create,omitempty"`
 	Update  *UserUpdateDataInput   `json:"update,omitempty"`
 	Upsert  *UserUpsertNestedInput `json:"upsert,omitempty"`
-	Delete  *bool                  `json:"delete,omitempty"`
+	Delete  *bool                  `json:"delete"`
 	Connect *UserWhereUniqueInput  `json:"connect,omitempty"`
 }
 
 // UserSubscriptionWhereInput input struct docs
 type UserSubscriptionWhereInput struct {
 	MutationIn                 *MutationType               `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                     `json:"updatedFields_contains,omitempty"`
-	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every,omitempty"`
-	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some,omitempty"`
+	UpdatedFieldsContains      *string                     `json:"updatedFields_contains"`
+	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every"`
+	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some"`
 	Node                       *UserWhereInput             `json:"node,omitempty"`
 	And                        *UserSubscriptionWhereInput `json:"AND,omitempty"`
 	Or                         *UserSubscriptionWhereInput `json:"OR,omitempty"`
@@ -1332,7 +1345,7 @@ type NodeExec struct {
 	stack  []Instruction
 }
 
-// Node docs
+// Node docs - generated with types in GraphQLInterfaceType
 type Node interface {
 	ID() string
 }
@@ -1344,7 +1357,7 @@ type AggregateUserExec struct {
 }
 
 // Exec docs
-func (instance AggregateUserExec) Exec() (AggregateUser, error) {
+func (instance AggregateUserExec) Exec() (*AggregateUser, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1412,7 +1425,7 @@ func (instance AggregateUserExec) Exec() (AggregateUser, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData AggregateUser
+	var decodedData *AggregateUser
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1456,13 +1469,18 @@ func (instance AggregateUserExecArray) Exec() ([]AggregateUser, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -1529,7 +1547,7 @@ func (instance *UserSubscriptionPayloadExec) PreviousValues() *UserPreviousValue
 }
 
 // Exec docs
-func (instance UserSubscriptionPayloadExec) Exec() (UserSubscriptionPayload, error) {
+func (instance UserSubscriptionPayloadExec) Exec() (*UserSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1597,7 +1615,7 @@ func (instance UserSubscriptionPayloadExec) Exec() (UserSubscriptionPayload, err
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData UserSubscriptionPayload
+	var decodedData *UserSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1641,13 +1659,18 @@ func (instance UserSubscriptionPayloadExecArray) Exec() ([]UserSubscriptionPaylo
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -1664,10 +1687,7 @@ func (instance UserSubscriptionPayloadExecArray) Exec() ([]UserSubscriptionPaylo
 
 // UserSubscriptionPayload docs - generated with types
 type UserSubscriptionPayload struct {
-	Mutation       *MutationType       `json:"mutation"`
-	Node           *User               `json:"node,omitempty"`
-	UpdatedFields  string              `json:"updatedFields"`
-	PreviousValues *UserPreviousValues `json:"previousValues,omitempty"`
+	UpdatedFields *string `json:"updatedFields,omitempty"`
 }
 
 // TodoSubscriptionPayloadExec docs
@@ -1717,7 +1737,7 @@ func (instance *TodoSubscriptionPayloadExec) PreviousValues() *TodoPreviousValue
 }
 
 // Exec docs
-func (instance TodoSubscriptionPayloadExec) Exec() (TodoSubscriptionPayload, error) {
+func (instance TodoSubscriptionPayloadExec) Exec() (*TodoSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1785,7 +1805,7 @@ func (instance TodoSubscriptionPayloadExec) Exec() (TodoSubscriptionPayload, err
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData TodoSubscriptionPayload
+	var decodedData *TodoSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1829,13 +1849,18 @@ func (instance TodoSubscriptionPayloadExecArray) Exec() ([]TodoSubscriptionPaylo
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -1852,10 +1877,7 @@ func (instance TodoSubscriptionPayloadExecArray) Exec() ([]TodoSubscriptionPaylo
 
 // TodoSubscriptionPayload docs - generated with types
 type TodoSubscriptionPayload struct {
-	Mutation       *MutationType       `json:"mutation"`
-	Node           *Todo               `json:"node,omitempty"`
-	UpdatedFields  string              `json:"updatedFields"`
-	PreviousValues *TodoPreviousValues `json:"previousValues,omitempty"`
+	UpdatedFields *string `json:"updatedFields,omitempty"`
 }
 
 // BatchPayloadExec docs
@@ -1865,7 +1887,7 @@ type BatchPayloadExec struct {
 }
 
 // Exec docs
-func (instance BatchPayloadExec) Exec() (BatchPayload, error) {
+func (instance BatchPayloadExec) Exec() (*BatchPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1933,7 +1955,7 @@ func (instance BatchPayloadExec) Exec() (BatchPayload, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData BatchPayload
+	var decodedData *BatchPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1977,13 +1999,18 @@ func (instance BatchPayloadExecArray) Exec() ([]BatchPayload, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2010,7 +2037,7 @@ type UserPreviousValuesExec struct {
 }
 
 // Exec docs
-func (instance UserPreviousValuesExec) Exec() (UserPreviousValues, error) {
+func (instance UserPreviousValuesExec) Exec() (*UserPreviousValues, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2078,7 +2105,7 @@ func (instance UserPreviousValuesExec) Exec() (UserPreviousValues, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData UserPreviousValues
+	var decodedData *UserPreviousValues
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2122,13 +2149,18 @@ func (instance UserPreviousValuesExecArray) Exec() ([]UserPreviousValues, error)
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2156,7 +2188,7 @@ type AggregateTodoExec struct {
 }
 
 // Exec docs
-func (instance AggregateTodoExec) Exec() (AggregateTodo, error) {
+func (instance AggregateTodoExec) Exec() (*AggregateTodo, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2224,7 +2256,7 @@ func (instance AggregateTodoExec) Exec() (AggregateTodo, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData AggregateTodo
+	var decodedData *AggregateTodo
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2268,13 +2300,18 @@ func (instance AggregateTodoExecArray) Exec() ([]AggregateTodo, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2301,7 +2338,7 @@ type TodoPreviousValuesExec struct {
 }
 
 // Exec docs
-func (instance TodoPreviousValuesExec) Exec() (TodoPreviousValues, error) {
+func (instance TodoPreviousValuesExec) Exec() (*TodoPreviousValues, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2369,7 +2406,7 @@ func (instance TodoPreviousValuesExec) Exec() (TodoPreviousValues, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData TodoPreviousValues
+	var decodedData *TodoPreviousValues
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2413,13 +2450,18 @@ func (instance TodoPreviousValuesExecArray) Exec() ([]TodoPreviousValues, error)
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2447,15 +2489,27 @@ type TodoExec struct {
 	stack  []Instruction
 }
 
+type UserParamsExec struct {
+	Where *UserWhereInput
+}
+
 // User docs - executable for types
-func (instance *TodoExec) User(where *UserWhereInput) *UserExec {
+func (instance *TodoExec) User(params *UserParamsExec) *UserExec {
 	var args []GraphQLArg
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "UserWhereInput",
-		Value:    where,
-	})
+
+	if params != nil {
+
+		if params.Where != nil {
+			args = append(args, GraphQLArg{
+				Name:     "where",
+				Key:      "where",
+				TypeName: "UserWhereInput",
+				Value:    params.Where,
+			})
+		}
+
+	}
+
 	instance.stack = append(instance.stack, Instruction{
 		Name: "user",
 		Field: GraphQLField{
@@ -2473,7 +2527,7 @@ func (instance *TodoExec) User(where *UserWhereInput) *UserExec {
 }
 
 // Exec docs
-func (instance TodoExec) Exec() (Todo, error) {
+func (instance TodoExec) Exec() (*Todo, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2541,7 +2595,7 @@ func (instance TodoExec) Exec() (Todo, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData Todo
+	var decodedData *Todo
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2585,13 +2639,18 @@ func (instance TodoExecArray) Exec() ([]Todo, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2611,7 +2670,6 @@ type Todo struct {
 	ID   string `json:"id"`
 	Text string `json:"text"`
 	Done bool   `json:"done"`
-	User *User  `json:"user"`
 }
 
 // UserExec docs
@@ -2621,7 +2679,7 @@ type UserExec struct {
 }
 
 // Exec docs
-func (instance UserExec) Exec() (User, error) {
+func (instance UserExec) Exec() (*User, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2689,7 +2747,7 @@ func (instance UserExec) Exec() (User, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData User
+	var decodedData *User
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2733,13 +2791,18 @@ func (instance UserExecArray) Exec() ([]User, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2787,7 +2850,7 @@ func (instance *UserEdgeExec) Node() *UserExec {
 }
 
 // Exec docs
-func (instance UserEdgeExec) Exec() (UserEdge, error) {
+func (instance UserEdgeExec) Exec() (*UserEdge, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2855,7 +2918,7 @@ func (instance UserEdgeExec) Exec() (UserEdge, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData UserEdge
+	var decodedData *UserEdge
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2899,13 +2962,18 @@ func (instance UserEdgeExecArray) Exec() ([]UserEdge, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2922,7 +2990,6 @@ func (instance UserEdgeExecArray) Exec() ([]UserEdge, error) {
 
 // UserEdge docs - generated with types
 type UserEdge struct {
-	Node   *User  `json:"node"`
 	Cursor string `json:"cursor"`
 }
 
@@ -2953,7 +3020,7 @@ func (instance *TodoEdgeExec) Node() *TodoExec {
 }
 
 // Exec docs
-func (instance TodoEdgeExec) Exec() (TodoEdge, error) {
+func (instance TodoEdgeExec) Exec() (*TodoEdge, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3021,7 +3088,7 @@ func (instance TodoEdgeExec) Exec() (TodoEdge, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData TodoEdge
+	var decodedData *TodoEdge
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3065,13 +3132,18 @@ func (instance TodoEdgeExecArray) Exec() ([]TodoEdge, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -3088,7 +3160,6 @@ func (instance TodoEdgeExecArray) Exec() ([]TodoEdge, error) {
 
 // TodoEdge docs - generated with types
 type TodoEdge struct {
-	Node   *Todo  `json:"node"`
 	Cursor string `json:"cursor"`
 }
 
@@ -3119,7 +3190,7 @@ func (instance *UserConnectionExec) PageInfo() *PageInfoExec {
 }
 
 // Edges docs - executable for types
-func (instance *UserConnectionExec) Edges() *UserEdgeExec {
+func (instance *UserConnectionExec) Edges() *UserEdgeExecArray {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
@@ -3132,7 +3203,7 @@ func (instance *UserConnectionExec) Edges() *UserEdgeExec {
 		Operation: "",
 		Args:      args,
 	})
-	return &UserEdgeExec{
+	return &UserEdgeExecArray{
 		client: instance.client,
 		stack:  instance.stack,
 	}
@@ -3159,7 +3230,7 @@ func (instance *UserConnectionExec) Aggregate() *AggregateUserExec {
 }
 
 // Exec docs
-func (instance UserConnectionExec) Exec() (UserConnection, error) {
+func (instance UserConnectionExec) Exec() (*UserConnection, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3227,7 +3298,7 @@ func (instance UserConnectionExec) Exec() (UserConnection, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData UserConnection
+	var decodedData *UserConnection
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3271,13 +3342,18 @@ func (instance UserConnectionExecArray) Exec() ([]UserConnection, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -3294,9 +3370,6 @@ func (instance UserConnectionExecArray) Exec() ([]UserConnection, error) {
 
 // UserConnection docs - generated with types
 type UserConnection struct {
-	PageInfo  *PageInfo      `json:"pageInfo"`
-	Edges     *UserEdge      `json:"edges"`
-	Aggregate *AggregateUser `json:"aggregate"`
 }
 
 // TodoConnectionExec docs
@@ -3326,7 +3399,7 @@ func (instance *TodoConnectionExec) PageInfo() *PageInfoExec {
 }
 
 // Edges docs - executable for types
-func (instance *TodoConnectionExec) Edges() *TodoEdgeExec {
+func (instance *TodoConnectionExec) Edges() *TodoEdgeExecArray {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
@@ -3339,7 +3412,7 @@ func (instance *TodoConnectionExec) Edges() *TodoEdgeExec {
 		Operation: "",
 		Args:      args,
 	})
-	return &TodoEdgeExec{
+	return &TodoEdgeExecArray{
 		client: instance.client,
 		stack:  instance.stack,
 	}
@@ -3366,7 +3439,7 @@ func (instance *TodoConnectionExec) Aggregate() *AggregateTodoExec {
 }
 
 // Exec docs
-func (instance TodoConnectionExec) Exec() (TodoConnection, error) {
+func (instance TodoConnectionExec) Exec() (*TodoConnection, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3434,7 +3507,7 @@ func (instance TodoConnectionExec) Exec() (TodoConnection, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData TodoConnection
+	var decodedData *TodoConnection
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3478,13 +3551,18 @@ func (instance TodoConnectionExecArray) Exec() ([]TodoConnection, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -3501,9 +3579,6 @@ func (instance TodoConnectionExecArray) Exec() ([]TodoConnection, error) {
 
 // TodoConnection docs - generated with types
 type TodoConnection struct {
-	PageInfo  *PageInfo      `json:"pageInfo"`
-	Edges     *TodoEdge      `json:"edges"`
-	Aggregate *AggregateTodo `json:"aggregate"`
 }
 
 // PageInfoExec docs
@@ -3513,7 +3588,7 @@ type PageInfoExec struct {
 }
 
 // Exec docs
-func (instance PageInfoExec) Exec() (PageInfo, error) {
+func (instance PageInfoExec) Exec() (*PageInfo, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3581,7 +3656,7 @@ func (instance PageInfoExec) Exec() (PageInfo, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData PageInfo
+	var decodedData *PageInfo
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3625,13 +3700,18 @@ func (instance PageInfoExecArray) Exec() ([]PageInfo, error) {
 	// Is unpacking needed
 	dataType := reflect.TypeOf(data)
 	if !isArray(dataType) {
+		unpackedData := data
 		for _, instruction := range instance.stack {
-			unpackedData := data[instruction.Name]
-			if isArray(unpackedData) {
-				genericData = (unpackedData).([]interface{})
-			} else {
-				genericData = (unpackedData).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
+			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -3648,10 +3728,10 @@ func (instance PageInfoExecArray) Exec() ([]PageInfo, error) {
 
 // PageInfo docs - generated with types
 type PageInfo struct {
-	HasNextPage     bool   `json:"hasNextPage"`
-	HasPreviousPage bool   `json:"hasPreviousPage"`
-	StartCursor     string `json:"startCursor,omitempty"`
-	EndCursor       string `json:"endCursor,omitempty"`
+	HasNextPage     bool    `json:"hasNextPage"`
+	HasPreviousPage bool    `json:"hasPreviousPage"`
+	StartCursor     *string `json:"startCursor,omitempty"`
+	EndCursor       *string `json:"endCursor,omitempty"`
 }
 
 // GraphQL Send a GraphQL operation request
