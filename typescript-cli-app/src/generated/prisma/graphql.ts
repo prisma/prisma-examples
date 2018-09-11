@@ -1,5 +1,4 @@
-module.exports = {
-        typeDefs: `type AggregateTodo {
+export const typeDefs = `type AggregateTodo {
   count: Int!
 }
 
@@ -155,5 +154,3 @@ input TodoWhereUniqueInput {
   title: String
 }
 `
-      }
-    

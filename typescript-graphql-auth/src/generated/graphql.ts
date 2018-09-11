@@ -20,9 +20,9 @@ type Mutation {
 }
 
 enum MutationType {
-  CREATE
-  UPDATE
-  DELETE
+  CREATED
+  UPDATED
+  DELETED
 }
 
 interface Node {

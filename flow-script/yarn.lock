@@ -1350,11 +1350,17 @@ debug@2.6.9, debug@^2.1.2, debug@^2.2.0:
   dependencies:
     ms "2.0.0"
 
-debug@3.1.0, debug@^3.1.0:
+debug@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
     ms "2.0.0"
+
+debug@^3.1.0:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.3.tgz#3f2a4bf7afb0a73a960fed83a197692dba736b83"
+  dependencies:
+    ms "^2.1.1"
 
 decamelize@^1.1.1:
   version "1.2.0"
@@ -2365,6 +2371,12 @@ graphql@0.12.3, graphql@^0.12.3:
   dependencies:
     iterall "1.1.3"
 
+graphql@0.13, graphql@^0.13.1, graphql@^0.13.2:
+  version "0.13.2"
+  resolved "http://registry.npmjs.org/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
+  dependencies:
+    iterall "^1.2.1"
+
 graphql@^0.10.1:
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.10.5.tgz#c9be17ca2bdfdbd134077ffd9bbaa48b8becd298"
@@ -2376,18 +2388,6 @@ graphql@^0.11.7:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
   dependencies:
     iterall "1.1.3"
-
-graphql@^0.13.1, graphql@^0.13.2:
-  version "0.13.2"
-  resolved "http://registry.npmjs.org/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
-  dependencies:
-    iterall "^1.2.1"
-
-graphql@^14.0.2:
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.0.2.tgz#7dded337a4c3fd2d075692323384034b357f5650"
-  dependencies:
-    iterall "^1.2.2"
 
 har-schema@^2.0.0:
   version "2.0.0"
@@ -2825,7 +2825,7 @@ iterall@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
 
-iterall@^1.1.0, iterall@^1.1.3, iterall@^1.2.1, iterall@^1.2.2:
+iterall@^1.1.0, iterall@^1.1.3, iterall@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
 
@@ -3830,9 +3830,9 @@ prisma-cli-core@1.0.5-2:
     util.promisify "^1.0.0"
     validator "^8.2.0"
 
-prisma-cli-core@1.1.38-alpha.44:
-  version "1.1.38-alpha.44"
-  resolved "https://registry.yarnpkg.com/prisma-cli-core/-/prisma-cli-core-1.1.38-alpha.44.tgz#063006c3abe23a9b78b3908c7525ca4ef26c8185"
+prisma-cli-core@1.1.38-alpha.51:
+  version "1.1.38-alpha.51"
+  resolved "https://registry.yarnpkg.com/prisma-cli-core/-/prisma-cli-core-1.1.38-alpha.51.tgz#79a9611f2c44410301d27e50c7d00425e1299f85"
   dependencies:
     adm-zip "^0.4.7"
     archiver "^2.0.3"
@@ -3865,11 +3865,11 @@ prisma-cli-core@1.1.38-alpha.44:
     opn "^5.1.0"
     pause "^0.1.0"
     portfinder "^1.0.13"
-    prisma-db-introspection "0.0.7-68"
+    prisma-client-lib "0.1.45"
+    prisma-db-introspection "0.0.7-75"
     prisma-generate-schema "0.0.6"
     prisma-json-schema "0.1.1"
-    prisma-lib "0.1.35"
-    prisma-yml "1.1.48-alpha.34"
+    prisma-yml "1.1.48-alpha.47"
     scuid "^1.0.2"
     semver "^5.4.1"
     sillyname "^0.1.0"
@@ -3938,9 +3938,9 @@ prisma-cli-engine@1.0.3-7:
     validator "^8.2.0"
     yaml-ast-parser "^0.0.34"
 
-prisma-cli-engine@1.1.37-alpha.34:
-  version "1.1.37-alpha.34"
-  resolved "https://registry.yarnpkg.com/prisma-cli-engine/-/prisma-cli-engine-1.1.37-alpha.34.tgz#d5fae94459e1e751a366bc821d54531230505287"
+prisma-cli-engine@1.1.37-alpha.41:
+  version "1.1.37-alpha.41"
+  resolved "https://registry.yarnpkg.com/prisma-cli-engine/-/prisma-cli-engine-1.1.37-alpha.41.tgz#252e1c010167ab59d1c5112dcb6544350a5fb4ed"
   dependencies:
     "@heroku/linewrap" "^1.0.0"
     ajv "5"
@@ -3982,7 +3982,7 @@ prisma-cli-engine@1.1.37-alpha.34:
     memfs "^2.5.3"
     opn "^5.1.0"
     prisma-json-schema "0.1.1"
-    prisma-yml "1.1.48-alpha.34"
+    prisma-yml "1.1.48-alpha.47"
     raven "2.3.0"
     replaceall "^0.1.6"
     rwlockfile "^1.4.8"
@@ -4007,9 +4007,28 @@ prisma-cli@^1.0.7:
     semver "^5.4.1"
     source-map-support "^0.4.18"
 
-prisma-db-introspection@0.0.7-68:
-  version "0.0.7-68"
-  resolved "https://registry.yarnpkg.com/prisma-db-introspection/-/prisma-db-introspection-0.0.7-68.tgz#d1744a15bfffb872964b7311506d0de654bc5dd2"
+prisma-client-lib@0.1.45:
+  version "0.1.45"
+  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-0.1.45.tgz#8c5daaca41d9de1be45c56e8a675a1872dc58688"
+  dependencies:
+    "@types/node" "^10.7.0"
+    apollo-link-error "^1.1.0"
+    apollo-link-ws "^1.0.8"
+    debug "^3.1.0"
+    graphql-import "^0.6.0"
+    graphql-tag "^2.9.2"
+    graphql-tools "3.1.1"
+    http-link-dataloader "^0.1.4"
+    jsonwebtoken "^8.3.0"
+    object-path-immutable "^3.0.0"
+    prettier "^1.14.2"
+    subscriptions-transport-ws "^0.9.14"
+    uppercamelcase "^3.0.0"
+    ws "^6.0.0"
+
+prisma-db-introspection@0.0.7-75:
+  version "0.0.7-75"
+  resolved "https://registry.yarnpkg.com/prisma-db-introspection/-/prisma-db-introspection-0.0.7-75.tgz#fd35858b3ce4af842fc635d3a07e02f8ed5fd3f1"
   dependencies:
     ajv "5"
     bluebird "^3.5.1"
@@ -4026,7 +4045,7 @@ prisma-db-introspection@0.0.7-68:
     pg "^7.4.1"
     pluralize "^7.0.0"
     prisma-json-schema "0.1.1"
-    prisma-yml "1.1.48-alpha.34"
+    prisma-yml "1.1.48-alpha.47"
     replaceall "^0.1.6"
     scuid "^1.0.2"
     uppercamelcase "^3.0.0"
@@ -4055,44 +4074,6 @@ prisma-json-schema@0.1.1:
 prisma-json-schema@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/prisma-json-schema/-/prisma-json-schema-0.0.1.tgz#0802e156a293faefdf21e5e41beb8d3681f45cb1"
-
-prisma-lib@0.1.35:
-  version "0.1.35"
-  resolved "https://registry.yarnpkg.com/prisma-lib/-/prisma-lib-0.1.35.tgz#c34a235761650b9aba8ada52ee23ef9df389b33b"
-  dependencies:
-    "@types/node" "^10.7.0"
-    apollo-link-error "^1.1.0"
-    apollo-link-ws "^1.0.8"
-    debug "^3.1.0"
-    graphql-import "^0.6.0"
-    graphql-tag "^2.9.2"
-    graphql-tools "3.1.1"
-    http-link-dataloader "^0.1.4"
-    jsonwebtoken "^8.3.0"
-    object-path-immutable "^3.0.0"
-    prettier "^1.14.2"
-    subscriptions-transport-ws "^0.9.14"
-    uppercamelcase "^3.0.0"
-    ws "^6.0.0"
-
-prisma-lib@^0.1.34:
-  version "0.1.34"
-  resolved "https://registry.yarnpkg.com/prisma-lib/-/prisma-lib-0.1.34.tgz#f19d4874614ed8434dd027d822b99499bd57c135"
-  dependencies:
-    "@types/node" "^10.7.0"
-    apollo-link-error "^1.1.0"
-    apollo-link-ws "^1.0.8"
-    debug "^3.1.0"
-    graphql-import "^0.6.0"
-    graphql-tag "^2.9.2"
-    graphql-tools "3.1.1"
-    http-link-dataloader "^0.1.4"
-    jsonwebtoken "^8.3.0"
-    object-path-immutable "^3.0.0"
-    prettier "^1.14.2"
-    subscriptions-transport-ws "^0.9.14"
-    uppercamelcase "^3.0.0"
-    ws "^6.0.0"
 
 prisma-yml@0.0.4:
   version "0.0.4"
@@ -4177,9 +4158,9 @@ prisma-yml@1.0.50:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-prisma-yml@1.1.48-alpha.34:
-  version "1.1.48-alpha.34"
-  resolved "https://registry.yarnpkg.com/prisma-yml/-/prisma-yml-1.1.48-alpha.34.tgz#e371f0873accadbc1d322053cbf85455ecaaf9c2"
+prisma-yml@1.1.48-alpha.47:
+  version "1.1.48-alpha.47"
+  resolved "https://registry.yarnpkg.com/prisma-yml/-/prisma-yml-1.1.48-alpha.47.tgz#e17a2e41233407485efb8715f90f5fcde93a4efe"
   dependencies:
     ajv "5"
     bluebird "^3.5.1"
@@ -4200,13 +4181,13 @@ prisma-yml@1.1.48-alpha.34:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-prisma@^1.17.0-alpha.38:
-  version "1.17.0-alpha.38"
-  resolved "https://registry.yarnpkg.com/prisma/-/prisma-1.17.0-alpha.38.tgz#46b7710b05de523b37fdea4a7cec558568cb12fd"
+prisma@1.17.0-alpha.52:
+  version "1.17.0-alpha.52"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-1.17.0-alpha.52.tgz#0b397f0f594316e678c0d7220b802c73eaf3927b"
   dependencies:
     fs-extra "^5.0.0"
-    prisma-cli-core "1.1.38-alpha.44"
-    prisma-cli-engine "1.1.37-alpha.34"
+    prisma-cli-core "1.1.38-alpha.51"
+    prisma-cli-engine "1.1.37-alpha.41"
     require-onct "^0.0.2"
     semver "^5.4.1"
     source-map-support "^0.4.18"

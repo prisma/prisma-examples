@@ -5,6 +5,6 @@ var typeDefs = require("./graphql").typeDefs;
 
 exports.Prisma = prisma_lib_1.makePrismaBindingClass({
   typeDefs,
-  endpoint: "https://eu1.prisma.sh/lol/tut/dev"
+  endpoint: "https://eu1.prisma.sh/lol/prisma/dev"
 });
 exports.prisma = new exports.Prisma();
