@@ -14,10 +14,10 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "flow-bin": "^0.80.0",
-    "prisma": "^1.17.0-alpha.38"
+    "prisma": "1.17.0-alpha.52"
   },
   "dependencies": {
-    "graphql": "^14.0.2",
-    "prisma-lib": "^0.1.34"
+    "graphql": "0.13",
+    "prisma-client-lib": "0.1.45"
   }
 }
