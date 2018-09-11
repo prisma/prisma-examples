@@ -18,7 +18,7 @@ func main() {
 	}
 
 	client := prisma.New(&prisma.PrismaOptions{
-		Debug: true,
+		// Debug: true,
 	})
 	resolver := Resolver{
 		Prisma: &client,
