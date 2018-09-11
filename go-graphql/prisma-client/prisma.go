@@ -19,7 +19,7 @@ type ID struct{}
 // Exists
 
 // Cat exists docs
-func (exists *Exists) Cat(params CatWhereUniqueInput) bool {
+func (exists *Exists) Cat(params *CatWhereUniqueInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
@@ -41,21 +41,22 @@ func (exists *Exists) Cat(params CatWhereUniqueInput) bool {
 
 // CatParams docs
 type CatParams struct {
-	Where CatWhereUniqueInput `json:"where"`
+	Where *CatWhereUniqueInput `json:"where"`
 }
 
 // Cat docs - generated while printing operation - query
-func (client Client) Cat(params CatWhereUniqueInput) *CatExec {
+func (client Client) Cat(params *CatWhereUniqueInput) *CatExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "CatWhereUniqueInput!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "CatWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "cat",
@@ -90,7 +91,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
 	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -99,7 +99,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 			Value:    *params.Where,
 		})
 	}
-
 	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
@@ -108,7 +107,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 			Value:    *params.OrderBy,
 		})
 	}
-
 	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
@@ -117,7 +115,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 			Value:    *params.Skip,
 		})
 	}
-
 	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
@@ -126,7 +123,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 			Value:    *params.After,
 		})
 	}
-
 	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
@@ -135,7 +131,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 			Value:    *params.Before,
 		})
 	}
-
 	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
@@ -144,7 +139,6 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 			Value:    *params.First,
 		})
 	}
-
 	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
@@ -174,14 +168,14 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 // Exists
 
 // CatsConnection exists docs
-func (exists *Exists) CatsConnection(params CatWhereInput) bool {
+func (exists *Exists) CatsConnection(params *CatWhereInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
 	data, err := client.CatsConnection(
 		&CatsConnectionParams{
-			Where: &params,
+			Where: params,
 		},
 	).Exec()
 	if err != nil {
@@ -212,7 +206,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
 	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -221,7 +214,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 			Value:    *params.Where,
 		})
 	}
-
 	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
@@ -230,7 +222,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 			Value:    *params.OrderBy,
 		})
 	}
-
 	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
@@ -239,7 +230,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 			Value:    *params.Skip,
 		})
 	}
-
 	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
@@ -248,7 +238,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 			Value:    *params.After,
 		})
 	}
-
 	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
@@ -257,7 +246,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 			Value:    *params.Before,
 		})
 	}
-
 	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
@@ -266,7 +254,6 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 			Value:    *params.First,
 		})
 	}
-
 	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
@@ -296,7 +283,7 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 // Exists
 
 // Master exists docs
-func (exists *Exists) Master(params MasterWhereUniqueInput) bool {
+func (exists *Exists) Master(params *MasterWhereUniqueInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
@@ -318,21 +305,22 @@ func (exists *Exists) Master(params MasterWhereUniqueInput) bool {
 
 // MasterParams docs
 type MasterParams struct {
-	Where MasterWhereUniqueInput `json:"where"`
+	Where *MasterWhereUniqueInput `json:"where"`
 }
 
 // Master docs - generated while printing operation - query
-func (client Client) Master(params MasterWhereUniqueInput) *MasterExec {
+func (client Client) Master(params *MasterWhereUniqueInput) *MasterExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "MasterWhereUniqueInput!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "MasterWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "master",
@@ -367,7 +355,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
 	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -376,7 +363,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 			Value:    *params.Where,
 		})
 	}
-
 	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
@@ -385,7 +371,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 			Value:    *params.OrderBy,
 		})
 	}
-
 	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
@@ -394,7 +379,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 			Value:    *params.Skip,
 		})
 	}
-
 	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
@@ -403,7 +387,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 			Value:    *params.After,
 		})
 	}
-
 	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
@@ -412,7 +395,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 			Value:    *params.Before,
 		})
 	}
-
 	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
@@ -421,7 +403,6 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 			Value:    *params.First,
 		})
 	}
-
 	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
@@ -451,14 +432,14 @@ func (client Client) Masters(params *MastersParams) *MasterExecArray {
 // Exists
 
 // MastersConnection exists docs
-func (exists *Exists) MastersConnection(params MasterWhereInput) bool {
+func (exists *Exists) MastersConnection(params *MasterWhereInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
 	data, err := client.MastersConnection(
 		&MastersConnectionParams{
-			Where: &params,
+			Where: params,
 		},
 	).Exec()
 	if err != nil {
@@ -489,7 +470,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
 	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -498,7 +478,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 			Value:    *params.Where,
 		})
 	}
-
 	if params != nil && params.OrderBy != nil {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
@@ -507,7 +486,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 			Value:    *params.OrderBy,
 		})
 	}
-
 	if params != nil && params.Skip != nil {
 		args = append(args, GraphQLArg{
 			Name:     "skip",
@@ -516,7 +494,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 			Value:    *params.Skip,
 		})
 	}
-
 	if params != nil && params.After != nil {
 		args = append(args, GraphQLArg{
 			Name:     "after",
@@ -525,7 +502,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 			Value:    *params.After,
 		})
 	}
-
 	if params != nil && params.Before != nil {
 		args = append(args, GraphQLArg{
 			Name:     "before",
@@ -534,7 +510,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 			Value:    *params.Before,
 		})
 	}
-
 	if params != nil && params.First != nil {
 		args = append(args, GraphQLArg{
 			Name:     "first",
@@ -543,7 +518,6 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 			Value:    *params.First,
 		})
 	}
-
 	if params != nil && params.Last != nil {
 		args = append(args, GraphQLArg{
 			Name:     "last",
@@ -572,21 +546,22 @@ func (client Client) MastersConnection(params *MastersConnectionParams) *MasterC
 
 // NodeParams docs
 type NodeParams struct {
-	ID string `json:"id"`
+	ID *string `json:"id"`
 }
 
 // Node docs - generated while printing operation - query
-func (client Client) Node(params ID) *NodeExec {
+func (client Client) Node(params *ID) *NodeExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "id",
-		Key:      "id",
-		TypeName: "ID!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "id",
+			Key:      "id",
+			TypeName: "ID!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "node",
@@ -609,21 +584,22 @@ func (client Client) Node(params ID) *NodeExec {
 
 // CreateCatParams docs
 type CreateCatParams struct {
-	Data CatCreateInput `json:"data"`
+	Data *CatCreateInput `json:"data"`
 }
 
 // CreateCat docs - generated while printing operation - mutation
-func (client Client) CreateCat(params CatCreateInput) *CatExec {
+func (client Client) CreateCat(params *CatCreateInput) *CatExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "data",
-		Key:      "data",
-		TypeName: "CatCreateInput!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "CatCreateInput!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "createCat",
@@ -644,8 +620,8 @@ func (client Client) CreateCat(params CatCreateInput) *CatExec {
 
 // UpdateCatParams docs
 type UpdateCatParams struct {
-	Data  CatUpdateInput      `json:"data"`
-	Where CatWhereUniqueInput `json:"where"`
+	Data  *CatUpdateInput      `json:"data"`
+	Where *CatWhereUniqueInput `json:"where"`
 }
 
 // UpdateCat docs - generated while printing operation - mutation
@@ -653,20 +629,22 @@ func (client Client) UpdateCat(params *UpdateCatParams) *CatExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "data",
-		Key:      "data",
-		TypeName: "CatUpdateInput!",
-		Value:    params.Data,
-	})
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "CatWhereUniqueInput!",
-		Value:    params.Where,
-	})
+	if params != nil && params.Data != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "CatUpdateInput!",
+			Value:    *params.Data,
+		})
+	}
+	if params != nil && params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "CatWhereUniqueInput!",
+			Value:    *params.Where,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "updateCat",
@@ -687,8 +665,8 @@ func (client Client) UpdateCat(params *UpdateCatParams) *CatExec {
 
 // UpdateManyCatsParams docs
 type UpdateManyCatsParams struct {
-	Data  CatUpdateInput `json:"data"`
-	Where *CatWhereInput `json:"where,omitempty"`
+	Data  *CatUpdateInput `json:"data"`
+	Where *CatWhereInput  `json:"where,omitempty"`
 }
 
 // UpdateManyCats docs - generated while printing operation - mutation
@@ -696,14 +674,14 @@ func (client Client) UpdateManyCats(params *UpdateManyCatsParams) *BatchPayloadE
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "data",
-		Key:      "data",
-		TypeName: "CatUpdateInput!",
-		Value:    params.Data,
-	})
-
+	if params != nil && params.Data != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "CatUpdateInput!",
+			Value:    *params.Data,
+		})
+	}
 	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -732,9 +710,9 @@ func (client Client) UpdateManyCats(params *UpdateManyCatsParams) *BatchPayloadE
 
 // UpsertCatParams docs
 type UpsertCatParams struct {
-	Where  CatWhereUniqueInput `json:"where"`
-	Create CatCreateInput      `json:"create"`
-	Update CatUpdateInput      `json:"update"`
+	Where  *CatWhereUniqueInput `json:"where"`
+	Create *CatCreateInput      `json:"create"`
+	Update *CatUpdateInput      `json:"update"`
 }
 
 // UpsertCat docs - generated while printing operation - mutation
@@ -742,27 +720,30 @@ func (client Client) UpsertCat(params *UpsertCatParams) *CatExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "CatWhereUniqueInput!",
-		Value:    params.Where,
-	})
-
-	args = append(args, GraphQLArg{
-		Name:     "create",
-		Key:      "create",
-		TypeName: "CatCreateInput!",
-		Value:    params.Create,
-	})
-
-	args = append(args, GraphQLArg{
-		Name:     "update",
-		Key:      "update",
-		TypeName: "CatUpdateInput!",
-		Value:    params.Update,
-	})
+	if params != nil && params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "CatWhereUniqueInput!",
+			Value:    *params.Where,
+		})
+	}
+	if params != nil && params.Create != nil {
+		args = append(args, GraphQLArg{
+			Name:     "create",
+			Key:      "create",
+			TypeName: "CatCreateInput!",
+			Value:    *params.Create,
+		})
+	}
+	if params != nil && params.Update != nil {
+		args = append(args, GraphQLArg{
+			Name:     "update",
+			Key:      "update",
+			TypeName: "CatUpdateInput!",
+			Value:    *params.Update,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "upsertCat",
@@ -783,21 +764,22 @@ func (client Client) UpsertCat(params *UpsertCatParams) *CatExec {
 
 // DeleteCatParams docs
 type DeleteCatParams struct {
-	Where CatWhereUniqueInput `json:"where"`
+	Where *CatWhereUniqueInput `json:"where"`
 }
 
 // DeleteCat docs - generated while printing operation - mutation
-func (client Client) DeleteCat(params CatWhereUniqueInput) *CatExec {
+func (client Client) DeleteCat(params *CatWhereUniqueInput) *CatExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "CatWhereUniqueInput!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "CatWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "deleteCat",
@@ -826,7 +808,6 @@ func (client Client) DeleteManyCats(params *CatWhereInput) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
 	if params != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -855,21 +836,22 @@ func (client Client) DeleteManyCats(params *CatWhereInput) *BatchPayloadExec {
 
 // CreateMasterParams docs
 type CreateMasterParams struct {
-	Data MasterCreateInput `json:"data"`
+	Data *MasterCreateInput `json:"data"`
 }
 
 // CreateMaster docs - generated while printing operation - mutation
-func (client Client) CreateMaster(params MasterCreateInput) *MasterExec {
+func (client Client) CreateMaster(params *MasterCreateInput) *MasterExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "data",
-		Key:      "data",
-		TypeName: "MasterCreateInput!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "MasterCreateInput!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "createMaster",
@@ -890,8 +872,8 @@ func (client Client) CreateMaster(params MasterCreateInput) *MasterExec {
 
 // UpdateMasterParams docs
 type UpdateMasterParams struct {
-	Data  MasterUpdateInput      `json:"data"`
-	Where MasterWhereUniqueInput `json:"where"`
+	Data  *MasterUpdateInput      `json:"data"`
+	Where *MasterWhereUniqueInput `json:"where"`
 }
 
 // UpdateMaster docs - generated while printing operation - mutation
@@ -899,20 +881,22 @@ func (client Client) UpdateMaster(params *UpdateMasterParams) *MasterExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "data",
-		Key:      "data",
-		TypeName: "MasterUpdateInput!",
-		Value:    params.Data,
-	})
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "MasterWhereUniqueInput!",
-		Value:    params.Where,
-	})
+	if params != nil && params.Data != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "MasterUpdateInput!",
+			Value:    *params.Data,
+		})
+	}
+	if params != nil && params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "MasterWhereUniqueInput!",
+			Value:    *params.Where,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "updateMaster",
@@ -933,8 +917,8 @@ func (client Client) UpdateMaster(params *UpdateMasterParams) *MasterExec {
 
 // UpdateManyMastersParams docs
 type UpdateManyMastersParams struct {
-	Data  MasterUpdateInput `json:"data"`
-	Where *MasterWhereInput `json:"where,omitempty"`
+	Data  *MasterUpdateInput `json:"data"`
+	Where *MasterWhereInput  `json:"where,omitempty"`
 }
 
 // UpdateManyMasters docs - generated while printing operation - mutation
@@ -942,14 +926,14 @@ func (client Client) UpdateManyMasters(params *UpdateManyMastersParams) *BatchPa
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "data",
-		Key:      "data",
-		TypeName: "MasterUpdateInput!",
-		Value:    params.Data,
-	})
-
+	if params != nil && params.Data != nil {
+		args = append(args, GraphQLArg{
+			Name:     "data",
+			Key:      "data",
+			TypeName: "MasterUpdateInput!",
+			Value:    *params.Data,
+		})
+	}
 	if params != nil && params.Where != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -978,9 +962,9 @@ func (client Client) UpdateManyMasters(params *UpdateManyMastersParams) *BatchPa
 
 // UpsertMasterParams docs
 type UpsertMasterParams struct {
-	Where  MasterWhereUniqueInput `json:"where"`
-	Create MasterCreateInput      `json:"create"`
-	Update MasterUpdateInput      `json:"update"`
+	Where  *MasterWhereUniqueInput `json:"where"`
+	Create *MasterCreateInput      `json:"create"`
+	Update *MasterUpdateInput      `json:"update"`
 }
 
 // UpsertMaster docs - generated while printing operation - mutation
@@ -988,27 +972,30 @@ func (client Client) UpsertMaster(params *UpsertMasterParams) *MasterExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "MasterWhereUniqueInput!",
-		Value:    params.Where,
-	})
-
-	args = append(args, GraphQLArg{
-		Name:     "create",
-		Key:      "create",
-		TypeName: "MasterCreateInput!",
-		Value:    params.Create,
-	})
-
-	args = append(args, GraphQLArg{
-		Name:     "update",
-		Key:      "update",
-		TypeName: "MasterUpdateInput!",
-		Value:    params.Update,
-	})
+	if params != nil && params.Where != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "MasterWhereUniqueInput!",
+			Value:    *params.Where,
+		})
+	}
+	if params != nil && params.Create != nil {
+		args = append(args, GraphQLArg{
+			Name:     "create",
+			Key:      "create",
+			TypeName: "MasterCreateInput!",
+			Value:    *params.Create,
+		})
+	}
+	if params != nil && params.Update != nil {
+		args = append(args, GraphQLArg{
+			Name:     "update",
+			Key:      "update",
+			TypeName: "MasterUpdateInput!",
+			Value:    *params.Update,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "upsertMaster",
@@ -1029,21 +1016,22 @@ func (client Client) UpsertMaster(params *UpsertMasterParams) *MasterExec {
 
 // DeleteMasterParams docs
 type DeleteMasterParams struct {
-	Where MasterWhereUniqueInput `json:"where"`
+	Where *MasterWhereUniqueInput `json:"where"`
 }
 
 // DeleteMaster docs - generated while printing operation - mutation
-func (client Client) DeleteMaster(params MasterWhereUniqueInput) *MasterExec {
+func (client Client) DeleteMaster(params *MasterWhereUniqueInput) *MasterExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
-	args = append(args, GraphQLArg{
-		Name:     "where",
-		Key:      "where",
-		TypeName: "MasterWhereUniqueInput!",
-		Value:    params,
-	})
+	if params != nil {
+		args = append(args, GraphQLArg{
+			Name:     "where",
+			Key:      "where",
+			TypeName: "MasterWhereUniqueInput!",
+			Value:    *params,
+		})
+	}
 
 	stack = append(stack, Instruction{
 		Name: "deleteMaster",
@@ -1072,7 +1060,6 @@ func (client Client) DeleteManyMasters(params *MasterWhereInput) *BatchPayloadEx
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
-
 	if params != nil {
 		args = append(args, GraphQLArg{
 			Name:     "where",
@@ -1178,14 +1165,14 @@ const (
 
 // CatCreateInput input struct docs
 type CatCreateInput struct {
-	Name       string             `json:"name"`
-	Color      string             `json:"color"`
+	Name       *string            `json:"name,omitempty"`
+	Color      *string            `json:"color,omitempty"`
 	FavBrother *CatCreateOneInput `json:"favBrother,omitempty"`
 }
 
 // CatWhereUniqueInput input struct docs
 type CatWhereUniqueInput struct {
-	ID *string `json:"id"`
+	ID *string `json:"id,omitempty"`
 }
 
 // CatUpdateOneInput input struct docs
@@ -1193,55 +1180,55 @@ type CatUpdateOneInput struct {
 	Create     *CatCreateInput       `json:"create,omitempty"`
 	Update     *CatUpdateDataInput   `json:"update,omitempty"`
 	Upsert     *CatUpsertNestedInput `json:"upsert,omitempty"`
-	Delete     *bool                 `json:"delete"`
-	Disconnect *bool                 `json:"disconnect"`
+	Delete     *bool                 `json:"delete,omitempty"`
+	Disconnect *bool                 `json:"disconnect,omitempty"`
 	Connect    *CatWhereUniqueInput  `json:"connect,omitempty"`
 }
 
 // CatWhereInput input struct docs
 type CatWhereInput struct {
-	ID                 *string        `json:"id"`
-	IDNot              *string        `json:"id_not"`
-	IDIn               *string        `json:"id_in"`
-	IDNotIn            *string        `json:"id_not_in"`
-	IDLt               *string        `json:"id_lt"`
-	IDLte              *string        `json:"id_lte"`
-	IDGt               *string        `json:"id_gt"`
-	IDGte              *string        `json:"id_gte"`
-	IDContains         *string        `json:"id_contains"`
-	IDNotContains      *string        `json:"id_not_contains"`
-	IDStartsWith       *string        `json:"id_starts_with"`
-	IDNotStartsWith    *string        `json:"id_not_starts_with"`
-	IDEndsWith         *string        `json:"id_ends_with"`
-	IDNotEndsWith      *string        `json:"id_not_ends_with"`
-	Name               *string        `json:"name"`
-	NameNot            *string        `json:"name_not"`
-	NameIn             *string        `json:"name_in"`
-	NameNotIn          *string        `json:"name_not_in"`
-	NameLt             *string        `json:"name_lt"`
-	NameLte            *string        `json:"name_lte"`
-	NameGt             *string        `json:"name_gt"`
-	NameGte            *string        `json:"name_gte"`
-	NameContains       *string        `json:"name_contains"`
-	NameNotContains    *string        `json:"name_not_contains"`
-	NameStartsWith     *string        `json:"name_starts_with"`
-	NameNotStartsWith  *string        `json:"name_not_starts_with"`
-	NameEndsWith       *string        `json:"name_ends_with"`
-	NameNotEndsWith    *string        `json:"name_not_ends_with"`
-	Color              *string        `json:"color"`
-	ColorNot           *string        `json:"color_not"`
-	ColorIn            *string        `json:"color_in"`
-	ColorNotIn         *string        `json:"color_not_in"`
-	ColorLt            *string        `json:"color_lt"`
-	ColorLte           *string        `json:"color_lte"`
-	ColorGt            *string        `json:"color_gt"`
-	ColorGte           *string        `json:"color_gte"`
-	ColorContains      *string        `json:"color_contains"`
-	ColorNotContains   *string        `json:"color_not_contains"`
-	ColorStartsWith    *string        `json:"color_starts_with"`
-	ColorNotStartsWith *string        `json:"color_not_starts_with"`
-	ColorEndsWith      *string        `json:"color_ends_with"`
-	ColorNotEndsWith   *string        `json:"color_not_ends_with"`
+	ID                 *string        `json:"id,omitempty"`
+	IDNot              *string        `json:"id_not,omitempty"`
+	IDIn               *string        `json:"id_in,omitempty"`
+	IDNotIn            *string        `json:"id_not_in,omitempty"`
+	IDLt               *string        `json:"id_lt,omitempty"`
+	IDLte              *string        `json:"id_lte,omitempty"`
+	IDGt               *string        `json:"id_gt,omitempty"`
+	IDGte              *string        `json:"id_gte,omitempty"`
+	IDContains         *string        `json:"id_contains,omitempty"`
+	IDNotContains      *string        `json:"id_not_contains,omitempty"`
+	IDStartsWith       *string        `json:"id_starts_with,omitempty"`
+	IDNotStartsWith    *string        `json:"id_not_starts_with,omitempty"`
+	IDEndsWith         *string        `json:"id_ends_with,omitempty"`
+	IDNotEndsWith      *string        `json:"id_not_ends_with,omitempty"`
+	Name               *string        `json:"name,omitempty"`
+	NameNot            *string        `json:"name_not,omitempty"`
+	NameIn             *string        `json:"name_in,omitempty"`
+	NameNotIn          *string        `json:"name_not_in,omitempty"`
+	NameLt             *string        `json:"name_lt,omitempty"`
+	NameLte            *string        `json:"name_lte,omitempty"`
+	NameGt             *string        `json:"name_gt,omitempty"`
+	NameGte            *string        `json:"name_gte,omitempty"`
+	NameContains       *string        `json:"name_contains,omitempty"`
+	NameNotContains    *string        `json:"name_not_contains,omitempty"`
+	NameStartsWith     *string        `json:"name_starts_with,omitempty"`
+	NameNotStartsWith  *string        `json:"name_not_starts_with,omitempty"`
+	NameEndsWith       *string        `json:"name_ends_with,omitempty"`
+	NameNotEndsWith    *string        `json:"name_not_ends_with,omitempty"`
+	Color              *string        `json:"color,omitempty"`
+	ColorNot           *string        `json:"color_not,omitempty"`
+	ColorIn            *string        `json:"color_in,omitempty"`
+	ColorNotIn         *string        `json:"color_not_in,omitempty"`
+	ColorLt            *string        `json:"color_lt,omitempty"`
+	ColorLte           *string        `json:"color_lte,omitempty"`
+	ColorGt            *string        `json:"color_gt,omitempty"`
+	ColorGte           *string        `json:"color_gte,omitempty"`
+	ColorContains      *string        `json:"color_contains,omitempty"`
+	ColorNotContains   *string        `json:"color_not_contains,omitempty"`
+	ColorStartsWith    *string        `json:"color_starts_with,omitempty"`
+	ColorNotStartsWith *string        `json:"color_not_starts_with,omitempty"`
+	ColorEndsWith      *string        `json:"color_ends_with,omitempty"`
+	ColorNotEndsWith   *string        `json:"color_not_ends_with,omitempty"`
 	FavBrother         *CatWhereInput `json:"favBrother,omitempty"`
 	And                *CatWhereInput `json:"AND,omitempty"`
 	Or                 *CatWhereInput `json:"OR,omitempty"`
@@ -1260,8 +1247,8 @@ type CatUpdateManyInput struct {
 
 // CatUpdateInput input struct docs
 type CatUpdateInput struct {
-	Name       *string            `json:"name"`
-	Color      *string            `json:"color"`
+	Name       *string            `json:"name,omitempty"`
+	Color      *string            `json:"color,omitempty"`
 	FavBrother *CatUpdateOneInput `json:"favBrother,omitempty"`
 }
 
@@ -1272,8 +1259,8 @@ type MasterUpdateInput struct {
 
 // CatUpdateDataInput input struct docs
 type CatUpdateDataInput struct {
-	Name       *string            `json:"name"`
-	Color      *string            `json:"color"`
+	Name       *string            `json:"name,omitempty"`
+	Color      *string            `json:"color,omitempty"`
 	FavBrother *CatUpdateOneInput `json:"favBrother,omitempty"`
 }
 
@@ -1286,9 +1273,9 @@ type CatCreateManyInput struct {
 // CatSubscriptionWhereInput input struct docs
 type CatSubscriptionWhereInput struct {
 	MutationIn                 *MutationType              `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                    `json:"updatedFields_contains"`
-	UpdatedFieldsContainsEvery *string                    `json:"updatedFields_contains_every"`
-	UpdatedFieldsContainsSome  *string                    `json:"updatedFields_contains_some"`
+	UpdatedFieldsContains      *string                    `json:"updatedFields_contains,omitempty"`
+	UpdatedFieldsContainsEvery *string                    `json:"updatedFields_contains_every,omitempty"`
+	UpdatedFieldsContainsSome  *string                    `json:"updatedFields_contains_some,omitempty"`
 	Node                       *CatWhereInput             `json:"node,omitempty"`
 	And                        *CatSubscriptionWhereInput `json:"AND,omitempty"`
 	Or                         *CatSubscriptionWhereInput `json:"OR,omitempty"`
@@ -1297,7 +1284,7 @@ type CatSubscriptionWhereInput struct {
 
 // MasterWhereUniqueInput input struct docs
 type MasterWhereUniqueInput struct {
-	ID *string `json:"id"`
+	ID *string `json:"id,omitempty"`
 }
 
 // CatCreateOneInput input struct docs
@@ -1308,8 +1295,8 @@ type CatCreateOneInput struct {
 
 // CatUpsertNestedInput input struct docs
 type CatUpsertNestedInput struct {
-	Update CatUpdateDataInput `json:"update,omitempty"`
-	Create CatCreateInput     `json:"create,omitempty"`
+	Update *CatUpdateDataInput `json:"update,omitempty"`
+	Create *CatCreateInput     `json:"create,omitempty"`
 }
 
 // MasterCreateInput input struct docs
@@ -1319,23 +1306,23 @@ type MasterCreateInput struct {
 
 // CatUpdateWithWhereUniqueNestedInput input struct docs
 type CatUpdateWithWhereUniqueNestedInput struct {
-	Where CatWhereUniqueInput `json:"where,omitempty"`
-	Data  CatUpdateDataInput  `json:"data,omitempty"`
+	Where *CatWhereUniqueInput `json:"where,omitempty"`
+	Data  *CatUpdateDataInput  `json:"data,omitempty"`
 }
 
 // CatUpsertWithWhereUniqueNestedInput input struct docs
 type CatUpsertWithWhereUniqueNestedInput struct {
-	Where  CatWhereUniqueInput `json:"where,omitempty"`
-	Update CatUpdateDataInput  `json:"update,omitempty"`
-	Create CatCreateInput      `json:"create,omitempty"`
+	Where  *CatWhereUniqueInput `json:"where,omitempty"`
+	Update *CatUpdateDataInput  `json:"update,omitempty"`
+	Create *CatCreateInput      `json:"create,omitempty"`
 }
 
 // MasterSubscriptionWhereInput input struct docs
 type MasterSubscriptionWhereInput struct {
 	MutationIn                 *MutationType                 `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                       `json:"updatedFields_contains"`
-	UpdatedFieldsContainsEvery *string                       `json:"updatedFields_contains_every"`
-	UpdatedFieldsContainsSome  *string                       `json:"updatedFields_contains_some"`
+	UpdatedFieldsContains      *string                       `json:"updatedFields_contains,omitempty"`
+	UpdatedFieldsContainsEvery *string                       `json:"updatedFields_contains_every,omitempty"`
+	UpdatedFieldsContainsSome  *string                       `json:"updatedFields_contains_some,omitempty"`
 	Node                       *MasterWhereInput             `json:"node,omitempty"`
 	And                        *MasterSubscriptionWhereInput `json:"AND,omitempty"`
 	Or                         *MasterSubscriptionWhereInput `json:"OR,omitempty"`
@@ -1344,20 +1331,20 @@ type MasterSubscriptionWhereInput struct {
 
 // MasterWhereInput input struct docs
 type MasterWhereInput struct {
-	ID              *string           `json:"id"`
-	IDNot           *string           `json:"id_not"`
-	IDIn            *string           `json:"id_in"`
-	IDNotIn         *string           `json:"id_not_in"`
-	IDLt            *string           `json:"id_lt"`
-	IDLte           *string           `json:"id_lte"`
-	IDGt            *string           `json:"id_gt"`
-	IDGte           *string           `json:"id_gte"`
-	IDContains      *string           `json:"id_contains"`
-	IDNotContains   *string           `json:"id_not_contains"`
-	IDStartsWith    *string           `json:"id_starts_with"`
-	IDNotStartsWith *string           `json:"id_not_starts_with"`
-	IDEndsWith      *string           `json:"id_ends_with"`
-	IDNotEndsWith   *string           `json:"id_not_ends_with"`
+	ID              *string           `json:"id,omitempty"`
+	IDNot           *string           `json:"id_not,omitempty"`
+	IDIn            *string           `json:"id_in,omitempty"`
+	IDNotIn         *string           `json:"id_not_in,omitempty"`
+	IDLt            *string           `json:"id_lt,omitempty"`
+	IDLte           *string           `json:"id_lte,omitempty"`
+	IDGt            *string           `json:"id_gt,omitempty"`
+	IDGte           *string           `json:"id_gte,omitempty"`
+	IDContains      *string           `json:"id_contains,omitempty"`
+	IDNotContains   *string           `json:"id_not_contains,omitempty"`
+	IDStartsWith    *string           `json:"id_starts_with,omitempty"`
+	IDNotStartsWith *string           `json:"id_not_starts_with,omitempty"`
+	IDEndsWith      *string           `json:"id_ends_with,omitempty"`
+	IDNotEndsWith   *string           `json:"id_not_ends_with,omitempty"`
 	CatzEvery       *CatWhereInput    `json:"catz_every,omitempty"`
 	CatzSome        *CatWhereInput    `json:"catz_some,omitempty"`
 	CatzNone        *CatWhereInput    `json:"catz_none,omitempty"`
@@ -1384,7 +1371,7 @@ type MasterPreviousValuesExec struct {
 }
 
 // Exec docs
-func (instance MasterPreviousValuesExec) Exec() (*MasterPreviousValues, error) {
+func (instance MasterPreviousValuesExec) Exec() (MasterPreviousValues, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1439,7 +1426,15 @@ func (instance MasterPreviousValuesExec) Exec() (*MasterPreviousValues, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -1452,7 +1447,7 @@ func (instance MasterPreviousValuesExec) Exec() (*MasterPreviousValues, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *MasterPreviousValues
+	var decodedData MasterPreviousValues
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1501,7 +1496,15 @@ func (instance MasterPreviousValuesExecArray) Exec() ([]MasterPreviousValues, er
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -1631,7 +1634,7 @@ func (instance *MasterExec) Catz(params *CatzParamsExec) *CatExecArray {
 }
 
 // Exec docs
-func (instance MasterExec) Exec() (*Master, error) {
+func (instance MasterExec) Exec() (Master, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1686,7 +1689,15 @@ func (instance MasterExec) Exec() (*Master, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -1699,7 +1710,7 @@ func (instance MasterExec) Exec() (*Master, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *Master
+	var decodedData Master
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1746,19 +1757,23 @@ func (instance MasterExecArray) Exec() ([]Master, error) {
 		unpackedData := data
 		for _, instruction := range instance.stack {
 			if instance.client.Debug {
-				fmt.Println("Original 3Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-
-			if isArray(reflect.TypeOf(unpackedData[instruction.Name])) {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
 			} else {
-				genericData = unpackedData[instruction.Name]
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
 			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
 				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
 			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -1845,7 +1860,7 @@ func (instance *CatConnectionExec) Aggregate() *AggregateCatExec {
 }
 
 // Exec docs
-func (instance CatConnectionExec) Exec() (*CatConnection, error) {
+func (instance CatConnectionExec) Exec() (CatConnection, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -1900,7 +1915,15 @@ func (instance CatConnectionExec) Exec() (*CatConnection, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -1913,7 +1936,7 @@ func (instance CatConnectionExec) Exec() (*CatConnection, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *CatConnection
+	var decodedData CatConnection
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -1962,7 +1985,15 @@ func (instance CatConnectionExecArray) Exec() ([]CatConnection, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -1994,7 +2025,7 @@ type CatPreviousValuesExec struct {
 }
 
 // Exec docs
-func (instance CatPreviousValuesExec) Exec() (*CatPreviousValues, error) {
+func (instance CatPreviousValuesExec) Exec() (CatPreviousValues, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2049,7 +2080,15 @@ func (instance CatPreviousValuesExec) Exec() (*CatPreviousValues, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2062,7 +2101,7 @@ func (instance CatPreviousValuesExec) Exec() (*CatPreviousValues, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *CatPreviousValues
+	var decodedData CatPreviousValues
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2111,7 +2150,15 @@ func (instance CatPreviousValuesExecArray) Exec() ([]CatPreviousValues, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2186,7 +2233,7 @@ func (instance *CatSubscriptionPayloadExec) PreviousValues() *CatPreviousValuesE
 }
 
 // Exec docs
-func (instance CatSubscriptionPayloadExec) Exec() (*CatSubscriptionPayload, error) {
+func (instance CatSubscriptionPayloadExec) Exec() (CatSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2241,7 +2288,15 @@ func (instance CatSubscriptionPayloadExec) Exec() (*CatSubscriptionPayload, erro
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2254,7 +2309,7 @@ func (instance CatSubscriptionPayloadExec) Exec() (*CatSubscriptionPayload, erro
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *CatSubscriptionPayload
+	var decodedData CatSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2303,7 +2358,15 @@ func (instance CatSubscriptionPayloadExecArray) Exec() ([]CatSubscriptionPayload
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2326,7 +2389,7 @@ func (instance CatSubscriptionPayloadExecArray) Exec() ([]CatSubscriptionPayload
 
 // CatSubscriptionPayload docs - generated with types
 type CatSubscriptionPayload struct {
-	UpdatedFields *string `json:"updatedFields,omitempty"`
+	UpdatedFields string `json:"updatedFields,omitempty"`
 }
 
 // AggregateCatExec docs
@@ -2336,7 +2399,7 @@ type AggregateCatExec struct {
 }
 
 // Exec docs
-func (instance AggregateCatExec) Exec() (*AggregateCat, error) {
+func (instance AggregateCatExec) Exec() (AggregateCat, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2391,7 +2454,15 @@ func (instance AggregateCatExec) Exec() (*AggregateCat, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2404,7 +2475,7 @@ func (instance AggregateCatExec) Exec() (*AggregateCat, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *AggregateCat
+	var decodedData AggregateCat
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2453,7 +2524,15 @@ func (instance AggregateCatExecArray) Exec() ([]AggregateCat, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2523,7 +2602,7 @@ func (instance *CatExec) FavBrother(params *FavBrotherParamsExec) *CatExec {
 }
 
 // Exec docs
-func (instance CatExec) Exec() (*Cat, error) {
+func (instance CatExec) Exec() (Cat, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2578,7 +2657,15 @@ func (instance CatExec) Exec() (*Cat, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2591,7 +2678,7 @@ func (instance CatExec) Exec() (*Cat, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *Cat
+	var decodedData Cat
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2638,18 +2725,23 @@ func (instance CatExecArray) Exec() ([]Cat, error) {
 		unpackedData := data
 		for _, instruction := range instance.stack {
 			if instance.client.Debug {
-				fmt.Println("Original 2Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			if isArray(reflect.TypeOf(unpackedData[instruction.Name])) {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
 			} else {
-				genericData = unpackedData[instruction.Name]
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
 			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
 				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
 			}
+			genericData = unpackedData
 		}
 	}
 	if instance.client.Debug {
@@ -2698,7 +2790,7 @@ func (instance *CatEdgeExec) Node() *CatExec {
 }
 
 // Exec docs
-func (instance CatEdgeExec) Exec() (*CatEdge, error) {
+func (instance CatEdgeExec) Exec() (CatEdge, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2753,7 +2845,15 @@ func (instance CatEdgeExec) Exec() (*CatEdge, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2766,7 +2866,7 @@ func (instance CatEdgeExec) Exec() (*CatEdge, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *CatEdge
+	var decodedData CatEdge
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2815,7 +2915,15 @@ func (instance CatEdgeExecArray) Exec() ([]CatEdge, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2848,7 +2956,7 @@ type BatchPayloadExec struct {
 }
 
 // Exec docs
-func (instance BatchPayloadExec) Exec() (*BatchPayload, error) {
+func (instance BatchPayloadExec) Exec() (BatchPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2903,7 +3011,15 @@ func (instance BatchPayloadExec) Exec() (*BatchPayload, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2916,7 +3032,7 @@ func (instance BatchPayloadExec) Exec() (*BatchPayload, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *BatchPayload
+	var decodedData BatchPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2965,7 +3081,15 @@ func (instance BatchPayloadExecArray) Exec() ([]BatchPayload, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -2998,7 +3122,7 @@ type PageInfoExec struct {
 }
 
 // Exec docs
-func (instance PageInfoExec) Exec() (*PageInfo, error) {
+func (instance PageInfoExec) Exec() (PageInfo, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3053,7 +3177,15 @@ func (instance PageInfoExec) Exec() (*PageInfo, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3066,7 +3198,7 @@ func (instance PageInfoExec) Exec() (*PageInfo, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *PageInfo
+	var decodedData PageInfo
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3115,7 +3247,15 @@ func (instance PageInfoExecArray) Exec() ([]PageInfo, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3138,10 +3278,10 @@ func (instance PageInfoExecArray) Exec() ([]PageInfo, error) {
 
 // PageInfo docs - generated with types
 type PageInfo struct {
-	HasNextPage     bool    `json:"hasNextPage"`
-	HasPreviousPage bool    `json:"hasPreviousPage"`
-	StartCursor     *string `json:"startCursor,omitempty"`
-	EndCursor       *string `json:"endCursor,omitempty"`
+	HasNextPage     bool   `json:"hasNextPage"`
+	HasPreviousPage bool   `json:"hasPreviousPage"`
+	StartCursor     string `json:"startCursor,omitempty"`
+	EndCursor       string `json:"endCursor,omitempty"`
 }
 
 // MasterSubscriptionPayloadExec docs
@@ -3191,7 +3331,7 @@ func (instance *MasterSubscriptionPayloadExec) PreviousValues() *MasterPreviousV
 }
 
 // Exec docs
-func (instance MasterSubscriptionPayloadExec) Exec() (*MasterSubscriptionPayload, error) {
+func (instance MasterSubscriptionPayloadExec) Exec() (MasterSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3246,7 +3386,15 @@ func (instance MasterSubscriptionPayloadExec) Exec() (*MasterSubscriptionPayload
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3259,7 +3407,7 @@ func (instance MasterSubscriptionPayloadExec) Exec() (*MasterSubscriptionPayload
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *MasterSubscriptionPayload
+	var decodedData MasterSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3308,7 +3456,15 @@ func (instance MasterSubscriptionPayloadExecArray) Exec() ([]MasterSubscriptionP
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3331,7 +3487,7 @@ func (instance MasterSubscriptionPayloadExecArray) Exec() ([]MasterSubscriptionP
 
 // MasterSubscriptionPayload docs - generated with types
 type MasterSubscriptionPayload struct {
-	UpdatedFields *string `json:"updatedFields,omitempty"`
+	UpdatedFields string `json:"updatedFields,omitempty"`
 }
 
 // MasterConnectionExec docs
@@ -3401,7 +3557,7 @@ func (instance *MasterConnectionExec) Aggregate() *AggregateMasterExec {
 }
 
 // Exec docs
-func (instance MasterConnectionExec) Exec() (*MasterConnection, error) {
+func (instance MasterConnectionExec) Exec() (MasterConnection, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3456,7 +3612,15 @@ func (instance MasterConnectionExec) Exec() (*MasterConnection, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3469,7 +3633,7 @@ func (instance MasterConnectionExec) Exec() (*MasterConnection, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *MasterConnection
+	var decodedData MasterConnection
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3518,7 +3682,15 @@ func (instance MasterConnectionExecArray) Exec() ([]MasterConnection, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3570,7 +3742,7 @@ func (instance *MasterEdgeExec) Node() *MasterExec {
 }
 
 // Exec docs
-func (instance MasterEdgeExec) Exec() (*MasterEdge, error) {
+func (instance MasterEdgeExec) Exec() (MasterEdge, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3625,7 +3797,15 @@ func (instance MasterEdgeExec) Exec() (*MasterEdge, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3638,7 +3818,7 @@ func (instance MasterEdgeExec) Exec() (*MasterEdge, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *MasterEdge
+	var decodedData MasterEdge
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3687,7 +3867,15 @@ func (instance MasterEdgeExecArray) Exec() ([]MasterEdge, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3720,7 +3908,7 @@ type AggregateMasterExec struct {
 }
 
 // Exec docs
-func (instance AggregateMasterExec) Exec() (*AggregateMaster, error) {
+func (instance AggregateMasterExec) Exec() (AggregateMaster, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3775,7 +3963,15 @@ func (instance AggregateMasterExec) Exec() (*AggregateMaster, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)
@@ -3788,7 +3984,7 @@ func (instance AggregateMasterExec) Exec() (*AggregateMaster, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData *AggregateMaster
+	var decodedData AggregateMaster
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3837,7 +4033,15 @@ func (instance AggregateMasterExecArray) Exec() ([]AggregateMaster, error) {
 			if instance.client.Debug {
 				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
 			}
-			unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
 			if instance.client.Debug {
 				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
 				fmt.Println("Unpacked Data Step Exec:", unpackedData)

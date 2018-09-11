@@ -4,6 +4,7 @@ package main
 
 import (
 	context "context"
+	"fmt"
 
 	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
 )
@@ -38,6 +39,7 @@ type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Masters(ctx context.Context) ([]SpecialMaster, error) {
 	result, err := r.Prisma.Masters(nil).Exec()
+	fmt.Println("Masters:", result)
 	specialMasters := make([]SpecialMaster, len(result))
 	for i, v := range result {
 		specialMasters[i] = SpecialMaster{

@@ -17,9 +17,7 @@ func main() {
 		port = defaultPort
 	}
 
-	client := prisma.New(&prisma.PrismaOptions{
-		// Debug: true,
-	})
+	client := prisma.New(nil)
 	resolver := Resolver{
 		Prisma: &client,
 	}
