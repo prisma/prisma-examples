@@ -4,7 +4,7 @@ This repository contains a number of ready-to-run examples demonstrating various
 
 | Demo | Language | Description |
 |:------|:----------:|:-------------|
-| [`flow-script`](flow-script) | [flow](https://flow.org/) | Simple usage of Prisma client in script |
+| [`flow-script`](flow-script) | [Flow](https://flow.org/) | Simple usage of Prisma client in script |
 | [`go-cli-app`](go-cli-app) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple CLI todo list app |
 | [`go-graphql`](go-graphql) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple GraphQL server |
 | [`node-cli-app`](node-cli-app) | [Node.JS](https://nodejs.org/en/) | Simple CLI todo list app |
