@@ -1,6 +1,6 @@
-import { GraphQLServer } from 'graphql-yoga'
-import { resolvers } from './resolvers'
-import { Prisma } from './generated'
+const { GraphQLServer } = require('graphql-yoga')
+const { resolvers } = require('./resolvers')
+const { Prisma } = require('./generated')
 
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
