@@ -19,6 +19,8 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`typescript-graphql-schema-delegation`](typescript-graphql-schema-delegation) | [TypeScript](https://www.typescriptlang.org/) | [Schema delegation](https://www.prisma.io/docs/prisma-client/api-reference/schema-delegation-typescript-pyl8/) with the Prisma client |
 | [`typescript-script`](typescript-script) | [TypeScript](https://www.typescriptlang.org/) | Simple usage of Prisma client in script |
 
+Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) or submit a pull request.
+
 ## Reference Implementations
 
 If you're looking for a more complex real-world application you can check out the following repositories:
