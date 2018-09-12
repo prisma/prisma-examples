@@ -2,8 +2,8 @@
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of [Prisma](https://www.prisma.io). Pick an example and follow the instructions in the corresponding README.
 
-| Demo | Language | Description |
-|:------|:----------:|:-------------|
+| Example | Language | Description |
+|:--------|:--------:|:------------|
 | [`flow-script`](flow-script) | [Flow](https://flow.org/) | Simple usage of Prisma client in script |
 | [`go-cli-app`](go-cli-app) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple CLI todo list app |
 | [`go-graphql`](go-graphql) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple GraphQL server |
@@ -18,3 +18,11 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`typescript-graphql`](typescript-graphql) | [TypeScript](https://www.typescriptlang.org/) | Simple GraphQL server |
 | [`typescript-graphql-schema-delegation`](typescript-graphql-schema-delegation) | [TypeScript](https://www.typescriptlang.org/) | [Schema delegation](https://www.prisma.io/docs/prisma-client/api-reference/schema-delegation-typescript-pyl8/) with the Prisma client |
 | [`typescript-script`](typescript-script) | [TypeScript](https://www.typescriptlang.org/) | Simple usage of Prisma client in script |
+
+## Reference Implementations
+
+If you're looking for a more complex real-world application you can check out the following repositories:
+
+| Repo | Language | Description |
+|:-----|:--------:|:-------------|
+| [`graphql-prisma-typescript`](https://github.com/prisma/graphql-prisma-typescript) | [TypeScript](https://www.typescriptlang.org/) | TypeScript-based GraphQL server (Airbnb clone)  |
