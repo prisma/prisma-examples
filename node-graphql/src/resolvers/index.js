@@ -1,9 +1,13 @@
-import { Query } from "./Query";
-import { SpecialMaster } from "./SpecialMaster";
-import { Cat } from "./Cat";
+const { Query } = require('./Query')
+const { SpecialMaster } = require('./SpecialMaster')
+const { Cat } = require('./Cat')
 
-export const resolvers = {
+const resolvers = {
   Query,
   SpecialMaster,
   Cat
 };
+
+module.exports = {
+  resolvers,
+}
