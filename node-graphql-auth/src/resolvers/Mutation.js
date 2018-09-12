@@ -35,6 +35,6 @@ const Mutation = {
   }
 };
 
-module.export = {
+module.exports = {
   Mutation
 }

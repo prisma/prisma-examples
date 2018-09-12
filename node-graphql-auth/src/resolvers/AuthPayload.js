@@ -3,6 +3,6 @@ const AuthPayload = {
   user: root => root.user
 };
 
-module.export = {
+module.exports = {
   AuthPayload
 }
