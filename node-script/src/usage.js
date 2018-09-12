@@ -2,11 +2,24 @@ const { Prisma } = require('./generated')
 
 // A `main` function so that we can use async/await
 async function main() {
-  const prisma = new Prisma()
-
-  const result = await prisma.cats()
+  
+  const result = await prisma
+    .cats()
+    .$fragment(`fragment Cat on Cat { id name favBrother { id } }`)
 
   console.log(result)
+
+  await prisma.createMaster({
+    catz: {
+      create: [
+        {
+          color: 'red',
+          name: 'Bob',
+        },
+      ],
+    },
+  })
+  
 }
 
 main().catch(e => console.error(e))
