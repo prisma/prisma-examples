@@ -10,6 +10,6 @@ const resolvers = {
   User
 };
 
-module.export = {
+module.exports = {
   resolvers
 }
