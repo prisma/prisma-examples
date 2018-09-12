@@ -14,7 +14,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "flow-bin": "^0.80.0",
-    "prisma": "1.17.0-alpha.52"
+    "prisma": "^1.17.0-beta.2"
   },
   "dependencies": {
     "graphql": "0.13",

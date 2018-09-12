@@ -14,16 +14,16 @@ scalar Long
 type Mutation {
   createTodo(data: TodoCreateInput!): Todo!
   updateTodo(data: TodoUpdateInput!, where: TodoWhereUniqueInput!): Todo
-  updateManyTodos(data: TodoUpdateInput!, where: TodoWhereInput): BatchPayload!
+  updateManyTodoes(data: TodoUpdateInput!, where: TodoWhereInput): BatchPayload!
   upsertTodo(where: TodoWhereUniqueInput!, create: TodoCreateInput!, update: TodoUpdateInput!): Todo!
   deleteTodo(where: TodoWhereUniqueInput!): Todo
-  deleteManyTodos(where: TodoWhereInput): BatchPayload!
+  deleteManyTodoes(where: TodoWhereInput): BatchPayload!
 }
 
 enum MutationType {
-  CREATE
-  UPDATE
-  DELETE
+  CREATED
+  UPDATED
+  DELETED
 }
 
 interface Node {
@@ -39,8 +39,8 @@ type PageInfo {
 
 type Query {
   todo(where: TodoWhereUniqueInput!): Todo
-  todos(where: TodoWhereInput, orderBy: TodoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Todo]!
-  todosConnection(where: TodoWhereInput, orderBy: TodoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TodoConnection!
+  todoes(where: TodoWhereInput, orderBy: TodoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Todo]!
+  todoesConnection(where: TodoWhereInput, orderBy: TodoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TodoConnection!
   node(id: ID!): Node
 }
 
@@ -76,6 +76,8 @@ enum TodoOrderByInput {
   title_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type TodoPreviousValues {

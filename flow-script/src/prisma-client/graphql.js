@@ -14,7 +14,7 @@ type Cat {
   id: ID!
   name: String!
   color: String!
-  favBrother(where: CatWhereInput): Cat
+  favBrother: Cat
 }
 
 type CatConnection {
@@ -51,6 +51,10 @@ enum CatOrderByInput {
   name_DESC
   color_ASC
   color_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type CatPreviousValues {
@@ -201,6 +205,10 @@ type MasterEdge {
 enum MasterOrderByInput {
   id_ASC
   id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type MasterPreviousValues {
@@ -272,9 +280,9 @@ type Mutation {
 }
 
 enum MutationType {
-  CREATE
-  UPDATE
-  DELETE
+  CREATED
+  UPDATED
+  DELETED
 }
 
 interface Node {
