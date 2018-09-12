@@ -2,4 +2,4 @@ endpoint: http://localhost:4466/cli-tool/default
 datamodel: datamodel.prisma
 generate:
   - generator: typescript-client
-    output: ../src/generated/prisma
+    output: ../src/prisma-client

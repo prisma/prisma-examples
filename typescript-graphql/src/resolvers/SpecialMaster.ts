@@ -1,6 +1,5 @@
 import { ISpecialMaster } from '../generated/resolvers'
 import { Types } from './types'
-import { CatRoot } from './Cat'
 
 export interface SpecialMasterRoot {
   id: string

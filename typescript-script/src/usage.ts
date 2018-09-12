@@ -1,8 +1,8 @@
-import { prisma } from './generated'
+import { prisma } from './prisma-client'
 
 // A `main` function so that we can use async/await
 async function main() {
-  
+
   const result = await prisma
     .cats()
     .$fragment(`fragment Cat on Cat { id name favBrother { id } }`)
@@ -19,7 +19,7 @@ async function main() {
       ],
     },
   })
-  
+
 }
 
 main().catch(e => console.error(e))
