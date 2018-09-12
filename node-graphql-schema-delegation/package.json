@@ -7,9 +7,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "graphql-resolver-codegen": "^0.1.6",
-    "prisma": "1.17.0-alpha.52",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.0.1"
+    "prisma": "1.17.0-alpha.52"
   },
   "dependencies": {
     "graphql": "^0.13.2",
@@ -17,7 +15,7 @@
     "prisma-client-lib": "0.1.45"
   },
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "node src/index.js",
     "prisma": "cd prisma && prisma",
     "graphql-resolver-codegen": "graphql-resolver-codegen"
   }

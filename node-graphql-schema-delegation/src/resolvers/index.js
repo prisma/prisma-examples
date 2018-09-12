@@ -1,5 +1,9 @@
-import { Query } from './Query'
+const { Query } = require('./Query')
 
-export const resolvers = {
+const resolvers = {
   Query,
+}
+
+module.exports = {
+  resolvers,
 }
