@@ -7,12 +7,14 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "graphql-resolver-codegen": "^0.1.6",
-    "prisma": "1.17.0-alpha.52"
+    "prisma": "1.17.0-beta.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1"
   },
   "dependencies": {
     "graphql": "^0.13.2",
     "graphql-yoga": "^1.16.1",
-    "prisma-client-lib": "0.1.45"
+    "prisma-client-lib": "0.1.48"
   },
   "scripts": {
     "start": "node src/index.js",

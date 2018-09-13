@@ -656,20 +656,14 @@ export interface Cat extends Promise<CatNode> {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   color: () => Promise<String>;
-  favBrother: <T: Cat>(
-    args?: { where?: CatWhereInput },
-    fragment?: string | Object
-  ) => T;
+  favBrother: <T: Cat>() => T;
 }
 
 export interface CatSubscription extends Promise<AsyncIterator<CatNode>> {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   color: () => Promise<AsyncIterator<String>>;
-  favBrother: <T: CatSubscription>(
-    args?: { where?: CatWhereInput },
-    fragment?: string | Object
-  ) => T;
+  favBrother: <T: CatSubscription>() => T;
 }
 
 export interface CatEdgeNode {

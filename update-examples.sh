@@ -11,7 +11,7 @@ for d in */ ; do
   if [ -f "package.json" ]; then
     rm -rf node_modules
     yarn install
-    yarn add --dev prisma@alpha -E
+    yarn add --dev prisma@beta -E
     yarn add prisma-client-lib -E
     yarn prisma generate
   fi

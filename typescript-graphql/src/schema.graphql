@@ -1,15 +1,18 @@
 type Query {
-  masters: [SpecialMaster!]!
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
 }
 
-type SpecialMaster {
-  id: ID!
-  catBrothers: [Cat!]!
+type Mutation {
+  createDraft(title: String!, content: String): Post
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
 }
 
-type Cat {
+type Post {
   id: ID!
-  name: String!
-  color: String!
-  favBrother: Cat
+  isPublished: Boolean!
+  title: String!
+  content: String!
 }

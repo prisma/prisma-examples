@@ -1,12 +1,12 @@
-import { IResolvers } from "../generated/resolvers";
-import { Types } from "./types";
+import { IResolvers } from '../generated/resolvers'
+import { TypeMap } from '../types/TypeMap'
 
-import { Query } from "./Query";
-import { SpecialMaster } from "./SpecialMaster";
-import { Cat } from "./Cat";
+import { Query } from './Query'
+import { Mutation } from './Mutation'
+import { Post } from './Post'
 
-export const resolvers: IResolvers<Types> = {
+export const resolvers: IResolvers<TypeMap> = {
   Query,
-  SpecialMaster,
-  Cat
-};
+  Mutation,
+  Post,
+}

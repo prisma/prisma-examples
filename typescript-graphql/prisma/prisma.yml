@@ -1,5 +1,6 @@
-endpoint: https://eu1.prisma.sh/lol/tut/dev
+endpoint: https://eu1.prisma.sh/demo/delete-me-3/dev
 datamodel: datamodel.prisma
 generate:
   - generator: typescript-client
     output: ../src/generated/prisma-client/
+

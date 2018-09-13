@@ -10,83 +10,124 @@ export interface ITypes {
   Context: any;
 
   QueryRoot: any;
-  SpecialMasterRoot: any;
-  CatRoot: any;
+  MutationRoot: any;
+  PostRoot: any;
 }
 
 export namespace IQuery {
-  export type MastersResolver<T extends ITypes> = ResolverFn<
+  export type FeedResolver<T extends ITypes> = ResolverFn<
     T["QueryRoot"],
     {},
     T["Context"],
-    T["SpecialMasterRoot"][]
+    T["PostRoot"][]
+  >;
+
+  export type DraftsResolver<T extends ITypes> = ResolverFn<
+    T["QueryRoot"],
+    {},
+    T["Context"],
+    T["PostRoot"][]
+  >;
+
+  export interface ArgsPost {
+    id: string;
+  }
+
+  export type PostResolver<T extends ITypes> = ResolverFn<
+    T["QueryRoot"],
+    ArgsPost,
+    T["Context"],
+    T["PostRoot"] | null
   >;
 
   export interface Resolver<T extends ITypes> {
-    masters: MastersResolver<T>;
+    feed: FeedResolver<T>;
+    drafts: DraftsResolver<T>;
+    post: PostResolver<T>;
   }
 }
 
-export namespace ISpecialMaster {
+export namespace IMutation {
+  export interface ArgsCreateDraft {
+    title: string;
+    content: string | null;
+  }
+
+  export type CreateDraftResolver<T extends ITypes> = ResolverFn<
+    T["MutationRoot"],
+    ArgsCreateDraft,
+    T["Context"],
+    T["PostRoot"] | null
+  >;
+
+  export interface ArgsDeletePost {
+    id: string;
+  }
+
+  export type DeletePostResolver<T extends ITypes> = ResolverFn<
+    T["MutationRoot"],
+    ArgsDeletePost,
+    T["Context"],
+    T["PostRoot"] | null
+  >;
+
+  export interface ArgsPublish {
+    id: string;
+  }
+
+  export type PublishResolver<T extends ITypes> = ResolverFn<
+    T["MutationRoot"],
+    ArgsPublish,
+    T["Context"],
+    T["PostRoot"] | null
+  >;
+
+  export interface Resolver<T extends ITypes> {
+    createDraft: CreateDraftResolver<T>;
+    deletePost: DeletePostResolver<T>;
+    publish: PublishResolver<T>;
+  }
+}
+
+export namespace IPost {
   export type IdResolver<T extends ITypes> = ResolverFn<
-    T["SpecialMasterRoot"],
+    T["PostRoot"],
     {},
     T["Context"],
     string
   >;
 
-  export type CatBrothersResolver<T extends ITypes> = ResolverFn<
-    T["SpecialMasterRoot"],
+  export type IsPublishedResolver<T extends ITypes> = ResolverFn<
+    T["PostRoot"],
     {},
     T["Context"],
-    T["CatRoot"][]
+    boolean
+  >;
+
+  export type TitleResolver<T extends ITypes> = ResolverFn<
+    T["PostRoot"],
+    {},
+    T["Context"],
+    string
+  >;
+
+  export type ContentResolver<T extends ITypes> = ResolverFn<
+    T["PostRoot"],
+    {},
+    T["Context"],
+    string
   >;
 
   export interface Resolver<T extends ITypes> {
     id: IdResolver<T>;
-    catBrothers: CatBrothersResolver<T>;
-  }
-}
-
-export namespace ICat {
-  export type IdResolver<T extends ITypes> = ResolverFn<
-    T["CatRoot"],
-    {},
-    T["Context"],
-    string
-  >;
-
-  export type NameResolver<T extends ITypes> = ResolverFn<
-    T["CatRoot"],
-    {},
-    T["Context"],
-    string
-  >;
-
-  export type ColorResolver<T extends ITypes> = ResolverFn<
-    T["CatRoot"],
-    {},
-    T["Context"],
-    string
-  >;
-
-  export type FavBrotherResolver<T extends ITypes> = ResolverFn<
-    T["CatRoot"],
-    {},
-    T["Context"],
-    T["CatRoot"] | null
-  >;
-
-  export interface Resolver<T extends ITypes> {
-    id: IdResolver<T>;
-    name: NameResolver<T>;
-    color: ColorResolver<T>;
-    favBrother: FavBrotherResolver<T>;
+    isPublished: IsPublishedResolver<T>;
+    title: TitleResolver<T>;
+    content: ContentResolver<T>;
   }
 }
 
 export interface IResolvers<T extends ITypes> {
   Query: IQuery.Resolver<T>;
-  SpecialMaster: ISpecialMaster.Resolver<T>;
-  Cat: ICat.Resolver<T>;
+  Mutation: IMutation.Resolver<T>;
+  Post: IPost.Resolver<T>;
 }

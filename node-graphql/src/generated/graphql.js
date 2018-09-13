@@ -15,7 +15,7 @@ type Cat {
   id: ID!
   name: String!
   color: String!
-  favBrother(where: CatWhereInput): Cat
+  favBrother: Cat
 }
 
 type CatConnection {
