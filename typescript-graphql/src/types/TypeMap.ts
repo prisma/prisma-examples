@@ -1,12 +1,12 @@
-import { ITypes } from '../generated/resolvers'
-import { QueryRoot } from '../resolvers/Query'
-import { MutationRoot } from '../resolvers/Mutation'
-import { PostRoot } from '../resolvers/Post'
+import { ITypeMap } from '../generated/resolvers'
+import { QueryParent } from '../resolvers/Query'
+import { MutationParent } from '../resolvers/Mutation'
+import { PostParent } from '../resolvers/Post'
 import { Context } from './Context'
 
-export interface TypeMap extends ITypes {
+export interface TypeMap extends ITypeMap {
   Context: Context
-  QueryRoot: QueryRoot
-  MutationRoot: MutationRoot
-  PostRoot: PostRoot
+  QueryParent: QueryParent
+  MutationParent: MutationParent
+  PostParent: PostParent
 }
