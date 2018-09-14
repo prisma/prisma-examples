@@ -32,7 +32,9 @@ type Config struct {
 
 type ResolverRoot interface {
 	Mutation() MutationResolver
+	Post() PostResolver
 	Query() QueryResolver
+	User() UserResolver
 }
 
 type DirectiveRoot struct {
@@ -40,16 +42,19 @@ type DirectiveRoot struct {
 
 type ComplexityRoot struct {
 	Mutation struct {
-		CreateDraft func(childComplexity int, title string, content string) int
+		CreateDraft func(childComplexity int, title string, content string, authorEmail string) int
 		DeletePost  func(childComplexity int, id string) int
 		Publish     func(childComplexity int, id string) int
 	}
 
 	Post struct {
 		Id          func(childComplexity int) int
+		CreatedAt   func(childComplexity int) int
+		UpdatedAt   func(childComplexity int) int
 		IsPublished func(childComplexity int) int
 		Title       func(childComplexity int) int
 		Content     func(childComplexity int) int
+		Author      func(childComplexity int) int
 	}
 
 	Query struct {
@@ -57,17 +62,30 @@ type ComplexityRoot struct {
 		Drafts func(childComplexity int) int
 		Post   func(childComplexity int, id string) int
 	}
+
+	User struct {
+		Id    func(childComplexity int) int
+		Email func(childComplexity int) int
+		Name  func(childComplexity int) int
+		Posts func(childComplexity int) int
+	}
 }
 
 type MutationResolver interface {
-	CreateDraft(ctx context.Context, title string, content string) (prisma.Post, error)
+	CreateDraft(ctx context.Context, title string, content string, authorEmail string) (prisma.Post, error)
 	DeletePost(ctx context.Context, id string) (*prisma.Post, error)
 	Publish(ctx context.Context, id string) (*prisma.Post, error)
+}
+type PostResolver interface {
+	Author(ctx context.Context, obj *prisma.Post) (prisma.User, error)
 }
 type QueryResolver interface {
 	Feed(ctx context.Context) ([]prisma.Post, error)
 	Drafts(ctx context.Context) ([]prisma.Post, error)
 	Post(ctx context.Context, id string) (*prisma.Post, error)
+}
+type UserResolver interface {
+	Posts(ctx context.Context, obj *prisma.User) ([]prisma.Post, error)
 }
 
 func field_Mutation_createDraft_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
@@ -90,6 +108,15 @@ func field_Mutation_createDraft_args(rawArgs map[string]interface{}) (map[string
 		}
 	}
 	args["content"] = arg1
+	var arg2 string
+	if tmp, ok := rawArgs["authorEmail"]; ok {
+		var err error
+		arg2, err = graphql.UnmarshalString(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["authorEmail"] = arg2
 	return args, nil
 
 }
@@ -207,7 +234,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.CreateDraft(childComplexity, args["title"].(string), args["content"].(string)), true
+		return e.complexity.Mutation.CreateDraft(childComplexity, args["title"].(string), args["content"].(string), args["authorEmail"].(string)), true
 
 	case "Mutation.deletePost":
 		if e.complexity.Mutation.DeletePost == nil {
@@ -240,6 +267,20 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Post.Id(childComplexity), true
 
+	case "Post.createdAt":
+		if e.complexity.Post.CreatedAt == nil {
+			break
+		}
+
+		return e.complexity.Post.CreatedAt(childComplexity), true
+
+	case "Post.updatedAt":
+		if e.complexity.Post.UpdatedAt == nil {
+			break
+		}
+
+		return e.complexity.Post.UpdatedAt(childComplexity), true
+
 	case "Post.isPublished":
 		if e.complexity.Post.IsPublished == nil {
 			break
@@ -260,6 +301,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Post.Content(childComplexity), true
+
+	case "Post.author":
+		if e.complexity.Post.Author == nil {
+			break
+		}
+
+		return e.complexity.Post.Author(childComplexity), true
 
 	case "Query.feed":
 		if e.complexity.Query.Feed == nil {
@@ -286,6 +334,34 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Query.Post(childComplexity, args["id"].(string)), true
+
+	case "User.id":
+		if e.complexity.User.Id == nil {
+			break
+		}
+
+		return e.complexity.User.Id(childComplexity), true
+
+	case "User.email":
+		if e.complexity.User.Email == nil {
+			break
+		}
+
+		return e.complexity.User.Email(childComplexity), true
+
+	case "User.name":
+		if e.complexity.User.Name == nil {
+			break
+		}
+
+		return e.complexity.User.Name(childComplexity), true
+
+	case "User.posts":
+		if e.complexity.User.Posts == nil {
+			break
+		}
+
+		return e.complexity.User.Posts(childComplexity), true
 
 	}
 	return 0, false
@@ -385,7 +461,7 @@ func (ec *executionContext) _Mutation_createDraft(ctx context.Context, field gra
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
-		return ec.resolvers.Mutation().CreateDraft(ctx, args["title"].(string), args["content"].(string))
+		return ec.resolvers.Mutation().CreateDraft(ctx, args["title"].(string), args["content"].(string), args["authorEmail"].(string))
 	})
 	if resTmp == nil {
 		if !ec.HasError(rctx) {
@@ -465,6 +541,7 @@ var postImplementors = []string{"Post"}
 func (ec *executionContext) _Post(ctx context.Context, sel ast.SelectionSet, obj *prisma.Post) graphql.Marshaler {
 	fields := graphql.CollectFields(ctx, sel, postImplementors)
 
+	var wg sync.WaitGroup
 	out := graphql.NewOrderedMap(len(fields))
 	invalid := false
 	for i, field := range fields {
@@ -475,6 +552,16 @@ func (ec *executionContext) _Post(ctx context.Context, sel ast.SelectionSet, obj
 			out.Values[i] = graphql.MarshalString("Post")
 		case "id":
 			out.Values[i] = ec._Post_id(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "createdAt":
+			out.Values[i] = ec._Post_createdAt(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "updatedAt":
+			out.Values[i] = ec._Post_updatedAt(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalid = true
 			}
@@ -493,11 +580,20 @@ func (ec *executionContext) _Post(ctx context.Context, sel ast.SelectionSet, obj
 			if out.Values[i] == graphql.Null {
 				invalid = true
 			}
+		case "author":
+			wg.Add(1)
+			go func(i int, field graphql.CollectedField) {
+				out.Values[i] = ec._Post_author(ctx, field, obj)
+				if out.Values[i] == graphql.Null {
+					invalid = true
+				}
+				wg.Done()
+			}(i, field)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
 	}
-
+	wg.Wait()
 	if invalid {
 		return graphql.Null
 	}
@@ -524,6 +620,50 @@ func (ec *executionContext) _Post_id(ctx context.Context, field graphql.Collecte
 	res := resTmp.(string)
 	rctx.Result = res
 	return graphql.MarshalID(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Post_createdAt(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "Post",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return obj.CreatedAt, nil
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	return graphql.MarshalString(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Post_updatedAt(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "Post",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return obj.UpdatedAt, nil
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	return graphql.MarshalString(res)
 }
 
 // nolint: vetshadow
@@ -590,6 +730,29 @@ func (ec *executionContext) _Post_content(ctx context.Context, field graphql.Col
 	res := resTmp.(string)
 	rctx.Result = res
 	return graphql.MarshalString(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Post_author(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "Post",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.Post().Author(ctx, obj)
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(prisma.User)
+	rctx.Result = res
+
+	return ec._User(ctx, field.Selections, &res)
 }
 
 var queryImplementors = []string{"Query"}
@@ -842,6 +1005,177 @@ func (ec *executionContext) _Query___schema(ctx context.Context, field graphql.C
 	}
 
 	return ec.___Schema(ctx, field.Selections, res)
+}
+
+var userImplementors = []string{"User"}
+
+// nolint: gocyclo, errcheck, gas, goconst
+func (ec *executionContext) _User(ctx context.Context, sel ast.SelectionSet, obj *prisma.User) graphql.Marshaler {
+	fields := graphql.CollectFields(ctx, sel, userImplementors)
+
+	var wg sync.WaitGroup
+	out := graphql.NewOrderedMap(len(fields))
+	invalid := false
+	for i, field := range fields {
+		out.Keys[i] = field.Alias
+
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("User")
+		case "id":
+			out.Values[i] = ec._User_id(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "email":
+			out.Values[i] = ec._User_email(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "name":
+			out.Values[i] = ec._User_name(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "posts":
+			wg.Add(1)
+			go func(i int, field graphql.CollectedField) {
+				out.Values[i] = ec._User_posts(ctx, field, obj)
+				if out.Values[i] == graphql.Null {
+					invalid = true
+				}
+				wg.Done()
+			}(i, field)
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+	wg.Wait()
+	if invalid {
+		return graphql.Null
+	}
+	return out
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _User_id(ctx context.Context, field graphql.CollectedField, obj *prisma.User) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "User",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return obj.ID, nil
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	return graphql.MarshalID(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _User_email(ctx context.Context, field graphql.CollectedField, obj *prisma.User) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "User",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return obj.Email, nil
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	return graphql.MarshalString(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _User_name(ctx context.Context, field graphql.CollectedField, obj *prisma.User) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "User",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return obj.Name, nil
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	rctx.Result = res
+	return graphql.MarshalString(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _User_posts(ctx context.Context, field graphql.CollectedField, obj *prisma.User) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "User",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.User().Posts(ctx, obj)
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]prisma.Post)
+	rctx.Result = res
+
+	arr1 := make(graphql.Array, len(res))
+	var wg sync.WaitGroup
+
+	isLen1 := len(res) == 1
+	if !isLen1 {
+		wg.Add(len(res))
+	}
+
+	for idx1 := range res {
+		idx1 := idx1
+		rctx := &graphql.ResolverContext{
+			Index:  &idx1,
+			Result: &res[idx1],
+		}
+		ctx := graphql.WithResolverContext(ctx, rctx)
+		f := func(idx1 int) {
+			if !isLen1 {
+				defer wg.Done()
+			}
+			arr1[idx1] = func() graphql.Marshaler {
+
+				return ec._Post(ctx, field.Selections, &res[idx1])
+			}()
+		}
+		if isLen1 {
+			f(idx1)
+		} else {
+			go f(idx1)
+		}
+
+	}
+	wg.Wait()
+	return arr1
 }
 
 var __DirectiveImplementors = []string{"__Directive"}
@@ -2145,22 +2479,35 @@ func (ec *executionContext) introspectType(name string) *introspection.Type {
 }
 
 var parsedSchema = gqlparser.MustLoadSchema(
-	&ast.Source{Name: "server/schema.graphql", Input: `type Query {
+	&ast.Source{Name: "server/schema.graphql", Input: `scalar DateTime
+
+type Query {
   feed: [Post!]!
   drafts: [Post!]!
   post(id: ID!): Post
 }
 
 type Mutation {
-  createDraft(title: String!, content: String!): Post!
+  createDraft(title: String!, content: String!, authorEmail: String!): Post!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
 }
 
 type Post {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
   isPublished: Boolean!
   title: String!
   content: String!
-}`},
+  author: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  posts: [Post!]!
+}
+`},
 )
