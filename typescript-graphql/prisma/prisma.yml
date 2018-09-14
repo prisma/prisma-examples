@@ -7,5 +7,5 @@ hooks:
     - prisma generate
 generate:
   - generator: typescript-client
-    output: ../src/generated/prisma-client/
+    output: ../src/prisma-client/
 

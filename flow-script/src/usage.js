@@ -1,7 +1,9 @@
 /**
  * @flow
  */
-import { prisma } from './generated'
+import { Prisma } from './prisma-client'
+
+const prisma = new Prisma()
 
 // A `main` function so that we can use async/await
 async function main() {

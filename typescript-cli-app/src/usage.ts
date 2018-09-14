@@ -1,4 +1,4 @@
-import { prisma } from './generated';
+import { prisma } from './prisma-client';
 
 const TodoCommand = async () => {
   if (process.argv.length <= 2) {

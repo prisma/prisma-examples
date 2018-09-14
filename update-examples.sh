@@ -9,12 +9,15 @@ set -x
 for d in */ ; do
   cd $d
   if [ -f "package.json" ]; then
+    echo 'Removing Node Modules'
+    rm yarn.lock
     rm -rf node_modules
     yarn install
     yarn add --dev prisma@beta -E
     yarn add prisma-client-lib -E
+
+    echo 'Running Prisma Generate'
     yarn prisma generate
   fi
   cd ..
 done
-

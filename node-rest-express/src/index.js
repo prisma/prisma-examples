@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Prisma } = require('./generated')
+const { Prisma } = require('./prisma-client')
 
 const app = express()
 
