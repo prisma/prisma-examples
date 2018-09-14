@@ -16,7 +16,6 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "prisma": "cd prisma && prisma",
-    "graphql-resolver-codegen": "graphql-resolver-codegen"
+    "generate-resolvers": "graphql-resolver-codegen interfaces -s src/schema.graphql -o src/generated/resolvers.ts"
   }
 }

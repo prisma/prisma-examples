@@ -1,5 +1,10 @@
 endpoint: https://eu1.prisma.sh/demo/delete-me-3/dev
 datamodel: datamodel.prisma
+seed:
+  import: seed.graphql
+hooks:
+  post-deploy:
+    - prisma generate
 generate:
   - generator: typescript-client
     output: ../src/generated/prisma-client/
