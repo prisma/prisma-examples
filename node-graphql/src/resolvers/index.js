@@ -1,11 +1,13 @@
 const { Query } = require('./Query')
-const { SpecialMaster } = require('./SpecialMaster')
-const { Cat } = require('./Cat')
+const { Mutation } = require('./Mutation')
+const { Post } = require('./Post')
+const { User } = require('./User')
 
 const resolvers = {
   Query,
-  SpecialMaster,
-  Cat
+  Mutation,
+  User,
+  Post,
 };
 
 module.exports = {
