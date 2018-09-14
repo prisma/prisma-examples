@@ -1,4 +1,4 @@
-endpoint: https://eu1.prisma.sh/lol/tut/dev
+endpoint: http://localhost:4466
 datamodel: datamodel.prisma
 generate:
   - generator: javascript-client

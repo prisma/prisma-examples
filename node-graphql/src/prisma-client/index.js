@@ -5,6 +5,6 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
-  endpoint: "https://eu1.prisma.sh/lol/tut/dev"
+  endpoint: "http://localhost:4466"
 });
 exports.prisma = new exports.Prisma();
