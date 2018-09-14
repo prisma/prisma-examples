@@ -1,5 +1,8 @@
 endpoint: https://eu1.prisma.sh/demo/go-graphql/dev
 datamodel: datamodel.prisma
+hooks:
+  post-deploy:
+    - prisma generate
 generate:
   - generator: go-client
     output: ../prisma-client/

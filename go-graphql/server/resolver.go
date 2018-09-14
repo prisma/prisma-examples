@@ -3,8 +3,7 @@
 package main
 
 import (
-	context "context"
-	"fmt"
+	"context"
 
 	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
 )
@@ -13,53 +12,49 @@ type Resolver struct {
 	Prisma *prisma.Client
 }
 
-func (r *Resolver) Cat() CatResolver {
-	return &catResolver{r}
+func (r *Resolver) Mutation() MutationResolver {
+	return &mutationResolver{r}
 }
 func (r *Resolver) Query() QueryResolver {
 	return &queryResolver{r}
 }
-func (r *Resolver) SpecialMaster() SpecialMasterResolver {
-	return &specialMasterResolver{r}
+
+type mutationResolver struct{ *Resolver }
+
+func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content string) (prisma.Post, error) {
+	return r.Prisma.CreatePost(&prisma.PostCreateInput{Title: &title, Content: &content}).Exec()
 }
-
-type catResolver struct{ *Resolver }
-
-func (r *catResolver) FavBrother(ctx context.Context, obj *Cat) (*Cat, error) {
-	result, err := r.Prisma.Cat(&prisma.CatWhereUniqueInput{ID: &obj.ID}).FavBrother(nil).Exec()
-	favBrother := Cat{
-		ID:    result.ID,
-		Color: result.Color,
-		Name:  result.Name,
-	}
-	return &favBrother, err
+func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.Post, error) {
+	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
+	post, err := r.Prisma.DeletePost(&prisma.PostWhereUniqueInput{ID: &id}).Exec()
+	return &post, err
+}
+func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post, error) {
+	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
+	isPublished := true
+	post, err := r.Prisma.UpdatePost(&prisma.UpdatePostParams{
+		Where: &prisma.PostWhereUniqueInput{ID: &id},
+		Data:  &prisma.PostUpdateInput{IsPublished: &isPublished},
+	}).Exec()
+	return &post, err
 }
 
 type queryResolver struct{ *Resolver }
 
-func (r *queryResolver) Masters(ctx context.Context) ([]SpecialMaster, error) {
-	result, err := r.Prisma.Masters(nil).Exec()
-	fmt.Println("Masters:", result)
-	specialMasters := make([]SpecialMaster, len(result))
-	for i, v := range result {
-		specialMasters[i] = SpecialMaster{
-			ID: v.ID,
-		}
-	}
-	return specialMasters, err
+func (r *queryResolver) Feed(ctx context.Context) ([]prisma.Post, error) {
+	isPublished := true
+	return r.Prisma.Posts(&prisma.PostsParams{
+		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
+	}).Exec()
 }
-
-type specialMasterResolver struct{ *Resolver }
-
-func (r *specialMasterResolver) CatBrothers(ctx context.Context, obj *SpecialMaster) ([]Cat, error) {
-	result, err := r.Prisma.Master(&prisma.MasterWhereUniqueInput{ID: &obj.ID}).Catz(nil).Exec()
-	catBrothers := make([]Cat, len(result))
-	for i, v := range result {
-		catBrothers[i] = Cat{
-			ID:    v.ID,
-			Color: v.Color,
-			Name:  v.Name,
-		}
-	}
-	return catBrothers, err
+func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
+	isPublished := false
+	return r.Prisma.Posts(&prisma.PostsParams{
+		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
+	}).Exec()
+}
+func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {
+	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
+	post, err := r.Prisma.Post(&prisma.PostWhereUniqueInput{ID: &id}).Exec()
+	return &post, err
 }
