@@ -1,4 +1,4 @@
-export const typeDefs = /* GraphQL */ `type AggregatePost {
+export const typeDefs = `type AggregatePost {
   count: Int!
 }
 
