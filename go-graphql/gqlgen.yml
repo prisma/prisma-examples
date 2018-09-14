@@ -7,10 +7,8 @@ schema: server/schema.graphql
 exec:
   filename: server/generated.go
 models:
-  Cat:
-    model: github.com/prisma/prisma-examples/go-graphql.Cat
-  SpecialMaster:
-    model: github.com/prisma/prisma-examples/go-graphql.SpecialMaster
+  Post:
+    model: github.com/prisma/prisma-examples/go-graphql/prisma-client.Post
 resolver:
   # goal: copy&paste from generated file
   filename: tmp/resolver.go

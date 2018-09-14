@@ -10,6 +10,7 @@ for d in */ ; do
   cd $d
   if [ -f "package.json" ]; then
     echo 'Removing Node Modules'
+    rm yarn.lock
     rm -rf node_modules
     yarn install
     yarn add --dev prisma@beta -E

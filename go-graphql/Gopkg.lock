@@ -2,7 +2,7 @@
 
 
 [[projects]]
-  digest = "1:41ff329c779dbaad3800398911375576443d0b3b3c6effb356a8048060918990"
+  digest = "1:6087cbec1f60d9baf435b286742d02de0ba2558707645f6f4370ba950b7f579c"
   name = "github.com/99designs/gqlgen"
   packages = [
     "complexity",
@@ -11,8 +11,8 @@
     "handler",
   ]
   pruneopts = "UT"
-  revision = "5bc4665fab378aa7fe6b81bef968ed608aad1477"
-  version = "v0.5.0"
+  revision = "636435b68700211441303f1a5ed92f3768ba5774"
+  version = "v0.5.1"
 
 [[projects]]
   digest = "1:897d91c431ce469d35a5e6030e60e617dccd9a0e95bdffa6a80594f5c5800d29"

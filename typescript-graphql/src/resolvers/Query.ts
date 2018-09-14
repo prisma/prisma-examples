@@ -1,8 +1,10 @@
-import { IQuery } from '../generated/resolvers'
-import { Types } from './types'
+import { QueryResolvers } from '../generated/resolvers'
+import { TypeMap } from '../types/TypeMap'
 
-export interface QueryRoot {}
+export interface QueryParent {}
 
-export const Query: IQuery.Resolver<Types> = {
-  masters: (root, args, ctx) => ctx.db.masters(),
+export const Query: QueryResolvers.Type<TypeMap> = {
+  feed: (parent, args, ctx) => ctx.db.posts({ where: { isPublished: true } }),
+  drafts: (parent, args, ctx) => ctx.db.posts({ where: { isPublished: false } }),
+  post: (parent, args, ctx) => ctx.db.post({ id: args.id }),
 }

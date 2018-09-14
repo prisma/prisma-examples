@@ -9,7 +9,7 @@ import (
 	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
 )
 
-const defaultPort = "8080"
+const defaultPort = "4000"
 
 func main() {
 	port := os.Getenv("PORT")

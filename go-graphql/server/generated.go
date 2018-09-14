@@ -10,6 +10,7 @@ import (
 
 	graphql "github.com/99designs/gqlgen/graphql"
 	introspection "github.com/99designs/gqlgen/graphql/introspection"
+	prisma "github.com/prisma/prisma-examples/go-graphql/prisma-client"
 	gqlparser "github.com/vektah/gqlparser"
 	ast "github.com/vektah/gqlparser/ast"
 )
@@ -30,40 +31,112 @@ type Config struct {
 }
 
 type ResolverRoot interface {
-	Cat() CatResolver
+	Mutation() MutationResolver
 	Query() QueryResolver
-	SpecialMaster() SpecialMasterResolver
 }
 
 type DirectiveRoot struct {
 }
 
 type ComplexityRoot struct {
-	Cat struct {
-		Id         func(childComplexity int) int
-		Name       func(childComplexity int) int
-		Color      func(childComplexity int) int
-		FavBrother func(childComplexity int) int
+	Mutation struct {
+		CreateDraft func(childComplexity int, title string, content string) int
+		DeletePost  func(childComplexity int, id string) int
+		Publish     func(childComplexity int, id string) int
+	}
+
+	Post struct {
+		Id          func(childComplexity int) int
+		IsPublished func(childComplexity int) int
+		Title       func(childComplexity int) int
+		Content     func(childComplexity int) int
 	}
 
 	Query struct {
-		Masters func(childComplexity int) int
-	}
-
-	SpecialMaster struct {
-		Id          func(childComplexity int) int
-		CatBrothers func(childComplexity int) int
+		Feed   func(childComplexity int) int
+		Drafts func(childComplexity int) int
+		Post   func(childComplexity int, id string) int
 	}
 }
 
-type CatResolver interface {
-	FavBrother(ctx context.Context, obj *Cat) (*Cat, error)
+type MutationResolver interface {
+	CreateDraft(ctx context.Context, title string, content string) (prisma.Post, error)
+	DeletePost(ctx context.Context, id string) (*prisma.Post, error)
+	Publish(ctx context.Context, id string) (*prisma.Post, error)
 }
 type QueryResolver interface {
-	Masters(ctx context.Context) ([]SpecialMaster, error)
+	Feed(ctx context.Context) ([]prisma.Post, error)
+	Drafts(ctx context.Context) ([]prisma.Post, error)
+	Post(ctx context.Context, id string) (*prisma.Post, error)
 }
-type SpecialMasterResolver interface {
-	CatBrothers(ctx context.Context, obj *SpecialMaster) ([]Cat, error)
+
+func field_Mutation_createDraft_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["title"]; ok {
+		var err error
+		arg0, err = graphql.UnmarshalString(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["title"] = arg0
+	var arg1 string
+	if tmp, ok := rawArgs["content"]; ok {
+		var err error
+		arg1, err = graphql.UnmarshalString(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["content"] = arg1
+	return args, nil
+
+}
+
+func field_Mutation_deletePost_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		var err error
+		arg0, err = graphql.UnmarshalID(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	return args, nil
+
+}
+
+func field_Mutation_publish_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		var err error
+		arg0, err = graphql.UnmarshalID(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	return args, nil
+
+}
+
+func field_Query_post_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		var err error
+		arg0, err = graphql.UnmarshalID(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	return args, nil
+
 }
 
 func field_Query___type_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
@@ -124,54 +197,95 @@ func (e *executableSchema) Schema() *ast.Schema {
 func (e *executableSchema) Complexity(typeName, field string, childComplexity int, rawArgs map[string]interface{}) (int, bool) {
 	switch typeName + "." + field {
 
-	case "Cat.id":
-		if e.complexity.Cat.Id == nil {
+	case "Mutation.createDraft":
+		if e.complexity.Mutation.CreateDraft == nil {
 			break
 		}
 
-		return e.complexity.Cat.Id(childComplexity), true
+		args, err := field_Mutation_createDraft_args(rawArgs)
+		if err != nil {
+			return 0, false
+		}
 
-	case "Cat.name":
-		if e.complexity.Cat.Name == nil {
+		return e.complexity.Mutation.CreateDraft(childComplexity, args["title"].(string), args["content"].(string)), true
+
+	case "Mutation.deletePost":
+		if e.complexity.Mutation.DeletePost == nil {
 			break
 		}
 
-		return e.complexity.Cat.Name(childComplexity), true
+		args, err := field_Mutation_deletePost_args(rawArgs)
+		if err != nil {
+			return 0, false
+		}
 
-	case "Cat.color":
-		if e.complexity.Cat.Color == nil {
+		return e.complexity.Mutation.DeletePost(childComplexity, args["id"].(string)), true
+
+	case "Mutation.publish":
+		if e.complexity.Mutation.Publish == nil {
 			break
 		}
 
-		return e.complexity.Cat.Color(childComplexity), true
+		args, err := field_Mutation_publish_args(rawArgs)
+		if err != nil {
+			return 0, false
+		}
 
-	case "Cat.favBrother":
-		if e.complexity.Cat.FavBrother == nil {
+		return e.complexity.Mutation.Publish(childComplexity, args["id"].(string)), true
+
+	case "Post.id":
+		if e.complexity.Post.Id == nil {
 			break
 		}
 
-		return e.complexity.Cat.FavBrother(childComplexity), true
+		return e.complexity.Post.Id(childComplexity), true
 
-	case "Query.masters":
-		if e.complexity.Query.Masters == nil {
+	case "Post.isPublished":
+		if e.complexity.Post.IsPublished == nil {
 			break
 		}
 
-		return e.complexity.Query.Masters(childComplexity), true
+		return e.complexity.Post.IsPublished(childComplexity), true
 
-	case "SpecialMaster.id":
-		if e.complexity.SpecialMaster.Id == nil {
+	case "Post.title":
+		if e.complexity.Post.Title == nil {
 			break
 		}
 
-		return e.complexity.SpecialMaster.Id(childComplexity), true
+		return e.complexity.Post.Title(childComplexity), true
 
-	case "SpecialMaster.catBrothers":
-		if e.complexity.SpecialMaster.CatBrothers == nil {
+	case "Post.content":
+		if e.complexity.Post.Content == nil {
 			break
 		}
 
-		return e.complexity.SpecialMaster.CatBrothers(childComplexity), true
+		return e.complexity.Post.Content(childComplexity), true
+
+	case "Query.feed":
+		if e.complexity.Query.Feed == nil {
+			break
+		}
+
+		return e.complexity.Query.Feed(childComplexity), true
+
+	case "Query.drafts":
+		if e.complexity.Query.Drafts == nil {
+			break
+		}
+
+		return e.complexity.Query.Drafts(childComplexity), true
+
+	case "Query.post":
+		if e.complexity.Query.Post == nil {
+			break
+		}
+
+		args, err := field_Query_post_args(rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.Post(childComplexity, args["id"].(string)), true
 
 	}
 	return 0, false
@@ -194,7 +308,19 @@ func (e *executableSchema) Query(ctx context.Context, op *ast.OperationDefinitio
 }
 
 func (e *executableSchema) Mutation(ctx context.Context, op *ast.OperationDefinition) *graphql.Response {
-	return graphql.ErrorResponse(ctx, "mutations are not supported")
+	ec := executionContext{graphql.GetRequestContext(ctx), e}
+
+	buf := ec.RequestMiddleware(ctx, func(ctx context.Context) []byte {
+		data := ec._Mutation(ctx, op.SelectionSet)
+		var buf bytes.Buffer
+		data.MarshalGQL(&buf)
+		return buf.Bytes()
+	})
+
+	return &graphql.Response{
+		Data:   buf,
+		Errors: ec.Errors,
+	}
 }
 
 func (e *executableSchema) Subscription(ctx context.Context, op *ast.OperationDefinition) func() *graphql.Response {
@@ -206,13 +332,16 @@ type executionContext struct {
 	*executableSchema
 }
 
-var catImplementors = []string{"Cat"}
+var mutationImplementors = []string{"Mutation"}
 
 // nolint: gocyclo, errcheck, gas, goconst
-func (ec *executionContext) _Cat(ctx context.Context, sel ast.SelectionSet, obj *Cat) graphql.Marshaler {
-	fields := graphql.CollectFields(ctx, sel, catImplementors)
+func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet) graphql.Marshaler {
+	fields := graphql.CollectFields(ctx, sel, mutationImplementors)
 
-	var wg sync.WaitGroup
+	ctx = graphql.WithResolverContext(ctx, &graphql.ResolverContext{
+		Object: "Mutation",
+	})
+
 	out := graphql.NewOrderedMap(len(fields))
 	invalid := false
 	for i, field := range fields {
@@ -220,33 +349,21 @@ func (ec *executionContext) _Cat(ctx context.Context, sel ast.SelectionSet, obj 
 
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("Cat")
-		case "id":
-			out.Values[i] = ec._Cat_id(ctx, field, obj)
+			out.Values[i] = graphql.MarshalString("Mutation")
+		case "createDraft":
+			out.Values[i] = ec._Mutation_createDraft(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalid = true
 			}
-		case "name":
-			out.Values[i] = ec._Cat_name(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalid = true
-			}
-		case "color":
-			out.Values[i] = ec._Cat_color(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalid = true
-			}
-		case "favBrother":
-			wg.Add(1)
-			go func(i int, field graphql.CollectedField) {
-				out.Values[i] = ec._Cat_favBrother(ctx, field, obj)
-				wg.Done()
-			}(i, field)
+		case "deletePost":
+			out.Values[i] = ec._Mutation_deletePost(ctx, field)
+		case "publish":
+			out.Values[i] = ec._Mutation_publish(ctx, field)
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
 		}
 	}
-	wg.Wait()
+
 	if invalid {
 		return graphql.Null
 	}
@@ -254,9 +371,143 @@ func (ec *executionContext) _Cat(ctx context.Context, sel ast.SelectionSet, obj 
 }
 
 // nolint: vetshadow
-func (ec *executionContext) _Cat_id(ctx context.Context, field graphql.CollectedField, obj *Cat) graphql.Marshaler {
+func (ec *executionContext) _Mutation_createDraft(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := field_Mutation_createDraft_args(rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
 	rctx := &graphql.ResolverContext{
-		Object: "Cat",
+		Object: "Mutation",
+		Args:   args,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.Mutation().CreateDraft(ctx, args["title"].(string), args["content"].(string))
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(prisma.Post)
+	rctx.Result = res
+
+	return ec._Post(ctx, field.Selections, &res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Mutation_deletePost(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := field_Mutation_deletePost_args(rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx := &graphql.ResolverContext{
+		Object: "Mutation",
+		Args:   args,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.Mutation().DeletePost(ctx, args["id"].(string))
+	})
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*prisma.Post)
+	rctx.Result = res
+
+	if res == nil {
+		return graphql.Null
+	}
+
+	return ec._Post(ctx, field.Selections, res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Mutation_publish(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := field_Mutation_publish_args(rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx := &graphql.ResolverContext{
+		Object: "Mutation",
+		Args:   args,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.Mutation().Publish(ctx, args["id"].(string))
+	})
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*prisma.Post)
+	rctx.Result = res
+
+	if res == nil {
+		return graphql.Null
+	}
+
+	return ec._Post(ctx, field.Selections, res)
+}
+
+var postImplementors = []string{"Post"}
+
+// nolint: gocyclo, errcheck, gas, goconst
+func (ec *executionContext) _Post(ctx context.Context, sel ast.SelectionSet, obj *prisma.Post) graphql.Marshaler {
+	fields := graphql.CollectFields(ctx, sel, postImplementors)
+
+	out := graphql.NewOrderedMap(len(fields))
+	invalid := false
+	for i, field := range fields {
+		out.Keys[i] = field.Alias
+
+		switch field.Name {
+		case "__typename":
+			out.Values[i] = graphql.MarshalString("Post")
+		case "id":
+			out.Values[i] = ec._Post_id(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "isPublished":
+			out.Values[i] = ec._Post_isPublished(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "title":
+			out.Values[i] = ec._Post_title(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		case "content":
+			out.Values[i] = ec._Post_content(ctx, field, obj)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
+		default:
+			panic("unknown field " + strconv.Quote(field.Name))
+		}
+	}
+
+	if invalid {
+		return graphql.Null
+	}
+	return out
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Post_id(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "Post",
 		Args:   nil,
 		Field:  field,
 	}
@@ -276,15 +527,37 @@ func (ec *executionContext) _Cat_id(ctx context.Context, field graphql.Collected
 }
 
 // nolint: vetshadow
-func (ec *executionContext) _Cat_name(ctx context.Context, field graphql.CollectedField, obj *Cat) graphql.Marshaler {
+func (ec *executionContext) _Post_isPublished(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
 	rctx := &graphql.ResolverContext{
-		Object: "Cat",
+		Object: "Post",
 		Args:   nil,
 		Field:  field,
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
-		return obj.Name, nil
+		return obj.IsPublished, nil
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(bool)
+	rctx.Result = res
+	return graphql.MarshalBoolean(res)
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Post_title(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "Post",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
+		return obj.Title, nil
 	})
 	if resTmp == nil {
 		if !ec.HasError(rctx) {
@@ -298,15 +571,15 @@ func (ec *executionContext) _Cat_name(ctx context.Context, field graphql.Collect
 }
 
 // nolint: vetshadow
-func (ec *executionContext) _Cat_color(ctx context.Context, field graphql.CollectedField, obj *Cat) graphql.Marshaler {
+func (ec *executionContext) _Post_content(ctx context.Context, field graphql.CollectedField, obj *prisma.Post) graphql.Marshaler {
 	rctx := &graphql.ResolverContext{
-		Object: "Cat",
+		Object: "Post",
 		Args:   nil,
 		Field:  field,
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
-		return obj.Color, nil
+		return obj.Content, nil
 	})
 	if resTmp == nil {
 		if !ec.HasError(rctx) {
@@ -317,30 +590,6 @@ func (ec *executionContext) _Cat_color(ctx context.Context, field graphql.Collec
 	res := resTmp.(string)
 	rctx.Result = res
 	return graphql.MarshalString(res)
-}
-
-// nolint: vetshadow
-func (ec *executionContext) _Cat_favBrother(ctx context.Context, field graphql.CollectedField, obj *Cat) graphql.Marshaler {
-	rctx := &graphql.ResolverContext{
-		Object: "Cat",
-		Args:   nil,
-		Field:  field,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
-		return ec.resolvers.Cat().FavBrother(ctx, obj)
-	})
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*Cat)
-	rctx.Result = res
-
-	if res == nil {
-		return graphql.Null
-	}
-
-	return ec._Cat(ctx, field.Selections, res)
 }
 
 var queryImplementors = []string{"Query"}
@@ -362,13 +611,28 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Query")
-		case "masters":
+		case "feed":
 			wg.Add(1)
 			go func(i int, field graphql.CollectedField) {
-				out.Values[i] = ec._Query_masters(ctx, field)
+				out.Values[i] = ec._Query_feed(ctx, field)
 				if out.Values[i] == graphql.Null {
 					invalid = true
 				}
+				wg.Done()
+			}(i, field)
+		case "drafts":
+			wg.Add(1)
+			go func(i int, field graphql.CollectedField) {
+				out.Values[i] = ec._Query_drafts(ctx, field)
+				if out.Values[i] == graphql.Null {
+					invalid = true
+				}
+				wg.Done()
+			}(i, field)
+		case "post":
+			wg.Add(1)
+			go func(i int, field graphql.CollectedField) {
+				out.Values[i] = ec._Query_post(ctx, field)
 				wg.Done()
 			}(i, field)
 		case "__type":
@@ -387,7 +651,7 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 }
 
 // nolint: vetshadow
-func (ec *executionContext) _Query_masters(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+func (ec *executionContext) _Query_feed(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
 	rctx := &graphql.ResolverContext{
 		Object: "Query",
 		Args:   nil,
@@ -395,7 +659,7 @@ func (ec *executionContext) _Query_masters(ctx context.Context, field graphql.Co
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
-		return ec.resolvers.Query().Masters(ctx)
+		return ec.resolvers.Query().Feed(ctx)
 	})
 	if resTmp == nil {
 		if !ec.HasError(rctx) {
@@ -403,7 +667,7 @@ func (ec *executionContext) _Query_masters(ctx context.Context, field graphql.Co
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]SpecialMaster)
+	res := resTmp.([]prisma.Post)
 	rctx.Result = res
 
 	arr1 := make(graphql.Array, len(res))
@@ -427,7 +691,7 @@ func (ec *executionContext) _Query_masters(ctx context.Context, field graphql.Co
 			}
 			arr1[idx1] = func() graphql.Marshaler {
 
-				return ec._SpecialMaster(ctx, field.Selections, &res[idx1])
+				return ec._Post(ctx, field.Selections, &res[idx1])
 			}()
 		}
 		if isLen1 {
@@ -439,6 +703,91 @@ func (ec *executionContext) _Query_masters(ctx context.Context, field graphql.Co
 	}
 	wg.Wait()
 	return arr1
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Query_drafts(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rctx := &graphql.ResolverContext{
+		Object: "Query",
+		Args:   nil,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.Query().Drafts(ctx)
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.([]prisma.Post)
+	rctx.Result = res
+
+	arr1 := make(graphql.Array, len(res))
+	var wg sync.WaitGroup
+
+	isLen1 := len(res) == 1
+	if !isLen1 {
+		wg.Add(len(res))
+	}
+
+	for idx1 := range res {
+		idx1 := idx1
+		rctx := &graphql.ResolverContext{
+			Index:  &idx1,
+			Result: &res[idx1],
+		}
+		ctx := graphql.WithResolverContext(ctx, rctx)
+		f := func(idx1 int) {
+			if !isLen1 {
+				defer wg.Done()
+			}
+			arr1[idx1] = func() graphql.Marshaler {
+
+				return ec._Post(ctx, field.Selections, &res[idx1])
+			}()
+		}
+		if isLen1 {
+			f(idx1)
+		} else {
+			go f(idx1)
+		}
+
+	}
+	wg.Wait()
+	return arr1
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Query_post(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := field_Query_post_args(rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx := &graphql.ResolverContext{
+		Object: "Query",
+		Args:   args,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, nil, func(ctx context.Context) (interface{}, error) {
+		return ec.resolvers.Query().Post(ctx, args["id"].(string))
+	})
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.(*prisma.Post)
+	rctx.Result = res
+
+	if res == nil {
+		return graphql.Null
+	}
+
+	return ec._Post(ctx, field.Selections, res)
 }
 
 // nolint: vetshadow
@@ -493,123 +842,6 @@ func (ec *executionContext) _Query___schema(ctx context.Context, field graphql.C
 	}
 
 	return ec.___Schema(ctx, field.Selections, res)
-}
-
-var specialMasterImplementors = []string{"SpecialMaster"}
-
-// nolint: gocyclo, errcheck, gas, goconst
-func (ec *executionContext) _SpecialMaster(ctx context.Context, sel ast.SelectionSet, obj *SpecialMaster) graphql.Marshaler {
-	fields := graphql.CollectFields(ctx, sel, specialMasterImplementors)
-
-	var wg sync.WaitGroup
-	out := graphql.NewOrderedMap(len(fields))
-	invalid := false
-	for i, field := range fields {
-		out.Keys[i] = field.Alias
-
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("SpecialMaster")
-		case "id":
-			out.Values[i] = ec._SpecialMaster_id(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				invalid = true
-			}
-		case "catBrothers":
-			wg.Add(1)
-			go func(i int, field graphql.CollectedField) {
-				out.Values[i] = ec._SpecialMaster_catBrothers(ctx, field, obj)
-				if out.Values[i] == graphql.Null {
-					invalid = true
-				}
-				wg.Done()
-			}(i, field)
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	wg.Wait()
-	if invalid {
-		return graphql.Null
-	}
-	return out
-}
-
-// nolint: vetshadow
-func (ec *executionContext) _SpecialMaster_id(ctx context.Context, field graphql.CollectedField, obj *SpecialMaster) graphql.Marshaler {
-	rctx := &graphql.ResolverContext{
-		Object: "SpecialMaster",
-		Args:   nil,
-		Field:  field,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
-		return obj.ID, nil
-	})
-	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(string)
-	rctx.Result = res
-	return graphql.MarshalID(res)
-}
-
-// nolint: vetshadow
-func (ec *executionContext) _SpecialMaster_catBrothers(ctx context.Context, field graphql.CollectedField, obj *SpecialMaster) graphql.Marshaler {
-	rctx := &graphql.ResolverContext{
-		Object: "SpecialMaster",
-		Args:   nil,
-		Field:  field,
-	}
-	ctx = graphql.WithResolverContext(ctx, rctx)
-	resTmp := ec.FieldMiddleware(ctx, obj, func(ctx context.Context) (interface{}, error) {
-		return ec.resolvers.SpecialMaster().CatBrothers(ctx, obj)
-	})
-	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.([]Cat)
-	rctx.Result = res
-
-	arr1 := make(graphql.Array, len(res))
-	var wg sync.WaitGroup
-
-	isLen1 := len(res) == 1
-	if !isLen1 {
-		wg.Add(len(res))
-	}
-
-	for idx1 := range res {
-		idx1 := idx1
-		rctx := &graphql.ResolverContext{
-			Index:  &idx1,
-			Result: &res[idx1],
-		}
-		ctx := graphql.WithResolverContext(ctx, rctx)
-		f := func(idx1 int) {
-			if !isLen1 {
-				defer wg.Done()
-			}
-			arr1[idx1] = func() graphql.Marshaler {
-
-				return ec._Cat(ctx, field.Selections, &res[idx1])
-			}()
-		}
-		if isLen1 {
-			f(idx1)
-		} else {
-			go f(idx1)
-		}
-
-	}
-	wg.Wait()
-	return arr1
 }
 
 var __DirectiveImplementors = []string{"__Directive"}
@@ -1913,20 +2145,22 @@ func (ec *executionContext) introspectType(name string) *introspection.Type {
 }
 
 var parsedSchema = gqlparser.MustLoadSchema(
-	&ast.Source{Name: "schema.graphql", Input: `type Query {
-  masters: [SpecialMaster!]!
+	&ast.Source{Name: "server/schema.graphql", Input: `type Query {
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
 }
 
-type SpecialMaster {
-  id: ID!
-  catBrothers: [Cat!]!
+type Mutation {
+  createDraft(title: String!, content: String!): Post!
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
 }
 
-type Cat {
+type Post {
   id: ID!
-  name: String!
-  color: String!
-  favBrother: Cat
-}
-`},
+  isPublished: Boolean!
+  title: String!
+  content: String!
+}`},
 )

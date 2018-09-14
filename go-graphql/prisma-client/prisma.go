@@ -18,13 +18,13 @@ type ID struct{}
 
 // Exists
 
-// Cat exists docs
-func (exists *Exists) Cat(params *CatWhereUniqueInput) bool {
+// Post exists docs
+func (exists *Exists) Post(params *PostWhereUniqueInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
-	data, err := client.Cat(
+	data, err := client.Post(
 		params,
 	).Exec()
 	if err != nil {
@@ -39,13 +39,13 @@ func (exists *Exists) Cat(params *CatWhereUniqueInput) bool {
 	return true
 }
 
-// CatParams docs
-type CatParams struct {
-	Where *CatWhereUniqueInput `json:"where"`
+// PostParams docs
+type PostParams struct {
+	Where *PostWhereUniqueInput `json:"where"`
 }
 
-// Cat docs - generated while printing operation - query
-func (client Client) Cat(params *CatWhereUniqueInput) *CatExec {
+// Post docs - generated while printing operation - query
+func (client Client) Post(params *PostWhereUniqueInput) *PostExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -53,41 +53,41 @@ func (client Client) Cat(params *CatWhereUniqueInput) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereUniqueInput!",
+			TypeName: "PostWhereUniqueInput!",
 			Value:    *params,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "cat",
+		Name: "post",
 		Field: GraphQLField{
-			Name:       "cat",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			Name:       "post",
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "query",
 		Args:      args,
 	})
 
-	return &CatExec{
+	return &PostExec{
 		client: client,
 		stack:  stack,
 	}
 }
 
-// CatsParams docs
-type CatsParams struct {
-	Where   *CatWhereInput   `json:"where,omitempty"`
-	OrderBy *CatOrderByInput `json:"orderBy,omitempty"`
-	Skip    *int32           `json:"skip,omitempty"`
-	After   *string          `json:"after,omitempty"`
-	Before  *string          `json:"before,omitempty"`
-	First   *int32           `json:"first,omitempty"`
-	Last    *int32           `json:"last,omitempty"`
+// PostsParams docs
+type PostsParams struct {
+	Where   *PostWhereInput   `json:"where,omitempty"`
+	OrderBy *PostOrderByInput `json:"orderBy,omitempty"`
+	Skip    *int32            `json:"skip,omitempty"`
+	After   *string           `json:"after,omitempty"`
+	Before  *string           `json:"before,omitempty"`
+	First   *int32            `json:"first,omitempty"`
+	Last    *int32            `json:"last,omitempty"`
 }
 
-// Cats docs - generated while printing operation - query
-func (client Client) Cats(params *CatsParams) *CatExecArray {
+// Posts docs - generated while printing operation - query
+func (client Client) Posts(params *PostsParams) *PostExecArray {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -95,7 +95,7 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereInput",
+			TypeName: "PostWhereInput",
 			Value:    *params.Where,
 		})
 	}
@@ -103,7 +103,7 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
-			TypeName: "CatOrderByInput",
+			TypeName: "PostOrderByInput",
 			Value:    *params.OrderBy,
 		})
 	}
@@ -149,17 +149,17 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 	}
 
 	stack = append(stack, Instruction{
-		Name: "cats",
+		Name: "posts",
 		Field: GraphQLField{
-			Name:       "cats",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			Name:       "posts",
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "query",
 		Args:      args,
 	})
 
-	return &CatExecArray{
+	return &PostExecArray{
 		client: client,
 		stack:  stack,
 	}
@@ -167,14 +167,14 @@ func (client Client) Cats(params *CatsParams) *CatExecArray {
 
 // Exists
 
-// CatsConnection exists docs
-func (exists *Exists) CatsConnection(params *CatWhereInput) bool {
+// PostsConnection exists docs
+func (exists *Exists) PostsConnection(params *PostWhereInput) bool {
 	client := Client{
 		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
 		Debug:    exists.Debug,
 	}
-	data, err := client.CatsConnection(
-		&CatsConnectionParams{
+	data, err := client.PostsConnection(
+		&PostsConnectionParams{
 			Where: params,
 		},
 	).Exec()
@@ -190,19 +190,19 @@ func (exists *Exists) CatsConnection(params *CatWhereInput) bool {
 	return true
 }
 
-// CatsConnectionParams docs
-type CatsConnectionParams struct {
-	Where   *CatWhereInput   `json:"where,omitempty"`
-	OrderBy *CatOrderByInput `json:"orderBy,omitempty"`
-	Skip    *int32           `json:"skip,omitempty"`
-	After   *string          `json:"after,omitempty"`
-	Before  *string          `json:"before,omitempty"`
-	First   *int32           `json:"first,omitempty"`
-	Last    *int32           `json:"last,omitempty"`
+// PostsConnectionParams docs
+type PostsConnectionParams struct {
+	Where   *PostWhereInput   `json:"where,omitempty"`
+	OrderBy *PostOrderByInput `json:"orderBy,omitempty"`
+	Skip    *int32            `json:"skip,omitempty"`
+	After   *string           `json:"after,omitempty"`
+	Before  *string           `json:"before,omitempty"`
+	First   *int32            `json:"first,omitempty"`
+	Last    *int32            `json:"last,omitempty"`
 }
 
-// CatsConnection docs - generated while printing operation - query
-func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnectionExec {
+// PostsConnection docs - generated while printing operation - query
+func (client Client) PostsConnection(params *PostsConnectionParams) *PostConnectionExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -210,7 +210,7 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereInput",
+			TypeName: "PostWhereInput",
 			Value:    *params.Where,
 		})
 	}
@@ -218,7 +218,7 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 		args = append(args, GraphQLArg{
 			Name:     "orderBy",
 			Key:      "orderBy",
-			TypeName: "CatOrderByInput",
+			TypeName: "PostOrderByInput",
 			Value:    *params.OrderBy,
 		})
 	}
@@ -264,281 +264,17 @@ func (client Client) CatsConnection(params *CatsConnectionParams) *CatConnection
 	}
 
 	stack = append(stack, Instruction{
-		Name: "catsConnection",
+		Name: "postsConnection",
 		Field: GraphQLField{
-			Name:       "catsConnection",
-			TypeName:   "CatConnection",
+			Name:       "postsConnection",
+			TypeName:   "PostConnection",
 			TypeFields: []string{},
 		},
 		Operation: "query",
 		Args:      args,
 	})
 
-	return &CatConnectionExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// Exists
-
-// Master exists docs
-func (exists *Exists) Master(params *MasterWhereUniqueInput) bool {
-	client := Client{
-		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
-		Debug:    exists.Debug,
-	}
-	data, err := client.Master(
-		params,
-	).Exec()
-	if err != nil {
-		if client.Debug {
-			fmt.Println("Error Exists", err)
-		}
-		return false
-	}
-	if isZeroOfUnderlyingType(data) {
-		return false
-	}
-	return true
-}
-
-// MasterParams docs
-type MasterParams struct {
-	Where *MasterWhereUniqueInput `json:"where"`
-}
-
-// Master docs - generated while printing operation - query
-func (client Client) Master(params *MasterWhereUniqueInput) *MasterExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "master",
-		Field: GraphQLField{
-			Name:       "master",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "query",
-		Args:      args,
-	})
-
-	return &MasterExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// MastersParams docs
-type MastersParams struct {
-	Where   *MasterWhereInput   `json:"where,omitempty"`
-	OrderBy *MasterOrderByInput `json:"orderBy,omitempty"`
-	Skip    *int32              `json:"skip,omitempty"`
-	After   *string             `json:"after,omitempty"`
-	Before  *string             `json:"before,omitempty"`
-	First   *int32              `json:"first,omitempty"`
-	Last    *int32              `json:"last,omitempty"`
-}
-
-// Masters docs - generated while printing operation - query
-func (client Client) Masters(params *MastersParams) *MasterExecArray {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil && params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereInput",
-			Value:    *params.Where,
-		})
-	}
-	if params != nil && params.OrderBy != nil {
-		args = append(args, GraphQLArg{
-			Name:     "orderBy",
-			Key:      "orderBy",
-			TypeName: "MasterOrderByInput",
-			Value:    *params.OrderBy,
-		})
-	}
-	if params != nil && params.Skip != nil {
-		args = append(args, GraphQLArg{
-			Name:     "skip",
-			Key:      "skip",
-			TypeName: "Int",
-			Value:    *params.Skip,
-		})
-	}
-	if params != nil && params.After != nil {
-		args = append(args, GraphQLArg{
-			Name:     "after",
-			Key:      "after",
-			TypeName: "String",
-			Value:    *params.After,
-		})
-	}
-	if params != nil && params.Before != nil {
-		args = append(args, GraphQLArg{
-			Name:     "before",
-			Key:      "before",
-			TypeName: "String",
-			Value:    *params.Before,
-		})
-	}
-	if params != nil && params.First != nil {
-		args = append(args, GraphQLArg{
-			Name:     "first",
-			Key:      "first",
-			TypeName: "Int",
-			Value:    *params.First,
-		})
-	}
-	if params != nil && params.Last != nil {
-		args = append(args, GraphQLArg{
-			Name:     "last",
-			Key:      "last",
-			TypeName: "Int",
-			Value:    *params.Last,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "masters",
-		Field: GraphQLField{
-			Name:       "masters",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "query",
-		Args:      args,
-	})
-
-	return &MasterExecArray{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// Exists
-
-// MastersConnection exists docs
-func (exists *Exists) MastersConnection(params *MasterWhereInput) bool {
-	client := Client{
-		Endpoint: (map[bool]string{true: exists.Endpoint, false: "https://eu1.prisma.sh/demo/go-graphql/dev"})[exists.Endpoint != ""],
-		Debug:    exists.Debug,
-	}
-	data, err := client.MastersConnection(
-		&MastersConnectionParams{
-			Where: params,
-		},
-	).Exec()
-	if err != nil {
-		if client.Debug {
-			fmt.Println("Error Exists", err)
-		}
-		return false
-	}
-	if isZeroOfUnderlyingType(data) {
-		return false
-	}
-	return true
-}
-
-// MastersConnectionParams docs
-type MastersConnectionParams struct {
-	Where   *MasterWhereInput   `json:"where,omitempty"`
-	OrderBy *MasterOrderByInput `json:"orderBy,omitempty"`
-	Skip    *int32              `json:"skip,omitempty"`
-	After   *string             `json:"after,omitempty"`
-	Before  *string             `json:"before,omitempty"`
-	First   *int32              `json:"first,omitempty"`
-	Last    *int32              `json:"last,omitempty"`
-}
-
-// MastersConnection docs - generated while printing operation - query
-func (client Client) MastersConnection(params *MastersConnectionParams) *MasterConnectionExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil && params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereInput",
-			Value:    *params.Where,
-		})
-	}
-	if params != nil && params.OrderBy != nil {
-		args = append(args, GraphQLArg{
-			Name:     "orderBy",
-			Key:      "orderBy",
-			TypeName: "MasterOrderByInput",
-			Value:    *params.OrderBy,
-		})
-	}
-	if params != nil && params.Skip != nil {
-		args = append(args, GraphQLArg{
-			Name:     "skip",
-			Key:      "skip",
-			TypeName: "Int",
-			Value:    *params.Skip,
-		})
-	}
-	if params != nil && params.After != nil {
-		args = append(args, GraphQLArg{
-			Name:     "after",
-			Key:      "after",
-			TypeName: "String",
-			Value:    *params.After,
-		})
-	}
-	if params != nil && params.Before != nil {
-		args = append(args, GraphQLArg{
-			Name:     "before",
-			Key:      "before",
-			TypeName: "String",
-			Value:    *params.Before,
-		})
-	}
-	if params != nil && params.First != nil {
-		args = append(args, GraphQLArg{
-			Name:     "first",
-			Key:      "first",
-			TypeName: "Int",
-			Value:    *params.First,
-		})
-	}
-	if params != nil && params.Last != nil {
-		args = append(args, GraphQLArg{
-			Name:     "last",
-			Key:      "last",
-			TypeName: "Int",
-			Value:    *params.Last,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "mastersConnection",
-		Field: GraphQLField{
-			Name:       "mastersConnection",
-			TypeName:   "MasterConnection",
-			TypeFields: []string{},
-		},
-		Operation: "query",
-		Args:      args,
-	})
-
-	return &MasterConnectionExec{
+	return &PostConnectionExec{
 		client: client,
 		stack:  stack,
 	}
@@ -582,13 +318,13 @@ func (client Client) Node(params *ID) *NodeExec {
 
 // Mutations
 
-// CreateCatParams docs
-type CreateCatParams struct {
-	Data *CatCreateInput `json:"data"`
+// CreatePostParams docs
+type CreatePostParams struct {
+	Data *PostCreateInput `json:"data"`
 }
 
-// CreateCat docs - generated while printing operation - mutation
-func (client Client) CreateCat(params *CatCreateInput) *CatExec {
+// CreatePost docs - generated while printing operation - mutation
+func (client Client) CreatePost(params *PostCreateInput) *PostExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -596,36 +332,36 @@ func (client Client) CreateCat(params *CatCreateInput) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "data",
 			Key:      "data",
-			TypeName: "CatCreateInput!",
+			TypeName: "PostCreateInput!",
 			Value:    *params,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "createCat",
+		Name: "createPost",
 		Field: GraphQLField{
-			Name:       "createCat",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			Name:       "createPost",
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &CatExec{
+	return &PostExec{
 		client: client,
 		stack:  stack,
 	}
 }
 
-// UpdateCatParams docs
-type UpdateCatParams struct {
-	Data  *CatUpdateInput      `json:"data"`
-	Where *CatWhereUniqueInput `json:"where"`
+// UpdatePostParams docs
+type UpdatePostParams struct {
+	Data  *PostUpdateInput      `json:"data"`
+	Where *PostWhereUniqueInput `json:"where"`
 }
 
-// UpdateCat docs - generated while printing operation - mutation
-func (client Client) UpdateCat(params *UpdateCatParams) *CatExec {
+// UpdatePost docs - generated while printing operation - mutation
+func (client Client) UpdatePost(params *UpdatePostParams) *PostExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -633,7 +369,7 @@ func (client Client) UpdateCat(params *UpdateCatParams) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "data",
 			Key:      "data",
-			TypeName: "CatUpdateInput!",
+			TypeName: "PostUpdateInput!",
 			Value:    *params.Data,
 		})
 	}
@@ -641,36 +377,36 @@ func (client Client) UpdateCat(params *UpdateCatParams) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereUniqueInput!",
+			TypeName: "PostWhereUniqueInput!",
 			Value:    *params.Where,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "updateCat",
+		Name: "updatePost",
 		Field: GraphQLField{
-			Name:       "updateCat",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			Name:       "updatePost",
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &CatExec{
+	return &PostExec{
 		client: client,
 		stack:  stack,
 	}
 }
 
-// UpdateManyCatsParams docs
-type UpdateManyCatsParams struct {
-	Data  *CatUpdateInput `json:"data"`
-	Where *CatWhereInput  `json:"where,omitempty"`
+// UpdateManyPostsParams docs
+type UpdateManyPostsParams struct {
+	Data  *PostUpdateInput `json:"data"`
+	Where *PostWhereInput  `json:"where,omitempty"`
 }
 
-// UpdateManyCats docs - generated while printing operation - mutation
-func (client Client) UpdateManyCats(params *UpdateManyCatsParams) *BatchPayloadExec {
+// UpdateManyPosts docs - generated while printing operation - mutation
+func (client Client) UpdateManyPosts(params *UpdateManyPostsParams) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -678,7 +414,7 @@ func (client Client) UpdateManyCats(params *UpdateManyCatsParams) *BatchPayloadE
 		args = append(args, GraphQLArg{
 			Name:     "data",
 			Key:      "data",
-			TypeName: "CatUpdateInput!",
+			TypeName: "PostUpdateInput!",
 			Value:    *params.Data,
 		})
 	}
@@ -686,15 +422,15 @@ func (client Client) UpdateManyCats(params *UpdateManyCatsParams) *BatchPayloadE
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereInput",
+			TypeName: "PostWhereInput",
 			Value:    *params.Where,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "updateManyCats",
+		Name: "updateManyPosts",
 		Field: GraphQLField{
-			Name:       "updateManyCats",
+			Name:       "updateManyPosts",
 			TypeName:   "BatchPayload",
 			TypeFields: []string{"count"},
 		},
@@ -708,15 +444,15 @@ func (client Client) UpdateManyCats(params *UpdateManyCatsParams) *BatchPayloadE
 	}
 }
 
-// UpsertCatParams docs
-type UpsertCatParams struct {
-	Where  *CatWhereUniqueInput `json:"where"`
-	Create *CatCreateInput      `json:"create"`
-	Update *CatUpdateInput      `json:"update"`
+// UpsertPostParams docs
+type UpsertPostParams struct {
+	Where  *PostWhereUniqueInput `json:"where"`
+	Create *PostCreateInput      `json:"create"`
+	Update *PostUpdateInput      `json:"update"`
 }
 
-// UpsertCat docs - generated while printing operation - mutation
-func (client Client) UpsertCat(params *UpsertCatParams) *CatExec {
+// UpsertPost docs - generated while printing operation - mutation
+func (client Client) UpsertPost(params *UpsertPostParams) *PostExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -724,7 +460,7 @@ func (client Client) UpsertCat(params *UpsertCatParams) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereUniqueInput!",
+			TypeName: "PostWhereUniqueInput!",
 			Value:    *params.Where,
 		})
 	}
@@ -732,7 +468,7 @@ func (client Client) UpsertCat(params *UpsertCatParams) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "create",
 			Key:      "create",
-			TypeName: "CatCreateInput!",
+			TypeName: "PostCreateInput!",
 			Value:    *params.Create,
 		})
 	}
@@ -740,35 +476,35 @@ func (client Client) UpsertCat(params *UpsertCatParams) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "update",
 			Key:      "update",
-			TypeName: "CatUpdateInput!",
+			TypeName: "PostUpdateInput!",
 			Value:    *params.Update,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "upsertCat",
+		Name: "upsertPost",
 		Field: GraphQLField{
-			Name:       "upsertCat",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			Name:       "upsertPost",
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &CatExec{
+	return &PostExec{
 		client: client,
 		stack:  stack,
 	}
 }
 
-// DeleteCatParams docs
-type DeleteCatParams struct {
-	Where *CatWhereUniqueInput `json:"where"`
+// DeletePostParams docs
+type DeletePostParams struct {
+	Where *PostWhereUniqueInput `json:"where"`
 }
 
-// DeleteCat docs - generated while printing operation - mutation
-func (client Client) DeleteCat(params *CatWhereUniqueInput) *CatExec {
+// DeletePost docs - generated while printing operation - mutation
+func (client Client) DeletePost(params *PostWhereUniqueInput) *PostExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -776,35 +512,35 @@ func (client Client) DeleteCat(params *CatWhereUniqueInput) *CatExec {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereUniqueInput!",
+			TypeName: "PostWhereUniqueInput!",
 			Value:    *params,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "deleteCat",
+		Name: "deletePost",
 		Field: GraphQLField{
-			Name:       "deleteCat",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			Name:       "deletePost",
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "mutation",
 		Args:      args,
 	})
 
-	return &CatExec{
+	return &PostExec{
 		client: client,
 		stack:  stack,
 	}
 }
 
-// DeleteManyCatsParams docs
-type DeleteManyCatsParams struct {
-	Where *CatWhereInput `json:"where,omitempty"`
+// DeleteManyPostsParams docs
+type DeleteManyPostsParams struct {
+	Where *PostWhereInput `json:"where,omitempty"`
 }
 
-// DeleteManyCats docs - generated while printing operation - mutation
-func (client Client) DeleteManyCats(params *CatWhereInput) *BatchPayloadExec {
+// DeleteManyPosts docs - generated while printing operation - mutation
+func (client Client) DeleteManyPosts(params *PostWhereInput) *BatchPayloadExec {
 
 	stack := make([]Instruction, 0)
 	var args []GraphQLArg
@@ -812,267 +548,15 @@ func (client Client) DeleteManyCats(params *CatWhereInput) *BatchPayloadExec {
 		args = append(args, GraphQLArg{
 			Name:     "where",
 			Key:      "where",
-			TypeName: "CatWhereInput",
+			TypeName: "PostWhereInput",
 			Value:    *params,
 		})
 	}
 
 	stack = append(stack, Instruction{
-		Name: "deleteManyCats",
+		Name: "deleteManyPosts",
 		Field: GraphQLField{
-			Name:       "deleteManyCats",
-			TypeName:   "BatchPayload",
-			TypeFields: []string{"count"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &BatchPayloadExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// CreateMasterParams docs
-type CreateMasterParams struct {
-	Data *MasterCreateInput `json:"data"`
-}
-
-// CreateMaster docs - generated while printing operation - mutation
-func (client Client) CreateMaster(params *MasterCreateInput) *MasterExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "MasterCreateInput!",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "createMaster",
-		Field: GraphQLField{
-			Name:       "createMaster",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &MasterExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// UpdateMasterParams docs
-type UpdateMasterParams struct {
-	Data  *MasterUpdateInput      `json:"data"`
-	Where *MasterWhereUniqueInput `json:"where"`
-}
-
-// UpdateMaster docs - generated while printing operation - mutation
-func (client Client) UpdateMaster(params *UpdateMasterParams) *MasterExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil && params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "MasterUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params != nil && params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "updateMaster",
-		Field: GraphQLField{
-			Name:       "updateMaster",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &MasterExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// UpdateManyMastersParams docs
-type UpdateManyMastersParams struct {
-	Data  *MasterUpdateInput `json:"data"`
-	Where *MasterWhereInput  `json:"where,omitempty"`
-}
-
-// UpdateManyMasters docs - generated while printing operation - mutation
-func (client Client) UpdateManyMasters(params *UpdateManyMastersParams) *BatchPayloadExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil && params.Data != nil {
-		args = append(args, GraphQLArg{
-			Name:     "data",
-			Key:      "data",
-			TypeName: "MasterUpdateInput!",
-			Value:    *params.Data,
-		})
-	}
-	if params != nil && params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereInput",
-			Value:    *params.Where,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "updateManyMasters",
-		Field: GraphQLField{
-			Name:       "updateManyMasters",
-			TypeName:   "BatchPayload",
-			TypeFields: []string{"count"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &BatchPayloadExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// UpsertMasterParams docs
-type UpsertMasterParams struct {
-	Where  *MasterWhereUniqueInput `json:"where"`
-	Create *MasterCreateInput      `json:"create"`
-	Update *MasterUpdateInput      `json:"update"`
-}
-
-// UpsertMaster docs - generated while printing operation - mutation
-func (client Client) UpsertMaster(params *UpsertMasterParams) *MasterExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil && params.Where != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereUniqueInput!",
-			Value:    *params.Where,
-		})
-	}
-	if params != nil && params.Create != nil {
-		args = append(args, GraphQLArg{
-			Name:     "create",
-			Key:      "create",
-			TypeName: "MasterCreateInput!",
-			Value:    *params.Create,
-		})
-	}
-	if params != nil && params.Update != nil {
-		args = append(args, GraphQLArg{
-			Name:     "update",
-			Key:      "update",
-			TypeName: "MasterUpdateInput!",
-			Value:    *params.Update,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "upsertMaster",
-		Field: GraphQLField{
-			Name:       "upsertMaster",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &MasterExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// DeleteMasterParams docs
-type DeleteMasterParams struct {
-	Where *MasterWhereUniqueInput `json:"where"`
-}
-
-// DeleteMaster docs - generated while printing operation - mutation
-func (client Client) DeleteMaster(params *MasterWhereUniqueInput) *MasterExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereUniqueInput!",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "deleteMaster",
-		Field: GraphQLField{
-			Name:       "deleteMaster",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "mutation",
-		Args:      args,
-	})
-
-	return &MasterExec{
-		client: client,
-		stack:  stack,
-	}
-}
-
-// DeleteManyMastersParams docs
-type DeleteManyMastersParams struct {
-	Where *MasterWhereInput `json:"where,omitempty"`
-}
-
-// DeleteManyMasters docs - generated while printing operation - mutation
-func (client Client) DeleteManyMasters(params *MasterWhereInput) *BatchPayloadExec {
-
-	stack := make([]Instruction, 0)
-	var args []GraphQLArg
-	if params != nil {
-		args = append(args, GraphQLArg{
-			Name:     "where",
-			Key:      "where",
-			TypeName: "MasterWhereInput",
-			Value:    *params,
-		})
-	}
-
-	stack = append(stack, Instruction{
-		Name: "deleteManyMasters",
-		Field: GraphQLField{
-			Name:       "deleteManyMasters",
+			Name:       "deleteManyPosts",
 			TypeName:   "BatchPayload",
 			TypeFields: []string{"count"},
 		},
@@ -1088,64 +572,46 @@ func (client Client) DeleteManyMasters(params *MasterWhereInput) *BatchPayloadEx
 
 // Types
 
-// CatOrderByInput docs
-type CatOrderByInput string
+// PostOrderByInput docs
+type PostOrderByInput string
 
 const (
 
-	// IDAscCatOrderByInput docs
-	IDAscCatOrderByInput CatOrderByInput = "id_ASC"
+	// IDAscPostOrderByInput docs
+	IDAscPostOrderByInput PostOrderByInput = "id_ASC"
 
-	// IDDescCatOrderByInput docs
-	IDDescCatOrderByInput CatOrderByInput = "id_DESC"
+	// IDDescPostOrderByInput docs
+	IDDescPostOrderByInput PostOrderByInput = "id_DESC"
 
-	// NameAscCatOrderByInput docs
-	NameAscCatOrderByInput CatOrderByInput = "name_ASC"
+	// IsPublishedAscPostOrderByInput docs
+	IsPublishedAscPostOrderByInput PostOrderByInput = "isPublished_ASC"
 
-	// NameDescCatOrderByInput docs
-	NameDescCatOrderByInput CatOrderByInput = "name_DESC"
+	// IsPublishedDescPostOrderByInput docs
+	IsPublishedDescPostOrderByInput PostOrderByInput = "isPublished_DESC"
 
-	// ColorAscCatOrderByInput docs
-	ColorAscCatOrderByInput CatOrderByInput = "color_ASC"
+	// TitleAscPostOrderByInput docs
+	TitleAscPostOrderByInput PostOrderByInput = "title_ASC"
 
-	// ColorDescCatOrderByInput docs
-	ColorDescCatOrderByInput CatOrderByInput = "color_DESC"
+	// TitleDescPostOrderByInput docs
+	TitleDescPostOrderByInput PostOrderByInput = "title_DESC"
 
-	// CreatedAtAscCatOrderByInput docs
-	CreatedAtAscCatOrderByInput CatOrderByInput = "createdAt_ASC"
+	// ContentAscPostOrderByInput docs
+	ContentAscPostOrderByInput PostOrderByInput = "content_ASC"
 
-	// CreatedAtDescCatOrderByInput docs
-	CreatedAtDescCatOrderByInput CatOrderByInput = "createdAt_DESC"
+	// ContentDescPostOrderByInput docs
+	ContentDescPostOrderByInput PostOrderByInput = "content_DESC"
 
-	// UpdatedAtAscCatOrderByInput docs
-	UpdatedAtAscCatOrderByInput CatOrderByInput = "updatedAt_ASC"
+	// CreatedAtAscPostOrderByInput docs
+	CreatedAtAscPostOrderByInput PostOrderByInput = "createdAt_ASC"
 
-	// UpdatedAtDescCatOrderByInput docs
-	UpdatedAtDescCatOrderByInput CatOrderByInput = "updatedAt_DESC"
-)
+	// CreatedAtDescPostOrderByInput docs
+	CreatedAtDescPostOrderByInput PostOrderByInput = "createdAt_DESC"
 
-// MasterOrderByInput docs
-type MasterOrderByInput string
+	// UpdatedAtAscPostOrderByInput docs
+	UpdatedAtAscPostOrderByInput PostOrderByInput = "updatedAt_ASC"
 
-const (
-
-	// IDAscMasterOrderByInput docs
-	IDAscMasterOrderByInput MasterOrderByInput = "id_ASC"
-
-	// IDDescMasterOrderByInput docs
-	IDDescMasterOrderByInput MasterOrderByInput = "id_DESC"
-
-	// CreatedAtAscMasterOrderByInput docs
-	CreatedAtAscMasterOrderByInput MasterOrderByInput = "createdAt_ASC"
-
-	// CreatedAtDescMasterOrderByInput docs
-	CreatedAtDescMasterOrderByInput MasterOrderByInput = "createdAt_DESC"
-
-	// UpdatedAtAscMasterOrderByInput docs
-	UpdatedAtAscMasterOrderByInput MasterOrderByInput = "updatedAt_ASC"
-
-	// UpdatedAtDescMasterOrderByInput docs
-	UpdatedAtDescMasterOrderByInput MasterOrderByInput = "updatedAt_DESC"
+	// UpdatedAtDescPostOrderByInput docs
+	UpdatedAtDescPostOrderByInput PostOrderByInput = "updatedAt_DESC"
 )
 
 // MutationType docs
@@ -1163,194 +629,86 @@ const (
 	DeletedMutationType MutationType = "DELETED"
 )
 
-// CatCreateInput input struct docs
-type CatCreateInput struct {
-	Name       *string            `json:"name,omitempty"`
-	Color      *string            `json:"color,omitempty"`
-	FavBrother *CatCreateOneInput `json:"favBrother,omitempty"`
+// PostCreateInput input struct docs
+type PostCreateInput struct {
+	IsPublished *bool   `json:"isPublished,omitempty"`
+	Title       *string `json:"title,omitempty"`
+	Content     *string `json:"content,omitempty"`
 }
 
-// CatWhereUniqueInput input struct docs
-type CatWhereUniqueInput struct {
+// PostWhereInput input struct docs
+type PostWhereInput struct {
+	ID                   *string         `json:"id,omitempty"`
+	IDNot                *string         `json:"id_not,omitempty"`
+	IDIn                 *string         `json:"id_in,omitempty"`
+	IDNotIn              *string         `json:"id_not_in,omitempty"`
+	IDLt                 *string         `json:"id_lt,omitempty"`
+	IDLte                *string         `json:"id_lte,omitempty"`
+	IDGt                 *string         `json:"id_gt,omitempty"`
+	IDGte                *string         `json:"id_gte,omitempty"`
+	IDContains           *string         `json:"id_contains,omitempty"`
+	IDNotContains        *string         `json:"id_not_contains,omitempty"`
+	IDStartsWith         *string         `json:"id_starts_with,omitempty"`
+	IDNotStartsWith      *string         `json:"id_not_starts_with,omitempty"`
+	IDEndsWith           *string         `json:"id_ends_with,omitempty"`
+	IDNotEndsWith        *string         `json:"id_not_ends_with,omitempty"`
+	IsPublished          *bool           `json:"isPublished,omitempty"`
+	IsPublishedNot       *bool           `json:"isPublished_not,omitempty"`
+	Title                *string         `json:"title,omitempty"`
+	TitleNot             *string         `json:"title_not,omitempty"`
+	TitleIn              *string         `json:"title_in,omitempty"`
+	TitleNotIn           *string         `json:"title_not_in,omitempty"`
+	TitleLt              *string         `json:"title_lt,omitempty"`
+	TitleLte             *string         `json:"title_lte,omitempty"`
+	TitleGt              *string         `json:"title_gt,omitempty"`
+	TitleGte             *string         `json:"title_gte,omitempty"`
+	TitleContains        *string         `json:"title_contains,omitempty"`
+	TitleNotContains     *string         `json:"title_not_contains,omitempty"`
+	TitleStartsWith      *string         `json:"title_starts_with,omitempty"`
+	TitleNotStartsWith   *string         `json:"title_not_starts_with,omitempty"`
+	TitleEndsWith        *string         `json:"title_ends_with,omitempty"`
+	TitleNotEndsWith     *string         `json:"title_not_ends_with,omitempty"`
+	Content              *string         `json:"content,omitempty"`
+	ContentNot           *string         `json:"content_not,omitempty"`
+	ContentIn            *string         `json:"content_in,omitempty"`
+	ContentNotIn         *string         `json:"content_not_in,omitempty"`
+	ContentLt            *string         `json:"content_lt,omitempty"`
+	ContentLte           *string         `json:"content_lte,omitempty"`
+	ContentGt            *string         `json:"content_gt,omitempty"`
+	ContentGte           *string         `json:"content_gte,omitempty"`
+	ContentContains      *string         `json:"content_contains,omitempty"`
+	ContentNotContains   *string         `json:"content_not_contains,omitempty"`
+	ContentStartsWith    *string         `json:"content_starts_with,omitempty"`
+	ContentNotStartsWith *string         `json:"content_not_starts_with,omitempty"`
+	ContentEndsWith      *string         `json:"content_ends_with,omitempty"`
+	ContentNotEndsWith   *string         `json:"content_not_ends_with,omitempty"`
+	And                  *PostWhereInput `json:"AND,omitempty"`
+	Or                   *PostWhereInput `json:"OR,omitempty"`
+	Not                  *PostWhereInput `json:"NOT,omitempty"`
+}
+
+// PostUpdateInput input struct docs
+type PostUpdateInput struct {
+	IsPublished *bool   `json:"isPublished,omitempty"`
+	Title       *string `json:"title,omitempty"`
+	Content     *string `json:"content,omitempty"`
+}
+
+// PostSubscriptionWhereInput input struct docs
+type PostSubscriptionWhereInput struct {
+	MutationIn                 *MutationType               `json:"mutation_in,omitempty"`
+	UpdatedFieldsContains      *string                     `json:"updatedFields_contains,omitempty"`
+	UpdatedFieldsContainsEvery *string                     `json:"updatedFields_contains_every,omitempty"`
+	UpdatedFieldsContainsSome  *string                     `json:"updatedFields_contains_some,omitempty"`
+	Node                       *PostWhereInput             `json:"node,omitempty"`
+	And                        *PostSubscriptionWhereInput `json:"AND,omitempty"`
+	Or                         *PostSubscriptionWhereInput `json:"OR,omitempty"`
+	Not                        *PostSubscriptionWhereInput `json:"NOT,omitempty"`
+}
+
+// PostWhereUniqueInput input struct docs
+type PostWhereUniqueInput struct {
 	ID *string `json:"id,omitempty"`
-}
-
-// CatUpdateOneInput input struct docs
-type CatUpdateOneInput struct {
-	Create     *CatCreateInput       `json:"create,omitempty"`
-	Update     *CatUpdateDataInput   `json:"update,omitempty"`
-	Upsert     *CatUpsertNestedInput `json:"upsert,omitempty"`
-	Delete     *bool                 `json:"delete,omitempty"`
-	Disconnect *bool                 `json:"disconnect,omitempty"`
-	Connect    *CatWhereUniqueInput  `json:"connect,omitempty"`
-}
-
-// CatWhereInput input struct docs
-type CatWhereInput struct {
-	ID                 *string        `json:"id,omitempty"`
-	IDNot              *string        `json:"id_not,omitempty"`
-	IDIn               *string        `json:"id_in,omitempty"`
-	IDNotIn            *string        `json:"id_not_in,omitempty"`
-	IDLt               *string        `json:"id_lt,omitempty"`
-	IDLte              *string        `json:"id_lte,omitempty"`
-	IDGt               *string        `json:"id_gt,omitempty"`
-	IDGte              *string        `json:"id_gte,omitempty"`
-	IDContains         *string        `json:"id_contains,omitempty"`
-	IDNotContains      *string        `json:"id_not_contains,omitempty"`
-	IDStartsWith       *string        `json:"id_starts_with,omitempty"`
-	IDNotStartsWith    *string        `json:"id_not_starts_with,omitempty"`
-	IDEndsWith         *string        `json:"id_ends_with,omitempty"`
-	IDNotEndsWith      *string        `json:"id_not_ends_with,omitempty"`
-	Name               *string        `json:"name,omitempty"`
-	NameNot            *string        `json:"name_not,omitempty"`
-	NameIn             *string        `json:"name_in,omitempty"`
-	NameNotIn          *string        `json:"name_not_in,omitempty"`
-	NameLt             *string        `json:"name_lt,omitempty"`
-	NameLte            *string        `json:"name_lte,omitempty"`
-	NameGt             *string        `json:"name_gt,omitempty"`
-	NameGte            *string        `json:"name_gte,omitempty"`
-	NameContains       *string        `json:"name_contains,omitempty"`
-	NameNotContains    *string        `json:"name_not_contains,omitempty"`
-	NameStartsWith     *string        `json:"name_starts_with,omitempty"`
-	NameNotStartsWith  *string        `json:"name_not_starts_with,omitempty"`
-	NameEndsWith       *string        `json:"name_ends_with,omitempty"`
-	NameNotEndsWith    *string        `json:"name_not_ends_with,omitempty"`
-	Color              *string        `json:"color,omitempty"`
-	ColorNot           *string        `json:"color_not,omitempty"`
-	ColorIn            *string        `json:"color_in,omitempty"`
-	ColorNotIn         *string        `json:"color_not_in,omitempty"`
-	ColorLt            *string        `json:"color_lt,omitempty"`
-	ColorLte           *string        `json:"color_lte,omitempty"`
-	ColorGt            *string        `json:"color_gt,omitempty"`
-	ColorGte           *string        `json:"color_gte,omitempty"`
-	ColorContains      *string        `json:"color_contains,omitempty"`
-	ColorNotContains   *string        `json:"color_not_contains,omitempty"`
-	ColorStartsWith    *string        `json:"color_starts_with,omitempty"`
-	ColorNotStartsWith *string        `json:"color_not_starts_with,omitempty"`
-	ColorEndsWith      *string        `json:"color_ends_with,omitempty"`
-	ColorNotEndsWith   *string        `json:"color_not_ends_with,omitempty"`
-	FavBrother         *CatWhereInput `json:"favBrother,omitempty"`
-	And                *CatWhereInput `json:"AND,omitempty"`
-	Or                 *CatWhereInput `json:"OR,omitempty"`
-	Not                *CatWhereInput `json:"NOT,omitempty"`
-}
-
-// CatUpdateManyInput input struct docs
-type CatUpdateManyInput struct {
-	Create     *CatCreateInput                      `json:"create,omitempty"`
-	Delete     *CatWhereUniqueInput                 `json:"delete,omitempty"`
-	Connect    *CatWhereUniqueInput                 `json:"connect,omitempty"`
-	Disconnect *CatWhereUniqueInput                 `json:"disconnect,omitempty"`
-	Update     *CatUpdateWithWhereUniqueNestedInput `json:"update,omitempty"`
-	Upsert     *CatUpsertWithWhereUniqueNestedInput `json:"upsert,omitempty"`
-}
-
-// CatUpdateInput input struct docs
-type CatUpdateInput struct {
-	Name       *string            `json:"name,omitempty"`
-	Color      *string            `json:"color,omitempty"`
-	FavBrother *CatUpdateOneInput `json:"favBrother,omitempty"`
-}
-
-// MasterUpdateInput input struct docs
-type MasterUpdateInput struct {
-	Catz *CatUpdateManyInput `json:"catz,omitempty"`
-}
-
-// CatUpdateDataInput input struct docs
-type CatUpdateDataInput struct {
-	Name       *string            `json:"name,omitempty"`
-	Color      *string            `json:"color,omitempty"`
-	FavBrother *CatUpdateOneInput `json:"favBrother,omitempty"`
-}
-
-// CatCreateManyInput input struct docs
-type CatCreateManyInput struct {
-	Create  *CatCreateInput      `json:"create,omitempty"`
-	Connect *CatWhereUniqueInput `json:"connect,omitempty"`
-}
-
-// CatSubscriptionWhereInput input struct docs
-type CatSubscriptionWhereInput struct {
-	MutationIn                 *MutationType              `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                    `json:"updatedFields_contains,omitempty"`
-	UpdatedFieldsContainsEvery *string                    `json:"updatedFields_contains_every,omitempty"`
-	UpdatedFieldsContainsSome  *string                    `json:"updatedFields_contains_some,omitempty"`
-	Node                       *CatWhereInput             `json:"node,omitempty"`
-	And                        *CatSubscriptionWhereInput `json:"AND,omitempty"`
-	Or                         *CatSubscriptionWhereInput `json:"OR,omitempty"`
-	Not                        *CatSubscriptionWhereInput `json:"NOT,omitempty"`
-}
-
-// MasterWhereUniqueInput input struct docs
-type MasterWhereUniqueInput struct {
-	ID *string `json:"id,omitempty"`
-}
-
-// CatCreateOneInput input struct docs
-type CatCreateOneInput struct {
-	Create  *CatCreateInput      `json:"create,omitempty"`
-	Connect *CatWhereUniqueInput `json:"connect,omitempty"`
-}
-
-// CatUpsertNestedInput input struct docs
-type CatUpsertNestedInput struct {
-	Update *CatUpdateDataInput `json:"update,omitempty"`
-	Create *CatCreateInput     `json:"create,omitempty"`
-}
-
-// MasterCreateInput input struct docs
-type MasterCreateInput struct {
-	Catz *CatCreateManyInput `json:"catz,omitempty"`
-}
-
-// CatUpdateWithWhereUniqueNestedInput input struct docs
-type CatUpdateWithWhereUniqueNestedInput struct {
-	Where *CatWhereUniqueInput `json:"where,omitempty"`
-	Data  *CatUpdateDataInput  `json:"data,omitempty"`
-}
-
-// CatUpsertWithWhereUniqueNestedInput input struct docs
-type CatUpsertWithWhereUniqueNestedInput struct {
-	Where  *CatWhereUniqueInput `json:"where,omitempty"`
-	Update *CatUpdateDataInput  `json:"update,omitempty"`
-	Create *CatCreateInput      `json:"create,omitempty"`
-}
-
-// MasterSubscriptionWhereInput input struct docs
-type MasterSubscriptionWhereInput struct {
-	MutationIn                 *MutationType                 `json:"mutation_in,omitempty"`
-	UpdatedFieldsContains      *string                       `json:"updatedFields_contains,omitempty"`
-	UpdatedFieldsContainsEvery *string                       `json:"updatedFields_contains_every,omitempty"`
-	UpdatedFieldsContainsSome  *string                       `json:"updatedFields_contains_some,omitempty"`
-	Node                       *MasterWhereInput             `json:"node,omitempty"`
-	And                        *MasterSubscriptionWhereInput `json:"AND,omitempty"`
-	Or                         *MasterSubscriptionWhereInput `json:"OR,omitempty"`
-	Not                        *MasterSubscriptionWhereInput `json:"NOT,omitempty"`
-}
-
-// MasterWhereInput input struct docs
-type MasterWhereInput struct {
-	ID              *string           `json:"id,omitempty"`
-	IDNot           *string           `json:"id_not,omitempty"`
-	IDIn            *string           `json:"id_in,omitempty"`
-	IDNotIn         *string           `json:"id_not_in,omitempty"`
-	IDLt            *string           `json:"id_lt,omitempty"`
-	IDLte           *string           `json:"id_lte,omitempty"`
-	IDGt            *string           `json:"id_gt,omitempty"`
-	IDGte           *string           `json:"id_gte,omitempty"`
-	IDContains      *string           `json:"id_contains,omitempty"`
-	IDNotContains   *string           `json:"id_not_contains,omitempty"`
-	IDStartsWith    *string           `json:"id_starts_with,omitempty"`
-	IDNotStartsWith *string           `json:"id_not_starts_with,omitempty"`
-	IDEndsWith      *string           `json:"id_ends_with,omitempty"`
-	IDNotEndsWith   *string           `json:"id_not_ends_with,omitempty"`
-	CatzEvery       *CatWhereInput    `json:"catz_every,omitempty"`
-	CatzSome        *CatWhereInput    `json:"catz_some,omitempty"`
-	CatzNone        *CatWhereInput    `json:"catz_none,omitempty"`
-	And             *MasterWhereInput `json:"AND,omitempty"`
-	Or              *MasterWhereInput `json:"OR,omitempty"`
-	Not             *MasterWhereInput `json:"NOT,omitempty"`
 }
 
 // NodeExec docs
@@ -1364,876 +722,34 @@ type Node interface {
 	ID() string
 }
 
-// MasterPreviousValuesExec docs
-type MasterPreviousValuesExec struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance MasterPreviousValuesExec) Exec() (MasterPreviousValues, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData MasterPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// MasterPreviousValuesExecArray docs
-type MasterPreviousValuesExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance MasterPreviousValuesExecArray) Exec() ([]MasterPreviousValues, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []MasterPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// MasterPreviousValues docs - generated with types
-type MasterPreviousValues struct {
-	ID string `json:"id"`
-}
-
-// MasterExec docs
-type MasterExec struct {
-	client Client
-	stack  []Instruction
-}
-
-type CatzParamsExec struct {
-	Where   *CatWhereInput
-	OrderBy *CatOrderByInput
-	Skip    *int32
-	After   *string
-	Before  *string
-	First   *int32
-	Last    *int32
-}
-
-// Catz docs - executable for types
-func (instance *MasterExec) Catz(params *CatzParamsExec) *CatExecArray {
-	var args []GraphQLArg
-
-	if params != nil {
-
-		if params.Where != nil {
-			args = append(args, GraphQLArg{
-				Name:     "where",
-				Key:      "where",
-				TypeName: "CatWhereInput",
-				Value:    params.Where,
-			})
-		}
-
-		if params.OrderBy != nil {
-			args = append(args, GraphQLArg{
-				Name:     "orderBy",
-				Key:      "orderBy",
-				TypeName: "CatOrderByInput",
-				Value:    params.OrderBy,
-			})
-		}
-
-		if params.Skip != nil {
-			args = append(args, GraphQLArg{
-				Name:     "skip",
-				Key:      "skip",
-				TypeName: "int32",
-				Value:    params.Skip,
-			})
-		}
-
-		if params.After != nil {
-			args = append(args, GraphQLArg{
-				Name:     "after",
-				Key:      "after",
-				TypeName: "string",
-				Value:    params.After,
-			})
-		}
-
-		if params.Before != nil {
-			args = append(args, GraphQLArg{
-				Name:     "before",
-				Key:      "before",
-				TypeName: "string",
-				Value:    params.Before,
-			})
-		}
-
-		if params.First != nil {
-			args = append(args, GraphQLArg{
-				Name:     "first",
-				Key:      "first",
-				TypeName: "int32",
-				Value:    params.First,
-			})
-		}
-
-		if params.Last != nil {
-			args = append(args, GraphQLArg{
-				Name:     "last",
-				Key:      "last",
-				TypeName: "int32",
-				Value:    params.Last,
-			})
-		}
-
-	}
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "catz",
-		Field: GraphQLField{
-			Name:       "catz",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &CatExecArray{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// Exec docs
-func (instance MasterExec) Exec() (Master, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData Master
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// MasterExecArray docs
-type MasterExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance MasterExecArray) Exec() ([]Master, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []Master
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// Master docs - generated with types
-type Master struct {
-	ID string `json:"id"`
-}
-
-// CatConnectionExec docs
-type CatConnectionExec struct {
-	client Client
-	stack  []Instruction
-}
-
-// PageInfo docs - executable for types
-func (instance *CatConnectionExec) PageInfo() *PageInfoExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "pageInfo",
-		Field: GraphQLField{
-			Name:       "pageInfo",
-			TypeName:   "PageInfo",
-			TypeFields: []string{"hasNextPage", "hasPreviousPage", "startCursor", "endCursor"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &PageInfoExec{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// Edges docs - executable for types
-func (instance *CatConnectionExec) Edges() *CatEdgeExecArray {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "edges",
-		Field: GraphQLField{
-			Name:       "edges",
-			TypeName:   "CatEdge",
-			TypeFields: []string{"cursor"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &CatEdgeExecArray{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// Aggregate docs - executable for types
-func (instance *CatConnectionExec) Aggregate() *AggregateCatExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "aggregate",
-		Field: GraphQLField{
-			Name:       "aggregate",
-			TypeName:   "AggregateCat",
-			TypeFields: []string{"count"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &AggregateCatExec{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// Exec docs
-func (instance CatConnectionExec) Exec() (CatConnection, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData CatConnection
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatConnectionExecArray docs
-type CatConnectionExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance CatConnectionExecArray) Exec() ([]CatConnection, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []CatConnection
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatConnection docs - generated with types
-type CatConnection struct {
-}
-
-// CatPreviousValuesExec docs
-type CatPreviousValuesExec struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance CatPreviousValuesExec) Exec() (CatPreviousValues, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData CatPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatPreviousValuesExecArray docs
-type CatPreviousValuesExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance CatPreviousValuesExecArray) Exec() ([]CatPreviousValues, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []CatPreviousValues
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatPreviousValues docs - generated with types
-type CatPreviousValues struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Color string `json:"color"`
-}
-
-// CatSubscriptionPayloadExec docs
-type CatSubscriptionPayloadExec struct {
+// PostEdgeExec docs
+type PostEdgeExec struct {
 	client Client
 	stack  []Instruction
 }
 
 // Node docs - executable for types
-func (instance *CatSubscriptionPayloadExec) Node() *CatExec {
+func (instance *PostEdgeExec) Node() *PostExec {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
 		Name: "node",
 		Field: GraphQLField{
 			Name:       "node",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "",
 		Args:      args,
 	})
-	return &CatExec{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// PreviousValues docs - executable for types
-func (instance *CatSubscriptionPayloadExec) PreviousValues() *CatPreviousValuesExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "previousValues",
-		Field: GraphQLField{
-			Name:       "previousValues",
-			TypeName:   "CatPreviousValues",
-			TypeFields: []string{"id", "name", "color"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &CatPreviousValuesExec{
+	return &PostExec{
 		client: instance.client,
 		stack:  instance.stack,
 	}
 }
 
 // Exec docs
-func (instance CatSubscriptionPayloadExec) Exec() (CatSubscriptionPayload, error) {
+func (instance PostEdgeExec) Exec() (PostEdge, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -2309,7 +825,7 @@ func (instance CatSubscriptionPayloadExec) Exec() (CatSubscriptionPayload, error
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData CatSubscriptionPayload
+	var decodedData PostEdge
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2317,14 +833,14 @@ func (instance CatSubscriptionPayloadExec) Exec() (CatSubscriptionPayload, error
 	return decodedData, err
 }
 
-// CatSubscriptionPayloadExecArray docs
-type CatSubscriptionPayloadExecArray struct {
+// PostEdgeExecArray docs
+type PostEdgeExecArray struct {
 	client Client
 	stack  []Instruction
 }
 
 // Exec docs
-func (instance CatSubscriptionPayloadExecArray) Exec() ([]CatSubscriptionPayload, error) {
+func (instance PostEdgeExecArray) Exec() ([]PostEdge, error) {
 	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
@@ -2379,7 +895,7 @@ func (instance CatSubscriptionPayloadExecArray) Exec() ([]CatSubscriptionPayload
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData []CatSubscriptionPayload
+	var decodedData []PostEdge
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -2387,565 +903,8 @@ func (instance CatSubscriptionPayloadExecArray) Exec() ([]CatSubscriptionPayload
 	return decodedData, err
 }
 
-// CatSubscriptionPayload docs - generated with types
-type CatSubscriptionPayload struct {
-	UpdatedFields string `json:"updatedFields,omitempty"`
-}
-
-// AggregateCatExec docs
-type AggregateCatExec struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance AggregateCatExec) Exec() (AggregateCat, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData AggregateCat
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// AggregateCatExecArray docs
-type AggregateCatExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance AggregateCatExecArray) Exec() ([]AggregateCat, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []AggregateCat
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// AggregateCat docs - generated with types
-type AggregateCat struct {
-	Count int32 `json:"count"`
-}
-
-// CatExec docs
-type CatExec struct {
-	client Client
-	stack  []Instruction
-}
-
-type FavBrotherParamsExec struct {
-	Where *CatWhereInput
-}
-
-// FavBrother docs - executable for types
-func (instance *CatExec) FavBrother(params *FavBrotherParamsExec) *CatExec {
-	var args []GraphQLArg
-
-	if params != nil {
-
-		if params.Where != nil {
-			args = append(args, GraphQLArg{
-				Name:     "where",
-				Key:      "where",
-				TypeName: "CatWhereInput",
-				Value:    params.Where,
-			})
-		}
-
-	}
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "favBrother",
-		Field: GraphQLField{
-			Name:       "favBrother",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &CatExec{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// Exec docs
-func (instance CatExec) Exec() (Cat, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData Cat
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatExecArray docs
-type CatExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance CatExecArray) Exec() ([]Cat, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []Cat
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// Cat docs - generated with types
-type Cat struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Color string `json:"color"`
-}
-
-// CatEdgeExec docs
-type CatEdgeExec struct {
-	client Client
-	stack  []Instruction
-}
-
-// Node docs - executable for types
-func (instance *CatEdgeExec) Node() *CatExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "node",
-		Field: GraphQLField{
-			Name:       "node",
-			TypeName:   "Cat",
-			TypeFields: []string{"id", "name", "color"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &CatExec{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
-// Exec docs
-func (instance CatEdgeExec) Exec() (CatEdge, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData CatEdge
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatEdgeExecArray docs
-type CatEdgeExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance CatEdgeExecArray) Exec() ([]CatEdge, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []CatEdge
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// CatEdge docs - generated with types
-type CatEdge struct {
+// PostEdge docs - generated with types
+type PostEdge struct {
 	Cursor string `json:"cursor"`
 }
 
@@ -3113,6 +1072,175 @@ func (instance BatchPayloadExecArray) Exec() ([]BatchPayload, error) {
 // BatchPayload docs - generated with types
 type BatchPayload struct {
 	Count int64 `json:"count"`
+}
+
+// PostPreviousValuesExec docs
+type PostPreviousValuesExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance PostPreviousValuesExec) Exec() (PostPreviousValues, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData PostPreviousValues
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// PostPreviousValuesExecArray docs
+type PostPreviousValuesExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance PostPreviousValuesExecArray) Exec() ([]PostPreviousValues, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []PostPreviousValues
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// PostPreviousValues docs - generated with types
+type PostPreviousValues struct {
+	ID          string `json:"id"`
+	IsPublished bool   `json:"isPublished"`
+	Title       string `json:"title"`
+	Content     string `json:"content"`
 }
 
 // PageInfoExec docs
@@ -3284,54 +1412,54 @@ type PageInfo struct {
 	EndCursor       string `json:"endCursor,omitempty"`
 }
 
-// MasterSubscriptionPayloadExec docs
-type MasterSubscriptionPayloadExec struct {
+// PostSubscriptionPayloadExec docs
+type PostSubscriptionPayloadExec struct {
 	client Client
 	stack  []Instruction
 }
 
 // Node docs - executable for types
-func (instance *MasterSubscriptionPayloadExec) Node() *MasterExec {
+func (instance *PostSubscriptionPayloadExec) Node() *PostExec {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
 		Name: "node",
 		Field: GraphQLField{
 			Name:       "node",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
+			TypeName:   "Post",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "",
 		Args:      args,
 	})
-	return &MasterExec{
+	return &PostExec{
 		client: instance.client,
 		stack:  instance.stack,
 	}
 }
 
 // PreviousValues docs - executable for types
-func (instance *MasterSubscriptionPayloadExec) PreviousValues() *MasterPreviousValuesExec {
+func (instance *PostSubscriptionPayloadExec) PreviousValues() *PostPreviousValuesExec {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
 		Name: "previousValues",
 		Field: GraphQLField{
 			Name:       "previousValues",
-			TypeName:   "MasterPreviousValues",
-			TypeFields: []string{"id"},
+			TypeName:   "PostPreviousValues",
+			TypeFields: []string{"id", "isPublished", "title", "content"},
 		},
 		Operation: "",
 		Args:      args,
 	})
-	return &MasterPreviousValuesExec{
+	return &PostPreviousValuesExec{
 		client: instance.client,
 		stack:  instance.stack,
 	}
 }
 
 // Exec docs
-func (instance MasterSubscriptionPayloadExec) Exec() (MasterSubscriptionPayload, error) {
+func (instance PostSubscriptionPayloadExec) Exec() (PostSubscriptionPayload, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3407,7 +1535,7 @@ func (instance MasterSubscriptionPayloadExec) Exec() (MasterSubscriptionPayload,
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData MasterSubscriptionPayload
+	var decodedData PostSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3415,14 +1543,14 @@ func (instance MasterSubscriptionPayloadExec) Exec() (MasterSubscriptionPayload,
 	return decodedData, err
 }
 
-// MasterSubscriptionPayloadExecArray docs
-type MasterSubscriptionPayloadExecArray struct {
+// PostSubscriptionPayloadExecArray docs
+type PostSubscriptionPayloadExecArray struct {
 	client Client
 	stack  []Instruction
 }
 
 // Exec docs
-func (instance MasterSubscriptionPayloadExecArray) Exec() ([]MasterSubscriptionPayload, error) {
+func (instance PostSubscriptionPayloadExecArray) Exec() ([]PostSubscriptionPayload, error) {
 	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
@@ -3477,7 +1605,7 @@ func (instance MasterSubscriptionPayloadExecArray) Exec() ([]MasterSubscriptionP
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData []MasterSubscriptionPayload
+	var decodedData []PostSubscriptionPayload
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3485,19 +1613,188 @@ func (instance MasterSubscriptionPayloadExecArray) Exec() ([]MasterSubscriptionP
 	return decodedData, err
 }
 
-// MasterSubscriptionPayload docs - generated with types
-type MasterSubscriptionPayload struct {
+// PostSubscriptionPayload docs - generated with types
+type PostSubscriptionPayload struct {
 	UpdatedFields string `json:"updatedFields,omitempty"`
 }
 
-// MasterConnectionExec docs
-type MasterConnectionExec struct {
+// PostExec docs
+type PostExec struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance PostExec) Exec() (Post, error) {
+	var allArgs []GraphQLArg
+	variables := make(map[string]interface{})
+	for instructionKey := range instance.stack {
+		instruction := &instance.stack[instructionKey]
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for argKey := range instruction.Args {
+			arg := &instruction.Args[argKey]
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			isUnique := false
+			for isUnique == false {
+				isUnique = true
+				for key, existingArg := range allArgs {
+					if existingArg.Name == arg.Name {
+						isUnique = false
+						arg.Name = arg.Name + "_" + strconv.Itoa(key)
+						if instance.client.Debug {
+							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
+						}
+						break
+					}
+				}
+			}
+			if instance.client.Debug {
+				fmt.Println("Arg Name: ", arg.Name)
+			}
+			allArgs = append(allArgs, *arg)
+			variables[arg.Name] = arg.Value
+		}
+	}
+	query := instance.client.ProcessInstructions(instance.stack)
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData Post
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// PostExecArray docs
+type PostExecArray struct {
+	client Client
+	stack  []Instruction
+}
+
+// Exec docs
+func (instance PostExecArray) Exec() ([]Post, error) {
+	query := instance.client.ProcessInstructions(instance.stack)
+	variables := make(map[string]interface{})
+	for _, instruction := range instance.stack {
+		if instance.client.Debug {
+			fmt.Println("Instruction Exec: ", instruction)
+		}
+		for _, arg := range instruction.Args {
+			if instance.client.Debug {
+				fmt.Println("Instruction Arg Exec: ", instruction)
+			}
+			variables[arg.Name] = arg.Value
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Query Exec:", query)
+		fmt.Println("Variables Exec:", variables)
+	}
+	data, err := instance.client.GraphQL(query, variables)
+	if instance.client.Debug {
+		fmt.Println("Data Exec:", data)
+		fmt.Println("Error Exec:", err)
+	}
+
+	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
+
+	// Is unpacking needed
+	dataType := reflect.TypeOf(data)
+	if !isArray(dataType) {
+		unpackedData := data
+		for _, instruction := range instance.stack {
+			if instance.client.Debug {
+				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
+			}
+			if isArray(unpackedData[instruction.Name]) {
+				genericData = (unpackedData[instruction.Name]).([]interface{})
+				break
+			} else {
+				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
+			}
+			if instance.client.Debug {
+				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
+			}
+			if instance.client.Debug {
+				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
+				fmt.Println("Unpacked Data Step Exec:", unpackedData)
+				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
+			}
+			genericData = unpackedData
+		}
+	}
+	if instance.client.Debug {
+		fmt.Println("Data Unpacked Exec:", genericData)
+	}
+
+	var decodedData []Post
+	mapstructure.Decode(genericData, &decodedData)
+	if instance.client.Debug {
+		fmt.Println("Data Exec Decoded:", decodedData)
+	}
+	return decodedData, err
+}
+
+// Post docs - generated with types
+type Post struct {
+	ID          string `json:"id"`
+	IsPublished bool   `json:"isPublished"`
+	Title       string `json:"title"`
+	Content     string `json:"content"`
+}
+
+// PostConnectionExec docs
+type PostConnectionExec struct {
 	client Client
 	stack  []Instruction
 }
 
 // PageInfo docs - executable for types
-func (instance *MasterConnectionExec) PageInfo() *PageInfoExec {
+func (instance *PostConnectionExec) PageInfo() *PageInfoExec {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
@@ -3517,47 +1814,47 @@ func (instance *MasterConnectionExec) PageInfo() *PageInfoExec {
 }
 
 // Edges docs - executable for types
-func (instance *MasterConnectionExec) Edges() *MasterEdgeExecArray {
+func (instance *PostConnectionExec) Edges() *PostEdgeExecArray {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
 		Name: "edges",
 		Field: GraphQLField{
 			Name:       "edges",
-			TypeName:   "MasterEdge",
+			TypeName:   "PostEdge",
 			TypeFields: []string{"cursor"},
 		},
 		Operation: "",
 		Args:      args,
 	})
-	return &MasterEdgeExecArray{
+	return &PostEdgeExecArray{
 		client: instance.client,
 		stack:  instance.stack,
 	}
 }
 
 // Aggregate docs - executable for types
-func (instance *MasterConnectionExec) Aggregate() *AggregateMasterExec {
+func (instance *PostConnectionExec) Aggregate() *AggregatePostExec {
 	var args []GraphQLArg
 
 	instance.stack = append(instance.stack, Instruction{
 		Name: "aggregate",
 		Field: GraphQLField{
 			Name:       "aggregate",
-			TypeName:   "AggregateMaster",
+			TypeName:   "AggregatePost",
 			TypeFields: []string{"count"},
 		},
 		Operation: "",
 		Args:      args,
 	})
-	return &AggregateMasterExec{
+	return &AggregatePostExec{
 		client: instance.client,
 		stack:  instance.stack,
 	}
 }
 
 // Exec docs
-func (instance MasterConnectionExec) Exec() (MasterConnection, error) {
+func (instance PostConnectionExec) Exec() (PostConnection, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3633,7 +1930,7 @@ func (instance MasterConnectionExec) Exec() (MasterConnection, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData MasterConnection
+	var decodedData PostConnection
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3641,14 +1938,14 @@ func (instance MasterConnectionExec) Exec() (MasterConnection, error) {
 	return decodedData, err
 }
 
-// MasterConnectionExecArray docs
-type MasterConnectionExecArray struct {
+// PostConnectionExecArray docs
+type PostConnectionExecArray struct {
 	client Client
 	stack  []Instruction
 }
 
 // Exec docs
-func (instance MasterConnectionExecArray) Exec() ([]MasterConnection, error) {
+func (instance PostConnectionExecArray) Exec() ([]PostConnection, error) {
 	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
@@ -3703,7 +2000,7 @@ func (instance MasterConnectionExecArray) Exec() ([]MasterConnection, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData []MasterConnection
+	var decodedData []PostConnection
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3711,38 +2008,18 @@ func (instance MasterConnectionExecArray) Exec() ([]MasterConnection, error) {
 	return decodedData, err
 }
 
-// MasterConnection docs - generated with types
-type MasterConnection struct {
+// PostConnection docs - generated with types
+type PostConnection struct {
 }
 
-// MasterEdgeExec docs
-type MasterEdgeExec struct {
+// AggregatePostExec docs
+type AggregatePostExec struct {
 	client Client
 	stack  []Instruction
 }
 
-// Node docs - executable for types
-func (instance *MasterEdgeExec) Node() *MasterExec {
-	var args []GraphQLArg
-
-	instance.stack = append(instance.stack, Instruction{
-		Name: "node",
-		Field: GraphQLField{
-			Name:       "node",
-			TypeName:   "Master",
-			TypeFields: []string{"id"},
-		},
-		Operation: "",
-		Args:      args,
-	})
-	return &MasterExec{
-		client: instance.client,
-		stack:  instance.stack,
-	}
-}
-
 // Exec docs
-func (instance MasterEdgeExec) Exec() (MasterEdge, error) {
+func (instance AggregatePostExec) Exec() (AggregatePost, error) {
 	var allArgs []GraphQLArg
 	variables := make(map[string]interface{})
 	for instructionKey := range instance.stack {
@@ -3818,7 +2095,7 @@ func (instance MasterEdgeExec) Exec() (MasterEdge, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData MasterEdge
+	var decodedData AggregatePost
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3826,14 +2103,14 @@ func (instance MasterEdgeExec) Exec() (MasterEdge, error) {
 	return decodedData, err
 }
 
-// MasterEdgeExecArray docs
-type MasterEdgeExecArray struct {
+// AggregatePostExecArray docs
+type AggregatePostExecArray struct {
 	client Client
 	stack  []Instruction
 }
 
 // Exec docs
-func (instance MasterEdgeExecArray) Exec() ([]MasterEdge, error) {
+func (instance AggregatePostExecArray) Exec() ([]AggregatePost, error) {
 	query := instance.client.ProcessInstructions(instance.stack)
 	variables := make(map[string]interface{})
 	for _, instruction := range instance.stack {
@@ -3888,7 +2165,7 @@ func (instance MasterEdgeExecArray) Exec() ([]MasterEdge, error) {
 		fmt.Println("Data Unpacked Exec:", genericData)
 	}
 
-	var decodedData []MasterEdge
+	var decodedData []AggregatePost
 	mapstructure.Decode(genericData, &decodedData)
 	if instance.client.Debug {
 		fmt.Println("Data Exec Decoded:", decodedData)
@@ -3896,174 +2173,8 @@ func (instance MasterEdgeExecArray) Exec() ([]MasterEdge, error) {
 	return decodedData, err
 }
 
-// MasterEdge docs - generated with types
-type MasterEdge struct {
-	Cursor string `json:"cursor"`
-}
-
-// AggregateMasterExec docs
-type AggregateMasterExec struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance AggregateMasterExec) Exec() (AggregateMaster, error) {
-	var allArgs []GraphQLArg
-	variables := make(map[string]interface{})
-	for instructionKey := range instance.stack {
-		instruction := &instance.stack[instructionKey]
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for argKey := range instruction.Args {
-			arg := &instruction.Args[argKey]
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			isUnique := false
-			for isUnique == false {
-				isUnique = true
-				for key, existingArg := range allArgs {
-					if existingArg.Name == arg.Name {
-						isUnique = false
-						arg.Name = arg.Name + "_" + strconv.Itoa(key)
-						if instance.client.Debug {
-							fmt.Println("Resolving Collision Arg Name: ", arg.Name)
-						}
-						break
-					}
-				}
-			}
-			if instance.client.Debug {
-				fmt.Println("Arg Name: ", arg.Name)
-			}
-			allArgs = append(allArgs, *arg)
-			variables[arg.Name] = arg.Value
-		}
-	}
-	query := instance.client.ProcessInstructions(instance.stack)
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData AggregateMaster
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// AggregateMasterExecArray docs
-type AggregateMasterExecArray struct {
-	client Client
-	stack  []Instruction
-}
-
-// Exec docs
-func (instance AggregateMasterExecArray) Exec() ([]AggregateMaster, error) {
-	query := instance.client.ProcessInstructions(instance.stack)
-	variables := make(map[string]interface{})
-	for _, instruction := range instance.stack {
-		if instance.client.Debug {
-			fmt.Println("Instruction Exec: ", instruction)
-		}
-		for _, arg := range instruction.Args {
-			if instance.client.Debug {
-				fmt.Println("Instruction Arg Exec: ", instruction)
-			}
-			variables[arg.Name] = arg.Value
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Query Exec:", query)
-		fmt.Println("Variables Exec:", variables)
-	}
-	data, err := instance.client.GraphQL(query, variables)
-	if instance.client.Debug {
-		fmt.Println("Data Exec:", data)
-		fmt.Println("Error Exec:", err)
-	}
-
-	var genericData interface{} // This can handle both map[string]interface{} and []interface[]
-
-	// Is unpacking needed
-	dataType := reflect.TypeOf(data)
-	if !isArray(dataType) {
-		unpackedData := data
-		for _, instruction := range instance.stack {
-			if instance.client.Debug {
-				fmt.Println("Original Unpacked Data Step Exec:", unpackedData)
-			}
-			if isArray(unpackedData[instruction.Name]) {
-				genericData = (unpackedData[instruction.Name]).([]interface{})
-				break
-			} else {
-				unpackedData = (unpackedData[instruction.Name]).(map[string]interface{})
-			}
-			if instance.client.Debug {
-				fmt.Println("Partially Unpacked Data Step Exec:", unpackedData)
-			}
-			if instance.client.Debug {
-				fmt.Println("Unpacked Data Step Instruction Exec:", instruction.Name)
-				fmt.Println("Unpacked Data Step Exec:", unpackedData)
-				fmt.Println("Unpacked Data Step Type Exec:", reflect.TypeOf(unpackedData))
-			}
-			genericData = unpackedData
-		}
-	}
-	if instance.client.Debug {
-		fmt.Println("Data Unpacked Exec:", genericData)
-	}
-
-	var decodedData []AggregateMaster
-	mapstructure.Decode(genericData, &decodedData)
-	if instance.client.Debug {
-		fmt.Println("Data Exec Decoded:", decodedData)
-	}
-	return decodedData, err
-}
-
-// AggregateMaster docs - generated with types
-type AggregateMaster struct {
+// AggregatePost docs - generated with types
+type AggregatePost struct {
 	Count int32 `json:"count"`
 }
 
