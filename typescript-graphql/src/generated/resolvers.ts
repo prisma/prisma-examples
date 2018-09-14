@@ -59,7 +59,7 @@ export namespace QueryResolvers {
 export namespace MutationResolvers {
   export interface ArgsCreateDraft {
     title: string;
-    content: string | null;
+    content: string;
   }
 
   export type CreateDraftResolver<T extends ITypeMap> = (
@@ -67,7 +67,7 @@ export namespace MutationResolvers {
     args: ArgsCreateDraft,
     ctx: T["Context"],
     info: GraphQLResolveInfo
-  ) => T["PostParent"] | null | Promise<T["PostParent"] | null>;
+  ) => T["PostParent"] | Promise<T["PostParent"]>;
 
   export interface ArgsDeletePost {
     id: string;
@@ -97,7 +97,7 @@ export namespace MutationResolvers {
       args: ArgsCreateDraft,
       ctx: T["Context"],
       info: GraphQLResolveInfo
-    ) => T["PostParent"] | null | Promise<T["PostParent"] | null>;
+    ) => T["PostParent"] | Promise<T["PostParent"]>;
     deletePost: (
       parent: T["MutationParent"],
       args: ArgsDeletePost,
