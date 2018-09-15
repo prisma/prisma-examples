@@ -23,7 +23,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript-cli-example
+cd prisma-examples/node-cli-example
 yarn install # or `npm install`
 ```
 
