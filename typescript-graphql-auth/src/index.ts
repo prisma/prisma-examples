@@ -1,6 +1,6 @@
-import { GraphQLServer } from 'graphql-yoga';
-import { resolvers } from './resolvers';
-import { Prisma } from './generated/prisma-client';
+import { GraphQLServer } from 'graphql-yoga'
+import { resolvers } from './resolvers'
+import { Prisma } from './generated/prisma-client'
 
 const server = new GraphQLServer({
   typeDefs: 'src/schema.graphql',
@@ -8,9 +8,9 @@ const server = new GraphQLServer({
   context: req => {
     return {
       ...req,
-      db: new Prisma({ debug: true })
-    };
-  }
-} as any);
+      db: new Prisma({ debug: true }),
+    }
+  },
+} as any)
 
-server.start(() => console.log('Server is running on localhost:4000'));
+server.start(() => console.log('Server is running on localhost:4000'))

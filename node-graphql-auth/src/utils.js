@@ -1,25 +1,25 @@
-const { verify } = require("jsonwebtoken");
+const { verify } = require('jsonwebtoken')
 
-const APP_SECRET = "appsecret321";
+const APP_SECRET = 'appsecret321'
 
 class AuthError extends Error {
   constructor() {
-    super("Not authorized");
+    super('Not authorized')
   }
 }
 
 function getUserId(context) {
-  const Authorization = context.request.get("Authorization");
+  const Authorization = context.request.get('Authorization')
   if (Authorization) {
-    const token = Authorization.replace("Bearer ", "");
-    const verifiedToken = verify(token, APP_SECRET);
-    return verifiedToken && verifiedToken.userId;
+    const token = Authorization.replace('Bearer ', '')
+    const verifiedToken = verify(token, APP_SECRET)
+    return verifiedToken && verifiedToken.userId
   }
 
-  throw new AuthError();
+  throw new AuthError()
 }
 
 module.exports = {
   getUserId,
-  APP_SECRET
+  APP_SECRET,
 }

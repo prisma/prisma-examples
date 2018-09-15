@@ -8,7 +8,7 @@ const resolvers = {
   Mutation,
   User,
   Post,
-};
+}
 
 module.exports = {
   resolvers,

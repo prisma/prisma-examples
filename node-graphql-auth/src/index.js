@@ -1,16 +1,16 @@
-const { GraphQLServer } = require("graphql-yoga");
-const { resolvers } = require("./resolvers");
-const { Prisma } = require("./generated/prisma-client");
+const { GraphQLServer } = require('graphql-yoga')
+const { resolvers } = require('./resolvers')
+const { Prisma } = require('./generated/prisma-client')
 
 const server = new GraphQLServer({
-  typeDefs: "src/schema.graphql",
+  typeDefs: 'src/schema.graphql',
   resolvers,
   context: req => {
     return {
       ...req,
-      prisma: new Prisma()
-    };
-  }
-});
+      prisma: new Prisma(),
+    }
+  },
+})
 
-server.start(() => console.log("Server is running on http://localhost:4000"));
+server.start(() => console.log('Server is running on http://localhost:4000'))
