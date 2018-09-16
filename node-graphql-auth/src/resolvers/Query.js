@@ -1,8 +1,8 @@
 const { getUserId } = require('../utils')
 
 const Query = {
-  me: (_, {}, context) => {
-    return context.prisma.user({ id: getUserId(context) })
+  me: (parent, args, ctx) => {
+    return ctx.db.user({ id: getUserId(ctx) })
   },
 }
 

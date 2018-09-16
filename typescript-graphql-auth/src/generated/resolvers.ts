@@ -1,118 +1,152 @@
 import { GraphQLResolveInfo } from 'graphql'
 
-export interface ResolverFn<Root, Args, Ctx, Payload> {
-  (root: Root, args: Args, ctx: Ctx, info: GraphQLResolveInfo):
-    | Payload
-    | Promise<Payload>
-}
-
-export interface ITypes {
+export interface ITypeMap {
   Context: any
 
-  QueryRoot: any
-  MutationRoot: any
-  AuthPayloadRoot: any
-  UserRoot: any
+  QueryParent: any
+  MutationParent: any
+  AuthPayloadParent: any
+  UserParent: any
 }
 
-export namespace IQuery {
-  export type MeResolver<T extends ITypes> = ResolverFn<
-    T['QueryRoot'],
-    {},
-    T['Context'],
-    T['UserRoot'] | null
-  >
+export namespace QueryResolvers {
+  export type MeType<T extends ITypeMap> = (
+    parent: T['QueryParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => T['UserParent'] | null | Promise<T['UserParent'] | null>
 
-  export interface Resolver<T extends ITypes> {
-    me: MeResolver<T>
+  export interface Type<T extends ITypeMap> {
+    me: (
+      parent: T['QueryParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => T['UserParent'] | null | Promise<T['UserParent'] | null>
   }
 }
 
-export namespace IMutation {
+export namespace MutationResolvers {
   export interface ArgsSignup {
     name: string
     email: string
     password: string
   }
 
-  export type SignupResolver<T extends ITypes> = ResolverFn<
-    T['MutationRoot'],
-    ArgsSignup,
-    T['Context'],
-    T['AuthPayloadRoot']
-  >
+  export type SignupType<T extends ITypeMap> = (
+    parent: T['MutationParent'],
+    args: ArgsSignup,
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => T['AuthPayloadParent'] | Promise<T['AuthPayloadParent']>
 
   export interface ArgsLogin {
     email: string
     password: string
   }
 
-  export type LoginResolver<T extends ITypes> = ResolverFn<
-    T['MutationRoot'],
-    ArgsLogin,
-    T['Context'],
-    T['AuthPayloadRoot']
-  >
+  export type LoginType<T extends ITypeMap> = (
+    parent: T['MutationParent'],
+    args: ArgsLogin,
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => T['AuthPayloadParent'] | Promise<T['AuthPayloadParent']>
 
-  export interface Resolver<T extends ITypes> {
-    signup: SignupResolver<T>
-    login: LoginResolver<T>
+  export interface Type<T extends ITypeMap> {
+    signup: (
+      parent: T['MutationParent'],
+      args: ArgsSignup,
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => T['AuthPayloadParent'] | Promise<T['AuthPayloadParent']>
+    login: (
+      parent: T['MutationParent'],
+      args: ArgsLogin,
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => T['AuthPayloadParent'] | Promise<T['AuthPayloadParent']>
   }
 }
 
-export namespace IAuthPayload {
-  export type TokenResolver<T extends ITypes> = ResolverFn<
-    T['AuthPayloadRoot'],
-    {},
-    T['Context'],
-    string
-  >
+export namespace AuthPayloadResolvers {
+  export type TokenType<T extends ITypeMap> = (
+    parent: T['AuthPayloadParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => string | Promise<string>
 
-  export type UserResolver<T extends ITypes> = ResolverFn<
-    T['AuthPayloadRoot'],
-    {},
-    T['Context'],
-    T['UserRoot']
-  >
+  export type UserType<T extends ITypeMap> = (
+    parent: T['AuthPayloadParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => T['UserParent'] | Promise<T['UserParent']>
 
-  export interface Resolver<T extends ITypes> {
-    token: TokenResolver<T>
-    user: UserResolver<T>
+  export interface Type<T extends ITypeMap> {
+    token: (
+      parent: T['AuthPayloadParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => string | Promise<string>
+    user: (
+      parent: T['AuthPayloadParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => T['UserParent'] | Promise<T['UserParent']>
   }
 }
 
-export namespace IUser {
-  export type IdResolver<T extends ITypes> = ResolverFn<
-    T['UserRoot'],
-    {},
-    T['Context'],
-    string
-  >
+export namespace UserResolvers {
+  export type IdType<T extends ITypeMap> = (
+    parent: T['UserParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => string | Promise<string>
 
-  export type EmailResolver<T extends ITypes> = ResolverFn<
-    T['UserRoot'],
-    {},
-    T['Context'],
-    string
-  >
+  export type EmailType<T extends ITypeMap> = (
+    parent: T['UserParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => string | Promise<string>
 
-  export type NameResolver<T extends ITypes> = ResolverFn<
-    T['UserRoot'],
-    {},
-    T['Context'],
-    string | null
-  >
+  export type NameType<T extends ITypeMap> = (
+    parent: T['UserParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => string | null | Promise<string | null>
 
-  export interface Resolver<T extends ITypes> {
-    id: IdResolver<T>
-    email: EmailResolver<T>
-    name: NameResolver<T>
+  export interface Type<T extends ITypeMap> {
+    id: (
+      parent: T['UserParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => string | Promise<string>
+    email: (
+      parent: T['UserParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => string | Promise<string>
+    name: (
+      parent: T['UserParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => string | null | Promise<string | null>
   }
 }
 
-export interface IResolvers<T extends ITypes> {
-  Query: IQuery.Resolver<T>
-  Mutation: IMutation.Resolver<T>
-  AuthPayload: IAuthPayload.Resolver<T>
-  User: IUser.Resolver<T>
+export interface IResolvers<T extends ITypeMap> {
+  Query: QueryResolvers.Type<T>
+  Mutation: MutationResolvers.Type<T>
+  AuthPayload: AuthPayloadResolvers.Type<T>
+  User: UserResolvers.Type<T>
 }
