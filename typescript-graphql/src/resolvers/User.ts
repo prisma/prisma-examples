@@ -1,10 +1,12 @@
 import { UserResolvers } from '../generated/resolvers'
-import { TypeMap } from '../types/TypeMap'
+import { TypeMap } from './types/TypeMap'
+import { PostParent } from './Post'
 
 export interface UserParent {
   id: string
   email: string
   name: string
+  posts: PostParent[]
 }
 
 export const User: UserResolvers.Type<TypeMap> = {
