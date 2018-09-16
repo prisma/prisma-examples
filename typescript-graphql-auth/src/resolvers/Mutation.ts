@@ -1,13 +1,13 @@
 import { hash, compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
+import { MutationResolvers } from '../generated/resolvers'
 import { APP_SECRET } from '../utils'
-import { IMutation } from '../generated/resolvers'
-import { Types } from './types'
+import { TypeMap } from './types/TypeMap'
 
-export interface MutationRoot {}
+export interface MutationParent {}
 
-export const Mutation: IMutation.Resolver<Types> = {
-  signup: async (_, { name, email, password }, ctx) => {
+export const Mutation: MutationResolvers.Type<TypeMap> = {
+  signup: async (_parent, { password, name, email }, ctx) => {
     const hashedPassword = await hash(password, 10)
     const user = await ctx.db.createUser({
       name,
@@ -20,7 +20,7 @@ export const Mutation: IMutation.Resolver<Types> = {
       user,
     }
   },
-  login: async (_, { email, password }, ctx) => {
+  login: async (_parent, { email, password }, ctx) => {
     const user = await ctx.db.user({ email })
 
     if (!user) {

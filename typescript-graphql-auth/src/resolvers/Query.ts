@@ -1,11 +1,11 @@
-import { IQuery } from '../generated/resolvers'
+import { QueryResolvers } from '../generated/resolvers'
 import { getUserId } from '../utils'
-import { Types } from './types'
+import { TypeMap } from './types/TypeMap'
 
-export interface QueryRoot {}
+export interface QueryParent {}
 
-export const Query: IQuery.Resolver<Types> = {
-  me: (_, {}, ctx) => {
+export const Query: QueryResolvers.Type<TypeMap> = {
+  me: (_parent, _args, ctx) => {
     return ctx.db.user({ id: getUserId(ctx) })
   },
 }

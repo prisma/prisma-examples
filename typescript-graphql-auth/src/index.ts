@@ -1,6 +1,6 @@
 import { GraphQLServer } from 'graphql-yoga'
+import { prisma } from './generated/prisma-client'
 import { resolvers } from './resolvers'
-import { Prisma } from './generated/prisma-client'
 
 const server = new GraphQLServer({
   typeDefs: 'src/schema.graphql',
@@ -8,7 +8,7 @@ const server = new GraphQLServer({
   context: req => {
     return {
       ...req,
-      db: new Prisma({ debug: true }),
+      db: prisma,
     }
   },
 } as any)

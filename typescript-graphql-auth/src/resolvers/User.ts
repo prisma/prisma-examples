@@ -1,14 +1,14 @@
-import { IUser } from '../generated/resolvers'
-import { Types } from './types'
+import { UserResolvers } from '../generated/resolvers'
+import { TypeMap } from './types/TypeMap'
 
-export interface UserRoot {
+export interface UserParent {
   id: string
   email: string
   name?: string
 }
 
-export const User: IUser.Resolver<Types> = {
-  id: root => root.id,
-  email: root => root.email,
-  name: root => root.name,
+export const User: UserResolvers.Type<TypeMap> = {
+  id: parent => parent.id,
+  email: parent => parent.email,
+  name: parent => parent.name,
 }

@@ -1,13 +1,13 @@
-import { IAuthPayload } from '../generated/resolvers'
-import { Types } from './types'
-import { UserRoot } from './User'
+import { AuthPayloadResolvers } from '../generated/resolvers'
+import { TypeMap } from './types/TypeMap'
+import { UserParent } from './User'
 
-export interface AuthPayloadRoot {
+export interface AuthPayloadParent {
   token: string
-  user: UserRoot
+  user: UserParent
 }
 
-export const AuthPayload: IAuthPayload.Resolver<Types> = {
-  token: root => root.token,
-  user: root => root.user,
+export const AuthPayload: AuthPayloadResolvers.Type<TypeMap> = {
+  token: parent => parent.token,
+  user: parent => parent.user,
 }

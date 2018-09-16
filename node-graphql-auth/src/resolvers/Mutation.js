@@ -3,9 +3,9 @@ const { sign } = require('jsonwebtoken')
 const { APP_SECRET } = require('../utils')
 
 const Mutation = {
-  signup: async (_, { name, email, password }, context) => {
+  signup: async (parent, { name, email, password }, ctx) => {
     const hashedPassword = await hash(password, 10)
-    const user = await context.prisma.createUser({
+    const user = await ctx.db.createUser({
       name,
       email,
       password: hashedPassword,
@@ -16,8 +16,8 @@ const Mutation = {
       user,
     }
   },
-  login: async (_, { email, password }, context) => {
-    const user = await context.prisma.user({ email })
+  login: async (parent, { email, password }, ctx) => {
+    const user = await ctx.db.user({ email })
 
     if (!user) {
       throw new Error(`No user found for email: ${email}`)
