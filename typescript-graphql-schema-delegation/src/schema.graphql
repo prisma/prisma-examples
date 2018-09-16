@@ -1,15 +1,30 @@
+scalar DateTime
+
 type Query {
-  masters: [Master!]!
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
 }
 
-type Master {
-  id: ID!
-  catz: [Cat!]!
+type Mutation {
+  createDraft(title: String!, content: String!, authorEmail: String!): Post!
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
 }
 
-type Cat {
+type Post {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isPublished: Boolean!
+  title: String!
+  content: String!
+  author: User!
+}
+
+type User {
+  id: ID!
+  email: String!
   name: String!
-  color: String!
-  favBrother: Cat
+  posts: [Post!]!
 }
