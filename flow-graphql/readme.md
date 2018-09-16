@@ -1,6 +1,6 @@
-# node-graphql
+# flow-graphql
 
-This example demonstrates how to implement a **GraphQL server with JavaScript** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
+This example demonstrates how to implement a **GraphQL server with Flow** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 ## Get started
 
