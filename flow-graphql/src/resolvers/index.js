@@ -1,7 +1,7 @@
-const { Query } = require('./Query')
-const { Mutation } = require('./Mutation')
-const { Post } = require('./Post')
-const { User } = require('./User')
+import { Query } from './Query'
+import { Mutation } from './Mutation'
+import { Post } from './Post'
+import { User } from './User'
 
 export const resolvers = {
   Query,
