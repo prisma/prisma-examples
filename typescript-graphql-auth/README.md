@@ -45,9 +45,9 @@ To deploy your service to a demo server (rather than locally with Docker), follo
   ```
   yarn prisma deploy --new
   ```
-- In the interactive CLI wizard: 
+- In the interactive CLI wizard:
   - Select the **Demo server**
-  - For all following questions, choose the suggested values by just hitting **Enter**   
+  - For all following questions, choose the suggested values by just hitting **Enter**
 
 </details>
 
@@ -77,7 +77,7 @@ You can send the following mutation in the Playground to sign up a new user and 
 
 ```graphql
 mutation {
-  signup(email: "alice@prisma.io", password: "graphql") {
+  signup(name: "Alice", email: "alice@prisma.io", password: "graphql") {
     token
   }
 }
@@ -107,9 +107,10 @@ Once you've set the header, you can send the following query to check whether th
 {
   me {
     id
+    name
     email
   }
 }
 ```
 
-If the token is valid, the server will return the `id` and `email` of the `User` node that it belongs to.
+If the token is valid, the server will return the `id`, `name`, and `email` of the `User` node that it belongs to.
