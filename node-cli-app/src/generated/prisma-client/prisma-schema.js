@@ -1,4 +1,5 @@
-export const typeDefs = /* GraphQL */ `type AggregateTodo {
+module.exports = {
+        typeDefs: /* GraphQL */ `type AggregateTodo {
   count: Int!
 }
 
@@ -154,3 +155,5 @@ input TodoWhereUniqueInput {
   title: String
 }
 `
+      }
+    

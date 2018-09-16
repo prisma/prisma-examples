@@ -1,6 +1,4 @@
-const { Prisma } = require('./prisma-client')
-
-const prisma = new Prisma()
+const { prisma } = require('./generated/prisma-client')
 
 const TodoCommand = async () => {
   if (process.argv.length <= 2) {
