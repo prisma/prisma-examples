@@ -2,4 +2,4 @@ endpoint: https://eu1.prisma.sh/lol/prisma/dev
 datamodel: datamodel.prisma
 generate:
   - generator: javascript-client
-    output: ../src/prisma-client/
+    output: ../src/generated/prisma-client/
