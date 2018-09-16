@@ -1,32 +1,48 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Prisma } = require('./prisma-client')
+const { prisma } = require('./generated/prisma-client')
 
 const app = express()
 
-const prisma = new Prisma({ debug: true })
-
 app.use(bodyParser.json())
 
-app.post(`/house`, async (req, res) => {
-  const result = await prisma.createHouse(req.body)
+app.post(`/draft`, async (req, res) => {
+  const result = await prisma.createPost({
+    ...req.body,
+    author: { connect: { email: 'alice@prisma.io' } },
+  })
   res.json(result)
 })
 
-app.get(`/house/:id`, async (req, res) => {
+app.get(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const houses = await prisma.house({ id })
-  res.json(houses)
+  const post = await prisma.post({ id })
+  res.json(post)
 })
 
-app.get('/houses', async (req, res) => {
-  const houses = await prisma.houses()
-  res.json(houses)
+app.get(`/delete/:id`, async (req, res) => {
+  const { id } = req.params
+  const post = await prisma.deletePost({ id })
+  res.json(post)
 })
 
-app.get('/windows', async (req, res) => {
-  const windows = await prisma.windows()
-  res.json(windows)
+app.get('/publish/:id', async (req, res) => {
+  const { id } = req.params
+  const post = await prisma.updatePost({
+    where: { id },
+    data: { isPublished: true },
+  })
+  res.json(post)
+})
+
+app.get('/drafts', async (req, res) => {
+  const draftPosts = await prisma.posts({ where: { isPublished: false } })
+  res.json(draftPosts)
+})
+
+app.get('/feed', async (req, res) => {
+  const posts = await prisma.posts({ where: { isPublished: true } })
+  res.json(posts)
 })
 
 app.listen(3000, () =>

@@ -1,10 +1,16 @@
-type House {
+type Post {
   id: ID! @unique
-  windows: [Window!]!
-  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isPublished: Boolean! @default(value: "false")
+  title: String!
+  content: String!
+  author: User!
 }
 
-type Window {
+type User {
   id: ID! @unique
-  size: Int!
+  name: String!
+  email: String! @unique
+  posts: [Post!]!
 }
