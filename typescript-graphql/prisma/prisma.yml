@@ -1,4 +1,4 @@
-endpoint: https://eu1.prisma.sh/demo/delete-me-3/dev
+endpoint: http://localhost:4466
 datamodel: datamodel.prisma
 seed:
   import: seed.graphql

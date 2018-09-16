@@ -5,11 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "graphql": "^0.13.2",
-    "prisma-client-lib": "0.2.57"
+    "prisma-client-lib": "0.2.58"
   },
   "devDependencies": {
     "graphql-cli": "^2.16.7",
-    "prisma": "1.17.0-beta.10"
+    "prisma": "1.17.0-beta.11"
   },
   "scripts": {
     "prisma": "cd prisma && prisma",
