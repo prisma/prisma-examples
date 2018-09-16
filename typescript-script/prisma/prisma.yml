@@ -1,5 +1,7 @@
-endpoint: https://eu1.prisma.sh/lol/prisma/dev
+endpoint: http://localhost:4466
 datamodel: datamodel.prisma
+seed:
+  import: seed.graphql
 generate:
   - generator: typescript-client
     output: ../src/generated/prisma-client/

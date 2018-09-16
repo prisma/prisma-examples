@@ -1,11 +1,16 @@
-type Cat {
+type Post {
   id: ID! @unique
-  name: String!
-  color: String!
-  favBrother: Cat
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isPublished: Boolean! @default(value: "false")
+  title: String!
+  content: String!
+  author: User!
 }
 
-type Master {
+type User {
   id: ID! @unique
-  catz: [Cat!]!
+  name: String!
+  email: String! @unique
+  posts: [Post!]!
 }
