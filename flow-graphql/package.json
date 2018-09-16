@@ -4,6 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "flow-bin": "^0.80.0",
     "graphql-resolver-codegen": "^0.2.2",
     "prisma": "1.17.0-beta.11"
   },
@@ -13,7 +18,7 @@
     "prisma-client-lib": "0.2.58"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "babel-node src/index.js",
     "prisma": "cd prisma && prisma",
     "graphql-resolver-codegen": "graphql-resolver-codegen"
   }
