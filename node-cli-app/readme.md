@@ -45,9 +45,9 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
   ```
   yarn prisma deploy --new
   ```
-- In the interactive CLI wizard: 
+- In the interactive CLI wizard:
   - Select the **Demo server**
-  - For all following questions, choose the suggested values by just hitting **Enter**   
+  - For all following questions, choose the suggested values by just hitting **Enter**
 
 </details>
 
@@ -60,17 +60,17 @@ yarn cli
 #### Add a Todo item
 
 ```sh
-yarn cli -- add Groceries
+yarn cli add Groceries
 ```
 
 #### List all Todo items
 
 ```sh
-yarn cli -- list
+yarn cli list
 ```
 
 #### Delete a Todo item
 
 ```sh
-yarn cli -- delete Groceries
+yarn cli delete Groceries
 ```
