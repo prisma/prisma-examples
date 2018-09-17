@@ -762,8 +762,9 @@ export type DateTimeOutput = string;
  * Type Defs
  */
 
-export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
-  typeDefs,
-  endpoint: "http://localhost:4466"
-});
-export const prisma = new Prisma();
+// export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
+//   typeDefs,
+//   endpoint: "http://localhost:4466"
+// });
+// export const prisma = new Prisma();
+export const prisma: Prisma;
