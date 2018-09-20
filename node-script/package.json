@@ -11,7 +11,7 @@
     "prisma": "1.17.0-beta.11"
   },
   "scripts": {
-    "prisma": "cd prisma && prisma",
+    "prisma": "prisma",
     "start": "node src/usage.js"
   }
 }

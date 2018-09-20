@@ -5,47 +5,33 @@ import { prisma } from './generated/prisma-client'
 
 // A `main` function so that we can use async/await
 async function main() {
-  console.log('Creating a draft post with our seeded user alice@prisma.io')
-  console.log(
-    '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
-  )
-  const draftPost = await prisma.createPost({
+
+  const post = await prisma.createPost({
     title: 'Draft post',
     content: 'This is a draft post.',
     author: { connect: { email: 'alice@prisma.io' } },
   })
 
-  const id = draftPost.id
+  const id = post.id
+  console.log(`Created post with id ${id}`)
 
-  console.log(`Draft Post:`, draftPost)
-  console.log(`Post Id:`, id)
+  const posts = await prisma.posts({ where: { isPublished: false } })
+  console.log(`Queried unpublished posts:`, posts)
 
-  console.log('Querying for all draft posts')
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-  const draftPosts = await prisma.posts({ where: { isPublished: false } })
-  console.log(`Draft Posts:`, draftPosts)
-
-  console.log(`Publishing Draft Post ${id}`)
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~')
   await prisma.updatePost({
     where: { id },
     data: { isPublished: true },
   })
-
-  console.log('Querying for all published posts')
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+  console.log(`Published Post with id: ${id}`)
 
   const publishedPosts = await prisma.posts({ where: { isPublished: true } })
-  console.log(`Published Posts:`, publishedPosts)
+  console.log(`Queried published posts`, publishedPosts)
 
-  console.log(`Querying for post with id ${id}`)
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-  const post = await prisma.post({ id })
-  console.log(`Post:`, post)
+  const publishedPost = await prisma.post({ id })
+  console.log(`Queried for post with id ${id}`, publishedPost)
 
-  console.log(`Deleting Post ${id}`)
-  console.log('~~~~~~~~~~~~~~~~~~~')
   await prisma.deletePost({ id })
+  console.log(`Deleted post with id ${id}`)
 }
 
 main().catch(e => console.error(e))
