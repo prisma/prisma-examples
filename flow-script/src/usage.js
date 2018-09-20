@@ -5,7 +5,6 @@ import { prisma } from './generated/prisma-client'
 
 // A `main` function so that we can use async/await
 async function main() {
-
   const post = await prisma.createPost({
     title: 'Draft post',
     content: 'This is a draft post.',
