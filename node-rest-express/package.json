@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
-    "prisma": "cd prisma && prisma"
+    "prisma": "prisma"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
