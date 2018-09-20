@@ -13,7 +13,7 @@
     "typescript": "3.0.1"
   },
   "scripts": {
-    "prisma": "prisma",
+    "prisma": "cd prisma && prisma",
     "start": "ts-node src/usage.ts"
   }
 }
