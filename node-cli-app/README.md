@@ -34,7 +34,7 @@ You will now deploy the Prisma API that's backing this example. This requires yo
 ```
 docker-compose up -d
 
-cd primsa
+cd prisma
 
 yarn prisma deploy
 ```
