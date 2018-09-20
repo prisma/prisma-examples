@@ -4,15 +4,7 @@ This example demonstrates how to implement a **Todo-app as a CLI tool** with Nod
 
 ## Get started
 
-### 1. Install the Prisma CLI
-
-```
-yarn global add prisma
-# or
-npm install -g prisma
-```
-
-### 2. Download example & Install dependencies
+### 1. Download example & Install dependencies
 
 Clone the repository:
 
@@ -27,7 +19,7 @@ cd prisma-examples/node-cli-example
 yarn install # or `npm install`
 ```
 
-### 3. Deploy the Prisma API
+### 2. Deploy the Prisma API
 
 You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
 
@@ -36,6 +28,7 @@ docker-compose up -d
 
 cd prisma
 
+# provided as a script in package.json
 yarn prisma deploy
 ```
 
@@ -54,7 +47,7 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
 
 </details>
 
-### 4. Use the app
+### 3. Use the app
 
 ```
 yarn cli
