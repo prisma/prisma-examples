@@ -8,7 +8,7 @@
   "license": "Apache 2",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "prisma": "prisma",
+    "prisma": "cd prisma && prisma",
     "graphql-resolver-codegen": "graphql-resolver-codegen"
   },
   "dependencies": {

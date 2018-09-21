@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "prisma": "prisma",
+    "prisma": "cd prisma && prisma",
     "graphql-resolver-codegen": "graphql-resolver-codegen"
   }
 }
