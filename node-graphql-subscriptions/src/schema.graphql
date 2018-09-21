@@ -19,7 +19,7 @@ type PostSubscriptionPayload {
 
 
 type Subscription {
-  publications: PostSubscriptionPayload
+  posts: Post
 }
 
 type Post {

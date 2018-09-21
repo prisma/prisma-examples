@@ -1,5 +1,5 @@
 const Subscription = {
-  publications: {
+  posts: {
     subscribe: async (_, args, ctx, info) => {
       return await ctx.db.$subscribe.post({
         where: {
@@ -7,6 +7,9 @@ const Subscription = {
         }
       }).node()
     },
+    resolve: (payload) => {
+      return payload;
+    }
   },
 }
 
