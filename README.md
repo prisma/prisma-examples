@@ -29,3 +29,8 @@ If you're looking for a more complex real-world application you can check out th
 | Repo | Language | Description |
 |:-----|:--------:|:-------------|
 | [`graphql-prisma-typescript`](https://github.com/prisma/graphql-prisma-typescript) | [TypeScript](https://www.typescriptlang.org/) | TypeScript-based GraphQL server (Airbnb clone)  |
+
+## Legacy Examples
+
+We have a few old examples in the [`archive`](https://github.com/prisma/prisma-examples/tree/master/archive) folder, which are not yet using the Prisma Client.
+One of these examples is the [`Travis`](https://github.com/prisma/prisma-examples/tree/master/archive/travis) on how to run Prisma in the Travis CI environment.
