@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "dotenv-cli": "1.4.0",
-    "graphql-cli": "2.16.1",
+    "graphql-cli": "2.16.7",
     "nodemon": "1.17.5",
     "prisma": "1.17.1"
   }
