@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "7.0.1",
+    "@babel/core": "7.1.0",
     "@babel/node": "7.0.0",
-    "@babel/preset-env": "7.0.0",
+    "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
     "flow-bin": "0.80.0",
     "graphql-resolver-codegen": "0.2.2",
