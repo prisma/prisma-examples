@@ -8,7 +8,7 @@
     "prisma-client-lib": "0.2.58"
   },
   "devDependencies": {
-    "graphql-cli": "^2.16.7",
+    "graphql-cli": "2.16.7",
     "prisma": "1.17.0-beta.11"
   },
   "scripts": {
