@@ -8,7 +8,7 @@
     "build": "rm -rf dist && tsc"
   },
   "dependencies": {
-    "graphql": "0.12.3",
+    "graphql": "0.13.2",
     "graphql-import": "0.4.1",
     "graphql-yoga": "1.2.0",
     "isomorphic-fetch": "2.2.1",
