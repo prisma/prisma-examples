@@ -20,10 +20,10 @@
     "prisma-client-lib": "0.2.58"
   },
   "devDependencies": {
-    "@types/bcrypt": "^2.0.0",
-    "graphql-resolver-codegen": "^0.2.2",
+    "@types/bcrypt": "2.0.0",
+    "graphql-resolver-codegen": "0.2.2",
     "prisma": "1.17.0-beta.11",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.0.1"
+    "ts-node": "7.0.1",
+    "typescript": "3.0.3"
   }
 }
