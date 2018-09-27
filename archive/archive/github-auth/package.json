@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "graphql": "0.13.2",
-    "graphql-import": "0.4.1",
+    "graphql-import": "0.7.1",
     "graphql-yoga": "1.2.0",
     "isomorphic-fetch": "2.2.1",
     "jsonwebtoken": "8.1.1",

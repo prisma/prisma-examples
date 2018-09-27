@@ -2300,7 +2300,7 @@ graphql-import@0.4.5, graphql-import@^0.4.4:
   dependencies:
     lodash "^4.17.4"
 
-graphql-import@^0.7.1:
+graphql-import@0.7.1, graphql-import@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/graphql-import/-/graphql-import-0.7.1.tgz#4add8d91a5f752d764b0a4a7a461fcd93136f223"
   dependencies:
