@@ -13,7 +13,7 @@
     "aws-sdk": "2.324.0",
     "express": "4.16.3",
     "graphql": "0.13.2",
-    "graphql-import": "0.4.1",
+    "graphql-import": "0.7.1",
     "graphql-yoga": "1.2.0",
     "mime-types": "2.1.17",
     "multiparty": "4.1.3",
