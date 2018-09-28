@@ -9,7 +9,7 @@
     "flow": "flow"
   },
   "devDependencies": {
-    "@babel/core": "7.1.1",
+    "@babel/core": "7.1.2",
     "@babel/node": "7.0.0",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
