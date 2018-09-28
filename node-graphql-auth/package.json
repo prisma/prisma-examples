@@ -12,7 +12,7 @@
     "graphql": "0.13.2",
     "graphql-yoga": "1.16.2",
     "jsonwebtoken": "8.3.0",
-    "prisma-client-lib": "0.2.58"
+    "prisma-client-lib": "1.17.1"
   },
   "devDependencies": {
     "prisma": "1.17.1"
