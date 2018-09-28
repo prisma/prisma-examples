@@ -11,7 +11,7 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "prisma": "1.8.3"
+    "prisma": "1.17.1"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
