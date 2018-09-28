@@ -9,7 +9,7 @@
     "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
     "flow-bin": "0.81.0",
-    "graphql-resolver-codegen": "0.2.3",
+    "graphql-resolver-codegen": "0.2.4",
     "prisma": "1.17.1"
   },
   "dependencies": {
