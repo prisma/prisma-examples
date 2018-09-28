@@ -2515,11 +2515,11 @@ graphql-schema-linter@0.1.1:
     graphql "^0.13.0"
     lodash "^4.17.4"
 
-graphql-shield@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/graphql-shield/-/graphql-shield-2.1.0.tgz#72a0f0bc91f5aa446223748e2e770c1673323b24"
+graphql-shield@^3.0.0:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/graphql-shield/-/graphql-shield-3.2.4.tgz#9d2faec48996a71a61dfdc7de0bb529243784cce"
   dependencies:
-    graphql-middleware "1.2.5"
+    object-hash "^1.3.0"
     opencollective "1.0.3"
 
 graphql-static-binding@0.8.0:
@@ -4044,6 +4044,10 @@ object-copy@^0.1.0:
     copy-descriptor "^0.1.0"
     define-property "^0.2.5"
     kind-of "^3.0.3"
+
+object-hash@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-1.3.0.tgz#76d9ba6ff113cf8efc0d996102851fe6723963e2"
 
 object-keys@^1.0.12:
   version "1.0.12"
