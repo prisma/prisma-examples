@@ -18,7 +18,7 @@
     "mime-types": "2.1.20",
     "multiparty": "4.2.1",
     "prisma-binding": "1.5.19",
-    "uuid": "3.2.1"
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "dotenv-cli": "1.4.0",
