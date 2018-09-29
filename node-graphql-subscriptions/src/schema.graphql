@@ -12,12 +12,6 @@ type Mutation {
   publish(id: ID!): Post
 }
 
-type PostSubscriptionPayload {
-  node: Post
-  updatedFields: [String!]
-}
-
-
 type Subscription {
   posts: Post
 }
