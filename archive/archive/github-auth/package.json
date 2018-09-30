@@ -21,7 +21,7 @@
     "nodemon": "1.18.4",
     "prisma": "1.17.1",
     "ts-node": "4.1.0",
-    "typescript": "2.9.2"
+    "typescript": "3.1.1"
   },
   "license": "MIT",
   "prettier": {
