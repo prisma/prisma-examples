@@ -13,7 +13,7 @@
     "@babel/node": "7.0.0",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
-    "flow-bin": "0.81.0",
+    "flow-bin": "0.82.0",
     "prisma": "1.17.1"
   },
   "dependencies": {
