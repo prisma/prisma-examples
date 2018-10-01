@@ -2,7 +2,7 @@ version: '3'
 services:
   prisma:
     image: prismagraphql/prisma:1.8
-    restart: always
+    restart: on-failure
     ports:
     - "4466:4466"
     environment:
@@ -20,7 +20,7 @@ services:
             migrations: true
   mysql:
     image: mysql:5.7
-    restart: always
+    restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: prisma
     volumes:
