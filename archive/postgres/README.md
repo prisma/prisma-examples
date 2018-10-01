@@ -47,7 +47,7 @@ This part of the configuration declares the service for postgres database which 
 ```yml
 postgres:
     image: postgres
-    restart: always
+    restart: on-failure
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
