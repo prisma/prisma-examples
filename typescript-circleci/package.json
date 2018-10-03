@@ -5,7 +5,8 @@
   "author": "Waldemar Penner",
   "license": "MIT",
   "scripts": {
-    "test": "jest --forceExit --detectOpenHandles"
+    "test": "jest --forceExit --detectOpenHandles",
+    "prisma": "cd prisma && prisma"
   },
   "devDependencies": {
     "jest": "^23.6.0",
