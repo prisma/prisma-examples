@@ -21,6 +21,8 @@ Next, navigate into the downloaded folder and initiate a new git repository:
 ```sh
 cd circleci
 git init .
+git add .
+git commit -m "Initial commit"
 ```
 
 In your GitHub account, create a new repository and copy its git URL, for example:
@@ -41,7 +43,7 @@ git push --set-upstream origin master
 
 ### 3. Add project in CircleCI
 
-Now, log in your [CircleCI](https://circleci.com/) account, add your github repository as a new project and click on `Start Building`.
+Now, log in your [CircleCI](https://circleci.com/dashboard) account, add your github repository as a new project and click on `Start Building`.
 
 ### 4. Verify the build
 
