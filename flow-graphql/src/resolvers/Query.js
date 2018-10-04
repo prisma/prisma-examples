@@ -3,7 +3,7 @@ import { TypeMap } from './types/TypeMap'
 
 export interface QueryParent {}
 
-export const Query: QueryResolvers.Type<TypeMap> = {
+export const Query: $PropertyType<QueryResolvers<TypeMap>, 'Type'> = {
   feed: (parent, args, ctx) => ctx.db.posts({ where: { isPublished: true } }),
   drafts: (parent, args, ctx) =>
     ctx.db.posts({ where: { isPublished: false } }),

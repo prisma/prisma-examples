@@ -9,7 +9,7 @@ export interface UserParent {
   posts: PostParent[];
 }
 
-export const User: UserResolvers.Type<TypeMap> = {
+export const User: $PropertyType<UserResolvers<TypeMap>, 'Type'> = {
   id: parent => parent.id,
   email: parent => parent.email,
   name: parent => parent.name,

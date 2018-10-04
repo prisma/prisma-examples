@@ -12,233 +12,238 @@ export interface ITypeMap {
   UserParent: any;
 }
 
-declare module 'QueryResolvers' {
-  // Type for GraphQL type
-  declare type FeedType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'QueryParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'>[]
+export type Query_FeedType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'QueryParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'>[]
 
-  // Type for GraphQL type
-  declare type DraftsType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'QueryParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'>[]
+export type Query_DraftsType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'QueryParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'>[]
 
-  // Type for argument
-  declare type ArgsPost = {
-    id: string,
-  }
-
-  // Type for GraphQL type
-  declare type PostType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'QueryParent'>,
-    args: ArgsPost,
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'> | null
-
-  declare type Type = {
-    feed: FeedType,
-    drafts: DraftsType,
-    post: PostType,
-  }
-
-  declare module.exports: {
-    feed: FeedType,
-    drafts: DraftsType,
-    post: PostType,
-  }
+// Type for argument
+export type Query_ArgsPost = {
+  id: string,
 }
 
-declare module 'MutationResolvers' {
-  // Type for argument
-  declare type ArgsCreateDraft = {
-    title: string,
-    content: string,
-    authorEmail: string,
-  }
+export type Query_PostType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'QueryParent'>,
+  args: Query_ArgsPost,
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'> | null
+
+export type QueryResolvers<T> = {
+  // Type for GraphQL type
+  FeedType: Query_FeedType<T>,
 
   // Type for GraphQL type
-  declare type CreateDraftType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'MutationParent'>,
-    args: ArgsCreateDraft,
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'>
-
-  // Type for argument
-  declare type ArgsDeletePost = {
-    id: string,
-  }
+  DraftsType: Query_DraftsType<T>,
 
   // Type for GraphQL type
-  declare type DeletePostType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'MutationParent'>,
-    args: ArgsDeletePost,
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'> | null
+  PostType: Query_PostType<T>,
 
-  // Type for argument
-  declare type ArgsPublish = {
-    id: string,
-  }
-
-  // Type for GraphQL type
-  declare type PublishType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'MutationParent'>,
-    args: ArgsPublish,
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'> | null
-
-  declare type Type = {
-    createDraft: CreateDraftType,
-    deletePost: DeletePostType,
-    publish: PublishType,
-  }
-
-  declare module.exports: {
-    createDraft: CreateDraftType,
-    deletePost: DeletePostType,
-    publish: PublishType,
-  }
+  Type: {
+    feed: Query_FeedType<T>,
+    drafts: Query_DraftsType<T>,
+    post: Query_PostType<T>,
+  },
 }
 
-declare module 'PostResolvers' {
-  // Type for GraphQL type
-  declare type IdType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type CreatedAtType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type UpdatedAtType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type IsPublishedType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => boolean
-
-  // Type for GraphQL type
-  declare type TitleType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type ContentType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type AuthorType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'PostParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'UserParent'>
-
-  declare type Type = {
-    id: IdType,
-    createdAt: CreatedAtType,
-    updatedAt: UpdatedAtType,
-    isPublished: IsPublishedType,
-    title: TitleType,
-    content: ContentType,
-    author: AuthorType,
-  }
-
-  declare module.exports: {
-    id: IdType,
-    createdAt: CreatedAtType,
-    updatedAt: UpdatedAtType,
-    isPublished: IsPublishedType,
-    title: TitleType,
-    content: ContentType,
-    author: AuthorType,
-  }
+// Type for argument
+export type Mutation_ArgsCreateDraft = {
+  title: string,
+  content: string,
+  authorEmail: string,
 }
 
-declare module 'UserResolvers' {
-  // Type for GraphQL type
-  declare type IdType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'UserParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
+export type Mutation_CreateDraftType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'MutationParent'>,
+  args: Mutation_ArgsCreateDraft,
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'>
 
-  // Type for GraphQL type
-  declare type EmailType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'UserParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type NameType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'UserParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => string
-
-  // Type for GraphQL type
-  declare type PostsType<T> = (
-    parent: $PropertyType<T & ITypeMap, 'UserParent'>,
-    args: {},
-    ctx: $PropertyType<T & ITypeMap, 'Context'>,
-    info: GraphQLResolveInfo,
-  ) => $PropertyType<T & ITypeMap, 'PostParent'>[]
-
-  declare type Type = {
-    id: IdType,
-    email: EmailType,
-    name: NameType,
-    posts: PostsType,
-  }
-
-  declare module.exports: {
-    id: IdType,
-    email: EmailType,
-    name: NameType,
-    posts: PostsType,
-  }
+// Type for argument
+export type Mutation_ArgsDeletePost = {
+  id: string,
 }
 
-declare type IResolvers<T> = {
-  Query: QueryResolvers.Type<T & ITypeMap>,
-  Mutation: MutationResolvers.Type<T & ITypeMap>,
-  Post: PostResolvers.Type<T & ITypeMap>,
-  User: UserResolvers.Type<T & ITypeMap>,
+export type Mutation_DeletePostType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'MutationParent'>,
+  args: Mutation_ArgsDeletePost,
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'> | null
+
+// Type for argument
+export type Mutation_ArgsPublish = {
+  id: string,
+}
+
+export type Mutation_PublishType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'MutationParent'>,
+  args: Mutation_ArgsPublish,
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'> | null
+
+export type MutationResolvers<T> = {
+  // Type for GraphQL type
+  CreateDraftType: Mutation_CreateDraftType<T>,
+
+  // Type for GraphQL type
+  DeletePostType: Mutation_DeletePostType<T>,
+
+  // Type for GraphQL type
+  PublishType: Mutation_PublishType<T>,
+
+  Type: {
+    createDraft: Mutation_CreateDraftType<T>,
+    deletePost: Mutation_DeletePostType<T>,
+    publish: Mutation_PublishType<T>,
+  },
+}
+
+export type Post_IdType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type Post_CreatedAtType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type Post_UpdatedAtType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type Post_IsPublishedType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => boolean
+
+export type Post_TitleType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type Post_ContentType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type Post_AuthorType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'PostParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'UserParent'>
+
+export type PostResolvers<T> = {
+  // Type for GraphQL type
+  IdType: Post_IdType<T>,
+
+  // Type for GraphQL type
+  CreatedAtType: Post_CreatedAtType<T>,
+
+  // Type for GraphQL type
+  UpdatedAtType: Post_UpdatedAtType<T>,
+
+  // Type for GraphQL type
+  IsPublishedType: Post_IsPublishedType<T>,
+
+  // Type for GraphQL type
+  TitleType: Post_TitleType<T>,
+
+  // Type for GraphQL type
+  ContentType: Post_ContentType<T>,
+
+  // Type for GraphQL type
+  AuthorType: Post_AuthorType<T>,
+
+  Type: {
+    id: Post_IdType<T>,
+    createdAt: Post_CreatedAtType<T>,
+    updatedAt: Post_UpdatedAtType<T>,
+    isPublished: Post_IsPublishedType<T>,
+    title: Post_TitleType<T>,
+    content: Post_ContentType<T>,
+    author: Post_AuthorType<T>,
+  },
+}
+
+export type User_IdType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'UserParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type User_EmailType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'UserParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type User_NameType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'UserParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => string
+
+export type User_PostsType<T> = (
+  parent: $PropertyType<T & ITypeMap, 'UserParent'>,
+  args: {},
+  ctx: $PropertyType<T & ITypeMap, 'Context'>,
+  info: GraphQLResolveInfo,
+) => $PropertyType<T & ITypeMap, 'PostParent'>[]
+
+export type UserResolvers<T> = {
+  // Type for GraphQL type
+  IdType: User_IdType<T>,
+
+  // Type for GraphQL type
+  EmailType: User_EmailType<T>,
+
+  // Type for GraphQL type
+  NameType: User_NameType<T>,
+
+  // Type for GraphQL type
+  PostsType: User_PostsType<T>,
+
+  Type: {
+    id: User_IdType<T>,
+    email: User_EmailType<T>,
+    name: User_NameType<T>,
+    posts: User_PostsType<T>,
+  },
+}
+
+export type IResolvers<T> = {
+  Query: $PropertyType<QueryResolvers<T>, 'Type'>,
+  Mutation: $PropertyType<MutationResolvers<T>, 'Type'>,
+  Post: $PropertyType<PostResolvers<T>, 'Type'>,
+  User: $PropertyType<UserResolvers<T>, 'Type'>,
 }
