@@ -1,0 +1,18 @@
+sudo: required
+language: node_js
+node_js:
+  - "10.8"
+services:
+  - docker
+before_install:
+  - sudo service postgresql stop
+  - docker-compose -f prisma/docker-compose.yml up -d
+  - sleep 20
+  - docker ps
+install:
+  - yarn install
+before_script:
+  - yarn global add prisma
+  - cd prisma && prisma deploy
+script:
+  - yarn test
