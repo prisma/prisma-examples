@@ -11,7 +11,7 @@ This example demonstrates how a CI setup using [CircleCI](https://circleci.com/)
 Clone the Prisma examples monorepo and navigate to this directory or download _only_ this example with the following command:
 
 ```sh
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/master | tar -xz --strip=2 prisma-examples-master/circleci
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/master | tar -xz --strip=2 prisma-examples-master/typescript-circleci
 ```
 
 ### 2. Set up repository locally and on GitHub
