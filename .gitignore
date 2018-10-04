@@ -3,3 +3,4 @@ yarn-error.log
 vendor
 tmp
 .DS_Store
+.idea
