@@ -19,7 +19,7 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/master | tar -xz 
 Next, navigate into the downloaded folder and initiate a new git repository:
 
 ```sh
-cd circleci
+cd typescript-circleci
 git init .
 git add .
 git commit -m "Initial commit"
