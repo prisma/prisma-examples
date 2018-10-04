@@ -26,5 +26,10 @@
     "resolver-scaffold": "graphql-resolver-codegen scaffold -s src/schema.graphql -o ./src/resolvers/ -i ../generated/resolvers -g flow",
     "resolver-codegen": "npm-run-all resolver-interfaces resolver-scaffold",
     "flow": "flow"
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
   }
 }
