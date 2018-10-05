@@ -477,9 +477,9 @@ aws-lambda@^0.1.2:
     commander "^2.5.0"
     dotenv "^0.4.0"
 
-aws-sdk@2.328.0:
-  version "2.328.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.328.0.tgz#5b9320f9dad3125af5ebac08b11eb0e66343a6d5"
+aws-sdk@2.329.0:
+  version "2.329.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.329.0.tgz#616da7ca5e1909e53333148694990e068272150f"
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
