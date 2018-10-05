@@ -129,7 +129,7 @@ func searchTodos(ctx context.Context, db *prisma.Client, q string) []prisma.Todo
 func createTodo(ctx context.Context, db *prisma.Client, text string) prisma.Todo {
 	fmt.Println("Create Todo")
 	userID := "cjmsueuph00da0855an60n0oq"
-	todo, err := db.CreateTodo(&prisma.TodoCreateInput{
+	todo, err := db.CreateTodo(prisma.TodoCreateInput{
 		Done: false,
 		Text: text,
 		User: prisma.UserCreateOneInput{
@@ -146,7 +146,7 @@ func createTodo(ctx context.Context, db *prisma.Client, text string) prisma.Todo
 
 func deleteTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 	fmt.Println("Create Todo")
-	todo, err := db.DeleteTodo(&prisma.TodoWhereUniqueInput{
+	todo, err := db.DeleteTodo(prisma.TodoWhereUniqueInput{
 		ID: &id,
 	}).Exec(ctx)
 	if err != nil {
@@ -158,7 +158,7 @@ func deleteTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 func getTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 	fmt.Println("Get Todo")
 
-	exists, err := db.Todo(&prisma.TodoWhereUniqueInput{
+	exists, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
 	}).Exists(ctx)
 	if err != nil {
@@ -170,7 +170,7 @@ func getTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 		fmt.Println("Todo dos not exist")
 	}
 
-	todo, err := db.Todo(&prisma.TodoWhereUniqueInput{
+	todo, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
 	}).Exec(ctx)
 	return todo
@@ -179,7 +179,7 @@ func getTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 func getTodoUser(ctx context.Context, db *prisma.Client, id string) prisma.User {
 	fmt.Println("Get Todo User")
 
-	exists, err := db.Todo(&prisma.TodoWhereUniqueInput{
+	exists, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
 	}).Exists(ctx)
 	if err != nil {
@@ -191,7 +191,7 @@ func getTodoUser(ctx context.Context, db *prisma.Client, id string) prisma.User 
 		fmt.Println("Todo dos not exist")
 	}
 
-	todo, err := db.Todo(&prisma.TodoWhereUniqueInput{
+	todo, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
 	}).User().Exec(ctx)
 	return todo

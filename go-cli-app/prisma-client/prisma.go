@@ -51,7 +51,7 @@ func New(options *Options, opts ...graphql.ClientOption) *Client {
 
 var DefaultEndpoint = "`http://localhost:4466/go-orm/dev`"
 
-func (client *Client) Todo(params *TodoWhereUniqueInput) *TodoExec {
+func (client *Client) Todo(params TodoWhereUniqueInput) *TodoExec {
 	ret := client.Client.GetOne(
 		nil,
 		params,
@@ -110,7 +110,7 @@ func (client *Client) TodoesConnection(params *TodoesConnectionParams) TodoConne
 	panic("not implemented")
 }
 
-func (client *Client) User(params *UserWhereUniqueInput) *UserExec {
+func (client *Client) User(params UserWhereUniqueInput) *UserExec {
 	ret := client.Client.GetOne(
 		nil,
 		params,
@@ -169,7 +169,7 @@ func (client *Client) UsersConnection(params *UsersConnectionParams) UserConnect
 	panic("not implemented")
 }
 
-func (client *Client) CreateTodo(params *TodoCreateInput) *TodoExec {
+func (client *Client) CreateTodo(params TodoCreateInput) *TodoExec {
 	ret := client.Client.Create(
 		params,
 		[2]string{"TodoCreateInput!", "Todo"},
@@ -184,7 +184,7 @@ type TodoUpdateParams struct {
 	Where TodoWhereUniqueInput `json:"where"`
 }
 
-func (client *Client) UpdateTodo(params *TodoUpdateParams) *TodoExec {
+func (client *Client) UpdateTodo(params TodoUpdateParams) *TodoExec {
 	ret := client.Client.Update(
 		prisma.UpdateParams{
 			Data:  params.Data,
@@ -202,7 +202,7 @@ type TodoUpdateManyParams struct {
 	Where *TodoWhereInput `json:"where,omitempty"`
 }
 
-func (client *Client) UpdateManyTodoes(params *TodoUpdateManyParams) *BatchPayloadExec {
+func (client *Client) UpdateManyTodoes(params TodoUpdateManyParams) *BatchPayloadExec {
 	exec := client.Client.UpdateMany(
 		prisma.UpdateParams{
 			Data:  params.Data,
@@ -219,14 +219,11 @@ type TodoUpsertParams struct {
 	Update TodoUpdateInput      `json:"update"`
 }
 
-func (client *Client) UpsertTodo(params *TodoUpsertParams) *TodoExec {
-	var uparams *prisma.UpsertParams
-	if params != nil {
-		uparams = &prisma.UpsertParams{
-			Where:  params.Where,
-			Create: params.Create,
-			Update: params.Update,
-		}
+func (client *Client) UpsertTodo(params TodoUpsertParams) *TodoExec {
+	uparams := &prisma.UpsertParams{
+		Where:  params.Where,
+		Create: params.Create,
+		Update: params.Update,
 	}
 	ret := client.Client.Upsert(
 		uparams,
@@ -237,7 +234,7 @@ func (client *Client) UpsertTodo(params *TodoUpsertParams) *TodoExec {
 	return &TodoExec{ret}
 }
 
-func (client *Client) DeleteTodo(params *TodoWhereUniqueInput) *TodoExec {
+func (client *Client) DeleteTodo(params TodoWhereUniqueInput) *TodoExec {
 	ret := client.Client.Delete(
 		params,
 		[2]string{"TodoWhereUniqueInput!", "Todo"},
@@ -252,7 +249,7 @@ func (client *Client) DeleteManyTodoes(params *TodoWhereInput) *BatchPayloadExec
 	return &BatchPayloadExec{exec}
 }
 
-func (client *Client) CreateUser(params *UserCreateInput) *UserExec {
+func (client *Client) CreateUser(params UserCreateInput) *UserExec {
 	ret := client.Client.Create(
 		params,
 		[2]string{"UserCreateInput!", "User"},
@@ -267,7 +264,7 @@ type UserUpdateParams struct {
 	Where UserWhereUniqueInput `json:"where"`
 }
 
-func (client *Client) UpdateUser(params *UserUpdateParams) *UserExec {
+func (client *Client) UpdateUser(params UserUpdateParams) *UserExec {
 	ret := client.Client.Update(
 		prisma.UpdateParams{
 			Data:  params.Data,
@@ -285,7 +282,7 @@ type UserUpdateManyParams struct {
 	Where *UserWhereInput `json:"where,omitempty"`
 }
 
-func (client *Client) UpdateManyUsers(params *UserUpdateManyParams) *BatchPayloadExec {
+func (client *Client) UpdateManyUsers(params UserUpdateManyParams) *BatchPayloadExec {
 	exec := client.Client.UpdateMany(
 		prisma.UpdateParams{
 			Data:  params.Data,
@@ -302,14 +299,11 @@ type UserUpsertParams struct {
 	Update UserUpdateInput      `json:"update"`
 }
 
-func (client *Client) UpsertUser(params *UserUpsertParams) *UserExec {
-	var uparams *prisma.UpsertParams
-	if params != nil {
-		uparams = &prisma.UpsertParams{
-			Where:  params.Where,
-			Create: params.Create,
-			Update: params.Update,
-		}
+func (client *Client) UpsertUser(params UserUpsertParams) *UserExec {
+	uparams := &prisma.UpsertParams{
+		Where:  params.Where,
+		Create: params.Create,
+		Update: params.Update,
 	}
 	ret := client.Client.Upsert(
 		uparams,
@@ -320,7 +314,7 @@ func (client *Client) UpsertUser(params *UserUpsertParams) *UserExec {
 	return &UserExec{ret}
 }
 
-func (client *Client) DeleteUser(params *UserWhereUniqueInput) *UserExec {
+func (client *Client) DeleteUser(params UserWhereUniqueInput) *UserExec {
 	ret := client.Client.Delete(
 		params,
 		[2]string{"UserWhereUniqueInput!", "User"},
