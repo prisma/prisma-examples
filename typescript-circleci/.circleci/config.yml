@@ -24,5 +24,4 @@ jobs:
             npm install
             cd prisma
             npx prisma deploy
-            sleep 20
             npm run test
