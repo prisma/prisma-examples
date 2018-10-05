@@ -10,7 +10,9 @@ import (
 )
 
 func main() {
-	db := prisma.New("http://localhost:4466/go-orm/dev")
+	db := prisma.New(&prisma.Options{
+		Endpoint: "http://localhost:4466/go-orm/dev",
+	})
 	ctx := context.Background()
 
 	argsWithoutProg := os.Args[1:]
@@ -91,7 +93,7 @@ func printTodos(todos []prisma.Todo) {
 
 func allTodos(ctx context.Context, db *prisma.Client) []prisma.Todo {
 	fmt.Println("All Todos:")
-	todoes, err := db.Todoes(ctx, &prisma.TodoesParams{})
+	todoes, err := db.Todoes(&prisma.TodoesParams{}).Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -100,9 +102,9 @@ func allTodos(ctx context.Context, db *prisma.Client) []prisma.Todo {
 
 func someTodoes(ctx context.Context, db *prisma.Client, first int32) []prisma.Todo {
 	fmt.Println("Some Todos:", first)
-	todoes, err := db.Todoes(ctx, &prisma.TodoesParams{
+	todoes, err := db.Todoes(&prisma.TodoesParams{
 		First: &first,
-	})
+	}).Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -112,12 +114,12 @@ func someTodoes(ctx context.Context, db *prisma.Client, first int32) []prisma.To
 func searchTodos(ctx context.Context, db *prisma.Client, q string) []prisma.Todo {
 	fmt.Println("Search Todos:", q)
 	orderBy := prisma.TodoOrderByInputCreatedAtDesc
-	todoes, err := db.Todoes(ctx, &prisma.TodoesParams{
+	todoes, err := db.Todoes(&prisma.TodoesParams{
 		Where: &prisma.TodoWhereInput{
 			TextContains: &q,
 		},
 		OrderBy: &orderBy,
-	})
+	}).Exec(ctx)
 	if err != nil {
 		panic(err)
 	}

@@ -14,6 +14,15 @@ func Str(v string) *string { return &v }
 func Int32(v int32) *int32 { return &v }
 func Bool(v bool) *bool    { return &v }
 
+type BatchPayloadExec struct {
+	exec *prisma.BatchPayloadExec
+}
+
+func (exec *BatchPayloadExec) Exec(ctx context.Context) (BatchPayload, error) {
+	bp, err := exec.exec.Exec(ctx)
+	return BatchPayload(bp), err
+}
+
 type BatchPayload struct {
 	Count int64 `json:"count"`
 }
@@ -26,7 +35,15 @@ type Client struct {
 	Client *prisma.Client
 }
 
-func New(endpoint string, opts ...graphql.ClientOption) *Client {
+type Options struct {
+	Endpoint string
+}
+
+func New(options *Options, opts ...graphql.ClientOption) *Client {
+	endpoint := DefaultEndpoint
+	if options != nil {
+		endpoint = options.Endpoint
+	}
 	return &Client{
 		Client: prisma.New(endpoint, opts...),
 	}
@@ -55,7 +72,7 @@ type TodoesParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-func (client *Client) Todoes(ctx context.Context, params *TodoesParams) ([]Todo, error) {
+func (client *Client) Todoes(params *TodoesParams) *TodoExecArray {
 	var wparams *prisma.WhereParams
 	if params != nil {
 		wparams = &prisma.WhereParams{
@@ -76,9 +93,7 @@ func (client *Client) Todoes(ctx context.Context, params *TodoesParams) ([]Todo,
 		"todoes",
 		[]string{"id", "text", "done"})
 
-	var v []Todo
-	err := ret.ExecArray(ctx, &v)
-	return v, err
+	return &TodoExecArray{ret}
 }
 
 type TodoesConnectionParams struct {
@@ -116,7 +131,7 @@ type UsersParams struct {
 	Last    *int32            `json:"last,omitempty"`
 }
 
-func (client *Client) Users(ctx context.Context, params *UsersParams) ([]User, error) {
+func (client *Client) Users(params *UsersParams) *UserExecArray {
 	var wparams *prisma.WhereParams
 	if params != nil {
 		wparams = &prisma.WhereParams{
@@ -137,9 +152,7 @@ func (client *Client) Users(ctx context.Context, params *UsersParams) ([]User, e
 		"users",
 		[]string{"id", "name"})
 
-	var v []User
-	err := ret.ExecArray(ctx, &v)
-	return v, err
+	return &UserExecArray{ret}
 }
 
 type UsersConnectionParams struct {
@@ -166,12 +179,12 @@ func (client *Client) CreateTodo(params *TodoCreateInput) *TodoExec {
 	return &TodoExec{ret}
 }
 
-type UpdateTodoParams struct {
+type TodoUpdateParams struct {
 	Data  TodoUpdateInput      `json:"data"`
 	Where TodoWhereUniqueInput `json:"where"`
 }
 
-func (client *Client) UpdateTodo(params *UpdateTodoParams) *TodoExec {
+func (client *Client) UpdateTodo(params *TodoUpdateParams) *TodoExec {
 	ret := client.Client.Update(
 		prisma.UpdateParams{
 			Data:  params.Data,
@@ -184,31 +197,29 @@ func (client *Client) UpdateTodo(params *UpdateTodoParams) *TodoExec {
 	return &TodoExec{ret}
 }
 
-type UpdateManyTodoesParams struct {
+type TodoUpdateManyParams struct {
 	Data  TodoUpdateInput `json:"data"`
 	Where *TodoWhereInput `json:"where,omitempty"`
 }
 
-func (client *Client) UpdateManyTodoes(ctx context.Context, params *UpdateManyTodoesParams) (BatchPayload, error) {
-	ret := client.Client.UpdateMany(
+func (client *Client) UpdateManyTodoes(params *TodoUpdateManyParams) *BatchPayloadExec {
+	exec := client.Client.UpdateMany(
 		prisma.UpdateParams{
 			Data:  params.Data,
 			Where: params.Where,
 		},
 		[2]string{"TodoUpdateInput!", "TodoWhereInput"},
 		"updateManyTodoes")
-
-	p, err := ret.Exec(ctx)
-	return BatchPayload(p), err
+	return &BatchPayloadExec{exec}
 }
 
-type UpsertTodoParams struct {
+type TodoUpsertParams struct {
 	Where  TodoWhereUniqueInput `json:"where"`
 	Create TodoCreateInput      `json:"create"`
 	Update TodoUpdateInput      `json:"update"`
 }
 
-func (client *Client) UpsertTodo(params *UpsertTodoParams) *TodoExec {
+func (client *Client) UpsertTodo(params *TodoUpsertParams) *TodoExec {
 	var uparams *prisma.UpsertParams
 	if params != nil {
 		uparams = &prisma.UpsertParams{
@@ -236,10 +247,9 @@ func (client *Client) DeleteTodo(params *TodoWhereUniqueInput) *TodoExec {
 	return &TodoExec{ret}
 }
 
-func (client *Client) DeleteManyTodoes(ctx context.Context, params *TodoWhereInput) (BatchPayload, error) {
-	ret := client.Client.DeleteMany(params, "TodoWhereInput", "deleteManyTodoes")
-	p, err := ret.Exec(ctx)
-	return BatchPayload(p), err
+func (client *Client) DeleteManyTodoes(params *TodoWhereInput) *BatchPayloadExec {
+	exec := client.Client.DeleteMany(params, "TodoWhereInput", "deleteManyTodoes")
+	return &BatchPayloadExec{exec}
 }
 
 func (client *Client) CreateUser(params *UserCreateInput) *UserExec {
@@ -252,12 +262,12 @@ func (client *Client) CreateUser(params *UserCreateInput) *UserExec {
 	return &UserExec{ret}
 }
 
-type UpdateUserParams struct {
+type UserUpdateParams struct {
 	Data  UserUpdateInput      `json:"data"`
 	Where UserWhereUniqueInput `json:"where"`
 }
 
-func (client *Client) UpdateUser(params *UpdateUserParams) *UserExec {
+func (client *Client) UpdateUser(params *UserUpdateParams) *UserExec {
 	ret := client.Client.Update(
 		prisma.UpdateParams{
 			Data:  params.Data,
@@ -270,31 +280,29 @@ func (client *Client) UpdateUser(params *UpdateUserParams) *UserExec {
 	return &UserExec{ret}
 }
 
-type UpdateManyUsersParams struct {
+type UserUpdateManyParams struct {
 	Data  UserUpdateInput `json:"data"`
 	Where *UserWhereInput `json:"where,omitempty"`
 }
 
-func (client *Client) UpdateManyUsers(ctx context.Context, params *UpdateManyUsersParams) (BatchPayload, error) {
-	ret := client.Client.UpdateMany(
+func (client *Client) UpdateManyUsers(params *UserUpdateManyParams) *BatchPayloadExec {
+	exec := client.Client.UpdateMany(
 		prisma.UpdateParams{
 			Data:  params.Data,
 			Where: params.Where,
 		},
 		[2]string{"UserUpdateInput!", "UserWhereInput"},
 		"updateManyUsers")
-
-	p, err := ret.Exec(ctx)
-	return BatchPayload(p), err
+	return &BatchPayloadExec{exec}
 }
 
-type UpsertUserParams struct {
+type UserUpsertParams struct {
 	Where  UserWhereUniqueInput `json:"where"`
 	Create UserCreateInput      `json:"create"`
 	Update UserUpdateInput      `json:"update"`
 }
 
-func (client *Client) UpsertUser(params *UpsertUserParams) *UserExec {
+func (client *Client) UpsertUser(params *UserUpsertParams) *UserExec {
 	var uparams *prisma.UpsertParams
 	if params != nil {
 		uparams = &prisma.UpsertParams{
@@ -322,10 +330,9 @@ func (client *Client) DeleteUser(params *UserWhereUniqueInput) *UserExec {
 	return &UserExec{ret}
 }
 
-func (client *Client) DeleteManyUsers(ctx context.Context, params *UserWhereInput) (BatchPayload, error) {
-	ret := client.Client.DeleteMany(params, "UserWhereInput", "deleteManyUsers")
-	p, err := ret.Exec(ctx)
-	return BatchPayload(p), err
+func (client *Client) DeleteManyUsers(params *UserWhereInput) *BatchPayloadExec {
+	exec := client.Client.DeleteMany(params, "UserWhereInput", "deleteManyUsers")
+	return &BatchPayloadExec{exec}
 }
 
 type TodoOrderByInput string
@@ -543,6 +550,16 @@ func (instance UserSubscriptionPayloadExec) Exists(ctx context.Context) (bool, e
 	return instance.exec.Exists(ctx)
 }
 
+type UserSubscriptionPayloadExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance UserSubscriptionPayloadExecArray) Exec(ctx context.Context) ([]UserSubscriptionPayload, error) {
+	var v []UserSubscriptionPayload
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
+}
+
 type UserSubscriptionPayload struct {
 	UpdatedFields []string `json:"updatedFields,omitempty"`
 }
@@ -583,6 +600,16 @@ func (instance TodoSubscriptionPayloadExec) Exists(ctx context.Context) (bool, e
 	return instance.exec.Exists(ctx)
 }
 
+type TodoSubscriptionPayloadExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance TodoSubscriptionPayloadExecArray) Exec(ctx context.Context) ([]TodoSubscriptionPayload, error) {
+	var v []TodoSubscriptionPayload
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
+}
+
 type TodoSubscriptionPayload struct {
 	UpdatedFields []string `json:"updatedFields,omitempty"`
 }
@@ -599,6 +626,16 @@ func (instance UserPreviousValuesExec) Exec(ctx context.Context) (UserPreviousVa
 
 func (instance UserPreviousValuesExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
+}
+
+type UserPreviousValuesExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance UserPreviousValuesExecArray) Exec(ctx context.Context) ([]UserPreviousValues, error) {
+	var v []UserPreviousValues
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
 }
 
 type UserPreviousValues struct {
@@ -618,6 +655,16 @@ func (instance TodoPreviousValuesExec) Exec(ctx context.Context) (TodoPreviousVa
 
 func (instance TodoPreviousValuesExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
+}
+
+type TodoPreviousValuesExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance TodoPreviousValuesExecArray) Exec(ctx context.Context) ([]TodoPreviousValues, error) {
+	var v []TodoPreviousValues
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
 }
 
 type TodoPreviousValues struct {
@@ -651,6 +698,16 @@ func (instance TodoExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
 }
 
+type TodoExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance TodoExecArray) Exec(ctx context.Context) ([]Todo, error) {
+	var v []Todo
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
+}
+
 type Todo struct {
 	ID   string `json:"id"`
 	Text string `json:"text"`
@@ -669,6 +726,16 @@ func (instance UserExec) Exec(ctx context.Context) (User, error) {
 
 func (instance UserExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
+}
+
+type UserExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance UserExecArray) Exec(ctx context.Context) ([]User, error) {
+	var v []User
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
 }
 
 type User struct {
@@ -701,6 +768,16 @@ func (instance UserEdgeExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
 }
 
+type UserEdgeExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance UserEdgeExecArray) Exec(ctx context.Context) ([]UserEdge, error) {
+	var v []UserEdge
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
+}
+
 type UserEdge struct {
 	Cursor string `json:"cursor"`
 }
@@ -728,6 +805,16 @@ func (instance TodoEdgeExec) Exec(ctx context.Context) (TodoEdge, error) {
 
 func (instance TodoEdgeExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
+}
+
+type TodoEdgeExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance TodoEdgeExecArray) Exec(ctx context.Context) ([]TodoEdge, error) {
+	var v []TodoEdge
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
 }
 
 type TodoEdge struct {
@@ -783,6 +870,16 @@ func (instance UserConnectionExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
 }
 
+type UserConnectionExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance UserConnectionExecArray) Exec(ctx context.Context) ([]UserConnection, error) {
+	var v []UserConnection
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
+}
+
 type UserConnection struct {
 }
 
@@ -835,6 +932,16 @@ func (instance TodoConnectionExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
 }
 
+type TodoConnectionExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance TodoConnectionExecArray) Exec(ctx context.Context) ([]TodoConnection, error) {
+	var v []TodoConnection
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
+}
+
 type TodoConnection struct {
 }
 
@@ -850,6 +957,16 @@ func (instance PageInfoExec) Exec(ctx context.Context) (PageInfo, error) {
 
 func (instance PageInfoExec) Exists(ctx context.Context) (bool, error) {
 	return instance.exec.Exists(ctx)
+}
+
+type PageInfoExecArray struct {
+	exec *prisma.Exec
+}
+
+func (instance PageInfoExecArray) Exec(ctx context.Context) ([]PageInfo, error) {
+	var v []PageInfo
+	err := instance.exec.ExecArray(ctx, &v)
+	return v, err
 }
 
 type PageInfo struct {
