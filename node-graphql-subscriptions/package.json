@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "graphql-resolver-codegen": "0.2.5",
+    "graphql-resolver-codegen": "0.2.6",
     "prisma": "1.17.1"
   },
   "dependencies": {
