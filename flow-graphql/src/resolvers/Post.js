@@ -12,7 +12,7 @@ export interface PostParent {
   author: UserParent;
 }
 
-export const Post: $PropertyType<PostResolvers<TypeMap>, 'Type'> = {
+export const Post: Post_Type<TypeMap> = {
   id: parent => parent.id,
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt,

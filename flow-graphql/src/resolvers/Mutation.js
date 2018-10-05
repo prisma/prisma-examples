@@ -1,9 +1,9 @@
-import { MutationResolvers } from '../generated/resolvers'
+import { Mutation_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 
 export interface MutationParent {}
 
-export const Mutation: $PropertyType<MutationResolvers<TypeMap>, 'Type'> = {
+export const Mutation: Mutation_Type<TypeMap> = {
   createDraft: (parent, args, ctx) => {
     return ctx.db.createPost({
       title: args.title,
