@@ -1,4 +1,4 @@
-import { PostResolvers } from '../generated/resolvers'
+import { Post_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 import { UserParent } from './User'
 
