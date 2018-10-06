@@ -1,3 +1,4 @@
+/* @flow */
 import { Mutation_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 

@@ -2815,7 +2815,11 @@ graphql-request@^1.3.4, graphql-request@^1.4.0, graphql-request@^1.5.0:
   dependencies:
     cross-fetch "2.2.2"
 
+<<<<<<< HEAD
+graphql-resolver-codegen@^0.0.3:
+=======
 graphql-resolver-codegen@0.0.3:
+>>>>>>> master
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/graphql-resolver-codegen/-/graphql-resolver-codegen-0.0.3.tgz#18be8cdeff90a3efddc50be683b48fa25299370a"
   dependencies:
@@ -4143,7 +4147,11 @@ npm-paths@^1.0.0:
     global-modules "^1.0.0"
     is-windows "^1.0.1"
 
+<<<<<<< HEAD
+npm-run-all@^4.1.3:
+=======
 npm-run-all@4.1.3:
+>>>>>>> master
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-4.1.3.tgz#49f15b55a66bb4101664ce270cb18e7103f8f185"
   dependencies:

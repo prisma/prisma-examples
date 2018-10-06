@@ -1,6 +1,4 @@
-/**
- * @flow
- */
+/* @flow */
 import { GraphQLResolveInfo } from 'graphql'
 
 export interface ITypeMap {
