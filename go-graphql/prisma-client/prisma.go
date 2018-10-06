@@ -49,7 +49,11 @@ func New(options *Options, opts ...graphql.ClientOption) *Client {
 	}
 }
 
-var DefaultEndpoint = "http://localhost:4466/go-graphql/dev"
+func (client *Client) GraphQL(ctx context.Context, query string, variables map[string]interface{}) (map[string]interface{}, error) {
+	return client.Client.GraphQL(ctx, query, variables)
+}
+
+var DefaultEndpoint = "`http://localhost:4466/go-graphql/dev`"
 
 func (client *Client) Post(params PostWhereUniqueInput) *PostExec {
 	ret := client.Client.GetOne(
