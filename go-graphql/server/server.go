@@ -21,13 +21,13 @@ func main() {
 
 	client := prisma.New(nil)
 	resolver := Resolver{
-		Prisma: &client,
+		Prisma: client,
 	}
 
 	http.Handle("/", handler.Playground("GraphQL playground", "/query"))
 	http.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
 
-	err := http.ListenAndServe(":" + port, nil)
+	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
