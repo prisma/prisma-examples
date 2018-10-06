@@ -1,3 +1,4 @@
+/* @flow */
 import { IResolvers } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 

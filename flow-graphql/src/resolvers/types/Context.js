@@ -1,1 +1,2 @@
+/* @flow */
 export interface Context {}

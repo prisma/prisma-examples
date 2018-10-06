@@ -1,3 +1,4 @@
+/* @flow */
 import { Post_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 import { UserParent } from './User'
@@ -19,5 +20,5 @@ export const Post: Post_Type<TypeMap> = {
   isPublished: parent => parent.isPublished,
   title: parent => parent.title,
   content: parent => parent.content,
-  author: (parent, args, ctx) => ctx.db.post({ id: parent.id }).author(),
+  author: parent => parent.author,
 }
