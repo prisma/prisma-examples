@@ -49,6 +49,10 @@ func New(options *Options, opts ...graphql.ClientOption) *Client {
 	}
 }
 
+func (client *Client) GraphQL(ctx context.Context, query string, variables map[string]interface{}) (map[string]interface{}, error) {
+	return client.Client.GraphQL(ctx, query, variables)
+}
+
 var DefaultEndpoint = "`http://localhost:4466/go-orm/dev`"
 
 func (client *Client) Todo(params TodoWhereUniqueInput) *TodoExec {
