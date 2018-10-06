@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 /* @flow */
-=======
->>>>>>> master
 import { ITypeMap } from '../../generated/resolvers'
 
 import { QueryParent } from '../Query'

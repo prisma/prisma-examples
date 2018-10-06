@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 /* @flow */
-=======
-/**
- * @flow
- */
->>>>>>> master
 import { GraphQLResolveInfo } from 'graphql'
 
 export interface ITypeMap {
