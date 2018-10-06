@@ -1,12 +1,15 @@
 /* @flow */
-import { Query_Type } from '../generated/resolvers'
+import type { Query_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 
 export interface QueryParent {}
 
 export const Query: Query_Type<TypeMap> = {
-  feed: (parent, args, ctx) => ctx.db.posts({ where: { isPublished: true } }),
-  drafts: (parent, args, ctx) =>
-    ctx.db.posts({ where: { isPublished: false } }),
-  post: (parent, args, ctx) => ctx.db.post({ id: args.id }),
+  feed: parent => {
+    throw new Error('Resolver not implemented')
+  },
+  drafts: parent => {
+    throw new Error('Resolver not implemented')
+  },
+  post: (parent, args) => null,
 }

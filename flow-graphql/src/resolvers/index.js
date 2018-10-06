@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 /* @flow */
-=======
->>>>>>> master
-import { IResolvers } from '../generated/resolvers'
+import type { IResolvers } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 
 import { Query } from './Query'

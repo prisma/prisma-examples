@@ -1,5 +1,5 @@
 /* @flow */
-import { User_Type } from '../generated/resolvers'
+import type { User_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 import { PostParent } from './Post'
 
