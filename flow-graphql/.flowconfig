@@ -4,6 +4,12 @@
 [ignore]
 .*/node_modules/config-chain/test/broken.json
 
+<<<<<<< HEAD
+=======
+[include]
+./src
+
+>>>>>>> master
 [libs]
 
 [options]
