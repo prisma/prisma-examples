@@ -24,12 +24,12 @@ func main() {
 
 	client := prisma.New(nil)
 	resolver := Resolver{
-		Prisma: &client,
+		Prisma: client,
 	}
 
 	http.Handle("/", handler.Playground("GraphQL playground", "/query"))
 	http.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
-
+  
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)
 

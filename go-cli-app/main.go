@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"strconv"
@@ -9,13 +10,14 @@ import (
 )
 
 func main() {
-	db := prisma.DB{
-		// Debug: true,
-	}
+	db := prisma.New(&prisma.Options{
+		Endpoint: "http://localhost:4466/go-orm/dev",
+	})
+	ctx := context.Background()
 
 	argsWithoutProg := os.Args[1:]
 	if len(argsWithoutProg) == 0 {
-		todos := allTodos(db)
+		todos := allTodos(ctx, db)
 		printTodos(todos)
 		os.Exit(0)
 	}
@@ -23,10 +25,10 @@ func main() {
 
 	if len(argsWithoutProg) == 1 {
 		if command == "count" {
-			fmt.Println("Total Todos: ", len(allTodos(db)))
+			fmt.Println("Total Todos: ", len(allTodos(ctx, db)))
 		} else {
 			fmt.Println("Invalid command: ", command, " printing todos")
-			todos := allTodos(db)
+			todos := allTodos(ctx, db)
 			printTodos(todos)
 		}
 		os.Exit(0)
@@ -35,35 +37,35 @@ func main() {
 	if len(argsWithoutProg) == 2 {
 		v1 := argsWithoutProg[1]
 		if command == "create" {
-			todo := createTodo(db, v1)
+			todo := createTodo(ctx, db, v1)
 			printTodo(todo, nil)
 		} else if command == "delete" {
-			todo := deleteTodo(db, v1)
+			todo := deleteTodo(ctx, db, v1)
 			printTodo(todo, nil)
 		} else if command == "get" {
-			todo := getTodo(db, v1)
+			todo := getTodo(ctx, db, v1)
 			printTodo(todo, nil)
 		} else if command == "get-user" {
-			user := getTodoUser(db, v1)
+			user := getTodoUser(ctx, db, v1)
 			printUser(user, nil)
 		} else if command == "list" {
 			v1Int, err := strconv.ParseInt(v1, 10, 32)
 			if err != nil {
 				panic(err)
 			}
-			todos := someTodos(db, int32(v1Int))
+			todos := someTodoes(ctx, db, int32(v1Int))
 			printTodos(todos)
 		} else if command == "search" {
-			todos := searchTodos(db, v1)
+			todos := searchTodos(ctx, db, v1)
 			printTodos(todos)
 		} else {
 			fmt.Println("Invalid command: ", command, " printing todos")
-			allTodos(db)
+			allTodos(ctx, db)
 		}
 		os.Exit(0)
 	}
 	fmt.Println("Invalid command: ", command, " printing todos")
-	todos := allTodos(db)
+	todos := allTodos(ctx, db)
 	printTodos(todos)
 }
 
@@ -89,88 +91,108 @@ func printTodos(todos []prisma.Todo) {
 	}
 }
 
-func allTodos(db prisma.DB) []prisma.Todo {
+func allTodos(ctx context.Context, db *prisma.Client) []prisma.Todo {
 	fmt.Println("All Todos:")
-	todos := db.Todos(&prisma.TodosParams{}).Exec()
-	return todos
+	todoes, err := db.Todoes(&prisma.TodoesParams{}).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
+	return todoes
 }
 
-func someTodos(db prisma.DB, first int32) []prisma.Todo {
+func someTodoes(ctx context.Context, db *prisma.Client, first int32) []prisma.Todo {
 	fmt.Println("Some Todos:", first)
-	todos := db.Todos(&prisma.TodosParams{
+	todoes, err := db.Todoes(&prisma.TodoesParams{
 		First: &first,
-	}).Exec()
-	return todos
+	}).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
+	return todoes
 }
 
-func searchTodos(db prisma.DB, q string) []prisma.Todo {
+func searchTodos(ctx context.Context, db *prisma.Client, q string) []prisma.Todo {
 	fmt.Println("Search Todos:", q)
-	orderBy := prisma.CreatedAtDescTodoOrderByInput
-	todos := db.Todos(&prisma.TodosParams{
+	orderBy := prisma.TodoOrderByInputCreatedAtDesc
+	todoes, err := db.Todoes(&prisma.TodoesParams{
 		Where: &prisma.TodoWhereInput{
 			TextContains: &q,
 		},
 		OrderBy: &orderBy,
-	}).Exec()
-	return todos
+	}).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
+	return todoes
 }
 
-func createTodo(db prisma.DB, text string) prisma.Todo {
+func createTodo(ctx context.Context, db *prisma.Client, text string) prisma.Todo {
 	fmt.Println("Create Todo")
-	done := false
-	userID := "cjlhytekx005708701pice3uj"
-	todo := db.CreateTodo(&prisma.TodoCreateInput{
-		Done: &done,
-		Text: &text,
-		User: &prisma.UserCreateOneInput{
+	userID := "cjmsueuph00da0855an60n0oq"
+	todo, err := db.CreateTodo(prisma.TodoCreateInput{
+		Done: false,
+		Text: text,
+		User: prisma.UserCreateOneInput{
 			Connect: &prisma.UserWhereUniqueInput{
 				ID: &userID,
 			},
 		},
-	}).Exec()
+	}).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
 	return todo
 }
 
-func deleteTodo(db prisma.DB, id string) prisma.Todo {
+func deleteTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 	fmt.Println("Create Todo")
-	todo := db.DeleteTodo(&prisma.TodoWhereUniqueInput{
+	todo, err := db.DeleteTodo(prisma.TodoWhereUniqueInput{
 		ID: &id,
-	}).Exec()
+	}).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
 	return todo
 }
 
-func getTodo(db prisma.DB, id string) prisma.Todo {
+func getTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 	fmt.Println("Get Todo")
 
-	exists := db.Exists.Todo(&prisma.TodoWhereUniqueInput{
+	exists, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
-	})
+	}).Exists(ctx)
+	if err != nil {
+		panic(err)
+	}
 	if exists {
 		fmt.Println("Todo exists")
 	} else {
 		fmt.Println("Todo dos not exist")
 	}
 
-	todo := db.Todo(&prisma.TodoWhereUniqueInput{
+	todo, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
-	}).Exec()
+	}).Exec(ctx)
 	return todo
 }
 
-func getTodoUser(db prisma.DB, id string) prisma.User {
+func getTodoUser(ctx context.Context, db *prisma.Client, id string) prisma.User {
 	fmt.Println("Get Todo User")
 
-	exists := db.Exists.Todo(&prisma.TodoWhereUniqueInput{
+	exists, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
-	})
+	}).Exists(ctx)
+	if err != nil {
+		panic(err)
+	}
 	if exists {
 		fmt.Println("Todo exists")
 	} else {
 		fmt.Println("Todo dos not exist")
 	}
 
-	todo := db.Todo(&prisma.TodoWhereUniqueInput{
+	todo, err := db.Todo(prisma.TodoWhereUniqueInput{
 		ID: &id,
-	}).User(&prisma.UserWhereInput{}).Exec()
+	}).User().Exec(ctx)
 	return todo
 }

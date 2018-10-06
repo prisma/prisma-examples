@@ -4,7 +4,6 @@
 [ignore]
 .*/node_modules/config-chain/test/broken.json
 
-
 [libs]
 
 [options]
