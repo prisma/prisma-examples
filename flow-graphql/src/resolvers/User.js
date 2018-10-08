@@ -1,7 +1,7 @@
 /* @flow */
-import { User_Type } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
-import { PostParent } from './Post'
+import type { User_Type } from '../generated/resolvers'
+import type { TypeMap } from './types/TypeMap'
+import type { PostParent } from './Post'
 
 export interface UserParent {
   id: string;
@@ -14,5 +14,5 @@ export const User: User_Type<TypeMap> = {
   id: parent => parent.id,
   email: parent => parent.email,
   name: parent => parent.name,
-  posts: parent => parent.posts,
+  posts: (parent, args, ctx) => ctx.db.user({ id: parent.id }).posts(),
 }

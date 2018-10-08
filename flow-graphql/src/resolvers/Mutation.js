@@ -1,5 +1,5 @@
 /* @flow */
-import { Mutation_Type } from '../generated/resolvers'
+import type { Mutation_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 
 export interface MutationParent {}
@@ -12,8 +12,8 @@ export const Mutation: Mutation_Type<TypeMap> = {
       author: { connect: { email: args.authorEmail } },
     })
   },
-  deletePost: (parent, args) => ctx.db.deletePost({ id }),
-  publish: (parent, args) => {
+  deletePost: (parent, { id }, ctx) => ctx.db.deletePost({ id }),
+  publish: (parent, { id }, ctx) => {
     return ctx.db.updatePost({
       where: { id },
       data: { isPublished: true },

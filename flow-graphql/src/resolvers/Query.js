@@ -1,5 +1,5 @@
 /* @flow */
-import { Query_Type } from '../generated/resolvers'
+import type { Query_Type } from '../generated/resolvers'
 import { TypeMap } from './types/TypeMap'
 
 export interface QueryParent {}
