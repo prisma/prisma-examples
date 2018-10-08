@@ -6,7 +6,7 @@ import { MutationParent } from '../Mutation'
 import { PostParent } from '../Post'
 import { UserParent } from '../User'
 
-import { Context } from './context'
+import { Context } from './Context'
 
 export interface TypeMap extends ITypeMap {
   Context: Context;
