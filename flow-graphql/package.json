@@ -9,6 +9,7 @@
     "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
     "flow-bin": "0.82.0",
+    "flow-typed": "^2.5.1",
     "graphql-resolver-codegen": "0.2.7",
     "npm-run-all": "4.1.3",
     "prisma": "1.17.1"
@@ -25,7 +26,8 @@
     "resolver-interfaces": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.js -g flow",
     "resolver-scaffold": "graphql-resolver-codegen scaffold -s src/schema.graphql -o ./src/resolvers/ -i ../generated/resolvers -g flow",
     "resolver-codegen": "npm-run-all resolver-interfaces resolver-scaffold",
-    "flow": "flow"
+    "flow": "flow",
+    "flow-typed": "flow-typed"
   },
   "prettier": {
     "semi": false,
