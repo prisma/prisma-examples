@@ -6,5 +6,7 @@ jobs:
     steps:
       - checkout
       - run: cd flow-graphql
+      - run: ls
       - run: yarn install
+      - run: ls
       - run: yarn flow 
