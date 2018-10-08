@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - cd flow-graphql
+      - run: yarn install
+      - run: yarn flow 
