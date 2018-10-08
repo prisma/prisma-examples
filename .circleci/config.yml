@@ -5,6 +5,6 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - cd flow-graphql
+      - run: cd flow-graphql
       - run: yarn install
       - run: yarn flow 
