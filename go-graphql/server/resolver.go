@@ -28,31 +28,31 @@ func (r *Resolver) User() UserResolver {
 type mutationResolver struct{ *Resolver }
 
 func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content string, authorEmail string) (prisma.Post, error) {
-	return r.Prisma.CreatePost(prisma.PostCreateInput{
+	post, err := r.Prisma.CreatePost(prisma.PostCreateInput{
 		Title:   title,
 		Content: content,
 		Author: prisma.UserCreateOneWithoutPostsInput{
 			Connect: &prisma.UserWhereUniqueInput{Email: &authorEmail},
 		},
 	}).Exec(ctx)
+	return *post, err
 }
 func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.Post, error) {
-	post, err := r.Prisma.DeletePost(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
-	return &post, err
+	return r.Prisma.DeletePost(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
 }
 func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post, error) {
 	isPublished := true
-	post, err := r.Prisma.UpdatePost(prisma.PostUpdateParams{
+	return r.Prisma.UpdatePost(prisma.PostUpdateParams{
 		Where: prisma.PostWhereUniqueInput{ID: &id},
 		Data:  prisma.PostUpdateInput{IsPublished: &isPublished},
 	}).Exec(ctx)
-	return &post, err
 }
 
 type postResolver struct{ *Resolver }
 
 func (r *postResolver) Author(ctx context.Context, obj *prisma.Post) (prisma.User, error) {
-	return r.Prisma.Post(prisma.PostWhereUniqueInput{ID: &obj.ID}).Author().Exec(ctx)
+	author, err := r.Prisma.Post(prisma.PostWhereUniqueInput{ID: &obj.ID}).Author().Exec(ctx)
+	return *author, err
 }
 
 type queryResolver struct{ *Resolver }
@@ -70,8 +70,7 @@ func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
 	}).Exec(ctx)
 }
 func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {
-	post, err := r.Prisma.Post(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
-	return &post, err
+	return r.Prisma.Post(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
 }
 
 type userResolver struct{ *Resolver }
