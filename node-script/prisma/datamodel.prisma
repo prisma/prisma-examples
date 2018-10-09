@@ -13,4 +13,6 @@ type User {
   name: String!
   email: String! @unique
   posts: [Post!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
