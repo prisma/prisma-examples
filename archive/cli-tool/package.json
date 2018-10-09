@@ -11,6 +11,6 @@
     "prisma-binding": "2.0.0"
   },
   "devDependencies": {
-    "prisma": "1.17.1"
+    "prisma": "1.18.0"
   }
 }
