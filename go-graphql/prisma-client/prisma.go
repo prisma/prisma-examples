@@ -4,11 +4,14 @@ package prisma
 
 import (
 	"context"
+	"errors"
 
 	"github.com/prisma/prisma-client-lib-go"
 
 	"github.com/machinebox/graphql"
 )
+
+var ErrNoResult = errors.New("query returned no result")
 
 func Str(v string) *string { return &v }
 func Int32(v int32) *int32 { return &v }
@@ -617,10 +620,16 @@ type UserPreviousValuesExec struct {
 	exec *prisma.Exec
 }
 
-func (instance UserPreviousValuesExec) Exec(ctx context.Context) (UserPreviousValues, error) {
+func (instance UserPreviousValuesExec) Exec(ctx context.Context) (*UserPreviousValues, error) {
 	var v UserPreviousValues
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserPreviousValuesExec) Exists(ctx context.Context) (bool, error) {
@@ -658,10 +667,16 @@ func (instance *PostEdgeExec) Node() *PostExec {
 	return &PostExec{ret}
 }
 
-func (instance PostEdgeExec) Exec(ctx context.Context) (PostEdge, error) {
+func (instance PostEdgeExec) Exec(ctx context.Context) (*PostEdge, error) {
 	var v PostEdge
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PostEdgeExec) Exists(ctx context.Context) (bool, error) {
@@ -720,10 +735,16 @@ func (instance *UserExec) Posts(params *PostsParamsExec) *PostExecArray {
 	return &PostExecArray{ret}
 }
 
-func (instance UserExec) Exec(ctx context.Context) (User, error) {
+func (instance UserExec) Exec(ctx context.Context) (*User, error) {
 	var v User
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserExec) Exists(ctx context.Context) (bool, error) {
@@ -750,10 +771,16 @@ type PageInfoExec struct {
 	exec *prisma.Exec
 }
 
-func (instance PageInfoExec) Exec(ctx context.Context) (PageInfo, error) {
+func (instance PageInfoExec) Exec(ctx context.Context) (*PageInfo, error) {
 	var v PageInfo
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PageInfoExec) Exists(ctx context.Context) (bool, error) {
@@ -812,14 +839,20 @@ func (instance *PostConnectionExec) Aggregate(ctx context.Context) (Aggregate, e
 		[]string{"count"})
 
 	var v Aggregate
-	err := ret.Exec(ctx, &v)
+	_, err := ret.Exec(ctx, &v)
 	return v, err
 }
 
-func (instance PostConnectionExec) Exec(ctx context.Context) (PostConnection, error) {
+func (instance PostConnectionExec) Exec(ctx context.Context) (*PostConnection, error) {
 	var v PostConnection
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PostConnectionExec) Exists(ctx context.Context) (bool, error) {
@@ -854,10 +887,16 @@ func (instance *PostExec) Author() *UserExec {
 	return &UserExec{ret}
 }
 
-func (instance PostExec) Exec(ctx context.Context) (Post, error) {
+func (instance PostExec) Exec(ctx context.Context) (*Post, error) {
 	var v Post
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PostExec) Exists(ctx context.Context) (bool, error) {
@@ -909,10 +948,16 @@ func (instance *PostSubscriptionPayloadExec) PreviousValues() *PostPreviousValue
 	return &PostPreviousValuesExec{ret}
 }
 
-func (instance PostSubscriptionPayloadExec) Exec(ctx context.Context) (PostSubscriptionPayload, error) {
+func (instance PostSubscriptionPayloadExec) Exec(ctx context.Context) (*PostSubscriptionPayload, error) {
 	var v PostSubscriptionPayload
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PostSubscriptionPayloadExec) Exists(ctx context.Context) (bool, error) {
@@ -948,10 +993,16 @@ func (instance *UserEdgeExec) Node() *UserExec {
 	return &UserExec{ret}
 }
 
-func (instance UserEdgeExec) Exec(ctx context.Context) (UserEdge, error) {
+func (instance UserEdgeExec) Exec(ctx context.Context) (*UserEdge, error) {
 	var v UserEdge
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserEdgeExec) Exists(ctx context.Context) (bool, error) {
@@ -976,10 +1027,16 @@ type PostPreviousValuesExec struct {
 	exec *prisma.Exec
 }
 
-func (instance PostPreviousValuesExec) Exec(ctx context.Context) (PostPreviousValues, error) {
+func (instance PostPreviousValuesExec) Exec(ctx context.Context) (*PostPreviousValues, error) {
 	var v PostPreviousValues
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PostPreviousValuesExec) Exists(ctx context.Context) (bool, error) {
@@ -1031,10 +1088,16 @@ func (instance *UserSubscriptionPayloadExec) PreviousValues() *UserPreviousValue
 	return &UserPreviousValuesExec{ret}
 }
 
-func (instance UserSubscriptionPayloadExec) Exec(ctx context.Context) (UserSubscriptionPayload, error) {
+func (instance UserSubscriptionPayloadExec) Exec(ctx context.Context) (*UserSubscriptionPayload, error) {
 	var v UserSubscriptionPayload
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserSubscriptionPayloadExec) Exists(ctx context.Context) (bool, error) {
@@ -1090,14 +1153,20 @@ func (instance *UserConnectionExec) Aggregate(ctx context.Context) (Aggregate, e
 		[]string{"count"})
 
 	var v Aggregate
-	err := ret.Exec(ctx, &v)
+	_, err := ret.Exec(ctx, &v)
 	return v, err
 }
 
-func (instance UserConnectionExec) Exec(ctx context.Context) (UserConnection, error) {
+func (instance UserConnectionExec) Exec(ctx context.Context) (*UserConnection, error) {
 	var v UserConnection
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserConnectionExec) Exists(ctx context.Context) (bool, error) {
