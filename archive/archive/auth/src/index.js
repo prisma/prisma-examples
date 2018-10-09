@@ -11,7 +11,7 @@ const resolvers = {
     signup,
     login,
   },
-  AuthPayload
+  AuthPayload,
 }
 
 const server = new GraphQLServer({
@@ -20,10 +20,10 @@ const server = new GraphQLServer({
   context: req => ({
     ...req,
     db: new Prisma({
-      typeDefs: 'src/generated/prisma.graphql',             // points to Prisma database schema
-      endpoint: 'http://localhost:4466/auth-example/dev',   // Prisma service endpoint (see `~/.prisma/config.yml`)
-      secret: 'mysecret123',                                // `secret` taken from `prisma.yml`
-      debug: true                                           // log all requests to the Prisma API to console
+      typeDefs: 'src/generated/prisma.graphql', // points to Prisma database schema
+      endpoint: 'http://localhost:4466/auth-example/dev', // Prisma service endpoint (see `~/.prisma/config.yml`)
+      secret: 'mysecret123', // `secret` taken from `prisma.yml`
+      debug: true, // log all requests to the Prisma API to console
     }),
   }),
 })

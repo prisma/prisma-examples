@@ -6,13 +6,13 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import type { GraphQLSchema } from "graphql";
-import type { IResolvers } from "graphql-tools/dist/Interfaces";
-import type { BasePrismaOptions as BPOType, Options } from "prisma-client-lib";
-import { makePrismaClientClass } from "prisma-client-lib";
-import { typeDefs } from "./prisma-schema";
+import type { GraphQLSchema } from 'graphql'
+import type { IResolvers } from 'graphql-tools/dist/Interfaces'
+import type { BasePrismaOptions as BPOType, Options } from 'prisma-client-lib'
+import { makePrismaClientClass } from 'prisma-client-lib'
+import { typeDefs } from './prisma-schema'
 
-type AtLeastOne<T> = $Shape<T>;
+type AtLeastOne<T> = $Shape<T>
 
 export interface Exists {
   Post(where?: PostWhereInput): Promise<boolean>;
@@ -21,7 +21,7 @@ export interface Exists {
 
 export interface Node {}
 
-export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
+export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable
 
 export interface Fragmentable {
   $fragment<T>(fragment: string | DocumentNode): Promise<T>;
@@ -31,7 +31,7 @@ interface PrismaInterface {
   $exists: Exists;
   $graphql: <T: any>(
     query: string,
-    variables?: { [key: string]: any }
+    variables?: { [key: string]: any },
   ) => Promise<T>;
   $getAbstractResolvers(filterSchema?: GraphQLSchema | string): IResolvers;
 
@@ -47,7 +47,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => FragmentableArray<PostNode>;
   postsConnection: (args?: {
     where?: PostWhereInput,
@@ -56,7 +56,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => PostConnection;
   user: (where: UserWhereUniqueInput) => User;
   users: (args?: {
@@ -66,7 +66,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => FragmentableArray<UserNode>;
   usersConnection: (args?: {
     where?: UserWhereInput,
@@ -75,7 +75,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => UserConnection;
   node: (args: { id: ID_Output }) => Node;
 
@@ -86,32 +86,32 @@ interface PrismaInterface {
   createPost: (data: PostCreateInput) => Post;
   updatePost: (args: {
     data: PostUpdateInput,
-    where: PostWhereUniqueInput
+    where: PostWhereUniqueInput,
   }) => Post;
   updateManyPosts: (args: {
     data: PostUpdateInput,
-    where?: PostWhereInput
+    where?: PostWhereInput,
   }) => BatchPayload;
   upsertPost: (args: {
     where: PostWhereUniqueInput,
     create: PostCreateInput,
-    update: PostUpdateInput
+    update: PostUpdateInput,
   }) => Post;
   deletePost: (where: PostWhereUniqueInput) => Post;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayload;
   createUser: (data: UserCreateInput) => User;
   updateUser: (args: {
     data: UserUpdateInput,
-    where: UserWhereUniqueInput
+    where: UserWhereUniqueInput,
   }) => User;
   updateManyUsers: (args: {
     data: UserUpdateInput,
-    where?: UserWhereInput
+    where?: UserWhereInput,
   }) => BatchPayload;
   upsertUser: (args: {
     where: UserWhereUniqueInput,
     create: UserCreateInput,
-    update: UserUpdateInput
+    update: UserUpdateInput,
   }) => User;
   deleteUser: (where: UserWhereUniqueInput) => User;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayload;
@@ -125,10 +125,10 @@ interface PrismaInterface {
 
 export interface Subscription {
   post: (
-    where?: PostSubscriptionWhereInput
+    where?: PostSubscriptionWhereInput,
   ) => PostSubscriptionPayloadSubscription;
   user: (
-    where?: UserSubscriptionWhereInput
+    where?: UserSubscriptionWhereInput,
   ) => UserSubscriptionPayloadSubscription;
 }
 
@@ -141,32 +141,32 @@ export interface ClientConstructor<T> {
  */
 
 export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "isPublished_ASC"
-  | "isPublished_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "content_ASC"
-  | "content_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'isPublished_ASC'
+  | 'isPublished_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'content_ASC'
+  | 'content_DESC'
 
 export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED'
 
 export interface UserCreateOneWithoutPostsInput {
   create?: UserCreateWithoutPostsInput;
@@ -174,8 +174,8 @@ export interface UserCreateOneWithoutPostsInput {
 }
 
 export type PostWhereUniqueInput = AtLeastOne<{
-  id: ID_Input
-}>;
+  id: ID_Input,
+}>
 
 export interface UserUpdateInput {
   name?: String;
@@ -331,8 +331,8 @@ export interface PostCreateInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input,
-  email?: String
-}>;
+  email?: String,
+}>
 
 export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
   where: PostWhereUniqueInput;
@@ -487,7 +487,7 @@ export interface User extends Promise<UserNode>, Fragmentable {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -505,7 +505,7 @@ export interface UserSubscription
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -725,41 +725,41 @@ export interface UserConnectionSubscription
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Int = number;
+export type Int = number
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type String = string;
+export type String = string
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type ID_Input = string | number
+export type ID_Output = string
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
-export type Boolean = boolean;
+export type Boolean = boolean
 
-export type Long = string;
+export type Long = string
 
 /*
 DateTime scalar input type, allowing Date
 */
-export type DateTimeInput = Date | string;
+export type DateTimeInput = Date | string
 
 /*
 DateTime scalar output type, which is always a string
 */
-export type DateTimeOutput = string;
+export type DateTimeOutput = string
 
 /**
  * Type Defs
  */
 
 export const Prisma = makePrismaClientClass<ClientConstructor<PrismaInterface>>(
-  { typeDefs, endpoint: `http://localhost:4466` }
-);
-export const prisma = new Prisma();
+  { typeDefs, endpoint: `http://localhost:4466` },
+)
+export const prisma = new Prisma()

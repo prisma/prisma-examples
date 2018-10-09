@@ -5,5 +5,5 @@ const Query = require('./Query')
 module.exports = {
   Mutation,
   AuthPayload,
-  Query
+  Query,
 }
