@@ -372,8 +372,4 @@ export type Long = string;
  * Type Defs
  */
 
-export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
-  typeDefs,
-  endpoint: `http://localhost:4466`
-});
-export const prisma = new Prisma();
+export const prisma: Prisma;

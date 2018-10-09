@@ -5,12 +5,12 @@
   "license": "MIT",
   "devDependencies": {
     "graphql-resolver-codegen": "0.3.0",
-    "prisma": "1.17.1"
+    "prisma": "1.18.0-beta.16"
   },
   "dependencies": {
     "graphql": "^0.13.2",
     "graphql-yoga": "^1.16.1",
-    "prisma-client-lib": "^1.17.1"
+    "prisma-client-lib": "1.17.1"
   },
   "scripts": {
     "start": "node src/index.js",
