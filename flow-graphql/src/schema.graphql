@@ -27,4 +27,6 @@ type User {
   email: String!
   name: String!
   posts: [Post!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

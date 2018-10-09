@@ -146,7 +146,7 @@ export const typeDefs = /* GraphQL */ `
     isPublished: Boolean
     title: String
     content: String
-    author: UserUpdateOneWithoutPostsInput
+    author: UserUpdateOneRequiredWithoutPostsInput
   }
 
   input PostUpdateManyWithoutAuthorInput {
@@ -306,6 +306,8 @@ export const typeDefs = /* GraphQL */ `
       first: Int
       last: Int
     ): [Post!]
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type UserConnection {
@@ -352,6 +354,8 @@ export const typeDefs = /* GraphQL */ `
     id: ID!
     name: String!
     email: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type UserSubscriptionPayload {
@@ -378,11 +382,10 @@ export const typeDefs = /* GraphQL */ `
     posts: PostUpdateManyWithoutAuthorInput
   }
 
-  input UserUpdateOneWithoutPostsInput {
+  input UserUpdateOneRequiredWithoutPostsInput {
     create: UserCreateWithoutPostsInput
     update: UserUpdateWithoutPostsDataInput
     upsert: UserUpsertWithoutPostsInput
-    delete: Boolean
     connect: UserWhereUniqueInput
   }
 
@@ -442,6 +445,22 @@ export const typeDefs = /* GraphQL */ `
     posts_every: PostWhereInput
     posts_some: PostWhereInput
     posts_none: PostWhereInput
+    createdAt: DateTime
+    createdAt_not: DateTime
+    createdAt_in: [DateTime!]
+    createdAt_not_in: [DateTime!]
+    createdAt_lt: DateTime
+    createdAt_lte: DateTime
+    createdAt_gt: DateTime
+    createdAt_gte: DateTime
+    updatedAt: DateTime
+    updatedAt_not: DateTime
+    updatedAt_in: [DateTime!]
+    updatedAt_not_in: [DateTime!]
+    updatedAt_lt: DateTime
+    updatedAt_lte: DateTime
+    updatedAt_gt: DateTime
+    updatedAt_gte: DateTime
     AND: [UserWhereInput!]
     OR: [UserWhereInput!]
     NOT: [UserWhereInput!]
