@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "graphql-cli": "2.16.7",
-    "prisma": "1.17.1"
+    "prisma": "1.18.0"
   },
   "scripts": {
     "prisma": "cd prisma && prisma",
