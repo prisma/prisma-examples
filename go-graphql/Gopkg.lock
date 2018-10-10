@@ -67,6 +67,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:e4b889a2efa063e446dc2cca35dbe2484c47bbe1f2c5c20b8d043c6e6b3009c3"
+  name = "github.com/prisma/prisma-client-lib-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "886b6a49a2294d77aa3e9cee412aba20987d3488"
+
+[[projects]]
+  branch = "master"
   digest = "1:8150271279cc160a41e9aabfee8118c20a0e88894a25b2577f93e7c868e5259c"
   name = "github.com/vektah/gqlparser"
   packages = [
@@ -89,7 +97,7 @@
     "github.com/99designs/gqlgen/graphql/introspection",
     "github.com/99designs/gqlgen/handler",
     "github.com/machinebox/graphql",
-    "github.com/mitchellh/mapstructure",
+    "github.com/prisma/prisma-client-lib-go",
     "github.com/vektah/gqlparser",
     "github.com/vektah/gqlparser/ast",
   ]
