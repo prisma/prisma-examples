@@ -1,4 +1,4 @@
-# Contributing to Prisma Examples
+# Contribution Guidelines
 
 ## Goals of the Prisma Examples
 
