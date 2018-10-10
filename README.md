@@ -2,6 +2,8 @@
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of [Prisma](https://www.prisma.io). Pick an example and follow the instructions in the corresponding README.
 
+<!-- Please keep the absolute URLs so it's easier to copy&paste to prisma/prisma/README.md  -->
+
 | Demo | Language | Description |
 |:------|:----------:|:-------------|
 | [`flow-graphql`](https://github.com/prisma/prisma-examples/tree/master/flow-graphql) | [Flow](https://flow.org/) | Simple GraphQL server |
