@@ -38,16 +38,16 @@ func main() {
 		v1 := argsWithoutProg[1]
 		if command == "create" {
 			todo := createTodo(ctx, db, v1)
-			printTodo(todo, nil)
+			printTodo(*todo, nil)
 		} else if command == "delete" {
 			todo := deleteTodo(ctx, db, v1)
-			printTodo(todo, nil)
+			printTodo(*todo, nil)
 		} else if command == "get" {
 			todo := getTodo(ctx, db, v1)
-			printTodo(todo, nil)
+			printTodo(*todo, nil)
 		} else if command == "get-user" {
 			user := getTodoUser(ctx, db, v1)
-			printUser(user, nil)
+			printUser(*user, nil)
 		} else if command == "list" {
 			v1Int, err := strconv.ParseInt(v1, 10, 32)
 			if err != nil {
@@ -126,7 +126,7 @@ func searchTodos(ctx context.Context, db *prisma.Client, q string) []prisma.Todo
 	return todoes
 }
 
-func createTodo(ctx context.Context, db *prisma.Client, text string) prisma.Todo {
+func createTodo(ctx context.Context, db *prisma.Client, text string) *prisma.Todo {
 	fmt.Println("Create Todo")
 	userID := "cjmsueuph00da0855an60n0oq"
 	todo, err := db.CreateTodo(prisma.TodoCreateInput{
@@ -144,7 +144,7 @@ func createTodo(ctx context.Context, db *prisma.Client, text string) prisma.Todo
 	return todo
 }
 
-func deleteTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
+func deleteTodo(ctx context.Context, db *prisma.Client, id string) *prisma.Todo {
 	fmt.Println("Create Todo")
 	todo, err := db.DeleteTodo(prisma.TodoWhereUniqueInput{
 		ID: &id,
@@ -155,7 +155,7 @@ func deleteTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 	return todo
 }
 
-func getTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
+func getTodo(ctx context.Context, db *prisma.Client, id string) *prisma.Todo {
 	fmt.Println("Get Todo")
 
 	exists, err := db.Todo(prisma.TodoWhereUniqueInput{
@@ -176,7 +176,7 @@ func getTodo(ctx context.Context, db *prisma.Client, id string) prisma.Todo {
 	return todo
 }
 
-func getTodoUser(ctx context.Context, db *prisma.Client, id string) prisma.User {
+func getTodoUser(ctx context.Context, db *prisma.Client, id string) *prisma.User {
 	fmt.Println("Get Todo User")
 
 	exists, err := db.Todo(prisma.TodoWhereUniqueInput{

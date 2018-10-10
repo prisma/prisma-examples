@@ -25,12 +25,20 @@
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
   version = "v0.8.0"
 
+[[projects]]
+  branch = "master"
+  digest = "1:e4b889a2efa063e446dc2cca35dbe2484c47bbe1f2c5c20b8d043c6e6b3009c3"
+  name = "github.com/prisma/prisma-client-lib-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "886b6a49a2294d77aa3e9cee412aba20987d3488"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/machinebox/graphql",
-    "github.com/mitchellh/mapstructure",
+    "github.com/prisma/prisma-client-lib-go",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
