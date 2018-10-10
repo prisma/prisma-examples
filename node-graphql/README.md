@@ -26,9 +26,7 @@ You will now deploy the Prisma API that's backing this example. This requires yo
 ```
 docker-compose up -d
 
-cd prisma
-
-# provided as a script in package.json
+# provided as a dev dependency in package.json
 yarn prisma deploy
 ```
 

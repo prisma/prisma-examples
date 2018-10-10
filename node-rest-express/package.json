@@ -10,9 +10,9 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "prisma-client-lib": "1.17.1"
+    "prisma-client-lib": "beta"
   },
   "devDependencies": {
-    "prisma": "1.18.0"
+    "prisma": "beta"
   }
 }

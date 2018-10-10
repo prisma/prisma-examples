@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prisma": "cd prisma && prisma",
+    "prisma": "prisma",
     "start": "babel-node src/usage.js",
     "flow": "flow"
   },
@@ -14,10 +14,10 @@
     "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
     "flow-bin": "0.82.0",
-    "prisma": "1.18.0"
+    "prisma": "beta"
   },
   "dependencies": {
     "graphql": "0.13",
-    "prisma-client-lib": "1.17.1"
+    "prisma-client-lib": "beta"
   }
 }
