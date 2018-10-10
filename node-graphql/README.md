@@ -57,7 +57,7 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
 
 ### 4. Start the server
 
-Navigate back into the root directory of the project and star the server with the following commands:
+Navigate back into the root directory of the project and start the server:
 
 ```
 cd ..
