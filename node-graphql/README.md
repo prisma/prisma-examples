@@ -4,7 +4,7 @@ This example demonstrates how to implement a **GraphQL server with JavaScript** 
 
 ## Get started
 
-### Prerequisites
+### 1. Install the Prisma CLI
 
 You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
 
@@ -13,7 +13,7 @@ npm install -g prisma
 # or `yarn global add prisma`
 ```
 
-### 1. Download example & Install dependencies
+### 2. Download example & Install dependencies
 
 Clone the repository:
 
@@ -28,15 +28,16 @@ cd prisma-examples/node-graphql
 yarn install # or `npm install`
 ```
 
-### 2. Deploy the Prisma API
+### 3. Deploy the Prisma API
 
-You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
+You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block).
+
+Navigate into the `prisma` directory and setup Prisma with the following commands:
 
 ```
+cd prisma
 docker-compose up -d
-
-# provided as a dev dependency in package.json
-yarn prisma deploy
+prisma deploy
 ```
 
 <details>
@@ -54,9 +55,12 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
 
 </details>
 
-### 3. Start the server
+### 4. Start the server
+
+Navigate back into the root directory of the project and star the server with the following commands:
 
 ```
+cd ..
 yarn start
 ```
 
