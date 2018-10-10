@@ -4,11 +4,14 @@ package prisma
 
 import (
 	"context"
+	"errors"
 
 	"github.com/prisma/prisma-client-lib-go"
 
 	"github.com/machinebox/graphql"
 )
+
+var ErrNoResult = errors.New("query returned no result")
 
 func Str(v string) *string { return &v }
 func Int32(v int32) *int32 { return &v }
@@ -53,7 +56,7 @@ func (client *Client) GraphQL(ctx context.Context, query string, variables map[s
 	return client.Client.GraphQL(ctx, query, variables)
 }
 
-var DefaultEndpoint = "`http://localhost:4466/go-orm/dev`"
+var DefaultEndpoint = "http://localhost:4466/go-orm/dev"
 
 func (client *Client) Todo(params TodoWhereUniqueInput) *TodoExec {
 	ret := client.Client.GetOne(
@@ -378,9 +381,9 @@ type TodoWhereUniqueInput struct {
 }
 
 type TodoUpdateInput struct {
-	Text *string             `json:"text,omitempty"`
-	Done *bool               `json:"done,omitempty"`
-	User *UserUpdateOneInput `json:"user,omitempty"`
+	Text *string                     `json:"text,omitempty"`
+	Done *bool                       `json:"done,omitempty"`
+	User *UserUpdateOneRequiredInput `json:"user,omitempty"`
 }
 
 type TodoWhereInput struct {
@@ -493,11 +496,10 @@ type UserWhereInput struct {
 	Not               []UserWhereInput `json:"NOT,omitempty"`
 }
 
-type UserUpdateOneInput struct {
+type UserUpdateOneRequiredInput struct {
 	Create  *UserCreateInput       `json:"create,omitempty"`
 	Update  *UserUpdateDataInput   `json:"update,omitempty"`
 	Upsert  *UserUpsertNestedInput `json:"upsert,omitempty"`
-	Delete  *bool                  `json:"delete,omitempty"`
 	Connect *UserWhereUniqueInput  `json:"connect,omitempty"`
 }
 
@@ -538,10 +540,16 @@ func (instance *UserSubscriptionPayloadExec) PreviousValues() *UserPreviousValue
 	return &UserPreviousValuesExec{ret}
 }
 
-func (instance UserSubscriptionPayloadExec) Exec(ctx context.Context) (UserSubscriptionPayload, error) {
+func (instance UserSubscriptionPayloadExec) Exec(ctx context.Context) (*UserSubscriptionPayload, error) {
 	var v UserSubscriptionPayload
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserSubscriptionPayloadExec) Exists(ctx context.Context) (bool, error) {
@@ -588,10 +596,16 @@ func (instance *TodoSubscriptionPayloadExec) PreviousValues() *TodoPreviousValue
 	return &TodoPreviousValuesExec{ret}
 }
 
-func (instance TodoSubscriptionPayloadExec) Exec(ctx context.Context) (TodoSubscriptionPayload, error) {
+func (instance TodoSubscriptionPayloadExec) Exec(ctx context.Context) (*TodoSubscriptionPayload, error) {
 	var v TodoSubscriptionPayload
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance TodoSubscriptionPayloadExec) Exists(ctx context.Context) (bool, error) {
@@ -616,10 +630,16 @@ type UserPreviousValuesExec struct {
 	exec *prisma.Exec
 }
 
-func (instance UserPreviousValuesExec) Exec(ctx context.Context) (UserPreviousValues, error) {
+func (instance UserPreviousValuesExec) Exec(ctx context.Context) (*UserPreviousValues, error) {
 	var v UserPreviousValues
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserPreviousValuesExec) Exists(ctx context.Context) (bool, error) {
@@ -645,10 +665,16 @@ type TodoPreviousValuesExec struct {
 	exec *prisma.Exec
 }
 
-func (instance TodoPreviousValuesExec) Exec(ctx context.Context) (TodoPreviousValues, error) {
+func (instance TodoPreviousValuesExec) Exec(ctx context.Context) (*TodoPreviousValues, error) {
 	var v TodoPreviousValues
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance TodoPreviousValuesExec) Exists(ctx context.Context) (bool, error) {
@@ -686,10 +712,16 @@ func (instance *TodoExec) User() *UserExec {
 	return &UserExec{ret}
 }
 
-func (instance TodoExec) Exec(ctx context.Context) (Todo, error) {
+func (instance TodoExec) Exec(ctx context.Context) (*Todo, error) {
 	var v Todo
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance TodoExec) Exists(ctx context.Context) (bool, error) {
@@ -716,10 +748,16 @@ type UserExec struct {
 	exec *prisma.Exec
 }
 
-func (instance UserExec) Exec(ctx context.Context) (User, error) {
+func (instance UserExec) Exec(ctx context.Context) (*User, error) {
 	var v User
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserExec) Exists(ctx context.Context) (bool, error) {
@@ -756,10 +794,16 @@ func (instance *UserEdgeExec) Node() *UserExec {
 	return &UserExec{ret}
 }
 
-func (instance UserEdgeExec) Exec(ctx context.Context) (UserEdge, error) {
+func (instance UserEdgeExec) Exec(ctx context.Context) (*UserEdge, error) {
 	var v UserEdge
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserEdgeExec) Exists(ctx context.Context) (bool, error) {
@@ -795,10 +839,16 @@ func (instance *TodoEdgeExec) Node() *TodoExec {
 	return &TodoExec{ret}
 }
 
-func (instance TodoEdgeExec) Exec(ctx context.Context) (TodoEdge, error) {
+func (instance TodoEdgeExec) Exec(ctx context.Context) (*TodoEdge, error) {
 	var v TodoEdge
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance TodoEdgeExec) Exists(ctx context.Context) (bool, error) {
@@ -854,14 +904,20 @@ func (instance *UserConnectionExec) Aggregate(ctx context.Context) (Aggregate, e
 		[]string{"count"})
 
 	var v Aggregate
-	err := ret.Exec(ctx, &v)
+	_, err := ret.Exec(ctx, &v)
 	return v, err
 }
 
-func (instance UserConnectionExec) Exec(ctx context.Context) (UserConnection, error) {
+func (instance UserConnectionExec) Exec(ctx context.Context) (*UserConnection, error) {
 	var v UserConnection
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance UserConnectionExec) Exists(ctx context.Context) (bool, error) {
@@ -916,14 +972,20 @@ func (instance *TodoConnectionExec) Aggregate(ctx context.Context) (Aggregate, e
 		[]string{"count"})
 
 	var v Aggregate
-	err := ret.Exec(ctx, &v)
+	_, err := ret.Exec(ctx, &v)
 	return v, err
 }
 
-func (instance TodoConnectionExec) Exec(ctx context.Context) (TodoConnection, error) {
+func (instance TodoConnectionExec) Exec(ctx context.Context) (*TodoConnection, error) {
 	var v TodoConnection
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance TodoConnectionExec) Exists(ctx context.Context) (bool, error) {
@@ -947,10 +1009,16 @@ type PageInfoExec struct {
 	exec *prisma.Exec
 }
 
-func (instance PageInfoExec) Exec(ctx context.Context) (PageInfo, error) {
+func (instance PageInfoExec) Exec(ctx context.Context) (*PageInfo, error) {
 	var v PageInfo
-	err := instance.exec.Exec(ctx, &v)
-	return v, err
+	ok, err := instance.exec.Exec(ctx, &v)
+	if err != nil {
+		return nil, err
+	}
+	if !ok {
+		return nil, ErrNoResult
+	}
+	return &v, nil
 }
 
 func (instance PageInfoExec) Exists(ctx context.Context) (bool, error) {
