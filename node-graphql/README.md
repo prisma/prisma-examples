@@ -4,6 +4,15 @@ This example demonstrates how to implement a **GraphQL server with JavaScript** 
 
 ## Get started
 
+### Prerequisites
+
+You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
+
+```
+npm install -g prisma
+# or `yarn global add prisma`
+```
+
 ### 1. Download example & Install dependencies
 
 Clone the repository:
