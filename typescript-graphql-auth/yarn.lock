@@ -3428,7 +3428,7 @@ prisma-cli-engine@1.19.0-beta.2:
     update-notifier "^2.3.0"
     validator "^8.2.0"
 
-prisma-client-lib@1.19.0-beta.2, prisma-client-lib@beta:
+prisma-client-lib@1.19.0-beta.2:
   version "1.19.0-beta.2"
   resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.19.0-beta.2.tgz#e5d48f6a4ff531a65339bef3d17bbbd2807674e3"
   dependencies:
@@ -3533,7 +3533,7 @@ prisma-yml@1.19.0-beta.2:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-prisma@beta:
+prisma@1.19.0-beta.2:
   version "1.19.0-beta.2"
   resolved "https://registry.yarnpkg.com/prisma/-/prisma-1.19.0-beta.2.tgz#e95945c25e10e25847ad2abca282892132fdb67c"
   dependencies:
