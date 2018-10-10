@@ -131,7 +131,7 @@ input PostUpdateInput {
   isPublished: Boolean
   title: String
   content: String
-  author: UserUpdateOneWithoutPostsInput
+  author: UserUpdateOneRequiredWithoutPostsInput
 }
 
 input PostUpdateManyWithoutAuthorInput {
@@ -323,11 +323,10 @@ input UserUpdateInput {
   posts: PostUpdateManyWithoutAuthorInput
 }
 
-input UserUpdateOneWithoutPostsInput {
+input UserUpdateOneRequiredWithoutPostsInput {
   create: UserCreateWithoutPostsInput
   update: UserUpdateWithoutPostsDataInput
   upsert: UserUpsertWithoutPostsInput
-  delete: Boolean
   connect: UserWhereUniqueInput
 }
 

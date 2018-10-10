@@ -11,7 +11,7 @@ type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
-  user: (where?: UserWhereInput) => Promise<boolean>;
+  todo: (where?: TodoWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -34,51 +34,51 @@ export interface Prisma {
    * Queries
    */
 
-  user: (where: UserWhereUniqueInput) => User;
-  users: (
+  todo: (where: TodoWhereUniqueInput) => Todo;
+  todoes: (
     args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
+      where?: TodoWhereInput;
+      orderBy?: TodoOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => FragmentableArray<UserNode>;
-  usersConnection: (
+  ) => FragmentableArray<TodoNode>;
+  todoesConnection: (
     args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
+      where?: TodoWhereInput;
+      orderBy?: TodoOrderByInput;
       skip?: Int;
       after?: String;
       before?: String;
       first?: Int;
       last?: Int;
     }
-  ) => UserConnection;
+  ) => TodoConnection;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
-  createUser: (data: UserCreateInput) => User;
-  updateUser: (
-    args: { data: UserUpdateInput; where: UserWhereUniqueInput }
-  ) => User;
-  updateManyUsers: (
-    args: { data: UserUpdateInput; where?: UserWhereInput }
+  createTodo: (data: TodoCreateInput) => Todo;
+  updateTodo: (
+    args: { data: TodoUpdateInput; where: TodoWhereUniqueInput }
+  ) => Todo;
+  updateManyTodoes: (
+    args: { data: TodoUpdateInput; where?: TodoWhereInput }
   ) => BatchPayload;
-  upsertUser: (
+  upsertTodo: (
     args: {
-      where: UserWhereUniqueInput;
-      create: UserCreateInput;
-      update: UserUpdateInput;
+      where: TodoWhereUniqueInput;
+      create: TodoCreateInput;
+      update: TodoUpdateInput;
     }
-  ) => User;
-  deleteUser: (where: UserWhereUniqueInput) => User;
-  deleteManyUsers: (where?: UserWhereInput) => BatchPayload;
+  ) => Todo;
+  deleteTodo: (where: TodoWhereUniqueInput) => Todo;
+  deleteManyTodoes: (where?: TodoWhereInput) => BatchPayload;
 
   /**
    * Subscriptions
@@ -88,9 +88,9 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  user: (
-    where?: UserSubscriptionWhereInput
-  ) => UserSubscriptionPayloadSubscription;
+  todo: (
+    where?: TodoSubscriptionWhereInput
+  ) => TodoSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -101,29 +101,23 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput =
+export type TodoOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "password_ASC"
-  | "password_DESC";
+  | "updatedAt_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface UserCreateInput {
-  name?: String;
-  email: String;
-  password: String;
+export interface TodoCreateInput {
+  title: String;
 }
 
-export interface UserWhereInput {
+export interface TodoWhereInput {
   id?: ID_Input;
   id_not?: ID_Input;
   id_in?: ID_Input[] | ID_Input;
@@ -138,6 +132,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  title?: String;
+  title_not?: String;
+  title_in?: String[] | String;
+  title_not_in?: String[] | String;
+  title_lt?: String;
+  title_lte?: String;
+  title_gt?: String;
+  title_gte?: String;
+  title_contains?: String;
+  title_not_contains?: String;
+  title_starts_with?: String;
+  title_not_starts_with?: String;
+  title_ends_with?: String;
+  title_not_ends_with?: String;
   createdAt?: DateTimeInput;
   createdAt_not?: DateTimeInput;
   createdAt_in?: DateTimeInput[] | DateTimeInput;
@@ -146,132 +154,71 @@ export interface UserWhereInput {
   createdAt_lte?: DateTimeInput;
   createdAt_gt?: DateTimeInput;
   createdAt_gte?: DateTimeInput;
-  updatedAt?: DateTimeInput;
-  updatedAt_not?: DateTimeInput;
-  updatedAt_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
-  updatedAt_lt?: DateTimeInput;
-  updatedAt_lte?: DateTimeInput;
-  updatedAt_gt?: DateTimeInput;
-  updatedAt_gte?: DateTimeInput;
-  name?: String;
-  name_not?: String;
-  name_in?: String[] | String;
-  name_not_in?: String[] | String;
-  name_lt?: String;
-  name_lte?: String;
-  name_gt?: String;
-  name_gte?: String;
-  name_contains?: String;
-  name_not_contains?: String;
-  name_starts_with?: String;
-  name_not_starts_with?: String;
-  name_ends_with?: String;
-  name_not_ends_with?: String;
-  email?: String;
-  email_not?: String;
-  email_in?: String[] | String;
-  email_not_in?: String[] | String;
-  email_lt?: String;
-  email_lte?: String;
-  email_gt?: String;
-  email_gte?: String;
-  email_contains?: String;
-  email_not_contains?: String;
-  email_starts_with?: String;
-  email_not_starts_with?: String;
-  email_ends_with?: String;
-  email_not_ends_with?: String;
-  password?: String;
-  password_not?: String;
-  password_in?: String[] | String;
-  password_not_in?: String[] | String;
-  password_lt?: String;
-  password_lte?: String;
-  password_gt?: String;
-  password_gte?: String;
-  password_contains?: String;
-  password_not_contains?: String;
-  password_starts_with?: String;
-  password_not_starts_with?: String;
-  password_ends_with?: String;
-  password_not_ends_with?: String;
-  AND?: UserWhereInput[] | UserWhereInput;
-  OR?: UserWhereInput[] | UserWhereInput;
-  NOT?: UserWhereInput[] | UserWhereInput;
+  AND?: TodoWhereInput[] | TodoWhereInput;
+  OR?: TodoWhereInput[] | TodoWhereInput;
+  NOT?: TodoWhereInput[] | TodoWhereInput;
 }
 
-export interface UserUpdateInput {
-  name?: String;
-  email?: String;
-  password?: String;
+export interface TodoUpdateInput {
+  title?: String;
 }
 
-export interface UserSubscriptionWhereInput {
+export interface TodoSubscriptionWhereInput {
   mutation_in?: MutationType[] | MutationType;
   updatedFields_contains?: String;
   updatedFields_contains_every?: String[] | String;
   updatedFields_contains_some?: String[] | String;
-  node?: UserWhereInput;
-  AND?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  OR?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
-  NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
+  node?: TodoWhereInput;
+  AND?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput;
+  OR?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput;
+  NOT?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type TodoWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  email?: String;
+  title?: String;
 }>;
 
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface UserEdgeNode {
+export interface TodoEdgeNode {
   cursor: String;
 }
 
-export interface UserEdge extends Promise<UserEdgeNode>, Fragmentable {
-  node: <T = User>() => T;
+export interface TodoEdge extends Promise<TodoEdgeNode>, Fragmentable {
+  node: <T = Todo>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdgeNode>>,
+export interface TodoEdgeSubscription
+  extends Promise<AsyncIterator<TodoEdgeNode>>,
     Fragmentable {
-  node: <T = UserSubscription>() => T;
+  node: <T = TodoSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserPreviousValuesNode {
+export interface TodoPreviousValuesNode {
   id: ID_Output;
+  title: String;
   createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name?: String;
-  email: String;
-  password: String;
 }
 
-export interface UserPreviousValues
-  extends Promise<UserPreviousValuesNode>,
+export interface TodoPreviousValues
+  extends Promise<TodoPreviousValuesNode>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValuesNode>>,
+export interface TodoPreviousValuesSubscription
+  extends Promise<AsyncIterator<TodoPreviousValuesNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PageInfoNode {
@@ -297,90 +244,81 @@ export interface PageInfoSubscription
   endCursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateUserNode {
+export interface AggregateTodoNode {
   count: Int;
 }
 
-export interface AggregateUser
-  extends Promise<AggregateUserNode>,
+export interface AggregateTodo
+  extends Promise<AggregateTodoNode>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUserNode>>,
+export interface AggregateTodoSubscription
+  extends Promise<AsyncIterator<AggregateTodoNode>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface UserNode {
+export interface TodoNode {
   id: ID_Output;
+  title: String;
   createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  name?: String;
-  email: String;
-  password: String;
 }
 
-export interface User extends Promise<UserNode>, Fragmentable {
+export interface Todo extends Promise<TodoNode>, Fragmentable {
   id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
 }
 
-export interface UserSubscription
-  extends Promise<AsyncIterator<UserNode>>,
+export interface TodoSubscription
+  extends Promise<AsyncIterator<TodoNode>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserSubscriptionPayloadNode {
+export interface TodoSubscriptionPayloadNode {
   mutation: MutationType;
   updatedFields?: String[];
 }
 
-export interface UserSubscriptionPayload
-  extends Promise<UserSubscriptionPayloadNode>,
+export interface TodoSubscriptionPayload
+  extends Promise<TodoSubscriptionPayloadNode>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = User>() => T;
+  node: <T = Todo>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValues>() => T;
+  previousValues: <T = TodoPreviousValues>() => T;
 }
 
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>,
+export interface TodoSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TodoSubscriptionPayloadNode>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
+  node: <T = TodoSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
+  previousValues: <T = TodoPreviousValuesSubscription>() => T;
 }
 
-export interface UserConnectionNode {}
+export interface TodoConnectionNode {}
 
-export interface UserConnection
-  extends Promise<UserConnectionNode>,
+export interface TodoConnection
+  extends Promise<TodoConnectionNode>,
     Fragmentable {
   pageInfo: <T = PageInfo>() => T;
-  edges: <T = FragmentableArray<UserEdgeNode>>() => T;
-  aggregate: <T = AggregateUser>() => T;
+  edges: <T = FragmentableArray<TodoEdgeNode>>() => T;
+  aggregate: <T = AggregateTodo>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnectionNode>>,
+export interface TodoConnectionSubscription
+  extends Promise<AsyncIterator<TodoConnectionNode>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TodoEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTodoSubscription>() => T;
 }
 
 export interface BatchPayloadNode {
@@ -434,8 +372,4 @@ export type Long = string;
  * Type Defs
  */
 
-export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
-  typeDefs,
-  endpoint: `http://localhost:4466`
-});
-export const prisma = new Prisma();
+export const prisma: Prisma;

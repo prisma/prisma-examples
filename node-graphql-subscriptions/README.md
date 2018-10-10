@@ -15,7 +15,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node-graphql
+cd prisma-examples/node-graphql-subscriptions
 yarn install # or `npm install`
 ```
 
@@ -25,7 +25,8 @@ You will now deploy the Prisma API that's backing this example. This requires yo
 
 ```
 docker-compose up -d
-cd prisma
+
+# provided as a dev dependency in package.json
 yarn prisma deploy
 ```
 
