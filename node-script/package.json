@@ -8,10 +8,10 @@
     "prisma-client-lib": "1.17.1"
   },
   "devDependencies": {
-    "prisma": "1.18.0"
+    "prisma": "beta"
   },
   "scripts": {
-    "prisma": "cd prisma && prisma",
+    "prisma": "prisma",
     "start": "node src/usage.js"
   }
 }
