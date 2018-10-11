@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "3.0.0",
-    "graphql-resolver-codegen": "0.3.0",
+    "graphql-resolver-codegen": "0.3.1",
     "ts-node": "7.0.1",
     "typescript": "3.1.2"
   }
