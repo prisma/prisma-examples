@@ -8,10 +8,17 @@ This example demonstrates how a CI setup using [CircleCI](https://circleci.com/)
 
 ### 1. Download the example
 
-Clone the Prisma examples monorepo and navigate to this directory or download _only_ this example with the following command:
+Clone the repository:
 
-```sh
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/master | tar -xz --strip=2 prisma-examples-master/typescript-circleci
+```
+git clone git@github.com:prisma/prisma-examples.git
+```
+
+Install Node dependencies:
+
+```
+cd prisma-examples/typescript-circleci
+yarn install # or `npm install`
 ```
 
 ### 2. Set up repository locally and on GitHub

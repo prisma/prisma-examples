@@ -69,7 +69,7 @@ yarn start
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### 4. Explore the API of your GraphQL server
+### 5. Explore the API of your GraphQL server
 
 #### Open a Playground
 
