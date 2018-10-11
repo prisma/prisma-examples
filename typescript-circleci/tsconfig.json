@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "lib": ["es2015", "esnext.asynciterable"],
+        "outDir": "dist",
+        "allowJs": true,
+        "target": "es5"
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

@@ -4,7 +4,16 @@ This example demonstrates how to implement a **Todo-app as a CLI tool** with Typ
 
 ## Get started
 
-### 1. Download example & Install dependencies
+### 1. Install the Prisma CLI
+
+You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
+
+```
+npm install -g prisma
+# or `yarn global add prisma`
+```
+
+### 2. Download example & Install dependencies
 
 Clone the repository:
 
@@ -15,31 +24,36 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript-cli-example
+cd prisma-examples/typescript-cli-app
 yarn install # or `npm install`
 ```
 
-### 2. Deploy the Prisma API
+### 3. Deploy the Prisma API
 
 You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
 
+Launch Prisma via Docker:
+
 ```
 docker-compose up -d
+```
 
+Navigate into the `prisma` directory and deploy the Prisma API:
+
+```
 cd prisma
-
-# provided as a script in package.json
-yarn prisma deploy
+prisma deploy
 ```
 
 <details>
  <summary><strong>I don't have Docker installed on my machine</strong></summary>
 
-To deploy your service to a Demo server (rather than locally with Docker), follow these steps:
+To deploy your service to a demo server (rather than locally with Docker), follow these steps:
 
 - Run the following command:
   ```
-  yarn prisma deploy --new
+  cd prisma
+  prisma deploy --new
   ```
 - In the interactive CLI wizard:
   - Select the **Demo server**
@@ -47,7 +61,7 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
 
 </details>
 
-### 3. Use the app
+### 4. Use the app
 
 ```
 yarn cli

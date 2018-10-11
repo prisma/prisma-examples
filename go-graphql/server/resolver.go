@@ -28,59 +28,53 @@ func (r *Resolver) User() UserResolver {
 type mutationResolver struct{ *Resolver }
 
 func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content string, authorEmail string) (prisma.Post, error) {
-	return r.Prisma.CreatePost(&prisma.PostCreateInput{
-		Title:   &title,
-		Content: &content,
-		Author: &prisma.UserCreateOneWithoutPostsInput{
+	post, err := r.Prisma.CreatePost(prisma.PostCreateInput{
+		Title:   title,
+		Content: content,
+		Author: prisma.UserCreateOneWithoutPostsInput{
 			Connect: &prisma.UserWhereUniqueInput{Email: &authorEmail},
 		},
-	}).Exec()
+	}).Exec(ctx)
+	return *post, err
 }
 func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.Post, error) {
-	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
-	post, err := r.Prisma.DeletePost(&prisma.PostWhereUniqueInput{ID: &id}).Exec()
-	return &post, err
+	return r.Prisma.DeletePost(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
 }
 func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post, error) {
-	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
 	isPublished := true
-	post, err := r.Prisma.UpdatePost(&prisma.UpdatePostParams{
-		Where: &prisma.PostWhereUniqueInput{ID: &id},
-		Data:  &prisma.PostUpdateInput{IsPublished: &isPublished},
-	}).Exec()
-	return &post, err
+	return r.Prisma.UpdatePost(prisma.PostUpdateParams{
+		Where: prisma.PostWhereUniqueInput{ID: &id},
+		Data:  prisma.PostUpdateInput{IsPublished: &isPublished},
+	}).Exec(ctx)
 }
 
 type postResolver struct{ *Resolver }
 
 func (r *postResolver) Author(ctx context.Context, obj *prisma.Post) (prisma.User, error) {
-	return r.Prisma.Post(&prisma.PostWhereUniqueInput{ID: &obj.ID}).Author().Exec()
+	author, err := r.Prisma.Post(prisma.PostWhereUniqueInput{ID: &obj.ID}).Author().Exec(ctx)
+	return *author, err
 }
 
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Feed(ctx context.Context) ([]prisma.Post, error) {
-	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
 	isPublished := true
 	return r.Prisma.Posts(&prisma.PostsParams{
 		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
-	}).Exec()
+	}).Exec(ctx)
 }
 func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
-	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
 	isPublished := false
 	return r.Prisma.Posts(&prisma.PostsParams{
 		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
-	}).Exec()
+	}).Exec(ctx)
 }
 func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {
-	// TODO remove pointer once fixed: https://github.com/prisma/prisma/issues/3066
-	post, err := r.Prisma.Post(&prisma.PostWhereUniqueInput{ID: &id}).Exec()
-	return &post, err
+	return r.Prisma.Post(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
 }
 
 type userResolver struct{ *Resolver }
 
 func (r *userResolver) Posts(ctx context.Context, obj *prisma.User) ([]prisma.Post, error) {
-	return r.Prisma.User(&prisma.UserWhereUniqueInput{ID: &obj.ID}).Posts(nil).Exec()
+	return r.Prisma.User(prisma.UserWhereUniqueInput{ID: &obj.ID}).Posts(nil).Exec(ctx)
 }

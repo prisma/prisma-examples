@@ -10,7 +10,7 @@
     "build": "rm -rf dist && tsc"
   },
   "dependencies": {
-    "aws-sdk": "2.327.0",
+    "aws-sdk": "2.332.0",
     "express": "4.16.3",
     "graphql": "0.13.2",
     "graphql-import": "0.7.1",
@@ -24,9 +24,9 @@
     "dotenv-cli": "1.4.0",
     "graphql-cli": "2.16.7",
     "nodemon": "1.18.4",
-    "prisma": "1.17.1",
+    "prisma": "1.18.0",
     "ts-node": "7.0.1",
-    "typescript": "3.1.1"
+    "typescript": "3.1.2"
   },
   "prettier": {
     "semi": false,
