@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prisma": "prisma",
     "start": "babel-node src/usage.js",
     "flow": "flow"
   },
