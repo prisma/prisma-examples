@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "graphql-resolver-codegen": "0.3.0",
     "ts-node": "7.0.1",
     "typescript": "3.1.2"
   },
@@ -15,7 +14,6 @@
     "prisma-client-lib": "1.19.0-beta.2"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "graphql-resolver-codegen": "graphql-resolver-codegen"
+    "start": "ts-node src/index.ts"
   }
 }

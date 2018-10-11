@@ -1,9 +1,4 @@
-import { MutationResolvers } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
-
-export interface MutationParent {}
-
-export const Mutation: MutationResolvers.Type<TypeMap> = {
+export const Mutation = {
   createDraft: (_parent, args, ctx, info) => {
     return ctx.binding.mutation.createPost(
       {
