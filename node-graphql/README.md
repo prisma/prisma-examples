@@ -24,13 +24,13 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node-graphql
+cd prisma-examples/flow-graphql
 yarn install # or `npm install`
 ```
 
 ### 3. Deploy the Prisma API
 
-You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below).
+You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
 
 Launch Prisma via Docker:
 
@@ -48,7 +48,7 @@ prisma deploy
 <details>
  <summary><strong>I don't have Docker installed on my machine</strong></summary>
 
-To deploy your service to a Demo server (rather than locally with Docker), follow these steps:
+To deploy your service to a demo server (rather than locally with Docker), follow these steps:
 
 - Run the following command:
   ```
