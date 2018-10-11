@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "aws-sdk": "2.332.0",
-    "express": "4.16.3",
+    "express": "4.16.4",
     "graphql": "0.13.2",
     "graphql-import": "0.7.1",
     "graphql-yoga": "1.16.2",
