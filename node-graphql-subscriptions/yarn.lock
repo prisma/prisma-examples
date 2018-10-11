@@ -1814,9 +1814,9 @@ graphql-request@^1.4.0, graphql-request@^1.5.0:
   dependencies:
     cross-fetch "2.2.2"
 
-graphql-resolver-codegen@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/graphql-resolver-codegen/-/graphql-resolver-codegen-0.3.0.tgz#dd1e557be48e8cc94f373a015cc126449901df41"
+graphql-resolver-codegen@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/graphql-resolver-codegen/-/graphql-resolver-codegen-0.3.1.tgz#27dacf37caaa6e3b622c2c78a0811b6fef1e66d7"
   dependencies:
     camelcase "5.0.0"
     capitalize "1.0.0"
