@@ -21,7 +21,6 @@
   },
   "scripts": {
     "start": "babel-node src/index.js",
-    "prisma": "prisma",
     "graphql-resolver-codegen": "graphql-resolver-codegen",
     "resolver-interfaces": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.js -g flow",
     "resolver-scaffold": "graphql-resolver-codegen scaffold -s src/schema.graphql -o ./src/resolvers/ -i ../generated/resolvers -g flow",

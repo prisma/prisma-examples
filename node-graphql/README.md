@@ -32,16 +32,16 @@ yarn install # or `npm install`
 
 You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below).
 
-Navigate into the `prisma` directory and launch Prisma via Docker:
+Launch Prisma via Docker:
 
 ```
-cd prisma
 docker-compose up -d
 ```
 
-Finally deploy the Prisma API:
+Navigate into the `prisma` directory and deploy the Prisma API:
 
 ```
+cd prisma
 prisma deploy
 ```
 
@@ -52,7 +52,8 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
 
 - Run the following command:
   ```
-  yarn prisma deploy --new
+  cd prisma
+  prisma deploy --new
   ```
 - In the interactive CLI wizard:
   - Select the **Demo server**
