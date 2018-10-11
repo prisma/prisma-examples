@@ -24,7 +24,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/flow-graphql
+cd prisma-examples/node-rest-express
 yarn install # or `npm install`
 ```
 
