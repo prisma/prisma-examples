@@ -1,49 +1,131 @@
 package main
 
-import "fmt"
 import "github.com/gin-gonic/gin"
 import "go-gin/prisma-client"
 
 func main() {
 
-
 	client := prisma.New(&prisma.PrismaOptions{
-		Debug: true,
+		Debug:    true,
 		Endpoint: "http://localhost:4466/go-gin/dev",
 	})
 
 	r := gin.Default()
 
-	r.POST("/draft", func(c *gin.Context) {
+	r.POST("/publish/:id", func(c *gin.Context) {
+		id := c.Param("id")
+		published := true
+		post, err := client.UpdatePost(&prisma.UpdatePostParams{
+			Where: &prisma.PostWhereUniqueInput{
+				ID: &id,
+			},
+			Data: &prisma.PostUpdateInput{
+				IsPublished: &published,
+			},
+		},
+		).Exec()
 
+		if err != nil {
+			panic(err)
+		}
+
+		c.JSON(200, gin.H{
+			"post": post,
+		})
+	})
+
+	r.POST("/delete/:id", func(c *gin.Context) {
+		id := c.Param("id")
+
+		post, err := client.DeletePost(&prisma.PostWhereUniqueInput{
+			ID: &id,
+		},
+		).Exec()
+
+		if err != nil {
+			panic(err)
+		}
+
+		c.JSON(200, gin.H{
+			"post": post,
+		})
+	})
+
+	r.POST("/draft", func(c *gin.Context) {
+		// TODO: How do we get request body?
 		title := "Draft"
 		email := "alice@prisma.io"
 
-		fmt.Println(title, email);
-
 		post, err := client.CreatePost(&prisma.PostCreateInput{
-				Title: &title,
-				Content: &title,
-				Author: &prisma.UserCreateOneWithoutPostsInput{
-					Connect: &prisma.UserWhereUniqueInput{
-						Email: &email,
-					},
+			Title:   &title,
+			Content: &title,
+			Author: &prisma.UserCreateOneWithoutPostsInput{
+				Connect: &prisma.UserWhereUniqueInput{
+					Email: &email,
 				},
+			},
 		},
-	).Exec()
+		).Exec()
 
-	if err != nil {
-		fmt.Println(err)
-	}
+		if err != nil {
+			panic(err)
+		}
+		c.JSON(200, gin.H{
+			"post": post,
+		})
+	})
 
-	fmt.Println(post)
+	r.GET("/post/:id", func(c *gin.Context) {
+		id := c.Param("id")
 
-	// fmt.Println(&post, &err)
+		post, err := client.Post(&prisma.PostWhereUniqueInput{
+			ID: &id,
+		},
+		).Exec()
 
-		// c.JSON(200, gin.H{
-		// 	"message": "pong",
-		// })
+		if err != nil {
+			panic(err)
+		}
 
+		c.JSON(200, gin.H{
+			"post": post,
+		})
+	})
+
+	r.GET("/drafts", func(c *gin.Context) {
+		published := false
+		posts, err := client.Posts(&prisma.PostsParams{
+			Where: &prisma.PostWhereInput{
+				IsPublished: &published,
+			},
+		},
+		).Exec()
+
+		if err != nil {
+			panic(err)
+		}
+
+		c.JSON(200, gin.H{
+			"posts": posts,
+		})
+	})
+
+	r.GET("/feed", func(c *gin.Context) {
+		published := true
+		posts, err := client.Posts(&prisma.PostsParams{
+			Where: &prisma.PostWhereInput{
+				IsPublished: &published,
+			},
+		},
+		).Exec()
+
+		if err != nil {
+			panic(err)
+		}
+
+		c.JSON(200, gin.H{
+			"posts": posts,
+		})
 	})
 
 	r.GET("/ping", func(c *gin.Context) {
@@ -53,11 +135,3 @@ func main() {
 	})
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
-
-// app.post(`/draft`, async (req, res) => {
-//   const result = await prisma.createPost({
-//     ...req.body,
-//     author: { connect: { email: 'alice@prisma.io' } },
-//   })
-//   res.json(result)
-// })
