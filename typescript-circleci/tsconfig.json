@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "lib": ["es2015", "esnext.asynciterable"],
+        "lib": ["es2017", "esnext.asynciterable"],
         "outDir": "dist",
         "allowJs": true,
         "target": "es5"
