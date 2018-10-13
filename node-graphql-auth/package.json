@@ -4,7 +4,7 @@
   "description": "This example demonstrates how to implement a GraphQL server with an email-password-based authentication workflow based on Prisma & graphql-yoga.",
   "author": "Prisma",
   "dependencies": {
-    "bcrypt": "3.0.1",
+    "bcrypt": "^3.0.1",
     "graphql": "0.13.2",
     "graphql-yoga": "1.16.2",
     "jsonwebtoken": "8.3.0",
