@@ -5,5 +5,5 @@ export const Post = {
   isPublished: parent => parent.isPublished,
   title: parent => parent.title,
   content: parent => parent.content,
-  author: (parent, _args, ctx) => ctx.db.post({ id: parent.id }).author(),
+  author: (parent, _args, ctx) => ctx.db.post({ id: parent.id }).author().$fragment('{ id name email createdAt }'),
 }
