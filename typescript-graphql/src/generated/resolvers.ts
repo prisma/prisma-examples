@@ -10,14 +10,14 @@ export interface ITypeMap {
 }
 
 export namespace QueryResolvers {
-  export type FeedType<T extends ITypeMap> = (
+  export type FeedResolver<T extends ITypeMap> = (
     parent: T['QueryParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => T['PostParent'][] | Promise<T['PostParent'][]>
 
-  export type DraftsType<T extends ITypeMap> = (
+  export type DraftsResolver<T extends ITypeMap> = (
     parent: T['QueryParent'],
     args: {},
     ctx: T['Context'],
@@ -28,7 +28,7 @@ export namespace QueryResolvers {
     id: string
   }
 
-  export type PostType<T extends ITypeMap> = (
+  export type PostResolver<T extends ITypeMap> = (
     parent: T['QueryParent'],
     args: ArgsPost,
     ctx: T['Context'],
@@ -64,7 +64,7 @@ export namespace MutationResolvers {
     authorEmail: string
   }
 
-  export type CreateDraftType<T extends ITypeMap> = (
+  export type CreateDraftResolver<T extends ITypeMap> = (
     parent: T['MutationParent'],
     args: ArgsCreateDraft,
     ctx: T['Context'],
@@ -75,7 +75,7 @@ export namespace MutationResolvers {
     id: string
   }
 
-  export type DeletePostType<T extends ITypeMap> = (
+  export type DeletePostResolver<T extends ITypeMap> = (
     parent: T['MutationParent'],
     args: ArgsDeletePost,
     ctx: T['Context'],
@@ -86,7 +86,7 @@ export namespace MutationResolvers {
     id: string
   }
 
-  export type PublishType<T extends ITypeMap> = (
+  export type PublishResolver<T extends ITypeMap> = (
     parent: T['MutationParent'],
     args: ArgsPublish,
     ctx: T['Context'],
@@ -116,49 +116,49 @@ export namespace MutationResolvers {
 }
 
 export namespace PostResolvers {
-  export type IdType<T extends ITypeMap> = (
+  export type IdResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type CreatedAtType<T extends ITypeMap> = (
+  export type CreatedAtResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type UpdatedAtType<T extends ITypeMap> = (
+  export type UpdatedAtResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type IsPublishedType<T extends ITypeMap> = (
+  export type IsPublishedResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => boolean | Promise<boolean>
 
-  export type TitleType<T extends ITypeMap> = (
+  export type TitleResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type ContentType<T extends ITypeMap> = (
+  export type ContentResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type AuthorType<T extends ITypeMap> = (
+  export type AuthorResolver<T extends ITypeMap> = (
     parent: T['PostParent'],
     args: {},
     ctx: T['Context'],
@@ -212,33 +212,40 @@ export namespace PostResolvers {
 }
 
 export namespace UserResolvers {
-  export type IdType<T extends ITypeMap> = (
+  export type IdResolver<T extends ITypeMap> = (
     parent: T['UserParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type EmailType<T extends ITypeMap> = (
+  export type EmailResolver<T extends ITypeMap> = (
     parent: T['UserParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type NameType<T extends ITypeMap> = (
+  export type NameResolver<T extends ITypeMap> = (
     parent: T['UserParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type PostsType<T extends ITypeMap> = (
+  export type PostsResolver<T extends ITypeMap> = (
     parent: T['UserParent'],
     args: {},
     ctx: T['Context'],
     info: GraphQLResolveInfo,
   ) => T['PostParent'][] | Promise<T['PostParent'][]>
+
+  export type CreatedAtResolver<T extends ITypeMap> = (
+    parent: T['UserParent'],
+    args: {},
+    ctx: T['Context'],
+    info: GraphQLResolveInfo,
+  ) => string | Promise<string>
 
   export interface Type<T extends ITypeMap> {
     id: (
@@ -265,6 +272,12 @@ export namespace UserResolvers {
       ctx: T['Context'],
       info: GraphQLResolveInfo,
     ) => T['PostParent'][] | Promise<T['PostParent'][]>
+    createdAt: (
+      parent: T['UserParent'],
+      args: {},
+      ctx: T['Context'],
+      info: GraphQLResolveInfo,
+    ) => string | Promise<string>
   }
 }
 
