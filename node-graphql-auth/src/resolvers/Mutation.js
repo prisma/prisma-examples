@@ -1,6 +1,6 @@
 const { hash, compare } = require('bcrypt')
 const { sign } = require('jsonwebtoken')
-const { APP_SECRET } = require('../utils')
+const { APP_SECRET, getUserId } = require('../utils')
 
 const Mutation = {
   signup: async (parent, { name, email, password }, ctx) => {
@@ -32,6 +32,51 @@ const Mutation = {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
     }
+  },
+  createDraft: async (parent, args, ctx) => {
+
+    const userId = getUserId(ctx);
+
+    const user = await ctx.db.user({ id: userId })
+
+    const email = args.authorEmail;
+
+    if (user.email !== email) {
+      throw new Error('Author Invalid');
+    }
+
+    return ctx.db.createPost({
+      title: args.title,
+      content: args.content,
+      author: { connect: { email } },
+    })
+  },
+
+  deletePost: async (parent, { id }, ctx) => {
+    const userId = getUserId(ctx);
+    const author = await ctx.db.post({ id }).author().$fragment('{ id }');
+    const authorId = author.id;
+
+    if (userId !== authorId) {
+      throw new Error('Author Invalid');
+    }
+
+    ctx.db.deletePost({ id })
+  },
+
+  publish: async (parent, { id }, ctx) => {
+    const userId = getUserId(ctx);
+    const author = await ctx.db.post({ id }).author().$fragment('{ id }');
+    const authorId = author.id;
+
+    if (userId !== authorId) {
+      throw new Error('Author Invalid');
+    }
+
+    return ctx.db.updatePost({
+      where: { id },
+      data: { isPublished: true },
+    })
   },
 }
 

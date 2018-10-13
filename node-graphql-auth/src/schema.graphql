@@ -1,8 +1,16 @@
+scalar DateTime
+
 type Query {
   me: User
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
 }
 
 type Mutation {
+  createDraft(title: String!, content: String!, authorEmail: String!): Post!
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
   signup(name: String!, email: String!, password: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
 }
@@ -12,10 +20,20 @@ type AuthPayload {
   user: User!
 }
 
-# The `User` type is a reduced version ("mask") of the `User` type from the data model (and database schema).
-# It does not expose the `createdAt`, `updatedAt` and `password` fields.
+type Post {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isPublished: Boolean!
+  title: String!
+  content: String!
+  author: User!
+}
+
 type User {
   id: ID!
   email: String!
-  name: String
+  name: String!
+  posts: [Post!]!
+  createdAt: DateTime!
 }
