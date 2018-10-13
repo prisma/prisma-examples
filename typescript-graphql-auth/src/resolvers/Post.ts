@@ -5,5 +5,5 @@ export const Post = {
   isPublished: parent => parent.isPublished,
   title: parent => parent.title,
   content: parent => parent.content,
-  author: parent => parent.author,
+  author: async (parent, args, ctx) => ctx.db.post({ id: parent.id }).author()
 }

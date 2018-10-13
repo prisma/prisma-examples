@@ -7,11 +7,13 @@ export interface UserParent {
   email: string
   name: string
   posts: PostParent[]
+  createdAt: string
 }
 
 export const User: UserResolvers.Type<TypeMap> = {
   id: parent => parent.id,
   email: parent => parent.email,
   name: parent => parent.name,
-  posts: (parent, args, ctx) => ctx.db.user({ id: parent.id }).posts(),
+  posts: (parent, _args, ctx) => ctx.db.user({ id: parent.id }).posts(),
+  createdAt: parent => parent.createdAt,
 }
