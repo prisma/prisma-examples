@@ -36,29 +36,30 @@ func main() {
 
 	if len(argsWithoutProg) == 2 {
 		v1 := argsWithoutProg[1]
-		if command == "create" {
+		switch {
+		case command == "create":
 			todo := createTodo(ctx, db, v1)
 			printTodo(*todo, nil)
-		} else if command == "delete" {
+		case command == "delete":
 			todo := deleteTodo(ctx, db, v1)
 			printTodo(*todo, nil)
-		} else if command == "get" {
+		case command == "get":
 			todo := getTodo(ctx, db, v1)
 			printTodo(*todo, nil)
-		} else if command == "get-user" {
+		case command == "get-user":
 			user := getTodoUser(ctx, db, v1)
 			printUser(*user, nil)
-		} else if command == "list" {
+		case command == "list":
 			v1Int, err := strconv.ParseInt(v1, 10, 32)
 			if err != nil {
 				panic(err)
 			}
 			todos := someTodoes(ctx, db, int32(v1Int))
 			printTodos(todos)
-		} else if command == "search" {
+		case command == "search":
 			todos := searchTodos(ctx, db, v1)
 			printTodos(todos)
-		} else {
+		default:
 			fmt.Println("Invalid command: ", command, " printing todos")
 			allTodos(ctx, db)
 		}
