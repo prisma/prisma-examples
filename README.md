@@ -23,7 +23,7 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`typescript-graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/master/typescript-graphql-subscriptions) | [TypeScript](https://www.typescriptlang.org/) | GraphQL server with subscriptions |
 | [`typescript-graphql-schema-delegation`](https://github.com/prisma/prisma-examples/tree/master/typescript-graphql-schema-delegation) | [TypeScript](https://www.typescriptlang.org/) | [Schema delegation](https://www.prisma.io/docs/prisma-client/api-reference/schema-delegation-typescript-pyl8/) with Prisma binding |
 | [`typescript-script`](https://github.com/prisma/prisma-examples/tree/master/typescript-script) | [TypeScript](https://www.typescriptlang.org/) | Simple usage of Prisma client in script |
-| [`typescript-circli`](https://github.com/prisma/prisma-examples/tree/master/typescript-script) | [TypeScript](https://www.typescriptlang.org/) | Simple usage of Circle CI with Prisma client |
+| [`typescript-circleci`](https://github.com/prisma/prisma-examples/tree/master/typescript-circleci) | [TypeScript](https://www.typescriptlang.org/) | Simple usage of Circle CI with Prisma client |
 
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) or submit a pull request.
 
