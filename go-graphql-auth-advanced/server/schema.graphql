@@ -1,0 +1,52 @@
+scalar DateTime
+
+type Query {
+  me: User @isRole(role: User) #rules.isUser
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+}
+
+type Mutation {
+  createDraft(title: String!, content: String!, authorEmail: String!): Post! @isRole(role: User) @isRole(role: Author) #rules.isUser, rules.isAuthor
+  deletePost(id: ID!): Post @isRole(role: PostOwner) #rules.isPostOwner
+  publish(id: ID!): Post @isRole(role: PostOwner) #rules.isPostOwner
+  signup(username: String!, email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Post {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isPublished: Boolean!
+  title: String!
+  content: String!
+  author: User!
+}
+
+type User {
+  id: ID!
+  createdAt: DateTime! @private
+  updatedAt: DateTime! @private
+  email: String! @private
+  username: String!
+  password: String! @private
+  posts: [Post!]! 
+}
+
+"Prevents access to a field if the user doesnt have the matching role"
+directive @isRole(role: Role!) on FIELD | FIELD_DEFINITION
+
+directive @private on FIELD | FIELD_DEFINITION
+
+enum Role {
+    PostOwner
+    User
+    Author
+}
