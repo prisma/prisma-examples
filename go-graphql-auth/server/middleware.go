@@ -1,37 +1,33 @@
 package main
 
 import (
-	"log"
 	"net/http"
+
+	"github.com/go-chi/jwtauth"
 )
 
-// func New() Config {
-// 	log.Printf("Initialize GraphQL service...")
+// func Middleware(r *Resolver) func(http.Handler) http.Handler {
+func Middleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 
-// 	port := os.Getenv("PORT")
-// 	if len(port) == 0 {
-// 		port = defaultPort
-// 	}
+		//get authorization header
+		tokenString := jwtauth.TokenFromHeader(req)
+		//log.Println(tokenString)
 
-// 	client := prisma.New(nil)
-// 	resolver := Resolver{
-// 		Prisma: client,
-// 	}
-// 	c := Config{Resolvers: &resolver}
-// 	return c
-// }
+		ctx := req.Context()
 
-func Middleware(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// user := getUserByID(db, userId)
+		token, err := VerifyToken(tokenString)
 
-		// // put it in context
-		// ctx := context.WithValue(r.Context(), userCtxKey, user)
+		// Allow unauthenticated users in, to access signup resolver for example
+		// ??
 
-		// // and call the next with our new context
-		// r = r.WithContext(ctx)
-		// next.ServeHTTP(w, r)
-		log.Printf("Logged connection from %s", r.RemoteAddr)
-		next.ServeHTTP(w, r)
-	}
+		// put it in context
+		newCtx := jwtauth.NewContext(ctx, token, err)
+
+		// and call the next with our new context
+		req = req.WithContext(newCtx)
+		next.ServeHTTP(w, req)
+	})
 }
+
+//}

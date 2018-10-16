@@ -39,6 +39,14 @@
   version = "v3.3.3"
 
 [[projects]]
+  digest = "1:49d45e550e71bc3662b46e746ac297e2d60a227702a2e3ae5103035f5187c35e"
+  name = "github.com/go-chi/jwtauth"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "fcf2c975beb3edf5fd627d4904f693ebfc3c4363"
+  version = "v4.0.0"
+
+[[projects]]
   digest = "1:7b5c6e2eeaa9ae5907c391a91c132abfd5c9e8a784a341b5625e750c67e6825d"
   name = "github.com/gorilla/websocket"
   packages = ["."]
@@ -125,6 +133,7 @@
     "github.com/99designs/gqlgen/handler",
     "github.com/dgrijalva/jwt-go",
     "github.com/go-chi/chi",
+    "github.com/go-chi/jwtauth",
     "github.com/machinebox/graphql",
     "github.com/prisma/prisma-client-lib-go",
     "github.com/vektah/gqlparser",

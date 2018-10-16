@@ -1,9 +1,8 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/dgrijalva/jwt-go"
+	jwt "github.com/dgrijalva/jwt-go"
+	jwtauth "github.com/go-chi/jwtauth"
 	prisma "github.com/prisma/prisma-examples/go-graphql-auth/prisma-client"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -27,29 +26,18 @@ func CheckPasswordHash(password, hash string) bool {
 
 func SignToken(userID string) (string, error) {
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"userID": userID,
-	})
-	tokenString, err := token.SignedString(appSecret)
+	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil)
+	_, tokenString, err := tokenAuth.Encode(jwt.MapClaims{"userID": userID})
+
 	return tokenString, err
 }
 
-func VerifyToken(tokenString string) (string, error) {
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+func VerifyToken(tokenString string) (*jwt.Token, error) {
 
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
-		}
+	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil)
+	token, err := tokenAuth.Decode(tokenString)
 
-		return appSecret, nil
-	})
-
-	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		id := claims["userID"].(string)
-		return id, err
-	} else {
-		fmt.Println(err)
-	}
-	return "", err
+	//TODO : Verify if token valid
+	return token, err
 
 }

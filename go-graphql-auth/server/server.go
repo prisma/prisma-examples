@@ -25,9 +25,10 @@ func main() {
 		Prisma: client,
 	}
 	r := chi.NewRouter()
+	r.Use(Middleware)
+
 	r.Handle("/", handler.Playground("GraphQL playground", "/query"))
 	r.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
-	//http.Handle("/query", handler.GraphQL(NewExecutableSchema(middleware.New())))
 
 	err := http.ListenAndServe(":"+port, r)
 	if err != nil {
