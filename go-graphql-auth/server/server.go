@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/99designs/gqlgen/handler"
+	"github.com/go-chi/chi"
 	"github.com/prisma/prisma-examples/go-graphql-auth/prisma-client"
 )
 
@@ -23,14 +24,14 @@ func main() {
 	resolver := Resolver{
 		Prisma: client,
 	}
-
-	http.Handle("/", handler.Playground("GraphQL playground", "/query"))
-	http.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
+	r := chi.NewRouter()
+	r.Handle("/", handler.Playground("GraphQL playground", "/query"))
+	r.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
 	//http.Handle("/query", handler.GraphQL(NewExecutableSchema(middleware.New())))
 
-	err := http.ListenAndServe(":"+port, nil)
+	err := http.ListenAndServe(":"+port, r)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 }
