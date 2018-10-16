@@ -8,7 +8,7 @@
   "author": "Prisma",
   "license": "Apache 2",
   "devDependencies": {
-    "prisma": "1.18.0"
+    "prisma": "1.18.1"
   },
   "dependencies": {
     "graphql-yoga": "1.16.2",
