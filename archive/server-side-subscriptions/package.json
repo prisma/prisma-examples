@@ -8,6 +8,6 @@
   "author": "Prisma",
   "license": "Apache 2",
   "devDependencies": {
-    "prisma": "1.18.0"
+    "prisma": "1.18.1"
   }
 }
