@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/go-chi/jwtauth"
@@ -12,7 +13,6 @@ func Middleware(next http.Handler) http.Handler {
 
 		//get authorization header
 		tokenString := jwtauth.TokenFromHeader(req)
-		//log.Println(tokenString)
 
 		ctx := req.Context()
 
@@ -21,13 +21,19 @@ func Middleware(next http.Handler) http.Handler {
 		// Allow unauthenticated users in, to access signup resolver for example
 		// ??
 
-		// put it in context
+		// put token in context
 		newCtx := jwtauth.NewContext(ctx, token, err)
 
-		// and call the next with our new context
+		// and call next with our new context
 		req = req.WithContext(newCtx)
 		next.ServeHTTP(w, req)
 	})
 }
 
 //}
+
+func getUserID(ctx context.Context) (string, error) {
+	_, claims, err := jwtauth.FromContext(ctx)
+	userID := claims["userID"].(string)
+	return userID, err
+}

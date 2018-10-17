@@ -4,7 +4,6 @@ import (
 	context "context"
 	"fmt"
 
-	"github.com/go-chi/jwtauth"
 	prisma "github.com/prisma/prisma-examples/go-graphql-auth/prisma-client"
 )
 
@@ -89,9 +88,7 @@ type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Me(ctx context.Context) (*prisma.User, error) {
 
-	// TODO : refactor in getuserid
-	_, claims, _ := jwtauth.FromContext(ctx)
-	userID := claims["userID"].(string)
+	userID, _ := getUserID(ctx)
 	user, err := r.Prisma.User(prisma.UserWhereUniqueInput{
 		ID: &userID,
 	}).Exec(ctx)
