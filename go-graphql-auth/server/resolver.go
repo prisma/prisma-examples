@@ -48,12 +48,43 @@ func (r *mutationResolver) CreateDraft(ctx context.Context, title string, conten
 
 	return *post, err
 }
+
 func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.Post, error) {
-	panic("not implemented")
+	userID, err := getUserID(ctx)
+	author, err := r.Prisma.Post(prisma.PostWhereUniqueInput{
+		ID: &id,
+	}).Author().Exec(ctx)
+
+	if userID != author.ID {
+		fmt.Errorf("Author Invalid")
+	}
+	post, err := r.Prisma.DeletePost(prisma.PostWhereUniqueInput{
+		ID: &id,
+	}).Exec(ctx)
+	return post, err
 }
+
 func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post, error) {
-	panic("not implemented")
+	userID, err := getUserID(ctx)
+	author, err := r.Prisma.Post(prisma.PostWhereUniqueInput{
+		ID: &id,
+	}).Author().Exec(ctx)
+
+	if userID != author.ID {
+		fmt.Errorf("Author Invalid")
+	}
+	IsPublished := bool(true)
+	post, err := r.Prisma.UpdatePost(prisma.PostUpdateParams{
+		Data: prisma.PostUpdateInput{
+			IsPublished: &IsPublished,
+		},
+		Where: prisma.PostWhereUniqueInput{
+			ID: &id,
+		},
+	}).Exec(ctx)
+	return post, err
 }
+
 func (r *mutationResolver) Signup(ctx context.Context, name string, email string, password string) (AuthPayload, error) {
 	hashedPassword, _ := HashPassword(password)
 	// TODO : error handling
@@ -69,6 +100,7 @@ func (r *mutationResolver) Signup(ctx context.Context, name string, email string
 	}
 	return authPayload, err
 }
+
 func (r *mutationResolver) Login(ctx context.Context, email string, password string) (AuthPayload, error) {
 	user, err := r.Prisma.User(prisma.UserWhereUniqueInput{
 		Email: &email,
@@ -114,12 +146,27 @@ func (r *queryResolver) Me(ctx context.Context) (*prisma.User, error) {
 
 	return user, err
 }
+
 func (r *queryResolver) Feed(ctx context.Context) ([]prisma.Post, error) {
-	panic("not implemented")
+	isPublished := bool(true)
+	posts, err := r.Prisma.Posts(&prisma.PostsParams{
+		Where: &prisma.PostWhereInput{
+			IsPublished: &isPublished,
+		},
+	}).Exec(ctx)
+	return posts, err
 }
+
 func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
-	panic("not implemented")
+	isPublished := bool(false)
+	posts, err := r.Prisma.Posts(&prisma.PostsParams{
+		Where: &prisma.PostWhereInput{
+			IsPublished: &isPublished,
+		},
+	}).Exec(ctx)
+	return posts, err
 }
+
 func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {
 	post, err := r.Prisma.Post(prisma.PostWhereUniqueInput{
 		ID: &id,
