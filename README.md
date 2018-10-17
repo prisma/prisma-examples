@@ -10,6 +10,7 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`flow-script`](https://github.com/prisma/prisma-examples/tree/master/flow-script) | [Flow](https://flow.org/) | Simple usage of Prisma client in script |
 | [`go-cli-app`](https://github.com/prisma/prisma-examples/tree/master/go-cli-app) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple CLI todo list app |
 | [`go-graphql`](https://github.com/prisma/prisma-examples/tree/master/go-graphql) | [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | Simple GraphQL server |
+| [`go-graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/go-graphql-auth) |  [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | GraphQL server with email-password authentication |
 | [`node-cli-app`](https://github.com/prisma/prisma-examples/tree/master/node-cli-app) | [Node.JS](https://nodejs.org/en/) | Simple CLI todo list app |
 | [`node-graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/node-graphql-auth) |  [Node.JS](https://nodejs.org/en/) | GraphQL server with email-password authentication |
 | [`node-graphql-schema-delegation`](https://github.com/prisma/prisma-examples/tree/master/node-graphql-schema-delegation) | [Node.JS](https://nodejs.org/en/) | [Schema delegation](https://www.prisma.io/docs/prisma-client/api-reference/schema-delegation-typescript-pyl8/) with Prisma binding |
