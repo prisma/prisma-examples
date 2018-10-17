@@ -27,7 +27,26 @@ func (r *Resolver) User() UserResolver {
 type mutationResolver struct{ *Resolver }
 
 func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content string, authorEmail string) (prisma.Post, error) {
-	panic("not implemented")
+	userID, err := getUserID(ctx)
+	user, err := r.Prisma.User(prisma.UserWhereUniqueInput{
+		ID: &userID,
+	}).Exec(ctx)
+
+	if user.Email != authorEmail {
+		fmt.Errorf("Author invalid")
+	}
+
+	post, err := r.Prisma.CreatePost(prisma.PostCreateInput{
+		Title:   title,
+		Content: content,
+		Author: prisma.UserCreateOneWithoutPostsInput{
+			Connect: &prisma.UserWhereUniqueInput{
+				Email: &authorEmail,
+			},
+		},
+	}).Exec(ctx)
+
+	return *post, err
 }
 func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.Post, error) {
 	panic("not implemented")
