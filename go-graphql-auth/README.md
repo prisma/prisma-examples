@@ -1,6 +1,6 @@
-# go-graphql-auth-advanced
+# go-graphql-auth
 
-This example demonstrates how to implement a **GraphQL server with an email-password-based authentication workflow authorized with GraphQL Shield** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
+This example demonstrates how to implement a **GraphQL server with an email-password-based authentication workflow** based on Prisma & [gqlgen](https://github.com/99designs/gqlgen).
 
 ## Get started
 
@@ -24,7 +24,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Go dependencies:
 
 ```
-cd prisma-examples/go-graphql-auth-advanced
+cd prisma-examples/go-graphql-auth
 dep ensure`
 ```
 
