@@ -13,8 +13,6 @@ models:
     model: github.com/prisma/prisma-examples/go-graphql-auth/prisma-client.User
   AuthPayload:
     model: github.com/prisma/prisma-examples/go-graphql-auth/server.AuthPayload
-  Role:
-    model: github.com/prisma/prisma-examples/go-graphql-auth/server.Role
 resolver:
   # goal: copy&paste from generated file
   filename: tmp/resolver.go
