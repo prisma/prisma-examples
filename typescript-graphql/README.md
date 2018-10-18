@@ -1,6 +1,6 @@
 # typescript-graphql
 
-This example demonstrates how to implement a **GraphQL server with TypeScript** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
+This example demonstrates how to implement a **GraphQL server with TypeScript** based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga) and [graphqlgen](https://github.com/prisma/graphqlgen).
 
 ## Get started
 
@@ -68,3 +68,7 @@ yarn start
 ```
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+
+### 5. Modify resolvers
+
+Read the [graphqlgen](https://github.com/prisma/graphqlgen) readme to learn how to scaffold resolvers.
