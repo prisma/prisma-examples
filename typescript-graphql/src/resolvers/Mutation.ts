@@ -1,9 +1,8 @@
-import { MutationResolvers } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
+import { MutationResolvers } from '../generated/graphqlgen'
 
 export interface MutationParent {}
 
-export const Mutation: MutationResolvers.Type<TypeMap> = {
+export const Mutation: MutationResolvers.Type = {
   createDraft: (parent, args, ctx) => {
     return ctx.db.createPost({
       title: args.title,

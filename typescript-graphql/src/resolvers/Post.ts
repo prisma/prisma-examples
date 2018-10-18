@@ -1,5 +1,4 @@
-import { PostResolvers } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
+import { PostResolvers } from '../generated/graphqlgen'
 
 export interface PostParent {
   id: string
@@ -10,7 +9,7 @@ export interface PostParent {
   content: string
 }
 
-export const Post: PostResolvers.Type<TypeMap> = {
+export const Post: PostResolvers.Type = {
   id: parent => parent.id,
   createdAt: parent => parent.createdAt,
   updatedAt: parent => parent.updatedAt,
