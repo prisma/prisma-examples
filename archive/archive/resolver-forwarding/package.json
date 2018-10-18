@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
-    "graphql-yoga": "1.16.6",
+    "graphql-yoga": "1.16.7",
     "jsonwebtoken": "8.3.0",
     "prisma-binding": "1.5.19"
   },
