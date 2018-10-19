@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "graphql-tools": "4.0.2",
-    "prisma-client-lib": "1.19.0-beta.10"
+    "prisma-client-lib": "1.19.0-beta.12"
   }
 }

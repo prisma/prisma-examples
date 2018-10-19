@@ -1125,9 +1125,9 @@ prisma-binding@^2.1.5:
     subscriptions-transport-ws "0.9.8"
     yargs "12.0.1"
 
-prisma-client-lib@1.19.0-beta.10:
-  version "1.19.0-beta.10"
-  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.19.0-beta.10.tgz#f222e77eb065a2630ef798d1f425f86c167b839e"
+prisma-client-lib@1.19.0-beta.12:
+  version "1.19.0-beta.12"
+  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.19.0-beta.12.tgz#5a6905caec8b5fc9a322b293241e5eb0637512dd"
   dependencies:
     "@types/node" "^10.9.4"
     debug "^4.0.1"
