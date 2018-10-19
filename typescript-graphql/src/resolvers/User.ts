@@ -1,5 +1,4 @@
-import { UserResolvers } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
+import { UserResolvers } from '../generated/graphqlgen'
 import { PostParent } from './Post'
 
 export interface UserParent {
@@ -10,7 +9,7 @@ export interface UserParent {
   createdAt: string
 }
 
-export const User: UserResolvers.Type<TypeMap> = {
+export const User: UserResolvers.Type = {
   id: parent => parent.id,
   email: parent => parent.email,
   name: parent => parent.name,
