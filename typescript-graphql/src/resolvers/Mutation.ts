@@ -3,11 +3,11 @@ import { MutationResolvers } from '../generated/graphqlgen'
 export interface MutationParent {}
 
 export const Mutation: MutationResolvers.Type = {
-  createDraft: (parent, args, ctx) => {
+  createDraft: (parent, { title, content, authorEmail }, ctx) => {
     return ctx.db.createPost({
-      title: args.title,
-      content: args.content,
-      author: { connect: { email: args.authorEmail } },
+      title,
+      content,
+      author: { connect: { email: authorEmail } },
     })
   },
   deletePost: (parent, { id }, ctx) => ctx.db.deletePost({ id }),
