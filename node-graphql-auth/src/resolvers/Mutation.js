@@ -33,21 +33,21 @@ const Mutation = {
       user,
     }
   },
-  createDraft: async (parent, args, ctx) => {
+  createDraft: async (parent, { title, content, authorEmail }, ctx) => {
 
     const userId = getUserId(ctx);
 
     const user = await ctx.db.user({ id: userId })
 
-    const email = args.authorEmail;
+    const email = authorEmail;
 
     if (user.email !== email) {
       throw new Error('Author Invalid');
     }
 
     return ctx.db.createPost({
-      title: args.title,
-      content: args.content,
+      title: title,
+      content: content,
       author: { connect: { email } },
     })
   },
