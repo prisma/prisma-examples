@@ -1,0 +1,19 @@
+{
+  "name": "prisma-examples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:prisma/prisma-examples.git",
+  "license": "MIT",
+  "scripts": {
+    "prettier": "prettier --config .prettierrc prettier --write \"**/src/**/*.{ts,js}\""
+  },
+  "devDependencies": {
+    "husky": "^1.1.2",
+    "prettier": "^1.14.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn prettier"
+    }
+  }
+}
