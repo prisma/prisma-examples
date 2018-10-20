@@ -7,9 +7,9 @@ const server = new GraphQLServer({
   typeDefs: 'src/schema.graphql',
   resolvers,
   middlewares: [permissions],
-  context: req => {
+  context: request => {
     return {
-      ...req,
+      ...request,
       db: prisma,
     }
   },
