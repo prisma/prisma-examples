@@ -1,11 +1,11 @@
 export const Mutation = {
-  createDraft: (_parent, args, ctx, info) => {
+  createDraft: (_parent, { title, content, authorEmail }, ctx, info) => {
     return ctx.binding.mutation.createPost(
       {
         data: {
-          title: args.title,
-          content: args.content,
-          author: { connect: { email: args.authorEmail } },
+          title,
+          content,
+          author: { connect: { email: authorEmail } },
         },
       },
       info,
