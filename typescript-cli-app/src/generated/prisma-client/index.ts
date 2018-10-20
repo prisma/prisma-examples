@@ -2,99 +2,98 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import { DocumentNode, GraphQLSchema } from "graphql";
-import { IResolvers } from "graphql-tools/dist/Interfaces";
-import { makePrismaClientClass, BaseClientOptions } from "prisma-client-lib";
-import { typeDefs } from "./prisma-schema";
+import { DocumentNode, GraphQLSchema } from 'graphql'
+import { IResolvers } from 'graphql-tools/dist/Interfaces'
+import { makePrismaClientClass, BaseClientOptions } from 'prisma-client-lib'
+import { typeDefs } from './prisma-schema'
 
-type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
-  U[keyof U];
+type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> & U[keyof U]
 
 export interface Exists {
-  todo: (where?: TodoWhereInput) => Promise<boolean>;
+  todo: (where?: TodoWhereInput) => Promise<boolean>
 }
 
 export interface Node {}
 
-export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
+export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable
 
 export interface Fragmentable {
-  $fragment<T>(fragment: string | DocumentNode): Promise<T>;
+  $fragment<T>(fragment: string | DocumentNode): Promise<T>
 }
 
 export interface Prisma {
-  $exists: Exists;
+  $exists: Exists
   $graphql: <T = any>(
     query: string,
-    variables?: { [key: string]: any }
-  ) => Promise<T>;
-  $getAbstractResolvers(filterSchema?: GraphQLSchema | string): IResolvers;
+    variables?: { [key: string]: any },
+  ) => Promise<T>
+  $getAbstractResolvers(filterSchema?: GraphQLSchema | string): IResolvers
 
   /**
    * Queries
    */
 
-  todo: (where: TodoWhereUniqueInput) => Todo;
+  todo: (where: TodoWhereUniqueInput) => Todo
   todoes: (
     args?: {
-      where?: TodoWhereInput;
-      orderBy?: TodoOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<TodoNode>;
+      where?: TodoWhereInput
+      orderBy?: TodoOrderByInput
+      skip?: Int
+      after?: String
+      before?: String
+      first?: Int
+      last?: Int
+    },
+  ) => FragmentableArray<TodoNode>
   todoesConnection: (
     args?: {
-      where?: TodoWhereInput;
-      orderBy?: TodoOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => TodoConnection;
-  node: (args: { id: ID_Output }) => Node;
+      where?: TodoWhereInput
+      orderBy?: TodoOrderByInput
+      skip?: Int
+      after?: String
+      before?: String
+      first?: Int
+      last?: Int
+    },
+  ) => TodoConnection
+  node: (args: { id: ID_Output }) => Node
 
   /**
    * Mutations
    */
 
-  createTodo: (data: TodoCreateInput) => Todo;
+  createTodo: (data: TodoCreateInput) => Todo
   updateTodo: (
-    args: { data: TodoUpdateInput; where: TodoWhereUniqueInput }
-  ) => Todo;
+    args: { data: TodoUpdateInput; where: TodoWhereUniqueInput },
+  ) => Todo
   updateManyTodoes: (
-    args: { data: TodoUpdateInput; where?: TodoWhereInput }
-  ) => BatchPayload;
+    args: { data: TodoUpdateInput; where?: TodoWhereInput },
+  ) => BatchPayload
   upsertTodo: (
     args: {
-      where: TodoWhereUniqueInput;
-      create: TodoCreateInput;
-      update: TodoUpdateInput;
-    }
-  ) => Todo;
-  deleteTodo: (where: TodoWhereUniqueInput) => Todo;
-  deleteManyTodoes: (where?: TodoWhereInput) => BatchPayload;
+      where: TodoWhereUniqueInput
+      create: TodoCreateInput
+      update: TodoUpdateInput
+    },
+  ) => Todo
+  deleteTodo: (where: TodoWhereUniqueInput) => Todo
+  deleteManyTodoes: (where?: TodoWhereInput) => BatchPayload
 
   /**
    * Subscriptions
    */
 
-  $subscribe: Subscription;
+  $subscribe: Subscription
 }
 
 export interface Subscription {
   todo: (
-    where?: TodoSubscriptionWhereInput
-  ) => TodoSubscriptionPayloadSubscription;
+    where?: TodoSubscriptionWhereInput,
+  ) => TodoSubscriptionPayloadSubscription
 }
 
 export interface ClientConstructor<T> {
-  new (options?: BaseClientOptions): T;
+  new (options?: BaseClientOptions): T
 }
 
 /**
@@ -102,205 +101,205 @@ export interface ClientConstructor<T> {
  */
 
 export type TodoOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED'
 
 export interface TodoCreateInput {
-  title: String;
+  title: String
 }
 
 export interface TodoWhereInput {
-  id?: ID_Input;
-  id_not?: ID_Input;
-  id_in?: ID_Input[] | ID_Input;
-  id_not_in?: ID_Input[] | ID_Input;
-  id_lt?: ID_Input;
-  id_lte?: ID_Input;
-  id_gt?: ID_Input;
-  id_gte?: ID_Input;
-  id_contains?: ID_Input;
-  id_not_contains?: ID_Input;
-  id_starts_with?: ID_Input;
-  id_not_starts_with?: ID_Input;
-  id_ends_with?: ID_Input;
-  id_not_ends_with?: ID_Input;
-  title?: String;
-  title_not?: String;
-  title_in?: String[] | String;
-  title_not_in?: String[] | String;
-  title_lt?: String;
-  title_lte?: String;
-  title_gt?: String;
-  title_gte?: String;
-  title_contains?: String;
-  title_not_contains?: String;
-  title_starts_with?: String;
-  title_not_starts_with?: String;
-  title_ends_with?: String;
-  title_not_ends_with?: String;
-  createdAt?: DateTimeInput;
-  createdAt_not?: DateTimeInput;
-  createdAt_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
-  createdAt_lt?: DateTimeInput;
-  createdAt_lte?: DateTimeInput;
-  createdAt_gt?: DateTimeInput;
-  createdAt_gte?: DateTimeInput;
-  AND?: TodoWhereInput[] | TodoWhereInput;
-  OR?: TodoWhereInput[] | TodoWhereInput;
-  NOT?: TodoWhereInput[] | TodoWhereInput;
+  id?: ID_Input
+  id_not?: ID_Input
+  id_in?: ID_Input[] | ID_Input
+  id_not_in?: ID_Input[] | ID_Input
+  id_lt?: ID_Input
+  id_lte?: ID_Input
+  id_gt?: ID_Input
+  id_gte?: ID_Input
+  id_contains?: ID_Input
+  id_not_contains?: ID_Input
+  id_starts_with?: ID_Input
+  id_not_starts_with?: ID_Input
+  id_ends_with?: ID_Input
+  id_not_ends_with?: ID_Input
+  title?: String
+  title_not?: String
+  title_in?: String[] | String
+  title_not_in?: String[] | String
+  title_lt?: String
+  title_lte?: String
+  title_gt?: String
+  title_gte?: String
+  title_contains?: String
+  title_not_contains?: String
+  title_starts_with?: String
+  title_not_starts_with?: String
+  title_ends_with?: String
+  title_not_ends_with?: String
+  createdAt?: DateTimeInput
+  createdAt_not?: DateTimeInput
+  createdAt_in?: DateTimeInput[] | DateTimeInput
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput
+  createdAt_lt?: DateTimeInput
+  createdAt_lte?: DateTimeInput
+  createdAt_gt?: DateTimeInput
+  createdAt_gte?: DateTimeInput
+  AND?: TodoWhereInput[] | TodoWhereInput
+  OR?: TodoWhereInput[] | TodoWhereInput
+  NOT?: TodoWhereInput[] | TodoWhereInput
 }
 
 export interface TodoUpdateInput {
-  title?: String;
+  title?: String
 }
 
 export interface TodoSubscriptionWhereInput {
-  mutation_in?: MutationType[] | MutationType;
-  updatedFields_contains?: String;
-  updatedFields_contains_every?: String[] | String;
-  updatedFields_contains_some?: String[] | String;
-  node?: TodoWhereInput;
-  AND?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput;
-  OR?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput;
-  NOT?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput;
+  mutation_in?: MutationType[] | MutationType
+  updatedFields_contains?: String
+  updatedFields_contains_every?: String[] | String
+  updatedFields_contains_some?: String[] | String
+  node?: TodoWhereInput
+  AND?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput
+  OR?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput
+  NOT?: TodoSubscriptionWhereInput[] | TodoSubscriptionWhereInput
 }
 
 export type TodoWhereUniqueInput = AtLeastOne<{
-  id: ID_Input;
-  title?: String;
-}>;
+  id: ID_Input
+  title?: String
+}>
 
 export interface NodeNode {
-  id: ID_Output;
+  id: ID_Output
 }
 
 export interface TodoEdgeNode {
-  cursor: String;
+  cursor: String
 }
 
 export interface TodoEdge extends Promise<TodoEdgeNode>, Fragmentable {
-  node: <T = Todo>() => T;
-  cursor: () => Promise<String>;
+  node: <T = Todo>() => T
+  cursor: () => Promise<String>
 }
 
 export interface TodoEdgeSubscription
   extends Promise<AsyncIterator<TodoEdgeNode>>,
     Fragmentable {
-  node: <T = TodoSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  node: <T = TodoSubscription>() => T
+  cursor: () => Promise<AsyncIterator<String>>
 }
 
 export interface TodoPreviousValuesNode {
-  id: ID_Output;
-  title: String;
-  createdAt: DateTimeOutput;
+  id: ID_Output
+  title: String
+  createdAt: DateTimeOutput
 }
 
 export interface TodoPreviousValues
   extends Promise<TodoPreviousValuesNode>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
+  id: () => Promise<ID_Output>
+  title: () => Promise<String>
+  createdAt: () => Promise<DateTimeOutput>
 }
 
 export interface TodoPreviousValuesSubscription
   extends Promise<AsyncIterator<TodoPreviousValuesNode>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  id: () => Promise<AsyncIterator<ID_Output>>
+  title: () => Promise<AsyncIterator<String>>
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
 }
 
 export interface PageInfoNode {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor?: String
+  endCursor?: String
 }
 
 export interface PageInfo extends Promise<PageInfoNode>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
+  hasNextPage: () => Promise<Boolean>
+  hasPreviousPage: () => Promise<Boolean>
+  startCursor: () => Promise<String>
+  endCursor: () => Promise<String>
 }
 
 export interface PageInfoSubscription
   extends Promise<AsyncIterator<PageInfoNode>>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>
+  startCursor: () => Promise<AsyncIterator<String>>
+  endCursor: () => Promise<AsyncIterator<String>>
 }
 
 export interface AggregateTodoNode {
-  count: Int;
+  count: Int
 }
 
 export interface AggregateTodo
   extends Promise<AggregateTodoNode>,
     Fragmentable {
-  count: () => Promise<Int>;
+  count: () => Promise<Int>
 }
 
 export interface AggregateTodoSubscription
   extends Promise<AsyncIterator<AggregateTodoNode>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  count: () => Promise<AsyncIterator<Int>>
 }
 
 export interface TodoNode {
-  id: ID_Output;
-  title: String;
-  createdAt: DateTimeOutput;
+  id: ID_Output
+  title: String
+  createdAt: DateTimeOutput
 }
 
 export interface Todo extends Promise<TodoNode>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
+  id: () => Promise<ID_Output>
+  title: () => Promise<String>
+  createdAt: () => Promise<DateTimeOutput>
 }
 
 export interface TodoSubscription
   extends Promise<AsyncIterator<TodoNode>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  id: () => Promise<AsyncIterator<ID_Output>>
+  title: () => Promise<AsyncIterator<String>>
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>
 }
 
 export interface TodoSubscriptionPayloadNode {
-  mutation: MutationType;
-  updatedFields?: String[];
+  mutation: MutationType
+  updatedFields?: String[]
 }
 
 export interface TodoSubscriptionPayload
   extends Promise<TodoSubscriptionPayloadNode>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = Todo>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = TodoPreviousValues>() => T;
+  mutation: () => Promise<MutationType>
+  node: <T = Todo>() => T
+  updatedFields: () => Promise<String[]>
+  previousValues: <T = TodoPreviousValues>() => T
 }
 
 export interface TodoSubscriptionPayloadSubscription
   extends Promise<AsyncIterator<TodoSubscriptionPayloadNode>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = TodoSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = TodoPreviousValuesSubscription>() => T;
+  mutation: () => Promise<AsyncIterator<MutationType>>
+  node: <T = TodoSubscription>() => T
+  updatedFields: () => Promise<AsyncIterator<String[]>>
+  previousValues: <T = TodoPreviousValuesSubscription>() => T
 }
 
 export interface TodoConnectionNode {}
@@ -308,65 +307,65 @@ export interface TodoConnectionNode {}
 export interface TodoConnection
   extends Promise<TodoConnectionNode>,
     Fragmentable {
-  pageInfo: <T = PageInfo>() => T;
-  edges: <T = FragmentableArray<TodoEdgeNode>>() => T;
-  aggregate: <T = AggregateTodo>() => T;
+  pageInfo: <T = PageInfo>() => T
+  edges: <T = FragmentableArray<TodoEdgeNode>>() => T
+  aggregate: <T = AggregateTodo>() => T
 }
 
 export interface TodoConnectionSubscription
   extends Promise<AsyncIterator<TodoConnectionNode>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<TodoEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateTodoSubscription>() => T;
+  pageInfo: <T = PageInfoSubscription>() => T
+  edges: <T = Promise<AsyncIterator<TodoEdgeSubscription>>>() => T
+  aggregate: <T = AggregateTodoSubscription>() => T
 }
 
 export interface BatchPayloadNode {
-  count: Long;
+  count: Long
 }
 
 export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
-  count: () => Promise<Long>;
+  count: () => Promise<Long>
 }
 
 export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayloadNode>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  count: () => Promise<AsyncIterator<Long>>
 }
 
 /*
 DateTime scalar input type, allowing Date
 */
-export type DateTimeInput = Date | string;
+export type DateTimeInput = Date | string
 
 /*
 DateTime scalar output type, which is always a string
 */
-export type DateTimeOutput = string;
+export type DateTimeOutput = string
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type ID_Input = string | number
+export type ID_Output = string
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Int = number;
+export type Int = number
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type String = string;
+export type String = string
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
-export type Boolean = boolean;
+export type Boolean = boolean
 
-export type Long = string;
+export type Long = string
 
 /**
  * Type Defs
@@ -374,6 +373,6 @@ export type Long = string;
 
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
-  endpoint: `http://localhost:4466`
-});
-export const prisma = new Prisma();
+  endpoint: `http://localhost:4466`,
+})
+export const prisma = new Prisma()

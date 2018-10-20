@@ -5,7 +5,7 @@ export const Subscription = {
         .post({
           where: {
             mutation_in: ['CREATED', 'UPDATED'],
-          }
+          },
         })
         .node()
     },
