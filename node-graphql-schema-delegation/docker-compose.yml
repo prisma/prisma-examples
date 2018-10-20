@@ -18,6 +18,7 @@ services:
             user: root
             password: prisma
             migrations: true
+            rawAccess: true
   mysql:
     image: mysql:5.7
     restart: on-failure
