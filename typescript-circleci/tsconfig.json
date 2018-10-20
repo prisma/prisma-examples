@@ -1,11 +1,8 @@
 {
-    "compilerOptions": {
-        "lib": ["es2017", "esnext.asynciterable"],
-        "outDir": "dist",
-        "allowJs": true,
-        "target": "es5"
-    },
-    "include": [
-        "./src/**/*"
-    ]
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "dist",
+    "strict": true,
+    "lib": ["esnext", "dom"]
+  }
 }
