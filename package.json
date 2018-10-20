@@ -8,8 +8,8 @@
     "prettier": "prettier --config .prettierrc prettier --write \"**/src/**/*.{ts,js}\""
   },
   "devDependencies": {
-    "husky": "^1.1.2",
-    "prettier": "^1.14.3"
+    "husky": "1.1.2",
+    "prettier": "1.14.3"
   },
   "husky": {
     "hooks": {
