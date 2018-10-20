@@ -1,6 +1,7 @@
-const { getUserId } = require('../utils')
+import { QueryResolvers } from '../generated/graphqlgen'
+import { getUserId } from '../utils'
 
-const Query = {
+export const Query: QueryResolvers.Type = {
   me: (parent, args, ctx) => {
     return ctx.db.user({ id: getUserId(ctx) })
   },
@@ -8,8 +9,4 @@ const Query = {
   drafts: (parent, args, ctx) =>
     ctx.db.posts({ where: { isPublished: false } }),
   post: (parent, { id }, ctx) => ctx.db.post({ id }),
-}
-
-module.exports = {
-  Query,
 }
