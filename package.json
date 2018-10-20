@@ -15,5 +15,6 @@
     "hooks": {
       "pre-commit": "yarn prettier"
     }
-  }
+  },
+  "private": true
 }
