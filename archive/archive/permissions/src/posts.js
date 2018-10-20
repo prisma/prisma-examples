@@ -2,16 +2,19 @@ const { getUserId } = require('./utils')
 
 async function createPost(parent, { title }, ctx, info) {
   const userId = getUserId(ctx)
-  return await ctx.db.mutation.createPost({
-    data: {
-      title,
-      author: {
-        connect: {
-          id: userId,
+  return await ctx.db.mutation.createPost(
+    {
+      data: {
+        title,
+        author: {
+          connect: {
+            id: userId,
+          },
         },
       },
     },
-  }, info)
+    info,
+  )
 }
 
 async function updateTitle(parent, { id, newTitle }, ctx, info) {
@@ -28,10 +31,13 @@ async function updateTitle(parent, { id, newTitle }, ctx, info) {
   })
 
   if (requestingUserIsAdmin || requestingUserIsAuthor) {
-    return await ctx.db.mutation.updatePost({
-      where: { id },
-      data: { title: newTitle },
-    }, info)
+    return await ctx.db.mutation.updatePost(
+      {
+        where: { id },
+        data: { title: newTitle },
+      },
+      info,
+    )
   }
   throw new Error(
     'Invalid permissions, you must be an admin or the author of a post to update it',
@@ -52,9 +58,12 @@ async function deletePost(parent, { id }, ctx, info) {
   })
 
   if (requestingUserIsAdmin || requestingUserIsAuthor) {
-    return await ctx.db.mutation.deletePost({
-      where: { id },
-    }, info)
+    return await ctx.db.mutation.deletePost(
+      {
+        where: { id },
+      },
+      info,
+    )
   }
   throw new Error(
     'Invalid permissions, you must be an admin or the author of a post to delete it',

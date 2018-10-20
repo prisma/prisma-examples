@@ -8,7 +8,7 @@ export interface UserParent {
   email: string;
   name: string;
   posts: PostParent[];
-  createdAt: string
+  createdAt: string;
 }
 
 export const User: User_Type<TypeMap> = {
