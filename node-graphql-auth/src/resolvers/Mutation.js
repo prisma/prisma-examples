@@ -34,15 +34,14 @@ const Mutation = {
     }
   },
   createDraft: async (parent, { title, content, authorEmail }, ctx) => {
-
-    const userId = getUserId(ctx);
+    const userId = getUserId(ctx)
 
     const user = await ctx.db.user({ id: userId })
 
-    const email = authorEmail;
+    const email = authorEmail
 
     if (user.email !== email) {
-      throw new Error('Author Invalid');
+      throw new Error('Author Invalid')
     }
 
     return ctx.db.createPost({
@@ -53,24 +52,30 @@ const Mutation = {
   },
 
   deletePost: async (parent, { id }, ctx) => {
-    const userId = getUserId(ctx);
-    const author = await ctx.db.post({ id }).author().$fragment('{ id }');
-    const authorId = author.id;
+    const userId = getUserId(ctx)
+    const author = await ctx.db
+      .post({ id })
+      .author()
+      .$fragment('{ id }')
+    const authorId = author.id
 
     if (userId !== authorId) {
-      throw new Error('Author Invalid');
+      throw new Error('Author Invalid')
     }
 
     ctx.db.deletePost({ id })
   },
 
   publish: async (parent, { id }, ctx) => {
-    const userId = getUserId(ctx);
-    const author = await ctx.db.post({ id }).author().$fragment('{ id }');
-    const authorId = author.id;
+    const userId = getUserId(ctx)
+    const author = await ctx.db
+      .post({ id })
+      .author()
+      .$fragment('{ id }')
+    const authorId = author.id
 
     if (userId !== authorId) {
-      throw new Error('Author Invalid');
+      throw new Error('Author Invalid')
     }
 
     return ctx.db.updatePost({

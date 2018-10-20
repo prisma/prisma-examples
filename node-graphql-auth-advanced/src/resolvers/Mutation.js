@@ -33,35 +33,27 @@ const Mutation = {
       user,
     }
   },
-  createDraft: async (parent, args, ctx) => {
-
-    const userId = getUserId(ctx);
-
-    const user = await ctx.db.user({ id: userId })
-
-    const email = args.authorEmail;
-
-    if (user.email !== email) {
-      throw new Error('Author Invalid');
-    }
-
+  createDraft: async (parent, { title, content, authorEmail }, ctx) => {
     return ctx.db.createPost({
-      title: args.title,
-      content: args.content,
-      author: { connect: { email } },
+      title,
+      content,
+      author: { connect: { email: authorEmail } },
     })
   },
 
   deletePost: async (parent, { id }, ctx) => {
-    const userId = getUserId(ctx);
-    const author = await ctx.db.post({ id }).author().$fragment('{ id }');
-    const authorId = author.id;
+    const userId = getUserId(ctx)
+    const author = await ctx.db
+      .post({ id })
+      .author()
+      .$fragment('{ id }')
+    const authorId = author.id
 
     if (userId !== authorId) {
-      throw new Error('Author Invalid');
+      throw new Error('Author Invalid')
     }
 
-    ctx.db.deletePost({ id })
+    return ctx.db.deletePost({ id })
   },
 
   publish: async (parent, { id }, ctx) => {
