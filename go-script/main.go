@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	prisma "go-gin/prisma-client"
+	"log"
 )
 
 func main() {
@@ -27,7 +28,7 @@ func main() {
 	).Exec()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	id := post.ID
@@ -44,7 +45,7 @@ func main() {
 	}).Exec()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	fmt.Printf("Queried unpublished posts: %+v\n", posts)
@@ -63,7 +64,7 @@ func main() {
 	).Exec()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	fmt.Println("Published Post with id:", updatedPost.ID)
@@ -76,7 +77,7 @@ func main() {
 	}).Exec()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	fmt.Printf("Queried published posts %+v\n", publishedPosts)
@@ -87,7 +88,7 @@ func main() {
 	}).Exec()
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	fmt.Println("Queried for post with id", updatedPost.ID)
