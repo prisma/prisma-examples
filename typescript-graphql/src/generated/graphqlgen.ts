@@ -2,8 +2,8 @@
 
 import { GraphQLResolveInfo } from 'graphql'
 import { Context } from '../types'
-import { UserNode } from './prisma-client'
 import { PostNode } from './prisma-client'
+import { UserNode } from './prisma-client'
 
 export namespace QueryResolvers {
   export const defaultResolvers = {}

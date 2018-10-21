@@ -1,7 +1,5 @@
 import { MutationResolvers } from '../generated/graphqlgen'
 
-export interface MutationParent {}
-
 export const Mutation: MutationResolvers.Type = {
   createDraft: (parent, { title, content, authorEmail }, ctx) => {
     return ctx.db.createPost({
