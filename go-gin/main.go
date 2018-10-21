@@ -52,7 +52,6 @@ func main() {
 	})
 
 	r.POST("/draft", func(c *gin.Context) {
-		// TODO: How do we get request body?
 		title := "Draft"
 		email := "alice@prisma.io"
 

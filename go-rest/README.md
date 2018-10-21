@@ -1,6 +1,6 @@
-# go-script
+# go-rest
 
-This example demonstrates how to use the Prisma client in a simple Go script.
+This example demonstrates how to use the Prisma client in a Go REST API with [mux](http://www.gorillatoolkit.org/pkg/mux).
 
 ## Get started
 
