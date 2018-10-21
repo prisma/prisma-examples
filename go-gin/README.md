@@ -1,6 +1,6 @@
-# go-rest
+# go-gin
 
-This example demonstrates how to use the Prisma client in a Go REST API with [mux](http://www.gorillatoolkit.org/pkg/mux).
+This example demonstrates how to use the Prisma client in a Go REST API with [go-gin](https://github.com/gin-gonic/gin)
 
 ## Get started
 
@@ -24,7 +24,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Go dependencies:
 
 ```
-cd prisma-examples/go-rest
+cd prisma-examples/go-gin
 go get ./....
 ```
 
