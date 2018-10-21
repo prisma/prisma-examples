@@ -64,6 +64,7 @@ To deploy your service to a Demo server (rather than locally with Docker), follo
 ### 4. Start the server
 
 ```
+cd ..
 yarn start
 ```
 

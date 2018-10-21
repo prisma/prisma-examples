@@ -5,8 +5,8 @@ const Query = {
   drafts: (parent, args, ctx, info) => {
     return ctx.binding.query.posts({ where: { isPublished: false } }, info)
   },
-  post: (parent, args, ctx, info) => {
-    return ctx.binding.query.post({ where: { id: args.id } }, info)
+  post: (parent, { id }, ctx, info) => {
+    return ctx.binding.query.post({ where: { id } }, info)
   },
 }
 

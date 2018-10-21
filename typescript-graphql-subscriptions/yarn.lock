@@ -550,7 +550,7 @@ graphql-tools@^3.0.0, graphql-tools@^3.0.5:
     iterall "^1.1.3"
     uuid "^3.1.0"
 
-graphql-yoga@^1.16.1:
+graphql-yoga@1.16.2:
   version "1.16.2"
   resolved "https://registry.yarnpkg.com/graphql-yoga/-/graphql-yoga-1.16.2.tgz#083293a9cecab6283e883c5a482c5c920fa66585"
   dependencies:
@@ -576,7 +576,7 @@ graphql-yoga@^1.16.1:
     graphql-tools "^3.0.0"
     subscriptions-transport-ws "^0.9.8"
 
-"graphql@^0.11.0 || ^0.12.0 || ^0.13.0", graphql@^0.13.2:
+graphql@0.13.2, "graphql@^0.11.0 || ^0.12.0 || ^0.13.0":
   version "0.13.2"
   resolved "http://registry.npmjs.org/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
   dependencies:
@@ -814,9 +814,9 @@ prettier@^1.14.2:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
-prisma-client-lib@^1.17.1:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.17.1.tgz#5fcc386a493e89ab650d8a9d4ca42817091d35a9"
+prisma-client-lib@1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.18.1.tgz#6846fff6503fed46f4aa7965a0bde50d51086735"
   dependencies:
     "@types/node" "^10.9.4"
     debug "^4.0.1"
