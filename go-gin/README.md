@@ -1,6 +1,6 @@
 # go-gin
 
-This example demonstrates how to use the Prisma client in a Go REST api with [go-gin](https://github.com/gin-gonic/gin)
+This example demonstrates how to use the Prisma client in a Go REST API with [go-gin](https://github.com/gin-gonic/gin)
 
 ## Get started
 
