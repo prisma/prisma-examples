@@ -28,7 +28,7 @@ func main() {
 		).Exec()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -51,7 +51,7 @@ func main() {
 		).Exec()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(post)
@@ -74,7 +74,7 @@ func main() {
 		).Exec()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(post)
@@ -90,7 +90,7 @@ func main() {
 		).Exec()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -108,7 +108,7 @@ func main() {
 		).Exec()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -126,7 +126,7 @@ func main() {
 		).Exec()
 
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
