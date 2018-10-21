@@ -254,28 +254,25 @@ type Subscription {
 }
 `
 
-export type FileOrderByInput = 
-  'id_ASC' |
-  'id_DESC' |
-  'name_ASC' |
-  'name_DESC' |
-  'size_ASC' |
-  'size_DESC' |
-  'secret_ASC' |
-  'secret_DESC' |
-  'contentType_ASC' |
-  'contentType_DESC' |
-  'createdAt_ASC' |
-  'createdAt_DESC' |
-  'updatedAt_ASC' |
-  'updatedAt_DESC' |
-  'url_ASC' |
-  'url_DESC'
+export type FileOrderByInput =
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'size_ASC'
+  | 'size_DESC'
+  | 'secret_ASC'
+  | 'secret_DESC'
+  | 'contentType_ASC'
+  | 'contentType_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'url_ASC'
+  | 'url_DESC'
 
-export type MutationType = 
-  'CREATED' |
-  'UPDATED' |
-  'DELETED'
+export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED'
 
 export interface FileWhereUniqueInput {
   id?: ID_Input
@@ -499,52 +496,124 @@ export interface Schema {
 }
 
 export type Query = {
-  files: (args: { where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string) => Promise<File[]>
-  file: (args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string) => Promise<File | null>
-  filesConnection: (args: { where?: FileWhereInput, orderBy?: FileOrderByInput, skip?: Int, after?: String, before?: String, first?: Int, last?: Int }, info?: GraphQLResolveInfo | string) => Promise<FileConnection>
-  node: (args: { id: ID_Output }, info?: GraphQLResolveInfo | string) => Promise<Node | null>
+  files: (
+    args: {
+      where?: FileWhereInput
+      orderBy?: FileOrderByInput
+      skip?: Int
+      after?: String
+      before?: String
+      first?: Int
+      last?: Int
+    },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<File[]>
+  file: (
+    args: { where: FileWhereUniqueInput },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<File | null>
+  filesConnection: (
+    args: {
+      where?: FileWhereInput
+      orderBy?: FileOrderByInput
+      skip?: Int
+      after?: String
+      before?: String
+      first?: Int
+      last?: Int
+    },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<FileConnection>
+  node: (
+    args: { id: ID_Output },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<Node | null>
 }
 
 export type Mutation = {
-  createFile: (args: { data: FileCreateInput }, info?: GraphQLResolveInfo | string) => Promise<File>
-  updateFile: (args: { data: FileUpdateInput, where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string) => Promise<File | null>
-  deleteFile: (args: { where: FileWhereUniqueInput }, info?: GraphQLResolveInfo | string) => Promise<File | null>
-  upsertFile: (args: { where: FileWhereUniqueInput, create: FileCreateInput, update: FileUpdateInput }, info?: GraphQLResolveInfo | string) => Promise<File>
-  updateManyFiles: (args: { data: FileUpdateInput, where: FileWhereInput }, info?: GraphQLResolveInfo | string) => Promise<BatchPayload>
-  deleteManyFiles: (args: { where: FileWhereInput }, info?: GraphQLResolveInfo | string) => Promise<BatchPayload>
+  createFile: (
+    args: { data: FileCreateInput },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<File>
+  updateFile: (
+    args: { data: FileUpdateInput; where: FileWhereUniqueInput },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<File | null>
+  deleteFile: (
+    args: { where: FileWhereUniqueInput },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<File | null>
+  upsertFile: (
+    args: {
+      where: FileWhereUniqueInput
+      create: FileCreateInput
+      update: FileUpdateInput
+    },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<File>
+  updateManyFiles: (
+    args: { data: FileUpdateInput; where: FileWhereInput },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<BatchPayload>
+  deleteManyFiles: (
+    args: { where: FileWhereInput },
+    info?: GraphQLResolveInfo | string,
+  ) => Promise<BatchPayload>
 }
 
 export type Subscription = {
-  file: (args: { where?: FileSubscriptionWhereInput }, infoOrQuery?: GraphQLResolveInfo | string) => Promise<AsyncIterator<FileSubscriptionPayload>>
+  file: (
+    args: { where?: FileSubscriptionWhereInput },
+    infoOrQuery?: GraphQLResolveInfo | string,
+  ) => Promise<AsyncIterator<FileSubscriptionPayload>>
 }
 
 export class Prisma extends BasePrisma {
-  
-  constructor({ endpoint, secret, fragmentReplacements, debug }: BasePrismaOptions) {
-    super({ typeDefs, endpoint, secret, fragmentReplacements, debug });
+  constructor({
+    endpoint,
+    secret,
+    fragmentReplacements,
+    debug,
+  }: BasePrismaOptions) {
+    super({ typeDefs, endpoint, secret, fragmentReplacements, debug })
   }
 
   exists = {
-    File: (where: FileWhereInput): Promise<boolean> => super.existsDelegate('query', 'files', { where }, {}, '{ id }')
+    File: (where: FileWhereInput): Promise<boolean> =>
+      super.existsDelegate('query', 'files', { where }, {}, '{ id }'),
   }
 
   query: Query = {
-    files: (args, info): Promise<File[]> => super.delegate('query', 'files', args, {}, info),
-    file: (args, info): Promise<File | null> => super.delegate('query', 'file', args, {}, info),
-    filesConnection: (args, info): Promise<FileConnection> => super.delegate('query', 'filesConnection', args, {}, info),
-    node: (args, info): Promise<Node | null> => super.delegate('query', 'node', args, {}, info)
+    files: (args, info): Promise<File[]> =>
+      super.delegate('query', 'files', args, {}, info),
+    file: (args, info): Promise<File | null> =>
+      super.delegate('query', 'file', args, {}, info),
+    filesConnection: (args, info): Promise<FileConnection> =>
+      super.delegate('query', 'filesConnection', args, {}, info),
+    node: (args, info): Promise<Node | null> =>
+      super.delegate('query', 'node', args, {}, info),
   }
 
   mutation: Mutation = {
-    createFile: (args, info): Promise<File> => super.delegate('mutation', 'createFile', args, {}, info),
-    updateFile: (args, info): Promise<File | null> => super.delegate('mutation', 'updateFile', args, {}, info),
-    deleteFile: (args, info): Promise<File | null> => super.delegate('mutation', 'deleteFile', args, {}, info),
-    upsertFile: (args, info): Promise<File> => super.delegate('mutation', 'upsertFile', args, {}, info),
-    updateManyFiles: (args, info): Promise<BatchPayload> => super.delegate('mutation', 'updateManyFiles', args, {}, info),
-    deleteManyFiles: (args, info): Promise<BatchPayload> => super.delegate('mutation', 'deleteManyFiles', args, {}, info)
+    createFile: (args, info): Promise<File> =>
+      super.delegate('mutation', 'createFile', args, {}, info),
+    updateFile: (args, info): Promise<File | null> =>
+      super.delegate('mutation', 'updateFile', args, {}, info),
+    deleteFile: (args, info): Promise<File | null> =>
+      super.delegate('mutation', 'deleteFile', args, {}, info),
+    upsertFile: (args, info): Promise<File> =>
+      super.delegate('mutation', 'upsertFile', args, {}, info),
+    updateManyFiles: (args, info): Promise<BatchPayload> =>
+      super.delegate('mutation', 'updateManyFiles', args, {}, info),
+    deleteManyFiles: (args, info): Promise<BatchPayload> =>
+      super.delegate('mutation', 'deleteManyFiles', args, {}, info),
   }
 
   subscription: Subscription = {
-    file: (args, infoOrQuery): Promise<AsyncIterator<FileSubscriptionPayload>> => super.delegateSubscription('file', args, {}, infoOrQuery)
+    file: (
+      args,
+      infoOrQuery,
+    ): Promise<AsyncIterator<FileSubscriptionPayload>> =>
+      super.delegateSubscription('file', args, {}, infoOrQuery),
   }
 }

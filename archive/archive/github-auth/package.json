@@ -10,7 +10,7 @@
   "dependencies": {
     "graphql": "0.13.2",
     "graphql-import": "0.7.1",
-    "graphql-yoga": "1.16.2",
+    "graphql-yoga": "1.16.7",
     "isomorphic-fetch": "2.2.1",
     "jsonwebtoken": "8.3.0",
     "prisma-binding": "1.5.19"
@@ -19,7 +19,7 @@
     "dotenv-cli": "1.4.0",
     "graphql-cli": "2.16.7",
     "nodemon": "1.18.4",
-    "prisma": "1.18.0",
+    "prisma": "1.18.1",
     "ts-node": "7.0.1",
     "typescript": "3.1.3"
   },

@@ -14,24 +14,24 @@ app.post(`/draft`, async (req, res) => {
   res.json(result)
 })
 
-app.get(`/post/:id`, async (req, res) => {
-  const { id } = req.params
-  const post = await prisma.post({ id })
-  res.json(post)
-})
-
-app.get(`/delete/:id`, async (req, res) => {
+app.post(`/delete/:id`, async (req, res) => {
   const { id } = req.params
   const post = await prisma.deletePost({ id })
   res.json(post)
 })
 
-app.get('/publish/:id', async (req, res) => {
+app.post('/publish/:id', async (req, res) => {
   const { id } = req.params
   const post = await prisma.updatePost({
     where: { id },
     data: { isPublished: true },
   })
+  res.json(post)
+})
+
+app.get(`/post/:id`, async (req, res) => {
+  const { id } = req.params
+  const post = await prisma.post({ id })
   res.json(post)
 })
 

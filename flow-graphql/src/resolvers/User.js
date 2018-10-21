@@ -8,6 +8,7 @@ export interface UserParent {
   email: string;
   name: string;
   posts: PostParent[];
+  createdAt: string;
 }
 
 export const User: User_Type<TypeMap> = {
@@ -15,4 +16,5 @@ export const User: User_Type<TypeMap> = {
   email: parent => parent.email,
   name: parent => parent.name,
   posts: (parent, args, ctx) => ctx.db.user({ id: parent.id }).posts(),
+  createdAt: parent => parent.createdAt,
 }

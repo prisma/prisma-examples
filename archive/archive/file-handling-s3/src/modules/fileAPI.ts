@@ -39,7 +39,10 @@ export default ({ prisma, s3 }) => (req, res) => {
         url,
       }
 
-      const { id }: { id: string } = await prisma.mutation.createFile({ data }, ` { id } `)
+      const { id }: { id: string } = await prisma.mutation.createFile(
+        { data },
+        ` { id } `,
+      )
 
       const file = {
         id,

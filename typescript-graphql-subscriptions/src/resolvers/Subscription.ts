@@ -1,11 +1,11 @@
 export const Subscription = {
   posts: {
-    subscribe: async (parent, args, ctx, info) => {
+    subscribe: async (parent, args, ctx) => {
       return ctx.db.$subscribe
         .post({
           where: {
             mutation_in: ['CREATED', 'UPDATED'],
-          }
+          },
         })
         .node()
     },

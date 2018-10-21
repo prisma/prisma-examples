@@ -1,11 +1,11 @@
-import { QueryResolvers } from '../generated/resolvers'
 import { getUserId } from '../utils'
-import { TypeMap } from './types/TypeMap'
 
-export interface QueryParent {}
-
-export const Query: QueryResolvers.Type<TypeMap> = {
-  me: (_parent, _args, ctx) => {
+export const Query = {
+  me: (parent, args, ctx) => {
     return ctx.db.user({ id: getUserId(ctx) })
   },
+  feed: (parent, args, ctx) => ctx.db.posts({ where: { isPublished: true } }),
+  drafts: (parent, args, ctx) =>
+    ctx.db.posts({ where: { isPublished: false } }),
+  post: (parent, { id }, ctx) => ctx.db.post({ id }),
 }

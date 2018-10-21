@@ -30,4 +30,8 @@ async function main() {
   console.log(`Deleted post with id ${id}`)
 }
 
-main().catch(e => console.error(e))
+main()
+  .then(() => {
+    process.exit(0)
+  })
+  .catch(e => console.error(e))
