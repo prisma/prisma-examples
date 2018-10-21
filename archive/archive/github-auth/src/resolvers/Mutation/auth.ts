@@ -4,7 +4,10 @@ import * as jwt from 'jsonwebtoken'
 
 // Helpers -------------------------------------------------------------------
 
-async function getPrismaUser(ctx: Context, githubUserId: string): Promise<User> {
+async function getPrismaUser(
+  ctx: Context,
+  githubUserId: string,
+): Promise<User> {
   return await ctx.db.query.user({ where: { githubUserId } })
 }
 

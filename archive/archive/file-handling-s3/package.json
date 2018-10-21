@@ -10,12 +10,12 @@
     "build": "rm -rf dist && tsc"
   },
   "dependencies": {
-    "aws-sdk": "2.334.0",
+    "aws-sdk": "2.339.0",
     "express": "4.16.4",
     "graphql": "0.13.2",
     "graphql-import": "0.7.1",
-    "graphql-yoga": "1.16.2",
-    "mime-types": "2.1.20",
+    "graphql-yoga": "1.16.7",
+    "mime-types": "2.1.21",
     "multiparty": "4.2.1",
     "prisma-binding": "1.5.19",
     "uuid": "3.3.2"
@@ -24,7 +24,7 @@
     "dotenv-cli": "1.4.0",
     "graphql-cli": "2.16.7",
     "nodemon": "1.18.4",
-    "prisma": "1.18.0",
+    "prisma": "1.18.1",
     "ts-node": "7.0.1",
     "typescript": "3.1.3"
   },

@@ -10,6 +10,6 @@ export const resolvers = {
   },
   Mutation: {
     ...auth,
-    ...notes
-  }
+    ...notes,
+  },
 }
