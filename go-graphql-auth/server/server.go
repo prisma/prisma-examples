@@ -25,7 +25,7 @@ func main() {
 		Prisma: client,
 	}
 	r := chi.NewRouter()
-	r.Use(Middleware)
+	r.Use(AuthMiddleware)
 
 	r.Handle("/", handler.Playground("GraphQL playground", "/query"))
 	r.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))

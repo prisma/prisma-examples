@@ -87,7 +87,6 @@ func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post
 
 func (r *mutationResolver) Signup(ctx context.Context, name string, email string, password string) (AuthPayload, error) {
 	hashedPassword, _ := HashPassword(password)
-	// TODO : error handling
 	user, err := r.Prisma.CreateUser(prisma.UserCreateInput{
 		Name:     name,
 		Email:    email,
@@ -143,6 +142,9 @@ func (r *queryResolver) Me(ctx context.Context) (*prisma.User, error) {
 	user, err := r.Prisma.User(prisma.UserWhereUniqueInput{
 		ID: &userID,
 	}).Exec(ctx)
+	if err != nil {
+		fmt.Errorf("No user found with id %v", userID, err)
+	}
 
 	return user, err
 }

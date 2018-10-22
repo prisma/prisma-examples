@@ -12,7 +12,7 @@ type AuthPayload struct {
 	User  prisma.User `json:"user"`
 }
 
-var appSecret = []byte("appsecret321") // TODO : use env variable
+var appSecret = []byte("appsecret321")
 
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
@@ -26,18 +26,15 @@ func CheckPasswordHash(password, hash string) bool {
 
 func SignToken(userID string) (string, error) {
 
-	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil) // init() ?
+	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil)
 	_, tokenString, err := tokenAuth.Encode(jwt.MapClaims{"userID": userID})
-
 	return tokenString, err
 }
 
 func VerifyToken(tokenString string) (*jwt.Token, error) {
 
-	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil) // init() ?
+	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil)
 	token, err := tokenAuth.Decode(tokenString)
-
-	//TODO : Verify if token valid
 	return token, err
 
 }
