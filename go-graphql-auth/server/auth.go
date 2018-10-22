@@ -25,16 +25,13 @@ func CheckPasswordHash(password, hash string) bool {
 }
 
 func SignToken(userID string) (string, error) {
-
 	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil)
 	_, tokenString, err := tokenAuth.Encode(jwt.MapClaims{"userID": userID})
 	return tokenString, err
 }
 
 func VerifyToken(tokenString string) (*jwt.Token, error) {
-
 	tokenAuth := jwtauth.New("HS256", []byte(appSecret), nil)
 	token, err := tokenAuth.Decode(tokenString)
 	return token, err
-
 }
