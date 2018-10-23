@@ -9,9 +9,9 @@ context: ./src/types.ts:Context
 
 # Map SDL types from the GraphQL schema to TS models
 models:
-  override:
-    User: ./src/generated/prisma-client/index.ts:UserNode
-    Post: ./src/generated/prisma-client/index.ts:PostNode
+  defaultName: '${typeName}Node'
+  files:
+    - ./src/generated/prisma-client
 
 # Generated typings for resolvers and default resolver implementations
 # Please don't edit this file but just import from here

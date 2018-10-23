@@ -5,3 +5,4 @@ tmp
 dist
 .DS_Store
 .idea
+tmp-resolvers
