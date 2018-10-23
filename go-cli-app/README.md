@@ -42,7 +42,7 @@ Exploration around resolvers type generation in go and some sort of bindings.
 
 ##### Via npm
 
-1. `npm install -g prisma@alpha`
+1. `npm install -g prisma`
 
 ### Useful Packages/Resources
 
