@@ -22,17 +22,21 @@
   version "0.12.6"
   resolved "http://registry.npmjs.org/@types/graphql/-/graphql-0.12.6.tgz#3d619198585fcabe5f4e1adfb5cf5f3388c66c13"
 
-"@types/jest@^23.3.1":
-  version "23.3.2"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
-
 "@types/methods@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@types/methods/-/methods-1.1.0.tgz#fa0c8c81992257903f724651ec2500ec427dc32d"
 
-"@types/node@*", "@types/node@^10.9.4":
+"@types/node@*":
   version "10.11.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.2.tgz#59508b88ce90fe2742f7b8414c6f5db3e359570d"
+
+"@types/node@^10.12.0":
+  version "10.12.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.0.tgz#ea6dcbddbc5b584c83f06c60e82736d8fbb0c235"
+
+"@types/prettier@^1.13.2":
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.13.2.tgz#ffe96278e712a8d4e467e367a338b05e22872646"
 
 "@types/tough-cookie@^2.3.0":
   version "2.3.3"
@@ -710,9 +714,9 @@ debug@3.1.0, debug@^3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.0.1.tgz#f9bb36d439b8d1f0dd52d8fb6b46e4ebb8c1cd5b"
+debug@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
   dependencies:
     ms "^2.1.1"
 
@@ -1469,9 +1473,9 @@ graphql-request@^1.4.0, graphql-request@^1.5.0:
   dependencies:
     cross-fetch "2.0.0"
 
-graphql-tag@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.9.2.tgz#2f60a5a981375f430bf1e6e95992427dc18af686"
+graphql-tag@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.0.tgz#87da024be863e357551b2b8700e496ee2d4353ae"
 
 graphql-tools@3.1.0:
   version "3.1.0"
@@ -2734,7 +2738,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@^1.14.2:
+prettier@^1.14.3:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
@@ -2754,9 +2758,9 @@ prisma-binding@2.1.6:
     subscriptions-transport-ws "0.9.8"
     yargs "12.0.1"
 
-prisma-cli-core@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma-cli-core/-/prisma-cli-core-1.18.1.tgz#3865ce1e02e574804d045cc839f5cffc97c7c5db"
+prisma-cli-core@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma-cli-core/-/prisma-cli-core-1.19.0.tgz#0714ae13d1cd5b1c4b03699535311ba28c32a4e1"
   dependencies:
     adm-zip "^0.4.7"
     archiver "^2.0.3"
@@ -2789,11 +2793,11 @@ prisma-cli-core@1.18.1:
     opn "^5.1.0"
     pause "^0.1.0"
     portfinder "^1.0.13"
-    prisma-client-lib "1.18.1"
-    prisma-db-introspection "1.18.1"
-    prisma-generate-schema "1.18.1"
+    prisma-client-lib "1.19.0"
+    prisma-db-introspection "1.19.0"
+    prisma-generate-schema "1.19.0"
     prisma-json-schema "0.1.2"
-    prisma-yml "1.18.1"
+    prisma-yml "1.19.0"
     scuid "^1.0.2"
     semver "^5.4.1"
     sillyname "^0.1.0"
@@ -2802,9 +2806,9 @@ prisma-cli-core@1.18.1:
     util.promisify "^1.0.0"
     validator "^8.2.0"
 
-prisma-cli-engine@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma-cli-engine/-/prisma-cli-engine-1.18.1.tgz#2115fb578adec87bd399a0047f24bddb24adedd1"
+prisma-cli-engine@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma-cli-engine/-/prisma-cli-engine-1.19.0.tgz#dd5be8740b0387829c204f9bfaf8412c4266606e"
   dependencies:
     "@heroku/linewrap" "^1.0.0"
     ajv "5"
@@ -2846,7 +2850,7 @@ prisma-cli-engine@1.18.1:
     memfs "^2.5.3"
     opn "^5.1.0"
     prisma-json-schema "0.1.2"
-    prisma-yml "1.18.1"
+    prisma-yml "1.19.0"
     raven "2.3.0"
     replaceall "^0.1.6"
     rwlockfile "^1.4.8"
@@ -2861,25 +2865,26 @@ prisma-cli-engine@1.18.1:
     update-notifier "^2.3.0"
     validator "^8.2.0"
 
-prisma-client-lib@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.18.1.tgz#6846fff6503fed46f4aa7965a0bde50d51086735"
+prisma-client-lib@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma-client-lib/-/prisma-client-lib-1.19.0.tgz#879a0f30e05e37af0161f62b15a29d0e020d89f5"
   dependencies:
-    "@types/node" "^10.9.4"
-    debug "^4.0.1"
-    graphql-tag "^2.9.2"
+    "@types/node" "^10.12.0"
+    "@types/prettier" "^1.13.2"
+    debug "^4.1.0"
+    graphql-tag "^2.10.0"
     http-link-dataloader "^0.1.4"
     jsonwebtoken "^8.3.0"
     lodash.flatten "^4.4.0"
-    prettier "^1.14.2"
-    subscriptions-transport-ws "^0.9.14"
+    prettier "^1.14.3"
+    subscriptions-transport-ws "^0.9.15"
     uppercamelcase "^3.0.0"
-    ws "^6.0.0"
-    zen-observable "^0.8.9"
+    ws "^6.1.0"
+    zen-observable "^0.8.10"
 
-prisma-db-introspection@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma-db-introspection/-/prisma-db-introspection-1.18.1.tgz#34c0364a04134910ff1630f42cc199c2f3860dc3"
+prisma-db-introspection@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma-db-introspection/-/prisma-db-introspection-1.19.0.tgz#65f26e886e4aacbe15bc015967d86f3daf6c1396"
   dependencies:
     ajv "5"
     bluebird "^3.5.1"
@@ -2896,17 +2901,16 @@ prisma-db-introspection@1.18.1:
     pg "^7.4.1"
     pluralize "^7.0.0"
     prisma-json-schema "0.1.2"
-    prisma-yml "1.18.1"
+    prisma-yml "1.19.0"
     replaceall "^0.1.6"
     scuid "^1.0.2"
     uppercamelcase "^3.0.0"
     yaml-ast-parser "^0.0.40"
 
-prisma-generate-schema@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma-generate-schema/-/prisma-generate-schema-1.18.1.tgz#514c75585bd20cfbb87d000d526dcbf2af8cce68"
+prisma-generate-schema@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma-generate-schema/-/prisma-generate-schema-1.19.0.tgz#ab4c24a772affab1145e31accd258cc8ede89424"
   dependencies:
-    "@types/jest" "^23.3.1"
     graphql "^14.0.2"
     pluralize "^7.0.0"
     popsicle "^10.0.1"
@@ -2944,9 +2948,9 @@ prisma-yml@1.0.97:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-prisma-yml@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma-yml/-/prisma-yml-1.18.1.tgz#3fd82c55cfd1cde9e4d729118ecb4f47c349ef31"
+prisma-yml@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma-yml/-/prisma-yml-1.19.0.tgz#0d04502f55951422e8e27763608563c07433e27e"
   dependencies:
     ajv "5"
     bluebird "^3.5.1"
@@ -2967,13 +2971,13 @@ prisma-yml@1.18.1:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-prisma@1.18.1:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/prisma/-/prisma-1.18.1.tgz#a7e490ff6fa4f1698de3dba0c5ac6b13929ee7c3"
+prisma@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-1.19.0.tgz#c174e95f520a494f3947f75252d082d79a50ddae"
   dependencies:
     fs-extra "^5.0.0"
-    prisma-cli-core "1.18.1"
-    prisma-cli-engine "1.18.1"
+    prisma-cli-core "1.19.0"
+    prisma-cli-engine "1.19.0"
     require-onct "^0.0.2"
     semver "^5.4.1"
     source-map-support "^0.4.18"
@@ -3505,7 +3509,7 @@ subscriptions-transport-ws@0.9.8:
     symbol-observable "^1.0.4"
     ws "^3.0.0"
 
-subscriptions-transport-ws@^0.9.14:
+subscriptions-transport-ws@^0.9.15:
   version "0.9.15"
   resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.15.tgz#68a8b7ba0037d8c489fb2f5a102d1494db297d0d"
   dependencies:
@@ -3868,9 +3872,9 @@ ws@^5.2.0:
   dependencies:
     async-limiter "~1.0.0"
 
-ws@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-6.0.0.tgz#eaa494aded00ac4289d455bac8d84c7c651cef35"
+ws@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.0.tgz#119a9dbf92c54e190ec18d10e871d55c95cf9373"
   dependencies:
     async-limiter "~1.0.0"
 
@@ -3973,9 +3977,9 @@ zen-observable@^0.8.0:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
 
-zen-observable@^0.8.9:
-  version "0.8.9"
-  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.9.tgz#0475c760ff0eda046bbdfa4dc3f95d392807ac53"
+zen-observable@^0.8.10:
+  version "0.8.10"
+  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.10.tgz#85ad75d41fed82e5b4651bd64ca117b2af960182"
 
 zip-stream@^1.2.0:
   version "1.2.0"
