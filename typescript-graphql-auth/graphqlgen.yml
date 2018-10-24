@@ -12,6 +12,7 @@ models:
   files:
     - path: ./src/generated/prisma-client
       defaultName: '${typeName}Node'
+    - ./src/types.ts
 
 # Generated typings for resolvers and default resolver implementations
 # Please don't edit this file but just import from here
