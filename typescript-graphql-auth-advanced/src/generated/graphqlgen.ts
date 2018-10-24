@@ -2,9 +2,9 @@
 
 import { GraphQLResolveInfo } from 'graphql'
 import { Context } from '../types'
-import { UserNode } from './prisma-client'
-import { PostNode } from './prisma-client'
 import { AuthPayload } from '../types'
+import { PostNode } from './prisma-client'
+import { UserNode } from './prisma-client'
 
 export namespace QueryResolvers {
   export const defaultResolvers = {}
@@ -75,13 +75,13 @@ export namespace QueryResolvers {
 export namespace MutationResolvers {
   export const defaultResolvers = {}
 
-  export interface ArgsCreatedraft {
+  export interface ArgsCreateDraft {
     title: string
     content: string
     authorEmail: string
   }
 
-  export interface ArgsDeletepost {
+  export interface ArgsDeletePost {
     id: string
   }
 
@@ -100,16 +100,16 @@ export namespace MutationResolvers {
     password: string
   }
 
-  export type CreatedraftResolver = (
+  export type CreateDraftResolver = (
     parent: {},
-    args: ArgsCreatedraft,
+    args: ArgsCreateDraft,
     ctx: Context,
     info: GraphQLResolveInfo,
   ) => PostNode | Promise<PostNode>
 
-  export type DeletepostResolver = (
+  export type DeletePostResolver = (
     parent: {},
-    args: ArgsDeletepost,
+    args: ArgsDeletePost,
     ctx: Context,
     info: GraphQLResolveInfo,
   ) => PostNode | null | Promise<PostNode | null>
@@ -138,14 +138,14 @@ export namespace MutationResolvers {
   export interface Type {
     createDraft: (
       parent: {},
-      args: ArgsCreatedraft,
+      args: ArgsCreateDraft,
       ctx: Context,
       info: GraphQLResolveInfo,
     ) => PostNode | Promise<PostNode>
 
     deletePost: (
       parent: {},
-      args: ArgsDeletepost,
+      args: ArgsDeletePost,
       ctx: Context,
       info: GraphQLResolveInfo,
     ) => PostNode | null | Promise<PostNode | null>
@@ -227,21 +227,21 @@ export namespace PostResolvers {
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type CreatedatResolver = (
+  export type CreatedAtResolver = (
     parent: PostNode,
     args: {},
     ctx: Context,
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type UpdatedatResolver = (
+  export type UpdatedAtResolver = (
     parent: PostNode,
     args: {},
     ctx: Context,
     info: GraphQLResolveInfo,
   ) => string | Promise<string>
 
-  export type IspublishedResolver = (
+  export type IsPublishedResolver = (
     parent: PostNode,
     args: {},
     ctx: Context,
@@ -357,7 +357,7 @@ export namespace UserResolvers {
     info: GraphQLResolveInfo,
   ) => PostNode[] | Promise<PostNode[]>
 
-  export type CreatedatResolver = (
+  export type CreatedAtResolver = (
     parent: UserNode,
     args: {},
     ctx: Context,
