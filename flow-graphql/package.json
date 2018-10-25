@@ -8,7 +8,7 @@
     "@babel/node": "7.0.0",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-flow": "7.0.0",
-    "flow-bin": "0.83.0",
+    "flow-bin": "0.84.0",
     "flow-typed": "2.5.1",
     "graphql-resolver-codegen": "0.3.1",
     "npm-run-all": "4.1.3"
