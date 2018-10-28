@@ -17,8 +17,8 @@
   },
   "devDependencies": {
     "@types/bcrypt": "3.0.0",
-    "@types/jsonwebtoken": "^7.2.8",
-    "graphqlgen": "^0.2.12",
+    "@types/jsonwebtoken": "7.2.8",
+    "graphqlgen": "0.2.12",
     "ts-node": "7.0.1",
     "typescript": "3.1.3"
   }
