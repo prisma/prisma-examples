@@ -717,7 +717,7 @@ graphqlgen-json-schema@0.2.11:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/graphqlgen-json-schema/-/graphqlgen-json-schema-0.2.11.tgz#ff5f874fb99bf5acabaed0e43217f8274c55bd47"
 
-graphqlgen@^0.2.12:
+graphqlgen@0.2.12:
   version "0.2.12"
   resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.2.12.tgz#15ff00297c0d5544299076e7e555463ee4c94528"
   dependencies:

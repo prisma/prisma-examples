@@ -59,7 +59,7 @@
   version "14.0.3"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.0.3.tgz#389e2e5b83ecdb376d9f98fae2094297bc112c1c"
 
-"@types/jsonwebtoken@^7.2.8":
+"@types/jsonwebtoken@7.2.8":
   version "7.2.8"
   resolved "https://registry.yarnpkg.com/@types/jsonwebtoken/-/jsonwebtoken-7.2.8.tgz#8d199dab4ddb5bba3234f8311b804d2027af2b3a"
   dependencies:
@@ -827,7 +827,7 @@ graphqlgen-json-schema@0.2.11:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/graphqlgen-json-schema/-/graphqlgen-json-schema-0.2.11.tgz#ff5f874fb99bf5acabaed0e43217f8274c55bd47"
 
-graphqlgen@^0.2.12:
+graphqlgen@0.2.12:
   version "0.2.12"
   resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.2.12.tgz#15ff00297c0d5544299076e7e555463ee4c94528"
   dependencies:
