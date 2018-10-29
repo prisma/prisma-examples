@@ -3,7 +3,6 @@ import { sign } from 'jsonwebtoken'
 import { MutationResolvers } from '../generated/graphqlgen'
 import { APP_SECRET, getUserId } from '../utils'
 
-
 export const Mutation: MutationResolvers.Type = {
   signup: async (_parent, { password, name, email }, ctx) => {
     const hashedPassword = await hash(password, 10)
