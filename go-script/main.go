@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	prisma "go-gin/prisma-client"
 	"log"
+	prisma "prisma-examples/go-script/prisma-client"
 )
 
 func main() {
