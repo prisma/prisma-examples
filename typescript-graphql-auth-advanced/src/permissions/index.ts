@@ -4,6 +4,7 @@ import { getUserId } from '../utils'
 const rules = {
   isUser: rule()((_parent, args, ctx) => {
     const userId = getUserId(ctx)
+    
     return !!userId
   }),
   validateAuthor: rule()(async (_parent, { authorEmail }, ctx) => {
