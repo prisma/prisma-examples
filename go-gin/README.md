@@ -25,7 +25,7 @@ Install Go dependencies:
 
 ```
 cd prisma-examples/go-gin
-go get ./....
+dep ensure
 ```
 
 ### 3. Deploy the Prisma API

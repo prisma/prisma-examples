@@ -1,7 +1,10 @@
 package main
 
-import "github.com/gin-gonic/gin"
-import "go-gin/prisma-client"
+import (
+	"prisma-examples/go-gin/prisma-client"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 

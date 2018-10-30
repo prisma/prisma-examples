@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	prisma "go-gin/prisma-client"
 	"log"
 	"net/http"
+	prisma "prisma-examples/go-rest/prisma-client"
 
 	"github.com/gorilla/mux"
 )
