@@ -5,7 +5,7 @@ const { getUserId } = require('../utils')
 const rules = {
   isUser: rule()((parent, args, ctx) => {
     const userId = getUserId(ctx)
-    
+
     return !!userId
   }),
   validateAuthor: rule()(async (parent, { authorEmail }, ctx) => {
