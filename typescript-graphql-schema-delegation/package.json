@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "ts-node": "7.0.1",
-    "typescript": "3.1.4"
+    "typescript": "3.1.5"
   },
   "dependencies": {
     "graphql": "^0.13.2",
