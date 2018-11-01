@@ -15,6 +15,6 @@
   "devDependencies": {
     "graphqlgen": "0.2.12",
     "ts-node": "7.0.1",
-    "typescript": "3.1.5"
+    "typescript": "3.1.6"
   }
 }
