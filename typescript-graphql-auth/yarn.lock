@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@babel/parser@^7.1.3":
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.1.3.tgz#2c92469bac2b7fbff810b67fca07bd138b48af77"
+
 "@babel/runtime@^7.0.0-beta.40":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0.tgz#adeb78fedfc855aa05bc041640f3f6f98e85424c"
@@ -648,7 +652,7 @@ get-stream@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npmjs.org/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
 
-glob@^7.0.5:
+glob@^7.0.5, glob@^7.1.3:
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.3.tgz#3960832d3f1574108342dafd3a67b332c0969df1"
   dependencies:
@@ -797,13 +801,15 @@ graphqlgen-json-schema@0.2.11:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/graphqlgen-json-schema/-/graphqlgen-json-schema-0.2.11.tgz#ff5f874fb99bf5acabaed0e43217f8274c55bd47"
 
-graphqlgen@0.2.12:
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.2.12.tgz#15ff00297c0d5544299076e7e555463ee4c94528"
+graphqlgen@0.2.13:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.2.13.tgz#c6cd36cea9bd1aee9360aadc47eb81c4e5f4f8b7"
   dependencies:
+    "@babel/parser" "^7.1.3"
     ajv "^6.5.4"
     camelcase "5.0.0"
     chalk "2.4.1"
+    glob "^7.1.3"
     graphql "^0.13.0 || ^14.0.0"
     graphql-import "0.7.1"
     graphqlgen-json-schema "0.2.11"
@@ -812,7 +818,7 @@ graphqlgen@0.2.12:
     prettier "1.14.3"
     reason "3.3.4"
     rimraf "2.6.2"
-    typescript "3.1.3"
+    typescript "3.1.6"
     yargs "12.0.2"
 
 has-flag@^3.0.0:
@@ -1618,10 +1624,6 @@ type-is@~1.6.15, type-is@~1.6.16:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.18"
-
-typescript@3.1.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.3.tgz#01b70247a6d3c2467f70c45795ef5ea18ce191d5"
 
 typescript@3.1.6:
   version "3.1.6"
