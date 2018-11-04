@@ -107,9 +107,9 @@ accepts@~1.3.5:
     mime-types "~2.1.18"
     negotiator "0.6.1"
 
-ajv@^6.5.4:
-  version "6.5.4"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.5.4.tgz#247d5274110db653706b550fcc2b797ca28cfc59"
+ajv@^6.5.5:
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.5.5.tgz#cf97cdade71c6399a92c6d6c4177381291b781a1"
   dependencies:
     fast-deep-equal "^2.0.1"
     fast-json-stable-stringify "^2.0.0"
@@ -797,22 +797,22 @@ graphql-yoga@^1.16.1:
   dependencies:
     iterall "^1.2.2"
 
-graphqlgen-json-schema@0.2.11:
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/graphqlgen-json-schema/-/graphqlgen-json-schema-0.2.11.tgz#ff5f874fb99bf5acabaed0e43217f8274c55bd47"
+graphqlgen-json-schema@0.2.12:
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/graphqlgen-json-schema/-/graphqlgen-json-schema-0.2.12.tgz#445a2da9839a460841d729fba5941fd3007249c2"
 
-graphqlgen@0.2.14:
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.2.14.tgz#cbd07fbd07975437f82c5ac3f342a7dd76b3e728"
+graphqlgen@0.2.15:
+  version "0.2.15"
+  resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.2.15.tgz#299a1a95498804cd49b28aa6e2fb04a59bd54386"
   dependencies:
     "@babel/parser" "^7.1.3"
-    ajv "^6.5.4"
+    ajv "^6.5.5"
     camelcase "5.0.0"
     chalk "2.4.1"
     glob "^7.1.3"
     graphql "^0.13.0 || ^14.0.0"
     graphql-import "0.7.1"
-    graphqlgen-json-schema "0.2.11"
+    graphqlgen-json-schema "0.2.12"
     js-yaml "3.12.0"
     mkdirp "0.5.1"
     prettier "1.14.3"
