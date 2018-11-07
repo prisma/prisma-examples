@@ -1,7 +1,7 @@
 endpoint: http://localhost:4466
 datamodel: datamodel.prisma
 seed:
-  import: seed.graphql
+  run: npx ts-node prisma/seed.ts
 hooks:
   post-deploy:
     - prisma generate
