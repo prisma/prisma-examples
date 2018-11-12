@@ -10,7 +10,7 @@
     "build": "rm -rf dist && tsc"
   },
   "dependencies": {
-    "aws-sdk": "2.353.0",
+    "aws-sdk": "2.354.0",
     "express": "4.16.4",
     "graphql": "0.13.2",
     "graphql-import": "0.7.1",
