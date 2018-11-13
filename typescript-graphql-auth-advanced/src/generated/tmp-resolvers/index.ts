@@ -4,15 +4,15 @@
 import { Resolvers } from '../graphqlgen'
 
 import { Query } from './Query'
+import { User } from './User'
+import { Post } from './Post'
 import { Mutation } from './Mutation'
 import { AuthPayload } from './AuthPayload'
-import { Post } from './Post'
-import { User } from './User'
 
 export const resolvers: Resolvers = {
   Query,
+  User,
+  Post,
   Mutation,
   AuthPayload,
-  Post,
-  User,
 }
