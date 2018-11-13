@@ -1,0 +1,33 @@
+service: serverless-prisma
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  environment:
+    PRISMA_DEBUG: $(env:PRISMA_DEBUG)
+    PRISMA_ENDPOINT: $(env:PRISMA_ENDPOINT)
+    PRISMA_SECRET: $(env:PRISMA_SECRET)
+    PRISMA_SERVICE: $(env:PRISMA_SERVICE)
+
+functions:
+  graphql:
+    handler: handler.server
+    events:
+    - http:
+        path: /
+        integration: lambda-proxy
+        method: post
+        cors: true
+
+  playground:
+    handler: handler.playground
+    events:
+    - http:
+        path: /
+        integration: lambda-proxy
+        method: get
+        cors: true

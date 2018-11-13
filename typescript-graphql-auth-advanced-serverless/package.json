@@ -1,0 +1,34 @@
+{
+  "name": "typescript-graphql-auth-advanced-serverless",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "scripts": {
+    "start-local": "ts-node src/index.ts",
+    "start": "serverless offline --port 4000",
+    "deploy": "serverless deploy",
+    "build": "tsc",
+    "generate:prisma": "prisma generate",
+    "generate": "prisma generate && graphqlgen"
+  },
+  "dependencies": {
+    "bcrypt": "3.0.2",
+    "graphql": "14.0.2",
+    "graphql-shield": "4.1.0",
+    "graphql-yoga": "1.16.7",
+    "jsonwebtoken": "8.3.0",
+    "prisma-client-lib": "1.20.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.14",
+    "@types/bcrypt": "3.0.0",
+    "@types/jsonwebtoken": "8.3.0",
+    "@types/node": "10.12.7",
+    "@types/ws": "6.0.1",
+    "graphqlgen": "0.3.0",
+    "serverless": "1.32.0",
+    "serverless-offline": "3.30.0",
+    "serverless-plugin-typescript": "1.1.5",
+    "ts-node": "7.0.1",
+    "typescript": "3.1.6"
+  }
+}

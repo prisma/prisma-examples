@@ -1,0 +1,11 @@
+projects:
+  client:
+    schemaPath: src/schema.graphql
+    extensions:
+      endpoints:
+        default: http://localhost:4000
+  database:
+    schemaPath: src/generated/prisma-client/schema.ts
+    extensions:
+      endpoints:
+        default: http://localhost:4466
