@@ -843,9 +843,9 @@ graphqlgen-json-schema@0.2.12:
   version "0.2.12"
   resolved "https://registry.yarnpkg.com/graphqlgen-json-schema/-/graphqlgen-json-schema-0.2.12.tgz#445a2da9839a460841d729fba5941fd3007249c2"
 
-graphqlgen@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.3.0.tgz#f04f8ba2ee397a27962925a0e00f0ad78f8dd300"
+graphqlgen@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/graphqlgen/-/graphqlgen-0.4.0.tgz#8c8ca1d72c2e3ae792268bdb3aaad2c27d3e071d"
   dependencies:
     "@babel/parser" "^7.1.5"
     "@babel/types" "7.1.5"
@@ -858,7 +858,7 @@ graphqlgen@0.3.0:
     graphqlgen-json-schema "0.2.12"
     js-yaml "3.12.0"
     mkdirp "0.5.1"
-    prettier "1.15.1"
+    prettier "1.15.2"
     reason "3.3.4"
     rimraf "2.6.2"
     typescript "3.1.6"
@@ -1394,9 +1394,9 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-prettier@1.15.1:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.1.tgz#06c67106afb1b40e74b002353b2079cc7e0e67bf"
+prettier@1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.2.tgz#d31abe22afa4351efa14c7f8b94b58bb7452205e"
 
 prettier@^1.14.3:
   version "1.14.3"
