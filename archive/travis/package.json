@@ -1,6 +1,6 @@
 {
   "name": "travis-prisma",
   "devDependencies": {
-    "prisma": "1.20.1"
+    "prisma": "1.20.5"
   }
 }
