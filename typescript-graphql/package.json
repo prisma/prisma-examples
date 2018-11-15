@@ -4,17 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node-dev --no-notify --respawn src/index.ts",
     "generate": "graphqlgen"
   },
   "dependencies": {
     "graphql": "^14.0.2",
     "graphql-yoga": "^1.16.7",
-    "prisma-client-lib": "^0.2.59"
+    "prisma-client-lib": "^1.20.6"
   },
   "devDependencies": {
     "graphqlgen": "0.4.0",
-    "ts-node": "7.0.1",
+    "ts-node-dev": "^1.0.0-pre.30",
     "typescript": "3.1.6"
   }
 }
