@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "graphqlgen": "0.4.0",
-    "ts-node-dev": "^1.0.0-pre.30",
+    "ts-node-dev": "1.0.0-pre.30",
     "typescript": "3.1.6"
   }
 }
