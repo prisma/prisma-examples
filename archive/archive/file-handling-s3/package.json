@@ -17,7 +17,7 @@
     "graphql-yoga": "1.16.7",
     "mime-types": "2.1.21",
     "multiparty": "4.2.1",
-    "prisma-binding": "2.2.1",
+    "prisma-binding": "2.2.2",
     "uuid": "3.3.2"
   },
   "devDependencies": {
