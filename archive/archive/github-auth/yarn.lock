@@ -4226,9 +4226,9 @@ prettier@^1.14.3:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
-prisma-binding@2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/prisma-binding/-/prisma-binding-2.2.2.tgz#9fecfd6eaab15a7f1b0d2a78f9b3277bbb20196b"
+prisma-binding@2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/prisma-binding/-/prisma-binding-2.2.5.tgz#03c48ffc846853910025867f9847e5a997657c32"
   dependencies:
     apollo-link "1.2.3"
     apollo-link-error "1.1.1"
@@ -4240,7 +4240,7 @@ prisma-binding@2.2.2:
     http-link-dataloader "^0.1.6"
     jsonwebtoken "8.4.0"
     subscriptions-transport-ws "0.9.15"
-    yargs "12.0.4"
+    yargs "12.0.5"
 
 prisma-cli-core@1.20.7:
   version "1.20.7"
@@ -5871,6 +5871,13 @@ yargs-parser@^11.1.0:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
+yargs-parser@^11.1.1:
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-11.1.1.tgz#879a0865973bca9f6bab5cbdf3b1c67ec7d3bcf4"
+  dependencies:
+    camelcase "^5.0.0"
+    decamelize "^1.2.0"
+
 yargs-parser@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-7.0.0.tgz#8d0ac42f16ea55debd332caf4c4038b3e3f5dfd9"
@@ -5906,9 +5913,9 @@ yargs@11.0.0:
     y18n "^3.2.1"
     yargs-parser "^9.0.2"
 
-yargs@12.0.4, yargs@^12.0.2:
-  version "12.0.4"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.4.tgz#5ea307c6f11f11881c3bc375f9c939194e8cf4bc"
+yargs@12.0.5:
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
   dependencies:
     cliui "^4.0.0"
     decamelize "^1.2.0"
@@ -5921,7 +5928,7 @@ yargs@12.0.4, yargs@^12.0.2:
     string-width "^2.0.0"
     which-module "^2.0.0"
     y18n "^3.2.1 || ^4.0.0"
-    yargs-parser "^11.1.0"
+    yargs-parser "^11.1.1"
 
 yargs@^10.0.3:
   version "10.1.2"
@@ -5939,6 +5946,23 @@ yargs@^10.0.3:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^8.1.0"
+
+yargs@^12.0.2:
+  version "12.0.4"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-12.0.4.tgz#5ea307c6f11f11881c3bc375f9c939194e8cf4bc"
+  dependencies:
+    cliui "^4.0.0"
+    decamelize "^1.2.0"
+    find-up "^3.0.0"
+    get-caller-file "^1.0.1"
+    os-locale "^3.0.0"
+    require-directory "^2.1.1"
+    require-main-filename "^1.0.1"
+    set-blocking "^2.0.0"
+    string-width "^2.0.0"
+    which-module "^2.0.0"
+    y18n "^3.2.1 || ^4.0.0"
+    yargs-parser "^11.1.0"
 
 yargs@^8.0.2:
   version "8.0.2"
