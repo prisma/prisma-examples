@@ -10,7 +10,6 @@ You need to have the Prisma CLI installed on your machine to run this example. I
 
 ```
 npm install -g prisma
-# or `yarn global add prisma`
 ```
 
 ### 2. Download example & Install dependencies
@@ -25,7 +24,7 @@ Install Node dependencies:
 
 ```
 cd prisma-examples/node-graphql-subscriptions
-yarn install # or `npm install`
+npm install
 ```
 
 ### 3. Deploy the Prisma API

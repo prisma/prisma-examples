@@ -1,6 +1,6 @@
-# node-cli-example
+# node-script
 
-This example demonstrates how to implement a **Todo-app as a CLI tool** with Node.JS and Prisma.
+This example demonstrates how to use the Prisma client in a simple Node script.
 
 ## Get started
 
@@ -10,7 +10,6 @@ You need to have the Prisma CLI installed on your machine to run this example. I
 
 ```
 npm install -g prisma
-# or `yarn global add prisma`
 ```
 
 ### 2. Download example & Install dependencies
@@ -24,8 +23,8 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node-cli-app
-yarn install # or `npm install`
+cd prisma-examples/node-script
+npm install
 ```
 
 ### 3. Deploy the Prisma API
@@ -61,26 +60,9 @@ To deploy your service to a demo server (rather than locally with Docker), follo
 
 </details>
 
-### 4. Use the app
+### 4. Run the script
 
 ```
-yarn cli
-```
-
-#### Add a Todo item
-
-```sh
-yarn cli add Groceries
-```
-
-#### List all Todo items
-
-```sh
-yarn cli list
-```
-
-#### Delete a Todo item
-
-```sh
-yarn cli delete Groceries
+cd ..
+yarn start
 ```

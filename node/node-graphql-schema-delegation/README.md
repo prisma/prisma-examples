@@ -1,6 +1,6 @@
-# node-script
+# node-graphql-schema-delegation
 
-This example demonstrates how to use the Prisma client in a simple Node script.
+This example demonstrates how to use **GraphQL schema delegation** with the Prisma binding.
 
 ## Get started
 
@@ -10,7 +10,6 @@ You need to have the Prisma CLI installed on your machine to run this example. I
 
 ```
 npm install -g prisma
-# or `yarn global add prisma`
 ```
 
 ### 2. Download example & Install dependencies
@@ -24,8 +23,8 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node-script
-yarn install # or `npm install`
+cd prisma-examples/node-graphql-schema-delegation
+npm install
 ```
 
 ### 3. Deploy the Prisma API
@@ -61,9 +60,11 @@ To deploy your service to a demo server (rather than locally with Docker), follo
 
 </details>
 
-### 4. Run the script
+### 4. Start the server
 
 ```
 cd ..
 yarn start
 ```
+
+Navigate to [`http://localhost:4000`](http://localhost:4000) to explore the GraphQL API of this example.
