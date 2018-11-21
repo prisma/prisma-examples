@@ -46,35 +46,35 @@ This launches an interactive CLI wizard, here's what to do:
 
 1. Ensure you have Docker installed on your machine. If no, you can get it from [here](https://store.docker.com/search?offering=community&type=edition).
 1. Create `docker-compose.yml` for MySQL (see [here](https://www.prisma.io/docs/prisma-server/database-connector-POSTGRES-jgfr/) for Postgres):
-  ```yml
-  version: '3'
-  services:
-    prisma:
-      image: prismagraphql/prisma:1.21
-      restart: always
-      ports:
-      - "4466:4466"
-      environment:
-        PRISMA_CONFIG: |
-          port: 4466
-          databases:
-            default:
-              connector: mysql
-              host: mysql
-              port: 3306
-              user: root
-              password: prisma
-              migrations: true
-    mysql:
-      image: mysql:5.7
-      restart: always
-      environment:
-        MYSQL_ROOT_PASSWORD: prisma
-      volumes:
-        - mysql:/var/lib/mysql
-  volumes:
-    mysql:
-  ```
+    ```yml
+    version: '3'
+    services:
+      prisma:
+        image: prismagraphql/prisma:1.21
+        restart: always
+        ports:
+        - "4466:4466"
+        environment:
+          PRISMA_CONFIG: |
+            port: 4466
+            databases:
+              default:
+                connector: mysql
+                host: mysql
+                port: 3306
+                user: root
+                password: prisma
+                migrations: true
+      mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: prisma
+        volumes:
+          - mysql:/var/lib/mysql
+    volumes:
+      mysql:
+    ```
 1. Run `docker-compose up -d`
 1. Run `prisma deploy`
 
