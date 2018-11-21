@@ -5,15 +5,18 @@
   "repository": "git@github.com:prisma/prisma-examples.git",
   "license": "MIT",
   "scripts": {
+    "precommit": "yarn prettier && yarn build",
+    "build": "inline-markdown --input .github/readmes --output .",
     "prettier": "prettier --config .prettierrc prettier --write \"**/src/**/*.{ts,js}\""
   },
   "devDependencies": {
     "husky": "1.2.0",
+    "inline-markdown": "^0.1.5",
     "prettier": "1.15.2"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn prettier"
+      "pre-commit": "yarn precommit"
     }
   },
   "private": true

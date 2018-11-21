@@ -6,3 +6,4 @@ dist
 .DS_Store
 .idea
 tmp-resolvers
+package-lock.json
