@@ -24,7 +24,7 @@ Install Node dependencies:
 
 ```
 cd prisma-examples/node-graphql
-yarn install # or `npm install`
+yarn install
 ```
 
 ### 3. Deploy the Prisma API
