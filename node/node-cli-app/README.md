@@ -4,15 +4,7 @@ This example demonstrates how to implement a **Todo-app as a CLI tool** with Nod
 
 ## How to use
 
-### 1. Install the Prisma CLI
-
-You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
-
-```
-npm install -g prisma
-```
-
-### 2. Download example & Install dependencies
+### 1. Download example & Install dependencies
 
 Clone the repository:
 
@@ -25,6 +17,14 @@ Install Node dependencies:
 ```
 cd prisma-examples/node/node-cli-app
 npm install
+```
+
+### 2. Install the Prisma CLI
+
+You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
+
+```
+npm install -g prisma
 ```
 
 ### 3. Set up Prisma & Database
