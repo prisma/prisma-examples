@@ -21,7 +21,7 @@ npm install
 
 ### 2. Install the Prisma CLI
 
-You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
+If the Prisma CLI is not installed on your machine yet, execute the following command to install it:
 
 ```
 npm install -g prisma
