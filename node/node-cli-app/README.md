@@ -4,7 +4,7 @@ This example demonstrates how to implement a **Todo-app as a CLI tool** with Nod
 
 ## How to use
 
-### 1. Download example & Install dependencies
+### 1. Download example & install dependencies
 
 Clone the repository:
 
@@ -27,7 +27,7 @@ You need to have the Prisma CLI installed on your machine to run this example. I
 npm install -g prisma
 ```
 
-### 3. Set up Prisma & Database
+### 3. Set up Prisma & database
 
 For this example, you'll use a free _demo database_ (AWS Aurora) hosted in Prisma Cloud. To setup your database and connect it with Prisma, run the following command:
 
