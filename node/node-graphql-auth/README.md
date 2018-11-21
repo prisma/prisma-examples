@@ -1,6 +1,6 @@
-# node-graphql-auth
+# GraphQL Server with Authentication & Permissions 
 
-This example demonstrates how to implement a **GraphQL server with an email-password-based authentication workflow** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
+This example demonstrates how to implement a **GraphQL server with an email-password-based authentication workflow authorized with GraphQL Shield** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 ## Get started
 
@@ -23,7 +23,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node-graphql-auth
+cd prisma-examples/node-graphql-auth-advanced
 npm install
 ```
 
@@ -63,7 +63,6 @@ To deploy your service to a demo server (rather than locally with Docker), follo
 ### 4. Start the server
 
 ```
-cd ..
 yarn start
 ```
 

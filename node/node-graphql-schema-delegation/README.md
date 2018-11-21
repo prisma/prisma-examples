@@ -1,4 +1,4 @@
-# node-graphql-schema-delegation
+# GraphQL Server with Schema Delegation
 
 This example demonstrates how to use **GraphQL schema delegation** with the Prisma binding.
 

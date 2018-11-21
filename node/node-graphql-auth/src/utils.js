@@ -15,8 +15,6 @@ function getUserId(context) {
     const verifiedToken = verify(token, APP_SECRET)
     return verifiedToken && verifiedToken.userId
   }
-
-  throw new AuthError()
 }
 
 module.exports = {

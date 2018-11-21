@@ -1,4 +1,4 @@
-# node-cli-example
+# A Simple TODO-App (CLI)
 
 This example demonstrates how to implement a **Todo-app as a CLI tool** with Node.JS and Prisma.
 
