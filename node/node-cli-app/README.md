@@ -2,7 +2,7 @@
 
 This example demonstrates how to implement a **Todo-app as a CLI tool** with Node.JS and Prisma.
 
-## Get started
+## How to use
 
 ### 1. Install the Prisma CLI
 
