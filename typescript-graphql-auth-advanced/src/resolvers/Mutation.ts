@@ -25,7 +25,7 @@ export const Mutation: MutationResolvers.Type = {
     }
 
     const valid = await compare(password, user.password)
-    
+
     if (!valid) {
       throw new Error('Invalid password')
     }

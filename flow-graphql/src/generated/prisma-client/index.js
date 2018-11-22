@@ -418,14 +418,16 @@ export interface UserPreviousValuesNode {
 }
 
 export interface UserPreviousValues
-  extends Promise<UserPreviousValuesNode>, Fragmentable {
+  extends Promise<UserPreviousValuesNode>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValuesNode>>, Fragmentable {
+  extends Promise<AsyncIterator<UserPreviousValuesNode>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -441,7 +443,8 @@ export interface PostEdge extends Promise<PostEdgeNode>, Fragmentable {
 }
 
 export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdgeNode>>, Fragmentable {
+  extends Promise<AsyncIterator<PostEdgeNode>>,
+    Fragmentable {
   node: <T: PostSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -468,7 +471,8 @@ export interface User extends Promise<UserNode>, Fragmentable {
 }
 
 export interface UserSubscription
-  extends Promise<AsyncIterator<UserNode>>, Fragmentable {
+  extends Promise<AsyncIterator<UserNode>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -498,7 +502,8 @@ export interface PageInfo extends Promise<PageInfoNode>, Fragmentable {
 }
 
 export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfoNode>>, Fragmentable {
+  extends Promise<AsyncIterator<PageInfoNode>>,
+    Fragmentable {
   hasNextPage: () => Promise<AsyncIterator<Boolean>>;
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
@@ -514,21 +519,24 @@ export interface BatchPayload extends Promise<BatchPayloadNode>, Fragmentable {
 }
 
 export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayloadNode>>, Fragmentable {
+  extends Promise<AsyncIterator<BatchPayloadNode>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface PostConnectionNode {}
 
 export interface PostConnection
-  extends Promise<PostConnectionNode>, Fragmentable {
+  extends Promise<PostConnectionNode>,
+    Fragmentable {
   pageInfo: <T: PageInfo>() => T;
   edges: <T: FragmentableArray<PostEdgeNode>>() => T;
   aggregate: <T: AggregatePost>() => T;
 }
 
 export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnectionNode>>, Fragmentable {
+  extends Promise<AsyncIterator<PostConnectionNode>>,
+    Fragmentable {
   pageInfo: <T: PageInfoSubscription>() => T;
   edges: <T: Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
   aggregate: <T: AggregatePostSubscription>() => T;
@@ -539,12 +547,14 @@ export interface AggregateUserNode {
 }
 
 export interface AggregateUser
-  extends Promise<AggregateUserNode>, Fragmentable {
+  extends Promise<AggregateUserNode>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
 export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUserNode>>, Fragmentable {
+  extends Promise<AsyncIterator<AggregateUserNode>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -568,7 +578,8 @@ export interface Post extends Promise<PostNode>, Fragmentable {
 }
 
 export interface PostSubscription
-  extends Promise<AsyncIterator<PostNode>>, Fragmentable {
+  extends Promise<AsyncIterator<PostNode>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -584,7 +595,8 @@ export interface PostSubscriptionPayloadNode {
 }
 
 export interface PostSubscriptionPayload
-  extends Promise<PostSubscriptionPayloadNode>, Fragmentable {
+  extends Promise<PostSubscriptionPayloadNode>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T: Post>() => T;
   updatedFields: () => Promise<String[]>;
@@ -592,7 +604,8 @@ export interface PostSubscriptionPayload
 }
 
 export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayloadNode>>, Fragmentable {
+  extends Promise<AsyncIterator<PostSubscriptionPayloadNode>>,
+    Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T: PostSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
@@ -609,7 +622,8 @@ export interface UserEdge extends Promise<UserEdgeNode>, Fragmentable {
 }
 
 export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdgeNode>>, Fragmentable {
+  extends Promise<AsyncIterator<UserEdgeNode>>,
+    Fragmentable {
   node: <T: UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -624,7 +638,8 @@ export interface PostPreviousValuesNode {
 }
 
 export interface PostPreviousValues
-  extends Promise<PostPreviousValuesNode>, Fragmentable {
+  extends Promise<PostPreviousValuesNode>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -634,7 +649,8 @@ export interface PostPreviousValues
 }
 
 export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValuesNode>>, Fragmentable {
+  extends Promise<AsyncIterator<PostPreviousValuesNode>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -649,7 +665,8 @@ export interface UserSubscriptionPayloadNode {
 }
 
 export interface UserSubscriptionPayload
-  extends Promise<UserSubscriptionPayloadNode>, Fragmentable {
+  extends Promise<UserSubscriptionPayloadNode>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T: User>() => T;
   updatedFields: () => Promise<String[]>;
@@ -657,7 +674,8 @@ export interface UserSubscriptionPayload
 }
 
 export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>, Fragmentable {
+  extends Promise<AsyncIterator<UserSubscriptionPayloadNode>>,
+    Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T: UserSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
@@ -669,26 +687,30 @@ export interface AggregatePostNode {
 }
 
 export interface AggregatePost
-  extends Promise<AggregatePostNode>, Fragmentable {
+  extends Promise<AggregatePostNode>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
 export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePostNode>>, Fragmentable {
+  extends Promise<AsyncIterator<AggregatePostNode>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserConnectionNode {}
 
 export interface UserConnection
-  extends Promise<UserConnectionNode>, Fragmentable {
+  extends Promise<UserConnectionNode>,
+    Fragmentable {
   pageInfo: <T: PageInfo>() => T;
   edges: <T: FragmentableArray<UserEdgeNode>>() => T;
   aggregate: <T: AggregateUser>() => T;
 }
 
 export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnectionNode>>, Fragmentable {
+  extends Promise<AsyncIterator<UserConnectionNode>>,
+    Fragmentable {
   pageInfo: <T: PageInfoSubscription>() => T;
   edges: <T: Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
   aggregate: <T: AggregateUserSubscription>() => T;
