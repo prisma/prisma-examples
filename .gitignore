@@ -7,3 +7,4 @@ dist
 .idea
 tmp-resolvers
 package-lock.json
+flow-typed
