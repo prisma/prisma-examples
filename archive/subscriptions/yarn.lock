@@ -194,19 +194,26 @@ apollo-cache-control@^0.1.0:
   dependencies:
     graphql-extensions "^0.0.x"
 
-apollo-link-error@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.1.1.tgz#69d7124d4dc11ce60f505c940f05d4f1aa0945fb"
+apollo-link-error@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.1.2.tgz#d068fdf99892e6fc65cfe0390db8528d182f9481"
   dependencies:
-    apollo-link "^1.2.3"
+    apollo-link "^1.2.4"
 
-apollo-link-ws@1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.9.tgz#e2198abd6d3900e83fd842fdee335a28b347ea2d"
+apollo-link-ws@1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/apollo-link-ws/-/apollo-link-ws-1.0.10.tgz#9fb5489a36f5fcb0d139b6ada0eea979ecad3967"
   dependencies:
-    apollo-link "^1.2.3"
+    apollo-link "^1.2.4"
 
-apollo-link@1.2.3, apollo-link@^1.2.3:
+apollo-link@1.2.4, apollo-link@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.4.tgz#ab4d21d2e428db848e88b5e8f4adc717b19c954b"
+  dependencies:
+    apollo-utilities "^1.0.0"
+    zen-observable-ts "^0.8.11"
+
+apollo-link@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.3.tgz#9bd8d5fe1d88d31dc91dae9ecc22474d451fb70d"
   dependencies:
@@ -3118,13 +3125,13 @@ prettier@^1.14.3:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
-prisma-binding@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/prisma-binding/-/prisma-binding-2.2.5.tgz#03c48ffc846853910025867f9847e5a997657c32"
+prisma-binding@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/prisma-binding/-/prisma-binding-2.2.6.tgz#8fa2011007eb131a215949ca4ac8b16939fe57c6"
   dependencies:
-    apollo-link "1.2.3"
-    apollo-link-error "1.1.1"
-    apollo-link-ws "1.0.9"
+    apollo-link "1.2.4"
+    apollo-link-error "1.1.2"
+    apollo-link-ws "1.0.10"
     cross-fetch "2.2.3"
     graphql-binding "2.3.3"
     graphql-import "0.7.1"
@@ -4471,6 +4478,12 @@ yn@^2.0.0:
 zen-observable-ts@^0.8.10:
   version "0.8.10"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.10.tgz#18e2ce1c89fe026e9621fd83cc05168228fce829"
+  dependencies:
+    zen-observable "^0.8.0"
+
+zen-observable-ts@^0.8.11:
+  version "0.8.11"
+  resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.11.tgz#d54a27cd17dc4b4bb6bd008e5c096af7fcb068a9"
   dependencies:
     zen-observable "^0.8.0"
 
