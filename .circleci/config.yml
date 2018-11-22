@@ -43,10 +43,9 @@ jobs:
 
   go:
     docker:
-      - image: circleci/go
+      - image: circleci/golang
     steps:
       - checkout
-      - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - run: cd go/go-cli-app && dep ensure && go build
       - run: cd go/go-gin && dep ensure && go build
       - run: cd go/go-rest && dep ensure && go build
