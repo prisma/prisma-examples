@@ -26,10 +26,5 @@
     "resolver-codegen": "npm-run-all resolver-interfaces resolver-scaffold",
     "flow": "flow",
     "flow-typed": "flow-typed"
-  },
-  "prettier": {
-    "semi": false,
-    "trailingComma": "all",
-    "singleQuote": true
   }
 }
