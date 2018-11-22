@@ -43,7 +43,7 @@ jobs:
 
   go:
     docker:
-      - image: circleci/node
+      - image: circleci/go
     steps:
       - checkout
       - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
