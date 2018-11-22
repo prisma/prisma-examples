@@ -44,6 +44,7 @@ jobs:
   go:
     docker:
       - image: circleci/golang
+    working_directory: /go/src/github.com/prisma/prisma-examples
     steps:
       - checkout
       - run: cd go/go-cli-app && dep ensure && go build
