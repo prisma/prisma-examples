@@ -25,14 +25,21 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: sudo npm install -g typescript
-      - run: cd typescript/circleci && yarn && tsc
-      - run: cd typescript/cli-app && yarn && tsc
-      - run: cd typescript/graphql && yarn && tsc
-      - run: cd typescript/graphql-auth && yarn && tsc
-      - run: cd typescript/graphql-schema-delegation && yarn && tsc
-      - run: cd typescript/graphql-subscriptions && yarn && tsc
-      - run: cd typescript/script && yarn && tsc
+      - run: cd typescript/circleci && yarn && yarn tsc
+      - run: cd typescript/cli-app && yarn && yarn tsc
+      - run: cd typescript/graphql && yarn && yarn tsc
+      - run: cd typescript/graphql-auth && yarn && yarn tsc
+      - run: cd typescript/graphql-schema-delegation && yarn && yarn tsc
+      - run: cd typescript/graphql-subscriptions && yarn && yarn tsc
+      - run: cd typescript/script && yarn && yarn tsc
+
+  flow:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: cd flow/graphql && yarn && yarn flow
+      - run: cd flow/script && yarn && yarn flow
 
 workflows:
   version: 2
@@ -41,3 +48,4 @@ workflows:
       - meta
       - node
       - typescript
+      - flow
