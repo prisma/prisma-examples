@@ -1,6 +1,6 @@
 # REST API Example
 
-This example demonstrates how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and Prisma.
+This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and Prisma.
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/node/rest-express
