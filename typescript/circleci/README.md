@@ -1,6 +1,6 @@
-# CircleCI
+# CircleCI Configuration Example
 
-This example demonstrates how a CI setup using [CircleCI](https://circleci.com/) can look like.
+This example shows how to configute a CI setup using [CircleCI](https://circleci.com/) for Prisma.
 
 ## Get started
 
@@ -18,7 +18,6 @@ Install Node dependencies:
 
 ```
 cd prisma-examples/typescript-circleci
-yarn install # or `npm install`
 ```
 
 ### 2. Set up repository locally and on GitHub
@@ -32,9 +31,7 @@ git add .
 git commit -m "Initial commit"
 ```
 
-In your GitHub account, create a new repository and copy its git URL, for example:
-
-`git@github.com:w0wka91/circleci-prisma.git`
+In your GitHub account, create a new repository and copy its git URL, e.g.: `git@github.com:w0wka91/circleci-prisma.git`
 
 Add a new remote to your local git repository:
 

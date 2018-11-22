@@ -1,19 +1,10 @@
-# typescript-script
+# Simple Node Script Example
 
-This example demonstrates how to use the Prisma client in a simple TypeScript script.
+This example shows how to use the Prisma client in a **simple Node script** to read and write data in a database.
 
-## Get started
+## How to use
 
-### 1. Install the Prisma CLI
-
-You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
-
-```
-npm install -g prisma
-# or `yarn global add prisma`
-```
-
-### 2. Download example & Install dependencies
+### 1. Download example & install dependencies
 
 Clone the repository:
 
@@ -24,46 +15,76 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript-script
-yarn install # or `npm install`
+cd prisma-examples/typescript/script
+npm install
 ```
 
-### 3. Deploy the Prisma API
+### 2. Install the Prisma CLI
 
-You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
-
-Launch Prisma via Docker:
+To run the example, you need the Prisma CLI. Please install it via NPM or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
 
 ```
-docker-compose up -d
+npm install -g prisma
 ```
 
-Navigate into the `prisma` directory and deploy the Prisma API:
+
+### 3. Set up database & deploy Prisma datamodel
+
+For this example, you'll use a free _demo database_ (AWS Aurora) hosted in Prisma Cloud. To set up your database, run:
 
 ```
-cd prisma
 prisma deploy
 ```
 
+Then, follow these steps in the interactive CLI wizard:
+
+1. Select **Demo server**
+1. **Authenticate** with Prisma Cloud in your browser
+1. Back in your terminal, **confirm all suggested values**
+
 <details>
- <summary><strong>I don't have Docker installed on my machine</strong></summary>
+ <summary>Alternative: Run Prisma locally via Docker</summary>
 
-To deploy your service to a demo server (rather than locally with Docker), follow these steps:
-
-- Run the following command:
-  ```
-  cd prisma
-  prisma deploy --new
-  ```
-- In the interactive CLI wizard:
-  - Select the **Demo server**
-  - For all following questions, choose the suggested values by just hitting **Enter**
+1. Ensure you have Docker installed on your machine. If not, you can get it from [here](https://store.docker.com/search?offering=community&type=edition).
+1. Create `docker-compose.yml` for MySQL (see [here](https://www.prisma.io/docs/prisma-server/database-connector-POSTGRES-jgfr/) for Postgres):
+    ```yml
+    version: '3'
+    services:
+      prisma:
+        image: prismagraphql/prisma:1.21
+        restart: always
+        ports:
+        - "4466:4466"
+        environment:
+          PRISMA_CONFIG: |
+            port: 4466
+            databases:
+              default:
+                connector: mysql
+                host: mysql
+                port: 3306
+                user: root
+                password: prisma
+                migrations: true
+      mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: prisma
+        volumes:
+          - mysql:/var/lib/mysql
+    volumes:
+      mysql:
+    ```
+1. Run `docker-compose up -d`
+1. Run `prisma deploy`
 
 </details>
 
 ### 4. Run the script
 
+Execute the script with this command: 
+
 ```
-cd ..
 yarn start
 ```
