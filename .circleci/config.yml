@@ -11,7 +11,7 @@ jobs:
   node:
     docker:
       - image: circleci/node
-    working_directory: node
+    working_directory: ~/project/node
     steps:
       - checkout
       - run: cd cli-app && yarn
