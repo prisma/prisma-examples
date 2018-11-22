@@ -15,7 +15,8 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node/node-cli-app
+
+cd prisma-examples/node/cli-app
 npm install
 ```
 
@@ -81,26 +82,27 @@ Then, follow these steps in the interactive CLI wizard:
 
 </details>
 
+
 ### 4. Use the app
 
-```sh
+```
 npm run cli
 ```
 
 #### Add a `Todo` item
 
-```sh
+```
 npm run cli add Groceries
 ```
 
 #### List all `Todo` items
 
-```sh
+```
 npm run cli list
 ```
 
 #### Delete a `Todo` item
 
-```sh
+```
 npm run cli delete Groceries
 ```

@@ -15,7 +15,8 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node/node-cli-app
+
+cd prisma-examples/node/graphql-auth
 npm install
 ```
 
@@ -97,7 +98,7 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 You can either start the [desktop app](https://github.com/prisma/graphql-playground) via
 
-```sh
+```
 yarn playground
 ```
 
