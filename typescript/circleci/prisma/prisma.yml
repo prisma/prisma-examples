@@ -1,4 +1,4 @@
-endpoint: http://localhost:4466/circleci/test
+endpoint: http://localhost:4466/
 datamodel: datamodel.graphql
 generate:
   - generator: typescript-client
