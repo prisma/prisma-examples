@@ -21,9 +21,24 @@ jobs:
       - run: cd node/rest-express && yarn
       - run: cd node/script && yarn
 
+  typescript:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: npm install -g typescript
+      - run: cd typescript/circleci && yarn && tsc
+      - run: cd typescript/cli-app && yarn && tsc
+      - run: cd typescript/graphql && yarn && tsc
+      - run: cd typescript/graphql-auth && yarn && tsc
+      - run: cd typescript/graphql-schema-delegation && yarn && tsc
+      - run: cd typescript/graphql-subscriptions && yarn && tsc
+      - run: cd typescript/script && yarn && tsc
+
 workflows:
   version: 2
   build:
     jobs:
       - readmes
       - node
+      - typescript
