@@ -33,12 +33,21 @@
   pruneopts = "UT"
   revision = "886b6a49a2294d77aa3e9cee412aba20987d3488"
 
+[[projects]]
+  branch = "master"
+  digest = "1:a455bd1f24d44852445063d2cbd015546790fe7572c2f62e1c3563c5ef00f431"
+  name = "github.com/prisma/prisma-examples"
+  packages = ["go-cli-app/prisma-client"]
+  pruneopts = "UT"
+  revision = "954f1443c6d37092c54ccfca11cba2bf01f92466"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/machinebox/graphql",
     "github.com/prisma/prisma-client-lib-go",
+    "github.com/prisma/prisma-examples/go-cli-app/prisma-client",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

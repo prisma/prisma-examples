@@ -41,6 +41,17 @@ jobs:
       - run: cd flow/graphql && yarn && yarn flow
       - run: cd flow/script && yarn && yarn flow
 
+  go:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      - run: cd go/go-cli-app && dep ensure && go build
+      - run: cd go/go-gin && dep ensure && go build
+      - run: cd go/go-rest && dep ensure && go build
+      - run: cd go/go-script && dep ensure && go build
+
 workflows:
   version: 2
   build:
@@ -49,3 +60,4 @@ workflows:
       - node
       - typescript
       - flow
+      - go
