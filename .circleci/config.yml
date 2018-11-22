@@ -11,12 +11,15 @@ jobs:
   node:
     docker:
       - image: circleci/node
-    working_directory: ~/project/node
     steps:
       - checkout
-      - run: pwd
-      - run: ls
-      - run: cd cli-app && yarn
+      - run: cd node/cli-app && yarn
+      - run: cd node/graphql && yarn
+      - run: cd node/graphql-auth && yarn
+      - run: cd node/graphql-schema-delegation && yarn
+      - run: cd node/graphql-subscriptions && yarn
+      - run: cd node/rest-express && yarn
+      - run: cd node/script && yarn
 
 workflows:
   version: 2
