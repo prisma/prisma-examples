@@ -1,4 +1,4 @@
-# Simple Node Script Example
+# Simple TypeScript Script Example
 
 This example shows how to use the Prisma client in a **simple Node script** to read and write data in a database.
 
@@ -26,7 +26,6 @@ To run the example, you need the Prisma CLI. Please install it via NPM or [using
 ```
 npm install -g prisma
 ```
-
 
 ### 3. Set up database & deploy Prisma datamodel
 
