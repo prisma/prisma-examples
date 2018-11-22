@@ -15,3 +15,10 @@ jobs:
     steps:
       - checkout
       - run: cd cli-app && yarn
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - readmes
+      - node
