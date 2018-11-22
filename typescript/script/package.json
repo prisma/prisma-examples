@@ -1,7 +1,6 @@
 {
   "name": "typescript-script",
   "version": "0.0.0",
-  "main": "src/usage.ts",
   "license": "MIT",
   "dependencies": {
     "graphql": "^0.13.2",
@@ -12,6 +11,6 @@
     "typescript": "3.1.6"
   },
   "scripts": {
-    "start": "ts-node src/usage.ts"
+    "start": "ts-node src/cli.ts"
   }
 }
