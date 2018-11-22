@@ -1,6 +1,6 @@
-# Simple Node Script Example
+# GraphQL Server Example
 
-This example shows how to use the Prisma client in a **simple Node script** to read and write data in a database.
+This example shows how to implement a **GraphQL server with Flow** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 ## How to use
 
@@ -15,7 +15,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node/script
+cd prisma-examples/flow/graphql
 npm install
 ```
 
@@ -80,10 +80,12 @@ Then, follow these steps in the interactive CLI wizard:
 
 </details>
 
-### 4. Run the script
+### 4. Start the GraphQL server
 
-Execute the script with this command: 
+Launch your GraphQL server with this command:
 
 ```
-yarn start
+npm run start
 ```
+
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).

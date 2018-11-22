@@ -1,6 +1,6 @@
-# Simple Node Script Example
+# Simple Flow Script Example
 
-This example shows how to use the Prisma client in a **simple Node script** to read and write data in a database.
+This example shows how to use the Prisma client in a **simple Flow script** to read and write data in a database.
 
 ## How to use
 
@@ -15,7 +15,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node/script
+cd prisma-examples/flow/script
 npm install
 ```
 
