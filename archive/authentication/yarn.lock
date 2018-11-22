@@ -1675,9 +1675,9 @@ graphcool-inquirer@^1.0.3:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-graphql-binding@2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/graphql-binding/-/graphql-binding-2.3.3.tgz#e1d7adf9f3f0872b54c08efb7483c7b3ab71c51f"
+graphql-binding@2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/graphql-binding/-/graphql-binding-2.3.4.tgz#77a5699b41133afe9884988e58efb390f1512ac0"
   dependencies:
     graphql-import "^0.7.1"
     graphql-tools "4.0.3"
@@ -3129,15 +3129,15 @@ prettier@^1.14.3:
   version "1.14.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
 
-prisma-binding@2.2.6:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/prisma-binding/-/prisma-binding-2.2.6.tgz#8fa2011007eb131a215949ca4ac8b16939fe57c6"
+prisma-binding@2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/prisma-binding/-/prisma-binding-2.2.7.tgz#7b744473ce399cbb07df3e242665f1c4eb123c01"
   dependencies:
     apollo-link "1.2.4"
     apollo-link-error "1.1.2"
     apollo-link-ws "1.0.10"
     cross-fetch "2.2.3"
-    graphql-binding "2.3.3"
+    graphql-binding "2.3.4"
     graphql-import "0.7.1"
     graphql-tools "4.0.3"
     http-link-dataloader "^0.1.6"
