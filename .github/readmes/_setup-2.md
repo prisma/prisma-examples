@@ -1,21 +1,3 @@
-# REST API Example
-
-This example demonstrates how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and Prisma.
-
-## How to use
-
-### 1. Download example & install dependencies
-
-Clone the repository:
-
-```
-git clone git@github.com:prisma/prisma-examples.git
-```
-
-Install Node dependencies:
-
-```
-cd prisma-examples/node/node-cli-app
 npm install
 ```
 
@@ -80,11 +62,3 @@ Then, follow these steps in the interactive CLI wizard:
 1. Run `prisma deploy`
 
 </details>
-
-### 4. Start the REST API server
-
-```
-yarn start
-```
-
-The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/houses`](http://localhost:3000/houses).

@@ -1,3 +1,7 @@
+# Simple Node Script Example
+
+This example demonstrates how to use the Prisma client in a **simple Node script** to read and write data in a database.
+
 ## How to use
 
 ### 1. Download example & install dependencies
@@ -76,3 +80,11 @@ Then, follow these steps in the interactive CLI wizard:
 1. Run `prisma deploy`
 
 </details>
+
+### 4. Run the script
+
+Execute the script with this command: 
+
+```
+yarn start
+```
