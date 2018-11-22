@@ -1,12 +1,17 @@
 version: 2
 jobs:
-  build:
+  readmes:
     docker:
       - image: circleci/node
     steps:
       - checkout
       - run: yarn
       - run: yarn build
-      - run: cd flow-graphql && yarn
-      - run: cd flow-graphql && yarn flow version
-      - run: cd flow-graphql && yarn flow 
+
+  node:
+    docker:
+      - image: circleci/node
+    working_directory: node
+    steps:
+      - checkout
+      - run: cd cli-app && yarn
