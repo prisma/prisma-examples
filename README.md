@@ -1,4 +1,4 @@
-# Prisma Examples
+# Prisma Examples [![CircleCI](https://circleci.com/gh/prisma/prisma-examples.svg?style=shield)](https://circleci.com/gh/prisma/prisma-examples)
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of [Prisma](https://www.prisma.io). Pick an example and follow the instructions in the corresponding README.
 
