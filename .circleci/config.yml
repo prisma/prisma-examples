@@ -1,12 +1,11 @@
 version: 2
 jobs:
-  readmes:
+  meta:
     docker:
       - image: circleci/node
     steps:
       - checkout
-      - run: yarn
-      - run: yarn build
+      - run: cd .github/tests && yarn && yarn test
 
   node:
     docker:
