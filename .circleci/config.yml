@@ -26,7 +26,7 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: yarn global add typescript
+      - run: sudo npm install -g typescript
       - run: cd typescript/circleci && yarn && tsc
       - run: cd typescript/cli-app && yarn && tsc
       - run: cd typescript/graphql && yarn && tsc
