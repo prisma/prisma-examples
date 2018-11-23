@@ -11,12 +11,12 @@
     "start": "node index.js"
   },
   "devDependencies": {
-    "prisma": "1.20.7"
+    "prisma": "1.21.0"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
     "graphql-yoga": "1.16.7",
     "jsonwebtoken": "8.3.0",
-    "prisma-binding": "2.2.5"
+    "prisma-binding": "2.2.8"
   }
 }

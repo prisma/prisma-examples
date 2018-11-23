@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "graphql-resolver-codegen": "0.3.1",
-    "prisma": "1.20.7"
+    "prisma": "1.21.0"
   },
   "dependencies": {
     "graphql": "^0.13.2",
