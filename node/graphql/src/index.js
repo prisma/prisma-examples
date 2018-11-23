@@ -46,13 +46,13 @@ const resolvers = {
     },
   },
   Post: {
-    author: (parent, args, context) => {
-      return context.db.post({ id: parent.id }).author()
+    author: ({ id }, args, context) => {
+      return context.db.post({ id }).author()
     },
   },
   User: {
-    posts: (parent, args, context) => {
-      return context.db.user({ id: parent.id }).posts()
+    posts: ({ id }, args, context) => {
+      return context.db.user({ id }).posts()
     },
   },
 }
