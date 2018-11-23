@@ -21,10 +21,8 @@ async function main() {
         content: "https://graphqlweekly.com/",
         published: true
       }, {
-        {
-          title: "Follow Prisma on Twitter",
-          content: "https://twitter.com/prisma",
-        }
+        title: "Follow Prisma on Twitter",
+        content: "https://twitter.com/prisma",
       }]
     }
   })
