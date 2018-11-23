@@ -1,5 +1,5 @@
 module.exports = {
-        typeDefs: /* GraphQL */ `type AggregatePost {
+  typeDefs: /* GraphQL */ `type AggregatePost {
   count: Int!
 }
 
@@ -487,5 +487,5 @@ input UserWhereUniqueInput {
   email: String
 }
 `
-      }
-    
+}
+
