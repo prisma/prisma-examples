@@ -1,4 +1,5 @@
-export const AuthPayload = {
-  token: parent => parent.token,
-  user: parent => parent.user,
+import { AuthPayloadResolvers } from '../generated/graphqlgen'
+
+export const AuthPayload: AuthPayloadResolvers.Type = {
+  ...AuthPayloadResolvers.defaultResolvers,
 }

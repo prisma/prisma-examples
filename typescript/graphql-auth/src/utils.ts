@@ -2,19 +2,19 @@ import { verify } from 'jsonwebtoken'
 
 export const APP_SECRET = 'appsecret321'
 
-class AuthError extends Error {
-  constructor() {
-    super('Not authorized')
-  }
+interface Token {
+  userId: string
 }
 
-export function getUserId(ctx) {
-  const Authorization = ctx.request.get('Authorization')
+interface Context {
+  request: any
+}
+
+export function getUserId(context: Context) {
+  const Authorization = context.request.get('Authorization')
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '')
-    const verifiedToken: any = verify(token, APP_SECRET)
+    const verifiedToken = verify(token, APP_SECRET) as Token
     return verifiedToken && verifiedToken.userId
   }
-
-  throw new AuthError()
 }

@@ -1,6 +1,7 @@
+import { QueryResolvers } from '../generated/graphqlgen'
 import { getUserId } from '../utils'
 
-export const Query = {
+export const Query: QueryResolvers.Type = {
   me: (parent, args, ctx) => {
     return ctx.db.user({ id: getUserId(ctx) })
   },

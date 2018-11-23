@@ -267,7 +267,7 @@ export namespace PostResolvers {
     args: {},
     ctx: Context,
     info: GraphQLResolveInfo,
-  ) => UserNode | null | Promise<UserNode | null>
+  ) => UserNode | Promise<UserNode>
 
   export interface Type {
     id: (
@@ -317,7 +317,7 @@ export namespace PostResolvers {
       args: {},
       ctx: Context,
       info: GraphQLResolveInfo,
-    ) => UserNode | null | Promise<UserNode | null>
+    ) => UserNode | Promise<UserNode>
   }
 }
 

@@ -1,7 +1,7 @@
-export const User = {
-  id: parent => parent.id,
-  email: parent => parent.email,
-  name: parent => parent.name,
-  createdAt: parent => parent.createdAt,
+import { UserResolvers } from '../generated/graphqlgen'
+
+export const User: UserResolvers.Type = {
+  ...UserResolvers.defaultResolvers,
   posts: (parent, args, ctx) => ctx.db.user({ id: parent.id }).posts(),
+  createdAt: parent => parent.createdAt,
 }
