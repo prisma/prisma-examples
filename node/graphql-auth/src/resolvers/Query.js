@@ -1,13 +1,13 @@
 const { getUserId } = require('../utils')
 
 const Query = {
-  me: (parent, args, ctx) => {
-    return ctx.db.user({ id: getUserId(ctx) })
+  me: (parent, args, context) => {
+    return context.db.user({ id: getUserId(context) })
   },
-  feed: (parent, args, ctx) => ctx.db.posts({ where: { published: true } }),
-  drafts: (parent, args, ctx) =>
-    ctx.db.posts({ where: { published: false } }),
-  post: (parent, { id }, ctx) => ctx.db.post({ id }),
+  feed: (parent, args, context) => context.db.posts({ where: { published: true } }),
+  drafts: (parent, args, context) =>
+    context.db.posts({ where: { published: false } }),
+  post: (parent, { id }, context) => context.db.post({ id }),
 }
 
 module.exports = {

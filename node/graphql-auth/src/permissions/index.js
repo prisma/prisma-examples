@@ -3,22 +3,22 @@ const { rule, and, shield } = require('graphql-shield')
 const { getUserId } = require('../utils')
 
 const rules = {
-  isUser: rule()((parent, args, ctx) => {
-    const userId = getUserId(ctx)
+  isUser: rule()((parent, args, context) => {
+    const userId = getUserId(context)
 
     return !!userId
   }),
-  validateAuthor: rule()(async (parent, { authorEmail }, ctx) => {
-    const userId = getUserId(ctx)
-    const author = await ctx.db.user({
+  validateAuthor: rule()(async (parent, { authorEmail }, context) => {
+    const userId = getUserId(context)
+    const author = await context.db.user({
       id: userId,
     })
 
     return authorEmail === author.email
   }),
-  isPostOwner: rule()(async (parent, { id }, ctx) => {
-    const userId = getUserId(ctx)
-    const author = await ctx.db
+  isPostOwner: rule()(async (parent, { id }, context) => {
+    const userId = getUserId(context)
+    const author = await context.db
       .post({
         id,
       })
@@ -33,7 +33,7 @@ const permissions = shield({
     me: rules.isUser,
   },
   Mutation: {
-    createDraft: and(rules.isUser, rules.validateAuthor),
+    createDraft: rules.isUser,
     deletePost: rules.isPostOwner,
     publish: rules.isPostOwner,
   },
