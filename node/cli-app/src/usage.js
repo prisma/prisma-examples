@@ -2,7 +2,7 @@ const { prisma } = require('./generated/prisma-client')
 
 const TodoCommand = async () => {
   if (process.argv.length <= 2) {
-    throw new Error('Please provide a Todo command')
+    throw new Error('Please provide a Todo command: list, add, delete')
   }
 
   const command = process.argv[2]
