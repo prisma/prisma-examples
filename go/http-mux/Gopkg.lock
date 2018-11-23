@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
+
+[[projects]]
   digest = "1:c79fb010be38a59d657c48c6ba1d003a8aa651fa56b579d959d74573b7dff8e1"
   name = "github.com/gorilla/context"
   packages = ["."]
@@ -41,13 +49,21 @@
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
   version = "v0.8.0"
 
+[[projects]]
+  branch = "master"
+  digest = "1:4235eec60f6dc693d4b438fb427a7e8783d197e056a586c07960213c4fd3120d"
+  name = "github.com/prisma/prisma-client-lib-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "68a1f9908416aebb5bbb0bc3cdec3321d74cb7af"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/gorilla/mux",
     "github.com/machinebox/graphql",
-    "github.com/mitchellh/mapstructure",
+    "github.com/prisma/prisma-client-lib-go",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

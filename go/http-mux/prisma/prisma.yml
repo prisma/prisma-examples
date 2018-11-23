@@ -4,7 +4,7 @@ datamodel: datamodel.prisma
 # Specifies the language and directory for the generated Prisma client.
 generate:
   - generator: go-client
-    output: ../src/generated/prisma-client/
+    output: ../prisma-client/
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
@@ -13,4 +13,4 @@ hooks:
 
 # Seeds initial data into the database by running a script.
 seed:
-  - run: go run seed.go
+  run: go run seed.go

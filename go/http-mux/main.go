@@ -3,18 +3,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	prisma "go-gin/prisma-client"
 	"log"
 	"net/http"
+
+	prisma "github.com/prisma/prisma-examples/go/http-mux/prisma-client"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
-	client := prisma.New(&prisma.PrismaOptions{
-		Debug:    true,
-		Endpoint: "http://localhost:4466/go-rest/dev",
-	})
+	client := prisma.New(nil)
 
 	router := mux.NewRouter().StrictSlash(true)
 
@@ -63,9 +61,9 @@ func main() {
 		email := "alice@prisma.io"
 
 		post, err := client.CreatePost(&prisma.PostCreateInput{
-			Title:   &title,
-			Content: &title,
-			Author: &prisma.UserCreateOneWithoutPostsInput{
+			Title:   "Draft",
+			Content: "Draft",
+			Author: prisma.UserCreateOneWithoutPostsInput{
 				Connect: &prisma.UserWhereUniqueInput{
 					Email: &email,
 				},
