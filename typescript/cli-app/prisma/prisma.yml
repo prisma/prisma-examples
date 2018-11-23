@@ -1,3 +1,6 @@
+# Specifies the HTTP endpoint of your Prisma API.
+endpoint: ''
+
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
 
@@ -13,4 +16,4 @@ hooks:
 
 # Seeds initial data into the database by running a script.
 seed:
-  - run: yarn ts-node seed.js
+  run: yarn ts-node seed.js

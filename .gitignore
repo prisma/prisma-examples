@@ -8,5 +8,3 @@ dist
 tmp-resolvers
 package-lock.json
 flow-typed
-generated
-prisma-client
