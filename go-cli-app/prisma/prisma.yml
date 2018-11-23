@@ -1,5 +1,0 @@
-endpoint: http://localhost:4466/go-orm/dev 
-datamodel: datamodel.prisma
-generate:
-  - generator: go-client
-    output: ../prisma-client

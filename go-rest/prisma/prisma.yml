@@ -1,7 +1,0 @@
-endpoint: http://localhost:4466/go-rest/dev
-datamodel: datamodel.prisma
-seed:
-  import: seed.graphql
-generate:
-  - generator: go-client
-    output: ../prisma-client/

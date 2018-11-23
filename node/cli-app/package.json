@@ -1,0 +1,13 @@
+{
+  "name": "node-cli-app",
+  "version": "0.0.0",
+  "main": "src/usage.js",
+  "license": "MIT",
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "prisma-client-lib": "1.20.7"
+  },
+  "scripts": {
+    "cli": "node src/usage.js"
+  }
+}

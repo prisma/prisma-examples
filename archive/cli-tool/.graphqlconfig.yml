@@ -1,6 +1,0 @@
-projects:
-  db: 
-    schemaPath: generated-schema.graphql
-    extensions:
-      endpoints:
-        default: 'http://localhost:4466/cli-tool'

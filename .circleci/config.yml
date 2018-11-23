@@ -1,10 +1,63 @@
 version: 2
 jobs:
-  build:
+  meta:
     docker:
       - image: circleci/node
     steps:
       - checkout
-      - run: cd flow-graphql && yarn
-      - run: cd flow-graphql && yarn flow version
-      - run: cd flow-graphql && yarn flow 
+      - run: cd .github/tests && yarn && yarn test
+
+  node:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: cd node/cli-app && yarn
+      - run: cd node/graphql && yarn
+      - run: cd node/graphql-auth && yarn
+      - run: cd node/graphql-schema-delegation && yarn
+      - run: cd node/graphql-subscriptions && yarn
+      - run: cd node/rest-express && yarn
+      - run: cd node/script && yarn
+
+  typescript:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: cd typescript/circleci && yarn && yarn tsc
+      - run: cd typescript/cli-app && yarn && yarn tsc
+      - run: cd typescript/graphql && yarn && yarn tsc
+      - run: cd typescript/graphql-auth && yarn && yarn tsc
+      - run: cd typescript/graphql-schema-delegation && yarn && yarn tsc
+      - run: cd typescript/graphql-subscriptions && yarn && yarn tsc
+      - run: cd typescript/script && yarn && yarn tsc
+
+  flow:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: cd flow/graphql && yarn && yarn flow
+      - run: cd flow/script && yarn && yarn flow
+
+  go:
+    docker:
+      - image: circleci/golang
+    working_directory: /go/src/github.com/prisma/prisma-examples
+    steps:
+      - checkout
+      - run: cd go/go-cli-app && dep ensure && go build
+      - run: cd go/go-gin && dep ensure && go build
+      - run: cd go/go-rest && dep ensure && go build
+      - run: cd go/go-script && dep ensure && go build
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - meta
+      - node
+      - typescript
+      - flow
+      - go
