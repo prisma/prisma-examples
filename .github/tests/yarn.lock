@@ -115,7 +115,7 @@ get-stream@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
 
-inline-markdown@^0.1.6:
+inline-markdown@0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/inline-markdown/-/inline-markdown-0.1.6.tgz#5ba1284c85058f586773313561c05b66afd0bbf8"
   dependencies:
@@ -259,7 +259,7 @@ path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
-prettier-check@^2.0.0:
+prettier-check@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/prettier-check/-/prettier-check-2.0.0.tgz#edd086ee12d270579233ccb136a16e6afcfba1ae"
   dependencies:
