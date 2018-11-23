@@ -14,6 +14,6 @@ hooks:
   post-deploy:
     - prisma generate
 
-# Seeds initial data into the database by running a script.
+# # Seeds initial data into the database by running a script.
 # seed:
 #   run: node seed.js
