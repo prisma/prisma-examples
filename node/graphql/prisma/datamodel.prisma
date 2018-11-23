@@ -1,7 +1,7 @@
 type User {
   id: ID! @unique
-  email: String @unique
-  name: String!
+  email: String! @unique
+  name: String
   posts: [Post!]!
 }
 
@@ -11,6 +11,6 @@ type Post {
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
   title: String!
-  content: String!
+  content: String
   author: User!
 }

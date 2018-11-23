@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-  signupUser(name: String!, email: String): User!
+  signupUser(email: String!, name: String): User!
   createDraft(title: String!, content: String!, authorEmail: String!): Post!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
@@ -19,7 +19,7 @@ type Post {
   updatedAt: DateTime!
   published: Boolean!
   title: String!
-  content: String!
+  content: String
   author: User!
 }
 

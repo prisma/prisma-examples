@@ -14,10 +14,10 @@ const resolvers = {
     },
   },
   Mutation: {
-    signupUser: (parent, { name, email }, context) => {
+    signupUser: (parent, { email, name }, context) => {
       return context.db.createUser({
-        name,
         email,
+        name,
       })
     },
     createDraft: (parent, { title, content, authorEmail }, context) => {
