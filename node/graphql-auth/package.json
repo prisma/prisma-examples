@@ -1,15 +1,14 @@
 {
-  "name": "node-graphql-auth-advanced",
+  "name": "node-graphql-auth",
   "version": "1.0.0",
   "description": "This example demonstrates how to implement a GraphQL server with an email-password-based authentication workflow based on Prisma & graphql-yoga.",
   "author": "Prisma",
   "dependencies": {
-    "bcrypt": "3.0.1",
-    "graphql": "0.13.2",
-    "graphql-shield": "3.2.5",
-    "graphql-yoga": "1.16.2",
-    "jsonwebtoken": "8.3.0",
-    "prisma-client-lib": "0.2.59"
+    "bcrypt": "3.0.2",
+    "graphql-shield": "4.1.0",
+    "graphql-yoga": "1.16.7",
+    "jsonwebtoken": "8.4.0",
+    "prisma-client-lib": "1.21.0"
   },
   "scripts": {
     "start": "node src/index.js"

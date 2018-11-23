@@ -60,7 +60,7 @@ const Mutation = {
   publish: async (parent, { id }, ctx) => {
     return ctx.db.updatePost({
       where: { id },
-      data: { isPublished: true },
+      data: { published: true },
     })
   },
 }
