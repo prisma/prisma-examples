@@ -53,7 +53,7 @@ type Post {
   updatedAt: DateTime!
   published: Boolean!
   title: String!
-  content: String!
+  content: String
   author: User!
 }
 
@@ -66,7 +66,7 @@ type PostConnection {
 input PostCreateInput {
   published: Boolean
   title: String!
-  content: String!
+  content: String
   author: UserCreateOneWithoutPostsInput!
 }
 
@@ -78,7 +78,7 @@ input PostCreateManyWithoutAuthorInput {
 input PostCreateWithoutAuthorInput {
   published: Boolean
   title: String!
-  content: String!
+  content: String
 }
 
 type PostEdge {
@@ -107,7 +107,7 @@ type PostPreviousValues {
   updatedAt: DateTime!
   published: Boolean!
   title: String!
-  content: String!
+  content: String
 }
 
 input PostScalarWhereInput {
@@ -334,8 +334,8 @@ type Subscription {
 
 type User {
   id: ID!
-  email: String
-  name: String!
+  email: String!
+  name: String
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
 }
 
@@ -346,8 +346,8 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  email: String
-  name: String!
+  email: String!
+  name: String
   posts: PostCreateManyWithoutAuthorInput
 }
 
@@ -357,8 +357,8 @@ input UserCreateOneWithoutPostsInput {
 }
 
 input UserCreateWithoutPostsInput {
-  email: String
-  name: String!
+  email: String!
+  name: String
 }
 
 type UserEdge {
@@ -381,8 +381,8 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  email: String
-  name: String!
+  email: String!
+  name: String
 }
 
 type UserSubscriptionPayload {

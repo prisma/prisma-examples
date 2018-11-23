@@ -187,8 +187,8 @@ export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
 }
 
 export interface UserCreateInput {
-  email?: String;
-  name: String;
+  email: String;
+  name?: String;
   posts?: PostCreateManyWithoutAuthorInput;
 }
 
@@ -279,7 +279,7 @@ export interface PostSubscriptionWhereInput {
 export interface PostCreateInput {
   published?: Boolean;
   title: String;
-  content: String;
+  content?: String;
   author: UserCreateOneWithoutPostsInput;
 }
 
@@ -361,8 +361,8 @@ export interface PostScalarWhereInput {
 }
 
 export interface UserCreateWithoutPostsInput {
-  email?: String;
-  name: String;
+  email: String;
+  name?: String;
 }
 
 export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
@@ -470,7 +470,7 @@ export interface PostUpdateManyMutationInput {
 export interface PostCreateWithoutAuthorInput {
   published?: Boolean;
   title: String;
-  content: String;
+  content?: String;
 }
 
 export interface UserUpdateWithoutPostsDataInput {
@@ -511,8 +511,8 @@ export interface NodeNode {
 
 export interface UserPreviousValues {
   id: ID_Output;
-  email?: String;
-  name: String;
+  email: String;
+  name?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -537,7 +537,7 @@ export interface PostPreviousValues {
   updatedAt: DateTimeOutput;
   published: Boolean;
   title: String;
-  content: String;
+  content?: String;
 }
 
 export interface PostPreviousValuesPromise
@@ -568,7 +568,7 @@ export interface Post {
   updatedAt: DateTimeOutput;
   published: Boolean;
   title: String;
-  content: String;
+  content?: String;
 }
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
@@ -746,8 +746,8 @@ export interface AggregateUserSubscription
 
 export interface User {
   id: ID_Output;
-  email?: String;
-  name: String;
+  email: String;
+  name?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
