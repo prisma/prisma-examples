@@ -24,7 +24,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Go dependencies:
 
 ```
-cd prisma-examples/go-gin
+cd prisma-examples/go/go-gin
 go get ./....
 ```
 
