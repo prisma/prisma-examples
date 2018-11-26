@@ -17,7 +17,9 @@ const resolvers = {
         content,
       })
     },
-    deletePost: (parent, { id }, context) => context.prisma.deletePost({ id }),
+    deletePost: (parent, { id }, context) => {
+      return context.prisma.deletePost({ id })
+    },
     publish: (parent, { id }, context) => {
       return context.prisma.updatePost({
         where: { id },
