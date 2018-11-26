@@ -53,12 +53,15 @@ app.get('/filterPosts', async (req, res) => {
   const { searchString } = req.query
   const draftPosts = await prisma.posts({
     where: {
-      OR: [{
-        title_contains: searchString
-      }, {
-        content_contains: searchString
-      }]
-    }
+      OR: [
+        {
+          title_contains: searchString,
+        },
+        {
+          content_contains: searchString,
+        },
+      ],
+    },
   })
   res.json(draftPosts)
 })

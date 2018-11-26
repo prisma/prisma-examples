@@ -2,7 +2,6 @@ const { prisma } = require('./generated/prisma-client')
 
 // A `main` function so that we can use async/await
 async function main() {
-  
   // Retrieve all published posts
   const allPosts = await prisma.posts({
     where: { published: true },
@@ -38,8 +37,8 @@ async function main() {
       email: 'alice@prisma.io',
     })
     .posts()
-    console.log(`Retrieved all posts from a specific user: `, postsByUser)
-  }
+  console.log(`Retrieved all posts from a specific user: `, postsByUser)
+}
 
 main()
   .then(() => {

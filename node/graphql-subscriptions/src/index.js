@@ -56,7 +56,7 @@ const resolvers = {
         return payload
       },
     },
-  }
+  },
 }
 
 const server = new GraphQLServer({
