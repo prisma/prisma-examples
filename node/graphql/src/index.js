@@ -9,12 +9,15 @@ const resolvers = {
     filterPosts: (parent, { searchString }, context) => {
       return context.db.posts({
         where: {
-          OR: [{
-            title_contains: searchString
-          }, {
-            content_contains: searchString
-          }]
-        }
+          OR: [
+            {
+              title_contains: searchString,
+            },
+            {
+              content_contains: searchString,
+            },
+          ],
+        },
       })
     },
     post: (parent, { id }, context) => {

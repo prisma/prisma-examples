@@ -3,7 +3,8 @@ const { prisma } = require('./generated/prisma-client')
 
 const resolvers = {
   Query: {
-    feed: (parent, args, context) => context.db.posts({ where: { published: true } }),
+    feed: (parent, args, context) =>
+      context.db.posts({ where: { published: true } }),
     drafts: (parent, args, context) =>
       context.db.posts({ where: { published: false } }),
     post: (parent, { id }, context) => context.db.post({ id }),
@@ -40,11 +41,13 @@ const resolvers = {
     },
   },
   Post: {
-    author: (parent, args, context) => context.db.post({ id: parent.id }).author(),
+    author: (parent, args, context) =>
+      context.db.post({ id: parent.id }).author(),
   },
   User: {
-    posts: (parent, args, context) => context.db.user({ id: parent.id }).posts(),
-  }
+    posts: (parent, args, context) =>
+      context.db.user({ id: parent.id }).posts(),
+  },
 }
 
 const server = new GraphQLServer({
