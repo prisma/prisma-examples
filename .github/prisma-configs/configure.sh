@@ -13,7 +13,7 @@
 cp ./node/prisma.yml ../../node/cli-app/prisma
 cp ./node/prisma.yml ../../node/graphql/prisma
 cp ./node/prisma.yml ../../node/graphql-auth/prisma
-cp ./node/prisma.yml ../../node/graphql-schema-delegation/prisma
+cp ./node/without-client/prisma.yml ../../node/graphql-schema-delegation/prisma
 cp ./node/prisma.yml ../../node/graphql-subscriptions/prisma
 cp ./node/prisma.yml ../../node/rest-express/prisma
 cp ./node/prisma.yml ../../node/script/prisma
