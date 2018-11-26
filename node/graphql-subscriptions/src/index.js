@@ -46,9 +46,7 @@ const resolvers = {
       subscribe: async (parent, args, context) => {
         return context.prisma.$subscribe
           .post({
-            where: {
-              mutation_in: ['CREATED', 'UPDATED'],
-            },
+            mutation_in: ['CREATED', 'UPDATED'],
           })
           .node()
       },

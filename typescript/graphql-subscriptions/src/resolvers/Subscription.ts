@@ -1,11 +1,13 @@
-export const Subscription = {
+import { SubscriptionResolvers } from '../generated/graphqlgen'
+
+export const Subscription: SubscriptionResolvers.Type = {
+  ...SubscriptionResolvers.defaultResolvers,
+
   posts: {
-    subscribe: async (parent, args, ctx) => {
-      return ctx.prisma.$subscribe
+    subscribe: async (parent, args, context) => {
+      return context.prisma.$subscribe
         .post({
-          where: {
-            mutation_in: ['CREATED', 'UPDATED'],
-          },
+          mutation_in: ['CREATED', 'UPDATED'],
         })
         .node()
     },

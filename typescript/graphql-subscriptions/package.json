@@ -1,17 +1,17 @@
 {
-  "name": "typescript-graphql-subscriptions",
-  "version": "0.0.0",
+  "name": "graphql-subscriptions",
   "license": "MIT",
   "devDependencies": {
+    "graphqlgen": "^0.4.0",
     "ts-node": "7.0.1",
     "typescript": "3.1.6"
   },
   "dependencies": {
-    "graphql": "0.13.2",
-    "graphql-yoga": "1.16.2",
-    "prisma-client-lib": "1.18.1"
+    "graphql-yoga": "1.16.7",
+    "prisma-client-lib": "1.21.1"
   },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "generate": "graphqlgen"
   }
 }
