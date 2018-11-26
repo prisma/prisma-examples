@@ -1,18 +1,34 @@
-import { prisma } from '../src/generated/prisma-client'
+// // THIS SCRIPT WILL BE USED FOR SEEDING WHEN THIS GITHUB ISSUE IS FIXED:
+// // https://github.com/prisma/prisma/issues/3596
+//
+// import { prisma } from '../src/generated/prisma-client'
+//
+// async function main() {
+//   await prisma.createUser({
+//     email: "alice@prisma.io",
+//     name: "Alice",
+//     posts: {
+//       create: {
+//         title: "Join us for GraphQL Conf 2019 in Berlin",
+//         content: "https://www.graphqlconf.org/",
+//         published: true
+//       }
+//     }
+//   })
+//   await prisma.createUser({
+//     email: "bob@prisma.io",
+//     name: "Bob",
+//     posts: {
+//       create: [{
+//         title: "Subscribe to GraphQL Weekly for community news",
+//         content: "https://graphqlweekly.com/",
+//         published: true
+//       }, {
+//         title: "Follow Prisma on Twitter",
+//         content: "https://twitter.com/prisma",
+//       }]
+//     }
+//   })
+// }
 
-async function main() {
-  await prisma.createUser({
-    name: 'Alice',
-    email: 'alice@prisma.io',
-    posts: {
-      create: {
-        isPublished: true,
-        title: 'Alice in Wonderland',
-        content:
-          'A young girl when she first visited magical Underland, Alice Kingsleigh (Mia Wasikowska) is now a teenager with no memory of the place -- except in her dreams. Her life takes a turn for the unexpected when, at a garden party for her fiance and herself, she spots a certain white rabbit and tumbles do…',
-      },
-    },
-  })
-}
-
-main().catch(err => console.error(err))
+// main().catch(e => console.error(e))
