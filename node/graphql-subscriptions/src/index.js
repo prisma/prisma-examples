@@ -6,6 +6,20 @@ const resolvers = {
     feed: (parent, args, context) => {
       return context.prisma.posts({ where: { published: true } })
     },
+    filterPosts: (parent, { searchString }, context) => {
+      return context.prisma.posts({
+        where: {
+          OR: [
+            {
+              title_contains: searchString,
+            },
+            {
+              content_contains: searchString,
+            },
+          ],
+        },
+      })
+    },
     post: (parent, { id }, context) => {
       return context.prisma.post({ id })
     },
@@ -42,17 +56,7 @@ const resolvers = {
         return payload
       },
     },
-  },
-  Post: {
-    author: (parent, args, context) => {
-      return context.prisma.post({ id: parent.id }).author()
-    },
-  },
-  User: {
-    posts: (parent, args, context) => {
-      return context.prisma.user({ id: parent.id }).posts()
-    },
-  },
+  }
 }
 
 const server = new GraphQLServer({

@@ -7,6 +7,10 @@ var models = [
   {
     name: "Post",
     embedded: false
+  },
+  {
+    name: "User",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
@@ -18,6 +22,10 @@ exports.prisma = new exports.Prisma();
 var models = [
   {
     name: "Post",
+    embedded: false
+  },
+  {
+    name: "User",
     embedded: false
   }
 ];
