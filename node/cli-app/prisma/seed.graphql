@@ -1,0 +1,12 @@
+mutation {
+  todo1: createTodo({
+    title: "Homework"
+  }) {
+    id
+  }
+  todo2: createTodo({
+    title: "Shopping"
+  }) {
+    id
+  }
+}
