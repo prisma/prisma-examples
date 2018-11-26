@@ -1,20 +1,10 @@
 const { rule, and, shield } = require('graphql-shield')
-
 const { getUserId } = require('../utils')
 
 const rules = {
-  isUser: rule()((parent, args, context) => {
+  isAuthenticatedUser: rule()((parent, args, context) => {
     const userId = getUserId(context)
-
-    return !!userId
-  }),
-  validateAuthor: rule()(async (parent, { authorEmail }, context) => {
-    const userId = getUserId(context)
-    const author = await context.prisma.user({
-      id: userId,
-    })
-
-    return authorEmail === author.email
+    return userId
   }),
   isPostOwner: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context)
@@ -30,10 +20,12 @@ const rules = {
 
 const permissions = shield({
   Query: {
-    me: rules.isUser,
+    me: rules.isAuthenticatedUser,
+    filterPosts: rule.isAuthenticatedUser,
+    post: rule.isAuthenticatedUser,
   },
   Mutation: {
-    createDraft: rules.isUser,
+    createDraft: rules.isAuthenticatedUser,
     deletePost: rules.isPostOwner,
     publish: rules.isPostOwner,
   },
