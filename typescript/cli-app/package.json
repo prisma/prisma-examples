@@ -1,18 +1,14 @@
 {
-  "name": "node-cli-app",
-  "version": "0.0.0",
-  "main": "src/usage.js",
+  "name": "cli-app",
   "license": "MIT",
   "dependencies": {
-    "graphql": "^0.13.2",
-    "prisma-client-lib": "1.19.0-beta.12"
+    "prisma-client-lib": "1.21.1"
   },
   "devDependencies": {
     "ts-node": "7.0.1",
     "typescript": "3.1.6"
   },
   "scripts": {
-    "prisma": "cd prisma && prisma",
-    "cli": "ts-node src/usage.ts"
+    "cli": "ts-node src/cli.ts"
   }
 }

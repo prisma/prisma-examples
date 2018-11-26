@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "dist",
-    "strict": true,
-    "lib": ["esnext", "dom"]
+    "lib": ["es2016", "esnext.asynciterable"]
   }
 }
