@@ -1,13 +1,11 @@
 {
-  "name": "minimal-orm-example",
-  "version": "0.0.0",
-  "main": "src/usage.js",
+  "name": "script",
+  "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "graphql": "^0.13.2",
-    "prisma-client-lib": "1.19.0-beta.12"
+    "prisma-client-lib": "^1.21.1"
   },
   "scripts": {
-    "start": "node src/usage.js"
+    "start": "node src/script.js"
   }
 }
