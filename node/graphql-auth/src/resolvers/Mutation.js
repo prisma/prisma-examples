@@ -10,7 +10,6 @@ const Mutation = {
       email,
       password: hashedPassword,
     })
-
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
@@ -18,17 +17,13 @@ const Mutation = {
   },
   login: async (parent, { email, password }, context) => {
     const user = await context.prisma.user({ email })
-
     if (!user) {
       throw new Error(`No user found for email: ${email}`)
     }
-
-    const valid = await compare(password, user.password)
-
-    if (!valid) {
+    const passwordValid = await compare(password, user.password)
+    if (!passwordValid) {
       throw new Error('Invalid password')
     }
-
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
@@ -36,29 +31,15 @@ const Mutation = {
   },
   createDraft: async (parent, { title, content }, context) => {
     const userId = getUserId(context)
-
     return context.prisma.createPost({
       title,
       content,
       author: { connect: { id: userId } },
     })
   },
-
   deletePost: async (parent, { id }, context) => {
-    const userId = getUserId(context)
-    const author = await context.prisma
-      .post({ id })
-      .author()
-      .$fragment('{ id }')
-    const authorId = author.id
-
-    if (userId !== authorId) {
-      throw new Error('Author Invalid')
-    }
-
     return context.prisma.deletePost({ id })
   },
-
   publish: async (parent, { id }, context) => {
     return context.prisma.updatePost({
       where: { id },

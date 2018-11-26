@@ -1,5 +1,7 @@
 const User = {
-  posts: (parent, args, context) => context.prisma.user({ id: parent.id }).posts(),
+  posts: (parent, args, context) => {
+    return context.prisma.user({ id: parent.id }).posts()
+  },
 }
 
 module.exports = {
