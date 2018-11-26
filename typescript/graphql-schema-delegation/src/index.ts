@@ -8,7 +8,7 @@ const server = new GraphQLServer({
   resolvers,
   context: {
     binding: prismaBinding,
-    db: prisma,
+    prisma,
   },
 } as any)
 

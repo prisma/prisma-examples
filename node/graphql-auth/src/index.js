@@ -10,7 +10,7 @@ const server = new GraphQLServer({
   context: request => {
     return {
       ...request,
-      db: prisma,
+      prisma,
     }
   },
 })

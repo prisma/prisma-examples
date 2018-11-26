@@ -10,7 +10,7 @@ const rules = {
   }),
   validateAuthor: rule()(async (parent, { authorEmail }, context) => {
     const userId = getUserId(context)
-    const author = await context.db.user({
+    const author = await context.prisma.user({
       id: userId,
     })
 
@@ -18,7 +18,7 @@ const rules = {
   }),
   isPostOwner: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context)
-    const author = await context.db
+    const author = await context.prisma
       .post({
         id,
       })

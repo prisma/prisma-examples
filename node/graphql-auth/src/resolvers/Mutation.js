@@ -5,7 +5,7 @@ const { APP_SECRET, getUserId } = require('../utils')
 const Mutation = {
   signup: async (parent, { name, email, password }, context) => {
     const hashedPassword = await hash(password, 10)
-    const user = await context.db.createUser({
+    const user = await context.prisma.createUser({
       name,
       email,
       password: hashedPassword,
@@ -17,7 +17,7 @@ const Mutation = {
     }
   },
   login: async (parent, { email, password }, context) => {
-    const user = await context.db.user({ email })
+    const user = await context.prisma.user({ email })
 
     if (!user) {
       throw new Error(`No user found for email: ${email}`)
@@ -37,7 +37,7 @@ const Mutation = {
   createDraft: async (parent, { title, content }, context) => {
     const userId = getUserId(context)
 
-    return context.db.createPost({
+    return context.prisma.createPost({
       title,
       content,
       author: { connect: { id: userId } },
@@ -46,7 +46,7 @@ const Mutation = {
 
   deletePost: async (parent, { id }, context) => {
     const userId = getUserId(context)
-    const author = await context.db
+    const author = await context.prisma
       .post({ id })
       .author()
       .$fragment('{ id }')
@@ -56,11 +56,11 @@ const Mutation = {
       throw new Error('Author Invalid')
     }
 
-    return context.db.deletePost({ id })
+    return context.prisma.deletePost({ id })
   },
 
   publish: async (parent, { id }, context) => {
-    return context.db.updatePost({
+    return context.prisma.updatePost({
       where: { id },
       data: { published: true },
     })

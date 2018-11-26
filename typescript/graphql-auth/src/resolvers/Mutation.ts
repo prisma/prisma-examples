@@ -6,7 +6,7 @@ import { APP_SECRET, getUserId } from '../utils'
 export const Mutation: MutationResolvers.Type = {
   signup: async (_parent, { password, name, email }, ctx) => {
     const hashedPassword = await hash(password, 10)
-    const user = await ctx.db.createUser({
+    const user = await ctx.prisma.createUser({
       name,
       email,
       password: hashedPassword,
@@ -18,7 +18,7 @@ export const Mutation: MutationResolvers.Type = {
     }
   },
   login: async (_parent, { email, password }, ctx) => {
-    const user = await ctx.db.user({ email })
+    const user = await ctx.prisma.user({ email })
 
     if (!user) {
       throw new Error(`No user found for email: ${email}`)
@@ -38,7 +38,7 @@ export const Mutation: MutationResolvers.Type = {
   createDraft: async (parent, { title, content, authorEmail }, ctx) => {
     const email = authorEmail
 
-    return ctx.db.createPost({
+    return ctx.prisma.createPost({
       title,
       content,
       author: { connect: { email } },
@@ -46,11 +46,11 @@ export const Mutation: MutationResolvers.Type = {
   },
 
   deletePost: async (parent, { id }, ctx) => {
-    return ctx.db.deletePost({ id })
+    return ctx.prisma.deletePost({ id })
   },
 
   publish: async (parent, { id }, ctx) => {
-    return ctx.db.updatePost({
+    return ctx.prisma.updatePost({
       where: { id },
       data: { isPublished: true },
     })
