@@ -80,6 +80,25 @@ Then, follow these steps in the interactive CLI wizard:
 
 </details>
 
+</br>
+
+Now **copy the HTTP endpoint of your Prisma API** that's printed to the console and paste it into `index.js`, replacing the placeholder `__YOUR_PRISMA_ENDPOINT__` where the `GraphQLServer` is instantiated. (You can also find the endpoint in your `prisma.yml`.)
+
+Here's an example of what the code could look like after the placeholder was replaced:
+
+```js
+const server = new GraphQLServer({
+  typeDefs: './src/schema.graphql',
+  resolvers,
+  context: {
+    prisma: new Prisma({
+      typeDefs: './src/generated/prisma.graphql',
+      endpoint: 'https://us1.prisma.sh/jane-doe/prisma/dev',
+    }),
+  }
+})
+```
+
 ### 4. Start the GraphQL server
 
 Launch your GraphQL server with this command:

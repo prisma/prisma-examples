@@ -6,15 +6,15 @@ export interface MutationParent {}
 
 export const Mutation: Mutation_Type<TypeMap> = {
   createDraft: (parent, { title, content, authorEmail }, ctx) => {
-    return ctx.db.createPost({
+    return ctx.prisma.createPost({
       title,
       content,
       author: { connect: { email: authorEmail } },
     })
   },
-  deletePost: (parent, { id }, ctx) => ctx.db.deletePost({ id }),
+  deletePost: (parent, { id }, ctx) => ctx.prisma.deletePost({ id }),
   publish: (parent, { id }, ctx) => {
-    return ctx.db.updatePost({
+    return ctx.prisma.updatePost({
       where: { id },
       data: { isPublished: true },
     })

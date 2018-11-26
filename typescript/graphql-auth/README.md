@@ -1,19 +1,12 @@
-# typescript-graphql-auth-advanced
+# GraphQL Server with Authentication & Permissions
 
-This example demonstrates how to implement a **GraphQL server with an email-password-based authentication workflow authorized with GraphQL Shield**, [graphql-yoga](https://github.com/prisma/graphql-yoga) and [graphqlgen](https://github.com/prisma/graphqlgen).
+This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules** based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga) & [graphql-shield](https://github.com/maticzav/graphql-shield).
 
-## Get started
+This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [graphqlgen](https://github.com/prisma/graphqlgen).
 
-### 1. Install the Prisma CLI
+## How to use
 
-You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
-
-```
-npm install -g prisma
-# or `yarn global add prisma`
-```
-
-### 2. Download example & Install dependencies
+### 1. Download example & install dependencies
 
 Clone the repository:
 
@@ -24,52 +17,133 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript-graphql-auth-advanced
-yarn install # or `npm install`
+cd prisma-examples/typescript/graphql-auth
+npm install
 ```
 
-### 3. Deploy the Prisma API
+### 2. Install the Prisma CLI
 
-You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
-
-Launch Prisma via Docker:
+To run the example, you need the Prisma CLI. Please install it via NPM or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
 
 ```
-docker-compose up -d
+npm install -g prisma
 ```
 
-Navigate into the `prisma` directory and deploy the Prisma API:
+### 3. Set up database & deploy Prisma datamodel
+
+For this example, you'll use a free _demo database_ (AWS Aurora) hosted in Prisma Cloud. To set up your database, run:
 
 ```
-cd prisma
 prisma deploy
 ```
 
+Then, follow these steps in the interactive CLI wizard:
+
+1. Select **Demo server**
+1. **Authenticate** with Prisma Cloud in your browser
+1. Back in your terminal, **confirm all suggested values**
+
 <details>
- <summary><strong>I don't have Docker installed on my machine</strong></summary>
+ <summary>Alternative: Run Prisma locally via Docker</summary>
 
-To deploy your service to a demo server (rather than locally with Docker), follow these steps:
-
-- Run the following command:
-  ```
-  cd prisma
-  prisma deploy --new
-  ```
-- In the interactive CLI wizard:
-  - Select the **Demo server**
-  - For all following questions, choose the suggested values by just hitting **Enter**
+1. Ensure you have Docker installed on your machine. If not, you can get it from [here](https://store.docker.com/search?offering=community&type=edition).
+1. Create `docker-compose.yml` for MySQL (see [here](https://www.prisma.io/docs/prisma-server/database-connector-POSTGRES-jgfr/) for Postgres):
+    ```yml
+    version: '3'
+    services:
+      prisma:
+        image: prismagraphql/prisma:1.21
+        restart: always
+        ports:
+        - "4466:4466"
+        environment:
+          PRISMA_CONFIG: |
+            port: 4466
+            databases:
+              default:
+                connector: mysql
+                host: mysql
+                port: 3306
+                user: root
+                password: prisma
+                migrations: true
+      mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: prisma
+        volumes:
+          - mysql:/var/lib/mysql
+    volumes:
+      mysql:
+    ```
+1. Run `docker-compose up -d`
+1. Run `prisma deploy`
 
 </details>
 
-### 4. Start the server
+### 4. Start the GraphQL server
+
+Launch your GraphQL server with this command:
 
 ```
-cd ..
-yarn start
+npm run start
 ```
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### 5. Modify resolvers
+### 5. Explore the API of your GraphQL server
 
-Read the [graphqlgen](https://github.com/prisma/graphqlgen) readme to learn how to scaffold resolvers.
+#### Open a Playground
+
+You can either start the [desktop app](https://github.com/prisma/graphql-playground) via
+
+```
+yarn playground
+```
+
+Or you can open a Playground by navigating to [http://localhost:4000](http://localhost:4000) in your browser.
+
+#### Register a new user with the `signup` mutation
+
+You can send the following mutation in the Playground to sign up a new user and retrieve an authentication token for them:
+
+```graphql
+mutation {
+  signup(name: "Alice", email: "alice@prisma.io", password: "graphql") {
+    token
+  }
+}
+```
+
+#### Logging in an existing user with the `login` mutation
+
+This mutation will log in an existing user by requesting a new authentication token for them:
+
+```graphql
+mutation {
+  login(email: "alice@prisma.io", password: "graphql") {
+    token
+  }
+}
+```
+
+#### Checking whether a user is currently logged in with the `me` query
+
+For this query, you need to make sure a valid authentication token is sent along with the `Bearer`-prefix in the `Authorization` header of the request. Inside the Playground, you can set HTTP headers in the bottom-left corner:
+
+![](https://imgur.com/bEGUtO0.png)
+
+Once you've set the header, you can send the following query to check whether the token is valid:
+
+```graphql
+{
+  me {
+    id
+    name
+    email
+  }
+}
+```
+
+If the token is valid, the server will return the `id`, `name`, `email` of the `User` node that it belongs to.

@@ -1,7 +1,7 @@
 export const Subscription = {
   posts: {
     subscribe: async (parent, args, ctx) => {
-      return ctx.db.$subscribe
+      return ctx.prisma.$subscribe
         .post({
           where: {
             mutation_in: ['CREATED', 'UPDATED'],

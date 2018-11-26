@@ -2,12 +2,28 @@ const { getUserId } = require('../utils')
 
 const Query = {
   me: (parent, args, context) => {
-    return context.db.user({ id: getUserId(context) })
+    const userId = getUserId(context)
+    return context.prisma.user({ id: userId })
   },
-  feed: (parent, args, context) => context.db.posts({ where: { published: true } }),
-  drafts: (parent, args, context) =>
-    context.db.posts({ where: { published: false } }),
-  post: (parent, { id }, context) => context.db.post({ id }),
+  feed: (parent, args, context) => {
+    return context.prisma.posts({ where: { published: true } })
+  },
+  filterPosts: (parent, { searchString }, context) => {
+    return context.prisma.posts({
+      where: {
+        OR: [
+          {
+            title_contains: searchString
+          }, {
+            content_contains: searchString
+          }
+        ]
+      }
+    })
+  },
+  post: (parent, { id }, context) => {
+    return context.prisma.post({ id })
+  },
 }
 
 module.exports = {
