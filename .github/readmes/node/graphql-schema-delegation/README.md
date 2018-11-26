@@ -6,6 +6,8 @@ __INLINE(../_setup-1.md)__
 cd prisma-examples/node/graphql-schema-delegation
 __INLINE(../_setup-2.md)__
 
+</br>
+
 Now **copy the HTTP endpoint of your Prisma API** that's printed to the console and paste it into `index.js`, replacing the placeholder `__YOUR_PRISMA_ENDPOINT__` where the `GraphQLServer` is instantiated. (You can also find the endpoint in your `prisma.yml`.)
 
 Here's an example of what the code could look like after the placeholder was replaced:
