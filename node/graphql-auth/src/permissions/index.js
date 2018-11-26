@@ -13,7 +13,6 @@ const rules = {
         id,
       })
       .author()
-
     return userId === author.id
   }),
 }

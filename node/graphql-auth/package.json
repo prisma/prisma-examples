@@ -1,7 +1,6 @@
 {
-  "name": "node-graphql-auth",
+  "name": "graphql-auth",
   "version": "1.0.0",
-  "author": "Prisma",
   "dependencies": {
     "bcrypt": "3.0.2",
     "graphql-shield": "4.1.0",
