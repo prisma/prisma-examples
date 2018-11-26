@@ -23,7 +23,9 @@ const TodoCommand = async () => {
 
   if (command === 'add' || command === 'delete') {
     if (process.argv.length <= 3) {
-      throw new Error('Please provide a TODO text when using the `add`/`delete` commands. For example: `npm run cli add Groceries`')
+      throw new Error(
+        'Please provide a TODO text when using the `add`/`delete` commands. For example: `npm run cli add Groceries`',
+      )
     }
     const string_arguments = process.argv.slice(3)
     const title = string_arguments.reduce(

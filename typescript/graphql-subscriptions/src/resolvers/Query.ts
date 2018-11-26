@@ -2,7 +2,7 @@ import { QueryResolvers } from '../generated/graphqlgen'
 
 export const Query: QueryResolvers.Type = {
   ...QueryResolvers.defaultResolvers,
-  
+
   feed: (parent, args, context) => {
     return context.prisma.posts({ where: { published: true } })
   },

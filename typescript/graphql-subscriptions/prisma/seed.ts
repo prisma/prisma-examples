@@ -1,7 +1,7 @@
 // // THIS SCRIPT WILL BE USED FOR SEEDING WHEN THIS GITHUB ISSUE IS FIXED:
 // // https://github.com/prisma/prisma/issues/3596
 //
-// const { prisma } = require('../src/generated/prisma-client')
+// import { prisma } from '../src/generated/prisma-client'
 //
 // async function main() {
 //   await prisma.createPost({

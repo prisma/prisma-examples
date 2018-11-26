@@ -2,7 +2,7 @@ import { MutationResolvers } from '../generated/graphqlgen'
 
 export const Mutation: MutationResolvers.Type = {
   ...MutationResolvers.defaultResolvers,
-  
+
   signupUser: (parent, { name, email }, ctx) => {
     return ctx.prisma.createUser({
       name,

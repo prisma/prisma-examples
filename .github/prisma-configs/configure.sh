@@ -22,7 +22,6 @@ cp ./node/prisma.yml ../../node/script/prisma
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-auth/prisma
-cp ./typescript/without-client/prisma.yml ../../typescript/graphql-schema-delegation/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/prisma.yml ../../typescript/script/prisma
 
@@ -30,9 +29,13 @@ cp ./typescript/prisma.yml ../../typescript/script/prisma
 cp ./typescript/tsconfig.json ../../typescript/cli-app
 cp ./typescript/tsconfig.json ../../typescript/graphql
 cp ./typescript/tsconfig.json ../../typescript/graphql-auth
-cp ./typescript/tsconfig.json ../../typescript/graphql-schema-delegation
 cp ./typescript/tsconfig.json ../../typescript/graphql-subscriptions
 cp ./typescript/tsconfig.json ../../typescript/script
+
+# TypeScript (graphqlgen)
+cp ./typescript/graphqlgen.yml ../../typescript/graphql
+cp ./typescript/graphqlgen.yml ../../typescript/graphql-auth
+cp ./typescript/graphqlgen.yml ../../typescript/graphql-subscriptions
 
 # Flow
 cp ./flow/prisma.yml ../../flow/graphql/prisma
