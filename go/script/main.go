@@ -1,104 +1,70 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	prisma "go-gin/prisma-client"
 	"log"
+
+	prisma "github.com/prisma/prisma-examples/go/script/prisma-client"
 )
 
 func main() {
 
-	client := prisma.New(&prisma.PrismaOptions{
-		Endpoint: "http://localhost:4466/go-script/dev",
-	})
+	client := prisma.New(nil)
+	ctx := context.Background()
 
-	title := "Draft Post"
-	content := "This is a draft post."
-	email := "alice@prisma.io"
+	// Retrieve all published posts
+	published := true
+	allPosts, err := client.Posts(&prisma.PostsParams{
+		Where: &prisma.PostWhereInput{
+			Published: &published,
+		},
+	}).Exec(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Retrieved all published posts: : %+v\n", allPosts)
 
-	post, err := client.CreatePost(&prisma.PostCreateInput{
-		Title:   &title,
+	// Create a new post (written by an already existing user with email alice@prisma.io)
+	title := "Join the Prisma Slack community"
+	content := "http://slack.prisma.io"
+	email := "alice@prisma.io" // Should have been created during initial seeding
+	post, err := client.CreatePost(prisma.PostCreateInput{
+		Title:   title,
 		Content: &content,
-		Author: &prisma.UserCreateOneWithoutPostsInput{
+		Author: prisma.UserCreateOneWithoutPostsInput{
 			Connect: &prisma.UserWhereUniqueInput{
 				Email: &email,
 			},
 		},
 	},
-	).Exec()
-
+	).Exec(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("Created a new post: %+v\n", post)
 
-	id := post.ID
-
-	fmt.Println("Created post with id", &id)
-	fmt.Println(" ")
-
-	published := false
-
-	posts, err := client.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{
-			IsPublished: &published,
+	// Publish the new post
+	postID := post.ID
+	updatedPost, err := client.UpdatePost(prisma.PostUpdateParams{
+		Where: prisma.PostWhereUniqueInput{
+			ID: &postID,
 		},
-	}).Exec()
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Printf("Queried unpublished posts: %+v\n", posts)
-	fmt.Println(" ")
-
-	ispublished := true
-
-	updatedPost, err := client.UpdatePost(&prisma.UpdatePostParams{
-		Where: &prisma.PostWhereUniqueInput{
-			ID: &id,
+		Data: prisma.PostUpdateInput{
+			Published: &published,
 		},
-		Data: &prisma.PostUpdateInput{
-			IsPublished: &ispublished,
-		},
-	},
-	).Exec()
-
+	}).Exec(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("Published the newly created post:  %+v\n", updatedPost)
 
-	fmt.Println("Published Post with id:", updatedPost.ID)
-	fmt.Println(" ")
-
-	publishedPosts, err := client.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{
-			IsPublished: &ispublished,
-		},
-	}).Exec()
-
+	postsByUser, err := client.User(prisma.UserWhereUniqueInput{
+		Email: &email,
+	}).Posts(nil).Exec(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Printf("Retrieved all posts from a specific user: %+v\n", postsByUser)
 
-	fmt.Printf("Queried published posts %+v\n", publishedPosts)
-	fmt.Println(" ")
-
-	publishedPost, err := client.Post(&prisma.PostWhereUniqueInput{
-		ID: &updatedPost.ID,
-	}).Exec()
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("Queried for post with id", updatedPost.ID)
-	fmt.Printf("%+v\n", publishedPost)
-	fmt.Println(" ")
-
-	client.DeletePost(&prisma.PostWhereUniqueInput{
-		ID: &updatedPost.ID,
-	},
-	).Exec()
-
-	fmt.Println("Deleted post with id", updatedPost.ID)
 }
