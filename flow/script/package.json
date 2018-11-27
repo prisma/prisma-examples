@@ -15,7 +15,7 @@
     "flow-bin": "0.86.0"
   },
   "dependencies": {
-    "graphql": "0.13",
+    "graphql": "14.0",
     "prisma-client-lib": "1.21.1"
   }
 }
