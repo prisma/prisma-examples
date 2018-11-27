@@ -5,7 +5,7 @@ package main
 import (
 	"context"
 
-	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
+	"github.com/prisma/prisma-examples/go/graphql/prisma-client"
 )
 
 type Resolver struct {
@@ -41,10 +41,10 @@ func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.P
 	return r.Prisma.DeletePost(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
 }
 func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post, error) {
-	isPublished := true
+	published := true
 	return r.Prisma.UpdatePost(prisma.PostUpdateParams{
 		Where: prisma.PostWhereUniqueInput{ID: &id},
-		Data:  prisma.PostUpdateInput{IsPublished: &isPublished},
+		Data:  prisma.PostUpdateInput{Published: &published},
 	}).Exec(ctx)
 }
 
@@ -58,15 +58,15 @@ func (r *postResolver) Author(ctx context.Context, obj *prisma.Post) (prisma.Use
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Feed(ctx context.Context) ([]prisma.Post, error) {
-	isPublished := true
+	published := true
 	return r.Prisma.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
+		Where: &prisma.PostWhereInput{Published: &published},
 	}).Exec(ctx)
 }
 func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
-	isPublished := false
+	published := false
 	return r.Prisma.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
+		Where: &prisma.PostWhereInput{Published: &published},
 	}).Exec(ctx)
 }
 func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {
