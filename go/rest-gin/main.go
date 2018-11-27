@@ -1,31 +1,36 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/gin-gonic/gin"
+	prisma "github.com/prisma/prisma-examples/go/rest-gin/prisma-client"
+)
 
 func main() {
 
-	client := prisma.New(&prisma.PrismaOptions{
-		Debug:    true,
-		Endpoint: "http://localhost:4466/go-gin/dev",
-	})
+	client := prisma.New(nil)
 
 	r := gin.Default()
+	ctx := context.Background()
 
-	r.POST("/publish/:id", func(c *gin.Context) {
+	r.PUT("/publish/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		published := true
-		post, err := client.UpdatePost(&prisma.UpdatePostParams{
-			Where: &prisma.PostWhereUniqueInput{
+		post, err := client.UpdatePost(prisma.PostUpdateParams{
+			Where: prisma.PostWhereUniqueInput{
 				ID: &id,
 			},
-			Data: &prisma.PostUpdateInput{
-				IsPublished: &published,
+			Data: prisma.PostUpdateInput{
+				Published: &published,
 			},
 		},
-		).Exec()
+		).Exec(ctx)
 
 		if err != nil {
-			panic(err)
+			log.Printf("%v", err)
 		}
 
 		c.JSON(200, gin.H{
@@ -33,16 +38,16 @@ func main() {
 		})
 	})
 
-	r.POST("/delete/:id", func(c *gin.Context) {
+	r.DELETE("/post/:id", func(c *gin.Context) {
 		id := c.Param("id")
 
-		post, err := client.DeletePost(&prisma.PostWhereUniqueInput{
+		post, err := client.DeletePost(prisma.PostWhereUniqueInput{
 			ID: &id,
 		},
-		).Exec()
+		).Exec(ctx)
 
 		if err != nil {
-			panic(err)
+			log.Printf("%v", err)
 		}
 
 		c.JSON(200, gin.H{
@@ -50,39 +55,64 @@ func main() {
 		})
 	})
 
-	r.POST("/draft", func(c *gin.Context) {
-		title := "Draft"
-		email := "alice@prisma.io"
+	r.POST("/post", func(c *gin.Context) {
+		var p map[string]string
+		c.BindJSON(&p)
 
-		post, err := client.CreatePost(&prisma.PostCreateInput{
-			Title:   &title,
-			Content: &title,
-			Author: &prisma.UserCreateOneWithoutPostsInput{
+		title := p["title"]
+		content := p["content"]
+		authorEmail := p["authorEmail"]
+
+		post, err := client.CreatePost(prisma.PostCreateInput{
+			Title:   title,
+			Content: &content,
+			Author: prisma.UserCreateOneWithoutPostsInput{
 				Connect: &prisma.UserWhereUniqueInput{
-					Email: &email,
+					Email: &authorEmail,
 				},
 			},
 		},
-		).Exec()
+		).Exec(ctx)
 
 		if err != nil {
-			panic(err)
+			log.Printf("%v", err)
 		}
 		c.JSON(200, gin.H{
 			"post": post,
+		})
+	})
+
+	r.POST("/user", func(c *gin.Context) {
+		var u map[string]string
+		c.BindJSON(&u)
+
+		email := u["email"]
+		name := u["name"]
+
+		user, err := client.CreateUser(prisma.UserCreateInput{
+			Email: email,
+			Name:  &name,
+		},
+		).Exec(ctx)
+
+		if err != nil {
+			log.Printf("%v", err)
+		}
+		c.JSON(200, gin.H{
+			"user": user,
 		})
 	})
 
 	r.GET("/post/:id", func(c *gin.Context) {
 		id := c.Param("id")
 
-		post, err := client.Post(&prisma.PostWhereUniqueInput{
+		post, err := client.Post(prisma.PostWhereUniqueInput{
 			ID: &id,
 		},
-		).Exec()
+		).Exec(ctx)
 
 		if err != nil {
-			panic(err)
+			log.Printf("%v", err)
 		}
 
 		c.JSON(200, gin.H{
@@ -90,19 +120,26 @@ func main() {
 		})
 	})
 
-	r.GET("/drafts", func(c *gin.Context) {
-		published := false
+	r.GET("/filterPosts", func(c *gin.Context) {
+		searchString := c.DefaultQuery("searchString", "")
+
 		posts, err := client.Posts(&prisma.PostsParams{
 			Where: &prisma.PostWhereInput{
-				IsPublished: &published,
+				Or: []prisma.PostWhereInput{
+					prisma.PostWhereInput{
+						TitleContains: &searchString,
+					},
+					prisma.PostWhereInput{
+						TitleContains: &searchString,
+					},
+				},
 			},
 		},
-		).Exec()
+		).Exec(ctx)
 
 		if err != nil {
-			panic(err)
+			log.Printf("%v", err)
 		}
-
 		c.JSON(200, gin.H{
 			"posts": posts,
 		})
@@ -112,10 +149,10 @@ func main() {
 		published := true
 		posts, err := client.Posts(&prisma.PostsParams{
 			Where: &prisma.PostWhereInput{
-				IsPublished: &published,
+				Published: &published,
 			},
 		},
-		).Exec()
+		).Exec(ctx)
 
 		if err != nil {
 			panic(err)
@@ -126,10 +163,6 @@ func main() {
 		})
 	})
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	fmt.Println("Server is running on http://localhost:8080")
+	r.Run()
 }

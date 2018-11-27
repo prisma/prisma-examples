@@ -1,69 +1,43 @@
-# go-gin
+# REST API Example
 
-This example demonstrates how to use the Prisma client in a Go REST API with [go-gin](https://github.com/gin-gonic/gin)
+This example shows how to implement a **REST (HTTP) API** using the [Gin Web Framework](https://github.com/gin-gonic/gin) and Prisma.
 
-## Get started
+__INLINE(../_setup-1.md)__
+cd prisma-examples/go/rest-gin
+__INLINE(../_setup-2.md)__
 
-### 1. Install the Prisma CLI
-
-You need to have the Prisma CLI installed on your machine to run this example. If you don't have it yet, execute the following command to install it globally on your machine:
-
-```
-npm install -g prisma
-# or `yarn global add prisma`
-```
-
-### 2. Download example & Install dependencies
-
-Clone the repository into your [GOPATH](https://github.com/golang/go/wiki/GOPATH):
+### 4. Start the REST API server
 
 ```
-git clone git@github.com:prisma/prisma-examples.git
-```
-
-Install Go dependencies:
-
-```
-cd prisma-examples/go-gin
-go get ./....
-```
-
-### 3. Deploy the Prisma API
-
-You will now deploy the Prisma API that's backing this example. This requires you to have [Docker](https://www.docker.com) installed on your machine (if you don't have Docker follow the collapsed instructions below the code block):
-
-Launch Prisma via Docker:
-
-```
-docker-compose up -d
-```
-
-Navigate into the `prisma` directory and deploy the Prisma API:
-
-```
-cd prisma
-prisma deploy
-```
-
-<details>
- <summary><strong>I don't have Docker installed on my machine</strong></summary>
-
-To deploy your service to a demo server (rather than locally with Docker), follow these steps:
-
-- Run the following command:
-  ```
-  cd prisma
-  prisma deploy --new
-  ```
-- In the interactive CLI wizard:
-  - Select the **Demo server**
-  - For all following questions, choose the suggested values by just hitting **Enter**
-
-</details>
-
-### 4. Run the server
-
-```
-cd ..
 go run main.go
 ```
+
+The server is now running on `http://localhost:8080`. You can send the API requests implemented in `main.go`, e.g. [`http://localhost:8080/feed`](http://localhost:8080/feed).
+
+### 5. Using the REST API
+
+#### GET
+
+- `/post/:id`: Fetch a single post by its `id`
+- `/feed`: Fetch all _published_ posts
+- `/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
+
+#### POST
+
+- `/post`: Create a new post
+  - Body:
+    - `title: String` (required): The title of the post
+    - `content: String` (optional): The content of the post
+    - `authorEmail: String` (required): The email of the user that creates the post
+- `/user`: Create a new user
+  - Body:
+    - `email: String` (required): The email address of the user
+    - `name: String` (optional): The name of the user
+
+#### PUT
+
+- `publish/:id`: Publish a post by its `id`
+
+#### DELETE
+  
+- `post/:id`: Delete a post by its `id`
