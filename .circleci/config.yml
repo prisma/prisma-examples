@@ -29,7 +29,6 @@ jobs:
       - run: cd typescript/cli-app && yarn && yarn tsc
       - run: cd typescript/graphql && yarn && yarn tsc
       - run: cd typescript/graphql-auth && yarn && yarn tsc
-      - run: cd typescript/graphql-schema-delegation && yarn && yarn tsc
       - run: cd typescript/graphql-subscriptions && yarn && yarn tsc
       - run: cd typescript/script && yarn && yarn tsc
 
