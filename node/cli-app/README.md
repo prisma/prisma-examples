@@ -80,7 +80,6 @@ Then, follow these steps in the interactive CLI wizard:
 
 </details>
 
-
 ### 4. Use the app
 
 ```
