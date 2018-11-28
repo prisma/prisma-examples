@@ -59,7 +59,7 @@ func (client *Client) GraphQL(ctx context.Context, query string, variables map[s
 	return client.Client.GraphQL(ctx, query, variables)
 }
 
-var DefaultEndpoint = "https://eu1.prisma.sh/nikolas/prisma/dev"
+var DefaultEndpoint = ""
 var Secret = ""
 
 func (client *Client) Post(params PostWhereUniqueInput) *PostExec {

@@ -25,6 +25,13 @@ func (r *Resolver) User() UserResolver {
 
 type mutationResolver struct{ *Resolver }
 
+func (r *mutationResolver) SignupUser(ctx context.Context, email string, name *string) (prisma.User, error) {
+	user, err := r.Prisma.CreateUser(prisma.UserCreateInput{
+		Email: email,
+		Name:  name,
+	}).Exec(ctx)
+	return *user, err
+}
 func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content *string, authorEmail string) (prisma.Post, error) {
 	post, err := r.Prisma.CreatePost(prisma.PostCreateInput{
 		Title:   title,
@@ -61,10 +68,18 @@ func (r *queryResolver) Feed(ctx context.Context) ([]prisma.Post, error) {
 		Where: &prisma.PostWhereInput{Published: &published},
 	}).Exec(ctx)
 }
-func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
-	published := false
+func (r *queryResolver) FilterPosts(ctx context.Context, searchString *string) ([]prisma.Post, error) {
 	return r.Prisma.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{Published: &published},
+		Where: &prisma.PostWhereInput{
+			Or: []prisma.PostWhereInput{
+				prisma.PostWhereInput{
+					TitleContains: searchString,
+				},
+				prisma.PostWhereInput{
+					TitleContains: searchString,
+				},
+			},
+		},
 	}).Exec(ctx)
 }
 func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {

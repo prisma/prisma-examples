@@ -42,6 +42,7 @@ type DirectiveRoot struct {
 
 type ComplexityRoot struct {
 	Mutation struct {
+		SignupUser  func(childComplexity int, email string, name *string) int
 		CreateDraft func(childComplexity int, title string, content *string, authorEmail string) int
 		DeletePost  func(childComplexity int, id string) int
 		Publish     func(childComplexity int, id string) int
@@ -58,9 +59,9 @@ type ComplexityRoot struct {
 	}
 
 	Query struct {
-		Feed   func(childComplexity int) int
-		Drafts func(childComplexity int) int
-		Post   func(childComplexity int, id string) int
+		Feed        func(childComplexity int) int
+		FilterPosts func(childComplexity int, searchString *string) int
+		Post        func(childComplexity int, id string) int
 	}
 
 	User struct {
@@ -72,6 +73,7 @@ type ComplexityRoot struct {
 }
 
 type MutationResolver interface {
+	SignupUser(ctx context.Context, email string, name *string) (prisma.User, error)
 	CreateDraft(ctx context.Context, title string, content *string, authorEmail string) (prisma.Post, error)
 	DeletePost(ctx context.Context, id string) (*prisma.Post, error)
 	Publish(ctx context.Context, id string) (*prisma.Post, error)
@@ -81,11 +83,40 @@ type PostResolver interface {
 }
 type QueryResolver interface {
 	Feed(ctx context.Context) ([]prisma.Post, error)
-	Drafts(ctx context.Context) ([]prisma.Post, error)
+	FilterPosts(ctx context.Context, searchString *string) ([]prisma.Post, error)
 	Post(ctx context.Context, id string) (*prisma.Post, error)
 }
 type UserResolver interface {
 	Posts(ctx context.Context, obj *prisma.User) ([]prisma.Post, error)
+}
+
+func field_Mutation_signupUser_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["email"]; ok {
+		var err error
+		arg0, err = graphql.UnmarshalString(tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["email"] = arg0
+	var arg1 *string
+	if tmp, ok := rawArgs["name"]; ok {
+		var err error
+		var ptr1 string
+		if tmp != nil {
+			ptr1, err = graphql.UnmarshalString(tmp)
+			arg1 = &ptr1
+		}
+
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["name"] = arg1
+	return args, nil
+
 }
 
 func field_Mutation_createDraft_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
@@ -152,6 +183,26 @@ func field_Mutation_publish_args(rawArgs map[string]interface{}) (map[string]int
 		}
 	}
 	args["id"] = arg0
+	return args, nil
+
+}
+
+func field_Query_filterPosts_args(rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	args := map[string]interface{}{}
+	var arg0 *string
+	if tmp, ok := rawArgs["searchString"]; ok {
+		var err error
+		var ptr1 string
+		if tmp != nil {
+			ptr1, err = graphql.UnmarshalString(tmp)
+			arg0 = &ptr1
+		}
+
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["searchString"] = arg0
 	return args, nil
 
 }
@@ -228,6 +279,18 @@ func (e *executableSchema) Schema() *ast.Schema {
 
 func (e *executableSchema) Complexity(typeName, field string, childComplexity int, rawArgs map[string]interface{}) (int, bool) {
 	switch typeName + "." + field {
+
+	case "Mutation.signupUser":
+		if e.complexity.Mutation.SignupUser == nil {
+			break
+		}
+
+		args, err := field_Mutation_signupUser_args(rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.SignupUser(childComplexity, args["email"].(string), args["name"].(*string)), true
 
 	case "Mutation.createDraft":
 		if e.complexity.Mutation.CreateDraft == nil {
@@ -321,12 +384,17 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Query.Feed(childComplexity), true
 
-	case "Query.drafts":
-		if e.complexity.Query.Drafts == nil {
+	case "Query.filterPosts":
+		if e.complexity.Query.FilterPosts == nil {
 			break
 		}
 
-		return e.complexity.Query.Drafts(childComplexity), true
+		args, err := field_Query_filterPosts_args(rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Query.FilterPosts(childComplexity, args["searchString"].(*string)), true
 
 	case "Query.post":
 		if e.complexity.Query.Post == nil {
@@ -432,6 +500,11 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Mutation")
+		case "signupUser":
+			out.Values[i] = ec._Mutation_signupUser(ctx, field)
+			if out.Values[i] == graphql.Null {
+				invalid = true
+			}
 		case "createDraft":
 			out.Values[i] = ec._Mutation_createDraft(ctx, field)
 			if out.Values[i] == graphql.Null {
@@ -450,6 +523,36 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		return graphql.Null
 	}
 	return out
+}
+
+// nolint: vetshadow
+func (ec *executionContext) _Mutation_signupUser(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := field_Mutation_signupUser_args(rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	rctx := &graphql.ResolverContext{
+		Object: "Mutation",
+		Args:   args,
+		Field:  field,
+	}
+	ctx = graphql.WithResolverContext(ctx, rctx)
+	resTmp := ec.FieldMiddleware(ctx, nil, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().SignupUser(rctx, args["email"].(string), args["name"].(*string))
+	})
+	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(prisma.User)
+	rctx.Result = res
+
+	return ec._User(ctx, field.Selections, &res)
 }
 
 // nolint: vetshadow
@@ -797,10 +900,10 @@ func (ec *executionContext) _Query(ctx context.Context, sel ast.SelectionSet) gr
 				}
 				wg.Done()
 			}(i, field)
-		case "drafts":
+		case "filterPosts":
 			wg.Add(1)
 			go func(i int, field graphql.CollectedField) {
-				out.Values[i] = ec._Query_drafts(ctx, field)
+				out.Values[i] = ec._Query_filterPosts(ctx, field)
 				if out.Values[i] == graphql.Null {
 					invalid = true
 				}
@@ -884,16 +987,22 @@ func (ec *executionContext) _Query_feed(ctx context.Context, field graphql.Colle
 }
 
 // nolint: vetshadow
-func (ec *executionContext) _Query_drafts(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+func (ec *executionContext) _Query_filterPosts(ctx context.Context, field graphql.CollectedField) graphql.Marshaler {
+	rawArgs := field.ArgumentMap(ec.Variables)
+	args, err := field_Query_filterPosts_args(rawArgs)
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
 	rctx := &graphql.ResolverContext{
 		Object: "Query",
-		Args:   nil,
+		Args:   args,
 		Field:  field,
 	}
 	ctx = graphql.WithResolverContext(ctx, rctx)
 	resTmp := ec.FieldMiddleware(ctx, nil, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Query().Drafts(rctx)
+		return ec.resolvers.Query().FilterPosts(rctx, args["searchString"].(*string))
 	})
 	if resTmp == nil {
 		if !ec.HasError(rctx) {
@@ -1048,11 +1157,11 @@ func (ec *executionContext) _User(ctx context.Context, sel ast.SelectionSet, obj
 			}
 		case "email":
 			out.Values[i] = ec._User_email(ctx, field, obj)
+		case "name":
+			out.Values[i] = ec._User_name(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				invalid = true
 			}
-		case "name":
-			out.Values[i] = ec._User_name(ctx, field, obj)
 		case "posts":
 			wg.Add(1)
 			go func(i int, field graphql.CollectedField) {
@@ -1109,9 +1218,6 @@ func (ec *executionContext) _User_email(ctx context.Context, field graphql.Colle
 		return obj.Email, nil
 	})
 	if resTmp == nil {
-		if !ec.HasError(rctx) {
-			ec.Errorf(ctx, "must not be null")
-		}
 		return graphql.Null
 	}
 	res := resTmp.(string)
@@ -1132,12 +1238,18 @@ func (ec *executionContext) _User_name(ctx context.Context, field graphql.Collec
 		return obj.Name, nil
 	})
 	if resTmp == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	res := resTmp.(*string)
 	rctx.Result = res
 
 	if res == nil {
+		if !ec.HasError(rctx) {
+			ec.Errorf(ctx, "must not be null")
+		}
 		return graphql.Null
 	}
 	return graphql.MarshalString(*res)
@@ -2536,11 +2648,12 @@ var parsedSchema = gqlparser.MustLoadSchema(
 
 type Query {
   feed: [Post!]!
-  drafts: [Post!]!
+  filterPosts(searchString: String): [Post!]!
   post(id: ID!): Post
 }
 
 type Mutation {
+  signupUser(email: String!, name: String): User!
   createDraft(title: String!, content: String, authorEmail: String!): Post!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
@@ -2558,9 +2671,40 @@ type Post {
 
 type User {
   id: ID!
-  email: String!
-  name: String
+  email: String
+  name: String!
   posts: [Post!]!
 }
+
+# scalar DateTime
+
+# type Query {
+#   feed: [Post!]!
+#   drafts: [Post!]!
+#   post(id: ID!): Post
+# }
+
+# type Mutation {
+#   createDraft(title: String!, content: String, authorEmail: String!): Post!
+#   deletePost(id: ID!): Post
+#   publish(id: ID!): Post
+# }
+
+# type Post {
+#   id: ID!
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+#   published: Boolean!
+#   title: String!
+#   content: String
+#   author: User!
+# }
+
+# type User {
+#   id: ID!
+#   email: String!
+#   name: String
+#   posts: [Post!]!
+# }
 `},
 )

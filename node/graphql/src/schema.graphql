@@ -8,7 +8,7 @@ type Query {
 
 type Mutation {
   signupUser(email: String!, name: String): User!
-  createDraft(title: String!, content: String!, authorEmail: String!): Post!
+  createDraft(title: String!, content: String, authorEmail: String!): Post!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
 }
