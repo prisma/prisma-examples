@@ -5,10 +5,10 @@
     "@babel/node": "7.0.0",
     "@babel/preset-env": "7.1.6",
     "@babel/preset-flow": "7.0.0",
-    "graphqlgen": "^0.4.0"
+    "graphqlgen": "0.4.0"
   },
   "dependencies": {
-    "graphql-yoga": "^1.16.1",
+    "graphql-yoga": "1.16.7",
     "prisma-client-lib": "1.21.1"
   },
   "scripts": {
