@@ -6,14 +6,12 @@ import (
 	"os"
 
 	"github.com/99designs/gqlgen/handler"
-	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
+	"github.com/prisma/prisma-examples/go/graphql/prisma-client"
 )
 
 const defaultPort = "4000"
 
 func main() {
-	log.Printf("Initialize GraphQL service...")
-
 	port := os.Getenv("PORT")
 	if len(port) == 0 {
 		port = defaultPort
@@ -24,12 +22,12 @@ func main() {
 		Prisma: client,
 	}
 
-	http.Handle("/", handler.Playground("GraphQL playground", "/query"))
+	http.Handle("/", handler.Playground("GraphQL Playground", "/query"))
 	http.Handle("/query", handler.GraphQL(NewExecutableSchema(Config{Resolvers: &resolver})))
 
+	log.Printf("Server is running on http://localhost:%s", port)
 	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 }

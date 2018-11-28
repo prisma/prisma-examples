@@ -1,18 +1,38 @@
 import { MutationResolvers } from '../generated/graphqlgen'
 
 export const Mutation: MutationResolvers.Type = {
-  createDraft: (parent, { title, content, authorEmail }, ctx) => {
-    return ctx.db.createPost({
-      title,
-      content,
-      author: { connect: { email: authorEmail } },
+  ...MutationResolvers.defaultResolvers,
+
+  signupUser: (parent, { name, email }, ctx) => {
+    return ctx.prisma.createUser({
+      name,
+      email,
     })
   },
-  deletePost: (parent, { id }, ctx) => ctx.db.deletePost({ id }),
+  createDraft: (parent, { title, content, authorEmail }, ctx) => {
+    return ctx.prisma.createPost({
+      title,
+      content,
+      author: {
+        connect: {
+          email: authorEmail,
+        },
+      },
+    })
+  },
+  deletePost: (parent, { id }, ctx) => {
+    return ctx.prisma.deletePost({
+      id,
+    })
+  },
   publish: (parent, { id }, ctx) => {
-    return ctx.db.updatePost({
-      where: { id },
-      data: { isPublished: true },
+    return ctx.prisma.updatePost({
+      where: {
+        id,
+      },
+      data: {
+        published: true,
+      },
     })
   },
 }

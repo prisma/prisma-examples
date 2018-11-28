@@ -30,8 +30,8 @@
   version = "0.2.2"
 
 [[constraint]]
-  name = "github.com/mitchellh/mapstructure"
-  version = "1.0.0"
+  branch = "master"
+  name = "github.com/prisma/prisma-client-lib-go"
 
 [prune]
   go-tests = true

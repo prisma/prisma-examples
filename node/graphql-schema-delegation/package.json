@@ -1,13 +1,10 @@
 {
-  "name": "node-graphql-schema-delegation",
+  "name": "graphql-schema-delegation",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "graphql": "^0.13.2",
-    "graphql-yoga": "^1.16.1",
-    "prisma-binding": "^2.1.5",
-    "prisma-client-lib": "1.19.0-beta.12"
+    "graphql-yoga": "1.16.7",
+    "prisma-binding": "2.2.8"
   },
   "scripts": {
     "start": "node src/index.js"

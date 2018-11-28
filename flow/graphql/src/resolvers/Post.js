@@ -1,24 +1,11 @@
 /* @flow */
-import type { Post_Type } from '../generated/resolvers'
-import { TypeMap } from './types/TypeMap'
-import { UserParent } from './User'
+import { Post_defaultResolvers } from '../generated/graphqlgen'
+import type { Post_Resolvers } from '../generated/graphqlgen'
 
-export interface PostParent {
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  isPublished: boolean;
-  title: string;
-  content: string;
-  author: UserParent;
-}
+export const Post: Post_Resolvers = {
+  ...Post_defaultResolvers,
 
-export const Post: Post_Type<TypeMap> = {
-  id: parent => parent.id,
-  createdAt: parent => parent.createdAt,
-  updatedAt: parent => parent.updatedAt,
-  isPublished: parent => parent.isPublished,
-  title: parent => parent.title,
-  content: parent => parent.content,
-  author: (parent, args, ctx) => ctx.db.post({ id: parent.id }).author(),
+  author: ({ id }, args, ctx, info) => {
+    return ctx.prisma.post({ id }).author()
+  },
 }

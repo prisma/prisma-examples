@@ -1,30 +1,18 @@
 {
-  "name": "flow-graphql",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "graphql",
   "devDependencies": {
     "@babel/core": "7.1.6",
     "@babel/node": "7.0.0",
     "@babel/preset-env": "7.1.6",
     "@babel/preset-flow": "7.0.0",
-    "flow-bin": "0.86.0",
-    "flow-typed": "2.5.1",
-    "graphql-resolver-codegen": "0.3.1",
-    "npm-run-all": "4.1.5"
+    "graphqlgen": "^0.4.0"
   },
   "dependencies": {
-    "graphql": "^0.13.2",
     "graphql-yoga": "^1.16.1",
-    "prisma-client-lib": "1.19.0-beta.12"
+    "prisma-client-lib": "1.21.1"
   },
   "scripts": {
     "start": "babel-node src/index.js",
-    "graphql-resolver-codegen": "graphql-resolver-codegen",
-    "resolver-interfaces": "graphql-resolver-codegen interfaces -s src/schema.graphql -o ./src/generated/resolvers.js -g flow",
-    "resolver-scaffold": "graphql-resolver-codegen scaffold -s src/schema.graphql -o ./src/resolvers/ -i ../generated/resolvers -g flow",
-    "resolver-codegen": "npm-run-all resolver-interfaces resolver-scaffold",
-    "flow": "flow",
-    "flow-typed": "flow-typed"
+    "generate": "graphqlgen"
   }
 }

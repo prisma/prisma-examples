@@ -1,14 +1,13 @@
 {
-  "name": "express-rest",
+  "name": "rest-express",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "prisma-client-lib": "1.19.0-beta.12"
+    "body-parser": "1.18.3",
+    "express": "4.16.4",
+    "prisma-client-lib": "1.21.1"
   }
 }

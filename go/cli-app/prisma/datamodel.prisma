@@ -1,11 +1,5 @@
 type Todo {
   id: ID! @unique
-  text: String!
-  done: Boolean!
-  user: User!
-}
-
-type User {
-  id: ID! @unique
-  name: String!
+  createdAt: DateTime!
+  text: String! @unique
 }

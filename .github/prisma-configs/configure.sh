@@ -13,18 +13,29 @@
 cp ./node/prisma.yml ../../node/cli-app/prisma
 cp ./node/prisma.yml ../../node/graphql/prisma
 cp ./node/prisma.yml ../../node/graphql-auth/prisma
-cp ./node/prisma.yml ../../node/graphql-schema-delegation/prisma
+cp ./node/without-client/prisma.yml ../../node/graphql-schema-delegation/prisma
 cp ./node/prisma.yml ../../node/graphql-subscriptions/prisma
 cp ./node/prisma.yml ../../node/rest-express/prisma
 cp ./node/prisma.yml ../../node/script/prisma
 
-# TypeScript
+# TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-auth/prisma
-cp ./typescript/prisma.yml ../../typescript/graphql-schema-delegation/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/prisma.yml ../../typescript/script/prisma
+
+# TypeScript (tsconfig.json)
+cp ./typescript/tsconfig.json ../../typescript/cli-app
+cp ./typescript/tsconfig.json ../../typescript/graphql
+cp ./typescript/tsconfig.json ../../typescript/graphql-auth
+cp ./typescript/tsconfig.json ../../typescript/graphql-subscriptions
+cp ./typescript/tsconfig.json ../../typescript/script
+
+# TypeScript (graphqlgen)
+cp ./typescript/graphqlgen.yml ../../typescript/graphql
+cp ./typescript/graphqlgen.yml ../../typescript/graphql-auth
+cp ./typescript/graphqlgen.yml ../../typescript/graphql-subscriptions
 
 # Flow
 cp ./flow/prisma.yml ../../flow/graphql/prisma

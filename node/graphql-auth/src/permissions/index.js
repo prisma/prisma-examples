@@ -1,39 +1,30 @@
 const { rule, and, shield } = require('graphql-shield')
-
 const { getUserId } = require('../utils')
 
 const rules = {
-  isUser: rule()((parent, args, context) => {
+  isAuthenticatedUser: rule()((parent, args, context) => {
     const userId = getUserId(context)
-
-    return !!userId
-  }),
-  validateAuthor: rule()(async (parent, { authorEmail }, context) => {
-    const userId = getUserId(context)
-    const author = await context.db.user({
-      id: userId,
-    })
-
-    return authorEmail === author.email
+    return Boolean(userId)
   }),
   isPostOwner: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context)
-    const author = await context.db
+    const author = await context.prisma
       .post({
         id,
       })
       .author()
-
     return userId === author.id
   }),
 }
 
 const permissions = shield({
   Query: {
-    me: rules.isUser,
+    me: rules.isAuthenticatedUser,
+    filterPosts: rules.isAuthenticatedUser,
+    post: rules.isAuthenticatedUser,
   },
   Mutation: {
-    createDraft: rules.isUser,
+    createDraft: rules.isAuthenticatedUser,
     deletePost: rules.isPostOwner,
     publish: rules.isPostOwner,
   },

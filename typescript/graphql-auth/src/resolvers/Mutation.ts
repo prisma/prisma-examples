@@ -1,58 +1,51 @@
+import { MutationResolvers } from '../generated/graphqlgen'
 import { hash, compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import { MutationResolvers } from '../generated/graphqlgen'
 import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation: MutationResolvers.Type = {
-  signup: async (_parent, { password, name, email }, ctx) => {
+  ...MutationResolvers.defaultResolvers,
+  signup: async (parent, { name, email, password }, context) => {
     const hashedPassword = await hash(password, 10)
-    const user = await ctx.db.createUser({
+    const user = await context.prisma.createUser({
       name,
       email,
       password: hashedPassword,
     })
-
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
     }
   },
-  login: async (_parent, { email, password }, ctx) => {
-    const user = await ctx.db.user({ email })
-
+  login: async (parent, { email, password }, context) => {
+    const user = await context.prisma.user({ email })
     if (!user) {
       throw new Error(`No user found for email: ${email}`)
     }
-
-    const valid = await compare(password, user.password)
-
-    if (!valid) {
+    const passwordValid = await compare(password, user.password)
+    if (!passwordValid) {
       throw new Error('Invalid password')
     }
-
     return {
       token: sign({ userId: user.id }, APP_SECRET),
       user,
     }
   },
-  createDraft: async (parent, { title, content, authorEmail }, ctx) => {
-    const email = authorEmail
-
-    return ctx.db.createPost({
+  createDraft: async (parent, { title, content }, context) => {
+    const userId = getUserId(context)
+    return context.prisma.createPost({
       title,
       content,
-      author: { connect: { email } },
+      author: { connect: { id: userId } },
     })
   },
-
-  deletePost: async (parent, { id }, ctx) => {
-    return ctx.db.deletePost({ id })
+  deletePost: async (parent, { id }, context) => {
+    return context.prisma.deletePost({ id })
   },
-
-  publish: async (parent, { id }, ctx) => {
-    return ctx.db.updatePost({
+  publish: async (parent, { id }, context) => {
+    return context.prisma.updatePost({
       where: { id },
-      data: { isPublished: true },
+      data: { published: true },
     })
   },
 }

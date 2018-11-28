@@ -1,12 +1,11 @@
-[untyped]
-<PROJECT_ROOT>/node_modules/.*
-
 [ignore]
-.*/node_modules/config-chain/test/broken.json
 
+[include]
 
 [libs]
 
+[lints]
+
 [options]
-suppress_comment= \\(.\\|\n\\)*\\$ExpectError
-module.system.node.resolve_dirname=node_modules
+
+[strict]
