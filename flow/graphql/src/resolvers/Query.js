@@ -12,12 +12,15 @@ export const Query: Query_Resolvers = {
   filterPosts: (parent, { searchString }, ctx, info) => {
     return ctx.prisma.posts({
       where: {
-        OR: [{
-          title_contains: searchString
-        }, {
-          content_contains: searchString
-        }]
-      }
+        OR: [
+          {
+            title_contains: searchString,
+          },
+          {
+            content_contains: searchString,
+          },
+        ],
+      },
     })
   },
   post: (parent, { id }, ctx, info) => {
