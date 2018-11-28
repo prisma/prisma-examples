@@ -2,13 +2,18 @@
 
 
 [[projects]]
-  digest = "1:73d52ad0467263233e26833b71c8bbb4d991c9b59d57a18761ff5c07bbe22f10"
+  digest = "1:afdac8dffed6ec4ecb613cdcd47007a9eb41aed95d5389acdab0f87931dddc70"
   name = "github.com/99designs/gqlgen"
   packages = [
+    "cmd",
+    "codegen",
+    "codegen/templates",
     "complexity",
     "graphql",
     "graphql/introspection",
     "handler",
+    "internal/gopath",
+    "internal/imports",
   ]
   pruneopts = "UT"
   revision = "6f486bde038887adf67c3e3766624ef111ea95cf"
@@ -82,8 +87,15 @@
   revision = "68a1f9908416aebb5bbb0bc3cdec3321d74cb7af"
 
 [[projects]]
-  branch = "master"
-  digest = "1:fe4bb8bc8723d78279e4065daf079fe7b2c1e2f82eed0c96fdae37afa2a316f5"
+  digest = "1:b24d38b282bacf9791408a080f606370efa3d364e4b5fd9ba0f7b87786d3b679"
+  name = "github.com/urfave/cli"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
+  version = "v1.20.0"
+
+[[projects]]
+  digest = "1:ed6a41de3eedd8d4868eea057837860453ebbe08c5e385fd50d4c24e5642ec18"
   name = "github.com/vektah/gqlparser"
   packages = [
     ".",
@@ -95,12 +107,38 @@
     "validator/rules",
   ]
   pruneopts = "UT"
-  revision = "28e162af7a0c2cb1977ee6295149cb7b15db2eed"
+  revision = "e805d08bb209b1accdea76bd2327811858d81985"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:48b383c3a6ee2df352763f63974a2c04a0a6117c1f9f3989faac3cb6b656be19"
+  name = "golang.org/x/tools"
+  packages = [
+    "go/ast/astutil",
+    "go/buildutil",
+    "go/internal/cgo",
+    "go/loader",
+    "imports",
+    "internal/fastwalk",
+    "internal/gopathwalk",
+  ]
+  pruneopts = "UT"
+  revision = "e782529d0ddd4bb872a63766185bebe89c96d1ae"
+
+[[projects]]
+  digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
+  version = "v2.2.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/99designs/gqlgen/cmd",
     "github.com/99designs/gqlgen/graphql",
     "github.com/99designs/gqlgen/graphql/introspection",
     "github.com/99designs/gqlgen/handler",

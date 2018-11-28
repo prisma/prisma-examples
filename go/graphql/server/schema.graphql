@@ -7,7 +7,7 @@ type Query {
 }
 
 type Mutation {
-  createDraft(title: String!, content: String!, authorEmail: String!): Post!
+  createDraft(title: String!, content: String, authorEmail: String!): Post!
   deletePost(id: ID!): Post
   publish(id: ID!): Post
 }
@@ -18,13 +18,13 @@ type Post {
   updatedAt: DateTime!
   published: Boolean!
   title: String!
-  content: String!
+  content: String
   author: User!
 }
 
 type User {
   id: ID!
   email: String!
-  name: String!
+  name: String
   posts: [Post!]!
 }

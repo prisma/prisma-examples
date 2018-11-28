@@ -1,5 +1,3 @@
-//go:generate gorunpkg github.com/99designs/gqlgen
-
 package main
 
 import (
@@ -27,7 +25,7 @@ func (r *Resolver) User() UserResolver {
 
 type mutationResolver struct{ *Resolver }
 
-func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content string, authorEmail string) (prisma.Post, error) {
+func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content *string, authorEmail string) (prisma.Post, error) {
 	post, err := r.Prisma.CreatePost(prisma.PostCreateInput{
 		Title:   title,
 		Content: content,
