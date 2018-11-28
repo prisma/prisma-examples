@@ -6,8 +6,8 @@
     "start": "node src/index.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.3",
-    "prisma-client-lib": "^1.21.1"
+    "body-parser": "1.18.3",
+    "express": "4.16.4",
+    "prisma-client-lib": "1.21.1"
   }
 }

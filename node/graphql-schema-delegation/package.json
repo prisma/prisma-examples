@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "^1.16.1",
-    "prisma-binding": "^2.1.5"
+    "graphql-yoga": "1.16.7",
+    "prisma-binding": "2.2.8"
   },
   "scripts": {
     "start": "node src/index.js"
