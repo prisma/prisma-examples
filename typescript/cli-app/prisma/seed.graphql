@@ -1,11 +1,11 @@
 mutation {
-  todo1: createTodo({
-    title: "Homework"
+  todo1: createTodo(data: {
+    title: "Subscribe to GraphQL Weekly"
   }) {
     id
   }
-  todo2: createTodo({
-    title: "Shopping"
+  todo2: createTodo(data: {
+    title: "Join GraphQL Conf 2019"
   }) {
     id
   }

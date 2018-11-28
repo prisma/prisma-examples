@@ -2,25 +2,38 @@
 
 
 [[projects]]
-  digest = "1:6087cbec1f60d9baf435b286742d02de0ba2558707645f6f4370ba950b7f579c"
+  digest = "1:afdac8dffed6ec4ecb613cdcd47007a9eb41aed95d5389acdab0f87931dddc70"
   name = "github.com/99designs/gqlgen"
   packages = [
+    "cmd",
+    "codegen",
+    "codegen/templates",
     "complexity",
     "graphql",
     "graphql/introspection",
     "handler",
+    "internal/gopath",
+    "internal/imports",
   ]
   pruneopts = "UT"
-  revision = "636435b68700211441303f1a5ed92f3768ba5774"
-  version = "v0.5.1"
+  revision = "6f486bde038887adf67c3e3766624ef111ea95cf"
+  version = "v0.6.0"
 
 [[projects]]
-  digest = "1:897d91c431ce469d35a5e6030e60e617dccd9a0e95bdffa6a80594f5c5800d29"
+  digest = "1:cc306cae16c310ca360eaee3e563109e251832a3f6a13b26bf39cc6a43c7c9f6"
   name = "github.com/agnivade/levenshtein"
   packages = ["."]
   pruneopts = "UT"
-  revision = "3d21ba515fe27b856f230847e856431ae1724adc"
-  version = "v1.0.0"
+  revision = "834b435c3df04fba060c8d74a40d849ab2c4a090"
+  version = "v1.0.1"
+
+[[projects]]
+  digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
 
 [[projects]]
   digest = "1:7b5c6e2eeaa9ae5907c391a91c132abfd5c9e8a784a341b5625e750c67e6825d"
@@ -50,12 +63,12 @@
   version = "v0.2.2"
 
 [[projects]]
-  digest = "1:645110e089152bd0f4a011a2648fbb0e4df5977be73ca605781157ac297f50c4"
+  digest = "1:53bc4cd4914cd7cd52139990d5170d6dc99067ae31c56530621b18b35fc30318"
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   pruneopts = "UT"
-  revision = "fa473d140ef3c6adf42d6b391fe76707f1f243c8"
-  version = "v1.0.0"
+  revision = "3536a929edddb9a5b34bd6861dc4a9647cb459fe"
+  version = "v1.1.2"
 
 [[projects]]
   digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
@@ -67,15 +80,22 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e4b889a2efa063e446dc2cca35dbe2484c47bbe1f2c5c20b8d043c6e6b3009c3"
+  digest = "1:4235eec60f6dc693d4b438fb427a7e8783d197e056a586c07960213c4fd3120d"
   name = "github.com/prisma/prisma-client-lib-go"
   packages = ["."]
   pruneopts = "UT"
-  revision = "886b6a49a2294d77aa3e9cee412aba20987d3488"
+  revision = "68a1f9908416aebb5bbb0bc3cdec3321d74cb7af"
 
 [[projects]]
-  branch = "master"
-  digest = "1:8150271279cc160a41e9aabfee8118c20a0e88894a25b2577f93e7c868e5259c"
+  digest = "1:b24d38b282bacf9791408a080f606370efa3d364e4b5fd9ba0f7b87786d3b679"
+  name = "github.com/urfave/cli"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
+  version = "v1.20.0"
+
+[[projects]]
+  digest = "1:ed6a41de3eedd8d4868eea057837860453ebbe08c5e385fd50d4c24e5642ec18"
   name = "github.com/vektah/gqlparser"
   packages = [
     ".",
@@ -87,12 +107,38 @@
     "validator/rules",
   ]
   pruneopts = "UT"
-  revision = "14e83ae06ec152e6d0afb9766a00e0c0918aa8fc"
+  revision = "e805d08bb209b1accdea76bd2327811858d81985"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:48b383c3a6ee2df352763f63974a2c04a0a6117c1f9f3989faac3cb6b656be19"
+  name = "golang.org/x/tools"
+  packages = [
+    "go/ast/astutil",
+    "go/buildutil",
+    "go/internal/cgo",
+    "go/loader",
+    "imports",
+    "internal/fastwalk",
+    "internal/gopathwalk",
+  ]
+  pruneopts = "UT"
+  revision = "e782529d0ddd4bb872a63766185bebe89c96d1ae"
+
+[[projects]]
+  digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
+  version = "v2.2.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/99designs/gqlgen/cmd",
     "github.com/99designs/gqlgen/graphql",
     "github.com/99designs/gqlgen/graphql/introspection",
     "github.com/99designs/gqlgen/handler",

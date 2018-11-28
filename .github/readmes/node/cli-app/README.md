@@ -6,7 +6,6 @@ __INLINE(../_setup-1.md)__
 cd prisma-examples/node/cli-app
 __INLINE(../_setup-2.md)__
 
-
 ### 4. Use the app
 
 ```

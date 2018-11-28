@@ -1,11 +1,9 @@
-//go:generate gorunpkg github.com/99designs/gqlgen
-
 package main
 
 import (
 	"context"
 
-	"github.com/prisma/prisma-examples/go-graphql/prisma-client"
+	"github.com/prisma/prisma-examples/go/graphql/prisma-client"
 )
 
 type Resolver struct {
@@ -27,7 +25,14 @@ func (r *Resolver) User() UserResolver {
 
 type mutationResolver struct{ *Resolver }
 
-func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content string, authorEmail string) (prisma.Post, error) {
+func (r *mutationResolver) SignupUser(ctx context.Context, email string, name *string) (prisma.User, error) {
+	user, err := r.Prisma.CreateUser(prisma.UserCreateInput{
+		Email: email,
+		Name:  name,
+	}).Exec(ctx)
+	return *user, err
+}
+func (r *mutationResolver) CreateDraft(ctx context.Context, title string, content *string, authorEmail string) (prisma.Post, error) {
 	post, err := r.Prisma.CreatePost(prisma.PostCreateInput{
 		Title:   title,
 		Content: content,
@@ -41,10 +46,10 @@ func (r *mutationResolver) DeletePost(ctx context.Context, id string) (*prisma.P
 	return r.Prisma.DeletePost(prisma.PostWhereUniqueInput{ID: &id}).Exec(ctx)
 }
 func (r *mutationResolver) Publish(ctx context.Context, id string) (*prisma.Post, error) {
-	isPublished := true
+	published := true
 	return r.Prisma.UpdatePost(prisma.PostUpdateParams{
 		Where: prisma.PostWhereUniqueInput{ID: &id},
-		Data:  prisma.PostUpdateInput{IsPublished: &isPublished},
+		Data:  prisma.PostUpdateInput{Published: &published},
 	}).Exec(ctx)
 }
 
@@ -58,15 +63,23 @@ func (r *postResolver) Author(ctx context.Context, obj *prisma.Post) (prisma.Use
 type queryResolver struct{ *Resolver }
 
 func (r *queryResolver) Feed(ctx context.Context) ([]prisma.Post, error) {
-	isPublished := true
+	published := true
 	return r.Prisma.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
+		Where: &prisma.PostWhereInput{Published: &published},
 	}).Exec(ctx)
 }
-func (r *queryResolver) Drafts(ctx context.Context) ([]prisma.Post, error) {
-	isPublished := false
+func (r *queryResolver) FilterPosts(ctx context.Context, searchString *string) ([]prisma.Post, error) {
 	return r.Prisma.Posts(&prisma.PostsParams{
-		Where: &prisma.PostWhereInput{IsPublished: &isPublished},
+		Where: &prisma.PostWhereInput{
+			Or: []prisma.PostWhereInput{
+				prisma.PostWhereInput{
+					TitleContains: searchString,
+				},
+				prisma.PostWhereInput{
+					TitleContains: searchString,
+				},
+			},
+		},
 	}).Exec(ctx)
 }
 func (r *queryResolver) Post(ctx context.Context, id string) (*prisma.Post, error) {
