@@ -25,7 +25,7 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: cd typescript/circleci && yarn && yarn tsc
+      # - run: cd typescript/circleci && yarn && yarn tsc
       - run: cd typescript/cli-app && yarn && yarn tsc
       - run: cd typescript/graphql && yarn && yarn tsc
       - run: cd typescript/graphql-auth && yarn && yarn tsc
