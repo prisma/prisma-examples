@@ -21,10 +21,11 @@ dep ensure -update
 
 ### 2. Install the Prisma CLI
 
-To run the example, you need the Prisma CLI. Please install it via NPM or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
+To run the example, you need the Prisma CLI. Please install it via Homebrew or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
 
 ```
-npm install -g prisma
+brew install prisma
+brew tap
 ```
 
 ### 3. Set up database & deploy Prisma datamodel
