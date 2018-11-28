@@ -46,10 +46,10 @@ jobs:
     working_directory: /go/src/github.com/prisma/prisma-examples
     steps:
       - checkout
-      - run: cd go/go-cli-app && dep ensure && go build
-      - run: cd go/go-gin && dep ensure && go build
-      - run: cd go/go-rest && dep ensure && go build
-      - run: cd go/go-script && dep ensure && go build
+      - run: cd go/cli-app && dep ensure && go build
+      - run: cd go/gin-rest && dep ensure && go build
+      - run: cd go/http-mux && dep ensure && go build
+      - run: cd go/script && dep ensure && go build
 
 workflows:
   version: 2
