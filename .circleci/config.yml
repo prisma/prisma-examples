@@ -29,9 +29,9 @@ jobs:
       - run: sudo yarn global add prisma
       # - run: cd typescript/circleci && yarn && yarn tsc
       - run: cd typescript/cli-app && yarn && prisma generate && yarn tsc
-      - run: cd typescript/graphql && yarn && prisma generate && yarn tsc
-      - run: cd typescript/graphql-auth && yarn && prisma generate && yarn tsc
-      - run: cd typescript/graphql-subscriptions && yarn && prisma generate && yarn tsc
+      - run: cd typescript/graphql && yarn && prisma generate && yarn generate && yarn tsc
+      - run: cd typescript/graphql-auth && yarn && prisma generate && yarn generate && yarn tsc
+      - run: cd typescript/graphql-subscriptions && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/script && yarn && prisma generate && yarn tsc
 
   flow:
@@ -40,7 +40,7 @@ jobs:
     steps:
       - checkout
       - run: sudo yarn global add prisma
-      - run: cd flow/graphql && yarn && prisma generate && yarn flow
+      - run: cd flow/graphql && yarn && prisma generate && yarn generate && yarn flow
       - run: cd flow/script && yarn && prisma generate && yarn flow
 
   go:
