@@ -96,7 +96,25 @@ The schema that specifies the API operations of your GraphQL server is defined i
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion feature and query validation features.
 
-<Details><Summary><strong>See API operations</strong></Summary>
+#### Retrieve all published posts and their authors
+
+```graphql
+query {
+  feed {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
+<Details><Summary><strong>See more API operations</strong></Summary>
 
 #### Register a new user
 
@@ -136,24 +154,6 @@ Once you've set the header, you can send the following query to check whether th
     id
     name
     email
-  }
-}
-```
-
-#### Retrieve all published posts and their authors
-
-```graphql
-query {
-  feed {
-    id
-    title
-    content
-    published
-    author {
-      id
-      name
-      email
-    }
   }
 }
 ```
@@ -247,7 +247,6 @@ mutation {
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
 </Details>
-
 
 ### 6. Evolving the example
 
@@ -455,7 +454,7 @@ mutation {
 
 </Details>
 
-### 7. Next steps
+## Next steps
 
 - [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
 - [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
