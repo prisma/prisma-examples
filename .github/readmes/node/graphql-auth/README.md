@@ -373,7 +373,6 @@ mutation {
 
 </Details>
 
-
 ### 7. Next steps
 
 - [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)

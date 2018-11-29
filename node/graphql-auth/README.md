@@ -454,3 +454,13 @@ mutation {
 ```
 
 </Details>
+
+### 7. Next steps
+
+- [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
+- [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
+- [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)
+
+## The idea behind the example
+
+The Prisma client is used as a replacement for a traditional ORM in this example. It bridges the gap between your GraphQL resolvers and your database by providing a powerful CRUD API for the types that are defined in your Prisma datamodel.
