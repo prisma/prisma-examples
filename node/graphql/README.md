@@ -235,7 +235,7 @@ type Mutation {
 
 Then add the new resolver to the `resolvers` object in [`./src/index.js`](./src/index.js):
 
-```diff
+```js,diff
 const resolvers = {
   // ... 
   Mutation: {
