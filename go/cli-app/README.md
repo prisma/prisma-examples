@@ -39,7 +39,7 @@ prisma deploy
 Then, follow these steps in the interactive CLI wizard:
 
 1. Select **Demo server**
-1. **Authenticate** with Prisma Cloud in your browser
+1. **Authenticate** with Prisma Cloud in your browser (if necessary)
 1. Back in your terminal, **confirm all suggested values**
 
 <details>
@@ -81,7 +81,7 @@ Then, follow these steps in the interactive CLI wizard:
 
 </details>
 
-### 4. Use the app
+### 4. Use the CLI app
 
 ```
 go run main.go

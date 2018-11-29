@@ -6,7 +6,7 @@ __INLINE(../_setup-1.md)__
 cd prisma-examples/go/cli-app
 __INLINE(../_setup-2.md)__
 
-### 4. Use the app
+### 4. Use the CLI app
 
 ```
 go run main.go
