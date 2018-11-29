@@ -427,3 +427,5 @@ mutation {
 ## The idea behind the example
 
 The Prisma client is used as a replacement for a traditional ORM in this example. It bridges the gap between your GraphQL resolvers and your database by providing a powerful CRUD API for the types that are defined in your Prisma datamodel.
+
+![](https://www.prisma.io/static/GraphQL-c9400187ba121a4b21439c7195936094.png)
