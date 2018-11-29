@@ -142,9 +142,25 @@ mutation {
 
 #### Check whether a user is currently logged in with the `me` query
 
-For this query, you need to make sure a valid authentication token is sent along with the `Bearer`-prefix in the `Authorization` header of the request. Inside the Playground, you can set HTTP headers in the bottom-left corner:
+For this query, you need to make sure a valid authentication token is sent along with the `Bearer`-prefix in the `Authorization` header of the request:
 
-![](https://imgur.com/bEGUtO0.png)
+```json
+{
+  "Authorization": "Bearer __YOUR_TOKEN__"
+}
+```
+
+With a real token, this looks similar to this:
+
+```json
+{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanAydHJyczFmczE1MGEwM3kxaWl6c285IiwiaWF0IjoxNTQzNTA5NjY1fQ.Vx6ad6DuXA0FSQVyaIngOHYVzjKwbwq45flQslnqX04"
+}
+```
+
+Inside the Playground, you can set HTTP headers in the bottom-left corner:
+
+![](https://imgur.com/ToRcCTj.png)
 
 Once you've set the header, you can send the following query to check whether the token is valid:
 

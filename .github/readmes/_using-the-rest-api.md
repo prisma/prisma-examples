@@ -1,12 +1,12 @@
 ### 5. Using the REST API
 
-#### GET
+#### `GET`
 
 - `/post/:id`: Fetch a single post by its `id`
 - `/feed`: Fetch all _published_ posts
 - `/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
-#### POST
+#### `POST`
 
 - `/post`: Create a new post
   - Body:
@@ -18,10 +18,10 @@
     - `email: String` (required): The email address of the user
     - `name: String` (optional): The name of the user
 
-#### PUT
+#### `PUT`
 
-- `publish/:id`: Publish a post by its `id`
+- `/publish/:id`: Publish a post by its `id`
 
-#### DELETE
+#### `DELETE`
   
-- `post/:id`: Delete a post by its `id`
+- `/post/:id`: Delete a post by its `id`
