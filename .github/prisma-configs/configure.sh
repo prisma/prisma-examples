@@ -40,9 +40,14 @@ cp ./typescript/graphqlgen.yml ../../typescript/graphql
 cp ./typescript/graphqlgen.yml ../../typescript/graphql-auth
 cp ./typescript/graphqlgen.yml ../../typescript/graphql-subscriptions
 
-# Flow
+# Flow (prisma.yml)
 cp ./flow/prisma.yml ../../flow/graphql/prisma
 cp ./flow/prisma.yml ../../flow/script/prisma
+
+# Flow (.flowconfig)
+cp ./flow/.flowconfig ../../flow/graphql
+cp ./flow/.flowconfig ../../flow/script
+
 
 # Go
 cp ./go/prisma.yml ../../go/cli-app/prisma
