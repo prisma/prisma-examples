@@ -199,7 +199,7 @@ mutation {
 
 ```graphql
 mutation {
-  publish(id: "__POST_ID__") {
+  deletePost(id: "__POST_ID__") {
     id
   }
 }
@@ -211,7 +211,7 @@ mutation {
 
 ### 6. Evolving the example
 
-If you want to add a change the GraphQL API, you need to adjust the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql) and the respective resolver functions.
+If you want to change the GraphQL API, you need to adjust the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql) and the respective resolver functions.
 
 <Details><Summary><strong>Adding an operation without updating the datamodel</strong></Summary>
 
