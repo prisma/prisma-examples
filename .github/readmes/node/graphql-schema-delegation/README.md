@@ -26,3 +26,7 @@ const server = new GraphQLServer({
 ```
 
 __INLINE(../_start-graphql-server.md)__
+
+__INLINE(../../_using-the-graphql-api.md)__
+
+__INLINE(../_next-steps.md)__
