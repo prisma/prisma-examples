@@ -27,9 +27,12 @@ cp ./typescript/prisma.yml ../../typescript/script/prisma
 
 # TypeScript (tsconfig.json)
 cp ./typescript/tsconfig.json ../../typescript/cli-app
-cp ./typescript/tsconfig.json ../../typescript/graphql
-cp ./typescript/tsconfig.json ../../typescript/graphql-auth
-cp ./typescript/tsconfig.json ../../typescript/graphql-subscriptions
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql
+mv ../../typescript/graphql/tsconfig-graphql.json ../../typescript/graphql/tsconfig.json
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-auth
+mv ../../typescript/graphql-auth/tsconfig-graphql.json ../../typescript/graphql-auth/tsconfig.json
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-subscriptions
+mv ../../typescript/graphql-subscriptions/tsconfig-graphql.json ../../typescript/graphql-subscriptions/tsconfig.json
 cp ./typescript/tsconfig.json ../../typescript/script
 
 # TypeScript (graphqlgen)
