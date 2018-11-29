@@ -49,7 +49,7 @@ jobs:
     working_directory: /go/src/github.com/prisma/prisma-examples
     steps:
       - checkout
-      - run: sudo yarn global add prisma # TODO replace this with an agnostic install step
+      - run: sudo yarn global add prisma # TODO replace this with an agnostic install step (see https://github.com/prisma/prisma/issues/3620)
       - run: cd go/cli-app && prisma generate && dep ensure && go build
       - run: cd go/graphql && prisma generate && dep ensure && go run ./scripts/gqlgen.go && go build
       - run: cd go/http-mux && prisma generate && dep ensure && go build
