@@ -40,8 +40,8 @@ jobs:
     steps:
       - checkout
       - run: sudo yarn global add prisma
-      - run: cd flow/graphql && yarn && prisma generate && yarn generate && yarn flow
-      - run: cd flow/script && yarn && prisma generate && yarn flow
+      - run: cd flow/graphql && yarn && prisma generate && yarn generate && yarn flow check
+      - run: cd flow/script && yarn && prisma generate && yarn flow check
 
   go:
     docker:
