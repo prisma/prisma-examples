@@ -6,11 +6,13 @@
     "generate": "graphqlgen"
   },
   "dependencies": {
-    "graphql": "14.0.2",
     "graphql-yoga": "1.16.7",
     "prisma-client-lib": "1.21.1"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.15",
+    "@types/graphql": "^14.0.3",
+    "@types/ws": "^6.0.1",
     "graphqlgen": "0.4.0",
     "ts-node": "7.0.1",
     "typescript": "3.1.6"

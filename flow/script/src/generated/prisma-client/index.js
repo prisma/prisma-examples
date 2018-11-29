@@ -859,7 +859,7 @@ export const models = [
  */
 
 export const Prisma: ClientConstructor<PrismaInterface> = makePrismaClientClass(
-  { typeDefs, models, endpoint: `https://eu1.prisma.sh/nikolas/prisma/dev` },
+  { typeDefs, models, endpoint: `` },
 )
 
 export const prisma = new Prisma()
