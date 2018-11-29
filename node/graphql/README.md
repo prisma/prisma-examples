@@ -209,9 +209,11 @@ mutation {
 
 </Details>
 
-## Next steps
+### 6. Next steps
 
-- Use Prisma with a local database
+- [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
+- [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
+- [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)
 
 ## Evolving the example
 
@@ -254,10 +256,23 @@ const resolvers = {
 }
 ```
 
+You can now send the following mutation to your GraphQL API:
+
+```graphql
+mutation {
+  updateUserName(
+    id: "__USER_ID__" 
+    newName: "John")
+  ) {
+    id
+    name
+  }
+}
+```
+
 </Details>
 
 <Details><Summary><strong>Adding an operation and updating the datamodel</strong></Summary>
-
 
 Some new API features can't be covered with the existing datamodel. For example, you might want to add _comment_ feature to the API, so that users can leave comments on posts.
 
@@ -392,8 +407,26 @@ const resolvers = {
 }
 ```
 
+You can now send the following mutation to your GraphQL API:
+
+```graphql
+mutation {
+  writeComment(
+    userId: "__USER_ID__" 
+    postId: "__POST_ID__" 
+    text: "I like turtles 🐢"
+  ) {
+    id
+    name
+  }
+}
+```
+
 </Details>
 
 ## The idea behind the example
 
-The Prisma client is used as a replacement for a traditional ORM in this example. 
+The Prisma client is used as a replacement for a traditional ORM in this example. It bridges the gap between your GraphQL resolvers and your database by providing a powerful CRUD API for the types that are defined in your datamodel.
+
+## Troubleshooting
+
