@@ -96,8 +96,6 @@ The schema that specifies the API operations of your GraphQL server is defined i
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion feature and query validation features.
 
-<Details><Summary><strong>See API operations</strong></Summary>
-
 #### Retrieve all published posts and their authors
 
 ```graphql
@@ -115,6 +113,8 @@ query {
   }
 }
 ```
+
+<Details><Summary><strong>See more API operations</strong></Summary>
 
 #### Create a new user
 
@@ -179,7 +179,7 @@ mutation {
 
 ```graphql
 {
-  posts(id: "__POST_ID__") {
+  post(id: "__POST_ID__") {
     id
     title
     content
