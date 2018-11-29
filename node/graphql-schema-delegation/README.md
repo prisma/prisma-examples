@@ -113,7 +113,7 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
-Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion feature and query validation features.
+Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
 #### Retrieve all published posts and their authors
 
