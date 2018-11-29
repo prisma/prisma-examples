@@ -209,13 +209,7 @@ mutation {
 
 </Details>
 
-### 6. Next steps
-
-- [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
-- [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
-- [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)
-
-## Evolving the example
+### 6. Evolving the example
 
 If you want to add a change the GraphQL API, you need to adjust the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql) and the respective resolver functions.
 
@@ -423,6 +417,12 @@ mutation {
 ```
 
 </Details>
+
+### 7. Next steps
+
+- [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
+- [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
+- [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)
 
 ## The idea behind the example
 
