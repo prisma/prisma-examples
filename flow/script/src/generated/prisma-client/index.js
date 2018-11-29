@@ -6,14 +6,14 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import type { GraphQLSchema, DocumentNode } from "graphql";
-import type { BasePrismaOptions as BPOType, Options } from "prisma-client-lib";
-import { makePrismaClientClass } from "prisma-client-lib";
-import { typeDefs } from "./prisma-schema";
+import type { GraphQLSchema, DocumentNode } from 'graphql'
+import type { BasePrismaOptions as BPOType, Options } from 'prisma-client-lib'
+import { makePrismaClientClass } from 'prisma-client-lib'
+import { typeDefs } from './prisma-schema'
 
-type NodePromise = Promise<Node>;
+type NodePromise = Promise<Node>
 
-type AtLeastOne<T> = $Shape<T>;
+type AtLeastOne<T> = $Shape<T>
 
 export interface Exists {
   post(where?: PostWhereInput): Promise<boolean>;
@@ -22,7 +22,7 @@ export interface Exists {
 
 export interface Node {}
 
-export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
+export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable
 
 export interface Fragmentable {
   $fragment<T>(fragment: string | DocumentNode): Promise<T>;
@@ -32,7 +32,7 @@ interface PrismaInterface {
   $exists: Exists;
   $graphql: <T: any>(
     query: string,
-    variables?: { [key: string]: any }
+    variables?: { [key: string]: any },
   ) => Promise<T>;
 
   /**
@@ -47,7 +47,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => FragmentableArray<Post>;
   postsConnection: (args?: {
     where?: PostWhereInput,
@@ -56,7 +56,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => PostConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (args?: {
@@ -66,7 +66,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => FragmentableArray<User>;
   usersConnection: (args?: {
     where?: UserWhereInput,
@@ -75,7 +75,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => UserConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
@@ -86,32 +86,32 @@ interface PrismaInterface {
   createPost: (data: PostCreateInput) => PostPromise;
   updatePost: (args: {
     data: PostUpdateInput,
-    where: PostWhereUniqueInput
+    where: PostWhereUniqueInput,
   }) => PostPromise;
   updateManyPosts: (args: {
     data: PostUpdateManyMutationInput,
-    where?: PostWhereInput
+    where?: PostWhereInput,
   }) => BatchPayloadPromise;
   upsertPost: (args: {
     where: PostWhereUniqueInput,
     create: PostCreateInput,
-    update: PostUpdateInput
+    update: PostUpdateInput,
   }) => PostPromise;
   deletePost: (where: PostWhereUniqueInput) => PostPromise;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput,
-    where: UserWhereUniqueInput
+    where: UserWhereUniqueInput,
   }) => UserPromise;
   updateManyUsers: (args: {
     data: UserUpdateManyMutationInput,
-    where?: UserWhereInput
+    where?: UserWhereInput,
   }) => BatchPayloadPromise;
   upsertUser: (args: {
     where: UserWhereUniqueInput,
     create: UserCreateInput,
-    update: UserUpdateInput
+    update: UserUpdateInput,
   }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
@@ -125,46 +125,46 @@ interface PrismaInterface {
 
 export interface Subscription {
   post: (
-    where?: PostSubscriptionWhereInput
+    where?: PostSubscriptionWhereInput,
   ) => PostSubscriptionPayloadSubscription;
   user: (
-    where?: UserSubscriptionWhereInput
+    where?: UserSubscriptionWhereInput,
   ) => UserSubscriptionPayloadSubscription;
 }
 
-export type ClientConstructor<T> = (options?: BPOType) => T;
+export type ClientConstructor<T> = (options?: BPOType) => T
 
 /**
  * Types
  */
 
 export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "published_ASC"
-  | "published_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "content_ASC"
-  | "content_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'published_ASC'
+  | 'published_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'content_ASC'
+  | 'content_DESC'
 
 export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED'
 
 export interface UserUpdateOneRequiredWithoutPostsInput {
   create?: UserCreateWithoutPostsInput;
@@ -174,8 +174,8 @@ export interface UserUpdateOneRequiredWithoutPostsInput {
 }
 
 export type PostWhereUniqueInput = AtLeastOne<{
-  id: ID_Input
-}>;
+  id: ID_Input,
+}>
 
 export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
   where: PostWhereUniqueInput;
@@ -492,8 +492,8 @@ export interface PostUpdateWithoutAuthorDataInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input,
-  email?: String
-}>;
+  email?: String,
+}>
 
 export interface NodeNode {
   id: ID_Output;
@@ -506,14 +506,16 @@ export interface UserPreviousValues {
 }
 
 export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>, Fragmentable {
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   name: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>, Fragmentable {
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
@@ -529,7 +531,8 @@ export interface PostPreviousValues {
 }
 
 export interface PostPreviousValuesPromise
-  extends Promise<PostPreviousValues>, Fragmentable {
+  extends Promise<PostPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -539,7 +542,8 @@ export interface PostPreviousValuesPromise
 }
 
 export interface PostPreviousValuesSubscription
-  extends Promise<AsyncIterator<PostPreviousValues>>, Fragmentable {
+  extends Promise<AsyncIterator<PostPreviousValues>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -568,7 +572,8 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
 }
 
 export interface PostSubscription
-  extends Promise<AsyncIterator<Post>>, Fragmentable {
+  extends Promise<AsyncIterator<Post>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -583,12 +588,14 @@ export interface AggregatePost {
 }
 
 export interface AggregatePostPromise
-  extends Promise<AggregatePost>, Fragmentable {
+  extends Promise<AggregatePost>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
 export interface AggregatePostSubscription
-  extends Promise<AsyncIterator<AggregatePost>>, Fragmentable {
+  extends Promise<AsyncIterator<AggregatePost>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -602,7 +609,8 @@ export interface PostEdgePromise extends Promise<PostEdge>, Fragmentable {
 }
 
 export interface PostEdgeSubscription
-  extends Promise<AsyncIterator<PostEdge>>, Fragmentable {
+  extends Promise<AsyncIterator<PostEdge>>,
+    Fragmentable {
   node: <T: PostSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -613,7 +621,8 @@ export interface UserSubscriptionPayload {
 }
 
 export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>, Fragmentable {
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T: UserPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -621,7 +630,8 @@ export interface UserSubscriptionPayloadPromise
 }
 
 export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>, Fragmentable {
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
+    Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T: UserSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
@@ -634,7 +644,8 @@ export interface PostSubscriptionPayload {
 }
 
 export interface PostSubscriptionPayloadPromise
-  extends Promise<PostSubscriptionPayload>, Fragmentable {
+  extends Promise<PostSubscriptionPayload>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T: PostPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -642,7 +653,8 @@ export interface PostSubscriptionPayloadPromise
 }
 
 export interface PostSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PostSubscriptionPayload>>, Fragmentable {
+  extends Promise<AsyncIterator<PostSubscriptionPayload>>,
+    Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T: PostSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
@@ -652,14 +664,16 @@ export interface PostSubscriptionPayloadSubscription
 export interface PostConnection {}
 
 export interface PostConnectionPromise
-  extends Promise<PostConnection>, Fragmentable {
+  extends Promise<PostConnection>,
+    Fragmentable {
   pageInfo: <T: PageInfoPromise>() => T;
   edges: <T: FragmentableArray<PostEdge>>() => T;
   aggregate: <T: AggregatePostPromise>() => T;
 }
 
 export interface PostConnectionSubscription
-  extends Promise<AsyncIterator<PostConnection>>, Fragmentable {
+  extends Promise<AsyncIterator<PostConnection>>,
+    Fragmentable {
   pageInfo: <T: PageInfoSubscription>() => T;
   edges: <T: Promise<AsyncIterator<PostEdgeSubscription>>>() => T;
   aggregate: <T: AggregatePostSubscription>() => T;
@@ -680,7 +694,8 @@ export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
 }
 
 export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>, Fragmentable {
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
   hasNextPage: () => Promise<AsyncIterator<Boolean>>;
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
@@ -692,12 +707,14 @@ export interface BatchPayload {
 }
 
 export interface BatchPayloadPromise
-  extends Promise<BatchPayload>, Fragmentable {
+  extends Promise<BatchPayload>,
+    Fragmentable {
   count: () => Promise<Long>;
 }
 
 export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>, Fragmentable {
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
 }
 
@@ -706,12 +723,14 @@ export interface AggregateUser {
 }
 
 export interface AggregateUserPromise
-  extends Promise<AggregateUser>, Fragmentable {
+  extends Promise<AggregateUser>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
 export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>, Fragmentable {
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -732,12 +751,13 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => T;
 }
 
 export interface UserSubscription
-  extends Promise<AsyncIterator<User>>, Fragmentable {
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
@@ -748,21 +768,23 @@ export interface UserSubscription
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => T;
 }
 
 export interface UserConnection {}
 
 export interface UserConnectionPromise
-  extends Promise<UserConnection>, Fragmentable {
+  extends Promise<UserConnection>,
+    Fragmentable {
   pageInfo: <T: PageInfoPromise>() => T;
   edges: <T: FragmentableArray<UserEdge>>() => T;
   aggregate: <T: AggregateUserPromise>() => T;
 }
 
 export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>, Fragmentable {
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
   pageInfo: <T: PageInfoSubscription>() => T;
   edges: <T: Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
   aggregate: <T: AggregateUserSubscription>() => T;
@@ -778,7 +800,8 @@ export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
 }
 
 export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>, Fragmentable {
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
   node: <T: UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -786,35 +809,35 @@ export interface UserEdgeSubscription
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type String = string;
+export type String = string
 
-export type Long = string;
+export type Long = string
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type ID_Input = string | number
+export type ID_Output = string
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
-export type Boolean = boolean;
+export type Boolean = boolean
 
 /*
 DateTime scalar input type, allowing Date
 */
-export type DateTimeInput = Date | string;
+export type DateTimeInput = Date | string
 
 /*
 DateTime scalar output type, which is always a string
 */
-export type DateTimeOutput = string;
+export type DateTimeOutput = string
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Int = number;
+export type Int = number
 
 /**
  * Model Metadata
@@ -822,21 +845,21 @@ export type Int = number;
 
 export const models = [
   {
-    name: "Post",
-    embedded: false
+    name: 'Post',
+    embedded: false,
   },
   {
-    name: "User",
-    embedded: false
-  }
-];
+    name: 'User',
+    embedded: false,
+  },
+]
 
 /**
  * Type Defs
  */
 
 export const Prisma: ClientConstructor<PrismaInterface> = makePrismaClientClass(
-  { typeDefs, models, endpoint: `` }
-);
+  { typeDefs, models, endpoint: `` },
+)
 
-export const prisma = new Prisma();
+export const prisma = new Prisma()
