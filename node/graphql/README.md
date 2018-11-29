@@ -92,9 +92,11 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ### 5. Using the GraphQL API
 
-The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Here are a number of operations that you can send to the API using the GraphQL Playground.
+The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
-Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion feature and query validation features. 
+Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion feature and query validation features.
+
+<Details><Summary><strong>See API operations</strong></Summary>
 
 #### Retrieve all published posts and their authors
 
@@ -205,6 +207,8 @@ mutation {
 
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
+</Details>
+
 ## Next steps
 
 - Use Prisma with a local database
@@ -213,7 +217,7 @@ mutation {
 
 If you want to add a change the GraphQL API, you need to adjust the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql) and the respective resolver functions.
 
-### Adding an operation without updating the datamodel
+<Details><Summary><strong>Adding an operation without updating the datamodel</strong></Summary>
 
 To add new operation that can be based on the current [datamodel](./prisma/datamodel.prisma), you first need to add the operation to the GraphQL schema's `Query` or `Mutation` type and then add the corresponding resolver function. 
 
@@ -250,7 +254,10 @@ const resolvers = {
 }
 ```
 
-### Adding an operation and updating the datamodel
+</Details>
+
+<Details><Summary><strong>Adding an operation and updating the datamodel</strong></Summary>
+
 
 Some new API features can't be covered with the existing datamodel. For example, you might want to add _comment_ feature to the API, so that users can leave comments on posts.
 
@@ -292,7 +299,7 @@ prisma deploy
 
 Note that this also invokes `prisma generate` (because of the `post-deploy` hook in [`prisma.yml`](./prisma/prisma.yml)) which regenerates the Prisma client in [`./src/generated/prisma-client`](./src/generated/prisma-client).
 
-To now enable users to add comments to posts, you need to add a corresponding operation to the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql) as well as the `Comment` type:
+To now enable users to add comments to posts, you need to add the `Comment` type as well as the corresponding operation to the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql):
 
 ```grapghql
 type Query {
@@ -384,6 +391,8 @@ const resolvers = {
   }
 }
 ```
+
+</Details>
 
 ## The idea behind the example
 
