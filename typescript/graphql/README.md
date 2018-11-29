@@ -217,7 +217,7 @@ After you made changes to `schema.graphql`, you need to update the generated typ
 yarn generate
 ```
 
-This invoked [`graphqlgen`](https://github.com/prisma/graphqlgen) and updates `./src/generated/graphqlgen.ts` to incorporate the schema changes in your TS type definitions. It also generates scaffolded resolvers in `./src/generated/tmp/resolvers` that you might need to copy and paste into `./src/resolvers`. 
+This invokes [`graphqlgen`](https://github.com/prisma/graphqlgen) and updates `./src/generated/graphqlgen.ts` to incorporate the schema changes in your TS type definitions. It also generates scaffolded resolvers in `./src/generated/tmp/resolvers` that you might need to copy and paste into `./src/resolvers`. 
 
 ## Next steps
 
