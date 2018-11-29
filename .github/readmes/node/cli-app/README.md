@@ -6,7 +6,7 @@ __INLINE(../_setup-1.md)__
 cd prisma-examples/node/cli-app
 __INLINE(../_setup-2.md)__
 
-### 4. Use the app
+### 4. Use the CLI app
 
 ```
 npm run cli
@@ -29,3 +29,5 @@ npm run cli list
 ```
 npm run cli delete Groceries
 ```
+
+__INLINE(../_next-steps.md)__

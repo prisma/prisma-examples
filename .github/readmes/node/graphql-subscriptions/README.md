@@ -9,3 +9,7 @@ cd prisma-examples/node/graphql-subscriptions
 __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__
+
+__INLINE(../../_using-the-graphql-api-subs.md)__
+
+__INLINE(../_next-steps.md)__

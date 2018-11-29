@@ -13,3 +13,5 @@ Execute the script with this command:
 ```
 yarn start
 ```
+
+__INLINE(../_next-steps.md)__

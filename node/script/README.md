@@ -38,7 +38,7 @@ prisma deploy
 Then, follow these steps in the interactive CLI wizard:
 
 1. Select **Demo server**
-1. **Authenticate** with Prisma Cloud in your browser
+1. **Authenticate** with Prisma Cloud in your browser (if necessary)
 1. Back in your terminal, **confirm all suggested values**
 
 <details>
@@ -87,3 +87,9 @@ Execute the script with this command:
 ```
 yarn start
 ```
+
+## Next steps
+
+- [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
+- [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
+- [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)
