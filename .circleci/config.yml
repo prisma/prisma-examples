@@ -49,7 +49,8 @@ jobs:
     working_directory: /go/src/github.com/prisma/prisma-examples
     steps:
       - checkout
-      - run: curl https://s3-eu-west-1.amazonaws.com/homebrew-prisma/prisma-1.21.0.tar.gz | tar xvz # TODO (see https://github.com/prisma/prisma/issues/3620)
+      - run: pwd
+      - run: curl https://s3-eu-west-1.amazonaws.com/homebrew-prisma/prisma-1.21.0.tar.gz | tar xvz && sudo mv prisma /usr/local/bin # TODO (see https://github.com/prisma/prisma/issues/3620)
       - run: cd go/cli-app && ../../prisma generate && dep ensure && go build
       - run: cd go/graphql && ../../prisma generate && dep ensure && go run ./scripts/gqlgen.go && go build
       - run: cd go/http-mux && ../../prisma generate && dep ensure && go build
