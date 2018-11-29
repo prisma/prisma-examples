@@ -141,7 +141,7 @@ To add new operation that can be based on the current [datamodel](./prisma/datam
 
 For example, to add a new mutation that updates a user's name, you can extend the `Mutation` type as follows:
 
-```grapghql
+```diff
 type Mutation {
   signupUser(email: String!, name: String): User!
   createDraft(title: String!, content: String, authorEmail: String!): Post!
@@ -153,7 +153,7 @@ type Mutation {
 
 Then add the new resolver to the `resolvers` object in [`./src/index.js`](./src/index.js):
 
-```js,diff
+```diff
 const resolvers = {
   // ... 
   Mutation: {
@@ -181,7 +181,7 @@ Some new API features can't be covered with the existing datamodel. For example,
 
 For that, you first need to adjust the Prisma datamodel in [`./prisma/datamodel.prisma`](./prisma/datamodel.prisma):
 
-```graphql
+```diff
 type User {
   id: ID! @unique
   email: String! @unique
@@ -219,7 +219,7 @@ Note that this also invokes `prisma generate` (because of the `post-deploy` hook
 
 To now enable users to add comments to posts, you need to add the `Comment` type as well as the corresponding operation to the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql):
 
-```grapghql
+```diff
 type Query {
   # ... as before
 }
@@ -262,51 +262,51 @@ type Post {
 
 Next, you need to implement the resolver for the new operation in [`./src/index.js`](./src/index.js):
 
-```js
+```diff
 const resolvers = {
   // ... 
   Mutation: {
     // ...
-    writeComment(parent, { postId, userId}, context) {
-      return context.prisma.createComment({
-        text,
-        post: {
-          connect: { id: postId }
-        },
-        writtenBy: {
-          connect: { id: userId }
-        }
-      })
-    }
++   writeComment(parent, { postId, userId}, context) {
++     return context.prisma.createComment({
++       text,
++       post: {
++         connect: { id: postId }
++       },
++       writtenBy: {
++         connect: { id: userId }
++       }
++     })
++   }
   }
 }
 ```
 
 Finally, because `Comment` has a relation to `Post` and `User`, you need to update the type resolvers as well so that the relation can be properly resolved (learn more about why this is necessary in [this](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/) blog article):
 
-```js
+```diff
 const resolvers = {
   // ... 
   User: {
     // ...
-    comments: ({ id }, args, context) {
-      return context.prisma.user({ id }).comments()
-    }
++   comments: ({ id }, args, context) {
++     return context.prisma.user({ id }).comments()
++   }
   },
   Post: {
     // ...
-    comments: ({ id }, args, context) {
-      return context.prisma.post({ id }).comments()
-    }
++   comments: ({ id }, args, context) {
++     return context.prisma.post({ id }).comments()
++   }
   },
-  Comment: {
-    writtenBy: ({ id }, args, context) {
-      return context.prisma.comment({ id }).writtenBy()
-    },
-    post: ({ id }, args, context) {
-      return context.prisma.comment({ id }).post()
-    },
-  }
++ Comment: {
++   writtenBy: ({ id }, args, context) {
++     return context.prisma.comment({ id }).writtenBy()
++   },
++   post: ({ id }, args, context) {
++     return context.prisma.comment({ id }).post()
++   },
++ }
 }
 ```
 
