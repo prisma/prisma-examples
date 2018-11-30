@@ -19,7 +19,9 @@ The datamodel and developed APIs should be consistent across languages. This ena
 
 Here's an overview of the used datamodels and APIs:
 
-<details><summary>script</summary>
+### Script
+
+<details><summary>View datamodel</summary>
 
 `datamodel.prisma`:
 
@@ -44,7 +46,9 @@ type Post {
 
 </details>
 
-<details><summary>graphql</summary>
+### GraphQL Server
+
+<details><summary>View datamodel and GraphQL schema</summary>
 
 `datamodel.prisma`:
 
@@ -105,7 +109,9 @@ type User {
 
 </details>
 
-<details><summary>graphql-auth</summary>
+### GraphQL Server with authentication and permissions
+
+<details><summary>View datamodel and GraphQL schema</summary>
 
 `datamodel.prisma`:
 
@@ -174,7 +180,9 @@ type User {
 
 </details>
 
-<details><summary>graphql-subscriptions</summary>
+### GraphQL server with realtime GraphQL subscriptions
+
+<details><summary>View datamodel and GraphQL schema</summary>
 
 `datamodel.prisma`:
 
@@ -222,7 +230,9 @@ type Post {
 
 </details>
 
-<details><summary>rest</summary>
+### REST API
+
+<details><summary>View datamodel and API operations</summary>
 
 `datamodel.prisma`:
 
@@ -276,7 +286,10 @@ type Post {
 
 </details>
 
-<details><summary>cli</summary>
+
+### CLI TODO app
+
+<details><summary>View datamodel</summary>
 
 `datamodel.prisma`:
 
@@ -293,7 +306,15 @@ type Todo {
 
 ## Ways to contribute
 
+### Adding a missing example
+
+The easiest way to contribute is by adding a missing example. Check [this](https://github.com/prisma/prisma-examples/issues/311) GitHub issue to see which examples are currently missing. When adding a new example, please use the 
+
 ### Adding a new example
+
+Before submitting a PR for a new example, please first open an issue that explains the idea of the example and specifies what it will look like (e.g. how the Prisma datamodel will be defined or what kind of API will be built). It'll then be discussed in the issue whether your example is going to be added to the collection.
+
+Once approved, you can implement the example 
 
 ### Improving an existing example
 
