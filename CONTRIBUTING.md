@@ -326,7 +326,7 @@ Once approved, you can go ahead and implement the changes.
 
 The READMEs for all projects are being auto-generated based on the templates located in [`./github/readmes`](./github/readmes). If you find a typo or other parts of the README that should be improved, please do not edit the README directly but instead add your changes to the corresponding template. 
 
-For example, if you found an issue in the `node/graphql` README, do not edit the [`./node/graphql/README.md`](./node/graphql/README.mde) file but instead add your changes to [.`/.github/readmes/node/graphql/README.md`](./.github/readmes/node/graphql/README.md). Then build the READMEs using our custom script:
+For example, if you found an issue in the `node/graphql` README, do not edit the [`./node/graphql/README.md`](./node/graphql/README.md) file but instead add your changes to [.`/.github/readmes/node/graphql/README.md`](./.github/readmes/node/graphql/README.md). Then build the READMEs using our custom script:
 
 ```
 cd .github/tests
