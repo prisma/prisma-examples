@@ -46,7 +46,7 @@ jobs:
   go:
     docker:
       - image: circleci/golang
-    working_directory: /go/src/github.com/prisma/prisma-examples
+    # working_directory: /go/src/github.com/prisma/prisma-examples
     steps:
       - checkout
       - run: curl https://s3-eu-west-1.amazonaws.com/curl-linux/prisma-1.21.1.tar.gz | tar xvz && sudo mv prisma /usr/local/bin # TODO (see https://github.com/prisma/prisma/issues/3620)
