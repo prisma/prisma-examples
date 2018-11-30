@@ -1,8 +1,9 @@
 /**
- * flow
+ * @flow
  */
 
 import { prisma } from './generated/prisma-client'
+import type { UserWhereUniqueInput } from './generated/prisma-client'
 
 // A `main` function so that we can use async/await
 async function main() {
@@ -17,9 +18,9 @@ async function main() {
     title: 'Join the Prisma Slack community',
     content: 'http://slack.prisma.io',
     author: {
-      connect: {
+      connect: ({
         email: 'alice@prisma.io', // Should have been created during initial seeding
-      },
+      }: UserWhereUniqueInput),
     },
   })
   console.log(`Created a new post: `, newPost)
