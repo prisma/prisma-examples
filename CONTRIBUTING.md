@@ -303,7 +303,6 @@ type Todo {
 
 </details>
 
-
 ## Ways to contribute
 
 ### Adding a missing example
