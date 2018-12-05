@@ -1,8 +1,20 @@
 # Contribution Guidelines
 
-## Goals of the Prisma examples
+## General guidelines
 
-This repository contains a number of examples that show the _minimalistic_ setup for using Prisma for specific use cases. We're trying to remove all unnecessary complexity from the examples to keep them as simple as possible.
+Every example should follow a number of guidelines.
+
+### Example guidelines
+
+- Simple and minimal instead of complex and production-ready
+- Focus on one specific Prisma use case
+- Easily extensible
+- Require global installation of the Prisma CLI but all other dependencies (e.g. `graphqlgen`) only as dev dependencies and invoked via a script (e.g. `npm run graphqlgen`)
+
+### README guidelines
+
+- Clear instructions that end with a running example
+- Include instructions how to _use_ the running example
 
 ## Example structure
 
