@@ -11,9 +11,7 @@ npm install
 
 ### 2. Launch Prisma with Docker
 
-This example is based on Docker. If you don't have Docker installed, you can get it from [here](https://store.docker.com/search?type=edition&offering=community).
-
-Use the Docker Compose CLI to launch the Docker containers specified in [docker-compose.yml](./docker-compose.yml):
+This example is based on Docker. If you don't have Docker installed, you can get it from [here](https://store.docker.com/search?type=edition&offering=community). Use the Docker Compose CLI to launch the Docker containers specified in [docker-compose.yml](./docker-compose.yml):
 
 ```
 docker-compose up -d
