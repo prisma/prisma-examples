@@ -29,6 +29,10 @@
   name = "github.com/machinebox/graphql"
   version = "0.2.2"
 
+[[constraint]]
+  branch = "master"
+  name = "github.com/prisma/prisma-client-lib-go"
+
 [prune]
   go-tests = true
   unused-packages = true

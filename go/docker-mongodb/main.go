@@ -28,13 +28,13 @@ func main() {
 	// Create a new post (written by an already existing user with email alice@prisma.io)
 	title := "Join the Prisma Slack community"
 	content := "http://slack.prisma.io"
-	email := "alice@prisma.io" // Should have been created during initial seeding
+	emailAlice := "alice@prisma.io" // Should have been created during initial seeding
 	post, err := client.CreatePost(prisma.PostCreateInput{
 		Title:   title,
 		Content: &content,
 		Author: prisma.UserCreateOneWithoutPostsInput{
 			Connect: &prisma.UserWhereUniqueInput{
-				Email: &email,
+				Email: &emailAlice,
 			},
 		},
 	},
@@ -59,8 +59,34 @@ func main() {
 	}
 	fmt.Printf("Published the newly created post:  %+v\n", updatedPost)
 
+	emailBob := "bob@prisma.io" // Should have been created during initial seeding
+	comment := "Wow, there are so many active members on the Prisma Slack!"
+	postWithComment, err := client.UpdatePost(prisma.PostUpdateParams{
+		Where: prisma.PostWhereUniqueInput{
+			ID: &postID,
+		},
+		Data: prisma.PostUpdateInput{
+			Comments: &prisma.CommentUpdateManyInput{
+				Create: []prisma.CommentCreateInput{
+					prisma.CommentCreateInput{
+						Text: comment,
+						WrittenBy: prisma.UserCreateOneInput{
+							Connect: &prisma.UserWhereUniqueInput{
+								Email: &emailBob,
+							},
+						},
+					},
+				},
+			},
+		},
+	}).Exec(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Wrote a comment for the new post: %+v\n", postWithComment)
+
 	postsByUser, err := client.User(prisma.UserWhereUniqueInput{
-		Email: &email,
+		Email: &emailAlice,
 	}).Posts(nil).Exec(ctx)
 	if err != nil {
 		log.Fatal(err)

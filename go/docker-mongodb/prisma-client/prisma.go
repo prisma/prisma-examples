@@ -6,6 +6,8 @@ import (
 	"context"
 	"errors"
 
+	"github.com/prisma/prisma-client-lib-go"
+
 	"github.com/machinebox/graphql"
 )
 
