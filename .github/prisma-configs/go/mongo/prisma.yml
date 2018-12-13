@@ -10,7 +10,7 @@ databaseType: document
 # Specifies the language and directory for the generated Prisma client.
 generate:
   - generator: go-client
-    output: ../src/generated/prisma-client/
+    output: ../prisma-client/
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
