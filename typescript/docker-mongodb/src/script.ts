@@ -49,7 +49,7 @@ async function main() {
       },
     },
   })
-  console.log(`Wrote a comment for the new post: `, postWithComment.comments)
+  console.log(`Wrote a comment for the new post: `, postWithComment)
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma
