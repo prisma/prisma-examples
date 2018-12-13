@@ -17,6 +17,7 @@ cp ./node/without-client/prisma.yml ../../node/graphql-schema-delegation/prisma
 cp ./node/prisma.yml ../../node/graphql-subscriptions/prisma
 cp ./node/prisma.yml ../../node/rest-express/prisma
 cp ./node/prisma.yml ../../node/script/prisma
+cp ./node/mongo/prisma.yml ../../node/docker-mongodb/prisma
 
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
@@ -47,7 +48,7 @@ cp ./flow/prisma.yml ../../flow/script/prisma
 # Flow (.flowconfig)
 cp ./flow/.flowconfig ../../flow/graphql
 cp ./flow/.flowconfig ../../flow/script
-
+\
 
 # Go
 cp ./go/prisma.yml ../../go/cli-app/prisma

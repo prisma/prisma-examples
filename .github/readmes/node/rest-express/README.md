@@ -9,7 +9,7 @@ __INLINE(../_setup-2.md)__
 ### 4. Start the REST API server
 
 ```
-yarn start
+npm run start
 ```
 
 The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
