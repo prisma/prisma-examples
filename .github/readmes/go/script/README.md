@@ -11,7 +11,7 @@ __INLINE(../_setup-2.md)__
 Execute the script with this command: 
 
 ```
-npm run start
+go run script.go
 ```
 
 __INLINE(../_next-steps.md)__

@@ -37,6 +37,8 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`rest-gin`](https://github.com/prisma/prisma-examples/tree/master/go/rest-gin) | Simple REST API with [Gin](https://github.com/gin-gonic/gin) |
 | [`http-mux`](https://github.com/prisma/prisma-examples/tree/master/go/http-mux) | Simple REST API with [gorilla/mux](https://github.com/gorilla/mux) |
 | [`cli-app`](https://github.com/prisma/prisma-examples/tree/master/go/cli-app) | Simple CLI TODO list app |
+| [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/go/docker-mongodb) | Set up Prisma locally with MongoDB |
+
 
 ## Flow
 

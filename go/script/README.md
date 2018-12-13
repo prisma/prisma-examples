@@ -86,7 +86,7 @@ Then, follow these steps in the interactive CLI wizard:
 Execute the script with this command: 
 
 ```
-npm run start
+go run script.go
 ```
 
 ## Next steps
