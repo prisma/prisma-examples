@@ -2,7 +2,7 @@
 
 This example shows how to **set up Prisma using Docker and MongoDB** locally on your machine. It then uses the Prisma client in a simple Node script to read and write data in the database.
 
-> When using MongoDB with Prisma, you use a new [datamodel format](https://www.prisma.io/docs/-b6a7/). Learn more in the [docs](https://www.prisma.io/docs/-b6o5/).
+> When using MongoDB with Prisma, you use a [new datamodel format](https://www.prisma.io/docs/-b6a7/). Learn more in the [docs](https://www.prisma.io/docs/-b6o5/).
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/node/docker-mongodb
