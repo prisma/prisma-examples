@@ -1,4 +1,4 @@
-const { prisma } = require('./generated/prisma-client')
+import { prisma } from './generated/prisma-client'
 
 // A `main` function so that we can use async/await
 async function main() {
@@ -49,7 +49,7 @@ async function main() {
       },
     },
   })
-  console.log(`Wrote a comment for the new post: `, postWithComment)
+  console.log(`Wrote a comment for the new post: `, postWithComment.comments)
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma

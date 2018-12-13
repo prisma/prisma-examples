@@ -13,6 +13,7 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-auth) | GraphQL server with email-password authentication & permissions |
 | [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-subscriptions) | GraphQL server with realtime subscriptions |
 | [`cli-app`](https://github.com/prisma/prisma-examples/tree/master/typescript/cli-app) | Simple CLI TODO list app |
+| [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/typescript/docker-mongodb) | Set up Prisma locally with MongoDB |
 
 ## Node.JS
 
