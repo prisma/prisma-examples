@@ -59,6 +59,7 @@ func main() {
 	}
 	fmt.Printf("Published the newly created post:  %+v\n", updatedPost)
 
+	// Write a comment
 	emailBob := "bob@prisma.io" // Should have been created during initial seeding
 	comment := "Wow, there are so many active members on the Prisma Slack!"
 	postWithComment, err := client.UpdatePost(prisma.PostUpdateParams{
