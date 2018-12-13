@@ -86,7 +86,7 @@ Then, follow these steps in the interactive CLI wizard:
 Execute the script with this command: 
 
 ```
-go run script.go
+go run main.go
 ```
 
 ## Next steps

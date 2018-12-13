@@ -39,7 +39,7 @@ prisma deploy
 Execute the script with this command: 
 
 ```
-go run script.go
+go run main.go
 ```
 
 __INLINE(../_next-steps.md)__
