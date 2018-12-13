@@ -5,10 +5,10 @@
     "@babel/core": "7.2.0",
     "@babel/preset-env": "7.2.0",
     "@babel/preset-flow": "7.0.0",
-    "flow-bin": "0.87.0"
+    "flow-bin": "0.88.0"
   },
   "dependencies": {
-    "prisma-client-lib": "1.22.0"
+    "prisma-client-lib": "1.22.2"
   },
   "scripts": {
     "start": "babel-node src/script.js",

@@ -6,11 +6,11 @@
     "@types/ws": "6.0.1",
     "graphqlgen": "0.4.0",
     "ts-node": "7.0.1",
-    "typescript": "3.2.1"
+    "typescript": "3.2.2"
   },
   "dependencies": {
     "graphql-yoga": "1.16.7",
-    "prisma-client-lib": "1.22.0"
+    "prisma-client-lib": "1.22.2"
   },
   "scripts": {
     "start": "ts-node src/index.ts",

@@ -5,12 +5,12 @@
     "@babel/core": "7.2.0",
     "@babel/preset-env": "7.2.0",
     "@babel/preset-flow": "7.0.0",
-    "flow-bin": "0.87.0",
+    "flow-bin": "0.88.0",
     "graphqlgen": "0.4.0"
   },
   "dependencies": {
     "graphql-yoga": "1.16.7",
-    "prisma-client-lib": "1.22.0"
+    "prisma-client-lib": "1.22.2"
   },
   "scripts": {
     "start": "babel-node src/index.js",
