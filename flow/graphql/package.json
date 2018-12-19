@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "graphql-yoga": "1.16.8",
-    "prisma-client-lib": "1.23.0"
+    "prisma-client-lib": "1.23.1"
   },
   "scripts": {
     "start": "babel-node src/index.js",
