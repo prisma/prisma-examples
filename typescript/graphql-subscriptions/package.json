@@ -2,7 +2,7 @@
   "name": "graphql-subscriptions",
   "license": "MIT",
   "devDependencies": {
-    "@types/aws-lambda": "8.10.15",
+    "@types/aws-lambda": "8.10.16",
     "@types/ws": "6.0.1",
     "graphqlgen": "0.4.0",
     "ts-node": "7.0.1",
