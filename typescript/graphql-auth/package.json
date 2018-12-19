@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "bcrypt": "3.0.2",
-    "graphql-shield": "4.1.2",
+    "graphql-shield": "5.0.1",
     "graphql-yoga": "1.16.8",
     "jsonwebtoken": "8.4.0",
     "prisma-client-lib": "1.23.0"
