@@ -10,7 +10,7 @@
     "prisma-client-lib": "1.23.1"
   },
   "devDependencies": {
-    "@types/aws-lambda": "8.10.16",
+    "@types/aws-lambda": "8.10.17",
     "@types/graphql": "14.0.3",
     "@types/ws": "6.0.1",
     "graphqlgen": "0.4.0",
