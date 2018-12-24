@@ -6,7 +6,7 @@
     "generate": "graphqlgen"
   },
   "dependencies": {
-    "bcrypt": "3.0.2",
+    "bcrypt": "3.0.3",
     "graphql-shield": "5.1.0",
     "graphql-yoga": "1.16.9",
     "jsonwebtoken": "8.4.0",
