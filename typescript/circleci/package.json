@@ -6,7 +6,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@types/jest": "23.3.10",
+    "@types/jest": "23.3.11",
     "prisma-client-lib": "1.23.2"
   },
   "devDependencies": {
