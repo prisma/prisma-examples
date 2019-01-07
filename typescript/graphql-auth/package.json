@@ -6,16 +6,16 @@
     "generate": "graphqlgen"
   },
   "dependencies": {
-    "bcrypt": "3.0.2",
-    "graphql-shield": "5.0.1",
+    "bcrypt": "3.0.3",
+    "graphql-shield": "5.1.0",
     "graphql-yoga": "1.16.9",
     "jsonwebtoken": "8.4.0",
-    "prisma-client-lib": "1.23.1"
+    "prisma-client-lib": "1.23.4"
   },
   "devDependencies": {
-    "@types/aws-lambda": "8.10.16",
+    "@types/aws-lambda": "8.10.17",
     "@types/bcrypt": "3.0.0",
-    "@types/graphql": "14.0.3",
+    "@types/graphql": "14.0.4",
     "@types/jsonwebtoken": "8.3.0",
     "@types/ws": "6.0.1",
     "graphqlgen": "0.4.0",

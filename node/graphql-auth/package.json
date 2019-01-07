@@ -2,11 +2,11 @@
   "name": "graphql-auth",
   "version": "1.0.0",
   "dependencies": {
-    "bcrypt": "3.0.2",
-    "graphql-shield": "5.0.1",
+    "bcrypt": "3.0.3",
+    "graphql-shield": "5.1.0",
     "graphql-yoga": "1.16.9",
     "jsonwebtoken": "8.4.0",
-    "prisma-client-lib": "1.23.1"
+    "prisma-client-lib": "1.23.4"
   },
   "scripts": {
     "start": "node src/index.js"

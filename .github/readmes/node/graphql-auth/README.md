@@ -156,7 +156,7 @@ const resolvers = {
   // ... 
   Mutation: {
     // ...
-+   writeComment(parent, { postId, userId}, context) {
++   writeComment(parent, { postId, userId }, context) {
 +     const userId = getUserId(context)
 +     return context.prisma.createComment({
 +       text,
