@@ -77,6 +77,7 @@ Then, follow these steps in the interactive CLI wizard:
       mysql:
     ```
 1. Run `docker-compose up -d`
+1. Set the `endpoint` in `prisma.yml` to `http://localhost:4466`
 1. Run `prisma deploy`
 
 </details>
