@@ -2,6 +2,8 @@
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of [Prisma](https://www.prisma.io). Pick an example and follow the instructions in the corresponding README.
 
+Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
+
 <!-- Please keep the absolute URLs so it's easier to copy&paste to prisma/prisma/README.md  -->
 
 ## TypeScript
@@ -48,8 +50,6 @@ This repository contains a number of ready-to-run examples demonstrating various
 | [`script`](https://github.com/prisma/prisma-examples/tree/master/flow/script) | Simple usage of Prisma client in script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/master/flow/graphql) | Simple GraphQL server |
 
-
-Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) or submit a pull request.
 
 ## Reference Implementations
 
