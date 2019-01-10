@@ -6,7 +6,7 @@
     "@babel/preset-env": "7.2.3",
     "@babel/preset-flow": "7.0.0",
     "flow-bin": "0.89.0",
-    "graphqlgen": "0.4.0"
+    "graphqlgen": "0.5.0"
   },
   "dependencies": {
     "graphql-yoga": "1.16.9",

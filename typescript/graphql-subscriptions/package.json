@@ -4,7 +4,7 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.17",
     "@types/ws": "6.0.1",
-    "graphqlgen": "0.4.0",
+    "graphqlgen": "0.5.0",
     "ts-node": "7.0.1",
     "typescript": "3.2.2"
   },
