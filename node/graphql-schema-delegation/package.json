@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "1.16.9",
+    "graphql-yoga": "1.17.0",
     "prisma-binding": "2.2.14"
   },
   "scripts": {
