@@ -63,6 +63,8 @@ jobs:
       - run: cd go/rest-gin && prisma generate && dep ensure && go build
       - run: cd go/script && prisma generate && dep ensure && go build
       - run: cd go/docker-mongodb && prisma generate && dep ensure && go build
+      - run: cd go/docker-mysql && prisma generate && dep ensure && go build
+      - run: cd go/docker-postgres && prisma generate && dep ensure && go build
 
 workflows:
   version: 2
