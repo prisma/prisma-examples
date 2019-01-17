@@ -17,6 +17,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/rest-express) | Simple REST API with Express.JS |
 | [`cli-app`](https://github.com/prisma/prisma-examples/tree/master/typescript/cli-app) | Simple CLI TODO list app |
 | [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/typescript/docker-mongodb) | Set up Prisma locally with MongoDB |
+| [`docker-mysql`](https://github.com/prisma/prisma-examples/tree/master/typescript/docker-mysql) | Set up Prisma locally with MySQL |
+| [`docker-postgres`](https://github.com/prisma/prisma-examples/tree/master/typescript/docker-postgres) | Set up Prisma locally with PostgreSQL |
 
 ## Node.JS
 
@@ -30,6 +32,9 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/node/rest-express) | Simple REST API with Express.JS |
 | [`cli-app`](https://github.com/prisma/prisma-examples/tree/master/node/cli-app) | Simple CLI TODO list app |
 | [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/node/docker-mongodb) | Set up Prisma locally with MongoDB |
+| [`docker-mysql`](https://github.com/prisma/prisma-examples/tree/master/node/docker-mysql) | Set up Prisma locally with MySQL |
+| [`docker-postgres`](https://github.com/prisma/prisma-examples/tree/master/node/docker-postgres) | Set up Prisma locally with PostgreSQL |
+
 
 ## Golang
 
@@ -41,7 +46,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`http-mux`](https://github.com/prisma/prisma-examples/tree/master/go/http-mux) | Simple REST API with [gorilla/mux](https://github.com/gorilla/mux) |
 | [`cli-app`](https://github.com/prisma/prisma-examples/tree/master/go/cli-app) | Simple CLI TODO list app |
 | [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/go/docker-mongodb) | Set up Prisma locally with MongoDB |
-
+| [`docker-mysql`](https://github.com/prisma/prisma-examples/tree/master/go/docker-mysql) | Set up Prisma locally with MySQL |
+| [`docker-postgres`](https://github.com/prisma/prisma-examples/tree/master/go/docker-postgres) | Set up Prisma locally with PostgreSQL |
 
 ## Flow
 
