@@ -20,6 +20,9 @@ jobs:
       - run: cd node/graphql-subscriptions && yarn && prisma generate
       - run: cd node/rest-express && yarn && prisma generate
       - run: cd node/script && yarn && prisma generate
+      - run: cd node/docker-mongodb && yarn && prisma generate
+      - run: cd node/docker-mysql && yarn && prisma generate
+      - run: cd node/docker-postgres && yarn && prisma generate
 
   typescript:
     docker:
@@ -32,7 +35,9 @@ jobs:
       - run: cd typescript/graphql && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/graphql-auth && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/graphql-subscriptions && yarn && prisma generate && yarn generate && yarn tsc
+      - run: cd typescript/rest-express && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/script && yarn && prisma generate && yarn tsc
+      - run: cd typescript/docker-mongodb && yarn && prisma generate
 
   flow:
     docker:
@@ -55,6 +60,7 @@ jobs:
       - run: cd go/http-mux && prisma generate && dep ensure && go build
       - run: cd go/rest-gin && prisma generate && dep ensure && go build
       - run: cd go/script && prisma generate && dep ensure && go build
+      - run: cd go/docker-mongodb && prisma generate && dep ensure && go build
 
 workflows:
   version: 2
