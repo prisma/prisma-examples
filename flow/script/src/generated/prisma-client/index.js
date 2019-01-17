@@ -6,14 +6,14 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import type { DocumentNode } from "graphql";
-import type { BasePrismaOptions as BPOType } from "prisma-client-lib";
-import { makePrismaClientClass, Model } from "prisma-client-lib";
-import { typeDefs } from "./prisma-schema";
+import type { DocumentNode } from 'graphql'
+import type { BasePrismaOptions as BPOType } from 'prisma-client-lib'
+import { makePrismaClientClass, Model } from 'prisma-client-lib'
+import { typeDefs } from './prisma-schema'
 
-type NodePromise = Promise<Node>;
+type NodePromise = Promise<Node>
 
-export type AtLeastOne<T> = $Shape<T>;
+export type AtLeastOne<T> = $Shape<T>
 
 export interface Exists {
   post(where?: PostWhereInput): Promise<boolean>;
@@ -22,7 +22,7 @@ export interface Exists {
 
 export interface Node {}
 
-export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable;
+export type FragmentableArray<T> = Promise<Array<T>> & Fragmentable
 
 export interface Fragmentable {
   $fragment<T>(fragment: string | DocumentNode): Promise<T>;
@@ -32,7 +32,7 @@ interface PrismaInterface {
   $exists: Exists;
   $graphql: <T: any>(
     query: string,
-    variables?: { [key: string]: any }
+    variables?: { [key: string]: any },
   ) => Promise<T>;
 
   /**
@@ -47,7 +47,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => FragmentableArray<Post>;
   postsConnection: (args?: {
     where?: PostWhereInput,
@@ -56,7 +56,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => PostConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (args?: {
@@ -66,7 +66,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => FragmentableArray<User>;
   usersConnection: (args?: {
     where?: UserWhereInput,
@@ -75,7 +75,7 @@ interface PrismaInterface {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => UserConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
@@ -86,32 +86,32 @@ interface PrismaInterface {
   createPost: (data: PostCreateInput) => PostPromise;
   updatePost: (args: {
     data: PostUpdateInput,
-    where: PostWhereUniqueInput
+    where: PostWhereUniqueInput,
   }) => PostPromise;
   updateManyPosts: (args: {
     data: PostUpdateManyMutationInput,
-    where?: PostWhereInput
+    where?: PostWhereInput,
   }) => BatchPayloadPromise;
   upsertPost: (args: {
     where: PostWhereUniqueInput,
     create: PostCreateInput,
-    update: PostUpdateInput
+    update: PostUpdateInput,
   }) => PostPromise;
   deletePost: (where: PostWhereUniqueInput) => PostPromise;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput,
-    where: UserWhereUniqueInput
+    where: UserWhereUniqueInput,
   }) => UserPromise;
   updateManyUsers: (args: {
     data: UserUpdateManyMutationInput,
-    where?: UserWhereInput
+    where?: UserWhereInput,
   }) => BatchPayloadPromise;
   upsertUser: (args: {
     where: UserWhereUniqueInput,
     create: UserCreateInput,
-    update: UserUpdateInput
+    update: UserUpdateInput,
   }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
@@ -125,46 +125,46 @@ interface PrismaInterface {
 
 export interface Subscription {
   post: (
-    where?: PostSubscriptionWhereInput
+    where?: PostSubscriptionWhereInput,
   ) => PostSubscriptionPayloadSubscription;
   user: (
-    where?: UserSubscriptionWhereInput
+    where?: UserSubscriptionWhereInput,
   ) => UserSubscriptionPayloadSubscription;
 }
 
-export type ClientConstructor<T> = (options?: BPOType) => T;
+export type ClientConstructor<T> = (options?: BPOType) => T
 
 /**
  * Types
  */
 
 export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "published_ASC"
-  | "published_DESC"
-  | "title_ASC"
-  | "title_DESC"
-  | "content_ASC"
-  | "content_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'published_ASC'
+  | 'published_DESC'
+  | 'title_ASC'
+  | 'title_DESC'
+  | 'content_ASC'
+  | 'content_DESC'
 
 export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "name_ASC"
-  | "name_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'email_ASC'
+  | 'email_DESC'
+  | 'name_ASC'
+  | 'name_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED'
 
 export interface UserUpdateOneRequiredWithoutPostsInput {
   create?: UserCreateWithoutPostsInput;
@@ -174,8 +174,8 @@ export interface UserUpdateOneRequiredWithoutPostsInput {
 }
 
 export type PostWhereUniqueInput = AtLeastOne<{
-  id: ID_Input
-}>;
+  id: ID_Input,
+}>
 
 export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
   where: PostWhereUniqueInput;
@@ -492,8 +492,8 @@ export interface PostUpdateWithoutAuthorDataInput {
 
 export type UserWhereUniqueInput = AtLeastOne<{
   id: ID_Input,
-  email?: String
-}>;
+  email?: String,
+}>
 
 export interface NodeNode {
   id: ID_Output;
@@ -759,7 +759,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => T;
 }
 
@@ -776,7 +776,7 @@ export interface UserSubscription
     after?: String,
     before?: String,
     first?: Int,
-    last?: Int
+    last?: Int,
   }) => T;
 }
 
@@ -821,35 +821,35 @@ export interface UserEdgeSubscription
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type String = string;
+export type String = string
 
-export type Long = string;
+export type Long = string
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type ID_Input = string | number
+export type ID_Output = string
 
 /*
 The `Boolean` scalar type represents `true` or `false`.
 */
-export type Boolean = boolean;
+export type Boolean = boolean
 
 /*
 DateTime scalar input type, allowing Date
 */
-export type DateTimeInput = Date | string;
+export type DateTimeInput = Date | string
 
 /*
 DateTime scalar output type, which is always a string
 */
-export type DateTimeOutput = string;
+export type DateTimeOutput = string
 
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
-export type Int = number;
+export type Int = number
 
 /**
  * Model Metadata
@@ -857,21 +857,21 @@ export type Int = number;
 
 export const models: Model[] = [
   {
-    name: "Post",
-    embedded: false
+    name: 'Post',
+    embedded: false,
   },
   {
-    name: "User",
-    embedded: false
-  }
-];
+    name: 'User',
+    embedded: false,
+  },
+]
 
 /**
  * Type Defs
  */
 
 export const Prisma: ClientConstructor<PrismaInterface> = makePrismaClientClass(
-  { typeDefs, models, endpoint: `` }
-);
+  { typeDefs, models, endpoint: `` },
+)
 
-export const prisma = new Prisma();
+export const prisma = new Prisma()
