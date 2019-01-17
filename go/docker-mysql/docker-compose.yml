@@ -12,17 +12,19 @@ services:
         # managementApiSecret: my-secret
         databases:
           default:
-            connector: mongo
-            uri: mongodb://prisma:prisma@mongo
-  mongo:
-    image: mongo:3.6
+            connector: mysql
+            host: mysql
+            user: root
+            password: prisma
+            rawAccess: true
+            port: 3306
+            migrations: true
+  mysql:
+    image: mysql:5.7
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: prisma
-      MONGO_INITDB_ROOT_PASSWORD: prisma
-    ports:
-      - "27017:27017"
+      MYSQL_ROOT_PASSWORD: prisma
     volumes:
-      - mongo:/var/lib/mongo
+      - mysql:/var/lib/mysql
 volumes:
-  mongo:
+  mysql:
