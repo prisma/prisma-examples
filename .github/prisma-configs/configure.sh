@@ -18,6 +18,8 @@ cp ./node/prisma.yml ../../node/graphql-subscriptions/prisma
 cp ./node/prisma.yml ../../node/rest-express/prisma
 cp ./node/prisma.yml ../../node/script/prisma
 cp ./node/mongo/prisma.yml ../../node/docker-mongodb/prisma
+cp ./node/mysql-and-postgres/prisma.yml ../../node/docker-mysql/prisma
+cp ./node/mysql-and-postgres/prisma.yml ../../node/docker-postgres/prisma
 
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
