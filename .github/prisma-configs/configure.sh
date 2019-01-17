@@ -64,3 +64,5 @@ cp ./go/prisma.yml ../../go/http-mux/prisma
 cp ./go/prisma.yml ../../go/rest-gin/prisma
 cp ./go/prisma.yml ../../go/script/prisma
 cp ./go/mongo/prisma.yml ../../go/docker-mongodb/prisma
+cp ./go/mysql-and-postgres/prisma.yml ../../go/docker-mysql/prisma
+cp ./go/mysql-and-postgres/prisma.yml ../../go/docker-postgres/prisma

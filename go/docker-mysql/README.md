@@ -1,8 +1,8 @@
-# PostgreSQL with Docker Example
+# MySQL with Docker Example
 
-This example shows how to **set up Prisma using Docker and PostgreSQL** locally on your machine. It then uses the Prisma client in a simple TypeScript script to read and write data in the database.
+This example shows how to **set up Prisma using Docker and MySQL** locally on your machine. It then uses the Prisma client in a simple Go script to read and write data in the database.
 
-> This example uses a new and empty database. **Learn how to connect Prisma to your existing database [here](https://www.prisma.io/docs/-t003/)**.
+> This example uses a new and empty database. **Learn how to connect Prisma to your existing database [here](https://www.prisma.io/docs/-g003/)**.
 
 ## How to use
 
@@ -14,11 +14,11 @@ Clone the repository:
 git clone git@github.com:prisma/prisma-examples.git
 ```
 
-Install Node dependencies:
+Ensure dependencies are available and up-to-date:
 
 ```
-cd prisma-examples/typescript/docker-postgres
-npm install
+cd prisma-examples/go/docker-mysql
+dep ensure -update
 ```
 
 ### 2. Launch Prisma with Docker
@@ -31,10 +31,11 @@ docker-compose up -d
 
 ### 3. Install the Prisma CLI
 
-To run the example, you need the Prisma CLI. Please install it via NPM or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
+To run the example, you need the Prisma CLI. Please install it via Homebrew or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
 
 ```
-npm install -g prisma
+brew install prisma
+brew tap
 ```
 
 ### 4. Set up database & deploy Prisma datamodel
@@ -50,11 +51,11 @@ prisma deploy
 Execute the script with this command: 
 
 ```
-npm run start
+go run main.go
 ```
 
 ## Next steps
 
-- [Use Prisma with an existing database](https://www.prisma.io/docs/-t003/)
-- [Explore the Prisma client API](https://www.prisma.io/client/client-typescript)
+- [Use Prisma with an existing database](https://www.prisma.io/docs/-g003/)
+- [Explore the Prisma client API](https://www.prisma.io/client/client-go)
 - [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)

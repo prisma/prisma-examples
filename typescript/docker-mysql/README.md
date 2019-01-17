@@ -2,7 +2,7 @@
 
 This example shows how to **set up Prisma using Docker and MySQL** locally on your machine. It then uses the Prisma client in a simple TypeScript script to read and write data in the database.
 
-> This example uses a new and empty database. **Learn how to connect Prisma to your existing database [here](https://www.prisma.io/docs/-a003/)**.
+> This example uses a new and empty database. **Learn how to connect Prisma to your existing database [here](https://www.prisma.io/docs/-t003/)**.
 
 ## How to use
 

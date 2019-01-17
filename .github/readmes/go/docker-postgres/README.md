@@ -1,12 +1,12 @@
 # PostgreSQL with Docker Example
 
-This example shows how to **set up Prisma using Docker and PostgreSQL** locally on your machine. It then uses the Prisma client in a simple TypeScript script to read and write data in the database.
+This example shows how to **set up Prisma using Docker and PostgreSQL** locally on your machine. It then uses the Prisma client in a simple Go script to read and write data in the database.
 
-> This example uses a new and empty database. **Learn how to connect Prisma to your existing database [here](https://www.prisma.io/docs/-t003/)**.
+> This example uses a new and empty database. **Learn how to connect Prisma to your existing database [here](https://www.prisma.io/docs/-g003/)**.
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/typescript/docker-postgres
-npm install
+cd prisma-examples/go/docker-postgres
+dep ensure -update
 ```
 
 ### 2. Launch Prisma with Docker
@@ -19,10 +19,11 @@ docker-compose up -d
 
 ### 3. Install the Prisma CLI
 
-To run the example, you need the Prisma CLI. Please install it via NPM or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
+To run the example, you need the Prisma CLI. Please install it via Homebrew or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
 
 ```
-npm install -g prisma
+brew install prisma
+brew tap
 ```
 
 ### 4. Set up database & deploy Prisma datamodel
@@ -38,7 +39,7 @@ prisma deploy
 Execute the script with this command: 
 
 ```
-npm run start
+go run main.go
 ```
 
 __INLINE(../_next-steps.md)__
