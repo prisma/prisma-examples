@@ -35,7 +35,7 @@ jobs:
       - run: cd typescript/graphql && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/graphql-auth && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/graphql-subscriptions && yarn && prisma generate && yarn generate && yarn tsc
-      - run: cd typescript/rest-express && yarn && prisma generate && yarn generate && yarn tsc
+      - run: cd typescript/rest-express && yarn && prisma generate && yarn tsc
       - run: cd typescript/script && yarn && prisma generate && yarn tsc
       - run: cd typescript/docker-mongodb && yarn && prisma generate
 
