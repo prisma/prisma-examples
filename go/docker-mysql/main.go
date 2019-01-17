@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	prisma "github.com/prisma/prisma-examples/go/docker-mysql/prisma-client"
+	prisma "github.com/prisma-examples/go/docker-mysql/prisma-client"
 )
 
 func main() {
@@ -71,7 +71,7 @@ func main() {
 				Create: []prisma.CommentCreateInput{
 					prisma.CommentCreateInput{
 						Text: comment,
-						WrittenBy: prisma.UserCreateOneInput{
+						WrittenBy: prisma.UserCreateOneWithoutCommentsInput{
 							Connect: &prisma.UserWhereUniqueInput{
 								Email: &emailBob,
 							},
