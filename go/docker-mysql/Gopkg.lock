@@ -26,12 +26,12 @@
   version = "v1.1.2"
 
 [[projects]]
-  digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
+  digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
   name = "github.com/pkg/errors"
   packages = ["."]
   pruneopts = "UT"
-  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
-  version = "v0.8.0"
+  revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
+  version = "v0.8.1"
 
 [[projects]]
   branch = "master"
@@ -41,12 +41,21 @@
   pruneopts = "UT"
   revision = "68a1f9908416aebb5bbb0bc3cdec3321d74cb7af"
 
+[[projects]]
+  branch = "master"
+  digest = "1:f6c28fff33eb630a406997f348ba5319b1adcbd73cc76f48190685e66014a5ac"
+  name = "github.com/prisma/prisma-examples"
+  packages = ["go/docker-mysql/prisma-client"]
+  pruneopts = "UT"
+  revision = "1d4ab4795dac93788c60375ffef737486b2963b1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/machinebox/graphql",
     "github.com/prisma/prisma-client-lib-go",
+    "github.com/prisma/prisma-examples/go/docker-mysql/prisma-client",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
