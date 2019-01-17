@@ -38,6 +38,8 @@ jobs:
       - run: cd typescript/rest-express && yarn && prisma generate && yarn tsc
       - run: cd typescript/script && yarn && prisma generate && yarn tsc
       - run: cd typescript/docker-mongodb && yarn && prisma generate
+      - run: cd typescript/docker-mysql && yarn && prisma generate
+      - run: cd typescript/docker-postgres && yarn && prisma generate
 
   flow:
     docker:

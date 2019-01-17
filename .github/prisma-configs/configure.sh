@@ -28,6 +28,8 @@ cp ./typescript/prisma.yml ../../typescript/graphql-auth/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/prisma.yml ../../typescript/script/prisma
 cp ./typescript/mongo/prisma.yml ../../typescript/docker-mongodb/prisma
+cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-mysql/prisma
+cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-postgres/prisma
 
 # TypeScript (tsconfig.json)
 cp ./typescript/tsconfig.json ../../typescript/cli-app
@@ -39,6 +41,8 @@ cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-subscriptions
 mv ../../typescript/graphql-subscriptions/tsconfig-graphql.json ../../typescript/graphql-subscriptions/tsconfig.json
 cp ./typescript/tsconfig.json ../../typescript/script
 cp ./typescript/tsconfig.json ../../typescript/docker-mongodb
+cp ./typescript/tsconfig.json ../../typescript/docker-mysql
+cp ./typescript/tsconfig.json ../../typescript/docker-postgres
 
 # TypeScript (graphqlgen)
 cp ./typescript/graphqlgen.yml ../../typescript/graphql
@@ -52,7 +56,6 @@ cp ./flow/prisma.yml ../../flow/script/prisma
 # Flow (.flowconfig)
 cp ./flow/.flowconfig ../../flow/graphql
 cp ./flow/.flowconfig ../../flow/script
-\
 
 # Go
 cp ./go/prisma.yml ../../go/cli-app/prisma
