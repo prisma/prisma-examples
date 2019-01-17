@@ -48,7 +48,7 @@ jobs:
       - checkout
       - run: sudo yarn global add prisma
       - run: cd flow/graphql && yarn && prisma generate && yarn generate && yarn flow check
-      # - run: cd flow/script && yarn && prisma generate && yarn flow check
+      # - run: cd flow/script && yarn && prisma generate && yarn flow check # typechecking is broken: https://github.com/prisma/prisma-examples/issues/373
       - run: cd flow/script && yarn && prisma generate
 
   go:
