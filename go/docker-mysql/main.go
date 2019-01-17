@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	prisma "github.com/prisma-examples/go/docker-mysql/prisma-client"
+	prisma "github.com/prisma/prisma-examples/go/docker-mysql/prisma-client"
 )
 
 func main() {
