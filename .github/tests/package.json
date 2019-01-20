@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "inline-markdown": "0.1.6",
-    "prettier": "1.15.3",
+    "prettier": "1.16.0",
     "prettier-check": "2.0.0"
   }
 }
