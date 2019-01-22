@@ -20,7 +20,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`docker-mysql`](https://github.com/prisma/prisma-examples/tree/master/typescript/docker-mysql) | Set up Prisma locally with MySQL |
 | [`docker-postgres`](https://github.com/prisma/prisma-examples/tree/master/typescript/docker-postgres) | Set up Prisma locally with PostgreSQL |
 
-## Node.JS
+## Node.js
 
 | Demo | Description |
 |:------|:----------|
