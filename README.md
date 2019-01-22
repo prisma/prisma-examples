@@ -28,7 +28,6 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/master/node/graphql) | Simple GraphQL server |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/node/graphql-auth) | GraphQL server with email-password authentication & permissions |
 | [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/master/node/graphql-subscriptions) | GraphQL server with realtime subscriptions |
-| [`graphql-schema-delegation`](https://github.com/prisma/prisma-examples/tree/master/node/graphql-schema-delegation) | [Schema delegation](https://www.prisma.io/docs/prisma-graphql-api/usage/prisma-bindings-prb1/#building-graphql-servers-with-prisma-bindings) with Prisma binding |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/node/rest-express) | Simple REST API with Express.JS |
 | [`cli-app`](https://github.com/prisma/prisma-examples/tree/master/node/cli-app) | Simple CLI TODO list app |
 | [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/node/docker-mongodb) | Set up Prisma locally with MongoDB |
