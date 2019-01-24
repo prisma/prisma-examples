@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "graphql-yoga": "1.17.0",
-    "prisma-client-lib": "1.25.1"
+    "prisma-client-lib": "1.25.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.17",
