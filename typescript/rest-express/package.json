@@ -8,7 +8,7 @@
   "dependencies": {
     "body-parser": "1.18.3",
     "express": "4.16.4",
-    "prisma-client-lib": "1.25.2"
+    "prisma-client-lib": "1.25.3"
   },
   "devDependencies": {
     "@types/body-parser": "1.17.0",
