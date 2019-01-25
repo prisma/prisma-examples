@@ -5,22 +5,22 @@
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src"
   },
   "dependencies": {
-    "bcrypt": "^3.0.3",
+    "bcrypt": "3.0.3",
     "graphql": "14.1.1",
-    "graphql-shield": "^5.1.0",
+    "graphql-shield": "5.1.0",
     "graphql-yoga": "1.17.0",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "8.4.0",
     "nexus": "0.7.0-alpha.2",
     "nexus-prisma": "0.0.16",
     "prisma-client-lib": "1.25.1"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.17",
-    "@types/bcrypt": "^3.0.0",
+    "@types/aws-lambda": "8.10.17",
+    "@types/bcrypt": "3.0.0",
     "@types/graphql": "14.0.5",
-    "@types/jsonwebtoken": "^8.3.0",
+    "@types/jsonwebtoken": "8.3.0",
     "@types/node": "10.12.18",
-    "@types/ws": "^6.0.1",
+    "@types/ws": "6.0.1",
     "ts-node-dev": "1.0.0-pre.32",
     "typescript": "3.2.4"
   }
