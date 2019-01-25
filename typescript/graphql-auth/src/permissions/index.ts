@@ -8,9 +8,7 @@ const rules = {
   }),
   isPostOwner: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context)
-    const author = await context.prisma
-      .post({ id })
-      .author()
+    const author = await context.prisma.post({ id }).author()
     return userId === author.id
   }),
 }

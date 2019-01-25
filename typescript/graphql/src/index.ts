@@ -129,7 +129,7 @@ export const schema = makePrismaSchema({
   // Configure nullability of input arguments: All arguments are non-nullable by default
   nullability: {
     input: false,
-    inputList: false, 
+    inputList: false,
   },
 
   // Configure automatic type resolution for the TS representations of the associated types
