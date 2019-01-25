@@ -13,6 +13,7 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+    - npx nexus-prisma-generate # Runs the codegen tool from nexus-prisma.
 
 # Seeds initial data into the database by running a script.
 seed:

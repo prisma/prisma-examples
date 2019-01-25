@@ -13,7 +13,6 @@
 cp ./node/prisma.yml ../../node/cli-app/prisma
 cp ./node/prisma.yml ../../node/graphql/prisma
 cp ./node/prisma.yml ../../node/graphql-auth/prisma
-cp ./node/without-client/prisma.yml ../../node/graphql-schema-delegation/prisma
 cp ./node/prisma.yml ../../node/graphql-subscriptions/prisma
 cp ./node/prisma.yml ../../node/rest-express/prisma
 cp ./node/prisma.yml ../../node/script/prisma
@@ -23,8 +22,8 @@ cp ./node/mysql-and-postgres/prisma.yml ../../node/docker-postgres/prisma
 
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
-cp ./typescript/prisma.yml ../../typescript/graphql/prisma
-cp ./typescript/prisma.yml ../../typescript/graphql-auth/prisma
+cp ./typescript/nexus/prisma.yml ../../typescript/graphql/prisma
+cp ./typescript/nexus/prisma.yml ../../typescript/graphql-auth/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/prisma.yml ../../typescript/script/prisma
 cp ./typescript/mongo/prisma.yml ../../typescript/docker-mongodb/prisma
@@ -33,20 +32,15 @@ cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-postgres/p
 
 # TypeScript (tsconfig.json)
 cp ./typescript/tsconfig.json ../../typescript/cli-app
-cp ./typescript/tsconfig-graphql.json ../../typescript/graphql
-mv ../../typescript/graphql/tsconfig-graphql.json ../../typescript/graphql/tsconfig.json
-cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-auth
-mv ../../typescript/graphql-auth/tsconfig-graphql.json ../../typescript/graphql-auth/tsconfig.json
-cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-subscriptions
-mv ../../typescript/graphql-subscriptions/tsconfig-graphql.json ../../typescript/graphql-subscriptions/tsconfig.json
+cp ./typescript/tsconfig.json ../../typescript/graphql
+cp ./typescript/tsconfig.json ../../typescript/graphql-auth
+cp ./typescript/tsconfig.json ../../typescript/graphql-subscriptions
 cp ./typescript/tsconfig.json ../../typescript/script
 cp ./typescript/tsconfig.json ../../typescript/docker-mongodb
 cp ./typescript/tsconfig.json ../../typescript/docker-mysql
 cp ./typescript/tsconfig.json ../../typescript/docker-postgres
 
 # TypeScript (graphqlgen)
-cp ./typescript/graphqlgen.yml ../../typescript/graphql
-cp ./typescript/graphqlgen.yml ../../typescript/graphql-auth
 cp ./typescript/graphqlgen.yml ../../typescript/graphql-subscriptions
 
 # Flow (prisma.yml)

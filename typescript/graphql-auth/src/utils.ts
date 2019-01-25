@@ -1,13 +1,10 @@
 import { verify } from 'jsonwebtoken'
+import { Context } from './types'
 
 export const APP_SECRET = 'appsecret321'
 
 interface Token {
   userId: string
-}
-
-interface Context {
-  request: any
 }
 
 export function getUserId(context: Context) {
