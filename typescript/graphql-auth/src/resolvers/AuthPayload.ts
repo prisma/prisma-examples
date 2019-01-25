@@ -1,5 +1,6 @@
-import { AuthPayloadResolvers } from '../generated/graphqlgen'
+import { objectType } from 'nexus'
 
-export const AuthPayload: AuthPayloadResolvers.Type = {
-  ...AuthPayloadResolvers.defaultResolvers,
-}
+export const AuthPayload = objectType('AuthPayload', t => {
+  t.string('token')
+  t.field('user', 'User')
+})

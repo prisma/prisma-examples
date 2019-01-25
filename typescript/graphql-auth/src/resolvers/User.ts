@@ -1,9 +1,13 @@
-import { UserResolvers } from '../generated/graphqlgen'
+import { prismaObjectType } from 'nexus-prisma'
 
-export const User: UserResolvers.Type = {
-  ...UserResolvers.defaultResolvers,
-
-  posts: ({ id }, args, ctx) => {
-    return ctx.prisma.user({ id }).posts()
-  },
-}
+export const User = prismaObjectType('User', t => {
+  t.prismaFields([
+    'id',
+    'name',
+    'email',
+    {
+      name: 'posts',
+      args: [], // remove the arguments from the `posts` field of the `User` type in the Prisma schema
+    },
+  ])
+})

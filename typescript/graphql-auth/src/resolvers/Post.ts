@@ -1,9 +1,3 @@
-import { PostResolvers } from '../generated/graphqlgen'
+import { prismaObjectType } from 'nexus-prisma'
 
-export const Post: PostResolvers.Type = {
-  ...PostResolvers.defaultResolvers,
-
-  author: ({ id }, args, ctx) => {
-    return ctx.prisma.post({ id }).author()
-  },
-}
+export const Post = prismaObjectType('Post')
