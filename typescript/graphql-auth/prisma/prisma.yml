@@ -8,6 +8,8 @@ datamodel: datamodel.prisma
 generate:
   - generator: typescript-client
     output: ../src/generated/prisma-client/
+  - generator: graphql-schema # needed for nexus-prisma
+    output: ../src/generated
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
