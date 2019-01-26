@@ -9,7 +9,7 @@
     "graphqlgen": "0.5.1"
   },
   "dependencies": {
-    "graphql-yoga": "1.17.0",
+    "graphql-yoga": "1.17.1",
     "prisma-client-lib": "1.25.3"
   },
   "scripts": {
