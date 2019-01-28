@@ -4,7 +4,7 @@
   "license": "MIT",
   "dependencies": {
     "graphql-yoga": "1.17.1",
-    "prisma-client-lib": "1.25.3"
+    "prisma-client-lib": "1.25.4"
   },
   "scripts": {
     "start": "node src/index.js"
