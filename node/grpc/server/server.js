@@ -86,15 +86,6 @@ async function publish(call, callback) {
   }
 }
 
-function getServer() {
-  const server = new grpc.Server()
-  server.addProtoService(blog.Blog.service, {
-    signupUser,
-    post,
-  })
-  return server
-}
-
 const server = new grpc.Server()
 server.addService(blog.Blog.service, {
   feed,
