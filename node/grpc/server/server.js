@@ -24,10 +24,6 @@ async function feed(call, callback) {
     where: { published: true },
   })
   callback(null, { feed })
-  // feed.forEach(post => {
-  //   call.write(post)
-  // })
-  // call.end()
 }
 
 async function filterPosts(call, callback) {
