@@ -11,7 +11,7 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   defaults: true,
   oneofs: true,
 })
-const blog = grpc.loadPackageDefinition(packageDefinition).blog
+const { blog } = grpc.loadPackageDefinition(packageDefinition)
 
 async function post(call, callback) {
   const { id } = call.request
