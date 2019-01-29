@@ -25,7 +25,7 @@ function main() {
   }
   client.signupUser(data, (err, response) => {
     if (err) {
-      console.err(err)
+      console.error(err)
       return
     }
     console.log(response)

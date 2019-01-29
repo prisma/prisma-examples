@@ -20,7 +20,7 @@ function main() {
   const id = ''
   client.post({ id }, (err, response) => {
     if (err) {
-      console.err(err)
+      console.error(err)
       return
     }
     console.log(response)

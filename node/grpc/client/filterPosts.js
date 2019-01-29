@@ -19,7 +19,7 @@ function main() {
 
   client.filterPosts({ searchString: "" }, (err, response) => {
     if (err) {
-      console.err(err)
+      console.error(err)
       return
     }
     console.log(response)
