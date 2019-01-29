@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# GO_EXAMPLE_COUNT=4
- 
-# message="Hello World"
-# echo $message
-
-# for number in {1..10}; do
-#     echo $number
-# done
-
 # Node
 cp ./node/prisma.yml ../../node/cli-app/prisma
 cp ./node/prisma.yml ../../node/graphql/prisma
@@ -19,6 +10,19 @@ cp ./node/prisma.yml ../../node/script/prisma
 cp ./node/mongo/prisma.yml ../../node/docker-mongodb/prisma
 cp ./node/mysql-and-postgres/prisma.yml ../../node/docker-mysql/prisma
 cp ./node/mysql-and-postgres/prisma.yml ../../node/docker-postgres/prisma
+cp ./node/grpc/prisma.yml ../../node/grpc/prisma
+
+# Node (seeding)
+cp ./node/seed.js ../../node/graphql/prisma
+cp ./node/graphql-auth/seed.js ../../node/graphql-auth/prisma
+cp ./node/graphql-subscriptions/seed.js ../../node/graphql-subscriptions/prisma
+cp ./node/seed.js ../../node/rest-express/prisma
+cp ./node/seed.js ../../node/script/prisma
+cp ./node/grpc/seed.js ../../node/grpc/prisma
+cp ./node/cli-app/seed.js ../../node/cli-app/prisma
+cp ./node/mongo/seed.js ../../node/docker-mongodb/prisma
+cp ./node/mysql-and-postgres/seed.js ../../node/docker-mysql/prisma
+cp ./node/mysql-and-postgres/seed.js ../../node/docker-postgres/prisma
 
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma

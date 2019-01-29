@@ -4,10 +4,10 @@ endpoint: ''
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
 
-# Specifies the target location for the generated Prisma CRUD GraphQL schema.
+# Specifies the language and directory for the generated Prisma client.
 generate:
-  - generator: graphql-schema
-    output: ../src/generated/ # The schema file will be: `../src/generated/prisma.graphql`.
+  - generator: javascript-client
+    output: ../src/generated/prisma-client/
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
@@ -16,4 +16,4 @@ hooks:
 
 # Seeds initial data into the database by running a script.
 seed:
-  import: seed.graphql
+  run: node seed.js
