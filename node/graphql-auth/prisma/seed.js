@@ -4,7 +4,7 @@ async function main() {
   await prisma.createUser({
     email: "alice@prisma.io",
     name: "Alice",
-    password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m" // "secret42"
+    password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m", // "secret42"
     posts: {
       create: {
         title: "Join us for GraphQL Conf 2019 in Berlin",
@@ -16,7 +16,7 @@ async function main() {
   await prisma.createUser({
     email: "bob@prisma.io",
     name: "Bob",
-    password: "$2b$10$o6KioO.taArzboM44Ig85O3ZFZYZpR3XD7mI8T29eP4znU/.xyJbW" // "secret43"
+    password: "$2b$10$o6KioO.taArzboM44Ig85O3ZFZYZpR3XD7mI8T29eP4znU/.xyJbW", // "secret43"
     posts: {
       create: [{
         title: "Subscribe to GraphQL Weekly for community news",
