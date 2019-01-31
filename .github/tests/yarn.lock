@@ -265,9 +265,9 @@ prettier-check@2.0.0:
   dependencies:
     execa "^0.6.0"
 
-prettier@1.16.2:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.2.tgz#f60bc5929a7f9a05260cc88d5430391100092414"
+prettier@1.16.3:
+  version "1.16.3"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.3.tgz#8c62168453badef702f34b45b6ee899574a6a65d"
 
 pseudomap@^1.0.2:
   version "1.0.2"
