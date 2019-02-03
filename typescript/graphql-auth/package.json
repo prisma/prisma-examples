@@ -10,7 +10,7 @@
     "graphql-shield": "5.1.0",
     "graphql-yoga": "1.17.1",
     "jsonwebtoken": "8.4.0",
-    "nexus": "0.9.5",
+    "nexus": "0.9.6",
     "nexus-prisma": "0.0.17",
     "prisma-client-lib": "1.25.7"
   },
