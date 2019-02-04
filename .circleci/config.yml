@@ -32,8 +32,8 @@ jobs:
       - run: sudo yarn global add prisma
       # - run: cd typescript/circleci && yarn && yarn tsc
       - run: cd typescript/cli-app && yarn && prisma generate && yarn tsc
-      - run: cd typescript/graphql && yarn && prisma generate && npx nexus-prisma-generate && yarn tsc
-      - run: cd typescript/graphql-auth && yarn && prisma generate && npx nexus-prisma-generate && yarn tsc
+      - run: cd typescript/graphql && yarn && prisma generate && npx nexus-prisma-generate ./src/generated/prisma-client ./src/generated/nexus-prisma.ts && yarn tsc
+      - run: cd typescript/graphql-auth && yarn && prisma generate && npx nexus-prisma-generate ./src/generated/prisma-client ./src/generated/nexus-prisma.ts && yarn tsc
       - run: cd typescript/graphql-subscriptions && yarn && prisma generate && yarn generate && yarn tsc
       - run: cd typescript/rest-express && yarn && prisma generate && yarn tsc
       - run: cd typescript/script && yarn && prisma generate && yarn tsc
