@@ -10,7 +10,7 @@
     "graphql-shield": "4.1.0",
     "graphql-yoga": "1.16.7",
     "jsonwebtoken": "8.4.0",
-    "prisma-client-lib": "^1.27.0-alpha.11"
+    "prisma-client-lib": "^1.27.0-alpha.13"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.15",
