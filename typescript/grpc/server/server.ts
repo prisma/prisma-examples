@@ -1,9 +1,9 @@
-const chalk = require('chalk')
+import chalk from 'chalk'
 const PROTO_PATH = __dirname + '/../service.proto'
 
-const { prisma } = require('./generated/prisma-client')
-const grpc = require('grpc')
-const protoLoader = require('@grpc/proto-loader')
+import { prisma } from './generated/prisma-client'
+import * as grpc from 'grpc'
+import * as protoLoader from '@grpc/proto-loader'
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
   longs: String,
@@ -11,22 +11,22 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   defaults: true,
   oneofs: true,
 })
-const { blog } = grpc.loadPackageDefinition(packageDefinition)
+const { blog } = grpc.loadPackageDefinition(packageDefinition) as any
 
-async function post(call, callback) {
+async function post(call: any, callback: any) {
   const { id } = call.request
   const post = await prisma.post({ id })
   callback(null, post)
 }
 
-async function feed(call, callback) {
+async function feed(call: any, callback: any) {
   const feed = await prisma.posts({
     where: { published: true },
   })
   callback(null, { feed })
 }
 
-async function filterPosts(call, callback) {
+async function filterPosts(call: any, callback: any) {
   const { searchString } = call.request
   const filteredPosts = await prisma.posts({
     where: {
@@ -39,7 +39,7 @@ async function filterPosts(call, callback) {
   callback(null, { filteredPosts })
 }
 
-async function signupUser(call, callback) {
+async function signupUser(call: any, callback: any) {
   const { email, name } = call.request
   try {
     const newUser = await prisma.createUser({ name, email })
@@ -49,7 +49,7 @@ async function signupUser(call, callback) {
   }
 }
 
-async function createDraft(call, callback) {
+async function createDraft(call: any, callback: any) {
   const { title, content, authorEmail } = call.request
   try {
     const newDraft = await prisma.createPost({
@@ -63,7 +63,7 @@ async function createDraft(call, callback) {
   }
 }
 
-async function deletePost(call, callback) {
+async function deletePost(call: any, callback: any) {
   const { id } = call.request
   try {
     const deletedPost = await prisma.deletePost({ id })
@@ -73,7 +73,7 @@ async function deletePost(call, callback) {
   }
 }
 
-async function publish(call, callback) {
+async function publish(call: any, callback: any) {
   const { id } = call.request
   try {
     const publishedPost = await prisma.updatePost({
