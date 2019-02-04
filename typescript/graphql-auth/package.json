@@ -8,7 +8,7 @@
     "bcrypt": "3.0.3",
     "graphql": "14.1.1",
     "graphql-shield": "5.1.0",
-    "graphql-yoga": "1.17.1",
+    "graphql-yoga": "1.17.2",
     "jsonwebtoken": "8.4.0",
     "nexus": "0.9.7",
     "nexus-prisma": "0.0.17",
