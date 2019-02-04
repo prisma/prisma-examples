@@ -33,6 +33,7 @@ cp ./typescript/prisma.yml ../../typescript/script/prisma
 cp ./typescript/mongo/prisma.yml ../../typescript/docker-mongodb/prisma
 cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-mysql/prisma
 cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-postgres/prisma
+cp ./typescript/grpc/prisma.yml ../../typescript/grpc/prisma
 
 # TypeScript (tsconfig.json)
 cp ./typescript/tsconfig.json ../../typescript/cli-app
@@ -43,6 +44,7 @@ cp ./typescript/tsconfig.json ../../typescript/script
 cp ./typescript/tsconfig.json ../../typescript/docker-mongodb
 cp ./typescript/tsconfig.json ../../typescript/docker-mysql
 cp ./typescript/tsconfig.json ../../typescript/docker-postgres
+cp ./typescript/tsconfig.json ../../typescript/grpc
 
 # TypeScript (graphqlgen)
 cp ./typescript/graphqlgen.yml ../../typescript/graphql-subscriptions

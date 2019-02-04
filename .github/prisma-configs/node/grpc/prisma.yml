@@ -7,7 +7,7 @@ datamodel: datamodel.prisma
 # Specifies the language and directory for the generated Prisma client.
 generate:
   - generator: javascript-client
-    output: ../src/generated/prisma-client/
+    output: ../server/generated/prisma-client/
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:

@@ -1,6 +1,6 @@
 # gRPC Server Example
 
-This example shows how to implement a **gRPC API with Node.js** and Prisma.
+This example shows how to implement a **gRPC API with TypeScript** and Prisma.
 
 ## How to use
 
@@ -15,7 +15,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/node/grpc
+cd prisma-examples/typescript/grpc
 npm install
 ```
 
@@ -91,7 +91,7 @@ The server is now running on `0.0.0.0:50051`.
 
 ### 5. Using the gRPC API
 
-To use the gRPC API, you need a gRPC client. We provide several client scripts inside the [`./client`](./client) directory. Each script is named according to the operation it performs against the gRPC API O(e.g. the [`feed.js`](./client/feed.js) script sends the [`Feed`](./service.proto#L7) operation). Each script can be invoked by running the corresponding NPM script defined in [`package.json`](./package.json), e.g. `npm run feed`.
+To use the gRPC API, you need a gRPC client. We provide several client scripts inside the [`./client`](./client) directory. Each script is named according to the operation it performs against the gRPC API (e.g. the [`feed.js`](./client/feed.js) script sends the [`Feed`](./service.proto#L7) operation). Each script can be invoked by running the corresponding NPM script defined in [`package.json`](./package.json), e.g. `npm run feed`.
 
 In case you prefer a GUI client, we recommend [BloomRPC](https://github.com/uw-labs/bloomrpc):
 
@@ -99,6 +99,6 @@ In case you prefer a GUI client, we recommend [BloomRPC](https://github.com/uw-l
 
 ## Next steps
 
-- [Use Prisma with an existing database](https://www.prisma.io/docs/-a003/)
-- [Explore the Prisma client API](https://www.prisma.io/client/client-javascript)
+- [Use Prisma with an existing database](https://www.prisma.io/docs/-t003/)
+- [Explore the Prisma client API](https://www.prisma.io/client/client-typescript)
 - [Learn more about the GraphQL schema](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e/)

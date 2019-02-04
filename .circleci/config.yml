@@ -22,6 +22,7 @@ jobs:
       - run: cd node/docker-mongodb && yarn && prisma generate
       - run: cd node/docker-mysql && yarn && prisma generate
       - run: cd node/docker-postgres && yarn && prisma generate
+      - run: cd node/grpc && yarn && prisma generate
 
   typescript:
     docker:
@@ -39,6 +40,7 @@ jobs:
       - run: cd typescript/docker-mongodb && yarn && prisma generate
       - run: cd typescript/docker-mysql && yarn && prisma generate
       - run: cd typescript/docker-postgres && yarn && prisma generate
+      - run: cd typescript/grpc && yarn && prisma generate && yarn tsc
 
   flow:
     docker:
