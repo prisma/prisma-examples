@@ -26,8 +26,8 @@ cp ./node/mysql-and-postgres/seed.js ../../node/docker-postgres/prisma
 
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
-cp ./typescript/nexus/prisma.yml ../../typescript/graphql/prisma
-cp ./typescript/nexus/prisma.yml ../../typescript/graphql-auth/prisma
+cp ./typescript/graphql/prisma.yml ../../typescript/graphql/prisma
+cp ./typescript/graphql-auth/prisma.yml ../../typescript/graphql-auth/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/prisma.yml ../../typescript/script/prisma
 cp ./typescript/mongo/prisma.yml ../../typescript/docker-mongodb/prisma
