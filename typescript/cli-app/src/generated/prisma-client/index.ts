@@ -32,28 +32,24 @@ export interface Prisma {
    */
 
   todo: (where: TodoWhereUniqueInput) => TodoPromise
-  todoes: (
-    args?: {
-      where?: TodoWhereInput
-      orderBy?: TodoOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => FragmentableArray<Todo>
-  todoesConnection: (
-    args?: {
-      where?: TodoWhereInput
-      orderBy?: TodoOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => TodoConnectionPromise
+  todoes: (args?: {
+    where?: TodoWhereInput
+    orderBy?: TodoOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => FragmentableArray<Todo>
+  todoesConnection: (args?: {
+    where?: TodoWhereInput
+    orderBy?: TodoOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => TodoConnectionPromise
   node: (args: { id: ID_Output }) => Node
 
   /**
@@ -61,19 +57,19 @@ export interface Prisma {
    */
 
   createTodo: (data: TodoCreateInput) => TodoPromise
-  updateTodo: (
-    args: { data: TodoUpdateInput; where: TodoWhereUniqueInput },
-  ) => TodoPromise
-  updateManyTodoes: (
-    args: { data: TodoUpdateManyMutationInput; where?: TodoWhereInput },
-  ) => BatchPayloadPromise
-  upsertTodo: (
-    args: {
-      where: TodoWhereUniqueInput
-      create: TodoCreateInput
-      update: TodoUpdateInput
-    },
-  ) => TodoPromise
+  updateTodo: (args: {
+    data: TodoUpdateInput
+    where: TodoWhereUniqueInput
+  }) => TodoPromise
+  updateManyTodoes: (args: {
+    data: TodoUpdateManyMutationInput
+    where?: TodoWhereInput
+  }) => BatchPayloadPromise
+  upsertTodo: (args: {
+    where: TodoWhereUniqueInput
+    create: TodoCreateInput
+    update: TodoUpdateInput
+  }) => TodoPromise
   deleteTodo: (where: TodoWhereUniqueInput) => TodoPromise
   deleteManyTodoes: (where?: TodoWhereInput) => BatchPayloadPromise
 

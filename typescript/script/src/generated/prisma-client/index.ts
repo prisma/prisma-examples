@@ -33,51 +33,43 @@ export interface Prisma {
    */
 
   post: (where: PostWhereUniqueInput) => PostPromise
-  posts: (
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => FragmentableArray<Post>
-  postsConnection: (
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => PostConnectionPromise
+  posts: (args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => FragmentableArray<Post>
+  postsConnection: (args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => PostConnectionPromise
   user: (where: UserWhereUniqueInput) => UserPromise
-  users: (
-    args?: {
-      where?: UserWhereInput
-      orderBy?: UserOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => FragmentableArray<User>
-  usersConnection: (
-    args?: {
-      where?: UserWhereInput
-      orderBy?: UserOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => UserConnectionPromise
+  users: (args?: {
+    where?: UserWhereInput
+    orderBy?: UserOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => FragmentableArray<User>
+  usersConnection: (args?: {
+    where?: UserWhereInput
+    orderBy?: UserOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => UserConnectionPromise
   node: (args: { id: ID_Output }) => Node
 
   /**
@@ -85,35 +77,35 @@ export interface Prisma {
    */
 
   createPost: (data: PostCreateInput) => PostPromise
-  updatePost: (
-    args: { data: PostUpdateInput; where: PostWhereUniqueInput },
-  ) => PostPromise
-  updateManyPosts: (
-    args: { data: PostUpdateManyMutationInput; where?: PostWhereInput },
-  ) => BatchPayloadPromise
-  upsertPost: (
-    args: {
-      where: PostWhereUniqueInput
-      create: PostCreateInput
-      update: PostUpdateInput
-    },
-  ) => PostPromise
+  updatePost: (args: {
+    data: PostUpdateInput
+    where: PostWhereUniqueInput
+  }) => PostPromise
+  updateManyPosts: (args: {
+    data: PostUpdateManyMutationInput
+    where?: PostWhereInput
+  }) => BatchPayloadPromise
+  upsertPost: (args: {
+    where: PostWhereUniqueInput
+    create: PostCreateInput
+    update: PostUpdateInput
+  }) => PostPromise
   deletePost: (where: PostWhereUniqueInput) => PostPromise
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise
   createUser: (data: UserCreateInput) => UserPromise
-  updateUser: (
-    args: { data: UserUpdateInput; where: UserWhereUniqueInput },
-  ) => UserPromise
-  updateManyUsers: (
-    args: { data: UserUpdateManyMutationInput; where?: UserWhereInput },
-  ) => BatchPayloadPromise
-  upsertUser: (
-    args: {
-      where: UserWhereUniqueInput
-      create: UserCreateInput
-      update: UserUpdateInput
-    },
-  ) => UserPromise
+  updateUser: (args: {
+    data: UserUpdateInput
+    where: UserWhereUniqueInput
+  }) => UserPromise
+  updateManyUsers: (args: {
+    data: UserUpdateManyMutationInput
+    where?: UserWhereInput
+  }) => BatchPayloadPromise
+  upsertUser: (args: {
+    where: UserWhereUniqueInput
+    create: UserCreateInput
+    update: UserUpdateInput
+  }) => UserPromise
   deleteUser: (where: UserWhereUniqueInput) => UserPromise
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise
 
@@ -753,17 +745,15 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>
   email: () => Promise<String>
   name: () => Promise<String>
-  posts: <T = FragmentableArray<Post>>(
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
+  posts: <T = FragmentableArray<Post>>(args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
 }
 
 export interface UserSubscription
@@ -772,17 +762,15 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>
   email: () => Promise<AsyncIterator<String>>
   name: () => Promise<AsyncIterator<String>>
-  posts: <T = Promise<AsyncIterator<PostSubscription>>>(
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
+  posts: <T = Promise<AsyncIterator<PostSubscription>>>(args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
 }
 
 export interface UserConnection {}

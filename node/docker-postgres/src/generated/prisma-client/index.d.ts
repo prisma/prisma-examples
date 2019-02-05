@@ -39,74 +39,62 @@ export interface Prisma {
    */
 
   comment: (where: CommentWhereUniqueInput) => CommentPromise
-  comments: (
-    args?: {
-      where?: CommentWhereInput
-      orderBy?: CommentOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => FragmentableArray<Comment>
-  commentsConnection: (
-    args?: {
-      where?: CommentWhereInput
-      orderBy?: CommentOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => CommentConnectionPromise
+  comments: (args?: {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => FragmentableArray<Comment>
+  commentsConnection: (args?: {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => CommentConnectionPromise
   post: (where: PostWhereUniqueInput) => PostPromise
-  posts: (
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => FragmentableArray<Post>
-  postsConnection: (
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => PostConnectionPromise
+  posts: (args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => FragmentableArray<Post>
+  postsConnection: (args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => PostConnectionPromise
   user: (where: UserWhereUniqueInput) => UserPromise
-  users: (
-    args?: {
-      where?: UserWhereInput
-      orderBy?: UserOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => FragmentableArray<User>
-  usersConnection: (
-    args?: {
-      where?: UserWhereInput
-      orderBy?: UserOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => UserConnectionPromise
+  users: (args?: {
+    where?: UserWhereInput
+    orderBy?: UserOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => FragmentableArray<User>
+  usersConnection: (args?: {
+    where?: UserWhereInput
+    orderBy?: UserOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => UserConnectionPromise
   node: (args: { id: ID_Output }) => Node
 
   /**
@@ -114,51 +102,51 @@ export interface Prisma {
    */
 
   createComment: (data: CommentCreateInput) => CommentPromise
-  updateComment: (
-    args: { data: CommentUpdateInput; where: CommentWhereUniqueInput },
-  ) => CommentPromise
-  updateManyComments: (
-    args: { data: CommentUpdateManyMutationInput; where?: CommentWhereInput },
-  ) => BatchPayloadPromise
-  upsertComment: (
-    args: {
-      where: CommentWhereUniqueInput
-      create: CommentCreateInput
-      update: CommentUpdateInput
-    },
-  ) => CommentPromise
+  updateComment: (args: {
+    data: CommentUpdateInput
+    where: CommentWhereUniqueInput
+  }) => CommentPromise
+  updateManyComments: (args: {
+    data: CommentUpdateManyMutationInput
+    where?: CommentWhereInput
+  }) => BatchPayloadPromise
+  upsertComment: (args: {
+    where: CommentWhereUniqueInput
+    create: CommentCreateInput
+    update: CommentUpdateInput
+  }) => CommentPromise
   deleteComment: (where: CommentWhereUniqueInput) => CommentPromise
   deleteManyComments: (where?: CommentWhereInput) => BatchPayloadPromise
   createPost: (data: PostCreateInput) => PostPromise
-  updatePost: (
-    args: { data: PostUpdateInput; where: PostWhereUniqueInput },
-  ) => PostPromise
-  updateManyPosts: (
-    args: { data: PostUpdateManyMutationInput; where?: PostWhereInput },
-  ) => BatchPayloadPromise
-  upsertPost: (
-    args: {
-      where: PostWhereUniqueInput
-      create: PostCreateInput
-      update: PostUpdateInput
-    },
-  ) => PostPromise
+  updatePost: (args: {
+    data: PostUpdateInput
+    where: PostWhereUniqueInput
+  }) => PostPromise
+  updateManyPosts: (args: {
+    data: PostUpdateManyMutationInput
+    where?: PostWhereInput
+  }) => BatchPayloadPromise
+  upsertPost: (args: {
+    where: PostWhereUniqueInput
+    create: PostCreateInput
+    update: PostUpdateInput
+  }) => PostPromise
   deletePost: (where: PostWhereUniqueInput) => PostPromise
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise
   createUser: (data: UserCreateInput) => UserPromise
-  updateUser: (
-    args: { data: UserUpdateInput; where: UserWhereUniqueInput },
-  ) => UserPromise
-  updateManyUsers: (
-    args: { data: UserUpdateManyMutationInput; where?: UserWhereInput },
-  ) => BatchPayloadPromise
-  upsertUser: (
-    args: {
-      where: UserWhereUniqueInput
-      create: UserCreateInput
-      update: UserUpdateInput
-    },
-  ) => UserPromise
+  updateUser: (args: {
+    data: UserUpdateInput
+    where: UserWhereUniqueInput
+  }) => UserPromise
+  updateManyUsers: (args: {
+    data: UserUpdateManyMutationInput
+    where?: UserWhereInput
+  }) => BatchPayloadPromise
+  upsertUser: (args: {
+    where: UserWhereUniqueInput
+    create: UserCreateInput
+    update: UserUpdateInput
+  }) => UserPromise
   deleteUser: (where: UserWhereUniqueInput) => UserPromise
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise
 
@@ -859,17 +847,15 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
   content: () => Promise<String>
   published: () => Promise<Boolean>
   author: <T = UserPromise>() => T
-  comments: <T = FragmentableArray<Comment>>(
-    args?: {
-      where?: CommentWhereInput
-      orderBy?: CommentOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
 }
 
 export interface PostSubscription
@@ -882,17 +868,15 @@ export interface PostSubscription
   content: () => Promise<AsyncIterator<String>>
   published: () => Promise<AsyncIterator<Boolean>>
   author: <T = UserSubscription>() => T
-  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(
-    args?: {
-      where?: CommentWhereInput
-      orderBy?: CommentOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(args?: {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
 }
 
 export interface AggregateComment {
@@ -1151,28 +1135,24 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>
   email: () => Promise<String>
   name: () => Promise<String>
-  posts: <T = FragmentableArray<Post>>(
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
-  comments: <T = FragmentableArray<Comment>>(
-    args?: {
-      where?: CommentWhereInput
-      orderBy?: CommentOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
+  posts: <T = FragmentableArray<Post>>(args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
+  comments: <T = FragmentableArray<Comment>>(args?: {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
 }
 
 export interface UserSubscription
@@ -1181,28 +1161,24 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>
   email: () => Promise<AsyncIterator<String>>
   name: () => Promise<AsyncIterator<String>>
-  posts: <T = Promise<AsyncIterator<PostSubscription>>>(
-    args?: {
-      where?: PostWhereInput
-      orderBy?: PostOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
-  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(
-    args?: {
-      where?: CommentWhereInput
-      orderBy?: CommentOrderByInput
-      skip?: Int
-      after?: String
-      before?: String
-      first?: Int
-      last?: Int
-    },
-  ) => T
+  posts: <T = Promise<AsyncIterator<PostSubscription>>>(args?: {
+    where?: PostWhereInput
+    orderBy?: PostOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
+  comments: <T = Promise<AsyncIterator<CommentSubscription>>>(args?: {
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByInput
+    skip?: Int
+    after?: String
+    before?: String
+    first?: Int
+    last?: Int
+  }) => T
 }
 
 export interface UserSubscriptionPayload {
