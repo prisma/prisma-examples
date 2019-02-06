@@ -5,7 +5,7 @@
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src"
   },
   "dependencies": {
-    "bcrypt": "3.0.3",
+    "bcrypt": "3.0.4",
     "graphql": "14.1.1",
     "graphql-shield": "5.1.2",
     "graphql-yoga": "1.17.4",
