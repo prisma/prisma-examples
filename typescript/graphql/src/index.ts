@@ -2,121 +2,139 @@ import { GraphQLServer } from 'graphql-yoga'
 import { prisma } from './generated/prisma-client'
 import * as path from 'path'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
-import { stringArg, idArg } from 'nexus'
+import { stringArg, idArg, queryType, objectType } from 'nexus'
+import schemaConfig from './generated/nexus-prisma'
+import { Context } from './types'
 
-const Post = prismaObjectType('Post')
-const User = prismaObjectType('User', t => {
-  t.prismaFields([
-    'id',
-    'name',
-    'email',
-    {
-      name: 'posts',
-      args: [], // remove the arguments from the `posts` field of the `User` type in the Prisma schema
-    },
-  ])
+const User = prismaObjectType({
+  name: 'User',
+  definition(t) {
+    t.prismaFields([
+      'id',
+      'name',
+      'email',
+      {
+        name: 'posts',
+        args: [], // remove the arguments from the `posts` field of the `User` type in the Prisma schema
+      },
+    ])
+  }
 })
 
-const Query = prismaObjectType('Query', t => {
-  t.field('feed', 'Post', {
-    list: true,
-    resolve: (parent, args, ctx) => {
-      return ctx.prisma.posts({
-        where: { published: true },
-      })
-    },
-  })
+const Query = queryType({
+  definition(t) {
 
-  t.field('filterPosts', 'Post', {
-    list: true,
-    args: {
-      searchString: stringArg({ nullable: true }),
-    },
-    resolve: (parent, { searchString }, ctx) => {
-      return ctx.prisma.posts({
-        where: {
-          OR: [
-            { title_contains: searchString },
-            { content_contains: searchString },
-          ],
-        },
-      })
-    },
-  })
+    t.list.field('feed', {
+      type: 'Post',
+      resolve: (parent, args, ctx) => {
+        return ctx.prisma.posts({
+          where: { published: true },
+        })
+      },
+    })
 
-  t.field('post', 'Post', {
-    nullable: true,
-    args: {
-      id: idArg(),
-    },
-    resolve: (parent, { id }, ctx) => {
-      return ctx.prisma.post({ id })
-    },
-  })
+    t.list.field('filterPosts', {
+      type: 'Post',
+      args: {
+        searchString: stringArg({ nullable: true }),
+      },
+      resolve: (parent, { searchString }, ctx) => {
+        return ctx.prisma.posts({
+          where: {
+            OR: [
+              { title_contains: searchString },
+              { content_contains: searchString },
+            ],
+          },
+        })
+      },
+    })
+
+    t.list.field('post', {
+      type: 'Post',
+      nullable: true,
+      args: {
+        id: idArg(),
+      },
+      resolve: (parent, { id }, ctx) => {
+        return ctx.prisma.post({ id })
+      },
+    })
+
+
+  }
 })
 
-const Mutation = prismaObjectType('Mutation', t => {
-  t.field('signupUser', 'User', {
-    args: {
-      name: stringArg({ nullable: true }),
-      email: stringArg(),
-    },
-    resolve: (parent, { name, email }, ctx) => {
-      return ctx.prisma.createUser({
-        name,
-        email,
-      })
-    },
-  })
+const Mutation = prismaObjectType({
+  name: 'Mutation',
+  definition(t) {
 
-  t.field('createDraft', 'Post', {
-    args: {
-      title: stringArg(),
-      content: stringArg({ nullable: true }),
-      authorEmail: stringArg(),
-    },
-    resolve: (parent, { title, content, authorEmail }, ctx) => {
-      return ctx.prisma.createPost({
-        title,
-        content,
-        author: {
-          connect: { email: authorEmail },
-        },
-      })
-    },
-  })
+    t.field('signupUser', {
+      type: 'User',
+      args: {
+        name: stringArg({ nullable: true }),
+        email: stringArg(),
+      },
+      resolve: (parent, { name, email }, ctx) => {
+        return ctx.prisma.createUser({
+          name,
+          email,
+        })
+      },
+    })
 
-  t.field('deletePost', 'Post', {
-    nullable: true,
-    args: {
-      id: idArg(),
-    },
-    resolve: (parent, { id }, ctx) => {
-      return ctx.prisma.deletePost({ id })
-    },
-  })
+    t.field('createDraft', {
+      type: 'Post',
+      args: {
+        title: stringArg(),
+        content: stringArg({ nullable: true }),
+        authorEmail: stringArg(),
+      },
+      resolve: (parent, { title, content, authorEmail }, ctx) => {
+        return ctx.prisma.createPost({
+          title,
+          content,
+          author: {
+            connect: { email: authorEmail },
+          },
+        })
+      },
+    })
 
-  t.field('publish', 'Post', {
-    nullable: true,
-    args: {
-      id: idArg(),
-    },
-    resolve: (parent, { id }, ctx) => {
-      return ctx.prisma.updatePost({
-        where: { id },
-        data: { published: true },
-      })
-    },
-  })
+    t.field('deletePost', {
+      type: 'Post',
+      nullable: true,
+      args: {
+        id: idArg(),
+      },
+      resolve: (parent, { id }, ctx) => {
+        return ctx.prisma.deletePost({ id })
+      },
+    })
+
+    t.field('publish', {
+      type: 'Post',
+      nullable: true,
+      args: {
+        id: idArg(),
+      },
+      resolve: (parent, { id }, ctx) => {
+        return ctx.prisma.updatePost({
+          where: { id },
+          data: { published: true },
+        })
+      },
+    })
+  }
 })
 
 export const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
-  types: [Query, Mutation, User, Post],
+  types: [Query, Mutation, User],
 
   // Configure the interface to Prisma
   prisma: {
-    schemaPath: path.join(__dirname, './generated/prisma.graphql'),
+    schemaConfig,
     contextClientName: 'prisma',
   },
 
@@ -127,20 +145,20 @@ export const schema = makePrismaSchema({
   },
 
   // Configure nullability of input arguments: All arguments are non-nullable by default
-  nullability: {
+  nonNullDefaults: {
     input: false,
-    inputList: false,
+    output: false
   },
 
   // Configure automatic type resolution for the TS representations of the associated types
   typegenAutoConfig: {
     sources: [
       {
-        module: path.join(__dirname, './generated/prisma-client/index.ts'),
+        source: path.join(__dirname, './generated/prisma-client/index.ts'),
         alias: 'prisma',
       },
       {
-        module: path.join(__dirname, './types.ts'),
+        source: path.join(__dirname, './types.ts'),
         alias: 'types',
       },
     ],

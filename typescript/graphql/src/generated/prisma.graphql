@@ -216,6 +216,7 @@ input PostUpdateManyWithoutAuthorInput {
   create: [PostCreateWithoutAuthorInput!]
   delete: [PostWhereUniqueInput!]
   connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
   disconnect: [PostWhereUniqueInput!]
   update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
   upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
