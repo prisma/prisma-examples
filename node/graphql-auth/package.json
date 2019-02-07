@@ -6,7 +6,7 @@
     "graphql-shield": "5.1.2",
     "graphql-yoga": "1.17.4",
     "jsonwebtoken": "8.4.0",
-    "prisma-client-lib": "1.26.1"
+    "prisma-client-lib": "1.26.2"
   },
   "scripts": {
     "start": "node src/index.js"
