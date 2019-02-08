@@ -6,7 +6,6 @@ import { permissions } from './permissions'
 import * as allTypes from './resolvers'
 import nexusPrismaSchema from './generated/nexus-prisma'
 
-
 const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
   types: allTypes,

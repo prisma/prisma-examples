@@ -41,7 +41,8 @@ cp ./typescript/tsconfig-graphql.json ../../typescript/graphql
 mv ../../typescript/graphql/tsconfig-graphql.json ../../typescript/graphql/tsconfig.json
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-auth
 mv ../../typescript/graphql-auth/tsconfig-graphql.json ../../typescript/graphql-auth/tsconfig.json
-cp ./typescript/tsconfig.json ../../typescript/graphql-subscriptions
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-subscriptions
+mv ../../typescript/graphql-subscriptions/tsconfig-graphql.json ../../typescript/graphql-subscriptions/tsconfig.json
 cp ./typescript/tsconfig.json ../../typescript/script
 cp ./typescript/tsconfig.json ../../typescript/docker-mongodb
 cp ./typescript/tsconfig.json ../../typescript/docker-mysql

@@ -5,7 +5,7 @@ export const AuthPayload = objectType({
   definition(t) {
     t.string('token')
     t.field('user', {
-      type: 'User'
+      type: 'User',
     })
-  }
+  },
 })

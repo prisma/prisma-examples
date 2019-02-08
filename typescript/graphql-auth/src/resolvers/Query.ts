@@ -41,10 +41,10 @@ export const Query = queryType({
     t.field('post', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg(), },
+      args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post({ id })
       },
     })
-  }
+  },
 })
