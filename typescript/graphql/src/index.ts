@@ -49,16 +49,24 @@ const Query = queryType({
       },
     })
 
-    t.list.field('post', {
+    t.field('post', {
       type: 'Post',
       nullable: true,
-      args: {
-        id: idArg(),
-      },
+      args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post({ id })
       },
     })
+    // t.field('post', {
+    //   type: 'Post',
+    //   nullable: true,
+    //   args: {
+    //     id: idArg(),
+    //   },
+    //   resolve: (parent, args, ctx) => {
+    //     return ctx.prisma.post({ id: args.id })
+    //   },
+    // })
   },
 })
 
