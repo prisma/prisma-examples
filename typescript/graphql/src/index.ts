@@ -3,7 +3,7 @@ import { prisma } from './generated/prisma-client'
 import * as path from 'path'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import { stringArg, idArg, queryType, objectType } from 'nexus'
-import schemaConfig from './generated/nexus-prisma'
+import nexusPrismaSchema from './generated/nexus-prisma'
 import { Context } from './types'
 
 const User = prismaObjectType({
@@ -18,12 +18,11 @@ const User = prismaObjectType({
         args: [], // remove the arguments from the `posts` field of the `User` type in the Prisma schema
       },
     ])
-  }
+  },
 })
 
 const Query = queryType({
   definition(t) {
-
     t.list.field('feed', {
       type: 'Post',
       resolve: (parent, args, ctx) => {
@@ -60,15 +59,12 @@ const Query = queryType({
         return ctx.prisma.post({ id })
       },
     })
-
-
-  }
+  },
 })
 
 const Mutation = prismaObjectType({
   name: 'Mutation',
   definition(t) {
-
     t.field('signupUser', {
       type: 'User',
       args: {
@@ -125,7 +121,7 @@ const Mutation = prismaObjectType({
         })
       },
     })
-  }
+  },
 })
 
 export const schema = makePrismaSchema({
@@ -134,7 +130,7 @@ export const schema = makePrismaSchema({
 
   // Configure the interface to Prisma
   prisma: {
-    schemaConfig,
+    nexusPrismaSchema,
     contextClientName: 'prisma',
   },
 
@@ -147,7 +143,7 @@ export const schema = makePrismaSchema({
   // Configure nullability of input arguments: All arguments are non-nullable by default
   nonNullDefaults: {
     input: false,
-    output: false
+    output: false,
   },
 
   // Configure automatic type resolution for the TS representations of the associated types

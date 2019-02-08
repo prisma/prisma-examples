@@ -37,8 +37,10 @@ cp ./typescript/grpc/prisma.yml ../../typescript/grpc/prisma
 
 # TypeScript (tsconfig.json)
 cp ./typescript/tsconfig.json ../../typescript/cli-app
-cp ./typescript/tsconfig.json ../../typescript/graphql
-cp ./typescript/tsconfig.json ../../typescript/graphql-auth
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql
+mv ../../typescript/graphql/tsconfig-graphql.json ../../typescript/graphql/tsconfig.json
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-auth
+mv ../../typescript/graphql-auth/tsconfig-graphql.json ../../typescript/graphql-auth/tsconfig.json
 cp ./typescript/tsconfig.json ../../typescript/graphql-subscriptions
 cp ./typescript/tsconfig.json ../../typescript/script
 cp ./typescript/tsconfig.json ../../typescript/docker-mongodb
