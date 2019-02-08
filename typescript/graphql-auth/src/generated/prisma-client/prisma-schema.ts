@@ -231,6 +231,7 @@ export const typeDefs = /* GraphQL */ `
     create: [PostCreateWithoutAuthorInput!]
     delete: [PostWhereUniqueInput!]
     connect: [PostWhereUniqueInput!]
+    set: [PostWhereUniqueInput!]
     disconnect: [PostWhereUniqueInput!]
     update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
     upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
