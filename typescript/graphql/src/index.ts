@@ -57,16 +57,6 @@ const Query = queryType({
         return ctx.prisma.post({ id })
       },
     })
-    // t.field('post', {
-    //   type: 'Post',
-    //   nullable: true,
-    //   args: {
-    //     id: idArg(),
-    //   },
-    //   resolve: (parent, args, ctx) => {
-    //     return ctx.prisma.post({ id: args.id })
-    //   },
-    // })
   },
 })
 
