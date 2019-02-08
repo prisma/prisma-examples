@@ -4,14 +4,16 @@ import * as path from 'path'
 import { makePrismaSchema } from 'nexus-prisma'
 import { permissions } from './permissions'
 import * as allTypes from './resolvers'
+import nexusPrismaSchema from './generated/nexus-prisma'
 
-export const schema = makePrismaSchema({
+
+const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
   types: allTypes,
 
   // Configure the interface to Prisma
   prisma: {
-    schemaPath: path.join(__dirname, './generated/prisma.graphql'),
+    nexusPrismaSchema,
     contextClientName: 'prisma',
   },
 
@@ -22,20 +24,16 @@ export const schema = makePrismaSchema({
   },
 
   // Configure nullability of input arguments: All arguments are non-nullable by default
-  nullability: {
+  nonNullDefaults: {
     input: false,
-    inputList: false,
+    output: false,
   },
 
   // Configure automatic type resolution for the TS representations of the associated types
   typegenAutoConfig: {
     sources: [
       {
-        module: path.join(__dirname, './generated/prisma-client/index.ts'),
-        alias: 'prisma',
-      },
-      {
-        module: path.join(__dirname, './types.ts'),
+        source: path.join(__dirname, './types.ts'),
         alias: 'types',
       },
     ],

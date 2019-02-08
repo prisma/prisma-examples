@@ -122,7 +122,7 @@ const Mutation = prismaObjectType({
   },
 })
 
-export const schema = makePrismaSchema({
+const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
   types: [Query, Mutation, User],
 
@@ -147,10 +147,6 @@ export const schema = makePrismaSchema({
   // Configure automatic type resolution for the TS representations of the associated types
   typegenAutoConfig: {
     sources: [
-      {
-        source: path.join(__dirname, './generated/prisma-client/index.ts'),
-        alias: 'prisma',
-      },
       {
         source: path.join(__dirname, './types.ts'),
         alias: 'types',
