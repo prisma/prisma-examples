@@ -6,7 +6,7 @@
   "dependencies": {
     "graphql": "14.1.1",
     "graphql-yoga": "1.17.4",
-    "nexus": "0.9.9",
+    "nexus": "0.9.11",
     "nexus-prisma": "0.1.6",
     "prisma-client-lib": "1.26.4"
   },
