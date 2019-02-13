@@ -3,7 +3,7 @@ import { prisma } from './generated/prisma-client'
 import * as path from 'path'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import { stringArg, idArg, queryType, objectType } from 'nexus'
-import nexusPrismaSchema from './generated/nexus-prisma'
+import metaSchema from './generated/nexus-prisma'
 import { Context } from './types'
 
 const User = prismaObjectType({
@@ -128,8 +128,8 @@ const schema = makePrismaSchema({
 
   // Configure the interface to Prisma
   prisma: {
-    nexusPrismaSchema,
-    contextClientName: 'prisma',
+    metaSchema,
+    client: prisma,
   },
 
   // Specify where Nexus should put the generated files
