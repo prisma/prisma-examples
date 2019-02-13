@@ -2,7 +2,7 @@
   "name": "docker-postgres",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "1.26.4"
+    "prisma-client-lib": "1.26.5"
   },
   "scripts": {
     "start": "node src/script.js"
