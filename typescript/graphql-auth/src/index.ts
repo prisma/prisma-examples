@@ -4,7 +4,7 @@ import * as path from 'path'
 import { makePrismaSchema } from 'nexus-prisma'
 import { permissions } from './permissions'
 import * as allTypes from './resolvers'
-import nexusPrismaSchema from './generated/nexus-prisma'
+import metaSchema from './generated/nexus-prisma'
 
 const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
@@ -12,8 +12,8 @@ const schema = makePrismaSchema({
 
   // Configure the interface to Prisma
   prisma: {
-    nexusPrismaSchema,
-    contextClientName: 'prisma',
+    metaSchema,
+    client: prisma,
   },
 
   // Specify where Nexus should put the generated files
