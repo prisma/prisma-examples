@@ -1,10 +1,9 @@
 import { GraphQLServer } from 'graphql-yoga'
-import { prisma } from './generated/prisma-client'
-import * as path from 'path'
+import { idArg, queryType, stringArg } from 'nexus'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
-import { stringArg, idArg, queryType, objectType } from 'nexus'
+import * as path from 'path'
 import datamodelInfo from './generated/nexus-prisma'
-import { Context } from './types'
+import { prisma } from './generated/prisma-client'
 
 const User = prismaObjectType({
   name: 'User',

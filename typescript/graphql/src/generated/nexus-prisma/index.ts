@@ -1,1 +1,1 @@
-export { default } from './nexus-prisma'
+export { default } from './datamodel-info'
