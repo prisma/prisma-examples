@@ -3,7 +3,7 @@ import { prisma } from './generated/prisma-client'
 import * as path from 'path'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import { stringArg, idArg, queryType, objectType } from 'nexus'
-import metaSchema from './generated/nexus-prisma'
+import datamodelInfo from './generated/nexus-prisma'
 import { Context } from './types'
 
 const User = prismaObjectType({
@@ -128,7 +128,7 @@ const schema = makePrismaSchema({
 
   // Configure the interface to Prisma
   prisma: {
-    metaSchema,
+    datamodelInfo,
     client: prisma,
   },
 
