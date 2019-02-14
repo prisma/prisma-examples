@@ -80,9 +80,9 @@ export interface NexusPrismaTypes {
     }
   }
   enumTypes: {
-    PostOrderByInput: PostOrderByInputValues,
-    UserOrderByInput: UserOrderByInputValues,
-    MutationType: MutationTypeValues,
+    PostOrderByInput: PostOrderByInputValues
+    UserOrderByInput: UserOrderByInputValues
+    MutationType: MutationTypeValues
   }
 }
 
@@ -90,13 +90,21 @@ export interface NexusPrismaTypes {
 
 type QueryObject =
   | QueryFields
-  | { name: 'post', args?: QueryPostArgs[] | false, alias?: string  } 
-  | { name: 'posts', args?: QueryPostsArgs[] | false, alias?: string  } 
-  | { name: 'postsConnection', args?: QueryPostsConnectionArgs[] | false, alias?: string  } 
-  | { name: 'user', args?: QueryUserArgs[] | false, alias?: string  } 
-  | { name: 'users', args?: QueryUsersArgs[] | false, alias?: string  } 
-  | { name: 'usersConnection', args?: QueryUsersConnectionArgs[] | false, alias?: string  } 
-  | { name: 'node', args?: QueryNodeArgs[] | false, alias?: string  } 
+  | { name: 'post'; args?: QueryPostArgs[] | false; alias?: string }
+  | { name: 'posts'; args?: QueryPostsArgs[] | false; alias?: string }
+  | {
+      name: 'postsConnection'
+      args?: QueryPostsConnectionArgs[] | false
+      alias?: string
+    }
+  | { name: 'user'; args?: QueryUserArgs[] | false; alias?: string }
+  | { name: 'users'; args?: QueryUsersArgs[] | false; alias?: string }
+  | {
+      name: 'usersConnection'
+      args?: QueryUsersConnectionArgs[] | false
+      alias?: string
+    }
+  | { name: 'node'; args?: QueryNodeArgs[] | false; alias?: string }
 
 type QueryFields =
   | 'post'
@@ -107,9 +115,7 @@ type QueryFields =
   | 'usersConnection'
   | 'node'
 
-
-type QueryPostArgs =
-  | 'where'
+type QueryPostArgs = 'where'
 type QueryPostsArgs =
   | 'where'
   | 'orderBy'
@@ -126,8 +132,7 @@ type QueryPostsConnectionArgs =
   | 'before'
   | 'first'
   | 'last'
-type QueryUserArgs =
-  | 'where'
+type QueryUserArgs = 'where'
 type QueryUsersArgs =
   | 'where'
   | 'orderBy'
@@ -144,9 +149,7 @@ type QueryUsersConnectionArgs =
   | 'before'
   | 'first'
   | 'last'
-type QueryNodeArgs =
-  | 'id'
-  
+type QueryNodeArgs = 'id'
 
 export interface QueryFieldDetails {
   post: {
@@ -156,10 +159,10 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where: PostWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: { where: PostWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   posts: {
@@ -169,10 +172,18 @@ export interface QueryFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: PostWhereInput | null, orderBy?: prisma.PostOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: {
+        where?: PostWhereInput | null
+        orderBy?: prisma.PostOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post[]> | prisma.Post[]
   }
   postsConnection: {
@@ -182,10 +193,18 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: PostWhereInput | null, orderBy?: prisma.PostOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: {
+        where?: PostWhereInput | null
+        orderBy?: prisma.PostOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PostConnection> | prisma.PostConnection
   }
   user: {
@@ -195,10 +214,10 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where: UserWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: { where: UserWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User | null> | prisma.User | null
   }
   users: {
@@ -208,10 +227,18 @@ export interface QueryFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: {
+        where?: UserWhereInput | null
+        orderBy?: prisma.UserOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User[]> | prisma.User[]
   }
   usersConnection: {
@@ -221,10 +248,18 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: UserWhereInput | null, orderBy?: prisma.UserOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: {
+        where?: UserWhereInput | null
+        orderBy?: prisma.UserOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.UserConnection> | prisma.UserConnection
   }
   node: {
@@ -234,26 +269,25 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { id: string }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: { id: string },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Node | null> | prisma.Node | null
   }
 }
-  
 
 // Types for Post
 
 type PostObject =
   | PostFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'createdAt', args?: [] | false, alias?: string  } 
-  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'published', args?: [] | false, alias?: string  } 
-  | { name: 'title', args?: [] | false, alias?: string  } 
-  | { name: 'content', args?: [] | false, alias?: string  } 
-  | { name: 'author', args?: [] | false, alias?: string  } 
+  | { name: 'id'; args?: [] | false; alias?: string }
+  | { name: 'createdAt'; args?: [] | false; alias?: string }
+  | { name: 'updatedAt'; args?: [] | false; alias?: string }
+  | { name: 'published'; args?: [] | false; alias?: string }
+  | { name: 'title'; args?: [] | false; alias?: string }
+  | { name: 'content'; args?: [] | false; alias?: string }
+  | { name: 'author'; args?: [] | false; alias?: string }
 
 type PostFields =
   | 'id'
@@ -263,10 +297,6 @@ type PostFields =
   | 'title'
   | 'content'
   | 'author'
-
-
-
-  
 
 export interface PostFieldDetails {
   id: {
@@ -324,32 +354,25 @@ export interface PostFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Post">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Post'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User> | prisma.User
   }
 }
-  
 
 // Types for User
 
 type UserObject =
   | UserFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'email', args?: [] | false, alias?: string  } 
-  | { name: 'password', args?: [] | false, alias?: string  } 
-  | { name: 'name', args?: [] | false, alias?: string  } 
-  | { name: 'posts', args?: UserPostsArgs[] | false, alias?: string  } 
+  | { name: 'id'; args?: [] | false; alias?: string }
+  | { name: 'email'; args?: [] | false; alias?: string }
+  | { name: 'password'; args?: [] | false; alias?: string }
+  | { name: 'name'; args?: [] | false; alias?: string }
+  | { name: 'posts'; args?: UserPostsArgs[] | false; alias?: string }
 
-type UserFields =
-  | 'id'
-  | 'email'
-  | 'password'
-  | 'name'
-  | 'posts'
-
+type UserFields = 'id' | 'email' | 'password' | 'name' | 'posts'
 
 type UserPostsArgs =
   | 'where'
@@ -359,7 +382,6 @@ type UserPostsArgs =
   | 'before'
   | 'first'
   | 'last'
-  
 
 export interface UserFieldDetails {
   id: {
@@ -401,31 +423,31 @@ export interface UserFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"User">,
-      args: { where?: PostWhereInput | null, orderBy?: prisma.PostOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'User'>,
+      args: {
+        where?: PostWhereInput | null
+        orderBy?: prisma.PostOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post[]> | prisma.Post[]
   }
 }
-  
 
 // Types for PostConnection
 
 type PostConnectionObject =
   | PostConnectionFields
-  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
-  | { name: 'edges', args?: [] | false, alias?: string  } 
-  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+  | { name: 'pageInfo'; args?: [] | false; alias?: string }
+  | { name: 'edges'; args?: [] | false; alias?: string }
+  | { name: 'aggregate'; args?: [] | false; alias?: string }
 
-type PostConnectionFields =
-  | 'pageInfo'
-  | 'edges'
-  | 'aggregate'
-
-
-
-  
+type PostConnectionFields = 'pageInfo' | 'edges' | 'aggregate'
 
 export interface PostConnectionFieldDetails {
   pageInfo: {
@@ -435,10 +457,10 @@ export interface PostConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PageInfo> | prisma.PageInfo
   }
   edges: {
@@ -448,10 +470,10 @@ export interface PostConnectionFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"PostConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PostEdge[]> | prisma.PostEdge[]
   }
   aggregate: {
@@ -461,33 +483,28 @@ export interface PostConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.AggregatePost> | prisma.AggregatePost
   }
 }
-  
 
 // Types for PageInfo
 
 type PageInfoObject =
   | PageInfoFields
-  | { name: 'hasNextPage', args?: [] | false, alias?: string  } 
-  | { name: 'hasPreviousPage', args?: [] | false, alias?: string  } 
-  | { name: 'startCursor', args?: [] | false, alias?: string  } 
-  | { name: 'endCursor', args?: [] | false, alias?: string  } 
+  | { name: 'hasNextPage'; args?: [] | false; alias?: string }
+  | { name: 'hasPreviousPage'; args?: [] | false; alias?: string }
+  | { name: 'startCursor'; args?: [] | false; alias?: string }
+  | { name: 'endCursor'; args?: [] | false; alias?: string }
 
 type PageInfoFields =
   | 'hasNextPage'
   | 'hasPreviousPage'
   | 'startCursor'
   | 'endCursor'
-
-
-
-  
 
 export interface PageInfoFieldDetails {
   hasNextPage: {
@@ -523,22 +540,15 @@ export interface PageInfoFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for PostEdge
 
 type PostEdgeObject =
   | PostEdgeFields
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'cursor', args?: [] | false, alias?: string  } 
+  | { name: 'node'; args?: [] | false; alias?: string }
+  | { name: 'cursor'; args?: [] | false; alias?: string }
 
-type PostEdgeFields =
-  | 'node'
-  | 'cursor'
-
-
-
-  
+type PostEdgeFields = 'node' | 'cursor'
 
 export interface PostEdgeFieldDetails {
   node: {
@@ -548,10 +558,10 @@ export interface PostEdgeFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostEdge">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostEdge'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post> | prisma.Post
   }
   cursor: {
@@ -563,20 +573,14 @@ export interface PostEdgeFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for AggregatePost
 
 type AggregatePostObject =
   | AggregatePostFields
-  | { name: 'count', args?: [] | false, alias?: string  } 
+  | { name: 'count'; args?: [] | false; alias?: string }
 
-type AggregatePostFields =
-  | 'count'
-
-
-
-  
+type AggregatePostFields = 'count'
 
 export interface AggregatePostFieldDetails {
   count: {
@@ -588,24 +592,16 @@ export interface AggregatePostFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for UserConnection
 
 type UserConnectionObject =
   | UserConnectionFields
-  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
-  | { name: 'edges', args?: [] | false, alias?: string  } 
-  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+  | { name: 'pageInfo'; args?: [] | false; alias?: string }
+  | { name: 'edges'; args?: [] | false; alias?: string }
+  | { name: 'aggregate'; args?: [] | false; alias?: string }
 
-type UserConnectionFields =
-  | 'pageInfo'
-  | 'edges'
-  | 'aggregate'
-
-
-
-  
+type UserConnectionFields = 'pageInfo' | 'edges' | 'aggregate'
 
 export interface UserConnectionFieldDetails {
   pageInfo: {
@@ -615,10 +611,10 @@ export interface UserConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"UserConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'UserConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PageInfo> | prisma.PageInfo
   }
   edges: {
@@ -628,10 +624,10 @@ export interface UserConnectionFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"UserConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'UserConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.UserEdge[]> | prisma.UserEdge[]
   }
   aggregate: {
@@ -641,29 +637,22 @@ export interface UserConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"UserConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'UserConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.AggregateUser> | prisma.AggregateUser
   }
 }
-  
 
 // Types for UserEdge
 
 type UserEdgeObject =
   | UserEdgeFields
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'cursor', args?: [] | false, alias?: string  } 
+  | { name: 'node'; args?: [] | false; alias?: string }
+  | { name: 'cursor'; args?: [] | false; alias?: string }
 
-type UserEdgeFields =
-  | 'node'
-  | 'cursor'
-
-
-
-  
+type UserEdgeFields = 'node' | 'cursor'
 
 export interface UserEdgeFieldDetails {
   node: {
@@ -673,10 +662,10 @@ export interface UserEdgeFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"UserEdge">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'UserEdge'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User> | prisma.User
   }
   cursor: {
@@ -688,20 +677,14 @@ export interface UserEdgeFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for AggregateUser
 
 type AggregateUserObject =
   | AggregateUserFields
-  | { name: 'count', args?: [] | false, alias?: string  } 
+  | { name: 'count'; args?: [] | false; alias?: string }
 
-type AggregateUserFields =
-  | 'count'
-
-
-
-  
+type AggregateUserFields = 'count'
 
 export interface AggregateUserFieldDetails {
   count: {
@@ -713,24 +696,71 @@ export interface AggregateUserFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for Mutation
 
 type MutationObject =
   | MutationFields
-  | { name: 'createPost', args?: MutationCreatePostArgs[] | false, alias?: string  } 
-  | { name: 'updatePost', args?: MutationUpdatePostArgs[] | false, alias?: string  } 
-  | { name: 'updateManyPosts', args?: MutationUpdateManyPostsArgs[] | false, alias?: string  } 
-  | { name: 'upsertPost', args?: MutationUpsertPostArgs[] | false, alias?: string  } 
-  | { name: 'deletePost', args?: MutationDeletePostArgs[] | false, alias?: string  } 
-  | { name: 'deleteManyPosts', args?: MutationDeleteManyPostsArgs[] | false, alias?: string  } 
-  | { name: 'createUser', args?: MutationCreateUserArgs[] | false, alias?: string  } 
-  | { name: 'updateUser', args?: MutationUpdateUserArgs[] | false, alias?: string  } 
-  | { name: 'updateManyUsers', args?: MutationUpdateManyUsersArgs[] | false, alias?: string  } 
-  | { name: 'upsertUser', args?: MutationUpsertUserArgs[] | false, alias?: string  } 
-  | { name: 'deleteUser', args?: MutationDeleteUserArgs[] | false, alias?: string  } 
-  | { name: 'deleteManyUsers', args?: MutationDeleteManyUsersArgs[] | false, alias?: string  } 
+  | {
+      name: 'createPost'
+      args?: MutationCreatePostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'updatePost'
+      args?: MutationUpdatePostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'updateManyPosts'
+      args?: MutationUpdateManyPostsArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'upsertPost'
+      args?: MutationUpsertPostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'deletePost'
+      args?: MutationDeletePostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'deleteManyPosts'
+      args?: MutationDeleteManyPostsArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'createUser'
+      args?: MutationCreateUserArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'updateUser'
+      args?: MutationUpdateUserArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'updateManyUsers'
+      args?: MutationUpdateManyUsersArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'upsertUser'
+      args?: MutationUpsertUserArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'deleteUser'
+      args?: MutationDeleteUserArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'deleteManyUsers'
+      args?: MutationDeleteManyUsersArgs[] | false
+      alias?: string
+    }
 
 type MutationFields =
   | 'createPost'
@@ -746,40 +776,18 @@ type MutationFields =
   | 'deleteUser'
   | 'deleteManyUsers'
 
-
-type MutationCreatePostArgs =
-  | 'data'
-type MutationUpdatePostArgs =
-  | 'data'
-  | 'where'
-type MutationUpdateManyPostsArgs =
-  | 'data'
-  | 'where'
-type MutationUpsertPostArgs =
-  | 'where'
-  | 'create'
-  | 'update'
-type MutationDeletePostArgs =
-  | 'where'
-type MutationDeleteManyPostsArgs =
-  | 'where'
-type MutationCreateUserArgs =
-  | 'data'
-type MutationUpdateUserArgs =
-  | 'data'
-  | 'where'
-type MutationUpdateManyUsersArgs =
-  | 'data'
-  | 'where'
-type MutationUpsertUserArgs =
-  | 'where'
-  | 'create'
-  | 'update'
-type MutationDeleteUserArgs =
-  | 'where'
-type MutationDeleteManyUsersArgs =
-  | 'where'
-  
+type MutationCreatePostArgs = 'data'
+type MutationUpdatePostArgs = 'data' | 'where'
+type MutationUpdateManyPostsArgs = 'data' | 'where'
+type MutationUpsertPostArgs = 'where' | 'create' | 'update'
+type MutationDeletePostArgs = 'where'
+type MutationDeleteManyPostsArgs = 'where'
+type MutationCreateUserArgs = 'data'
+type MutationUpdateUserArgs = 'data' | 'where'
+type MutationUpdateManyUsersArgs = 'data' | 'where'
+type MutationUpsertUserArgs = 'where' | 'create' | 'update'
+type MutationDeleteUserArgs = 'where'
+type MutationDeleteManyUsersArgs = 'where'
 
 export interface MutationFieldDetails {
   createPost: {
@@ -789,10 +797,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: PostCreateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { data: PostCreateInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post> | prisma.Post
   }
   updatePost: {
@@ -802,10 +810,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: PostUpdateInput, where: PostWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { data: PostUpdateInput; where: PostWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   updateManyPosts: {
@@ -815,10 +823,13 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: PostUpdateManyMutationInput, where?: PostWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: {
+        data: PostUpdateManyMutationInput
+        where?: PostWhereInput | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
   upsertPost: {
@@ -828,10 +839,14 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: {
+        where: PostWhereUniqueInput
+        create: PostCreateInput
+        update: PostUpdateInput
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post> | prisma.Post
   }
   deletePost: {
@@ -841,10 +856,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: PostWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { where: PostWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   deleteManyPosts: {
@@ -854,10 +869,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where?: PostWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { where?: PostWhereInput | null },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
   createUser: {
@@ -867,10 +882,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: UserCreateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { data: UserCreateInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User> | prisma.User
   }
   updateUser: {
@@ -880,10 +895,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: UserUpdateInput, where: UserWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { data: UserUpdateInput; where: UserWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User | null> | prisma.User | null
   }
   updateManyUsers: {
@@ -893,10 +908,13 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: UserUpdateManyMutationInput, where?: UserWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: {
+        data: UserUpdateManyMutationInput
+        where?: UserWhereInput | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
   upsertUser: {
@@ -906,10 +924,14 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: UserWhereUniqueInput, create: UserCreateInput, update: UserUpdateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: {
+        where: UserWhereUniqueInput
+        create: UserCreateInput
+        update: UserUpdateInput
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User> | prisma.User
   }
   deleteUser: {
@@ -919,10 +941,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: UserWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { where: UserWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User | null> | prisma.User | null
   }
   deleteManyUsers: {
@@ -932,27 +954,21 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where?: UserWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { where?: UserWhereInput | null },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
 }
-  
 
 // Types for BatchPayload
 
 type BatchPayloadObject =
   | BatchPayloadFields
-  | { name: 'count', args?: [] | false, alias?: string  } 
+  | { name: 'count'; args?: [] | false; alias?: string }
 
-type BatchPayloadFields =
-  | 'count'
-
-
-
-  
+type BatchPayloadFields = 'count'
 
 export interface BatchPayloadFieldDetails {
   count: {
@@ -964,25 +980,18 @@ export interface BatchPayloadFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for Subscription
 
 type SubscriptionObject =
   | SubscriptionFields
-  | { name: 'post', args?: SubscriptionPostArgs[] | false, alias?: string  } 
-  | { name: 'user', args?: SubscriptionUserArgs[] | false, alias?: string  } 
+  | { name: 'post'; args?: SubscriptionPostArgs[] | false; alias?: string }
+  | { name: 'user'; args?: SubscriptionUserArgs[] | false; alias?: string }
 
-type SubscriptionFields =
-  | 'post'
-  | 'user'
+type SubscriptionFields = 'post' | 'user'
 
-
-type SubscriptionPostArgs =
-  | 'where'
-type SubscriptionUserArgs =
-  | 'where'
-  
+type SubscriptionPostArgs = 'where'
+type SubscriptionUserArgs = 'where'
 
 export interface SubscriptionFieldDetails {
   post: {
@@ -992,11 +1001,14 @@ export interface SubscriptionFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Subscription">,
-      args: { where?: PostSubscriptionWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PostSubscriptionPayload | null> | prisma.PostSubscriptionPayload | null
+      root: core.RootValue<'Subscription'>,
+      args: { where?: PostSubscriptionWhereInput | null },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
+    ) =>
+      | Promise<prisma.PostSubscriptionPayload | null>
+      | prisma.PostSubscriptionPayload
+      | null
   }
   user: {
     type: 'UserSubscriptionPayload'
@@ -1005,33 +1017,31 @@ export interface SubscriptionFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Subscription">,
-      args: { where?: UserSubscriptionWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.UserSubscriptionPayload | null> | prisma.UserSubscriptionPayload | null
+      root: core.RootValue<'Subscription'>,
+      args: { where?: UserSubscriptionWhereInput | null },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
+    ) =>
+      | Promise<prisma.UserSubscriptionPayload | null>
+      | prisma.UserSubscriptionPayload
+      | null
   }
 }
-  
 
 // Types for PostSubscriptionPayload
 
 type PostSubscriptionPayloadObject =
   | PostSubscriptionPayloadFields
-  | { name: 'mutation', args?: [] | false, alias?: string  } 
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
-  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+  | { name: 'mutation'; args?: [] | false; alias?: string }
+  | { name: 'node'; args?: [] | false; alias?: string }
+  | { name: 'updatedFields'; args?: [] | false; alias?: string }
+  | { name: 'previousValues'; args?: [] | false; alias?: string }
 
 type PostSubscriptionPayloadFields =
   | 'mutation'
   | 'node'
   | 'updatedFields'
   | 'previousValues'
-
-
-
-  
 
 export interface PostSubscriptionPayloadFieldDetails {
   mutation: {
@@ -1041,10 +1051,10 @@ export interface PostSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.MutationType> | prisma.MutationType
   }
   node: {
@@ -1054,10 +1064,10 @@ export interface PostSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"PostSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   updatedFields: {
@@ -1075,25 +1085,27 @@ export interface PostSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"PostSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PostPreviousValues | null> | prisma.PostPreviousValues | null
+      root: core.RootValue<'PostSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
+    ) =>
+      | Promise<prisma.PostPreviousValues | null>
+      | prisma.PostPreviousValues
+      | null
   }
 }
-  
 
 // Types for PostPreviousValues
 
 type PostPreviousValuesObject =
   | PostPreviousValuesFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'createdAt', args?: [] | false, alias?: string  } 
-  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'published', args?: [] | false, alias?: string  } 
-  | { name: 'title', args?: [] | false, alias?: string  } 
-  | { name: 'content', args?: [] | false, alias?: string  } 
+  | { name: 'id'; args?: [] | false; alias?: string }
+  | { name: 'createdAt'; args?: [] | false; alias?: string }
+  | { name: 'updatedAt'; args?: [] | false; alias?: string }
+  | { name: 'published'; args?: [] | false; alias?: string }
+  | { name: 'title'; args?: [] | false; alias?: string }
+  | { name: 'content'; args?: [] | false; alias?: string }
 
 type PostPreviousValuesFields =
   | 'id'
@@ -1102,10 +1114,6 @@ type PostPreviousValuesFields =
   | 'published'
   | 'title'
   | 'content'
-
-
-
-  
 
 export interface PostPreviousValuesFieldDetails {
   id: {
@@ -1157,26 +1165,21 @@ export interface PostPreviousValuesFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for UserSubscriptionPayload
 
 type UserSubscriptionPayloadObject =
   | UserSubscriptionPayloadFields
-  | { name: 'mutation', args?: [] | false, alias?: string  } 
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
-  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+  | { name: 'mutation'; args?: [] | false; alias?: string }
+  | { name: 'node'; args?: [] | false; alias?: string }
+  | { name: 'updatedFields'; args?: [] | false; alias?: string }
+  | { name: 'previousValues'; args?: [] | false; alias?: string }
 
 type UserSubscriptionPayloadFields =
   | 'mutation'
   | 'node'
   | 'updatedFields'
   | 'previousValues'
-
-
-
-  
 
 export interface UserSubscriptionPayloadFieldDetails {
   mutation: {
@@ -1186,10 +1189,10 @@ export interface UserSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"UserSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'UserSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.MutationType> | prisma.MutationType
   }
   node: {
@@ -1199,10 +1202,10 @@ export interface UserSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"UserSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'UserSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.User | null> | prisma.User | null
   }
   updatedFields: {
@@ -1220,33 +1223,27 @@ export interface UserSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"UserSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.UserPreviousValues | null> | prisma.UserPreviousValues | null
+      root: core.RootValue<'UserSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
+    ) =>
+      | Promise<prisma.UserPreviousValues | null>
+      | prisma.UserPreviousValues
+      | null
   }
 }
-  
 
 // Types for UserPreviousValues
 
 type UserPreviousValuesObject =
   | UserPreviousValuesFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'email', args?: [] | false, alias?: string  } 
-  | { name: 'password', args?: [] | false, alias?: string  } 
-  | { name: 'name', args?: [] | false, alias?: string  } 
+  | { name: 'id'; args?: [] | false; alias?: string }
+  | { name: 'email'; args?: [] | false; alias?: string }
+  | { name: 'password'; args?: [] | false; alias?: string }
+  | { name: 'name'; args?: [] | false; alias?: string }
 
-type UserPreviousValuesFields =
-  | 'id'
-  | 'email'
-  | 'password'
-  | 'name'
-
-
-
-  
+type UserPreviousValuesFields = 'id' | 'email' | 'password' | 'name'
 
 export interface UserPreviousValuesFieldDetails {
   id: {
@@ -1282,16 +1279,14 @@ export interface UserPreviousValuesFieldDetails {
     resolve: undefined
   }
 }
-  
-
 
 export interface PostWhereUniqueInput {
   id?: string | null
 }
 export type PostWhereUniqueInputInputObject =
   | Extract<keyof PostWhereUniqueInput, string>
-  | { name: 'id', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+
 export interface PostWhereInput {
   id?: string | null
   id_not?: string | null
@@ -1360,71 +1355,71 @@ export interface PostWhereInput {
 }
 export type PostWhereInputInputObject =
   | Extract<keyof PostWhereInput, string>
-  | { name: 'id', alias?: string  } 
-  | { name: 'id_not', alias?: string  } 
-  | { name: 'id_in', alias?: string  } 
-  | { name: 'id_not_in', alias?: string  } 
-  | { name: 'id_lt', alias?: string  } 
-  | { name: 'id_lte', alias?: string  } 
-  | { name: 'id_gt', alias?: string  } 
-  | { name: 'id_gte', alias?: string  } 
-  | { name: 'id_contains', alias?: string  } 
-  | { name: 'id_not_contains', alias?: string  } 
-  | { name: 'id_starts_with', alias?: string  } 
-  | { name: 'id_not_starts_with', alias?: string  } 
-  | { name: 'id_ends_with', alias?: string  } 
-  | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'createdAt', alias?: string  } 
-  | { name: 'createdAt_not', alias?: string  } 
-  | { name: 'createdAt_in', alias?: string  } 
-  | { name: 'createdAt_not_in', alias?: string  } 
-  | { name: 'createdAt_lt', alias?: string  } 
-  | { name: 'createdAt_lte', alias?: string  } 
-  | { name: 'createdAt_gt', alias?: string  } 
-  | { name: 'createdAt_gte', alias?: string  } 
-  | { name: 'updatedAt', alias?: string  } 
-  | { name: 'updatedAt_not', alias?: string  } 
-  | { name: 'updatedAt_in', alias?: string  } 
-  | { name: 'updatedAt_not_in', alias?: string  } 
-  | { name: 'updatedAt_lt', alias?: string  } 
-  | { name: 'updatedAt_lte', alias?: string  } 
-  | { name: 'updatedAt_gt', alias?: string  } 
-  | { name: 'updatedAt_gte', alias?: string  } 
-  | { name: 'published', alias?: string  } 
-  | { name: 'published_not', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'title_not', alias?: string  } 
-  | { name: 'title_in', alias?: string  } 
-  | { name: 'title_not_in', alias?: string  } 
-  | { name: 'title_lt', alias?: string  } 
-  | { name: 'title_lte', alias?: string  } 
-  | { name: 'title_gt', alias?: string  } 
-  | { name: 'title_gte', alias?: string  } 
-  | { name: 'title_contains', alias?: string  } 
-  | { name: 'title_not_contains', alias?: string  } 
-  | { name: 'title_starts_with', alias?: string  } 
-  | { name: 'title_not_starts_with', alias?: string  } 
-  | { name: 'title_ends_with', alias?: string  } 
-  | { name: 'title_not_ends_with', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  | { name: 'content_not', alias?: string  } 
-  | { name: 'content_in', alias?: string  } 
-  | { name: 'content_not_in', alias?: string  } 
-  | { name: 'content_lt', alias?: string  } 
-  | { name: 'content_lte', alias?: string  } 
-  | { name: 'content_gt', alias?: string  } 
-  | { name: 'content_gte', alias?: string  } 
-  | { name: 'content_contains', alias?: string  } 
-  | { name: 'content_not_contains', alias?: string  } 
-  | { name: 'content_starts_with', alias?: string  } 
-  | { name: 'content_not_starts_with', alias?: string  } 
-  | { name: 'content_ends_with', alias?: string  } 
-  | { name: 'content_not_ends_with', alias?: string  } 
-  | { name: 'author', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+  | { name: 'id_not'; alias?: string }
+  | { name: 'id_in'; alias?: string }
+  | { name: 'id_not_in'; alias?: string }
+  | { name: 'id_lt'; alias?: string }
+  | { name: 'id_lte'; alias?: string }
+  | { name: 'id_gt'; alias?: string }
+  | { name: 'id_gte'; alias?: string }
+  | { name: 'id_contains'; alias?: string }
+  | { name: 'id_not_contains'; alias?: string }
+  | { name: 'id_starts_with'; alias?: string }
+  | { name: 'id_not_starts_with'; alias?: string }
+  | { name: 'id_ends_with'; alias?: string }
+  | { name: 'id_not_ends_with'; alias?: string }
+  | { name: 'createdAt'; alias?: string }
+  | { name: 'createdAt_not'; alias?: string }
+  | { name: 'createdAt_in'; alias?: string }
+  | { name: 'createdAt_not_in'; alias?: string }
+  | { name: 'createdAt_lt'; alias?: string }
+  | { name: 'createdAt_lte'; alias?: string }
+  | { name: 'createdAt_gt'; alias?: string }
+  | { name: 'createdAt_gte'; alias?: string }
+  | { name: 'updatedAt'; alias?: string }
+  | { name: 'updatedAt_not'; alias?: string }
+  | { name: 'updatedAt_in'; alias?: string }
+  | { name: 'updatedAt_not_in'; alias?: string }
+  | { name: 'updatedAt_lt'; alias?: string }
+  | { name: 'updatedAt_lte'; alias?: string }
+  | { name: 'updatedAt_gt'; alias?: string }
+  | { name: 'updatedAt_gte'; alias?: string }
+  | { name: 'published'; alias?: string }
+  | { name: 'published_not'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'title_not'; alias?: string }
+  | { name: 'title_in'; alias?: string }
+  | { name: 'title_not_in'; alias?: string }
+  | { name: 'title_lt'; alias?: string }
+  | { name: 'title_lte'; alias?: string }
+  | { name: 'title_gt'; alias?: string }
+  | { name: 'title_gte'; alias?: string }
+  | { name: 'title_contains'; alias?: string }
+  | { name: 'title_not_contains'; alias?: string }
+  | { name: 'title_starts_with'; alias?: string }
+  | { name: 'title_not_starts_with'; alias?: string }
+  | { name: 'title_ends_with'; alias?: string }
+  | { name: 'title_not_ends_with'; alias?: string }
+  | { name: 'content'; alias?: string }
+  | { name: 'content_not'; alias?: string }
+  | { name: 'content_in'; alias?: string }
+  | { name: 'content_not_in'; alias?: string }
+  | { name: 'content_lt'; alias?: string }
+  | { name: 'content_lte'; alias?: string }
+  | { name: 'content_gt'; alias?: string }
+  | { name: 'content_gte'; alias?: string }
+  | { name: 'content_contains'; alias?: string }
+  | { name: 'content_not_contains'; alias?: string }
+  | { name: 'content_starts_with'; alias?: string }
+  | { name: 'content_not_starts_with'; alias?: string }
+  | { name: 'content_ends_with'; alias?: string }
+  | { name: 'content_not_ends_with'; alias?: string }
+  | { name: 'author'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
+
 export interface UserWhereInput {
   id?: string | null
   id_not?: string | null
@@ -1491,78 +1486,78 @@ export interface UserWhereInput {
 }
 export type UserWhereInputInputObject =
   | Extract<keyof UserWhereInput, string>
-  | { name: 'id', alias?: string  } 
-  | { name: 'id_not', alias?: string  } 
-  | { name: 'id_in', alias?: string  } 
-  | { name: 'id_not_in', alias?: string  } 
-  | { name: 'id_lt', alias?: string  } 
-  | { name: 'id_lte', alias?: string  } 
-  | { name: 'id_gt', alias?: string  } 
-  | { name: 'id_gte', alias?: string  } 
-  | { name: 'id_contains', alias?: string  } 
-  | { name: 'id_not_contains', alias?: string  } 
-  | { name: 'id_starts_with', alias?: string  } 
-  | { name: 'id_not_starts_with', alias?: string  } 
-  | { name: 'id_ends_with', alias?: string  } 
-  | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'email', alias?: string  } 
-  | { name: 'email_not', alias?: string  } 
-  | { name: 'email_in', alias?: string  } 
-  | { name: 'email_not_in', alias?: string  } 
-  | { name: 'email_lt', alias?: string  } 
-  | { name: 'email_lte', alias?: string  } 
-  | { name: 'email_gt', alias?: string  } 
-  | { name: 'email_gte', alias?: string  } 
-  | { name: 'email_contains', alias?: string  } 
-  | { name: 'email_not_contains', alias?: string  } 
-  | { name: 'email_starts_with', alias?: string  } 
-  | { name: 'email_not_starts_with', alias?: string  } 
-  | { name: 'email_ends_with', alias?: string  } 
-  | { name: 'email_not_ends_with', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'password_not', alias?: string  } 
-  | { name: 'password_in', alias?: string  } 
-  | { name: 'password_not_in', alias?: string  } 
-  | { name: 'password_lt', alias?: string  } 
-  | { name: 'password_lte', alias?: string  } 
-  | { name: 'password_gt', alias?: string  } 
-  | { name: 'password_gte', alias?: string  } 
-  | { name: 'password_contains', alias?: string  } 
-  | { name: 'password_not_contains', alias?: string  } 
-  | { name: 'password_starts_with', alias?: string  } 
-  | { name: 'password_not_starts_with', alias?: string  } 
-  | { name: 'password_ends_with', alias?: string  } 
-  | { name: 'password_not_ends_with', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  | { name: 'name_not', alias?: string  } 
-  | { name: 'name_in', alias?: string  } 
-  | { name: 'name_not_in', alias?: string  } 
-  | { name: 'name_lt', alias?: string  } 
-  | { name: 'name_lte', alias?: string  } 
-  | { name: 'name_gt', alias?: string  } 
-  | { name: 'name_gte', alias?: string  } 
-  | { name: 'name_contains', alias?: string  } 
-  | { name: 'name_not_contains', alias?: string  } 
-  | { name: 'name_starts_with', alias?: string  } 
-  | { name: 'name_not_starts_with', alias?: string  } 
-  | { name: 'name_ends_with', alias?: string  } 
-  | { name: 'name_not_ends_with', alias?: string  } 
-  | { name: 'posts_every', alias?: string  } 
-  | { name: 'posts_some', alias?: string  } 
-  | { name: 'posts_none', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+  | { name: 'id_not'; alias?: string }
+  | { name: 'id_in'; alias?: string }
+  | { name: 'id_not_in'; alias?: string }
+  | { name: 'id_lt'; alias?: string }
+  | { name: 'id_lte'; alias?: string }
+  | { name: 'id_gt'; alias?: string }
+  | { name: 'id_gte'; alias?: string }
+  | { name: 'id_contains'; alias?: string }
+  | { name: 'id_not_contains'; alias?: string }
+  | { name: 'id_starts_with'; alias?: string }
+  | { name: 'id_not_starts_with'; alias?: string }
+  | { name: 'id_ends_with'; alias?: string }
+  | { name: 'id_not_ends_with'; alias?: string }
+  | { name: 'email'; alias?: string }
+  | { name: 'email_not'; alias?: string }
+  | { name: 'email_in'; alias?: string }
+  | { name: 'email_not_in'; alias?: string }
+  | { name: 'email_lt'; alias?: string }
+  | { name: 'email_lte'; alias?: string }
+  | { name: 'email_gt'; alias?: string }
+  | { name: 'email_gte'; alias?: string }
+  | { name: 'email_contains'; alias?: string }
+  | { name: 'email_not_contains'; alias?: string }
+  | { name: 'email_starts_with'; alias?: string }
+  | { name: 'email_not_starts_with'; alias?: string }
+  | { name: 'email_ends_with'; alias?: string }
+  | { name: 'email_not_ends_with'; alias?: string }
+  | { name: 'password'; alias?: string }
+  | { name: 'password_not'; alias?: string }
+  | { name: 'password_in'; alias?: string }
+  | { name: 'password_not_in'; alias?: string }
+  | { name: 'password_lt'; alias?: string }
+  | { name: 'password_lte'; alias?: string }
+  | { name: 'password_gt'; alias?: string }
+  | { name: 'password_gte'; alias?: string }
+  | { name: 'password_contains'; alias?: string }
+  | { name: 'password_not_contains'; alias?: string }
+  | { name: 'password_starts_with'; alias?: string }
+  | { name: 'password_not_starts_with'; alias?: string }
+  | { name: 'password_ends_with'; alias?: string }
+  | { name: 'password_not_ends_with'; alias?: string }
+  | { name: 'name'; alias?: string }
+  | { name: 'name_not'; alias?: string }
+  | { name: 'name_in'; alias?: string }
+  | { name: 'name_not_in'; alias?: string }
+  | { name: 'name_lt'; alias?: string }
+  | { name: 'name_lte'; alias?: string }
+  | { name: 'name_gt'; alias?: string }
+  | { name: 'name_gte'; alias?: string }
+  | { name: 'name_contains'; alias?: string }
+  | { name: 'name_not_contains'; alias?: string }
+  | { name: 'name_starts_with'; alias?: string }
+  | { name: 'name_not_starts_with'; alias?: string }
+  | { name: 'name_ends_with'; alias?: string }
+  | { name: 'name_not_ends_with'; alias?: string }
+  | { name: 'posts_every'; alias?: string }
+  | { name: 'posts_some'; alias?: string }
+  | { name: 'posts_none'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
+
 export interface UserWhereUniqueInput {
   id?: string | null
   email?: string | null
 }
 export type UserWhereUniqueInputInputObject =
   | Extract<keyof UserWhereUniqueInput, string>
-  | { name: 'id', alias?: string  } 
-  | { name: 'email', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+  | { name: 'email'; alias?: string }
+
 export interface PostCreateInput {
   published?: boolean | null
   title?: string
@@ -1571,20 +1566,20 @@ export interface PostCreateInput {
 }
 export type PostCreateInputInputObject =
   | Extract<keyof PostCreateInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  | { name: 'author', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+  | { name: 'author'; alias?: string }
+
 export interface UserCreateOneWithoutPostsInput {
   create?: UserCreateWithoutPostsInput | null
   connect?: UserWhereUniqueInput | null
 }
 export type UserCreateOneWithoutPostsInputInputObject =
   | Extract<keyof UserCreateOneWithoutPostsInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
-  
+  | { name: 'create'; alias?: string }
+  | { name: 'connect'; alias?: string }
+
 export interface UserCreateWithoutPostsInput {
   email?: string
   password?: string
@@ -1592,10 +1587,10 @@ export interface UserCreateWithoutPostsInput {
 }
 export type UserCreateWithoutPostsInputInputObject =
   | Extract<keyof UserCreateWithoutPostsInput, string>
-  | { name: 'email', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  
+  | { name: 'email'; alias?: string }
+  | { name: 'password'; alias?: string }
+  | { name: 'name'; alias?: string }
+
 export interface PostUpdateInput {
   published?: boolean | null
   title?: string | null
@@ -1604,11 +1599,11 @@ export interface PostUpdateInput {
 }
 export type PostUpdateInputInputObject =
   | Extract<keyof PostUpdateInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  | { name: 'author', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+  | { name: 'author'; alias?: string }
+
 export interface UserUpdateOneRequiredWithoutPostsInput {
   create?: UserCreateWithoutPostsInput | null
   update?: UserUpdateWithoutPostsDataInput | null
@@ -1617,11 +1612,11 @@ export interface UserUpdateOneRequiredWithoutPostsInput {
 }
 export type UserUpdateOneRequiredWithoutPostsInputInputObject =
   | Extract<keyof UserUpdateOneRequiredWithoutPostsInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'update', alias?: string  } 
-  | { name: 'upsert', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
-  
+  | { name: 'create'; alias?: string }
+  | { name: 'update'; alias?: string }
+  | { name: 'upsert'; alias?: string }
+  | { name: 'connect'; alias?: string }
+
 export interface UserUpdateWithoutPostsDataInput {
   email?: string | null
   password?: string | null
@@ -1629,19 +1624,19 @@ export interface UserUpdateWithoutPostsDataInput {
 }
 export type UserUpdateWithoutPostsDataInputInputObject =
   | Extract<keyof UserUpdateWithoutPostsDataInput, string>
-  | { name: 'email', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  
+  | { name: 'email'; alias?: string }
+  | { name: 'password'; alias?: string }
+  | { name: 'name'; alias?: string }
+
 export interface UserUpsertWithoutPostsInput {
   update?: UserUpdateWithoutPostsDataInput
   create?: UserCreateWithoutPostsInput
 }
 export type UserUpsertWithoutPostsInputInputObject =
   | Extract<keyof UserUpsertWithoutPostsInput, string>
-  | { name: 'update', alias?: string  } 
-  | { name: 'create', alias?: string  } 
-  
+  | { name: 'update'; alias?: string }
+  | { name: 'create'; alias?: string }
+
 export interface PostUpdateManyMutationInput {
   published?: boolean | null
   title?: string | null
@@ -1649,10 +1644,10 @@ export interface PostUpdateManyMutationInput {
 }
 export type PostUpdateManyMutationInputInputObject =
   | Extract<keyof PostUpdateManyMutationInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface UserCreateInput {
   email?: string
   password?: string
@@ -1661,20 +1656,20 @@ export interface UserCreateInput {
 }
 export type UserCreateInputInputObject =
   | Extract<keyof UserCreateInput, string>
-  | { name: 'email', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  | { name: 'posts', alias?: string  } 
-  
+  | { name: 'email'; alias?: string }
+  | { name: 'password'; alias?: string }
+  | { name: 'name'; alias?: string }
+  | { name: 'posts'; alias?: string }
+
 export interface PostCreateManyWithoutAuthorInput {
   create?: PostCreateWithoutAuthorInput[]
   connect?: PostWhereUniqueInput[]
 }
 export type PostCreateManyWithoutAuthorInputInputObject =
   | Extract<keyof PostCreateManyWithoutAuthorInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
-  
+  | { name: 'create'; alias?: string }
+  | { name: 'connect'; alias?: string }
+
 export interface PostCreateWithoutAuthorInput {
   published?: boolean | null
   title?: string
@@ -1682,10 +1677,10 @@ export interface PostCreateWithoutAuthorInput {
 }
 export type PostCreateWithoutAuthorInputInputObject =
   | Extract<keyof PostCreateWithoutAuthorInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface UserUpdateInput {
   email?: string | null
   password?: string | null
@@ -1694,11 +1689,11 @@ export interface UserUpdateInput {
 }
 export type UserUpdateInputInputObject =
   | Extract<keyof UserUpdateInput, string>
-  | { name: 'email', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  | { name: 'posts', alias?: string  } 
-  
+  | { name: 'email'; alias?: string }
+  | { name: 'password'; alias?: string }
+  | { name: 'name'; alias?: string }
+  | { name: 'posts'; alias?: string }
+
 export interface PostUpdateManyWithoutAuthorInput {
   create?: PostCreateWithoutAuthorInput[]
   delete?: PostWhereUniqueInput[]
@@ -1712,25 +1707,25 @@ export interface PostUpdateManyWithoutAuthorInput {
 }
 export type PostUpdateManyWithoutAuthorInputInputObject =
   | Extract<keyof PostUpdateManyWithoutAuthorInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'delete', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
-  | { name: 'set', alias?: string  } 
-  | { name: 'disconnect', alias?: string  } 
-  | { name: 'update', alias?: string  } 
-  | { name: 'upsert', alias?: string  } 
-  | { name: 'deleteMany', alias?: string  } 
-  | { name: 'updateMany', alias?: string  } 
-  
+  | { name: 'create'; alias?: string }
+  | { name: 'delete'; alias?: string }
+  | { name: 'connect'; alias?: string }
+  | { name: 'set'; alias?: string }
+  | { name: 'disconnect'; alias?: string }
+  | { name: 'update'; alias?: string }
+  | { name: 'upsert'; alias?: string }
+  | { name: 'deleteMany'; alias?: string }
+  | { name: 'updateMany'; alias?: string }
+
 export interface PostUpdateWithWhereUniqueWithoutAuthorInput {
   where?: PostWhereUniqueInput
   data?: PostUpdateWithoutAuthorDataInput
 }
 export type PostUpdateWithWhereUniqueWithoutAuthorInputInputObject =
   | Extract<keyof PostUpdateWithWhereUniqueWithoutAuthorInput, string>
-  | { name: 'where', alias?: string  } 
-  | { name: 'data', alias?: string  } 
-  
+  | { name: 'where'; alias?: string }
+  | { name: 'data'; alias?: string }
+
 export interface PostUpdateWithoutAuthorDataInput {
   published?: boolean | null
   title?: string | null
@@ -1738,10 +1733,10 @@ export interface PostUpdateWithoutAuthorDataInput {
 }
 export type PostUpdateWithoutAuthorDataInputInputObject =
   | Extract<keyof PostUpdateWithoutAuthorDataInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
   where?: PostWhereUniqueInput
   update?: PostUpdateWithoutAuthorDataInput
@@ -1749,10 +1744,10 @@ export interface PostUpsertWithWhereUniqueWithoutAuthorInput {
 }
 export type PostUpsertWithWhereUniqueWithoutAuthorInputInputObject =
   | Extract<keyof PostUpsertWithWhereUniqueWithoutAuthorInput, string>
-  | { name: 'where', alias?: string  } 
-  | { name: 'update', alias?: string  } 
-  | { name: 'create', alias?: string  } 
-  
+  | { name: 'where'; alias?: string }
+  | { name: 'update'; alias?: string }
+  | { name: 'create'; alias?: string }
+
 export interface PostScalarWhereInput {
   id?: string | null
   id_not?: string | null
@@ -1820,79 +1815,79 @@ export interface PostScalarWhereInput {
 }
 export type PostScalarWhereInputInputObject =
   | Extract<keyof PostScalarWhereInput, string>
-  | { name: 'id', alias?: string  } 
-  | { name: 'id_not', alias?: string  } 
-  | { name: 'id_in', alias?: string  } 
-  | { name: 'id_not_in', alias?: string  } 
-  | { name: 'id_lt', alias?: string  } 
-  | { name: 'id_lte', alias?: string  } 
-  | { name: 'id_gt', alias?: string  } 
-  | { name: 'id_gte', alias?: string  } 
-  | { name: 'id_contains', alias?: string  } 
-  | { name: 'id_not_contains', alias?: string  } 
-  | { name: 'id_starts_with', alias?: string  } 
-  | { name: 'id_not_starts_with', alias?: string  } 
-  | { name: 'id_ends_with', alias?: string  } 
-  | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'createdAt', alias?: string  } 
-  | { name: 'createdAt_not', alias?: string  } 
-  | { name: 'createdAt_in', alias?: string  } 
-  | { name: 'createdAt_not_in', alias?: string  } 
-  | { name: 'createdAt_lt', alias?: string  } 
-  | { name: 'createdAt_lte', alias?: string  } 
-  | { name: 'createdAt_gt', alias?: string  } 
-  | { name: 'createdAt_gte', alias?: string  } 
-  | { name: 'updatedAt', alias?: string  } 
-  | { name: 'updatedAt_not', alias?: string  } 
-  | { name: 'updatedAt_in', alias?: string  } 
-  | { name: 'updatedAt_not_in', alias?: string  } 
-  | { name: 'updatedAt_lt', alias?: string  } 
-  | { name: 'updatedAt_lte', alias?: string  } 
-  | { name: 'updatedAt_gt', alias?: string  } 
-  | { name: 'updatedAt_gte', alias?: string  } 
-  | { name: 'published', alias?: string  } 
-  | { name: 'published_not', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'title_not', alias?: string  } 
-  | { name: 'title_in', alias?: string  } 
-  | { name: 'title_not_in', alias?: string  } 
-  | { name: 'title_lt', alias?: string  } 
-  | { name: 'title_lte', alias?: string  } 
-  | { name: 'title_gt', alias?: string  } 
-  | { name: 'title_gte', alias?: string  } 
-  | { name: 'title_contains', alias?: string  } 
-  | { name: 'title_not_contains', alias?: string  } 
-  | { name: 'title_starts_with', alias?: string  } 
-  | { name: 'title_not_starts_with', alias?: string  } 
-  | { name: 'title_ends_with', alias?: string  } 
-  | { name: 'title_not_ends_with', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  | { name: 'content_not', alias?: string  } 
-  | { name: 'content_in', alias?: string  } 
-  | { name: 'content_not_in', alias?: string  } 
-  | { name: 'content_lt', alias?: string  } 
-  | { name: 'content_lte', alias?: string  } 
-  | { name: 'content_gt', alias?: string  } 
-  | { name: 'content_gte', alias?: string  } 
-  | { name: 'content_contains', alias?: string  } 
-  | { name: 'content_not_contains', alias?: string  } 
-  | { name: 'content_starts_with', alias?: string  } 
-  | { name: 'content_not_starts_with', alias?: string  } 
-  | { name: 'content_ends_with', alias?: string  } 
-  | { name: 'content_not_ends_with', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+  | { name: 'id_not'; alias?: string }
+  | { name: 'id_in'; alias?: string }
+  | { name: 'id_not_in'; alias?: string }
+  | { name: 'id_lt'; alias?: string }
+  | { name: 'id_lte'; alias?: string }
+  | { name: 'id_gt'; alias?: string }
+  | { name: 'id_gte'; alias?: string }
+  | { name: 'id_contains'; alias?: string }
+  | { name: 'id_not_contains'; alias?: string }
+  | { name: 'id_starts_with'; alias?: string }
+  | { name: 'id_not_starts_with'; alias?: string }
+  | { name: 'id_ends_with'; alias?: string }
+  | { name: 'id_not_ends_with'; alias?: string }
+  | { name: 'createdAt'; alias?: string }
+  | { name: 'createdAt_not'; alias?: string }
+  | { name: 'createdAt_in'; alias?: string }
+  | { name: 'createdAt_not_in'; alias?: string }
+  | { name: 'createdAt_lt'; alias?: string }
+  | { name: 'createdAt_lte'; alias?: string }
+  | { name: 'createdAt_gt'; alias?: string }
+  | { name: 'createdAt_gte'; alias?: string }
+  | { name: 'updatedAt'; alias?: string }
+  | { name: 'updatedAt_not'; alias?: string }
+  | { name: 'updatedAt_in'; alias?: string }
+  | { name: 'updatedAt_not_in'; alias?: string }
+  | { name: 'updatedAt_lt'; alias?: string }
+  | { name: 'updatedAt_lte'; alias?: string }
+  | { name: 'updatedAt_gt'; alias?: string }
+  | { name: 'updatedAt_gte'; alias?: string }
+  | { name: 'published'; alias?: string }
+  | { name: 'published_not'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'title_not'; alias?: string }
+  | { name: 'title_in'; alias?: string }
+  | { name: 'title_not_in'; alias?: string }
+  | { name: 'title_lt'; alias?: string }
+  | { name: 'title_lte'; alias?: string }
+  | { name: 'title_gt'; alias?: string }
+  | { name: 'title_gte'; alias?: string }
+  | { name: 'title_contains'; alias?: string }
+  | { name: 'title_not_contains'; alias?: string }
+  | { name: 'title_starts_with'; alias?: string }
+  | { name: 'title_not_starts_with'; alias?: string }
+  | { name: 'title_ends_with'; alias?: string }
+  | { name: 'title_not_ends_with'; alias?: string }
+  | { name: 'content'; alias?: string }
+  | { name: 'content_not'; alias?: string }
+  | { name: 'content_in'; alias?: string }
+  | { name: 'content_not_in'; alias?: string }
+  | { name: 'content_lt'; alias?: string }
+  | { name: 'content_lte'; alias?: string }
+  | { name: 'content_gt'; alias?: string }
+  | { name: 'content_gte'; alias?: string }
+  | { name: 'content_contains'; alias?: string }
+  | { name: 'content_not_contains'; alias?: string }
+  | { name: 'content_starts_with'; alias?: string }
+  | { name: 'content_not_starts_with'; alias?: string }
+  | { name: 'content_ends_with'; alias?: string }
+  | { name: 'content_not_ends_with'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
+
 export interface PostUpdateManyWithWhereNestedInput {
   where?: PostScalarWhereInput
   data?: PostUpdateManyDataInput
 }
 export type PostUpdateManyWithWhereNestedInputInputObject =
   | Extract<keyof PostUpdateManyWithWhereNestedInput, string>
-  | { name: 'where', alias?: string  } 
-  | { name: 'data', alias?: string  } 
-  
+  | { name: 'where'; alias?: string }
+  | { name: 'data'; alias?: string }
+
 export interface PostUpdateManyDataInput {
   published?: boolean | null
   title?: string | null
@@ -1900,10 +1895,10 @@ export interface PostUpdateManyDataInput {
 }
 export type PostUpdateManyDataInputInputObject =
   | Extract<keyof PostUpdateManyDataInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface UserUpdateManyMutationInput {
   email?: string | null
   password?: string | null
@@ -1911,10 +1906,10 @@ export interface UserUpdateManyMutationInput {
 }
 export type UserUpdateManyMutationInputInputObject =
   | Extract<keyof UserUpdateManyMutationInput, string>
-  | { name: 'email', alias?: string  } 
-  | { name: 'password', alias?: string  } 
-  | { name: 'name', alias?: string  } 
-  
+  | { name: 'email'; alias?: string }
+  | { name: 'password'; alias?: string }
+  | { name: 'name'; alias?: string }
+
 export interface PostSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
   updatedFields_contains?: string | null
@@ -1927,15 +1922,15 @@ export interface PostSubscriptionWhereInput {
 }
 export type PostSubscriptionWhereInputInputObject =
   | Extract<keyof PostSubscriptionWhereInput, string>
-  | { name: 'mutation_in', alias?: string  } 
-  | { name: 'updatedFields_contains', alias?: string  } 
-  | { name: 'updatedFields_contains_every', alias?: string  } 
-  | { name: 'updatedFields_contains_some', alias?: string  } 
-  | { name: 'node', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'mutation_in'; alias?: string }
+  | { name: 'updatedFields_contains'; alias?: string }
+  | { name: 'updatedFields_contains_every'; alias?: string }
+  | { name: 'updatedFields_contains_some'; alias?: string }
+  | { name: 'node'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
+
 export interface UserSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
   updatedFields_contains?: string | null
@@ -1948,15 +1943,14 @@ export interface UserSubscriptionWhereInput {
 }
 export type UserSubscriptionWhereInputInputObject =
   | Extract<keyof UserSubscriptionWhereInput, string>
-  | { name: 'mutation_in', alias?: string  } 
-  | { name: 'updatedFields_contains', alias?: string  } 
-  | { name: 'updatedFields_contains_every', alias?: string  } 
-  | { name: 'updatedFields_contains_some', alias?: string  } 
-  | { name: 'node', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'mutation_in'; alias?: string }
+  | { name: 'updatedFields_contains'; alias?: string }
+  | { name: 'updatedFields_contains_every'; alias?: string }
+  | { name: 'updatedFields_contains_some'; alias?: string }
+  | { name: 'node'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
 
 export type PostOrderByInputValues =
   | 'id_ASC'
@@ -1971,7 +1965,7 @@ export type PostOrderByInputValues =
   | 'title_DESC'
   | 'content_ASC'
   | 'content_DESC'
-  
+
 export type UserOrderByInputValues =
   | 'id_ASC'
   | 'id_DESC'
@@ -1985,10 +1979,5 @@ export type UserOrderByInputValues =
   | 'createdAt_DESC'
   | 'updatedAt_ASC'
   | 'updatedAt_DESC'
-  
-export type MutationTypeValues =
-  | 'CREATED'
-  | 'UPDATED'
-  | 'DELETED'
-  
-  
+
+export type MutationTypeValues = 'CREATED' | 'UPDATED' | 'DELETED'
