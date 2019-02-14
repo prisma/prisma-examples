@@ -20,6 +20,13 @@ const User = prismaObjectType({
   },
 })
 
+const Post = prismaObjectType({
+  name: 'Post',
+  definition(t) {
+    t.prismaFields(['*'])
+  },
+})
+
 const Query = queryType({
   definition(t) {
     t.list.field('feed', {
@@ -123,7 +130,7 @@ const Mutation = prismaObjectType({
 
 const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
-  types: [Query, Mutation, User],
+  types: [Query, Mutation, User, Post],
 
   // Configure the interface to Prisma
   prisma: {
