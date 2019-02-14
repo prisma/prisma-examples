@@ -1,10 +1,9 @@
 import { GraphQLServer } from 'graphql-yoga'
-import { prisma } from './generated/prisma-client'
-import * as path from 'path'
+import { idArg, queryType, stringArg } from 'nexus'
 import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
-import { stringArg, idArg, queryType, objectType } from 'nexus'
+import * as path from 'path'
 import datamodelInfo from './generated/nexus-prisma'
-import { Context } from './types'
+import { prisma } from './generated/prisma-client'
 
 const User = prismaObjectType({
   name: 'User',
@@ -18,6 +17,13 @@ const User = prismaObjectType({
         args: [], // remove the arguments from the `posts` field of the `User` type in the Prisma schema
       },
     ])
+  },
+})
+
+const Post = prismaObjectType({
+  name: 'Post',
+  definition(t) {
+    t.prismaFields(['*'])
   },
 })
 
@@ -124,7 +130,7 @@ const Mutation = prismaObjectType({
 
 const schema = makePrismaSchema({
   // Provide all the GraphQL types we've implemented
-  types: [Query, Mutation, User],
+  types: [Query, Mutation, User, Post],
 
   // Configure the interface to Prisma
   prisma: {
