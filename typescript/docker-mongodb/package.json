@@ -2,7 +2,7 @@
   "name": "docker-mongodb",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "1.26.5"
+    "prisma-client-lib": "1.26.6"
   },
   "devDependencies": {
     "@types/graphql": "14.0.7",
