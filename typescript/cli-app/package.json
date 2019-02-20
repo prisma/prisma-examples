@@ -2,7 +2,7 @@
   "name": "cli-app",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "^1.28.0-alpha.10"
+    "prisma-client-lib": "^1.28.0-alpha.11"
   },
   "devDependencies": {
     "@types/graphql": "14.0.3",
