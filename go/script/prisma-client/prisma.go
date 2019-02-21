@@ -406,6 +406,7 @@ type PostUpdateManyWithoutAuthorInput struct {
 	Create     []PostCreateWithoutAuthorInput                `json:"create,omitempty"`
 	Delete     []PostWhereUniqueInput                        `json:"delete,omitempty"`
 	Connect    []PostWhereUniqueInput                        `json:"connect,omitempty"`
+	Set        []PostWhereUniqueInput                        `json:"set,omitempty"`
 	Disconnect []PostWhereUniqueInput                        `json:"disconnect,omitempty"`
 	Update     []PostUpdateWithWhereUniqueWithoutAuthorInput `json:"update,omitempty"`
 	Upsert     []PostUpsertWithWhereUniqueWithoutAuthorInput `json:"upsert,omitempty"`
