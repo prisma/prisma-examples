@@ -2,7 +2,7 @@
   "name": "docker-mongodb",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "1.26.6"
+    "prisma-client-lib": "1.27.0"
   },
   "scripts": {
     "start": "node src/script.js"
