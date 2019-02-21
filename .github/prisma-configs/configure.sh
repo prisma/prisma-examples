@@ -38,6 +38,7 @@ cp ./typescript/grpc/prisma.yml ../../typescript/grpc/prisma
 
 # TypeScript (seeding)
 cp ./typescript/seed.ts ../../typescript/graphql/prisma
+cp ./typescript/seed.ts ../../typescript/graphql-crud/prisma
 cp ./typescript/graphql-auth/seed.ts ../../typescript/graphql-auth/prisma
 cp ./typescript/graphql-subscriptions/seed.ts ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/seed.ts ../../typescript/rest-express/prisma
