@@ -9,7 +9,7 @@ async function main() {
         {
           title: 'Join us for GraphQL Conf 2019 in Berlin',
           content: 'https://www.graphqlconf.org/',
-          published: true
+          published: true,
         },
       ],
     },
@@ -25,17 +25,20 @@ async function main() {
           content: 'https://graphqlweekly.com/',
           published: true,
           comments: {
-            create: [{
-              text: "Can recommend 💯",
-              writtenBy: {
-                connect: { email: "alice@prisma.io" }
-              }
-            }]
-          }
-        }, {
-          title: "Follow Prisma on Twitter",
-          content: "https://twitter.com/prisma"
-        }
+            create: [
+              {
+                text: 'Can recommend 💯',
+                writtenBy: {
+                  connect: { email: 'alice@prisma.io' },
+                },
+              },
+            ],
+          },
+        },
+        {
+          title: 'Follow Prisma on Twitter',
+          content: 'https://twitter.com/prisma',
+        },
       ],
     },
   })
