@@ -1,0 +1,21 @@
+{
+  "name": "typescript-graphql",
+  "scripts": {
+    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src"
+  },
+  "dependencies": {
+    "graphql": "14.1.1",
+    "graphql-yoga": "1.17.4",
+    "nexus": "0.9.14",
+    "nexus-prisma": "0.3.1",
+    "prisma-client-lib": "1.27.6"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.19",
+    "@types/graphql": "14.0.7",
+    "@types/node": "10.12.26",
+    "@types/ws": "6.0.1",
+    "ts-node-dev": "1.0.0-pre.32",
+    "typescript": "3.3.3"
+  }
+}
