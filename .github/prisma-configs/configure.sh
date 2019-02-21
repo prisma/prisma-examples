@@ -85,3 +85,10 @@ cp ./go/prisma.yml ../../go/script/prisma
 cp ./go/mongo/prisma.yml ../../go/docker-mongodb/prisma
 cp ./go/mysql-and-postgres/prisma.yml ../../go/docker-mysql/prisma
 cp ./go/mysql-and-postgres/prisma.yml ../../go/docker-postgres/prisma
+
+# Go (seeding)
+cp ./go/graphql/seed.go ../../go/graphql/prisma
+cp ./go/http-mux/seed.go ../../go/http-mux/prisma
+cp ./go/rest-gin/seed.go ../../go/rest-gin/prisma
+cp ./go/script/seed.go ../../go/script/prisma
+cp ./go/cli-app/seed.go ../../go/cli-app/prisma

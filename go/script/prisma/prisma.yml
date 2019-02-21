@@ -16,4 +16,4 @@ hooks:
 
 # Seeds initial data into the database by running a script.
 seed:
-  run: go run ./prisma/seed.go
+  import: go run ./prisma/seed.graphql
