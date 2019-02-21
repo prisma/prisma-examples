@@ -27,6 +27,7 @@ cp ./node/mysql-and-postgres/seed.js ../../node/docker-postgres/prisma
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
 cp ./typescript/graphql/prisma.yml ../../typescript/graphql/prisma
+cp ./typescript/graphql/prisma.yml ../../typescript/graphql-crud/prisma
 cp ./typescript/graphql-auth/prisma.yml ../../typescript/graphql-auth/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
 cp ./typescript/prisma.yml ../../typescript/script/prisma
@@ -35,10 +36,25 @@ cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-mysql/pris
 cp ./typescript/mysql-and-postgres/prisma.yml ../../typescript/docker-postgres/prisma
 cp ./typescript/grpc/prisma.yml ../../typescript/grpc/prisma
 
+# TypeScript (seeding)
+cp ./typescript/seed.ts ../../typescript/graphql/prisma
+cp ./typescript/seed.ts ../../typescript/graphql-crud/prisma
+cp ./typescript/graphql-auth/seed.ts ../../typescript/graphql-auth/prisma
+cp ./typescript/graphql-subscriptions/seed.ts ../../typescript/graphql-subscriptions/prisma
+cp ./typescript/seed.ts ../../typescript/rest-express/prisma
+cp ./typescript/seed.ts ../../typescript/script/prisma
+cp ./typescript/grpc/seed.ts ../../typescript/grpc/prisma
+cp ./typescript/cli-app/seed.ts ../../typescript/cli-app/prisma
+cp ./typescript/mongo/seed.ts ../../typescript/docker-mongodb/prisma
+cp ./typescript/mysql-and-postgres/seed.ts ../../typescript/docker-mysql/prisma
+cp ./typescript/mysql-and-postgres/seed.ts ../../typescript/docker-postgres/prisma
+
 # TypeScript (tsconfig.json)
 cp ./typescript/tsconfig.json ../../typescript/cli-app
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql
 mv ../../typescript/graphql/tsconfig-graphql.json ../../typescript/graphql/tsconfig.json
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-crud
+mv ../../typescript/graphql-crud/tsconfig-graphql.json ../../typescript/graphql-crud/tsconfig.json
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-auth
 mv ../../typescript/graphql-auth/tsconfig-graphql.json ../../typescript/graphql-auth/tsconfig.json
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-subscriptions
