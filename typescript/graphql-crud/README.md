@@ -1,6 +1,6 @@
-# GraphQL Server Example
+# CRUD GraphQL API Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://graphql-nexus.com/).
+This example shows how to implement a **CRUD GraphQL API with TypeScript** based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://graphql-nexus.com/).
 
 ## How to use
 
@@ -15,7 +15,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript/graphql
+cd prisma-examples/typescript/graphql-crud
 npm install
 ```
 
@@ -91,17 +91,17 @@ npm run start
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### 5. Using the GraphQL API
+### 5. Using the CRUD GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
-#### Retrieve all published posts and their authors
+#### Retrieve all posts and their authors
 
 ```graphql
 query {
-  feed {
+  posts {
     id
     title
     content
@@ -121,23 +121,41 @@ query {
 
 ```graphql
 mutation {
-  signupUser(
+  createUser(data: {
     name: "Sarah"
     email: "sarah@prisma.io"
-  ) {
+  }) {
     id
   }
 }
 ```
 
-#### Create a new draft
+#### Create a new post
 
 ```graphql
 mutation {
-  createDraft(
+  createPost(data: {
     title: "Join the Prisma Slack"
     content: "https://slack.prisma.io"
     authorEmail: "alice@prisma.io"
+  }) {
+    id
+    published
+    author {
+      id
+      name
+    }
+  }
+}
+```
+
+#### Update an existing draft
+
+```graphql
+mutation {
+  updatePost(
+    where: { id: "__POST_ID__" }
+    data: { published: true }
   ) {
     id
     published
@@ -145,24 +163,19 @@ mutation {
 }
 ```
 
-#### Publish an existing draft
-
-```graphql
-mutation {
-  publish(id: "__POST_ID__") {
-    id
-    published
-  }
-}
-```
-
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `posts`-query.
 
 #### Search for posts with a specific title or content
 
 ```graphql
 {
-  filterPosts(searchString: "graphql") {
+  posts(where: {
+    OR: [{
+      title_contains: "graphql"
+    }, {
+      content_contains: "graphql"
+    }]
+  }) {
     id
     title
     content
@@ -180,7 +193,7 @@ mutation {
 
 ```graphql
 {
-  post(id: "__POST_ID__") {
+  post(where: { id: "__POST_ID__"}) {
     id
     title
     content
@@ -194,19 +207,19 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `posts`-query.
 
 #### Delete a post
 
 ```graphql
 mutation {
-  deletePost(id: "__POST_ID__") {
+  deletePost(where: { id: "__POST_ID__"}) {
     id
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `posts`-query.
 
 </Details>
 
