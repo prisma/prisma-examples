@@ -12,7 +12,7 @@
     "jsonwebtoken": "8.5.0",
     "nexus": "0.9.14",
     "nexus-prisma": "0.3.1",
-    "prisma-client-lib": "1.26.6"
+    "prisma-client-lib": "1.27.6"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.19",
