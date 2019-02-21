@@ -71,12 +71,12 @@
   version = "v1.1.2"
 
 [[projects]]
-  digest = "1:40e195917a951a8bf867cd05de2a46aaf1806c50cf92eebf4c16f78cd196f747"
+  digest = "1:cf31692c14422fa27c83a05292eb5cbe0fb2775972e8f1f8446a71549bd8980b"
   name = "github.com/pkg/errors"
   packages = ["."]
   pruneopts = "UT"
-  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
-  version = "v0.8.0"
+  revision = "ba968bfe8b2f7e042a574c888954fccecfa385b4"
+  version = "v0.8.1"
 
 [[projects]]
   branch = "master"
@@ -95,7 +95,7 @@
   version = "v1.20.0"
 
 [[projects]]
-  digest = "1:ed6a41de3eedd8d4868eea057837860453ebbe08c5e385fd50d4c24e5642ec18"
+  digest = "1:423e2211dd73e0d7ce204191b64e7dc06da5ca93cc73e7d37254c47ee6aae62b"
   name = "github.com/vektah/gqlparser"
   packages = [
     ".",
@@ -107,32 +107,39 @@
     "validator/rules",
   ]
   pruneopts = "UT"
-  revision = "e805d08bb209b1accdea76bd2327811858d81985"
-  version = "v1.0.0"
+  revision = "9541c8b6420ab8919446721a3d7bf1db3146a4dc"
+  version = "v1.1.1"
 
 [[projects]]
   branch = "master"
-  digest = "1:48b383c3a6ee2df352763f63974a2c04a0a6117c1f9f3989faac3cb6b656be19"
+  digest = "1:7eee604fd833c4346b8708d184f121dc52d652cc588c18683e09b3f14c83eca4"
   name = "golang.org/x/tools"
   packages = [
     "go/ast/astutil",
     "go/buildutil",
+    "go/gcexportdata",
     "go/internal/cgo",
+    "go/internal/gcimporter",
+    "go/internal/packagesdriver",
     "go/loader",
+    "go/packages",
+    "go/types/typeutil",
     "imports",
     "internal/fastwalk",
     "internal/gopathwalk",
+    "internal/module",
+    "internal/semver",
   ]
   pruneopts = "UT"
-  revision = "e782529d0ddd4bb872a63766185bebe89c96d1ae"
+  revision = "a754db16a40a9d94359b6600b825419c0ca6f986"
 
 [[projects]]
-  digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
+  digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   pruneopts = "UT"
-  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
-  version = "v2.2.1"
+  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
+  version = "v2.2.2"
 
 [solve-meta]
   analyzer-name = "dep"

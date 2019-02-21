@@ -59,7 +59,7 @@ func (client *Client) GraphQL(ctx context.Context, query string, variables map[s
 	return client.Client.GraphQL(ctx, query, variables)
 }
 
-var DefaultEndpoint = ""
+var DefaultEndpoint = "https://eu1.prisma.sh/nikolas/uytreg/uyjthrgfe"
 var Secret = ""
 
 func (client *Client) Post(params PostWhereUniqueInput) *PostExec {
@@ -406,6 +406,7 @@ type PostUpdateManyWithoutAuthorInput struct {
 	Create     []PostCreateWithoutAuthorInput                `json:"create,omitempty"`
 	Delete     []PostWhereUniqueInput                        `json:"delete,omitempty"`
 	Connect    []PostWhereUniqueInput                        `json:"connect,omitempty"`
+	Set        []PostWhereUniqueInput                        `json:"set,omitempty"`
 	Disconnect []PostWhereUniqueInput                        `json:"disconnect,omitempty"`
 	Update     []PostUpdateWithWhereUniqueWithoutAuthorInput `json:"update,omitempty"`
 	Upsert     []PostUpsertWithWhereUniqueWithoutAuthorInput `json:"upsert,omitempty"`
