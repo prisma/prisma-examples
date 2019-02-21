@@ -11,7 +11,7 @@
     "graphql-yoga": "1.17.4",
     "jsonwebtoken": "8.5.0",
     "nexus": "0.9.14",
-    "nexus-prisma": "0.3.1",
+    "nexus-prisma": "0.3.2",
     "prisma-client-lib": "1.27.0"
   },
   "devDependencies": {
