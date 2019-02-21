@@ -17,4 +17,4 @@ hooks:
 
 # Seeds initial data into the database by running a script.
 seed:
-  import: seed.graphql
+  run: yarn ts-node seed.ts
