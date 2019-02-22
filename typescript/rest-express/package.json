@@ -16,6 +16,6 @@
     "@types/graphql": "14.0.7",
     "@types/ws": "6.0.1",
     "ts-node": "7.0.1",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3333"
   }
 }
