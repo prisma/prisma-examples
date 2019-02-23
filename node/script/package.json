@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "1.27.0"
+    "prisma-client-lib": "1.27.1"
   },
   "scripts": {
     "start": "node src/script.js"
