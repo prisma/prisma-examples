@@ -6,7 +6,7 @@
     "@types/ws": "6.0.1",
     "chalk": "2.4.2",
     "grpc": "1.18.0",
-    "prisma-client-lib": "1.27.0",
+    "prisma-client-lib": "1.27.1",
     "protobufjs": "6.8.8"
   },
   "scripts": {
