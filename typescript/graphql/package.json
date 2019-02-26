@@ -8,7 +8,7 @@
     "graphql-yoga": "1.17.4",
     "nexus": "0.10.0",
     "nexus-prisma": "0.3.3",
-    "prisma-client-lib": "1.27.2"
+    "prisma-client-lib": "1.27.3"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.19",
