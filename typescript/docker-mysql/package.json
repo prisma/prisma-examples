@@ -2,7 +2,7 @@
   "name": "docker-mysql",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "1.27.4"
+    "prisma-client-lib": "1.28.0"
   },
   "scripts": {
     "start": "ts-node src/script.ts"
