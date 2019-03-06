@@ -33,7 +33,7 @@ Then, follow these steps in the interactive CLI wizard:
     version: '3'
     services:
       prisma:
-        image: prismagraphql/prisma:1.27
+        image: prismagraphql/prisma:1.28
         restart: always
         ports:
         - "4466:4466"
