@@ -14,7 +14,6 @@ export const Query = queryType({
     t.list.field('feed', {
       type: 'Post',
       resolve: (parent, args, ctx) => {
-        console.log('Resolve feed')
         return ctx.prisma.posts({
           where: { published: true },
         })
