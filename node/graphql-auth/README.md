@@ -184,7 +184,6 @@ mutation {
   createDraft(
     title: "Join the Prisma Slack"
     content: "https://slack.prisma.io"
-    authorEmail: "alice@prisma.io"
   ) {
     id
     published
