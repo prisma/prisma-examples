@@ -5,7 +5,7 @@
     "bcrypt": "3.0.4",
     "graphql-shield": "5.3.1",
     "graphql-yoga": "1.17.4",
-    "jsonwebtoken": "8.5.0",
+    "jsonwebtoken": "8.5.1",
     "prisma-client-lib": "1.28.5"
   },
   "scripts": {
