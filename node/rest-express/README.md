@@ -81,6 +81,8 @@ Then, follow these steps in the interactive CLI wizard:
 
 </details>
 
+You can now use [Prisma Admin](https://www.prisma.io/docs/prisma-admin/overview-el3e/) to view and edit your data by appending `/_admin` to your Prisma endpoint.
+
 ### 4. Start the REST API server
 
 ```

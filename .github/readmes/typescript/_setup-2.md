@@ -62,3 +62,5 @@ Then, follow these steps in the interactive CLI wizard:
 1. Run `prisma deploy`
 
 </details>
+
+You can now use [Prisma Admin](https://www.prisma.io/docs/prisma-admin/overview-el3e/) to view and edit your data by appending `/_admin` to your Prisma endpoint.
