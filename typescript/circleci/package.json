@@ -12,7 +12,7 @@
   "devDependencies": {
     "jest": "23.6.0",
     "ts-jest": "23.10.5",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.4000"
   },
   "jest": {
     "testURL": "http://localhost/",
