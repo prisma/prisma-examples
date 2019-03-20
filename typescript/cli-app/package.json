@@ -8,7 +8,7 @@
     "@types/graphql": "14.0.7",
     "@types/ws": "6.0.1",
     "ts-node": "7.0.1",
-    "typescript": "3.3.3333"
+    "typescript": "3.3.4000"
   },
   "scripts": {
     "cli": "ts-node src/cli.ts"
