@@ -1,5 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+require('dotenv').config();
+
 const { prisma } = require('./generated/prisma-client')
 
 const app = express()
