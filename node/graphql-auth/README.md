@@ -234,7 +234,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 ```graphql
 {
-  posts(id: "__POST_ID__") {
+  post(id: "__POST_ID__") {
     id
     title
     content
