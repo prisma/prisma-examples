@@ -17,7 +17,7 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.23",
     "@types/bcrypt": "3.0.0",
-    "@types/graphql": "14.0.7",
+    "@types/graphql": "14.2.0",
     "@types/jsonwebtoken": "8.3.2",
     "@types/node": "10.14.4",
     "@types/ws": "6.0.1",
