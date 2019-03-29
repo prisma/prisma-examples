@@ -6,7 +6,7 @@
     "@types/ws": "6.0.1",
     "graphqlgen": "0.5.1",
     "ts-node": "7.0.1",
-    "typescript": "3.3.4000"
+    "typescript": "3.4.1"
   },
   "dependencies": {
     "graphql-yoga": "1.17.4",
