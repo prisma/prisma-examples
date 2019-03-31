@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "bcrypt": "3.0.5",
-    "graphql": "14.2.0",
+    "graphql": "14.2.1",
     "graphql-shield": "5.3.1",
     "graphql-yoga": "1.17.4",
     "jsonwebtoken": "8.5.1",
