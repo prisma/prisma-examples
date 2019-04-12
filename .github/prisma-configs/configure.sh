@@ -27,6 +27,7 @@ cp ./node/mysql-and-postgres/seed.js ../../node/docker-postgres/prisma
 # TypeScript (prisma.yml)
 cp ./typescript/prisma.yml ../../typescript/cli-app/prisma
 cp ./typescript/graphql/prisma.yml ../../typescript/graphql/prisma
+cp ./typescript/graphql/prisma.yml ../../typescript/graphql-apollo-server/prisma
 cp ./typescript/graphql/prisma.yml ../../typescript/graphql-crud/prisma
 cp ./typescript/graphql-auth/prisma.yml ../../typescript/graphql-auth/prisma
 cp ./typescript/prisma.yml ../../typescript/graphql-subscriptions/prisma
@@ -38,6 +39,7 @@ cp ./typescript/grpc/prisma.yml ../../typescript/grpc/prisma
 
 # TypeScript (seeding)
 cp ./typescript/seed.ts ../../typescript/graphql/prisma
+cp ./typescript/seed.ts ../../typescript/graphql-apollo-server/prisma
 cp ./typescript/seed.ts ../../typescript/graphql-crud/prisma
 cp ./typescript/graphql-auth/seed.ts ../../typescript/graphql-auth/prisma
 cp ./typescript/graphql-subscriptions/seed.ts ../../typescript/graphql-subscriptions/prisma
@@ -53,6 +55,8 @@ cp ./typescript/mysql-and-postgres/seed.ts ../../typescript/docker-postgres/pris
 cp ./typescript/tsconfig.json ../../typescript/cli-app
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql
 mv ../../typescript/graphql/tsconfig-graphql.json ../../typescript/graphql/tsconfig.json
+cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-apollo-server
+mv ../../typescript/graphql-apollo-server/tsconfig-graphql.json ../../typescript/graphql-apollo-server/tsconfig.json
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-crud
 mv ../../typescript/graphql-crud/tsconfig-graphql.json ../../typescript/graphql-crud/tsconfig.json
 cp ./typescript/tsconfig-graphql.json ../../typescript/graphql-auth
