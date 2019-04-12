@@ -2,8 +2,8 @@ const { prisma } = require('../src/generated/prisma-client')
 
 async function main() {
   await prisma.createPost({
-    title: 'Join us for GraphQL Conf 2019 in Berlin',
-    content: 'https://www.graphqlconf.org/',
+    title: 'Join us for Prisma Day 2019 in Berlin',
+    content: 'https://www.prisma.io/day/',
     published: true,
   })
   await prisma.createPost({

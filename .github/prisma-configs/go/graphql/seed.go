@@ -15,8 +15,8 @@ func main() {
 
 	email1 := "alice@prisma.io"
 	name1 := "Alice"
-	title1 := "Join us for GraphQL Conf 2019 in Berlin"
-	content1 := "https://www.graphqlconf.org/"
+	title1 := "Join us for Prisma Day 2019 in Berlin"
+	content1 := "https://www.prisma.io/day/"
 	client.CreateUser(prisma.UserCreateInput{
 		Name:  &name1,
 		Email: email1,

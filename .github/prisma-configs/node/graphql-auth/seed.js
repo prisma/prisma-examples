@@ -7,8 +7,8 @@ async function main() {
     password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m", // "secret42"
     posts: {
       create: {
-        title: "Join us for GraphQL Conf 2019 in Berlin",
-        content: "https://www.graphqlconf.org/",
+        title: "Join us for Prisma Day 2019 in Berlin",
+        content: "https://www.prisma.io/day/",
         published: true
       }
     }

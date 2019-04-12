@@ -11,7 +11,7 @@ func main() {
 	client := prisma.New(nil)
 	ctx := context.Background()
 
-	text1 := "Join us for GraphQL Conf 2019 in Berlin"
+	text1 := "Join us for Prisma Day 2019 in Berlin"
 	text2 := "Subscribe to GraphQL Weekly for community news"
 
 	client.CreateTodo(prisma.TodoCreateInput{

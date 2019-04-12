@@ -6,8 +6,8 @@ async function main() {
     name: 'Alice',
     posts: {
       create: {
-        title: 'Join us for GraphQL Conf 2019 in Berlin',
-        content: 'https://www.graphqlconf.org/',
+        title: 'Join us for Prisma Day 2019 in Berlin',
+        content: 'https://www.prisma.io/day/',
         published: true,
       },
     },
