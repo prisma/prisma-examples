@@ -1,5 +1,5 @@
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   isPublished: Boolean! @default(value: "false")
@@ -9,7 +9,7 @@ type Post {
 }
 
 type User {
-  id: ID! @unique
+  id: ID! @id
   name: String!
   email: String! @unique
   posts: [Post!]!

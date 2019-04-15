@@ -1,5 +1,5 @@
 type Todo {
-  id: ID! @unique
+  id: ID! @id
   title: String! @unique
   createdAt: DateTime!
 }

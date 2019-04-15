@@ -50,7 +50,7 @@ Then, follow these steps in the interactive CLI wizard:
     version: '3'
     services:
       prisma:
-        image: prismagraphql/prisma:1.30
+        image: prismagraphql/prisma:1.31
         restart: always
         ports:
         - "4466:4466"
@@ -277,7 +277,7 @@ For that, you first need to adjust the Prisma datamodel in [`./prisma/datamodel.
 
 ```diff
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   name: String
   posts: [Post!]!
@@ -285,7 +285,7 @@ type User {
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
@@ -296,7 +296,7 @@ type Post {
 }
 
 + type Comment {
-+   id: ID! @unique
++   id: ID! @id
 +   text: String!
 +   writtenBy: User!
 +   post: Post!

@@ -1,12 +1,12 @@
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   name: String
   posts: [Post!]!
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")

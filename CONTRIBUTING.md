@@ -39,14 +39,14 @@ Here's an overview of the used datamodels and APIs:
 
 ```graphql
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   name: String
   posts: [Post!]!
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
@@ -66,14 +66,14 @@ type Post {
 
 ```graphql
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   name: String
   posts: [Post!]!
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
@@ -129,7 +129,7 @@ type User {
 
 ```graphql
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
@@ -139,7 +139,7 @@ type Post {
 }
 
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   password: String!
   name: String
@@ -200,7 +200,7 @@ type User {
 
 ```graphql
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
@@ -250,14 +250,14 @@ type Post {
 
 ```graphql
 type User {
-  id: ID! @unique
+  id: ID! @id
   email: String! @unique
   name: String
   posts: [Post!]!
 }
 
 type Post {
-  id: ID! @unique
+  id: ID! @id
   createdAt: DateTime!
   updatedAt: DateTime!
   published: Boolean! @default(value: "false")
@@ -307,7 +307,7 @@ type Post {
 
 ```graphql
 type Todo {
-  id: ID! @unique
+  id: ID! @id
   title: String! @unique
   createdAt: DateTime!
 }
