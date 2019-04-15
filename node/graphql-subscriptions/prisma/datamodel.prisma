@@ -1,8 +1,8 @@
 type Post {
   id: ID! @id
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  published: Boolean! @default(value: "false")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  published: Boolean! @default(value: false)
   title: String!
   content: String
 }

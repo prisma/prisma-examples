@@ -8,11 +8,11 @@ type User {
 
 type Post {
   id: ID! @id
-  createdAt: DateTime!
-  updatedAt: DateTime!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   title: String!
   content: String
-  published: Boolean! @default(value: "false")
+  published: Boolean! @default(value: false)
   author: User!
   comments: [Comment!]!
 }
