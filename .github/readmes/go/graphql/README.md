@@ -21,7 +21,7 @@ __INLINE(../../_using-the-graphql-api.md)__
 After you made changes to `schema.graphql`, you need to update the generated types in `./server/generated.go` and potentially also adjust the resolver implementations in `./server/resolver.go`:
 
 ```
-go run sripts/gqlgen.go
+go run scripts/gqlgen.go
 ```
 
 This updates `./server/generated.go` to incorporate the schema changes in your Go type definitions. It also generates scaffolded resolvers in `tmp/resolver.go` that you might need to copy and paste into `./server/resolver.go`. 
