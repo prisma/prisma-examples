@@ -4,7 +4,7 @@
     "@grpc/proto-loader": "0.5.0",
     "chalk": "2.4.2",
     "grpc": "1.20.2",
-    "prisma-client-lib": "1.32.0"
+    "prisma-client-lib": "1.32.1"
   },
   "scripts": {
     "start": "node ./server/server.js",
