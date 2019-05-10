@@ -16,7 +16,7 @@ jobs:
       - run: cd node/cli-app && yarn && prisma generate
       - run: cd node/graphql && yarn && prisma generate
       - run: cd node/graphql-auth && yarn && prisma generate
-      - run: cd node/graphql-subscriptions && yarn && prisma generate
+      - run: cd node/graphql-subscriptions && yarn
       - run: cd node/rest-express && yarn && prisma generate
       - run: cd node/script && yarn && prisma generate
       - run: cd node/docker-mongodb && yarn && prisma generate
