@@ -2,7 +2,7 @@
   "name": "graphql-subscriptions",
   "license": "MIT",
   "devDependencies": {
-    "@types/aws-lambda": "8.10.24",
+    "@types/aws-lambda": "8.10.25",
     "@types/ws": "6.0.1",
     "ts-node": "7.0.1",
     "ts-node-dev": "^1.0.0-pre.32",
@@ -13,7 +13,7 @@
     "graphql-yoga": "1.17.4",
     "nexus": "^0.11.6",
     "nexus-prisma": "^0.3.7",
-    "prisma-client-lib": "1.31.1"
+    "prisma-client-lib": "1.32.2"
   },
   "scripts": {
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src"

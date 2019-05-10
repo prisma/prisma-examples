@@ -51,8 +51,8 @@ export interface NexusPrismaTypes {
     }
   }
   enumTypes: {
-    PostOrderByInput: PostOrderByInputValues,
-    MutationType: MutationTypeValues,
+    PostOrderByInput: PostOrderByInputValues
+    MutationType: MutationTypeValues
   }
 }
 
@@ -60,18 +60,17 @@ export interface NexusPrismaTypes {
 
 type QueryObject =
   | QueryFields
-  | { name: 'post', args?: QueryPostArgs[] | false, alias?: string  } 
-  | { name: 'posts', args?: QueryPostsArgs[] | false, alias?: string  } 
-  | { name: 'postsConnection', args?: QueryPostsConnectionArgs[] | false, alias?: string  } 
+  | { name: 'post'; args?: QueryPostArgs[] | false; alias?: string }
+  | { name: 'posts'; args?: QueryPostsArgs[] | false; alias?: string }
+  | {
+      name: 'postsConnection'
+      args?: QueryPostsConnectionArgs[] | false
+      alias?: string
+    }
 
-type QueryFields =
-  | 'post'
-  | 'posts'
-  | 'postsConnection'
+type QueryFields = 'post' | 'posts' | 'postsConnection'
 
-
-type QueryPostArgs =
-  | 'where'
+type QueryPostArgs = 'where'
 type QueryPostsArgs =
   | 'where'
   | 'orderBy'
@@ -88,7 +87,6 @@ type QueryPostsConnectionArgs =
   | 'before'
   | 'first'
   | 'last'
-  
 
 export interface QueryFieldDetails {
   post: {
@@ -98,10 +96,10 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where: PostWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: { where: PostWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   posts: {
@@ -111,10 +109,18 @@ export interface QueryFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: PostWhereInput | null, orderBy?: prisma.PostOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: {
+        where?: PostWhereInput | null
+        orderBy?: prisma.PostOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post[]> | prisma.Post[]
   }
   postsConnection: {
@@ -124,25 +130,32 @@ export interface QueryFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Query">,
-      args: { where?: PostWhereInput | null, orderBy?: prisma.PostOrderByInput | null, skip?: number | null, after?: string | null, before?: string | null, first?: number | null, last?: number | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Query'>,
+      args: {
+        where?: PostWhereInput | null
+        orderBy?: prisma.PostOrderByInput | null
+        skip?: number | null
+        after?: string | null
+        before?: string | null
+        first?: number | null
+        last?: number | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PostConnection> | prisma.PostConnection
   }
 }
-  
 
 // Types for Post
 
 type PostObject =
   | PostFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'createdAt', args?: [] | false, alias?: string  } 
-  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'published', args?: [] | false, alias?: string  } 
-  | { name: 'title', args?: [] | false, alias?: string  } 
-  | { name: 'content', args?: [] | false, alias?: string  } 
+  | { name: 'id'; args?: [] | false; alias?: string }
+  | { name: 'createdAt'; args?: [] | false; alias?: string }
+  | { name: 'updatedAt'; args?: [] | false; alias?: string }
+  | { name: 'published'; args?: [] | false; alias?: string }
+  | { name: 'title'; args?: [] | false; alias?: string }
+  | { name: 'content'; args?: [] | false; alias?: string }
 
 type PostFields =
   | 'id'
@@ -151,10 +164,6 @@ type PostFields =
   | 'published'
   | 'title'
   | 'content'
-
-
-
-  
 
 export interface PostFieldDetails {
   id: {
@@ -206,24 +215,16 @@ export interface PostFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for PostConnection
 
 type PostConnectionObject =
   | PostConnectionFields
-  | { name: 'pageInfo', args?: [] | false, alias?: string  } 
-  | { name: 'edges', args?: [] | false, alias?: string  } 
-  | { name: 'aggregate', args?: [] | false, alias?: string  } 
+  | { name: 'pageInfo'; args?: [] | false; alias?: string }
+  | { name: 'edges'; args?: [] | false; alias?: string }
+  | { name: 'aggregate'; args?: [] | false; alias?: string }
 
-type PostConnectionFields =
-  | 'pageInfo'
-  | 'edges'
-  | 'aggregate'
-
-
-
-  
+type PostConnectionFields = 'pageInfo' | 'edges' | 'aggregate'
 
 export interface PostConnectionFieldDetails {
   pageInfo: {
@@ -233,10 +234,10 @@ export interface PostConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PageInfo> | prisma.PageInfo
   }
   edges: {
@@ -246,10 +247,10 @@ export interface PostConnectionFieldDetails {
     list: true
     nullable: false
     resolve: (
-      root: core.RootValue<"PostConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.PostEdge[]> | prisma.PostEdge[]
   }
   aggregate: {
@@ -259,33 +260,28 @@ export interface PostConnectionFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostConnection">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostConnection'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.AggregatePost> | prisma.AggregatePost
   }
 }
-  
 
 // Types for PageInfo
 
 type PageInfoObject =
   | PageInfoFields
-  | { name: 'hasNextPage', args?: [] | false, alias?: string  } 
-  | { name: 'hasPreviousPage', args?: [] | false, alias?: string  } 
-  | { name: 'startCursor', args?: [] | false, alias?: string  } 
-  | { name: 'endCursor', args?: [] | false, alias?: string  } 
+  | { name: 'hasNextPage'; args?: [] | false; alias?: string }
+  | { name: 'hasPreviousPage'; args?: [] | false; alias?: string }
+  | { name: 'startCursor'; args?: [] | false; alias?: string }
+  | { name: 'endCursor'; args?: [] | false; alias?: string }
 
 type PageInfoFields =
   | 'hasNextPage'
   | 'hasPreviousPage'
   | 'startCursor'
   | 'endCursor'
-
-
-
-  
 
 export interface PageInfoFieldDetails {
   hasNextPage: {
@@ -321,22 +317,15 @@ export interface PageInfoFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for PostEdge
 
 type PostEdgeObject =
   | PostEdgeFields
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'cursor', args?: [] | false, alias?: string  } 
+  | { name: 'node'; args?: [] | false; alias?: string }
+  | { name: 'cursor'; args?: [] | false; alias?: string }
 
-type PostEdgeFields =
-  | 'node'
-  | 'cursor'
-
-
-
-  
+type PostEdgeFields = 'node' | 'cursor'
 
 export interface PostEdgeFieldDetails {
   node: {
@@ -346,10 +335,10 @@ export interface PostEdgeFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostEdge">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostEdge'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post> | prisma.Post
   }
   cursor: {
@@ -361,20 +350,14 @@ export interface PostEdgeFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for AggregatePost
 
 type AggregatePostObject =
   | AggregatePostFields
-  | { name: 'count', args?: [] | false, alias?: string  } 
+  | { name: 'count'; args?: [] | false; alias?: string }
 
-type AggregatePostFields =
-  | 'count'
-
-
-
-  
+type AggregatePostFields = 'count'
 
 export interface AggregatePostFieldDetails {
   count: {
@@ -386,18 +369,41 @@ export interface AggregatePostFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for Mutation
 
 type MutationObject =
   | MutationFields
-  | { name: 'createPost', args?: MutationCreatePostArgs[] | false, alias?: string  } 
-  | { name: 'updatePost', args?: MutationUpdatePostArgs[] | false, alias?: string  } 
-  | { name: 'updateManyPosts', args?: MutationUpdateManyPostsArgs[] | false, alias?: string  } 
-  | { name: 'upsertPost', args?: MutationUpsertPostArgs[] | false, alias?: string  } 
-  | { name: 'deletePost', args?: MutationDeletePostArgs[] | false, alias?: string  } 
-  | { name: 'deleteManyPosts', args?: MutationDeleteManyPostsArgs[] | false, alias?: string  } 
+  | {
+      name: 'createPost'
+      args?: MutationCreatePostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'updatePost'
+      args?: MutationUpdatePostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'updateManyPosts'
+      args?: MutationUpdateManyPostsArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'upsertPost'
+      args?: MutationUpsertPostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'deletePost'
+      args?: MutationDeletePostArgs[] | false
+      alias?: string
+    }
+  | {
+      name: 'deleteManyPosts'
+      args?: MutationDeleteManyPostsArgs[] | false
+      alias?: string
+    }
 
 type MutationFields =
   | 'createPost'
@@ -407,24 +413,12 @@ type MutationFields =
   | 'deletePost'
   | 'deleteManyPosts'
 
-
-type MutationCreatePostArgs =
-  | 'data'
-type MutationUpdatePostArgs =
-  | 'data'
-  | 'where'
-type MutationUpdateManyPostsArgs =
-  | 'data'
-  | 'where'
-type MutationUpsertPostArgs =
-  | 'where'
-  | 'create'
-  | 'update'
-type MutationDeletePostArgs =
-  | 'where'
-type MutationDeleteManyPostsArgs =
-  | 'where'
-  
+type MutationCreatePostArgs = 'data'
+type MutationUpdatePostArgs = 'data' | 'where'
+type MutationUpdateManyPostsArgs = 'data' | 'where'
+type MutationUpsertPostArgs = 'where' | 'create' | 'update'
+type MutationDeletePostArgs = 'where'
+type MutationDeleteManyPostsArgs = 'where'
 
 export interface MutationFieldDetails {
   createPost: {
@@ -434,10 +428,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: PostCreateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { data: PostCreateInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post> | prisma.Post
   }
   updatePost: {
@@ -447,10 +441,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: PostUpdateInput, where: PostWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { data: PostUpdateInput; where: PostWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   updateManyPosts: {
@@ -460,10 +454,13 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { data: PostUpdateManyMutationInput, where?: PostWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: {
+        data: PostUpdateManyMutationInput
+        where?: PostWhereInput | null
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
   upsertPost: {
@@ -473,10 +470,14 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: PostWhereUniqueInput, create: PostCreateInput, update: PostUpdateInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: {
+        where: PostWhereUniqueInput
+        create: PostCreateInput
+        update: PostUpdateInput
+      },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post> | prisma.Post
   }
   deletePost: {
@@ -486,10 +487,10 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where: PostWhereUniqueInput }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { where: PostWhereUniqueInput },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   deleteManyPosts: {
@@ -499,27 +500,21 @@ export interface MutationFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"Mutation">,
-      args: { where?: PostWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'Mutation'>,
+      args: { where?: PostWhereInput | null },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.BatchPayload> | prisma.BatchPayload
   }
 }
-  
 
 // Types for BatchPayload
 
 type BatchPayloadObject =
   | BatchPayloadFields
-  | { name: 'count', args?: [] | false, alias?: string  } 
+  | { name: 'count'; args?: [] | false; alias?: string }
 
-type BatchPayloadFields =
-  | 'count'
-
-
-
-  
+type BatchPayloadFields = 'count'
 
 export interface BatchPayloadFieldDetails {
   count: {
@@ -531,21 +526,16 @@ export interface BatchPayloadFieldDetails {
     resolve: undefined
   }
 }
-  
 
 // Types for Subscription
 
 type SubscriptionObject =
   | SubscriptionFields
-  | { name: 'post', args?: SubscriptionPostArgs[] | false, alias?: string  } 
+  | { name: 'post'; args?: SubscriptionPostArgs[] | false; alias?: string }
 
-type SubscriptionFields =
-  | 'post'
+type SubscriptionFields = 'post'
 
-
-type SubscriptionPostArgs =
-  | 'where'
-  
+type SubscriptionPostArgs = 'where'
 
 export interface SubscriptionFieldDetails {
   post: {
@@ -555,33 +545,31 @@ export interface SubscriptionFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"Subscription">,
-      args: { where?: PostSubscriptionWhereInput | null }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PostSubscriptionPayload | null> | prisma.PostSubscriptionPayload | null
+      root: core.RootValue<'Subscription'>,
+      args: { where?: PostSubscriptionWhereInput | null },
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
+    ) =>
+      | Promise<prisma.PostSubscriptionPayload | null>
+      | prisma.PostSubscriptionPayload
+      | null
   }
 }
-  
 
 // Types for PostSubscriptionPayload
 
 type PostSubscriptionPayloadObject =
   | PostSubscriptionPayloadFields
-  | { name: 'mutation', args?: [] | false, alias?: string  } 
-  | { name: 'node', args?: [] | false, alias?: string  } 
-  | { name: 'updatedFields', args?: [] | false, alias?: string  } 
-  | { name: 'previousValues', args?: [] | false, alias?: string  } 
+  | { name: 'mutation'; args?: [] | false; alias?: string }
+  | { name: 'node'; args?: [] | false; alias?: string }
+  | { name: 'updatedFields'; args?: [] | false; alias?: string }
+  | { name: 'previousValues'; args?: [] | false; alias?: string }
 
 type PostSubscriptionPayloadFields =
   | 'mutation'
   | 'node'
   | 'updatedFields'
   | 'previousValues'
-
-
-
-  
 
 export interface PostSubscriptionPayloadFieldDetails {
   mutation: {
@@ -591,10 +579,10 @@ export interface PostSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: false
     resolve: (
-      root: core.RootValue<"PostSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.MutationType> | prisma.MutationType
   }
   node: {
@@ -604,10 +592,10 @@ export interface PostSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"PostSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
+      root: core.RootValue<'PostSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
     ) => Promise<prisma.Post | null> | prisma.Post | null
   }
   updatedFields: {
@@ -625,25 +613,27 @@ export interface PostSubscriptionPayloadFieldDetails {
     list: undefined
     nullable: true
     resolve: (
-      root: core.RootValue<"PostSubscriptionPayload">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.PostPreviousValues | null> | prisma.PostPreviousValues | null
+      root: core.RootValue<'PostSubscriptionPayload'>,
+      args: {},
+      context: core.GetGen<'context'>,
+      info?: GraphQLResolveInfo,
+    ) =>
+      | Promise<prisma.PostPreviousValues | null>
+      | prisma.PostPreviousValues
+      | null
   }
 }
-  
 
 // Types for PostPreviousValues
 
 type PostPreviousValuesObject =
   | PostPreviousValuesFields
-  | { name: 'id', args?: [] | false, alias?: string  } 
-  | { name: 'createdAt', args?: [] | false, alias?: string  } 
-  | { name: 'updatedAt', args?: [] | false, alias?: string  } 
-  | { name: 'published', args?: [] | false, alias?: string  } 
-  | { name: 'title', args?: [] | false, alias?: string  } 
-  | { name: 'content', args?: [] | false, alias?: string  } 
+  | { name: 'id'; args?: [] | false; alias?: string }
+  | { name: 'createdAt'; args?: [] | false; alias?: string }
+  | { name: 'updatedAt'; args?: [] | false; alias?: string }
+  | { name: 'published'; args?: [] | false; alias?: string }
+  | { name: 'title'; args?: [] | false; alias?: string }
+  | { name: 'content'; args?: [] | false; alias?: string }
 
 type PostPreviousValuesFields =
   | 'id'
@@ -652,10 +642,6 @@ type PostPreviousValuesFields =
   | 'published'
   | 'title'
   | 'content'
-
-
-
-  
 
 export interface PostPreviousValuesFieldDetails {
   id: {
@@ -707,16 +693,14 @@ export interface PostPreviousValuesFieldDetails {
     resolve: undefined
   }
 }
-  
-
 
 export interface PostWhereUniqueInput {
   id?: string | null
 }
 export type PostWhereUniqueInputInputObject =
   | Extract<keyof PostWhereUniqueInput, string>
-  | { name: 'id', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+
 export interface PostWhereInput {
   id?: string | null
   id_not?: string | null
@@ -784,70 +768,70 @@ export interface PostWhereInput {
 }
 export type PostWhereInputInputObject =
   | Extract<keyof PostWhereInput, string>
-  | { name: 'id', alias?: string  } 
-  | { name: 'id_not', alias?: string  } 
-  | { name: 'id_in', alias?: string  } 
-  | { name: 'id_not_in', alias?: string  } 
-  | { name: 'id_lt', alias?: string  } 
-  | { name: 'id_lte', alias?: string  } 
-  | { name: 'id_gt', alias?: string  } 
-  | { name: 'id_gte', alias?: string  } 
-  | { name: 'id_contains', alias?: string  } 
-  | { name: 'id_not_contains', alias?: string  } 
-  | { name: 'id_starts_with', alias?: string  } 
-  | { name: 'id_not_starts_with', alias?: string  } 
-  | { name: 'id_ends_with', alias?: string  } 
-  | { name: 'id_not_ends_with', alias?: string  } 
-  | { name: 'createdAt', alias?: string  } 
-  | { name: 'createdAt_not', alias?: string  } 
-  | { name: 'createdAt_in', alias?: string  } 
-  | { name: 'createdAt_not_in', alias?: string  } 
-  | { name: 'createdAt_lt', alias?: string  } 
-  | { name: 'createdAt_lte', alias?: string  } 
-  | { name: 'createdAt_gt', alias?: string  } 
-  | { name: 'createdAt_gte', alias?: string  } 
-  | { name: 'updatedAt', alias?: string  } 
-  | { name: 'updatedAt_not', alias?: string  } 
-  | { name: 'updatedAt_in', alias?: string  } 
-  | { name: 'updatedAt_not_in', alias?: string  } 
-  | { name: 'updatedAt_lt', alias?: string  } 
-  | { name: 'updatedAt_lte', alias?: string  } 
-  | { name: 'updatedAt_gt', alias?: string  } 
-  | { name: 'updatedAt_gte', alias?: string  } 
-  | { name: 'published', alias?: string  } 
-  | { name: 'published_not', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'title_not', alias?: string  } 
-  | { name: 'title_in', alias?: string  } 
-  | { name: 'title_not_in', alias?: string  } 
-  | { name: 'title_lt', alias?: string  } 
-  | { name: 'title_lte', alias?: string  } 
-  | { name: 'title_gt', alias?: string  } 
-  | { name: 'title_gte', alias?: string  } 
-  | { name: 'title_contains', alias?: string  } 
-  | { name: 'title_not_contains', alias?: string  } 
-  | { name: 'title_starts_with', alias?: string  } 
-  | { name: 'title_not_starts_with', alias?: string  } 
-  | { name: 'title_ends_with', alias?: string  } 
-  | { name: 'title_not_ends_with', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  | { name: 'content_not', alias?: string  } 
-  | { name: 'content_in', alias?: string  } 
-  | { name: 'content_not_in', alias?: string  } 
-  | { name: 'content_lt', alias?: string  } 
-  | { name: 'content_lte', alias?: string  } 
-  | { name: 'content_gt', alias?: string  } 
-  | { name: 'content_gte', alias?: string  } 
-  | { name: 'content_contains', alias?: string  } 
-  | { name: 'content_not_contains', alias?: string  } 
-  | { name: 'content_starts_with', alias?: string  } 
-  | { name: 'content_not_starts_with', alias?: string  } 
-  | { name: 'content_ends_with', alias?: string  } 
-  | { name: 'content_not_ends_with', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+  | { name: 'id_not'; alias?: string }
+  | { name: 'id_in'; alias?: string }
+  | { name: 'id_not_in'; alias?: string }
+  | { name: 'id_lt'; alias?: string }
+  | { name: 'id_lte'; alias?: string }
+  | { name: 'id_gt'; alias?: string }
+  | { name: 'id_gte'; alias?: string }
+  | { name: 'id_contains'; alias?: string }
+  | { name: 'id_not_contains'; alias?: string }
+  | { name: 'id_starts_with'; alias?: string }
+  | { name: 'id_not_starts_with'; alias?: string }
+  | { name: 'id_ends_with'; alias?: string }
+  | { name: 'id_not_ends_with'; alias?: string }
+  | { name: 'createdAt'; alias?: string }
+  | { name: 'createdAt_not'; alias?: string }
+  | { name: 'createdAt_in'; alias?: string }
+  | { name: 'createdAt_not_in'; alias?: string }
+  | { name: 'createdAt_lt'; alias?: string }
+  | { name: 'createdAt_lte'; alias?: string }
+  | { name: 'createdAt_gt'; alias?: string }
+  | { name: 'createdAt_gte'; alias?: string }
+  | { name: 'updatedAt'; alias?: string }
+  | { name: 'updatedAt_not'; alias?: string }
+  | { name: 'updatedAt_in'; alias?: string }
+  | { name: 'updatedAt_not_in'; alias?: string }
+  | { name: 'updatedAt_lt'; alias?: string }
+  | { name: 'updatedAt_lte'; alias?: string }
+  | { name: 'updatedAt_gt'; alias?: string }
+  | { name: 'updatedAt_gte'; alias?: string }
+  | { name: 'published'; alias?: string }
+  | { name: 'published_not'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'title_not'; alias?: string }
+  | { name: 'title_in'; alias?: string }
+  | { name: 'title_not_in'; alias?: string }
+  | { name: 'title_lt'; alias?: string }
+  | { name: 'title_lte'; alias?: string }
+  | { name: 'title_gt'; alias?: string }
+  | { name: 'title_gte'; alias?: string }
+  | { name: 'title_contains'; alias?: string }
+  | { name: 'title_not_contains'; alias?: string }
+  | { name: 'title_starts_with'; alias?: string }
+  | { name: 'title_not_starts_with'; alias?: string }
+  | { name: 'title_ends_with'; alias?: string }
+  | { name: 'title_not_ends_with'; alias?: string }
+  | { name: 'content'; alias?: string }
+  | { name: 'content_not'; alias?: string }
+  | { name: 'content_in'; alias?: string }
+  | { name: 'content_not_in'; alias?: string }
+  | { name: 'content_lt'; alias?: string }
+  | { name: 'content_lte'; alias?: string }
+  | { name: 'content_gt'; alias?: string }
+  | { name: 'content_gte'; alias?: string }
+  | { name: 'content_contains'; alias?: string }
+  | { name: 'content_not_contains'; alias?: string }
+  | { name: 'content_starts_with'; alias?: string }
+  | { name: 'content_not_starts_with'; alias?: string }
+  | { name: 'content_ends_with'; alias?: string }
+  | { name: 'content_not_ends_with'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
+
 export interface PostCreateInput {
   id?: string | null
   published?: boolean | null
@@ -856,11 +840,11 @@ export interface PostCreateInput {
 }
 export type PostCreateInputInputObject =
   | Extract<keyof PostCreateInput, string>
-  | { name: 'id', alias?: string  } 
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'id'; alias?: string }
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface PostUpdateInput {
   published?: boolean | null
   title?: string | null
@@ -868,10 +852,10 @@ export interface PostUpdateInput {
 }
 export type PostUpdateInputInputObject =
   | Extract<keyof PostUpdateInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface PostUpdateManyMutationInput {
   published?: boolean | null
   title?: string | null
@@ -879,10 +863,10 @@ export interface PostUpdateManyMutationInput {
 }
 export type PostUpdateManyMutationInputInputObject =
   | Extract<keyof PostUpdateManyMutationInput, string>
-  | { name: 'published', alias?: string  } 
-  | { name: 'title', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  
+  | { name: 'published'; alias?: string }
+  | { name: 'title'; alias?: string }
+  | { name: 'content'; alias?: string }
+
 export interface PostSubscriptionWhereInput {
   mutation_in?: prisma.MutationType[]
   updatedFields_contains?: string | null
@@ -895,15 +879,14 @@ export interface PostSubscriptionWhereInput {
 }
 export type PostSubscriptionWhereInputInputObject =
   | Extract<keyof PostSubscriptionWhereInput, string>
-  | { name: 'mutation_in', alias?: string  } 
-  | { name: 'updatedFields_contains', alias?: string  } 
-  | { name: 'updatedFields_contains_every', alias?: string  } 
-  | { name: 'updatedFields_contains_some', alias?: string  } 
-  | { name: 'node', alias?: string  } 
-  | { name: 'AND', alias?: string  } 
-  | { name: 'OR', alias?: string  } 
-  | { name: 'NOT', alias?: string  } 
-  
+  | { name: 'mutation_in'; alias?: string }
+  | { name: 'updatedFields_contains'; alias?: string }
+  | { name: 'updatedFields_contains_every'; alias?: string }
+  | { name: 'updatedFields_contains_some'; alias?: string }
+  | { name: 'node'; alias?: string }
+  | { name: 'AND'; alias?: string }
+  | { name: 'OR'; alias?: string }
+  | { name: 'NOT'; alias?: string }
 
 export type PostOrderByInputValues =
   | 'id_ASC'
@@ -918,10 +901,5 @@ export type PostOrderByInputValues =
   | 'title_DESC'
   | 'content_ASC'
   | 'content_DESC'
-  
-export type MutationTypeValues =
-  | 'CREATED'
-  | 'UPDATED'
-  | 'DELETED'
-  
-  
+
+export type MutationTypeValues = 'CREATED' | 'UPDATED' | 'DELETED'

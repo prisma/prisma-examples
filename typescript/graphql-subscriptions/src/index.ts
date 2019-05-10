@@ -1,7 +1,13 @@
 import { GraphQLServer } from 'graphql-yoga'
 import { PubSub } from 'graphql-subscriptions'
-import { idArg, queryType, stringArg, objectType, subscriptionField } from 'nexus'
-import { makePrismaSchema, prismaObjectType  } from 'nexus-prisma'
+import {
+  idArg,
+  queryType,
+  stringArg,
+  objectType,
+  subscriptionField,
+} from 'nexus'
+import { makePrismaSchema, prismaObjectType } from 'nexus-prisma'
 import * as path from 'path'
 
 import mapAsyncIterator from './mapAsyncIterator'
@@ -18,11 +24,16 @@ const PostTopic = {
     pubsub.publish(PostTopic.identifier, { post, event })
   },
   asyncIterator: () => {
-    return mapAsyncIterator(pubsub.asyncIterator<{post: Post, event: PostTopicEvent}>(PostTopic.identifier), (value) => {
-      console.log('Event reason: ', value.event)
-      return value.post
-    })
-  }
+    return mapAsyncIterator(
+      pubsub.asyncIterator<{ post: Post; event: PostTopicEvent }>(
+        PostTopic.identifier,
+      ),
+      value => {
+        console.log('Event reason: ', value.event)
+        return value.post
+      },
+    )
+  },
 }
 
 const Post = prismaObjectType({
@@ -52,12 +63,12 @@ const Mutation = prismaObjectType({
       type: 'Post',
       args: {
         title: stringArg(),
-        content: stringArg({ nullable: true })
+        content: stringArg({ nullable: true }),
       },
       resolve: async (parent, { title, content }, ctx) => {
         const post = await ctx.prisma.createPost({
           title,
-          content
+          content,
         })
         if (post) {
           PostTopic.publish(post, 'draft')
