@@ -5,14 +5,14 @@
     "@types/aws-lambda": "8.10.25",
     "@types/ws": "6.0.1",
     "ts-node": "7.0.1",
-    "ts-node-dev": "^1.0.0-pre.32",
+    "ts-node-dev": "1.0.0-pre.39",
     "typescript": "3.4.5"
   },
   "dependencies": {
-    "graphql-subscriptions": "^1.1.0",
+    "graphql-subscriptions": "1.1.0",
     "graphql-yoga": "1.17.4",
-    "nexus": "^0.11.6",
-    "nexus-prisma": "^0.3.7",
+    "nexus": "0.11.7",
+    "nexus-prisma": "0.3.7",
     "prisma-client-lib": "1.32.2"
   },
   "scripts": {
