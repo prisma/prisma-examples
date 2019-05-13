@@ -113,7 +113,7 @@ const Mutation = prismaObjectType({
 })
 
 // This creates a global Subscription type that has a field post which yields an async iterator
-export const SubscriptionPost = subscriptionField('post', {
+export const SubscriptionPost = subscriptionField('posts', {
   type: 'Post',
   subscribe(root, args, ctx) {
     return PostTopic.asyncIterator()
