@@ -15,7 +15,7 @@
     "prisma-client-lib": "1.33.0"
   },
   "devDependencies": {
-    "@types/aws-lambda": "8.10.25",
+    "@types/aws-lambda": "8.10.26",
     "@types/bcrypt": "3.0.0",
     "@types/graphql": "14.2.0",
     "@types/jsonwebtoken": "8.3.2",
