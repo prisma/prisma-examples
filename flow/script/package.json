@@ -8,7 +8,7 @@
     "flow-bin": "0.99.0"
   },
   "dependencies": {
-    "prisma-client-lib": "1.33.0"
+    "prisma-client-lib": "1.34.0"
   },
   "scripts": {
     "start": "babel-node src/script.js",
