@@ -5,7 +5,7 @@
     "@babel/core": "7.4.5",
     "@babel/preset-env": "7.4.5",
     "@babel/preset-flow": "7.0.0",
-    "flow-bin": "0.99.1",
+    "flow-bin": "0.100.0",
     "graphqlgen": "0.5.1"
   },
   "dependencies": {
