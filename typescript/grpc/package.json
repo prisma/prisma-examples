@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "ts-node": "8.0.2",
-    "typescript": "3.5.1"
+    "typescript": "3.5.2"
   }
 }
