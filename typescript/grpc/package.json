@@ -2,7 +2,7 @@
   "name": "typescript-grpc",
   "dependencies": {
     "@grpc/proto-loader": "0.5.1",
-    "@types/graphql": "14.2.1",
+    "@types/graphql": "14.2.2",
     "@types/ws": "6.0.1",
     "chalk": "2.4.2",
     "grpc": "1.21.1",
