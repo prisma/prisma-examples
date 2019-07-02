@@ -1,6 +1,7 @@
 # REST API Example
 
-This example shows how to implement a **REST (HTTP) API** using [gorilla/mux](http://www.gorillatoolkit.org/pkg/mux) and Prisma.
+This example shows how to implement a **REST (HTTP) API** using [gorilla/mux](http://www.gorillatoolkit.org/pkg/mux) and
+Prisma.
 
 ## How to use
 
@@ -16,12 +17,12 @@ Ensure dependencies are available and up-to-date:
 
 ```
 cd prisma-examples/go/http-mux
-dep ensure -update
 ```
 
 ### 2. Install the Prisma CLI
 
-To run the example, you need the Prisma CLI. Please install it via Homebrew or [using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
+To run the example, you need the Prisma CLI. Please install it via Homebrew or
+[using another method](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/#installation):
 
 ```
 brew install prisma
@@ -45,44 +46,46 @@ Then, follow these steps in the interactive CLI wizard:
 <details>
  <summary>Alternative: Run Prisma locally via Docker</summary>
 
-1. Ensure you have Docker installed on your machine. If not, you can get it from [here](https://store.docker.com/search?offering=community&type=edition).
-1. Create `docker-compose.yml` for MySQL (see [here](https://www.prisma.io/docs/prisma-server/database-connector-POSTGRES-jgfr/) for Postgres):
-    ```yml
-    version: '3'
-    services:
-      prisma:
-        image: prismagraphql/prisma:1.34
-        restart: always
-        ports:
-        - "4466:4466"
-        environment:
-          PRISMA_CONFIG: |
-            port: 4466
-            databases:
-              default:
-                connector: mysql
-                host: mysql
-                port: 3306
-                user: root
-                password: prisma
-                migrations: true
-      mysql:
-        image: mysql:5.7
-        restart: always
-        environment:
-          MYSQL_ROOT_PASSWORD: prisma
-        volumes:
-          - mysql:/var/lib/mysql
-    volumes:
-      mysql:
-    ```
+1. Ensure you have Docker installed on your machine. If not, you can get it from
+   [here](https://store.docker.com/search?offering=community&type=edition).
+1. Create `docker-compose.yml` for MySQL (see
+   [here](https://www.prisma.io/docs/prisma-server/database-connector-POSTGRES-jgfr/) for Postgres):
+   ```yml
+   version: '3'
+   services:
+     prisma:
+       image: prismagraphql/prisma:1.34
+       restart: always
+       ports:
+         - '4466:4466'
+       environment:
+         PRISMA_CONFIG: |
+           port: 4466
+           databases:
+             default:
+               connector: mysql
+               host: mysql
+               port: 3306
+               user: root
+               password: prisma
+               migrations: true
+     mysql:
+       image: mysql:5.7
+       restart: always
+       environment:
+         MYSQL_ROOT_PASSWORD: prisma
+       volumes:
+         - mysql:/var/lib/mysql
+   volumes: mysql:
+   ```
 1. Run `docker-compose up -d`
 1. Set the `endpoint` in `prisma.yml` to `http://localhost:4466`
 1. Run `prisma deploy`
 
 </details>
 
-You can now use [Prisma Admin](https://www.prisma.io/docs/prisma-admin/overview-el3e/) to view and edit your data by appending `/_admin` to your Prisma endpoint.
+You can now use [Prisma Admin](https://www.prisma.io/docs/prisma-admin/overview-el3e/) to view and edit your data by
+appending `/_admin` to your Prisma endpoint.
 
 ### 4. Start the REST API server
 
@@ -90,7 +93,8 @@ You can now use [Prisma Admin](https://www.prisma.io/docs/prisma-admin/overview-
 go run main.go
 ```
 
-The server is now running on `http://localhost:8080`. You can send the API requests implemented in `main.go`, e.g. [`http://localhost:8080/feed`](http://localhost:8080/feed).
+The server is now running on `http://localhost:8080`. You can send the API requests implemented in `main.go`, e.g.
+[`http://localhost:8080/feed`](http://localhost:8080/feed).
 
 ### 5. Using the REST API
 
@@ -117,7 +121,7 @@ The server is now running on `http://localhost:8080`. You can send the API reque
 - `/publish/:id`: Publish a post by its `id`
 
 #### `DELETE`
-  
+
 - `/post/:id`: Delete a post by its `id`
 
 ## Next steps
