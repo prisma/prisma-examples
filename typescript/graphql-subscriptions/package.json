@@ -6,7 +6,7 @@
     "@types/ws": "6.0.1",
     "ts-node": "7.0.1",
     "ts-node-dev": "1.0.0-pre.40",
-    "typescript": "3.5.2"
+    "typescript": "3.5.3"
   },
   "dependencies": {
     "graphql-subscriptions": "1.1.0",
