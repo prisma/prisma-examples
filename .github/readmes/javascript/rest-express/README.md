@@ -1,12 +1,12 @@
 # REST API Example
 
-This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and Prisma.
+This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and [Photon JS](https://photonjs.prisma.io/).
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/node/rest-express
+cd photonjs/examples/javascript/rest-express
 __INLINE(../_setup-2.md)__
 
-### 4. Start the REST API server
+### 5. Start the REST API server
 
 ```
 npm run start

@@ -1,9 +1,9 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with Node.js** based on Prisma & [graphql-yoga](https://github.com/prisma/graphql-yoga).
+This example shows how to implement a **GraphQL server with JavaScript (Node.js)** based on [Photon JS](https://photonjs.prisma.io/) & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/node/graphql
+cd photonjs/examples/javascript/graphql
 __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__

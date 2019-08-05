@@ -1,4 +1,4 @@
-### 5. Using the GraphQL API
+### 6. Using the GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
@@ -29,8 +29,10 @@ query {
 ```graphql
 mutation {
   signupUser(
-    name: "Sarah"
-    email: "sarah@prisma.io"
+    data: {
+      name: "Sarah"
+      email: "sarah@prisma.io"
+    }
   ) {
     id
   }
@@ -73,7 +75,7 @@ mutation {
     id
     title
     content
-    published 
+    published
     author {
       id
       name
@@ -107,7 +109,8 @@ mutation {
 
 ```graphql
 mutation {
-  deletePost(id: "__POST_ID__") {
+  deleteOnePost(where: {id: "__POST_ID__"})
+  {
     id
   }
 }
