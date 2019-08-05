@@ -1,52 +1,48 @@
+import { nexusPrismaPlugin } from '@generated/nexus-prisma'
+import Photon from '@generated/photon'
+import { makeSchema } from '@prisma/nexus'
 import { GraphQLServer } from 'graphql-yoga'
-import { prisma } from './generated/prisma-client'
-import * as path from 'path'
-import { makePrismaSchema } from 'nexus-prisma'
+import { join } from 'path'
 import { permissions } from './permissions'
 import * as allTypes from './resolvers'
-import datamodelInfo from './generated/nexus-prisma'
+import { Context } from './types'
 
-const schema = makePrismaSchema({
-  // Provide all the GraphQL types we've implemented
-  types: allTypes,
+const photon = new Photon({
+  debug: true,
+})
 
-  // Configure the interface to Prisma
-  prisma: {
-    datamodelInfo,
-    client: prisma,
-  },
+const nexusPrisma = nexusPrismaPlugin({
+  photon: (ctx: Context) => ctx.photon,
+})
 
-  // Specify where Nexus should put the generated files
+const schema = makeSchema({
+  types: [allTypes, nexusPrisma],
   outputs: {
-    schema: path.join(__dirname, './generated/schema.graphql'),
-    typegen: path.join(__dirname, './generated/nexus.ts'),
+    typegen: join(__dirname, '../generated/nexus-typegen.ts'),
+    schema: join(__dirname, '/schema.graphql'),
   },
-
-  // Configure nullability of input arguments: All arguments are non-nullable by default
-  nonNullDefaults: {
-    input: false,
-    output: false,
-  },
-
-  // Configure automatic type resolution for the TS representations of the associated types
   typegenAutoConfig: {
     sources: [
       {
-        source: path.join(__dirname, './types.ts'),
-        alias: 'types',
+        source: '@generated/photon',
+        alias: 'photon',
+      },
+      {
+        source: join(__dirname, 'types.ts'),
+        alias: 'ctx',
       },
     ],
-    contextType: 'types.Context',
+    contextType: 'ctx.Context',
   },
 })
 
 const server = new GraphQLServer({
   schema,
-  middlewares: [permissions],
+  // middlewares: [permissions], // TODO: Fix after https://github.com/maticzav/graphql-shield/issues/361
   context: request => {
     return {
       ...request,
-      prisma,
+      photon,
     }
   },
 })

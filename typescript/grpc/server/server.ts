@@ -1,9 +1,12 @@
 import chalk from 'chalk'
 const PROTO_PATH = __dirname + '/../service.proto'
 
-import { prisma } from './generated/prisma-client'
-import * as grpc from 'grpc'
+import Photon from '@generated/photon'
 import * as protoLoader from '@grpc/proto-loader'
+import * as grpc from 'grpc'
+
+const photon = new Photon()
+
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
   longs: String,
@@ -15,12 +18,16 @@ const { blog } = grpc.loadPackageDefinition(packageDefinition) as any
 
 async function post(call: any, callback: any) {
   const { id } = call.request
-  const post = await prisma.post({ id })
+  const post = await photon.posts.findOne({
+    where: {
+      id,
+    },
+  })
   callback(null, post)
 }
 
 async function feed(call: any, callback: any) {
-  const feed = await prisma.posts({
+  const feed = await photon.posts.findMany({
     where: { published: true },
   })
   callback(null, { feed })
@@ -28,11 +35,19 @@ async function feed(call: any, callback: any) {
 
 async function filterPosts(call: any, callback: any) {
   const { searchString } = call.request
-  const filteredPosts = await prisma.posts({
+  const filteredPosts = await photon.posts.findMany({
     where: {
       OR: [
-        { title_contains: searchString },
-        { content_contains: searchString },
+        {
+          title: {
+            contains: searchString,
+          },
+        },
+        {
+          content: {
+            contains: searchString,
+          },
+        },
       ],
     },
   })
@@ -40,9 +55,15 @@ async function filterPosts(call: any, callback: any) {
 }
 
 async function signupUser(call: any, callback: any) {
-  const { email, name } = call.request
+  const { email, name, password } = call.request
   try {
-    const newUser = await prisma.createUser({ name, email })
+    const newUser = await photon.users.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+    })
     callback(null, newUser)
   } catch (e) {
     callback(e, null)
@@ -52,10 +73,13 @@ async function signupUser(call: any, callback: any) {
 async function createDraft(call: any, callback: any) {
   const { title, content, authorEmail } = call.request
   try {
-    const newDraft = await prisma.createPost({
-      title,
-      content,
-      author: { connect: { email: authorEmail } },
+    const newDraft = await photon.posts.create({
+      data: {
+        title,
+        content,
+        published: false,
+        // author: { connect: { email: authorEmail } },
+      },
     })
     callback(null, newDraft)
   } catch (e) {
@@ -66,7 +90,11 @@ async function createDraft(call: any, callback: any) {
 async function deletePost(call: any, callback: any) {
   const { id } = call.request
   try {
-    const deletedPost = await prisma.deletePost({ id })
+    const deletedPost = await photon.posts.delete({
+      where: {
+        id,
+      },
+    })
     callback(null, deletedPost)
   } catch (e) {
     callback(e, null)
@@ -76,7 +104,7 @@ async function deletePost(call: any, callback: any) {
 async function publish(call: any, callback: any) {
   const { id } = call.request
   try {
-    const publishedPost = await prisma.updatePost({
+    const publishedPost = await photon.posts.update({
       where: { id },
       data: { published: true },
     })
@@ -98,13 +126,21 @@ server.addService(blog.Blog.service, {
 })
 server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure())
 const message = `
-The gRPC server is being started on ${chalk.bold(`0.0.0.0:50051`)}. You now can invoke any client script by its name, e.g.:
+The gRPC server is being started on ${chalk.bold(
+  `0.0.0.0:50051`,
+)}. You now can invoke any client script by its name, e.g.:
 
 ${chalk.bold(`$ npm run feed`)}
 or
 ${chalk.bold(`$ npm run signupUser`)}
 
-See ${chalk.bold(`package.json`)} for a list of all available scripts or use ${chalk.bold(`BloomRPC`)} if you prefer a GUI client (download: ${chalk.bold(`https://github.com/uw-labs/bloomrpc`)}).
+See ${chalk.bold(
+  `package.json`,
+)} for a list of all available scripts or use ${chalk.bold(
+  `BloomRPC`,
+)} if you prefer a GUI client (download: ${chalk.bold(
+  `https://github.com/uw-labs/bloomrpc`,
+)}).
 `
 console.log(message)
 server.start()
