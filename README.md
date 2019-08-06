@@ -10,7 +10,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 | Demo | Description |
 |:------|:----------|
-| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/script) | Simple usage of Photon in script |
+| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/script) | Simple usage of Photon in a TypeScript script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql) | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma/graphql-yoga) |
 | [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-apollo-server) | Simple GraphQL server based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) |
 | [`graphql-crud`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-crud) | GraphQL server with full CRUD API |
@@ -24,8 +24,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 | Demo | Description |
 |:------|:----------|
-| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/script) | Simple usage of Photon in script |
-| [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql) | Simple GraphQL server |
+| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/script) | Simple usage of Photon in a Node.js script |
+| [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql) | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma/graphql-yoga) |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-auth) | GraphQL server with email-password authentication & permissions |
 | [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-subscriptions) | GraphQL server with realtime subscriptions |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/rest-express) | Simple REST API with Express.JS |
