@@ -1,5 +1,3 @@
-Looking for Prisma 2 examples? Click [here](https://github.com/prisma/photonjs/tree/master/examples). 
-
 # Prisma Examples [![CircleCI](https://circleci.com/gh/prisma/prisma-examples.svg?style=shield)](https://circleci.com/gh/prisma/prisma-examples)
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of [Prisma](https://www.prisma.io). Pick an example and follow the instructions in the corresponding README.
@@ -7,6 +5,10 @@ This repository contains a number of ready-to-run examples demonstrating various
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
 
 <!-- Please keep the absolute URLs so it's easier to copy&paste to prisma/prisma/README.md  -->
+
+## Prisma 2 examples (Photon & Lift)
+
+You can find all [Prisma 2](https://www.prisma.io/blog/announcing-prisma-2-zq1s745db8i5/) examples in the [`prisma2`](https://github.com/prisma/prisma-examples/tree/prisma2) branch of this repository.
 
 ## TypeScript
 
