@@ -6,15 +6,15 @@ This example shows how to implement a **GraphQL server with TypeScript** based o
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
+```
 cd prisma-examples/typescript/graphql-apollo-server
 npm install
 ```
@@ -52,11 +52,12 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
-```sh
+```
 npm run start
 ```
 
@@ -93,8 +94,10 @@ query {
 ```graphql
 mutation {
   signupUser(
-    name: "Sarah"
-    email: "sarah@prisma.io"
+    data: {
+      name: "Sarah"
+      email: "sarah@prisma.io"
+    }
   ) {
     id
   }
@@ -171,7 +174,8 @@ mutation {
 
 ```graphql
 mutation {
-  deletePost(id: "__POST_ID__") {
+  deleteOnePost(where: {id: "__POST_ID__"})
+  {
     id
   }
 }
@@ -181,9 +185,10 @@ mutation {
 
 </Details>
 
+
 ### 6. Changing the GraphQL schema
 
-To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`index.ts`](./src/index.ts).
+To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`index.ts`](./src/index.ts). 
 
 Note that the [`start`](./package.json#L6) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./src/schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
 

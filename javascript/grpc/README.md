@@ -6,16 +6,16 @@ This example shows how to implement a **gRPC API with Node.js** and [Photon JS](
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
-cd photonjs/examples/javascript/grpc
+```
+cd prisma-examples/javascript/grpc
 npm install
 ```
 
@@ -52,13 +52,14 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Start the gRPC server
 
-```sh
+```
 npm run start
 ```
 
-The server is now running on `0.0.0.0:50051`.
+The server is now running on `0.0.0.0:50051`. 
 
 ### 6. Using the gRPC API
 
@@ -66,7 +67,7 @@ To use the gRPC API, you need a gRPC client. We provide several client scripts i
 
 In case you prefer a GUI client, we recommend [BloomRPC](https://github.com/uw-labs/bloomrpc):
 
-![Screenshot of BloomRPC](https://imgur.com/0EiIo03.png)
+![](https://imgur.com/0EiIo03.png)
 
 ## Next steps
 

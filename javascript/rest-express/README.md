@@ -6,16 +6,16 @@ This example shows how to implement a **REST API** using [Express.JS](https://ex
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
-cd photonjs/examples/javascript/rest-express
+```
+cd prisma-examples/javascript/rest-express
 npm install
 ```
 
@@ -52,9 +52,10 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Start the REST API server
 
-```sh
+```
 npm run start
 ```
 
@@ -85,7 +86,7 @@ The server is now running on `http://localhost:3000`. You can send the API reque
 - `/publish/:id`: Publish a post by its `id`
 
 #### `DELETE`
-
+  
 - `/post/:id`: Delete a post by its `id`
 
 ## Next steps

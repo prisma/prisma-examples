@@ -6,16 +6,16 @@ This example shows how to implement a **GraphQL server with an email-password-ba
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
-cd photonjs/examples/typescript/graphql-auth
+```
+cd prisma-examples/typescript/graphql-auth
 npm install
 ```
 
@@ -52,11 +52,12 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
-```sh
+```
 npm run start
 ```
 
@@ -132,7 +133,7 @@ With a real token, this looks similar to this:
 
 Inside the Playground, you can set HTTP headers in the bottom-left corner:
 
-![Screenshot of the GraphQL Playground showing the HTTP headers](https://imgur.com/ToRcCTj.png)
+![](https://imgur.com/ToRcCTj.png)
 
 Once you've set the header, you can send the following query to check whether the token is valid:
 
@@ -179,7 +180,7 @@ mutation {
 
 #### Search for posts with a specific title or content
 
-You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground.
+You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. 
 
 ```graphql
 {
@@ -187,7 +188,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
     id
     title
     content
-    published
+    published 
     author {
       id
       name
@@ -199,7 +200,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 #### Retrieve a single post
 
-You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground.
+You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. 
 
 ```graphql
 {
@@ -237,7 +238,7 @@ mutation {
 
 ### 6. Changing the GraphQL schema
 
-To make changes to the GraphQL schema, you need to manipulate the [`Query`](./src/resolvers/Query.ts) and [`Mutation`](./src/resolvers/Mutation.ts) types.
+To make changes to the GraphQL schema, you need to manipulate the [`Query`](./src/resolvers/Query.ts) and [`Mutation`](./src/resolvers/Mutation.ts) types. 
 
 Note that the [`start`](./package.json#L6) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./src/generated/schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
 

@@ -3,7 +3,7 @@
 This example shows how to implement **GraphQL server with realtime subscriptions** based on [Photon JS](https://photonjs.prisma.io/) & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 __INLINE(../_setup-1.md)__
-cd photonjs/examples/typescript/graphql-subscriptions
+cd prisma-examples/typescript/graphql-subscriptions
 __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__

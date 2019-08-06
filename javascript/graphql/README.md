@@ -6,16 +6,16 @@ This example shows how to implement a **GraphQL server with JavaScript (Node.js)
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
-cd photonjs/examples/javascript/graphql
+```
+cd prisma-examples/javascript/graphql
 npm install
 ```
 
@@ -52,11 +52,12 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
-```sh
+```
 npm run start
 ```
 
@@ -93,8 +94,10 @@ query {
 ```graphql
 mutation {
   signupUser(
-    name: "Sarah"
-    email: "sarah@prisma.io"
+    data: {
+      name: "Sarah"
+      email: "sarah@prisma.io"
+    }
   ) {
     id
   }
@@ -171,7 +174,8 @@ mutation {
 
 ```graphql
 mutation {
-  deletePost(id: "__POST_ID__") {
+  deleteOnePost(where: {id: "__POST_ID__"})
+  {
     id
   }
 }
@@ -181,13 +185,14 @@ mutation {
 
 </Details>
 
+
 ### 6. Evolving the example
 
 If you want to change the GraphQL API, you need to adjust the GraphQL schema in [`./src/schema.graphql`](./src/schema.graphql) and the respective resolver functions.
 
 <Details><Summary><strong>Adding an operation without updating the datamodel</strong></Summary>
 
-To add new operation that can be based on the current [datamodel](./prisma/datamodel.prisma), you first need to add the operation to the GraphQL schema's `Query` or `Mutation` type and then add the corresponding resolver function.
+To add new operation that can be based on the current [datamodel](./prisma/datamodel.prisma), you first need to add the operation to the GraphQL schema's `Query` or `Mutation` type and then add the corresponding resolver function. 
 
 For example, to add a new mutation that updates a user's name, you can extend the `Mutation` type as follows:
 
@@ -205,7 +210,7 @@ Then add the new resolver to the `resolvers` object in [`./src/index.js`](./src/
 
 ```diff
 const resolvers = {
-  // ...
+  // ... 
   Mutation: {
     // ...
 +   updateUserName(parent, { id, newName }, context) {
@@ -227,7 +232,7 @@ You can now send the following mutation to your GraphQL API:
 ```graphql
 mutation {
   updateUserName(
-    id: "__USER_ID__"
+    id: "__USER_ID__" 
     newName: "John")
   ) {
     id
@@ -274,7 +279,7 @@ type Post {
 
 After having updated the datamodel, you need to deploy the changes:
 
-```sh
+```
 prisma deploy
 ```
 
@@ -327,7 +332,7 @@ Next, you need to implement the resolver for the new operation in [`./src/index.
 
 ```diff
 const resolvers = {
-  // ...
+  // ... 
   Mutation: {
     // ...
 +   writeComment(parent, { postId, userId}, context) {
@@ -349,7 +354,7 @@ Finally, because `Comment` has a relation to `Post` and `User`, you need to upda
 
 ```diff
 const resolvers = {
-  // ...
+  // ... 
   User: {
     // ...
 +   comments: ({ id }, args, context) {
@@ -378,8 +383,8 @@ You can now send the following mutation to your GraphQL API:
 ```graphql
 mutation {
   writeComment(
-    userId: "__USER_ID__"
-    postId: "__POST_ID__"
+    userId: "__USER_ID__" 
+    postId: "__POST_ID__" 
     text: "I like turtles 🐢"
   ) {
     id
@@ -395,6 +400,7 @@ mutation {
 - Read the [Prisma 2 announcement](https://www.prisma.io/blog/announcing-prisma-2-zq1s745db8i5/)
 - Check out the [Prisma 2 docs](https://github.com/prisma/prisma2)
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
+
 
 ## The idea behind the example
 

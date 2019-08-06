@@ -3,7 +3,7 @@
 This example shows how to use [Photon JS](https://photonjs.prisma.io/) in a **simple TypeScript script** to read and write data in a database.
 
 __INLINE(../_setup-1.md)__
-cd photonjs/examples/typescript/script
+cd prisma-examples/typescript/script
 __INLINE(../_setup-2.md)__
 
 ### 5. Run the script

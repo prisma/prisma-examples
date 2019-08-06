@@ -8,15 +8,15 @@ This example shows how to implement **GraphQL server with realtime subscriptions
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
+```
 cd prisma-examples/node/graphql-subscriptions
 npm install
 ```
@@ -54,11 +54,12 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
-```sh
+```
 npm run start
 ```
 
@@ -172,7 +173,7 @@ subscription {
 
 When hitting the _Play_-button, you won't see an immediate response. Instead there's a loading indicator in the response pane of the Playground:
 
-![Screenshot of the GraphQL Playground showing the loading indicator](https://imgur.com/l4WObKG.png)
+![](https://imgur.com/l4WObKG.png)
 
 Now, whenever a post is created (or updated), e.g. with this mutation (you can run it in another tab):
 
@@ -189,10 +190,11 @@ mutation {
 
 You will see the results appear in the tab where the subscription is running:
 
-![Screenshot of the GraphQL Playground showing the result](https://imgur.com/HRWDPsE.png)
+![](https://imgur.com/HRWDPsE.png)
 
 ## Next steps
 
 - Read the [Prisma 2 announcement](https://www.prisma.io/blog/announcing-prisma-2-zq1s745db8i5/)
 - Check out the [Prisma 2 docs](https://github.com/prisma/prisma2)
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
+

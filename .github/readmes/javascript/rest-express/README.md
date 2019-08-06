@@ -3,7 +3,7 @@
 This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and [Photon JS](https://photonjs.prisma.io/).
 
 __INLINE(../_setup-1.md)__
-cd photonjs/examples/javascript/rest-express
+cd prisma-examples/javascript/rest-express
 __INLINE(../_setup-2.md)__
 
 ### 5. Start the REST API server

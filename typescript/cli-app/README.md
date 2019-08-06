@@ -6,16 +6,16 @@ This example shows how to implement a **TODO-app as a CLI tool** with TypeScript
 
 ### 1. Download example & install dependencies
 
-Clone the repository:
+Clone the `prisma2` branch of this repository:
 
-```sh
-git clone git@github.com:prisma/photonjs.git
+```
+git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
 ```
 
 Install Node dependencies:
 
-```sh
-cd photonjs/examples/typescript/cli-app
+```
+cd prisma-examples/typescript/cli-app
 npm install
 ```
 
@@ -52,27 +52,28 @@ Now you can seed your database using the `seed` script from `package.json`:
 npm run seed
 ```
 
+
 ### 5. Use the CLI app
 
-```sh
+```
 npm run cli
 ```
 
 #### Add a `Todo` item
 
-```sh
+```
 npm run cli add Groceries
 ```
 
 #### List all `Todo` items
 
-```sh
+```
 npm run cli list
 ```
 
 #### Delete a `Todo` item
 
-```sh
+```
 npm run cli delete Groceries
 ```
 
