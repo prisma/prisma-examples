@@ -9,7 +9,7 @@ Every example should follow a number of guidelines.
 - Simple and minimal instead of complex and production-ready
 - Focus on one specific Prisma use case
 - Easily extensible
-- Require global installation of the Prisma CLI but all other dependencies (e.g. `graphqlgen`) only as dev dependencies and invoked via a script (e.g. `npm run graphqlgen`)
+- Require global installation of the Prisma 2 CLI but all other dependencies (e.g. `graphqlgen`) only as dev dependencies and invoked via a script (e.g. `npm run graphqlgen`)
 
 ### README guidelines
 
@@ -27,8 +27,8 @@ For each language, there should be one example that shows how to:
 - build a **REST API** with Prisma client
 - build a **CLI** application with Prisma client
 
-The datamodel and developed APIs should be consistent across languages. This enables easier testing of the examples. The domain for all applications (except the CLI app) is a simple blogging application. 
-
+The schemas and developed APIs should be consistent across languages. This enables easier testing of the examples. The domain for all applications (except the CLI app) is a simple blogging application. 
+<!-- 
 Here's an overview of the used datamodels and APIs:
 
 ### Script
@@ -313,7 +313,7 @@ type Todo {
 }
 ```
 
-</details>
+</details> -->
 
 ## Ways to contribute
 
