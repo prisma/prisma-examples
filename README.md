@@ -24,10 +24,10 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 | Demo | Description |
 |:------|:----------|
-| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/node/script) | Simple usage of Photon in script |
-| [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/node/graphql) | Simple GraphQL server |
-| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/prisma2/node/graphql-auth) | GraphQL server with email-password authentication & permissions |
-| [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/prisma2/node/graphql-subscriptions) | GraphQL server with realtime subscriptions |
-| [`rest-express`](https://github.com/prisma/prisma-examples/tree/prisma2/node/rest-express) | Simple REST API with Express.JS |
-| [`grpc`](https://github.com/prisma/prisma-examples/tree/prisma2/node/grpc) | Simple gRPC API |
-| [`cli-app`](https://github.com/prisma/prisma-examples/tree/prisma2/node/cli-app) | Simple CLI TODO list app |
+| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/script) | Simple usage of Photon in script |
+| [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql) | Simple GraphQL server |
+| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-auth) | GraphQL server with email-password authentication & permissions |
+| [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-subscriptions) | GraphQL server with realtime subscriptions |
+| [`rest-express`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/rest-express) | Simple REST API with Express.JS |
+| [`grpc`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/grpc) | Simple gRPC API |
+| [`cli-app`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/cli-app) | Simple CLI TODO list app |
