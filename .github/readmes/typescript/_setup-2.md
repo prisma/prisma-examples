@@ -55,7 +55,7 @@ prisma2 lift up
 
 ### 4. Generate Photon (type-safe database client)
 
-Run the following command to generate [Photon JS](https://photonjs.prisma.io/):
+Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 
 ```
 prisma2 generate

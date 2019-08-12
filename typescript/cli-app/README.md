@@ -1,6 +1,6 @@
 # Simple TODO-App Example (CLI)
 
-This example shows how to implement a **TODO-app as a CLI tool** with TypeScript and [Photon JS](https://photonjs.prisma.io/).
+This example shows how to implement a **TODO-app as a CLI tool** with TypeScript and [Photon.js](https://photonjs.prisma.io/).
 
 ## How to use
 
@@ -73,7 +73,7 @@ prisma2 lift up
 
 ### 4. Generate Photon (type-safe database client)
 
-Run the following command to generate [Photon JS](https://photonjs.prisma.io/):
+Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 
 ```
 prisma2 generate

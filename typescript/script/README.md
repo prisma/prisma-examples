@@ -1,6 +1,6 @@
 # Simple TypeScript Script Example
 
-This example shows how to use [Photon JS](https://photonjs.prisma.io/) in a **simple TypeScript script** to read and write data in a database.
+This example shows how to use [Photon.js](https://photonjs.prisma.io/) in a **simple TypeScript script** to read and write data in a database.
 
 ## How to use
 
@@ -73,7 +73,7 @@ prisma2 lift up
 
 ### 4. Generate Photon (type-safe database client)
 
-Run the following command to generate [Photon JS](https://photonjs.prisma.io/):
+Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 
 ```
 prisma2 generate

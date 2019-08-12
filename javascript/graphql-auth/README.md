@@ -1,6 +1,6 @@
 # GraphQL Server with Authentication & Permissions
 
-This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules** based on [Photon JS](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) & [graphql-shield](https://github.com/maticzav/graphql-shield).
+This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules** based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) & [graphql-shield](https://github.com/maticzav/graphql-shield).
 
 ## How to use
 
@@ -73,7 +73,7 @@ prisma2 lift up
 
 ### 4. Generate Photon (type-safe database client)
 
-Run the following command to generate [Photon JS](https://photonjs.prisma.io/):
+Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 
 ```
 prisma2 generate
