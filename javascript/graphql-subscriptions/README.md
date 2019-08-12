@@ -59,11 +59,11 @@ For a PostgreSQL provider:
 ```
 datasource postgresql {
   provider = "postgresql"
-  url      = "postgresql://johndoe:secret42@localhost:5432/mydatabase?schema=schema.prisma"
+  url      = "postgresql://johndoe:secret42@localhost:5432/mydatabase?schema=public"
 }
 ```
 
-> Note: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `schema.prisma` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
+> Note: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `public` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
 
 Then to migrate your database, run:
 
