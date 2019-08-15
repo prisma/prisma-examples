@@ -5,7 +5,7 @@
     "@types/aws-lambda": "8.10.31",
     "@types/ws": "6.0.2",
     "ts-node": "7.0.1",
-    "ts-node-dev": "1.0.0-pre.40",
+    "ts-node-dev": "1.0.0-pre.41",
     "typescript": "3.5.3"
   },
   "dependencies": {
