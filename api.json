@@ -2,6 +2,7 @@
   "meta": {
     "version": "1"
   },
+  "blankSchema": "model User {\\n  id    String  @default(cuid()) @id @unique\\n  email String  @unique\\n  name  String?\\n  posts Post[]\\n}\\n\\nmodel Post {\\n  id        String   @default(cuid()) @id @unique\\n  createdAt DateTime @default(now())\\n  updatedAt DateTime @updatedAt\\n  published Boolean\\n  title     String\\n  content   String?\\n  author    User?\\n}",
   "examples": {
     "javascript": {
       "graphql": {
