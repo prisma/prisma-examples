@@ -5,7 +5,6 @@
   "dependencies": {},
   "scripts": {
     "start": "node src/script.js",
-    "seed": "node prisma/seed.js",
     "postinstall": "prisma2 generate"
   }
 }

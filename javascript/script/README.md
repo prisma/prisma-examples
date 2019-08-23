@@ -69,6 +69,7 @@ Then to migrate your database, run:
 prisma2 lift save --name 'init'
 prisma2 lift up
 ```
+
 </Details>
 
 ### 4. Generate Photon (type-safe database client)
@@ -78,13 +79,6 @@ Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 ```
 prisma2 generate
 ```
-
-Now you can seed your database using the `seed` script from `package.json`:
-
-```
-npm run seed
-```
-
 
 ### 5. Run the script
 
