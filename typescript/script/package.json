@@ -7,7 +7,6 @@
   },
   "scripts": {
     "start": "ts-node src/script.ts",
-    "seed": "ts-node prisma/seed.ts",
     "postinstall": "prisma2 generate"
   }
 }

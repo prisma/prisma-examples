@@ -4,6 +4,48 @@ const photon = new Photon()
 
 // A `main` function so that we can use async/await
 async function main() {
+  // Seed the database with users and posts
+  const user1 = await photon.users.create({
+    data: {
+      email: 'alice@prisma.io',
+      name: 'Alice',
+      posts: {
+        create: {
+          title: 'Join us for Prisma Day 2019 in Berlin',
+          content: 'https://www.prisma.io/day/',
+          published: true,
+        },
+      },
+    },
+    include: {
+      posts: true,
+    },
+  })
+  const user2 = await photon.users.create({
+    data: {
+      email: 'bob@prisma.io',
+      name: 'Bob',
+      posts: {
+        create: [
+          {
+            title: 'Subscribe to GraphQL Weekly for community news',
+            content: 'https://graphqlweekly.com/',
+            published: true,
+          },
+          {
+            title: 'Follow Prisma on Twitter',
+            content: 'https://twitter.com/prisma',
+            published: false,
+          },
+        ],
+      },
+    },
+    include: {
+      posts: true,
+    },
+  })
+  console.log(`Created users: ${user1.name} (${user1.posts.length} post) and (${user2.posts.length} posts) `)
+
   // Retrieve all published posts
   const allPosts = await photon.posts.findMany({
     where: { published: true },
@@ -18,7 +60,7 @@ async function main() {
       published: false,
       author: {
         connect: {
-          email: 'alice@prisma.io', // Should have been created during initial seeding
+          email: 'alice@prisma.io',
         },
       },
     },
