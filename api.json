@@ -16,7 +16,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "graphql-auth": {
@@ -30,7 +30,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "grpc": {
@@ -51,7 +51,7 @@
             ]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "rest-express": {
@@ -65,7 +65,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "script": {
@@ -79,7 +79,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       }
     },
@@ -95,7 +95,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "graphql-auth": {
@@ -109,7 +109,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "grpc": {
@@ -130,7 +130,7 @@
             ]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "rest-express": {
@@ -144,7 +144,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       },
       "script": {
@@ -158,7 +158,7 @@
             "commands": ["npm start"]
           }
         ],
-        "setupCommands": ["npm install", "prisma2 generate", "npm run seed"],
+        "setupCommands": ["npm install", "prisma2 dev --non-interactive", "npm run seed"],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
       }
     }
