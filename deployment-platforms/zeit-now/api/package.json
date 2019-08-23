@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "express": "^4.16.4",
-    "helmet": "^3.18.0",
-    "moment": "^2.24.0"
+    "express": "4.17.1",
+    "helmet": "3.20.0",
+    "moment": "2.24.0"
   },
   "engines": {
     "node": "10.x"
@@ -12,6 +12,6 @@
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "prisma2": "^2.0.0-alpha.36"
+    "prisma2": "2.0.0-preview-8"
   }
 }

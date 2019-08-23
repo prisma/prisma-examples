@@ -13,6 +13,6 @@
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "prisma2": "^2.0.0-preview-3.2"
+    "prisma2": "2.0.0-preview-8"
   }
 }
