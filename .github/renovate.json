@@ -7,5 +7,6 @@
   "automerge": true,
   "major": {
     "automerge": false
-  }
+  },
+  "baseBranches": ["master", "prisma2"]
 }
