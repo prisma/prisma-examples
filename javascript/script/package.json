@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {},
+  "devDependencies": {
+    "prisma2": "2.0.0-preview-8"
+  },
   "scripts": {
     "start": "node ./script.js",
     "postinstall": "prisma2 generate"
