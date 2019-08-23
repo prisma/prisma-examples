@@ -4,10 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^12.6.2",
-    "netlify-cli": "^2.11.31",
-    "netlify-lambda": "^1.5.1",
-    "prisma2": "^2.0.0-preview-3.2"
+    "@types/node": "12.7.2",
+    "netlify-cli": "2.12.0",
+    "netlify-lambda": "1.6.3",
+    "prisma2": "2.0.0-preview-8"
   },
   "scripts": {
     "dev": " netlify dev",
