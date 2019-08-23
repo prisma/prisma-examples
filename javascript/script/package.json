@@ -4,7 +4,7 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "start": "node src/script.js",
+    "start": "node ./script.js",
     "postinstall": "prisma2 generate"
   }
 }
