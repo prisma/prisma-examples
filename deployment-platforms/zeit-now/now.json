@@ -8,11 +8,7 @@
     },
     {
       "src": "api/**/*.js",
-      "use": "@now/node@canary",
-      "config": {
-        "includeFiles": [],
-        "maxLambdaSize": "25mb"
-      }
+      "use": "@now/node@canary"
     }
   ],
   "routes": [{ "src": "/", "dest": "www/index.html" }],
