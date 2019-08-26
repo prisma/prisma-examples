@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  // Like, postgresql://user:password@localhost:5432/database/schema
+  // Like, postgresql://user:password@localhost:5432/database?schema=public
   url      = env("POSTGRESQL_URL")
 }
 

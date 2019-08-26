@@ -4,14 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "@types/node": "12.7.2",
     "netlify-cli": "2.12.0",
     "netlify-lambda": "1.6.3",
-    "prisma2": "2.0.0-preview-8"
+    "prisma2": "^2.0.0-alpha.129"
   },
   "scripts": {
     "dev": " netlify dev",
     "deploy": "./build.sh",
     "postinstall": "prisma2 generate"
+  },
+  "dependencies": {
+    "dotenv": "^8.1.0"
   }
 }

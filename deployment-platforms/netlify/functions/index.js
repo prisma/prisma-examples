@@ -1,3 +1,6 @@
+const dotenv = require('dotenv')
+dotenv.config()
+
 const Photon = require('./generated/photon')
 
 const photon = new Photon.default()
