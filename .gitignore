@@ -9,3 +9,4 @@ tmp-resolvers
 package-lock.json
 flow-typed
 yarn.lock
+migrations/
