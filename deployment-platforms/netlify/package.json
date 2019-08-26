@@ -13,7 +13,7 @@
   "scripts": {
     "dev": " netlify dev",
     "deploy": "./build.sh",
-    "postinstall": "prisma2 generate"
+    "postinstall": "prisma2 --version && prisma2 generate"
   },
   "dependencies": {
     "dotenv": "^8.1.0"
