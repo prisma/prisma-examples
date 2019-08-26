@@ -8,12 +8,12 @@
     "@types/node": "12.7.2",
     "netlify-cli": "2.12.0",
     "netlify-lambda": "1.6.3",
-    "prisma2": "^2.0.0-alpha.130"
+    "prisma2": "2.0.0-alpha.130"
   },
   "scripts": {
     "dev": " netlify dev",
     "deploy": "./build.sh",
-    "postinstall": "prisma2 --version && prisma2 generate"
+    "postinstall": "pwd && prisma2 --version && prisma2 generate"
   },
   "dependencies": {
     "dotenv": "^8.1.0"
