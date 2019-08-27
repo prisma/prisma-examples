@@ -28,10 +28,10 @@
       >
       for access from the root) file as the homepage, a static
       <code>www/style.css</code> file for styling, and a
-      <code>api/date.js</code> serverless function that returns the date on
+      <code>api/index.js</code> serverless function that returns the date on
       invocation. See
-      <a href="/api/date.js"
-        ><code>api/date.js</code> for the Date API with Express</a
+      <a href="/api/index.js"
+        ><code>api/index.js</code> for the Date API with Express</a
       >.
     </p>
     <br />
@@ -39,7 +39,7 @@
     <p class="date js-date">Loading date...</p>
     <script>
       function main() {
-        fetch('/api/date.js')
+        fetch('/api/index.js')
           .then(function(response) {
             return response.text()
           })
