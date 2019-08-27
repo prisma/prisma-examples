@@ -23,7 +23,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -50,7 +50,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -84,7 +84,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -111,7 +111,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -138,7 +138,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -167,7 +167,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -194,7 +194,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -228,7 +228,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -255,7 +255,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
@@ -282,7 +282,7 @@
             "description": "Installing dependencies with: `npm install`"
           },
           {
-            "command": "prisma2 dev --non-interactive",
+            "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
           },
           {
