@@ -2,8 +2,11 @@
 
 ## Deployment
 
-- `make build` && `make run`
-- `open localhost:8080`
+```sh
+make build && make run
+```
+
+- Open `http://localhost:8080`
 - Execute the following GraphQL query
 
 ```graphql
@@ -19,4 +22,4 @@ query {
 }
 ```
 
-Note: Depending on how you set the database up (inside docker or on localhost or remote). Please ensure that docker container has access to the database. For accessing a localhost database from a docker container on mac, you can use the following host: `docker.for.mac.localhost`
+Note: Depending on how you set the database up (inside docker or on localhost or remote). Please ensure that docker container has access to the database. For accessing a localhost database from a docker container on mac, you can use the following host: `docker.for.mac.localhost`.
