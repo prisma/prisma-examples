@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "name": "express-photon",
-  "routes": [{ "src": "/", "dest": "www/index.html" }],
-  "env": {
-    "POSTGRESQL_URL": "@postgresql_url"
-  }
-}
