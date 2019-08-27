@@ -9,9 +9,7 @@ generator photon {
 }
 
 model Post {
-  id        String   @default(cuid()) @id @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String  @default(cuid()) @id @unique
   published Boolean
   title     String
   content   String?
