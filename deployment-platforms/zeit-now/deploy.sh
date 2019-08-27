@@ -1,3 +1,3 @@
 #!/bin/bash
 
-now -e POSTGRESQL_URL=@postgresql_url
+now -b POSTGRESQL_URL=@postgresql_url -e POSTGRESQL_URL=@postgresql_url
