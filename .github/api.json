@@ -10,7 +10,7 @@
         "name": "GraphQL API",
         "description": "GraphQL server example (with graphql-yoga)",
         "pathToSeedingFile": "prisma/seed.js",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
@@ -37,7 +37,7 @@
         "name": "GraphQL API (+ Auth)",
         "description": "GraphQL server example with authentication & permissions",
         "pathToSeedingFile": "prisma/seed.js",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
@@ -64,7 +64,7 @@
         "name": "gRPC API",
         "description": "gRPC client + server example",
         "pathToSeedingFile": "prisma/seed.js",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the gRPC server (in a new terminal window/tab):",
@@ -98,7 +98,7 @@
         "name": "REST API",
         "description": "REST API example (with express.js)",
         "pathToSeedingFile": "prisma/seed.js",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
@@ -125,7 +125,7 @@
         "name": "Script (Node.js)",
         "description": "Node.js script with sample API calls",
         "pathToSeedingFile": "prisma/seed.js",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
@@ -154,7 +154,7 @@
         "name": "GraphQL API",
         "description": "GraphQL server example (with graphql-yoga)",
         "pathToSeedingFile": "prisma/seed.ts",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
@@ -181,7 +181,7 @@
         "name": "GraphQL API (+ Auth)",
         "description": "GraphQL server example with authentication & permissions",
         "pathToSeedingFile": "prisma/seed.ts",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
@@ -208,7 +208,7 @@
         "name": "gRPC API",
         "description": "gRPC client + server example",
         "pathToSeedingFile": "prisma/seed.ts",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the gRPC server (in a new terminal window/tab):",
@@ -242,7 +242,7 @@
         "name": "REST API",
         "description": "REST API example (with express.js)",
         "pathToSeedingFile": "prisma/seed.ts",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
@@ -269,7 +269,7 @@
         "name": "Script (TypeScript)",
         "description": "TypeScript script with sample API calls",
         "pathToSeedingFile": "prisma/seed.ts",
-        "issuesLink": "https://github.com/prisma/prisma-examples/issues",
+        "issuesLink": "https://github.com/prisma/prisma-examples/issues/new",
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
