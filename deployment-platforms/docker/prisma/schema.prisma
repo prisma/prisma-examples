@@ -1,19 +1,11 @@
 datasource db {
-  provider = "sqlite"
-  url      = "file:dev.db"
-  default  = true
+  provider = "postgres"
+  // Like, postgresql://user:password@localhost:5432/database/schema
+  url      = env("POSTGRESQL_URL")
 }
 
 generator photon {
   provider = "photonjs"
-  output   = "../node_modules/@generated/photon"
-}
-
-model User {
-  id    String  @default(cuid()) @id @unique
-  email String  @unique
-  name  String?
-  posts Post[]
 }
 
 model Post {
@@ -24,4 +16,12 @@ model Post {
   title     String
   content   String?
   author    User?
+}
+
+model User {
+  id       String  @default(cuid()) @id @unique
+  email    String  @unique
+  password String
+  name     String?
+  posts    Post[]
 }
