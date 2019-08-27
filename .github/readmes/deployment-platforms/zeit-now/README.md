@@ -4,6 +4,8 @@
 
 __INLINE(../_setup-1-no-swap.md)__
 
+To deploy the example to you now account, please run `sh ./deploy.sh`
+
 ## Environment
 
 __INLINE(../_setup-5-env.md)__
