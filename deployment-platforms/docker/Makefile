@@ -1,5 +1,5 @@
 TAG=latest
-IMAGE_NAME=workbench/workbench-prisma2-helloworld
+IMAGE_NAME=ubuntu
 
 DOCKER_IMAGE=${IMAGE_NAME}:${TAG}
 

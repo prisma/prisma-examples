@@ -1,14 +1,8 @@
 import Photon from '@generated/photon'
-import { makeSchema } from '@prisma/nexus'
 import { GraphQLServer } from 'graphql-yoga'
-import express, { Request, Response, RequestHandler } from 'express'
-
-import {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString,
-} from 'graphql'
+import { GraphQLSchema, GraphQLObjectType, GraphQLList } from 'graphql'
+import { User } from './User'
+require('dotenv').config()
 
 const photon = new Photon()
 
@@ -17,9 +11,9 @@ const schema = new GraphQLSchema({
     name: 'Query',
     fields: {
       users: {
-        type: GraphQLString,
-        resolve() {
-          return 'world'
+        type: GraphQLList(User),
+        resolve: () => {
+          return photon.users()
         },
       },
     },
