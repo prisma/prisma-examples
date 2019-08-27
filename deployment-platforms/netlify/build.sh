@@ -8,4 +8,5 @@ cp -R ./prisma ./functions/prisma
 cd functions/
 zip -r index.zip *
 mv index.zip ../functions-build/index.zip
+ls
 cd ..

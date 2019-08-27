@@ -1,3 +1,3 @@
 [build]
 functions = "functions-build/"
-command = "yarn build"
+command = "yarn && yarn build"
