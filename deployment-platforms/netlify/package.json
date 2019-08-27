@@ -12,7 +12,8 @@
   },
   "scripts": {
     "dev": " netlify dev",
-    "deploy": "./build.sh",
+    "build": "./build.sh",
+    "deploy": "./build.sh && ./deploy.sh",
     "postinstall": "prisma2 generate && yarn prisma2 lift save --name init && yarn prisma2 lift up"
   },
   "dependencies": {

@@ -9,5 +9,3 @@ cd functions/
 zip -r index.zip *
 mv index.zip ../functions-build/index.zip
 cd ..
-netlify deploy --dir=. --prod --functions=functions-build
-rm -rf functions/prisma
