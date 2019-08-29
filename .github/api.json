@@ -140,10 +140,6 @@
           {
             "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
-          },
-          {
-            "command": "npm run seed",
-            "description": "Seeding your database with: `npm run seed`"
           }
         ],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
@@ -284,10 +280,6 @@
           {
             "command": "prisma2 tmp-prepare",
             "description": "Preparing your database"
-          },
-          {
-            "command": "npm run seed",
-            "description": "Seeding your database with: `npm run seed`"
           }
         ],
         "supportedDataSources": ["mysql", "postgresql", "sqlite"]
