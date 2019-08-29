@@ -2,7 +2,7 @@
   "name": "cli-app",
   "license": "MIT",
   "dependencies": {
-    "prisma-client-lib": "1.34.7"
+    "prisma-client-lib": "1.34.8"
   },
   "scripts": {
     "cli": "node src/cli.js"
