@@ -9,7 +9,7 @@ generator photon {
 }
 
 model Post {
-  id        String  @default(cuid()) @id @unique
+  id        String  @default(cuid()) @id
   published Boolean
   title     String
   content   String?
@@ -17,7 +17,7 @@ model Post {
 }
 
 model User {
-  id       String  @default(cuid()) @id @unique
+  id       String  @default(cuid()) @id
   email    String  @unique
   password String
   name     String?
