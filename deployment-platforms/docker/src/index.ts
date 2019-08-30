@@ -33,5 +33,5 @@ const server = new GraphQLServer({
 server.express.set('trust proxy', true)
 
 server.start({ port: 8080 }, () =>
-  console.log(`🚀 Server ready at http://localhost:8080`),
+  console.log(`🚀 Server ready at: http://localhost:8080`),
 )
