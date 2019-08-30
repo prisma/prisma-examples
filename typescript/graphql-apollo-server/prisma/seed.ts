@@ -28,7 +28,7 @@ async function main() {
           },
           {
             title: 'Follow Prisma on Twitter',
-            content: 'https://twitter.com/prisma',
+            content: 'https://twitter.com/prisma/',
             published: false,
           },
         ],

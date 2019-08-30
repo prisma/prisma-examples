@@ -10,8 +10,8 @@ async function main() {
       password: 'alice',
       posts: {
         create: {
-          title: 'Join us for Prisma Day 2019 in Berlin',
-          content: 'https://www.prisma.io/day/',
+          title: 'Watch the talks from Prisma Day 2019',
+          content: 'https://www.prisma.io/blog/z11sg6ipb3i1/',
           published: true,
         },
       },
@@ -31,7 +31,7 @@ async function main() {
           },
           {
             title: 'Follow Prisma on Twitter',
-            content: 'https://twitter.com/prisma',
+            content: 'https://twitter.com/prisma/',
             published: false,
           },
         ],
