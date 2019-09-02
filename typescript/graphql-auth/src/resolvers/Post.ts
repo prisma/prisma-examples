@@ -1,4 +1,4 @@
-import { objectType } from '@prisma/nexus'
+import { objectType } from 'nexus'
 
 export const Post = objectType({
   name: 'Post',

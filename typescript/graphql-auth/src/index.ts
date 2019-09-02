@@ -1,6 +1,6 @@
 import { nexusPrismaPlugin } from '@generated/nexus-prisma'
 import Photon from '@generated/photon'
-import { makeSchema } from '@prisma/nexus'
+import { makeSchema } from 'nexus'
 import { GraphQLServer } from 'graphql-yoga'
 import { join } from 'path'
 import { permissions } from './permissions'
