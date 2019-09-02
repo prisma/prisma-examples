@@ -6,9 +6,9 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "@prisma/nexus": "0.0.1",
     "graphql-yoga": "1.18.3",
-    "nexus": "0.11.7"
+    "nexus": "^0.12.0-beta.8",
+    "nexus-prisma": "^0.0.1-beta.7"
   },
   "devDependencies": {
     "@types/node": "10.14.17",

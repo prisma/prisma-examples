@@ -29,9 +29,11 @@ input PostCreateManyWithoutPostsInput {
 
 input PostCreateWithoutAuthorInput {
   content: String
+  createdAt: DateTime
   id: ID
   published: Boolean!
   title: String!
+  updatedAt: DateTime
 }
 
 input PostWhereUniqueInput {
