@@ -7,9 +7,7 @@ import { permissions } from './permissions'
 import * as allTypes from './resolvers'
 import { Context } from './types'
 
-const photon = new Photon({
-  debug: true,
-})
+const photon = new Photon()
 
 const nexusPrisma = nexusPrismaPlugin({
   photon: (ctx: Context) => ctx.photon,
@@ -38,7 +36,7 @@ const schema = makeSchema({
 
 const server = new GraphQLServer({
   schema,
-  // middlewares: [permissions], // TODO: Fix after https://github.com/maticzav/graphql-shield/issues/361
+  middlewares: [permissions],
   context: request => {
     return {
       ...request,
