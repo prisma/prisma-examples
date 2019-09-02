@@ -7,12 +7,11 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "@prisma/nexus": "0.0.1",
     "bcrypt": "3.0.6",
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "nexus": "0.11.7"
+    "nexus": "0.12.0-beta.8"
   },
   "devDependencies": {
     "@types/bcrypt": "3.0.0",
