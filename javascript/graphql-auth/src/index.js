@@ -9,7 +9,7 @@ const photon = new Photon.default()
 const server = new GraphQLServer({
   typeDefs: 'src/schema.graphql',
   resolvers,
-  // middlewares: [permissions], TODO: Fix after https://github.com/maticzav/graphql-shield/issues/361
+  middlewares: [permissions],
   context: request => {
     return {
       ...request,
