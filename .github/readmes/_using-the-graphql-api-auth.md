@@ -30,7 +30,7 @@ You can send the following mutation in the Playground to sign up a new user and 
 
 ```graphql
 mutation {
-  signup(name: "Alice", email: "alice@prisma.io", password: "graphql") {
+  signup(name: "Sarah", email: "sarah@prisma.io", password: "graphql") {
     token
   }
 }
@@ -42,7 +42,7 @@ This mutation will log in an existing user by requesting a new authentication to
 
 ```graphql
 mutation {
-  login(email: "alice@prisma.io", password: "graphql") {
+  login(email: "sarah@prisma.io", password: "graphql") {
     token
   }
 }
