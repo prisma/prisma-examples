@@ -3,8 +3,17 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
+    "postinstall": "yarn generate",
+    "clean": "yarn clean:db && yarn clean:migrations",
+    "clean:db": "rimraf prisma/dev.db",
+    "clean:migrations": "rimraf prisma/migrations",
+    "lift": "yarn lift:save && yarn lift:up",
+    "lift:save": "yarn prisma2 lift save -n init",
+    "lift:up": "yarn prisma2 lift up",
     "seed": "ts-node prisma/seed.ts",
-    "postinstall": "prisma2 generate"
+    "generate": "yarn generate:prisma && yarn generate:nexus",
+    "generate:prisma": "prisma2 generate",
+    "generate:nexus": "echo 'todo'"
   },
   "dependencies": {
     "bcrypt": "3.0.6",
@@ -17,9 +26,10 @@
     "@types/bcrypt": "3.0.0",
     "@types/jsonwebtoken": "8.3.3",
     "@types/node": "12.7.3",
+    "prisma2": "2.0.0-preview-9.1",
+    "rimraf": "3.0.0",
     "ts-node": "8.3.0",
     "ts-node-dev": "1.0.0-pre.42",
-    "typescript": "3.6.2",
-    "prisma2": "2.0.0-preview-9.1"
+    "typescript": "3.6.2"
   }
 }
