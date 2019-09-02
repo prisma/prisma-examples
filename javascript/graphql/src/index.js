@@ -28,8 +28,8 @@ const Post = objectType({
     t.model.id()
     t.model.title()
     t.model.content()
-    // t.model.createdAt()
-    // t.model.updatedAt()
+    t.model.createdAt()
+    t.model.updatedAt()
     t.model.published()
   },
 })
@@ -96,9 +96,9 @@ const Mutation = objectType({
             title,
             content,
             published: false,
-            // author: {
-            //   connect: { email: authorEmail },
-            // },
+            author: {
+              connect: { email: authorEmail },
+            },
           },
         })
       },
