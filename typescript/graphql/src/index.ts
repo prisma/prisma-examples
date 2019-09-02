@@ -11,7 +11,7 @@ const nexusPrisma = nexusPrismaPlugin({
   photon: (ctx: Context) => ctx.photon,
 })
 
-export const User = objectType({
+const User = objectType({
   name: 'User',
   definition(t) {
     t.model.id()
@@ -23,7 +23,7 @@ export const User = objectType({
   },
 })
 
-export const Post = objectType({
+const Post = objectType({
   name: 'Post',
   definition(t) {
     t.model.id()

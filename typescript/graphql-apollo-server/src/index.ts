@@ -16,9 +16,11 @@ const User = objectType({
   name: 'User',
   definition(t) {
     t.model.id()
-    t.model.email()
     t.model.name()
-    t.model.posts()
+    t.model.email()
+    t.model.posts({
+      pagination: false,
+    })
   },
 })
 
@@ -26,27 +28,25 @@ const Post = objectType({
   name: 'Post',
   definition(t) {
     t.model.id()
-    // t.model.createdAt()
-    // t.model.updatedAt()
+    t.model.createdAt()
+    t.model.updatedAt()
     t.model.title()
     t.model.content()
     t.model.published()
-    t.model.author({ type: 'User' })
+    t.model.author()
   },
 })
 
-const Query = queryType({
+const Query = objectType({
+  name: 'Query',
   definition(t) {
-    t.field('hello', {
-      type: 'String',
-      resolve: () => {
-        return `world`
-      },
+    t.crud.post({
+      alias: 'post',
     })
 
     t.list.field('feed', {
       type: 'Post',
-      resolve: (parent, args, ctx) => {
+      resolve: (_, args, ctx) => {
         return ctx.photon.posts.findMany({
           where: { published: true },
         })
@@ -58,34 +58,13 @@ const Query = queryType({
       args: {
         searchString: stringArg({ nullable: true }),
       },
-      resolve: (parent, { searchString }, ctx) => {
+      resolve: (_, { searchString }, ctx) => {
         return ctx.photon.posts.findMany({
           where: {
             OR: [
-              {
-                title: {
-                  contains: searchString,
-                },
-              },
-              {
-                content: {
-                  contains: searchString,
-                },
-              },
+              { title: { contains: searchString } },
+              { content: { contains: searchString } },
             ],
-          },
-        })
-      },
-    })
-
-    t.field('post', {
-      type: 'Post',
-      nullable: true,
-      args: { id: idArg() },
-      resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.findOne({
-          where: {
-            id,
           },
         })
       },
@@ -96,21 +75,8 @@ const Query = queryType({
 const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
-    t.field('signupUser', {
-      type: 'User',
-      args: {
-        name: stringArg({ nullable: true }),
-        email: stringArg(),
-      } as any,
-      resolve: (parent, { name, email }, ctx) => {
-        return ctx.photon.users.create({
-          data: {
-            name,
-            email,
-          },
-        })
-      },
-    })
+    t.crud.createOneUser({ alias: 'signupUser' })
+    t.crud.deleteOnePost()
 
     t.field('createDraft', {
       type: 'Post',
@@ -118,31 +84,16 @@ const Mutation = objectType({
         title: stringArg(),
         content: stringArg({ nullable: true }),
         authorEmail: stringArg(),
-      } as any,
-      resolve: (parent, { title, content, authorEmail }, ctx) => {
+      },
+      resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.photon.posts.create({
           data: {
             title,
             content,
             published: false,
-            // author: {
-            //   connect: { email: authorEmail },
-            // },
-          },
-        })
-      },
-    })
-
-    t.field('deletePost', {
-      type: 'Post',
-      nullable: true,
-      args: {
-        id: idArg(),
-      } as any,
-      resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.delete({
-          where: {
-            id,
+            author: {
+              connect: { email: authorEmail },
+            },
           },
         })
       },
@@ -153,8 +104,8 @@ const Mutation = objectType({
       nullable: true,
       args: {
         id: idArg(),
-      } as any,
-      resolve: (parent, { id }, ctx) => {
+      },
+      resolve: (_, { id }, ctx) => {
         return ctx.photon.posts.update({
           where: { id },
           data: { published: true },
@@ -165,7 +116,7 @@ const Mutation = objectType({
 })
 
 const schema = makeSchema({
-  types: [Query, Post, User, Mutation, nexusPrisma],
+  types: [Query, Mutation, Post, User, nexusPrisma],
   outputs: {
     typegen: join(__dirname, '../generated/nexus-typegen.ts'),
     schema: join(__dirname, '/schema.graphql'),
