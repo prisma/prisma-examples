@@ -14,7 +14,7 @@
     "@types/node": "10.14.17",
     "ts-node": "8.3.0",
     "ts-node-dev": "1.0.0-pre.42",
-    "typescript": "3.6.2",
+    "typescript": "3.6.3",
     "prisma2": "2.0.0-preview-9.1"
   }
 }

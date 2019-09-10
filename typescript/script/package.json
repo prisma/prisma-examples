@@ -3,7 +3,7 @@
   "license": "MIT",
   "devDependencies": {
     "ts-node": "8.3.0",
-    "typescript": "3.6.2",
+    "typescript": "3.6.3",
     "prisma2": "2.0.0-preview-9.1"
   },
   "scripts": {
