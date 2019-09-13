@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "dotenv": "8.1.0",
-    "graphql": "14.5.4",
+    "graphql": "14.5.5",
     "graphql-yoga": "1.17.4"
   },
   "devDependencies": {
