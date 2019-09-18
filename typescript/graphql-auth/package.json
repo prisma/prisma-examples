@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "3.0.0",
-    "@types/jsonwebtoken": "8.3.3",
+    "@types/jsonwebtoken": "8.3.4",
     "@types/node": "12.7.5",
     "ts-node": "8.4.1",
     "ts-node-dev": "1.0.0-pre.42",
