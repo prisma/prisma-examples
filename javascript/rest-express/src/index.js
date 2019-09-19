@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const Photon = require('@generated/photon')
+const { Photon } = require('@generated/photon')
 
 const photon = new Photon.default()
 const app = express()

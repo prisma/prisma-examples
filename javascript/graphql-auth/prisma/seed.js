@@ -1,4 +1,4 @@
-const Photon = require('@generated/photon')
+const { Photon } = require('@generated/photon')
 const photon = new Photon.default()
 
 async function main() {
