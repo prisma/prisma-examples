@@ -1,4 +1,4 @@
-import Photon from "@generated/photon";
+import { Photon } from "@generated/photon";
 
 const main = async () => {
   const photon = new Photon();

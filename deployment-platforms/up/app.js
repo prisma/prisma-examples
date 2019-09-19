@@ -1,5 +1,5 @@
 //@ts-strict
-const Photon = require('@generated/photon')
+const { Photon } = require('@generated/photon')
 const express = require('express')
 
 const { PORT = 3000 } = process.env

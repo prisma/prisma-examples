@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
 
-const Photon = require('@generated/photon')
+const { Photon } = require('@generated/photon')
 const { resolvers } = require('./resolvers')
 const { permissions } = require('./permissions')
 
