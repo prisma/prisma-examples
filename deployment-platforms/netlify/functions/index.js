@@ -1,6 +1,6 @@
 const { Photon } = require('./generated/photon')
 
-const photon = new Photon.default()
+const photon = new Photon()
 
 exports.handler = async function(event, context, callback) {
   const users = await photon.users()
