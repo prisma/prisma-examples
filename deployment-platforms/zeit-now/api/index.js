@@ -4,7 +4,7 @@ const express = require('express')
 const helmet = require('helmet')
 const moment = require('moment')
 
-const photon = new Photon.default()
+const photon = new Photon()
 
 const app = express()
 app.use(helmet())
