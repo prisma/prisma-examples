@@ -310,7 +310,7 @@ You can now send the following mutation to your GraphQL API:
 mutation {
   updateUserName(
     id: "__USER_ID__" 
-    newName: "John")
+    newName: "John"
   ) {
     id
     name
