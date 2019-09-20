@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "express": "4.17.1",
-    "helmet": "3.21.0",
+    "helmet": "3.21.1",
     "moment": "2.24.0"
   },
   "engines": {
