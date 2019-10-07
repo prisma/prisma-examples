@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "prisma2": "2.0.0-preview-12"
+    "prisma2": "2.0.0-preview-13.2"
   },
   "scripts": {
     "postinstall": "prisma2 generate",
