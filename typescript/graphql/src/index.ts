@@ -140,4 +140,4 @@ const server = new GraphQLServer({
   context: { photon },
 })
 
-server.start(() => console.log(`🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/ts/graphql#6-using-the-graphql-api`))
+server.start(() => console.log(`🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/ts/graphql#5-using-the-graphql-api`))
