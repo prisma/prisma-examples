@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "graphql-yoga": "1.18.3",
-    "nexus": "0.12.0-beta.11"
+    "nexus": "0.12.0-beta.12"
   },
   "devDependencies": {
     "@types/node": "10.14.20",
