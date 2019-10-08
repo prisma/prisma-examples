@@ -19,22 +19,16 @@ cd prisma-examples/typescript/graphql-auth
 npm install
 ```
 
-### 2. Install the Prisma 2 CLI
-
-To run the example, you need the [Prisma 2 CLI](https://github.com/prisma/prisma2/blob/master/docs/prisma-2-cli.md):
-
-```
-npm install -g prisma2
-```
-
-### 3. Set up database
+### 2. Set up database
 
 For this example, you'll use a simple [SQLite database](https://www.sqlite.org/index.html). To set up your database, run:
 
 ```
-prisma2 lift save --name 'init'
-prisma2 lift up
+npx prisma2 lift save --name 'init'
+npx prisma2 lift up
 ```
+
+> **Note**: You're using [npx](https://github.com/npm/npx) to run the Prisma Framework CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`.
 
 You can now use the [SQLite Browser](https://sqlitebrowser.org/) to view and edit your data in the `./prisma/dev.db` file that was created when you ran `prisma2 lift up`.
 
@@ -66,17 +60,18 @@ datasource postgresql {
 Then to migrate your database, run:
 
 ```sh
-prisma2 lift save --name 'init'
-prisma2 lift up
+npx prisma2 lift save --name 'init'
+npx prisma2 lift up
 ```
+
 </Details>
 
-### 4. Generate Photon (type-safe database client)
+### 3. Generate Photon (type-safe database client)
 
 Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 
 ```
-prisma2 generate
+npx prisma2 generate
 ```
 
 Now you can seed your database using the `seed` script from `package.json`:
@@ -86,7 +81,7 @@ npm run seed
 ```
 
 
-### 5. Start the GraphQL server
+### 4. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
@@ -96,7 +91,7 @@ npm run start
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### 6. Using the GraphQL API
+### 5. Using the GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
@@ -269,7 +264,7 @@ mutation {
 
 </Details>
 
-### 6. Changing the GraphQL schema
+### 5. Changing the GraphQL schema
 
 To make changes to the GraphQL schema, you need to manipulate the [`Query`](./src/resolvers/Query.ts) and [`Mutation`](./src/resolvers/Mutation.ts) types. 
 

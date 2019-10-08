@@ -6,7 +6,7 @@ __INLINE(../_setup-1.md)__
 cd prisma-examples/javascript/rest-express
 __INLINE(../_setup-2.md)__
 
-### 5. Start the REST API server
+### 4. Start the REST API server
 
 ```
 npm run start

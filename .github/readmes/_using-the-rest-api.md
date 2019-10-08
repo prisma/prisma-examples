@@ -1,4 +1,4 @@
-### 6. Using the REST API
+### 5. Using the REST API
 
 #### `GET`
 

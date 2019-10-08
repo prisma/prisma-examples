@@ -19,22 +19,16 @@ cd prisma-examples/javascript/grpc
 npm install
 ```
 
-### 2. Install the Prisma 2 CLI
-
-To run the example, you need the [Prisma 2 CLI](https://github.com/prisma/prisma2/blob/master/docs/prisma-2-cli.md):
-
-```
-npm install -g prisma2
-```
-
-### 3. Set up database
+### 2. Set up database
 
 For this example, you'll use a simple [SQLite database](https://www.sqlite.org/index.html). To set up your database, run:
 
 ```
-prisma2 lift save --name 'init'
-prisma2 lift up
+npx prisma2 lift save --name 'init'
+npx prisma2 lift up
 ```
+
+> **Note**: You're using [npx](https://github.com/npm/npx) to run the Prisma Framework CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`.
 
 You can now use the [SQLite Browser](https://sqlitebrowser.org/) to view and edit your data in the `./prisma/dev.db` file that was created when you ran `prisma2 lift up`.
 
@@ -61,22 +55,23 @@ datasource postgresql {
 }
 ```
 
-> Note: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `public` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
+> **Note**: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `public` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
 
 Then to migrate your database, run:
 
 ```sh
-prisma2 lift save --name 'init'
-prisma2 lift up
+npx prisma2 lift save --name 'init'
+npx prisma2 lift up
 ```
+
 </Details>
 
-### 4. Generate Photon (type-safe database client)
+### 3. Generate Photon (type-safe database client)
 
 Run the following command to generate [Photon.js](https://photonjs.prisma.io/):
 
 ```
-prisma2 generate
+npx prisma2 generate
 ```
 
 Now you can seed your database using the `seed` script from `package.json`:
@@ -86,7 +81,7 @@ npm run seed
 ```
 
 
-### 5. Start the gRPC server
+### 4. Start the gRPC server
 
 ```
 npm run start
@@ -94,7 +89,7 @@ npm run start
 
 The server is now running on `0.0.0.0:50051`. 
 
-### 6. Using the gRPC API
+### 5. Using the gRPC API
 
 To use the gRPC API, you need a gRPC client. We provide several client scripts inside the [`./client`](./client) directory. Each script is named according to the operation it performs against the gRPC API (e.g. the [`feed.js`](./client/feed.js) script sends the [`Feed`](./service.proto#L7) operation). Each script can be invoked by running the corresponding NPM script defined in [`package.json`](./package.json), e.g. `npm run feed`.
 

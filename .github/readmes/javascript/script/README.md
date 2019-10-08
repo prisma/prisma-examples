@@ -6,7 +6,7 @@ __INLINE(../_setup-1.md)__
 cd prisma-examples/javascript/script
 __INLINE(../_setup-2.md)__
 
-### 5. Run the script
+### 4. Run the script
 
 Execute the script with this command: 
 

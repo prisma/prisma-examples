@@ -10,7 +10,7 @@ __INLINE(../_start-graphql-server.md)__
 
 __INLINE(../../_using-the-graphql-api-auth.md)__
 
-### 6. Changing the GraphQL schema
+### 5. Changing the GraphQL schema
 
 To make changes to the GraphQL schema, you need to manipulate the [`Query`](./src/resolvers/Query.ts) and [`Mutation`](./src/resolvers/Mutation.ts) types. 
 

@@ -1,4 +1,4 @@
-### 5. Start the GraphQL server
+### 4. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
