@@ -6,7 +6,7 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "nexus": "0.12.0-beta.9",
+    "nexus": "0.12.0-beta.12",
     "apollo-server": "2.9.5",
     "graphql": "14.5.8"
   },
@@ -15,6 +15,6 @@
     "ts-node": "8.4.1",
     "ts-node-dev": "1.0.0-pre.43",
     "typescript": "3.6.3",
-    "prisma2": "2.0.0-preview-13.2"
+    "prisma2": "2.0.0-preview013.3"
   }
 }
