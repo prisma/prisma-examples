@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.33",
     "@types/graphql": "14.2.3",
-    "@types/node": "10.14.20",
+    "@types/node": "10.14.21",
     "@types/ws": "6.0.3",
     "ts-node-dev": "1.0.0-pre.43",
     "typescript": "3.6.3"
