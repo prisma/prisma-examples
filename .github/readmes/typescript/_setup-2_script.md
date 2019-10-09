@@ -26,8 +26,6 @@ npx prisma2 dev
 
 You can now open [Prisma Studio](https://github.com/prisma/studio), open your browsers and navigate to the the URL displayed by the CLI output (typically at [`http://localhost:5555`](http://localhost:5555)).
 
-You can also use the [SQLite Browser](https://sqlitebrowser.org/) to view and edit your data in the `./prisma/dev.db` file that was created when you ran `prisma2 dev`.
-
 <Details>
 <Summary><b>Alternative: </b>Connect to your own database</Summary>
 
@@ -61,10 +59,3 @@ npx prisma2 lift up
 ```
 
 </Details>
-
-<!-- <Details>
-<Summary><b>Alternative: </b>Use CLI commands for the schema migration and Photon.js generation</Summary> -->
-
-Instead of using the development mode, you can also perform a schema migration using Lift, and generate Photon.js with a dedicated CLI command (learn more [below](#next-steps)).
-
-<!-- </Details> -->
