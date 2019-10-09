@@ -279,7 +279,7 @@ mutation {
 
 </Details>
 
-### 5. Changing the GraphQL schema
+### 6. Changing the GraphQL schema
 
 To make changes to the GraphQL schema, you need to manipulate the [`Query`](./src/resolvers/Query.ts) and [`Mutation`](./src/resolvers/Mutation.ts) types. 
 
