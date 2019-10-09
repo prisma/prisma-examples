@@ -95,6 +95,8 @@ The `seed` script from `package.json` contains some code to seed the database wi
 npm run seed
 ```
 
+> **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
+
 
 ### 4. Start the REST API server
 
