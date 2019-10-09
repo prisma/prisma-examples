@@ -65,7 +65,7 @@ npx prisma2 lift up
 <!-- <Details>
 <Summary><b>Alternative: </b>Use CLI commands for the schema migration and Photon.js generation</Summary> -->
 
-Instead of using the development mode, you can also performa a schema migration using Lift, and generate Photon.js with a dedicated CLI command (learn more [below](#next-steps)).
+Instead of using the development mode, you can also perform a schema migration using Lift, and generate Photon.js with a dedicated CLI command (learn more [below](#next-steps)).
 
 <!-- </Details> -->
 
