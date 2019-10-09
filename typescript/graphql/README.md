@@ -240,7 +240,7 @@ Note that the [`start`](./package.json#L4) script also starts a development serv
 
 ### Use Lift to persists the schema migration
 
-The migrations that were generated throughout the development mode are _development migrations_ that are thrown away once the desired schema has been found. In that case, you need to persists the schema using the Prisma Framework CLI's `lift` subcommands.
+The migrations that were generated throughout the development mode are _development migrations_ that are thrown away once the desired schema has been found. In that case, you need to persist the schema using the `lift` subcommands.
 
 To persist your schema migration with Lift, run:
 
@@ -249,7 +249,7 @@ npx prisma2 lift save --name 'init'
 npx prisma2 lift up
 ```
 
-The first command saves a number of migration files on te file sytem to store details about the migration, this doesn't yet affect the database. The second command, `lift up`, actually performs the schema migration against the database.
+The first command, `lift save`, stores a number of migration files on te file sytem with details about the migration (such as the required migration steps and SQL operations), this doesn't yet affect the database. The second command, `lift up`, actually performs the schema migration against the database.
 
 ### Generate Photon.js with the CLI
 
