@@ -87,7 +87,7 @@ Instead of using the development mode, you can also perform a schema migration u
 
 <!-- </Details> -->
 
-### 4. Run the script
+### 3. Run the script
 
 Execute the script with this command: 
 
