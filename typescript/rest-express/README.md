@@ -135,7 +135,7 @@ The server is now running on `http://localhost:3000`. You can send the API reque
 
 ## Next steps
 
-### Use Lift to persists the schema migration
+### Use Lift to persist the schema migration
 
 The migrations that were generated throughout the development mode are _development migrations_ that are thrown away once the desired schema has been found. In that case, you need to persist the schema using the `lift` subcommands.
 
