@@ -8,7 +8,7 @@
     "jsonwebtoken": "8.5.1"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "dev": "node src/index.js",
     "seed": "node prisma/seed.js",
     "postinstall": "prisma2 generate"
   },

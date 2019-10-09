@@ -9,7 +9,7 @@ __INLINE(../_setup-2.md)__
 ### 4. Start the gRPC server
 
 ```
-npm run start
+npm run dev
 ```
 
 The server is now running on `0.0.0.0:50051`. 
