@@ -14,7 +14,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -41,7 +41,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -68,7 +68,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the gRPC server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           },
           {
             "description": "Invoke a gRPC client script, e.g.:",
@@ -102,7 +102,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -129,7 +129,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -154,7 +154,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -181,7 +181,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the GraphQL server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -208,7 +208,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the gRPC server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           },
           {
             "description": "Invoke a gRPC client script, e.g.:",
@@ -242,7 +242,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
@@ -269,7 +269,7 @@
         "nextStepInstructions": [
           {
             "description": "Start the REST API server (in a new terminal window/tab):",
-            "commands": ["npm start"]
+            "commands": ["npm run dev"]
           }
         ],
         "setupCommands": [
