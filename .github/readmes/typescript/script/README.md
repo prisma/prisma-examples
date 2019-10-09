@@ -4,7 +4,7 @@ This example shows how to use [Photon.js](https://photonjs.prisma.io/) in a **si
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/typescript/script
-__INLINE(../_setup-2.md)__
+__INLINE(../_setup-2_script.md)__
 
 ### 4. Run the script
 
