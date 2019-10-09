@@ -12,7 +12,7 @@ npx prisma2 lift save --name 'init'
 npx prisma2 lift up
 ```
 
-The first command, `lift save`, stores a number of migration files on te file sytem with details about the migration (such as the required migration steps and SQL operations), this doesn't yet affect the database. The second command, `lift up`, actually performs the schema migration against the database.
+The first command, `lift save`, stores a number of migration files on the file sytem with details about the migration (such as the required migration steps and SQL operations), this doesn't yet affect the database. It also deletes the old development migrations. The second command, `lift up`, actually performs the schema migration against the database.
 
 ### Generate Photon.js with the CLI
 
