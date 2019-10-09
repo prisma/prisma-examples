@@ -7,7 +7,7 @@
     "prisma2": "2.0.0-preview013.3"
   },
   "scripts": {
-    "start": "ts-node ./script.ts",
+    "dev": "ts-node ./script.ts",
     "postinstall": "prisma2 generate"
   }
 }

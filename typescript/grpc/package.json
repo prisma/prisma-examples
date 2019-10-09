@@ -7,7 +7,7 @@
     "protobufjs": "6.8.8"
   },
   "scripts": {
-    "start": "ts-node ./server/server.ts",
+    "dev": "ts-node ./server/server.ts",
     "seed": "ts-node prisma/seed.ts",
     "feed": "ts-node ./client/feed.ts",
     "filterPosts": "ts-node ./client/filterPosts.ts",

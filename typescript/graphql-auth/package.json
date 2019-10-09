@@ -2,7 +2,7 @@
   "name": "graphql-auth",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
     "seed": "ts-node prisma/seed.ts",
     "postinstall": "prisma2 generate"
   },
