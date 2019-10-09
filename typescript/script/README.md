@@ -92,7 +92,7 @@ Instead of using the development mode, you can also perform a schema migration u
 Execute the script with this command: 
 
 ```
-npm run start
+npm run dev
 ```
 
 

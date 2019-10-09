@@ -6,7 +6,7 @@
     "grpc": "1.24.0"
   },
   "scripts": {
-    "start": "node ./server/server.js",
+    "dev": "node ./server/server.js",
     "seed": "node prisma/seed.js",
     "feed": "node ./client/feed.js",
     "filterPosts": "node ./client/filterPosts.js",

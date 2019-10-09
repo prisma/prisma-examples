@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
+    "dev": "node src/index.js",
     "seed": "node prisma/seed.js",
     "postinstall": "prisma2 generate"
   },

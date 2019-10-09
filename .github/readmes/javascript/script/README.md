@@ -11,7 +11,7 @@ __INLINE(../_setup-2_script.md)__
 Execute the script with this command: 
 
 ```
-npm run start
+npm run dev
 ```
 
 __INLINE(../_next-steps.md)__
