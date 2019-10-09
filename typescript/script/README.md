@@ -89,8 +89,6 @@ Instead of using the development mode, you can also perform a schema migration u
 
 ### 3. Run the script
 
-### 4. Run the script
-
 Execute the script with this command: 
 
 ```
