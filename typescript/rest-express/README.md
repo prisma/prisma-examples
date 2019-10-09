@@ -87,7 +87,7 @@ Instead of using the development mode, you can also perform a schema migration u
 
 <!-- </Details> -->
 
-### 3. Prepare and launch the application
+### 3. Seed the database with test data
 
 The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
 
