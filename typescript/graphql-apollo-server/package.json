@@ -6,9 +6,10 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "nexus": "0.12.0-beta.13",
     "apollo-server": "2.9.5",
-    "graphql": "14.5.8"
+    "graphql": "14.5.8",
+    "nexus": "0.12.0-beta.12",
+    "nexus-prisma": "^0.5.0-next.5"
   },
   "devDependencies": {
     "@types/node": "10.14.21",

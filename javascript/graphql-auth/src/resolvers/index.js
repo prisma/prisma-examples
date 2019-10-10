@@ -1,15 +1,17 @@
-const { Query } = require('./Query')
+const { AuthPayload } = require('./AuthPayload')
 const { Mutation } = require('./Mutation')
-const { User } = require('./User')
 const { Post } = require('./Post')
+const { Query } = require('./Query')
+const { User } = require('./User')
 
 const resolvers = {
   Query,
-  Mutation,
   User,
   Post,
+  Mutation,
+  AuthPayload,
 }
 
 module.exports = {
-  resolvers,
+  resolvers
 }
