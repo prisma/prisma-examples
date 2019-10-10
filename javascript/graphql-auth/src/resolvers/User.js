@@ -1,15 +1,15 @@
-const { objectType } = require('nexus')
-
-const User = objectType({
-  name: 'User',
-  definition(t) {
-    t.model.id()
-    t.model.name()
-    t.model.email()
-    t.model.posts({ pagination: false })
+const User = {
+  posts: ({ id }, args, context) => {
+    return context.photon.users
+      .findOne({
+        where: {
+          id,
+        },
+      })
+      .posts()
   },
-})
+}
 
 module.exports = {
-  User
+  User,
 }

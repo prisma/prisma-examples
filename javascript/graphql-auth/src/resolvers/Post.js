@@ -1,18 +1,15 @@
-const { objectType } = require('nexus')
-
-const Post = objectType({
-  name: 'Post',
-  definition(t) {
-    t.model.id()
-    t.model.createdAt()
-    t.model.updatedAt()
-    t.model.published()
-    t.model.title()
-    t.model.content()
-    t.model.author()
+const Post = {
+  author: ({ id }, args, context) => {
+    return context.photon.posts
+      .findOne({
+        where: {
+          id,
+        },
+      })
+      .author()
   },
-})
+}
 
 module.exports = {
-  Post
+  Post,
 }
