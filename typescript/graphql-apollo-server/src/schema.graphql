@@ -2,6 +2,7 @@
 ### Do not make changes to this file directly
 
 
+"""DateTime"""
 scalar DateTime
 
 type Mutation {
@@ -30,7 +31,7 @@ input PostCreateWithoutAuthorInput {
   content: String
   createdAt: DateTime
   id: ID
-  published: Boolean
+  published: Boolean!
   title: String!
   updatedAt: DateTime
 }
@@ -49,7 +50,7 @@ type User {
   email: String!
   id: ID!
   name: String
-  posts: [Post!]
+  posts(after: String, before: String, first: Int, last: Int, skip: Int): [Post!]
 }
 
 input UserCreateInput {

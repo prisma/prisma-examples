@@ -1,19 +1,22 @@
-import { nexusPrismaPlugin } from 'nexus-prisma'
+import { nexusPrismaPlugin } from '@generated/nexus-prisma'
 import { Photon } from '@generated/photon'
 import { makeSchema } from 'nexus'
 import { GraphQLServer } from 'graphql-yoga'
 import { join } from 'path'
 import { permissions } from './permissions'
 import * as allTypes from './resolvers'
+import { Context } from './types'
 
 const photon = new Photon()
 
-const nexusPrismaTypes = nexusPrismaPlugin({
-  types: allTypes,
+const nexusPrisma = nexusPrismaPlugin({
+  photon: (ctx: Context) => ctx.photon,
 })
+
 const schema = makeSchema({
-  types: [allTypes, nexusPrismaTypes],
+  types: [allTypes, nexusPrisma],
   outputs: {
+    typegen: join(__dirname, '../generated/nexus-typegen.ts'),
     schema: join(__dirname, '/schema.graphql'),
   },
   typegenAutoConfig: {
