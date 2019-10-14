@@ -1,25 +1,32 @@
-# Simple TypeScript Script Example
+# React & GraphQL Fullstack Example
 
-This example shows how to use [Photon.js](https://photonjs.prisma.io/) in a **simple TypeScript script** to read and write data in a database.
-
-## How to use
-
-### 1. Download example & install dependencies
+### 1. Download example & install dependencies of React app
 
 Clone the `prisma2` branch of this repository:
 
 ```
-git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
+git clone git@github.com:prisma/prisma-examples.git
 ```
 
-Install Node dependencies:
+Install Node dependencies of your React app:
 
 ```
-cd prisma-examples/typescript/script
+cd prisma-examples/misc/react-graphql-fullstack
 npm install
 ```
 
-### 2. Run Prisma's development mode
+### 2. Prepare and start the server
+
+#### 1. Install dependencies of GraphQL server
+
+Navigate into the `server` directory and install Node dependencies there:
+
+```
+cd server
+npm install
+```
+
+#### 1. Run Prisma's development mode
 
 <Details><Summary>Learn more about the development mode</Summary>
 
@@ -78,44 +85,34 @@ npx prisma2 lift up
 
 </Details>
 
-### 3. Run the script
+#### 2. Seed the database with test data
 
-Execute the script with this command: 
+The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
 
 ```
-npm run dev
+npm run seed
 ```
 
 > **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
 
 
-## Next steps
+#### 3. Start the GraphQL server
 
-### Use Lift to persist the schema migration
-
-The migrations that were generated throughout the development mode are _development migrations_ that are thrown away once the desired schema has been found. In that case, you need to persist the schema using the `lift` subcommands.
-
-To persist your schema migration with Lift, run:
+Launch your GraphQL server with this command:
 
 ```
-npx prisma2 lift save --name 'init'
-npx prisma2 lift up
+npm run dev
 ```
 
-The first command, `lift save`, stores a number of migration files on the file sytem with details about the migration (such as the required migration steps and SQL operations), this doesn't yet affect the database. It also deletes the old development migrations. The second command, `lift up`, actually performs the schema migration against the database.
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### Generate Photon.js with the CLI
+### 3. Start the React application
 
-Sometimes, e.g. in CI/CD environments, it can be helpful to generate Photon.js with a CLI command. This can be done with the `prisma2 generate command`. If you want to run it in this project, you need to prepend `npx` again:
+Navigate back into the project's root directory and start the React app:
 
 ```
-npx prisma2 generate
+cd ..
+npm run dev
 ```
 
-### More things to explore
-
-- Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
-- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Photon.js API](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md))
-- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
-- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
-- Track the Prisma Framework's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
+You can now open your browser at [http://localhost:3000](http://localhost:3000) and use the React app.

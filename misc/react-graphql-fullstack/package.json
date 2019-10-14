@@ -1,0 +1,29 @@
+{
+  "name": "react-fullstack-basic",
+  "version": "1.0.0",
+  "devDependencies": {
+    "react-scripts": "2.1.8"
+  },
+  "dependencies": {
+    "apollo-boost": "0.4.4",
+    "graphql": "14.0.2",
+    "react": "16.10.2",
+    "react-apollo": "2.5.8",
+    "react-dom": "16.10.2",
+    "react-modal": "3.10.1",
+    "react-router-dom": "4.4.0-beta.8",
+    "tachyons": "4.11.1"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

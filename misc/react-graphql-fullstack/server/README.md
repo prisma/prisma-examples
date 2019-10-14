@@ -1,6 +1,6 @@
-# Simple TypeScript Script Example
+# GraphQL Server Example
 
-This example shows how to use [Photon.js](https://photonjs.prisma.io/) in a **simple TypeScript script** to read and write data in a database.
+This example shows how to implement a **GraphQL server with TypeScript** based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
 
 ## How to use
 
@@ -15,7 +15,7 @@ git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples
 Install Node dependencies:
 
 ```
-cd prisma-examples/typescript/script
+cd prisma-examples/typescript/graphql
 npm install
 ```
 
@@ -42,7 +42,7 @@ npx prisma2 dev
 
 > **Note**: You're using [npx](https://github.com/npm/npx) to run the Prisma Framework CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
 
-You can now open [Prisma Studio](https://github.com/prisma/studio). Open your browser and navigate to the URL displayed by the CLI output (typically at [`http://localhost:5555`](http://localhost:5555)).
+You can now open [Prisma Studio](https://github.com/prisma/studio). Open your browser and navigate to the the URL displayed by the CLI output (typically at [`http://localhost:5555`](http://localhost:5555)).
 
 <Details>
 <Summary><b>Alternative: </b>Connect to your own database</Summary>
@@ -78,15 +78,155 @@ npx prisma2 lift up
 
 </Details>
 
-### 3. Run the script
+### 3. Seed the database with test data
 
-Execute the script with this command: 
+The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
+
+```
+npm run seed
+```
+
+> **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
+
+
+### 4. Start the GraphQL server
+
+Launch your GraphQL server with this command:
 
 ```
 npm run dev
 ```
 
-> **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+
+### 5. Using the GraphQL API
+
+The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
+
+Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
+
+#### Retrieve all published posts and their authors
+
+```graphql
+query {
+  feed {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
+<Details><Summary><strong>See more API operations</strong></Summary>
+
+#### Create a new user
+
+```graphql
+mutation {
+  signupUser(
+    data: {
+      name: "Sarah"
+      email: "sarah@prisma.io"
+    }
+  ) {
+    id
+  }
+}
+```
+
+#### Create a new draft
+
+```graphql
+mutation {
+  createDraft(
+    title: "Join the Prisma Slack"
+    content: "https://slack.prisma.io"
+    authorEmail: "alice@prisma.io"
+  ) {
+    id
+    published
+  }
+}
+```
+
+#### Publish an existing draft
+
+```graphql
+mutation {
+  publish(id: "__POST_ID__") {
+    id
+    published
+  }
+}
+```
+
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+
+#### Search for posts with a specific title or content
+
+```graphql
+{
+  filterPosts(searchString: "graphql") {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
+#### Retrieve a single post
+
+```graphql
+{
+  post(id: "__POST_ID__") {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+
+#### Delete a post
+
+```graphql
+mutation {
+  deleteOnePost(where: {id: "__POST_ID__"})
+  {
+    id
+  }
+}
+```
+
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+
+</Details>
+
+
+### 6. Changing the GraphQL schema
+
+To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`index.ts`](./src/index.ts). 
+
+Note that the [`start`](./package.json#L4) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./src/schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
 
 
 ## Next steps
