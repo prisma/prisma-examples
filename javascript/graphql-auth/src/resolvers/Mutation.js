@@ -1,4 +1,4 @@
-const { compare, hash } = require('bcrypt')
+const { compare, hash } = require('bcryptjs')
 const { sign } = require('jsonwebtoken')
 const { idArg, mutationType, stringArg } = require('nexus')
 const { APP_SECRET, getUserId } = require('../utils')
@@ -101,5 +101,5 @@ const Mutation = mutationType({
 })
 
 module.exports = {
-  Mutation
+  Mutation,
 }
