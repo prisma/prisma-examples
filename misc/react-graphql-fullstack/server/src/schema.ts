@@ -1,10 +1,5 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { Photon } from '@generated/photon'
 import { idArg, makeSchema, objectType, stringArg } from 'nexus'
-import { GraphQLServer } from 'graphql-yoga'
-import { join } from 'path'
-
-const photon = new Photon()
 
 const User = objectType({
   name: 'User',
@@ -37,15 +32,15 @@ const Query = objectType({
     t.crud.post({
       alias: 'post',
     })
-    t.crud.posts({ 
+    t.crud.posts({
       alias: 'filterPosts',
       filtering: true,
-      pagination: false 
+      pagination: false,
     })
 
     t.list.field('feed', {
       type: 'Post',
-      resolve: (_, args, ctx) => {
+      resolve: (_parent, _args, ctx) => {
         return ctx.photon.posts.findMany({
           where: { published: true },
         })
@@ -63,8 +58,8 @@ const Mutation = objectType({
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: stringArg(),
-        content: stringArg({ nullable: true }),
+        title: stringArg({ nullable: false }),
+        content: stringArg(),
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
@@ -97,38 +92,20 @@ const Mutation = objectType({
   },
 })
 
-const allTypes = [Query, Mutation, Post, User]
-const nexusPrismaTypes = nexusPrismaPlugin({
-  types: allTypes,
-})
-
-const schema = makeSchema({
-  types: [allTypes, nexusPrismaTypes],
-  outputs: {
-    schema: join(__dirname, '/schema.graphql'),
-  },
+export const schema = makeSchema({
+  types: [Query, Mutation, Post, User],
+  plugins: [nexusPrismaPlugin()],
   typegenAutoConfig: {
+    contextType: 'Context.Context',
     sources: [
       {
         source: '@generated/photon',
         alias: 'photon',
       },
       {
-        source: join(__dirname, 'types.ts'),
-        alias: 'ctx',
+        source: require.resolve('./context.ts'),
+        alias: 'Context',
       },
     ],
-    contextType: 'ctx.Context',
   },
 })
-
-const server = new GraphQLServer({
-  schema,
-  context: { photon },
-})
-
-server.start(() =>
-  console.log(
-    `🚀 Server ready at: http://localhost:4000`,
-  ),
-)
