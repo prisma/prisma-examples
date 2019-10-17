@@ -2,7 +2,7 @@ import { Photon } from "@generated/photon"
 
 const photon = new Photon()
 
-export type Context = {
+export interface Context {
   photon: Photon
 }
 

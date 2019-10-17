@@ -7,19 +7,19 @@
     "generate:prisma": "prisma2 generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src",
-    "seed": "ts-node prisma/seed.ts"
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
+    "seed": "ts-node prisma/seed"
   },
   "dependencies": {
     "apollo-server": "2.9.6",
     "graphql": "14.5.8",
     "nexus": "0.12.0-beta.14",
-    "nexus-prisma": "^0.5.0-next.5"
+    "nexus-prisma": "0.5.0"
   },
   "devDependencies": {
-    "@prisma/sdk": "0.0.20",
-    "@types/node": "10.14.21",
-    "prisma2": "2.0.0-preview013.3",
+    "@prisma/sdk": "0.0.21",
+    "@types/node": "12.11.1",
+    "prisma2": "2.0.0-preview014.2",
     "ts-node": "8.4.1",
     "ts-node-dev": "1.0.0-pre.43",
     "typescript": "3.6.4"
