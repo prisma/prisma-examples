@@ -1,13 +1,8 @@
-import { nexusPrismaPlugin } from 'nexus-prisma'
-import { Photon } from '@generated/photon'
-import { ApolloServer } from 'apollo-server'
-import { idArg, makeSchema, objectType, stringArg } from 'nexus'
-import { join } from 'path'
-
-const photon = new Photon()
+import { nexusPrismaPlugin } from "nexus-prisma"
+import { idArg, makeSchema, objectType, stringArg } from "nexus"
 
 const User = objectType({
-  name: 'User',
+  name: "User",
   definition(t) {
     t.model.id()
     t.model.name()
@@ -19,7 +14,7 @@ const User = objectType({
 })
 
 const Post = objectType({
-  name: 'Post',
+  name: "Post",
   definition(t) {
     t.model.id()
     t.model.createdAt()
@@ -32,14 +27,14 @@ const Post = objectType({
 })
 
 const Query = objectType({
-  name: 'Query',
+  name: "Query",
   definition(t) {
     t.crud.post({
-      alias: 'post',
+      alias: "post",
     })
 
-    t.list.field('feed', {
-      type: 'Post',
+    t.list.field("feed", {
+      type: "Post",
       resolve: (_, args, ctx) => {
         return ctx.photon.posts.findMany({
           where: { published: true },
@@ -47,8 +42,8 @@ const Query = objectType({
       },
     })
 
-    t.list.field('filterPosts', {
-      type: 'Post',
+    t.list.field("filterPosts", {
+      type: "Post",
       args: {
         searchString: stringArg({ nullable: true }),
       },
@@ -67,16 +62,16 @@ const Query = objectType({
 })
 
 const Mutation = objectType({
-  name: 'Mutation',
+  name: "Mutation",
   definition(t) {
-    t.crud.createOneUser({ alias: 'signupUser' })
+    t.crud.createOneUser({ alias: "signupUser" })
     t.crud.deleteOnePost()
 
-    t.field('createDraft', {
-      type: 'Post',
+    t.field("createDraft", {
+      type: "Post",
       args: {
-        title: stringArg(),
-        content: stringArg({ nullable: true }),
+        title: stringArg({ nullable: false }),
+        content: stringArg(),
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
@@ -93,8 +88,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('publish', {
-      type: 'Post',
+    t.field("publish", {
+      type: "Post",
       nullable: true,
       args: {
         id: idArg(),
@@ -109,36 +104,20 @@ const Mutation = objectType({
   },
 })
 
-const allTypes = [Query, Mutation, Post, User]
-const nexusPrismaTypes = nexusPrismaPlugin({
-  types: allTypes
-})
-
-const schema = makeSchema({
-  types: [allTypes, nexusPrismaTypes],
-  outputs: {
-    schema: join(__dirname, '/schema.graphql'),
-  },
+export const schema = makeSchema({
+  types: [Query, Mutation, Post, User],
+  plugins: [nexusPrismaPlugin()],
   typegenAutoConfig: {
+    contextType: "Context.Context",
     sources: [
       {
-        source: '@generated/photon',
-        alias: 'photon',
+        source: "@generated/photon",
+        alias: "photon",
       },
       {
-        source: join(__dirname, 'types.ts'),
-        alias: 'ctx',
+        source: require.resolve("./context.ts"),
+        alias: "Context",
       },
     ],
-    contextType: 'ctx.Context',
   },
 })
-
-const server = new ApolloServer({
-  schema,
-  context: { photon },
-})
-
-server.listen({ port: 4000 }, () =>
-  console.log(`🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-apollo-server#5-using-the-graphql-api`),
-)

@@ -1,18 +1,18 @@
-import { compare, hash } from 'bcryptjs'
-import { sign } from 'jsonwebtoken'
-import { idArg, mutationType, stringArg } from 'nexus'
-import { APP_SECRET, getUserId } from '../utils'
+import { compare, hash } from "bcryptjs"
+import { sign } from "jsonwebtoken"
+import { idArg, mutationType, stringArg } from "nexus"
+import { APP_SECRET, getUserId } from "../utils"
 
 export const Mutation = mutationType({
   definition(t) {
-    t.field('signup', {
-      type: 'AuthPayload',
+    t.field("signup", {
+      type: "AuthPayload",
       args: {
-        name: stringArg({ nullable: true }),
-        email: stringArg(),
-        password: stringArg(),
+        name: stringArg(),
+        email: stringArg({ nullable: false }),
+        password: stringArg({ nullable: false }),
       },
-      resolve: async (parent, { name, email, password }, ctx) => {
+      resolve: async (_parent, { name, email, password }, ctx) => {
         const hashedPassword = await hash(password, 10)
         const user = await ctx.photon.users.create({
           data: {
@@ -28,13 +28,13 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('login', {
-      type: 'AuthPayload',
+    t.field("login", {
+      type: "AuthPayload",
       args: {
-        email: stringArg(),
-        password: stringArg(),
+        email: stringArg({ nullable: false }),
+        password: stringArg({ nullable: false }),
       },
-      resolve: async (parent, { email, password }, context) => {
+      resolve: async (_parent, { email, password }, context) => {
         const user = await context.photon.users.findOne({
           where: {
             email,
@@ -45,7 +45,7 @@ export const Mutation = mutationType({
         }
         const passwordValid = await compare(password, user.password)
         if (!passwordValid) {
-          throw new Error('Invalid password')
+          throw new Error("Invalid password")
         }
         return {
           token: sign({ userId: user.id }, APP_SECRET),
@@ -54,11 +54,11 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('createDraft', {
-      type: 'Post',
+    t.field("createDraft", {
+      type: "Post",
       args: {
-        title: stringArg(),
-        content: stringArg({ nullable: true }),
+        title: stringArg({ nullable: false }),
+        content: stringArg(),
       },
       resolve: (parent, { title, content }, ctx) => {
         const userId = getUserId(ctx)
@@ -73,8 +73,8 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('deletePost', {
-      type: 'Post',
+    t.field("deletePost", {
+      type: "Post",
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
@@ -86,8 +86,8 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('publish', {
-      type: 'Post',
+    t.field("publish", {
+      type: "Post",
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
