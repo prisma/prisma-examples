@@ -1,10 +1,7 @@
 const { GraphQLServer } = require('graphql-yoga')
-const { join } = require('path')
 const { makeSchema, objectType, idArg, stringArg } = require('nexus')
 const { Photon } = require('@generated/photon')
 const { nexusPrismaPlugin } = require('nexus-prisma')
-
-const photon = new Photon()
 
 const User = objectType({
   name: 'User',
@@ -40,7 +37,7 @@ const Query = objectType({
 
     t.list.field('feed', {
       type: 'Post',
-      resolve: (_, args, ctx) => {
+      resolve: (_, _args, ctx) => {
         return ctx.photon.posts.findMany({
           where: { published: true },
         })
@@ -109,22 +106,18 @@ const Mutation = objectType({
   },
 })
 
-const allTypes = [Query, Mutation, Post, User]
-const nexusPrismaTypes = nexusPrismaPlugin({
-  types: allTypes
-})
+const photon = new Photon()
 
-const schema = makeSchema({
-  types: [allTypes, nexusPrismaTypes],
-  outputs: {
-    schema: join(__dirname, '/schema.graphql'),
-  },
-})
-
-const server = new GraphQLServer({
-  schema,
+new GraphQLServer({
+  schema: makeSchema({
+    types: [Query, Mutation, Post, User],
+    plugins: [nexusPrismaPlugin()],
+  }),
   context: { photon },
-})
+}).start(() =>
+  console.log(
+    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#5-using-the-graphql-api`,
+  ),
+)
 
-server.start(() => console.log(`🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#5-using-the-graphql-api`))
 module.exports = { User, Post }
