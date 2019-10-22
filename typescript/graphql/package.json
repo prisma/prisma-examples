@@ -1,6 +1,7 @@
 {
   "name": "typescript-graphql",
   "scripts": {
+    "start": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",

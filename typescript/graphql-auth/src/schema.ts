@@ -1,6 +1,6 @@
-import { nexusPrismaPlugin } from "nexus-prisma"
-import { makeSchema } from "nexus"
-import * as types from "./types"
+import { nexusPrismaPlugin } from 'nexus-prisma'
+import { makeSchema } from 'nexus'
+import * as types from './types'
 
 export const schema = makeSchema({
   types,
@@ -8,14 +8,14 @@ export const schema = makeSchema({
   typegenAutoConfig: {
     sources: [
       {
-        source: "@generated/photon",
-        alias: "photon",
+        source: '@generated/photon',
+        alias: 'photon',
       },
       {
-        source: require.resolve("./context.ts"),
-        alias: "Context",
+        source: require.resolve('./context'),
+        alias: 'Context',
       },
     ],
-    contextType: "Context.Context",
+    contextType: 'Context.Context',
   },
 })
