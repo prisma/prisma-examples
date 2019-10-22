@@ -1,8 +1,8 @@
-import { nexusPrismaPlugin } from "nexus-prisma"
-import { idArg, makeSchema, objectType, stringArg } from "nexus"
+import { nexusPrismaPlugin } from 'nexus-prisma'
+import { idArg, makeSchema, objectType, stringArg } from 'nexus'
 
 const User = objectType({
-  name: "User",
+  name: 'User',
   definition(t) {
     t.model.id()
     t.model.name()
@@ -14,7 +14,7 @@ const User = objectType({
 })
 
 const Post = objectType({
-  name: "Post",
+  name: 'Post',
   definition(t) {
     t.model.id()
     t.model.createdAt()
@@ -27,14 +27,14 @@ const Post = objectType({
 })
 
 const Query = objectType({
-  name: "Query",
+  name: 'Query',
   definition(t) {
     t.crud.post({
-      alias: "post",
+      alias: 'post',
     })
 
-    t.list.field("feed", {
-      type: "Post",
+    t.list.field('feed', {
+      type: 'Post',
       resolve: (_, args, ctx) => {
         return ctx.photon.posts.findMany({
           where: { published: true },
@@ -42,8 +42,8 @@ const Query = objectType({
       },
     })
 
-    t.list.field("filterPosts", {
-      type: "Post",
+    t.list.field('filterPosts', {
+      type: 'Post',
       args: {
         searchString: stringArg({ nullable: true }),
       },
@@ -62,13 +62,13 @@ const Query = objectType({
 })
 
 const Mutation = objectType({
-  name: "Mutation",
+  name: 'Mutation',
   definition(t) {
-    t.crud.createOneUser({ alias: "signupUser" })
+    t.crud.createOneUser({ alias: 'signupUser' })
     t.crud.deleteOnePost()
 
-    t.field("createDraft", {
-      type: "Post",
+    t.field('createDraft', {
+      type: 'Post',
       args: {
         title: stringArg({ nullable: false }),
         content: stringArg(),
@@ -88,8 +88,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field("publish", {
-      type: "Post",
+    t.field('publish', {
+      type: 'Post',
       nullable: true,
       args: {
         id: idArg(),
@@ -108,15 +108,15 @@ export const schema = makeSchema({
   types: [Query, Mutation, Post, User],
   plugins: [nexusPrismaPlugin()],
   typegenAutoConfig: {
-    contextType: "Context.Context",
+    contextType: 'Context.Context',
     sources: [
       {
-        source: "@generated/photon",
-        alias: "photon",
+        source: '@generated/photon',
+        alias: 'photon',
       },
       {
-        source: require.resolve("./context.ts"),
-        alias: "Context",
+        source: require.resolve('./context'),
+        alias: 'Context',
       },
     ],
   },

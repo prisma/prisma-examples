@@ -103,7 +103,7 @@ export const schema = makeSchema({
         alias: 'photon',
       },
       {
-        source: require.resolve('./context.ts'),
+        source: require.resolve('./context'),
         alias: 'Context',
       },
     ],
