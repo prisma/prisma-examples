@@ -18,7 +18,7 @@
     "nexus-prisma": "0.5.0"
   },
   "devDependencies": {
-    "@prisma/sdk": "0.0.20",
+    "@prisma/sdk": "0.0.21",
     "@types/node": "12.11.2",
     "@types/ws": "6.0.3",
     "prisma2": "2.0.0-preview015",
