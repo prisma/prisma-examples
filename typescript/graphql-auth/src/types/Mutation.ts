@@ -1,12 +1,12 @@
-import { compare, hash } from "bcryptjs"
-import { sign } from "jsonwebtoken"
-import { idArg, mutationType, stringArg } from "nexus"
-import { APP_SECRET, getUserId } from "../utils"
+import { compare, hash } from 'bcryptjs'
+import { sign } from 'jsonwebtoken'
+import { idArg, mutationType, stringArg } from 'nexus'
+import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation = mutationType({
   definition(t) {
-    t.field("signup", {
-      type: "AuthPayload",
+    t.field('signup', {
+      type: 'AuthPayload',
       args: {
         name: stringArg(),
         email: stringArg({ nullable: false }),
@@ -28,8 +28,8 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field("login", {
-      type: "AuthPayload",
+    t.field('login', {
+      type: 'AuthPayload',
       args: {
         email: stringArg({ nullable: false }),
         password: stringArg({ nullable: false }),
@@ -45,7 +45,7 @@ export const Mutation = mutationType({
         }
         const passwordValid = await compare(password, user.password)
         if (!passwordValid) {
-          throw new Error("Invalid password")
+          throw new Error('Invalid password')
         }
         return {
           token: sign({ userId: user.id }, APP_SECRET),
@@ -54,8 +54,8 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field("createDraft", {
-      type: "Post",
+    t.field('createDraft', {
+      type: 'Post',
       args: {
         title: stringArg({ nullable: false }),
         content: stringArg(),
@@ -73,8 +73,8 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field("deletePost", {
-      type: "Post",
+    t.field('deletePost', {
+      type: 'Post',
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
@@ -86,8 +86,8 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field("publish", {
-      type: "Post",
+    t.field('publish', {
+      type: 'Post',
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {

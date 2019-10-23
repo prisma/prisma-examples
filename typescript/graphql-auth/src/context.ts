@@ -1,5 +1,5 @@
-import { Photon } from "@generated/photon"
-import { ContextParameters } from "graphql-yoga/dist/types"
+import { Photon } from '@generated/photon'
+import { ContextParameters } from 'graphql-yoga/dist/types'
 const photon = new Photon()
 
 export interface Context {

@@ -51,7 +51,7 @@ datasource postgresql {
 
 > Note: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `public` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
 
-Then to migrate your database, run:
+Then to migrate your database schema, run:
 
 ```sh
 npx prisma2 lift save --name 'init'

@@ -17,7 +17,7 @@ npm install
 
 ### 2. Prepare and start the server
 
-#### 1. Install dependencies of GraphQL server
+#### 2.1. Install dependencies of GraphQL server
 
 Navigate into the `server` directory and install Node dependencies there:
 
@@ -26,7 +26,7 @@ cd server
 npm install
 ```
 
-#### 1. Run Prisma's development mode
+#### 2.2. Run Prisma's development mode
 
 <Details><Summary>Learn more about the development mode</Summary>
 
@@ -76,7 +76,7 @@ datasource postgresql {
 
 > Note: In the above example connection strings, `johndoe` would be the username to your database, `secret42` the password, `mydatabase` the name of your database, and `public` the [PostgreSQL schema](https://www.postgresql.org/docs/9.1/ddl-schemas.html). 
 
-Then to migrate your database, run:
+Then to migrate your database schema, run:
 
 ```sh
 npx prisma2 lift save --name 'init'
@@ -85,7 +85,7 @@ npx prisma2 lift up
 
 </Details>
 
-#### 2. Seed the database with test data
+#### 2.3. Seed the database with test data
 
 The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
 
@@ -96,7 +96,7 @@ npm run seed
 > **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
 
 
-#### 3. Start the GraphQL server
+#### 2.4. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 

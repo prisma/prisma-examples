@@ -14,5 +14,5 @@ const Post = objectType({
 })
 
 module.exports = {
-  Post
+  Post,
 }

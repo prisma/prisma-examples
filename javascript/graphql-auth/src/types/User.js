@@ -11,5 +11,5 @@ const User = objectType({
 })
 
 module.exports = {
-  User
+  User,
 }

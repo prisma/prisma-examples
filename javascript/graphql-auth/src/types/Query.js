@@ -65,5 +65,5 @@ const Query = queryType({
 })
 
 module.exports = {
-  Query
+  Query,
 }

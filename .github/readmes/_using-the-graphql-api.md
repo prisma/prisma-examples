@@ -89,7 +89,9 @@ mutation {
 
 ```graphql
 {
-  post(id: "__POST_ID__") {
+  post({
+    where: { id: "__POST_ID__" }
+  }) {
     id
     title
     content
