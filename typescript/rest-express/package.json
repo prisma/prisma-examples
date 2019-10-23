@@ -8,7 +8,7 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "@types/node": "12.11.5",
+    "@types/node": "12.11.6",
     "body-parser": "1.19.0",
     "express": "4.17.1"
   },
