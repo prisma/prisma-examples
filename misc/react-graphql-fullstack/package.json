@@ -10,7 +10,7 @@
     "react": "16.11.0",
     "react-apollo": "2.5.8",
     "react-dom": "16.11.0",
-    "react-modal": "3.10.1",
+    "react-modal": "3.11.1",
     "react-router-dom": "4.4.0-beta.8",
     "tachyons": "4.11.1"
   },
