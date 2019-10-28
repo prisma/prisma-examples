@@ -8,7 +8,7 @@
     "generate:prisma": "prisma2 generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly --tree-kill src/server",
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {

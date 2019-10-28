@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Query, Mutation } from 'react-apollo'
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { DRAFTS_QUERY } from './DraftsPage'
 import { FEED_QUERY } from './FeedPage'
 
-class DetailPage extends Component {
+class DetailPage extends Component<RouteComponentProps<any>> {
   render() {
     return (
       <Query query={POST_QUERY} variables={{ id: this.props.match.params.id }}>
@@ -27,21 +27,23 @@ class DetailPage extends Component {
           }
 
           const { post } = data
-          const action = this._renderAction(post)
+          const action = this.renderAction(post)
           return (
-            <Fragment>
+            <>
               <h1 className="f3 black-80 fw4 lh-solid">{data.post.title}</h1>
-              <p className="black-80 f5">By {data.post.author.name || 'Unknown author'}</p>
+              <p className="black-80 f5">
+                By {data.post.author.name || 'Unknown author'}
+              </p>
               <p className="black-80 fw3">{data.post.content}</p>
               {action}
-            </Fragment>
+            </>
           )
         }}
       </Query>
     )
   }
 
-  _renderAction = ({ id, published }) => {
+  private renderAction({ id, published }) {
     const publishMutation = (
       <Mutation
         mutation={PUBLISH_MUTATION}
@@ -64,7 +66,9 @@ class DetailPage extends Component {
           return (
             <a
               className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
-              onClick={async () => {
+              href="done"
+              onClick={async e => {
+                e.preventDefault()
                 await publish({
                   variables: { id },
                 })
@@ -104,12 +108,14 @@ class DetailPage extends Component {
           return (
             <a
               className="f6 dim br1 ba ph3 pv2 mb2 dib black pointer"
-              onClick={async () => {
+              onClick={async e => {
+                e.preventDefault()
                 await deletePost({
                   variables: { id },
                 })
                 this.props.history.replace('/')
               }}
+              href="back"
             >
               Delete
             </a>
@@ -119,15 +125,14 @@ class DetailPage extends Component {
     )
     if (!published) {
       return (
-        <Fragment>
+        <>
           {publishMutation}
           {deleteMutation}
-        </Fragment>
+        </>
       )
     }
     return deleteMutation
   }
-
 }
 
 const POST_QUERY = gql`

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { DRAFTS_QUERY } from './DraftsPage'
 
-class SignupUserPage extends Component {
+class SignupUserPage extends Component<RouteComponentProps> {
   state = {
     name: '',
     email: '',
@@ -59,7 +59,14 @@ class SignupUserPage extends Component {
                   type="submit"
                   value="Create"
                 />
-                <a className="f6 pointer" onClick={this.props.history.goBack}>
+                <a
+                  className="f6 pointer"
+                  onClick={e => {
+                    e.preventDefault()
+                    this.props.history.goBack()
+                  }}
+                  href="back"
+                >
                   or cancel
                 </a>
               </form>
@@ -69,15 +76,11 @@ class SignupUserPage extends Component {
       </Mutation>
     )
   }
-
 }
 
 const CREATE_DRAFT_MUTATION = gql`
   mutation SignupUserMutation($name: String!, $email: String!) {
-    signupUser(data: {
-      name: $name,
-      email: $email
-    }) {
+    signupUser(data: { name: $name, email: $email }) {
       id
     }
   }

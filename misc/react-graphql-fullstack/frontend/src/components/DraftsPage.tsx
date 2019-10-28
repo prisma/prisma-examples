@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import Post from '../components/Post'
+import Post from './Post'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
@@ -33,7 +33,6 @@ export default class DraftsPage extends Component {
                   <Post
                     key={draft.id}
                     post={draft}
-                    refresh={() => refetch()}
                     isDraft={!draft.published}
                   />
                 ))}
@@ -48,19 +47,15 @@ export default class DraftsPage extends Component {
 
 export const DRAFTS_QUERY = gql`
   query DraftsQuery {
-    filterPosts(where: {
-    published: {
-      equals: false
-    }
-  }) {
-    id
-    content
-    title
-    published
-    author {
+    filterPosts(where: { published: { equals: false } }) {
       id
-      name
+      content
+      title
+      published
+      author {
+        id
+        name
+      }
     }
   }
-}
 `

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { DRAFTS_QUERY } from './DraftsPage'
 
-class CreatePage extends Component {
+class CreatePage extends Component<RouteComponentProps> {
   state = {
     title: '',
     authorEmail: '',
@@ -64,11 +64,22 @@ class CreatePage extends Component {
                   className={`pa3 bg-black-10 bn ${this.state.content &&
                     this.state.title &&
                     'dim pointer'}`}
-                  disabled={!this.state.content || !this.state.title || !this.state.authorEmail}
+                  disabled={
+                    !this.state.content ||
+                    !this.state.title ||
+                    !this.state.authorEmail
+                  }
                   type="submit"
                   value="Create"
                 />
-                <a className="f6 pointer" onClick={this.props.history.goBack}>
+                <a
+                  className="f6 pointer"
+                  onClick={e => {
+                    e.preventDefault()
+                    this.props.history.goBack()
+                  }}
+                  href="back"
+                >
                   or cancel
                 </a>
               </form>
@@ -78,11 +89,14 @@ class CreatePage extends Component {
       </Mutation>
     )
   }
-
 }
 
 const CREATE_DRAFT_MUTATION = gql`
-  mutation CreateDraftMutation($title: String!, $content: String!, $authorEmail: String!) {
+  mutation CreateDraftMutation(
+    $title: String!
+    $content: String!
+    $authorEmail: String!
+  ) {
     createDraft(title: $title, content: $content, authorEmail: $authorEmail) {
       id
       title

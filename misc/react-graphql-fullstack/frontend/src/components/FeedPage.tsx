@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import Post from '../components/Post'
+import Post from './Post'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
@@ -29,12 +29,7 @@ export default class FeedPage extends Component {
               <h1>Feed</h1>
               {data.feed &&
                 data.feed.map(post => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    refresh={() => refetch()}
-                    isDraft={!post.published}
-                  />
+                  <Post key={post.id} post={post} isDraft={!post.published} />
                 ))}
               {this.props.children}
             </Fragment>
