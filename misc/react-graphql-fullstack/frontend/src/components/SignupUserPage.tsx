@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
-import { DRAFTS_QUERY } from './DraftsPage'
+import {
+  SignupUserMutationVariables,
+  SignupUserMutation,
+} from '../generated/types'
 
 class SignupUserPage extends Component<RouteComponentProps> {
   state = {
@@ -12,15 +15,8 @@ class SignupUserPage extends Component<RouteComponentProps> {
 
   render() {
     return (
-      <Mutation
-        mutation={CREATE_DRAFT_MUTATION}
-        update={(cache, { data }) => {
-          const { drafts } = cache.readQuery({ query: DRAFTS_QUERY })
-          cache.writeQuery({
-            query: DRAFTS_QUERY,
-            data: { drafts: drafts.concat([data.createDraft]) },
-          })
-        }}
+      <Mutation<SignupUserMutation, SignupUserMutationVariables>
+        mutation={SIGNUP_USER_MUTATION}
       >
         {(createDraft, { data, loading, error }) => {
           return (
@@ -78,9 +74,9 @@ class SignupUserPage extends Component<RouteComponentProps> {
   }
 }
 
-const CREATE_DRAFT_MUTATION = gql`
-  mutation SignupUserMutation($name: String!, $email: String!) {
-    signupUser(data: { name: $name, email: $email }) {
+const SIGNUP_USER_MUTATION = gql`
+  mutation SignupUser($name: String!, $email: String!) {
+    signupUser(data: { name: $name, email: $email, role: AUTHOR }) {
       id
     }
   }

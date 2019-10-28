@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
-import Post from './Post'
+import PostComponent, { Post } from './Post'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
+import { FeedQuery } from '../generated/types'
 
 export default class FeedPage extends Component {
   render() {
     return (
-      <Query query={FEED_QUERY}>
+      <Query<FeedQuery> query={FEED_QUERY}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return (
@@ -29,7 +30,11 @@ export default class FeedPage extends Component {
               <h1>Feed</h1>
               {data.feed &&
                 data.feed.map(post => (
-                  <Post key={post.id} post={post} isDraft={!post.published} />
+                  <PostComponent
+                    key={post.id}
+                    post={post as Post}
+                    isDraft={!post.published}
+                  />
                 ))}
               {this.props.children}
             </Fragment>
@@ -41,7 +46,7 @@ export default class FeedPage extends Component {
 }
 
 export const FEED_QUERY = gql`
-  query FeedQuery {
+  query Feed {
     feed {
       id
       content
@@ -50,6 +55,7 @@ export const FEED_QUERY = gql`
       author {
         id
         name
+        role
       }
     }
   }

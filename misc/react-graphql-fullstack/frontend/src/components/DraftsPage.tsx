@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
-import Post from './Post'
+import PostComponent, { Post } from './Post'
 import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
+import { DraftsQuery } from '../generated/types'
 
 export default class DraftsPage extends Component {
   render() {
     return (
-      <Query query={DRAFTS_QUERY}>
+      <Query<DraftsQuery> query={DRAFTS_QUERY}>
         {({ data, loading, error, refetch }) => {
           if (loading) {
             return (
@@ -30,9 +31,9 @@ export default class DraftsPage extends Component {
               </div>
               {data.filterPosts &&
                 data.filterPosts.map(draft => (
-                  <Post
+                  <PostComponent
                     key={draft.id}
-                    post={draft}
+                    post={draft as Post}
                     isDraft={!draft.published}
                   />
                 ))}
@@ -46,7 +47,7 @@ export default class DraftsPage extends Component {
 }
 
 export const DRAFTS_QUERY = gql`
-  query DraftsQuery {
+  query Drafts {
     filterPosts(where: { published: { equals: false } }) {
       id
       content

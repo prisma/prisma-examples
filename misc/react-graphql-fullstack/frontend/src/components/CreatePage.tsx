@@ -3,6 +3,10 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { DRAFTS_QUERY } from './DraftsPage'
+import {
+  CreateDraftMutation,
+  CreateDraftMutationVariables,
+} from '../generated/types'
 
 class CreatePage extends Component<RouteComponentProps> {
   state = {
@@ -13,7 +17,7 @@ class CreatePage extends Component<RouteComponentProps> {
 
   render() {
     return (
-      <Mutation
+      <Mutation<CreateDraftMutation, CreateDraftMutationVariables>
         mutation={CREATE_DRAFT_MUTATION}
         update={(cache, { data }) => {
           const { drafts } = cache.readQuery({ query: DRAFTS_QUERY })
@@ -92,7 +96,7 @@ class CreatePage extends Component<RouteComponentProps> {
 }
 
 const CREATE_DRAFT_MUTATION = gql`
-  mutation CreateDraftMutation(
+  mutation CreateDraft(
     $title: String!
     $content: String!
     $authorEmail: String!

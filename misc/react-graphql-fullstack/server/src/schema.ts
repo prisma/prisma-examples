@@ -10,6 +10,7 @@ const User = objectType({
     t.model.posts({
       pagination: false,
     })
+    t.model.role()
   },
 })
 
@@ -52,7 +53,9 @@ const Query = objectType({
 const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
-    t.crud.createOneUser({ alias: 'signupUser' })
+    t.crud.createOneUser({
+      alias: 'signupUser',
+    })
     t.crud.deleteOnePost({ alias: 'deletePost' })
 
     t.field('createDraft', {

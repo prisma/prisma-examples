@@ -4,11 +4,22 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { gql } from 'apollo-boost'
 import { DRAFTS_QUERY } from './DraftsPage'
 import { FEED_QUERY } from './FeedPage'
+import {
+  DeletePostMutation,
+  DeletePostMutationVariables,
+  PublishMutation,
+  PublishMutationVariables,
+  PostQuery,
+  PostQueryVariables,
+} from '../generated/types'
 
 class DetailPage extends Component<RouteComponentProps<any>> {
   render() {
     return (
-      <Query query={POST_QUERY} variables={{ id: this.props.match.params.id }}>
+      <Query<PostQuery, PostQueryVariables>
+        query={POST_QUERY}
+        variables={{ id: this.props.match.params.id }}
+      >
         {({ data, loading, error }) => {
           if (loading) {
             return (
@@ -45,7 +56,7 @@ class DetailPage extends Component<RouteComponentProps<any>> {
 
   private renderAction({ id, published }) {
     const publishMutation = (
-      <Mutation
+      <Mutation<PublishMutation, PublishMutationVariables>
         mutation={PUBLISH_MUTATION}
         update={(cache, { data }) => {
           const { drafts } = cache.readQuery({ query: DRAFTS_QUERY })
@@ -82,7 +93,7 @@ class DetailPage extends Component<RouteComponentProps<any>> {
       </Mutation>
     )
     const deleteMutation = (
-      <Mutation
+      <Mutation<DeletePostMutation, DeletePostMutationVariables>
         mutation={DELETE_MUTATION}
         update={(cache, { data }) => {
           if (published) {
@@ -136,7 +147,7 @@ class DetailPage extends Component<RouteComponentProps<any>> {
 }
 
 const POST_QUERY = gql`
-  query PostQuery($id: ID!) {
+  query Post($id: ID!) {
     post(where: { id: $id }) {
       id
       title
@@ -151,7 +162,7 @@ const POST_QUERY = gql`
 `
 
 const PUBLISH_MUTATION = gql`
-  mutation PublishMutation($id: ID!) {
+  mutation Publish($id: ID!) {
     publish(id: $id) {
       id
       published
@@ -160,7 +171,7 @@ const PUBLISH_MUTATION = gql`
 `
 
 const DELETE_MUTATION = gql`
-  mutation DeleteMutation($id: ID!) {
+  mutation DeletePost($id: ID!) {
     deletePost(where: { id: $id }) {
       id
     }

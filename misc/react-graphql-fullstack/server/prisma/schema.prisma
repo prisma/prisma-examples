@@ -13,6 +13,7 @@ model User {
   email String  @unique
   name  String?
   posts Post[]
+  role  Role
 }
 
 model Post {
@@ -23,4 +24,9 @@ model Post {
   title     String
   content   String?
   author    User?
+}
+
+enum Role {
+  AUTHOR
+  ADMIN
 }
