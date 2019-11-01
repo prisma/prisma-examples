@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@types/dotenv": "6.1.1",
-    "@types/node": "12.12.3",
+    "@types/node": "12.12.4",
     "prisma2": "2.0.0-preview015",
     "ts-node": "8.4.1",
     "typescript": "3.6.4"
