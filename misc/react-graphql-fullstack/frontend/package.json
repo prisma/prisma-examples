@@ -41,9 +41,9 @@
     ]
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "1.8.2",
-    "@graphql-codegen/typescript": "1.8.2",
-    "@graphql-codegen/typescript-operations": "1.8.2",
+    "@graphql-codegen/cli": "1.8.3",
+    "@graphql-codegen/typescript": "1.8.3",
+    "@graphql-codegen/typescript-operations": "1.8.3",
     "@types/react-router-dom": "5.1.2",
     "concurrently": "5.0.0"
   }
