@@ -23,7 +23,7 @@
     "prisma2": "2.0.0-preview015",
     "ts-node": "8.4.1",
     "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.6.4"
+    "typescript": "3.7.2"
   },
   "prettier": {
     "singleQuote": true,
