@@ -4,7 +4,7 @@
   "devDependencies": {
     "ts-node": "8.4.1",
     "typescript": "3.7.2",
-    "prisma2": "2.0.0-preview015"
+    "prisma2": "2.0.0-preview016"
   },
   "scripts": {
     "dev": "ts-node ./script.ts",
