@@ -16,7 +16,7 @@
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview016"
+    "prisma2": "2.0.0-preview016.1"
   },
   "prettier": {
     "singleQuote": true,

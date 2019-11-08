@@ -12,6 +12,6 @@
     "express": "4.17.1"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview016"
+    "prisma2": "2.0.0-preview016.1"
   }
 }
