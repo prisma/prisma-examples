@@ -21,7 +21,7 @@
     "@prisma/sdk": "0.0.26",
     "@types/node": "12.12.6",
     "@types/ws": "6.0.3",
-    "prisma2": "2.0.0-preview016",
+    "prisma2": "2.0.0-preview016.1",
     "ts-node": "8.4.1",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.7.2"

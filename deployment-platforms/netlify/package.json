@@ -7,7 +7,7 @@
     "@types/node": "12.12.6",
     "netlify-cli": "2.20.2",
     "netlify-lambda": "1.6.3",
-    "prisma2": "2.0.0-preview016"
+    "prisma2": "2.0.0-preview016.1"
   },
   "scripts": {
     "dev": " netlify dev",
