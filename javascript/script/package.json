@@ -4,7 +4,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "prisma2": "2.0.0-preview016.1"
+    "prisma2": "2.0.0-preview016.2"
   },
   "scripts": {
     "dev": "node ./script.js",
