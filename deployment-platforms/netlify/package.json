@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "12.12.10",
+    "@types/node": "12.12.11",
     "netlify-cli": "2.21.0",
     "netlify-lambda": "1.6.3",
     "prisma2": "2.0.0-preview016.2"
