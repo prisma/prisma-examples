@@ -22,7 +22,7 @@
     "nexus-prisma": "0.5.2"
   },
   "devDependencies": {
-    "@prisma/sdk": "0.0.50",
+    "@prisma/sdk": "0.0.51",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.5",
     "@types/node": "12.12.11",
