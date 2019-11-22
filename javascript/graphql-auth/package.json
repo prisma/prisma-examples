@@ -2,21 +2,21 @@
   "name": "graphql-auth",
   "version": "1.0.0",
   "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346",
+    "@prisma/photon": "^2.0.0-alpha.351",
     "bcryptjs": "2.4.3",
     "graphql": "14.5.8",
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
     "nexus": "0.12.0-rc.5",
-    "nexus-prisma": "0.5.2"
+    "nexus-prisma": "^0.6.1"
   },
   "scripts": {
     "dev": "node src",
     "seed": "node prisma/seed"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.346"
+    "prisma2": "^2.0.0-alpha.351"
   },
   "prettier": {
     "singleQuote": true,
