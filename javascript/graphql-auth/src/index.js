@@ -1,7 +1,7 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { nexusPrismaPlugin } = require('nexus-prisma')
 const { makeSchema } = require('nexus')
-const { Photon } = require('@generated/photon')
+const { Photon } = require('@prisma/photon')
 const { permissions } = require('./permissions')
 const types = require('./types')
 

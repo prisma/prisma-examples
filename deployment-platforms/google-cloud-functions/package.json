@@ -6,11 +6,11 @@
   "scripts": {
     "start": "functions-framework --target=photonExample",
     "deploy": "sh deploy.sh",
-    "logs": "gcloud functions logs read photonExample",
-    "postinstall": "prisma2 generate"
+    "logs": "gcloud functions logs read photonExample"
   },
   "dependencies": {
-    "prisma2": "^2.0.0-alpha.26"
+    "@prisma/photon": "2.0.0-alpha.346",
+    "prisma2": "2.0.0-alpha.346"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "1.3.2"

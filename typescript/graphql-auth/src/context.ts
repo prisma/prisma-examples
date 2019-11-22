@@ -1,4 +1,4 @@
-import { Photon } from '@generated/photon'
+import { Photon } from '@prisma/photon'
 import { ContextParameters } from 'graphql-yoga/dist/types'
 const photon = new Photon()
 

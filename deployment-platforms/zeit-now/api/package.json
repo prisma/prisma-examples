@@ -7,9 +7,7 @@
   "engines": {
     "node": "10.x"
   },
-  "scripts": {
-    "postinstall": "prisma2 generate"
-  },
+  "scripts": {},
   "devDependencies": {
     "prisma2": "2.0.0-preview016.2"
   }

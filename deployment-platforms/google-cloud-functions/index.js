@@ -1,4 +1,4 @@
-const { Photon } = require('@generated/photon')
+const { Photon } = require('@prisma/photon')
 
 const photon = new Photon()
 exports.photonExample = async function helloWorld(req, res) {

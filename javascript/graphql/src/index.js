@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { makeSchema, objectType, idArg, stringArg } = require('nexus')
-const { Photon } = require('@generated/photon')
+const { Photon } = require('@prisma/photon')
 const { nexusPrismaPlugin } = require('nexus-prisma')
 
 const User = objectType({

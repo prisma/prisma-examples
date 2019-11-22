@@ -2,15 +2,14 @@
   "name": "script",
   "license": "MIT",
   "devDependencies": {
-    "prisma2": "alpha",
+    "prisma2": "2.0.0-alpha.346",
     "ts-node": "8.5.2",
     "typescript": "3.7.2"
   },
   "scripts": {
-    "dev": "ts-node ./script.ts",
-    "postinstall": "prisma2 generate"
+    "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/photon": "alpha"
+    "@prisma/photon": "2.0.0-alpha.346"
   }
 }

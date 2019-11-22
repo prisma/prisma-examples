@@ -2,13 +2,15 @@
   "name": "script",
   "license": "MIT",
   "devDependencies": {
+    "prisma2": "2.0.0-alpha.346",
     "ts-node": "8.5.2",
-    "typescript": "3.7.2",
-    "prisma2": "2.0.0-preview016.2"
+    "typescript": "3.7.2"
   },
   "scripts": {
     "start": "prisma2 generate && npm run seed && ts-node src/script.ts",
-    "seed": "ts-node prisma/seed.ts",
-    "postinstall": "prisma2 generate"
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/photon": "2.0.0-alpha.346"
   }
 }

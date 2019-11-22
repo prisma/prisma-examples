@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@prisma/photon": "alpha"
+    "@prisma/photon": "2.0.0-alpha.346"
   },
   "devDependencies": {
-    "prisma2": "alpha"
+    "prisma2": "2.0.0-alpha.346"
   },
   "scripts": {
-    "dev": "node ./script.js",
-    "postinstall": "prisma2 generate"
+    "dev": "node ./script.js"
   }
 }

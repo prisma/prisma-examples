@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const PROTO_PATH = __dirname + '/../service.proto'
 
-const { Photon } = require('@generated/photon')
+const { Photon } = require('@prisma/photon')
 const photon = new Photon()
 
 const grpc = require('grpc')
