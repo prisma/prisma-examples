@@ -4,10 +4,10 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts",
+    "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346",
     "dotenv": "8.2.0",
     "graphql": "14.5.8",
     "graphql-yoga": "1.18.3"
@@ -15,7 +15,7 @@
   "devDependencies": {
     "@types/dotenv": "6.1.1",
     "@types/node": "12.12.12",
-    "prisma2": "2.0.0-alpha.346",
+    "prisma2": "2.0.0-preview017",
     "ts-node": "8.5.2",
     "typescript": "3.7.2"
   }

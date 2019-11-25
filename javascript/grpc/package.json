@@ -2,7 +2,6 @@
   "name": "node-grpc",
   "dependencies": {
     "@grpc/proto-loader": "0.5.3",
-    "@prisma/photon": "2.0.0-alpha.346",
     "chalk": "2.4.2",
     "grpc": "1.24.2"
   },
@@ -15,9 +14,10 @@
     "signupUser": "node ./client/signupUser.js",
     "createDraft": "node ./client/createDraft.js",
     "publish": "node ./client/publish.js",
-    "deletePost": "node ./client/deletePost.js"
+    "deletePost": "node ./client/deletePost.js",
+    "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.346"
+    "prisma2": "2.0.0-preview017"
   }
 }

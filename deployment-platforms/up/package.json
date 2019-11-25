@@ -4,14 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.346"
+    "prisma2": "2.0.0-preview017"
   },
   "scripts": {
+    "postinstall": "prisma2 generate",
     "start": "node app.js",
     "deploy": "up"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346",
     "express": "^4.17.1"
   }
 }

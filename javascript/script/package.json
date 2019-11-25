@@ -2,13 +2,12 @@
   "name": "script",
   "version": "1.0.0",
   "license": "MIT",
-  "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.346"
+    "prisma2": "2.0.0-preview017"
   },
   "scripts": {
-    "dev": "node ./script.js"
+    "dev": "node ./script.js",
+    "postinstall": "prisma2 generate"
   }
 }

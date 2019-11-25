@@ -7,13 +7,11 @@
     "@types/node": "12.12.12",
     "netlify-cli": "2.21.0",
     "netlify-lambda": "1.6.3",
-    "prisma2": "2.0.0-alpha.346"
+    "prisma2": "2.0.0-preview017"
   },
   "scripts": {
     "dev": " netlify dev",
-    "deploy": "./build.sh"
-  },
-  "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346"
+    "deploy": "./build.sh",
+    "postinstall": "prisma2 generate"
   }
 }

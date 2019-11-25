@@ -1,15 +1,16 @@
 {
   "dependencies": {
-    "@prisma/photon": "^2.0.0-alpha.352",
     "express": "4.17.1",
     "helmet": "3.21.2",
     "moment": "2.24.0"
   },
   "engines": {
-    "node": ">= 10"
+    "node": "10.x"
   },
-  "scripts": {},
+  "scripts": {
+    "postinstall": "prisma2 generate"
+  },
   "devDependencies": {
-    "prisma2": "^2.0.0-alpha.352"
+    "prisma2": "2.0.0-preview017"
   }
 }

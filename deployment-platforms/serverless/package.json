@@ -4,15 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.8.0"
   },
   "scripts": {
     "dev": "sls offline",
-    "deploy": "NODE_ENV=production sls deploy"
+    "deploy": "NODE_ENV=production sls deploy",
+    "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.346"
+    "prisma2": "2.0.0-preview017"
   }
 }
