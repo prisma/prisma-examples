@@ -22,7 +22,6 @@ app.post(`/post`, async (req, res) => {
     data: {
       title: title,
       content: content,
-      published: false,
       author: { connect: { email: authorEmail } },
     },
   })
