@@ -8,7 +8,7 @@ export const schema = makeSchema({
   typegenAutoConfig: {
     sources: [
       {
-        source: '@generated/photon',
+        source: '@prisma/photon',
         alias: 'photon',
       },
       {

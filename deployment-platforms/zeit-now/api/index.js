@@ -1,5 +1,5 @@
 //@ts-check
-const { Photon } = require('@generated/photon')
+const { Photon } = require('@prisma/photon')
 const express = require('express')
 const helmet = require('helmet')
 const moment = require('moment')

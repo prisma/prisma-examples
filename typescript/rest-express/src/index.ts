@@ -1,4 +1,4 @@
-import { Photon } from '@generated/photon'
+import { Photon } from '@prisma/photon'
 import * as bodyParser from 'body-parser'
 import * as express from 'express'
 

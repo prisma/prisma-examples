@@ -2,7 +2,9 @@
   "name": "script",
   "version": "1.0.0",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@prisma/photon": "^2.0.0-preview017"
+  },
   "devDependencies": {
     "prisma2": "2.0.0-preview017"
   },

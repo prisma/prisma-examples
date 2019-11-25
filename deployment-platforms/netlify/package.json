@@ -13,5 +13,8 @@
     "dev": " netlify dev",
     "deploy": "./build.sh",
     "postinstall": "prisma2 generate"
+  },
+  "dependencies": {
+    "@prisma/photon": "^2.0.0-preview017"
   }
 }
