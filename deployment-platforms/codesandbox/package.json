@@ -12,6 +12,6 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "@prisma/photon": "^2.0.0-preview017"
+    "@prisma/photon": "2.0.0-preview017"
   }
 }
