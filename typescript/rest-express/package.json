@@ -8,7 +8,7 @@
     "postinstall": "prisma2 generate"
   },
   "dependencies": {
-    "@prisma/photon": "^2.0.0-preview017",
+    "@prisma/photon": "2.0.0-preview017",
     "@types/node": "12.12.12",
     "body-parser": "1.19.0",
     "express": "4.17.1"
