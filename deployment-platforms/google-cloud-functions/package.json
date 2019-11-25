@@ -9,7 +9,7 @@
     "logs": "gcloud functions logs read photonExample"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-alpha.346",
+    "@prisma/photon": "^2.0.0-preview017",
     "prisma2": "2.0.0-alpha.346"
   },
   "devDependencies": {

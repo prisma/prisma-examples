@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@prisma/photon": "^2.0.0-preview017",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.8.0"
   },

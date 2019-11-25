@@ -2,6 +2,7 @@
   "name": "typescript-grpc",
   "dependencies": {
     "@grpc/proto-loader": "0.5.3",
+    "@prisma/photon": "^2.0.0-preview017",
     "chalk": "2.4.2",
     "grpc": "1.24.2",
     "protobufjs": "6.8.8"
@@ -19,8 +20,8 @@
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
+    "prisma2": "2.0.0-preview017",
     "ts-node": "8.5.2",
-    "typescript": "3.7.2",
-    "prisma2": "2.0.0-preview017"
+    "typescript": "3.7.2"
   }
 }

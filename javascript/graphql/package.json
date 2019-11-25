@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "nexus": "0.12.0-rc.5",
+    "@prisma/photon": "^2.0.0-preview017",
     "graphql": "^14.5.8",
-    "nexus-prisma": "^0.6.0",
-    "graphql-yoga": "^1.16.1"
+    "graphql-yoga": "^1.16.1",
+    "nexus": "0.12.0-rc.5",
+    "nexus-prisma": "^0.6.0"
   },
   "scripts": {
     "dev": "node src",

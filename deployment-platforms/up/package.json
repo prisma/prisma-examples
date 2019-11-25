@@ -12,6 +12,7 @@
     "deploy": "up"
   },
   "dependencies": {
+    "@prisma/photon": "^2.0.0-preview017",
     "express": "^4.17.1"
   }
 }
