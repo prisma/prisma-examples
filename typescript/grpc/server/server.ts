@@ -78,7 +78,7 @@ async function createDraft(call: any, callback: any) {
         title,
         content,
         published: false,
-        // author: { connect: { email: authorEmail } },
+        author: { connect: { email: authorEmail } },
       },
     })
     callback(null, newDraft)

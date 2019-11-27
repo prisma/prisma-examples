@@ -57,7 +57,7 @@ async function signupUser(call, callback) {
   const { email, name } = call.request
   try {
     const newUser = await photon.users.create({
-      where: {
+      data: {
         name,
         email,
       },
@@ -76,7 +76,7 @@ async function createDraft(call, callback) {
         title,
         content,
         published: false,
-        // author: { connect: { email: authorEmail } },
+        author: { connect: { email: authorEmail } },
       },
     })
     callback(null, newDraft)
