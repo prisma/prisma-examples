@@ -22,7 +22,7 @@
     "@prisma/sdk": "0.0.66",
     "@types/node": "12.12.14",
     "@types/ws": "6.0.4",
-    "prisma2": "2.0.0-preview017",
+    "prisma2": "2.0.0-preview017.1",
     "ts-node": "8.5.2",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.7.2"
