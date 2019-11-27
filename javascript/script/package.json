@@ -9,7 +9,6 @@
     "prisma2": "2.0.0-preview017"
   },
   "scripts": {
-    "dev": "node ./script.js",
-    "postinstall": "prisma2 generate"
+    "dev": "node ./script.js"
   }
 }

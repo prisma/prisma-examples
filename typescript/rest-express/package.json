@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "seed": "ts-node prisma/seed.ts",
-    "postinstall": "prisma2 generate"
+    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/photon": "2.0.0-preview017",

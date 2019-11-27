@@ -15,8 +15,7 @@
     "signupUser": "node ./client/signupUser.js",
     "createDraft": "node ./client/createDraft.js",
     "publish": "node ./client/publish.js",
-    "deletePost": "node ./client/deletePost.js",
-    "postinstall": "prisma2 generate"
+    "deletePost": "node ./client/deletePost.js"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview017"

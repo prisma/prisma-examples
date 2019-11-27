@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "prisma2 generate && npm run seed && ts-node src/script.ts",
-    "seed": "ts-node prisma/seed.ts",
-    "postinstall": "prisma2 generate"
+    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/photon": "2.0.0-preview017"

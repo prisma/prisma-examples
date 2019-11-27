@@ -10,8 +10,7 @@
   },
   "scripts": {
     "dev": "sls offline",
-    "deploy": "NODE_ENV=production sls deploy",
-    "postinstall": "prisma2 generate"
+    "deploy": "NODE_ENV=production sls deploy"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview017"

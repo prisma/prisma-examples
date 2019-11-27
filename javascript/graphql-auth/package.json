@@ -13,8 +13,7 @@
   },
   "scripts": {
     "dev": "node src",
-    "seed": "node prisma/seed",
-    "postinstall": "prisma2 generate"
+    "seed": "node prisma/seed"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview017"

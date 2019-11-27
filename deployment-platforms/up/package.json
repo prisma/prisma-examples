@@ -7,7 +7,6 @@
     "prisma2": "2.0.0-preview017"
   },
   "scripts": {
-    "postinstall": "prisma2 generate",
     "start": "node app.js",
     "deploy": "up"
   },
