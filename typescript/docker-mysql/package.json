@@ -1,0 +1,16 @@
+{
+  "name": "docker-mysql",
+  "license": "MIT",
+  "dependencies": {
+    "prisma-client-lib": "1.34.10"
+  },
+  "scripts": {
+    "start": "ts-node src/script.ts"
+  },
+  "devDependencies": {
+    "@types/graphql": "14.2.3",
+    "@types/ws": "6.0.4",
+    "ts-node": "7.0.1",
+    "typescript": "3.7.2"
+  }
+}

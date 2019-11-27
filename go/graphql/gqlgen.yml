@@ -1,0 +1,17 @@
+# .gqlgen.yml example
+#
+# Refer to https://gqlgen.com/config/
+# for detailed .gqlgen.yml documentation.
+
+schema: server/schema.graphql
+exec:
+  filename: server/generated.go
+models:
+  Post:
+    model: github.com/prisma/prisma-examples/go/graphql/prisma-client.Post
+  User:
+    model: github.com/prisma/prisma-examples/go/graphql/prisma-client.User
+resolver:
+  # goal: copy&paste from generated file
+  filename: tmp/resolver.go
+  type: Resolver

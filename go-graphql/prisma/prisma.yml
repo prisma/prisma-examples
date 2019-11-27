@@ -1,8 +1,0 @@
-endpoint: http://localhost:4466/go-graphql/dev
-datamodel: datamodel.prisma
-hooks:
-  post-deploy:
-    - prisma generate
-generate:
-  - generator: go-client
-    output: ../prisma-client/

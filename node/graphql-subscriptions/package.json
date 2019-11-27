@@ -1,0 +1,12 @@
+{
+  "name": "graphql-subscriptions",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "1.18.3",
+    "prisma-client-lib": "1.34.10"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}

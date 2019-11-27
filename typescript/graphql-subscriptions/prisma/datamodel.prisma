@@ -1,0 +1,8 @@
+type Post {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  published: Boolean! @default(value: false)
+  title: String!
+  content: String
+}

@@ -1,0 +1,16 @@
+{
+  "extends": ["config:base", "docker:disable", ":skipStatusChecks"],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "masterIssue": true,
+  "baseBranches": ["master", "prisma2"],
+  "packageRules": [
+    {
+      "baseBranchList": ["master"],
+      "packageNames": ["nexus-prisma"],
+      "enabled": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[ignore]
+# this is required until this issue gets fixed: https://github.com/prisma/prisma/issues/3617
+.*/node_modules/graphql/jsutils/keyValMap.js.flow
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
