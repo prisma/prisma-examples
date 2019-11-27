@@ -49,6 +49,7 @@ You can find all [Prisma 2](https://www.prisma.io/blog/announcing-prisma-2-zq1s7
 |:------|:----------|
 | [`script`](https://github.com/prisma/prisma-examples/tree/master/go/script) | Simple usage of Prisma client in script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/master/go/graphql) | Simple GraphQL server |
+| [`go-graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/go-graphql-auth) |  [Golang](https://en.wikipedia.org/wiki/Go_(programming_language)) | GraphQL server with email-password authentication |
 | [`rest-gin`](https://github.com/prisma/prisma-examples/tree/master/go/rest-gin) | Simple REST API with [Gin](https://github.com/gin-gonic/gin) |
 | [`http-mux`](https://github.com/prisma/prisma-examples/tree/master/go/http-mux) | Simple REST API with [gorilla/mux](https://github.com/gorilla/mux) |
 | [`docker-mongodb`](https://github.com/prisma/prisma-examples/tree/master/go/docker-mongodb) | Set up Prisma locally with MongoDB |
@@ -62,7 +63,6 @@ You can find all [Prisma 2](https://www.prisma.io/blog/announcing-prisma-2-zq1s7
 |:------|:----------|
 | [`script`](https://github.com/prisma/prisma-examples/tree/master/flow/script) | Simple usage of Prisma client in script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/master/flow/graphql) | Simple GraphQL server |
-
 
 ## Reference Implementations
 
