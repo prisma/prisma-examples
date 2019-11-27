@@ -12,7 +12,7 @@
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview017",
+    "@prisma/photon": "2.0.0-preview017.1",
     "@types/node-fetch": "2.5.4",
     "apollo-server": "2.9.12",
     "graphql": "14.5.8",
