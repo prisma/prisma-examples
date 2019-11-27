@@ -1,13 +1,17 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
 import { makeSchema } from 'nexus'
 import * as types from './types'
+import * as path from 'path'
 
 export const schema = makeSchema({
   types,
   plugins: [nexusPrismaPlugin()],
   outputs: {
-    schema: __dirname + '/generated/schema.graphql',
-    typegen: __dirname + '/generated/nexus.ts',
+    schema: false,
+    typegen: path.join(
+      __dirname,
+      '../node_modules/@types/typegen-nexus/index.d.ts',
+    ),
   },
   typegenAutoConfig: {
     sources: [
