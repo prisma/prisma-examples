@@ -112,6 +112,10 @@ new GraphQLServer({
   schema: makeSchema({
     types: [Query, Mutation, Post, User],
     plugins: [nexusPrismaPlugin()],
+    outputs: {
+      schema: __dirname + '/generated/schema.graphql',
+      typegen: __dirname + '/generated/nexus.ts',
+    },
   }),
   context: { photon },
 }).start(() =>

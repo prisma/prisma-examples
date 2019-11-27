@@ -11,6 +11,10 @@ new GraphQLServer({
   schema: makeSchema({
     types,
     plugins: [nexusPrismaPlugin()],
+    outputs: {
+      schema: __dirname + '/generated/schema.graphql',
+      typegen: __dirname + '/generated/nexus.ts',
+    },
   }),
   middlewares: [permissions],
   context: request => {
