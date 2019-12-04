@@ -31,7 +31,7 @@
     "prisma2": "2.0.0-preview017.2",
     "ts-node": "8.5.4",
     "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.7.2"
+    "typescript": "3.7.3"
   },
   "prettier": {
     "singleQuote": true,
