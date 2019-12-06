@@ -15,7 +15,7 @@
     "seed": "node prisma/seed"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview017.2"
+    "prisma2": "2.0.0-preview018"
   },
   "prettier": {
     "singleQuote": true,
