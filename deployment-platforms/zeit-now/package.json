@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview017.2"
+    "@prisma/photon": "2.0.0-preview018"
   }
 }
