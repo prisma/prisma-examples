@@ -2,8 +2,8 @@
   "name": "script",
   "devDependencies": {
     "@babel/node": "7.7.4",
-    "@babel/core": "7.7.4",
-    "@babel/preset-env": "7.7.4",
+    "@babel/core": "7.7.5",
+    "@babel/preset-env": "7.7.5",
     "@babel/preset-flow": "7.7.4",
     "flow-bin": "0.113.0"
   },
