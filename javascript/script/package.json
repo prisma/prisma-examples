@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview018"
+    "@prisma/photon": "2.0.0-preview018.1"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview018"
