@@ -13,6 +13,6 @@
     "deploy": "NODE_ENV=production sls deploy"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview018"
+    "prisma2": "2.0.0-preview018.1"
   }
 }
