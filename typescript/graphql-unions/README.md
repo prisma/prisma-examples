@@ -1,12 +1,12 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
+This example shows how to implement a **GraphQL API with TypeScript** that uses a Union GraphQL type and is based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
 
-[![Edit graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/prisma/prisma-examples/tree/prisma2/typescript/graphql?fontsize=14)
+[![Edit graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/prisma/prisma-examples/tree/prisma2/typescript/graphql-unions?fontsize=14)
 
-## How to use
+## How to run this example
 
-### 1. Download example & install dependencies
+### 1. Download the example & install the dependencies
 
 Clone the `prisma2` branch of this repository:
 
@@ -103,7 +103,7 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ### 5. Using the GraphQL API
 
-The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.graphql`](./src/schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
+The schema that specifies the API operations of your GraphQL server is defined in [`./src/schema.ts`](./src/schema.ts). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
@@ -112,15 +112,24 @@ Feel free to adjust any operation by adding or removing fields. The GraphQL Play
 ```graphql
 query {
   feed {
-    id
-    title
-    content
-    published
-    author {
+    ... on Article {
       id
-      name
-      email
-    }
+      title
+      content
+      published
+      author {
+        id
+        name
+        email
+      }
+    ... on Photo {
+      id
+      description
+      author {
+        id
+        name
+        email
+      }
   }
 }
 ```
@@ -161,38 +170,49 @@ mutation {
 
 ```graphql
 mutation {
-  publish(id: "__POST_ID__") {
+  publish(id: "__ARTICLE_ID__") {
     id
     published
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+> **Note**: You need to replace the `__ARTICLE_ID__`-placeholder with an actual `id` from an `Article` item. You can find one e.g. using the `filterPosts` query.
 
 #### Search for posts with a specific title or content
 
 ```graphql
 {
   filterPosts(searchString: "graphql") {
-    id
-    title
-    content
-    published
-    author {
+    ... on Article {
       id
-      name
-      email
+      title
+      content
+      published
+      author {
+        id
+        name
+        email
+      }
     }
-  }
+    ... on Photo {
+      id
+      description
+      author {
+        id
+        name
+        email
+      }
+    }
+  } 
 }
 ```
 
-#### Retrieve a single post
+#### Retrieve a single article
 
 ```graphql
 {
-  post(where: { id: "__POST_ID__" }) {
+  post(where: { id: "__ARTICLE_ID__" }) {
     id
     title
     content
@@ -206,20 +226,33 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+> **Note**: You need to replace the `__ARTICLE_ID__`-placeholder with an actual `id` from an `Article` item. You can find one e.g. using the `filterPosts` query.
 
-#### Delete a post
+#### Delete an article
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: "__POST_ID__"})
+  deleteOneArticle(where: {id: "__ARTICLE_ID__"})
   {
     id
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+> **Note**: You need to replace the `__ARTICLE_ID__`-placeholder with an actual `id` from an `Article` item. You can find one e.g. using the `filterPosts` query.
+
+#### Delete a photo
+
+```graphql
+mutation {
+  deleteOnePhoto(where: {id: "__PHOTO_ID__"})
+  {
+    id
+  }
+}
+```
+
+> **Note**: You need to replace the `__PHOTO_ID__`-placeholder with an actual `id` from a `Photo` item. You can find one e.g. using the `filterPosts` query.
 
 </Details>
 
@@ -228,7 +261,7 @@ mutation {
 
 To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`schema.ts`](./src/schema.ts). 
 
-Note that the [`dev`](./package.json#L4) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./src/schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
+Note that the [`dev`](./package.json#L4) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./src/generated/schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
 
 
 ## Next steps
