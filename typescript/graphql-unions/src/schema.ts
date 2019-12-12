@@ -1,20 +1,53 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { idArg, makeSchema, objectType, unionType, stringArg } from 'nexus'
-import { Photo } from '@prisma/photon'
+import { idArg, makeSchema, objectType, interfaceType, unionType, stringArg } from 'nexus'
+import { Photo, PhotoClient } from '@prisma/photon'
 
-const User = objectType({
+const User = interfaceType({
   name: 'User',
   definition(t) {
+    t.resolveType((user) => {
+      return user.hasOwnProperty('photos') ? 'WriterPhotographer' : 'Writer'
+    })
     t.model.id()
     t.model.name()
     t.model.email()
-    t.model.photos({
-      pagination: false,
-    })
     t.model.articles({
       pagination: false,
     })
   },
+})
+
+const Author = objectType({
+  name: 'Author',
+  definition(t) {
+    t.implements('User')
+  }
+})
+
+const AdminLevel = objectType({
+  name: 'AdminLevel',
+  definition(t) {
+    t.model.user()
+    t.model.adminLevel()
+  }
+})
+
+const Admin = objectType({
+  name: 'Admin',
+  definition(t) {
+    t.implements('User')
+    t.string('adminLevel', {
+      async resolve(_parent, _args, ctx) {
+        const user = await ctx.photon.users.findOne({
+          where: { id: _args.id },
+        })
+        if (user) {
+          return user.id == '1'
+        }
+        return 0
+      }
+    })
+  }
 })
 
 const Article = objectType({
@@ -73,7 +106,7 @@ const Query = objectType({
           ctx.photon.photos.findMany({})
         ])
         return [...articles, ...photos].sort((a, b) => {
-          return a.createdAt - b.createdAt;
+          return a.createdAt.getTime() - b.createdAt.getTime();
         })
       },
     })
@@ -98,7 +131,7 @@ const Query = objectType({
           }),
         ])
         return [...articles, ...photos].sort((a, b) => {
-          return a.createdAt - b.createdAt;
+          return a.createdAt.getTime() - b.createdAt.getTime();
         })
       },
     })
@@ -158,7 +191,7 @@ const Mutation = objectType({
         id: idArg(),
       },
       resolve: (_, { id }, ctx) => {
-        return ctx.photon.article.update({
+        return ctx.photon.articles.update({
           where: { id },
           data: { published: true },
         })

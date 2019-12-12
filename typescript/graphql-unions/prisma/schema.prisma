@@ -16,6 +16,12 @@ model User {
   photos   Photo[]
 }
 
+model AdminLevel {
+  id         String @default(cuid()) @id
+  userId    String
+  adminLevel Int
+}
+
 model Article {
   id        String   @default(cuid()) @id
   createdAt DateTime @default(now())
