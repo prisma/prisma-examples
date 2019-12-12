@@ -1,5 +1,6 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
 import { idArg, makeSchema, objectType, unionType, stringArg } from 'nexus'
+import { Photo } from '@prisma/photon'
 
 const User = objectType({
   name: 'User',
@@ -46,7 +47,7 @@ const Post = unionType({
     t.resolveType((item) => {
       // Only Articles have content,
       // Photos only have descriptions.
-      return item.content ? 'Article' : 'Photo';
+      return item.hasOwnProperty('content') ? 'Article' : 'Photo';
     })
   },
 })
@@ -71,10 +72,9 @@ const Query = objectType({
           }),
           ctx.photon.photos.findMany({})
         ])
-        return articles.concat(photos).sort(
-            function(a,b){
-              a.createdAt-b.createdAt
-            })
+        return [...articles, ...photos].sort((a, b) => {
+          return a.createdAt - b.createdAt;
+        })
       },
     })
 
@@ -97,10 +97,9 @@ const Query = objectType({
             where: { description: { contains: searchString } },
           }),
         ])
-        return articles.concat(photos).sort(
-            function(a,b){
-              a.createdAt-b.createdAt
-            })
+        return [...articles, ...photos].sort((a, b) => {
+          return a.createdAt - b.createdAt;
+        })
       },
     })
   },
