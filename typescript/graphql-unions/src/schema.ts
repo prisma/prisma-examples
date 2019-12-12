@@ -44,7 +44,9 @@ const Post = unionType({
   definition(t) {
     t.members('Article', 'Photo')
     t.resolveType((item) => {
-      return item.published ? 'Article' : 'Photo';
+      // Only Articles have content,
+      // Photos only have descriptions.
+      return item.content ? 'Article' : 'Photo';
     })
   },
 })
