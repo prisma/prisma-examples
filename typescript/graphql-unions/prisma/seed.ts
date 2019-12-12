@@ -6,12 +6,17 @@ async function main() {
     data: {
       email: 'alice@prisma.io',
       name: 'Alice',
-      posts: {
+      articles: {
         create: {
           title: 'Watch the talks from Prisma Day 2019',
           content: 'https://www.prisma.io/blog/z11sg6ipb3i1/',
           published: true,
         },
+      },
+      photos: {
+        create: {
+          description: 'Mist over the park',
+        }
       },
     },
   })
@@ -19,7 +24,7 @@ async function main() {
     data: {
       email: 'bob@prisma.io',
       name: 'Bob',
-      posts: {
+      articles: {
         create: [
           {
             title: 'Subscribe to GraphQL Weekly for community news',
@@ -33,6 +38,10 @@ async function main() {
           },
         ],
       },
+      photos: {
+        create:
+          { description: 'Self-portrait #18', },
+      }
     },
   })
 
