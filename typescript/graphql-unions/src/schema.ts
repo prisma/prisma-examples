@@ -1,5 +1,5 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { idArg, makeSchema, objectType, stringArg } from 'nexus'
+import { idArg, makeSchema, objectType, unionType, stringArg } from 'nexus'
 
 const User = objectType({
   name: 'User',
@@ -7,7 +7,10 @@ const User = objectType({
     t.model.id()
     t.model.name()
     t.model.email()
-    t.model.posts({
+    t.model.photos({
+      pagination: false,
+    })
+    t.model.articles({
       pagination: false,
     })
   },
@@ -36,11 +39,13 @@ const Photo = objectType({
   },
 })
 
-const Post = objectType({
+const Post = unionType({
   name: 'Post',
   definition(t) {
     t.members('Article', 'Photo')
-    t.resolveType((item) => item.name)
+    t.resolveType((item) => {
+      return item.published ? 'Article' : 'Photo';
+    })
   },
 })
 
@@ -57,13 +62,16 @@ const Query = objectType({
 
     t.list.field('feed', {
       type: 'Post',
-      resolve: (_parent, _args, ctx) => {
-        return ctx.photon.article.findMany({
+      resolve: async (_parent, _args, ctx) => {
+        const [articles, photos] = await Promise.all([
+          ctx.photon.articles.findMany({
             where: { published: true },
-          }).concat(
-          ctx.photon.photo.findMany()).sort(
+          }),
+          ctx.photon.photos.findMany({})
+        ])
+        return articles.concat(photos).sort(
             function(a,b){
-              a.createdAt()-b.createdAt()
+              a.createdAt-b.createdAt
             })
       },
     })
@@ -73,20 +81,23 @@ const Query = objectType({
       args: {
         searchString: stringArg({ nullable: true }),
       },
-      resolve: (_, { searchString }, ctx) => {
-        return ctx.photon.articles.findMany({
-          where: {
-            OR: [
-              { title: { contains: searchString } },
-              { content: { contains: searchString } },
-            ],
-          },
-        }).concat(
+      resolve: async (_, { searchString }, ctx) => {
+        const [articles, photos] = await Promise.all([
           ctx.photon.articles.findMany({
+            where: {
+              OR: [
+                { title: { contains: searchString } },
+                { content: { contains: searchString } },
+              ],
+            },
+          }),
+          ctx.photon.photos.findMany({
             where: { description: { contains: searchString } },
-        })).sort(
+          }),
+        ])
+        return articles.concat(photos).sort(
             function(a,b){
-              a.createdAt()-b.createdAt()
+              a.createdAt-b.createdAt
             })
       },
     })
@@ -98,7 +109,7 @@ const Mutation = objectType({
   definition(t) {
     t.crud.createOneUser({ alias: 'signupUser' })
     t.crud.deleteOneArticle()
-    t.crud.deleteOneImage()
+    t.crud.deleteOnePhoto()
 
     t.field('uploadPhoto', {
       type: 'Photo',
