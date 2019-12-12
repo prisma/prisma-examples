@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "prisma2": "2.0.0-preview018.1"
+    "prisma2": "2.0.0-preview018.2"
   },
   "scripts": {
     "start": "node app.js",
