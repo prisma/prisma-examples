@@ -9,7 +9,7 @@ require (
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
 	github.com/pkg/errors v0.8.0 // indirect
 	github.com/prisma/prisma-client-lib-go v0.0.0-20181017161110-68a1f9908416
-	github.com/prisma/prisma-examples v0.0.0-20191212135945-183f90860425
+	github.com/prisma/prisma-examples v0.0.0-20191213103252-659a8d502e24
 )
 
 go 1.13
