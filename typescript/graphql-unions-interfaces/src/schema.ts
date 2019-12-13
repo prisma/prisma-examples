@@ -5,6 +5,12 @@ import { Photo, PhotoClient } from '@prisma/photon'
 const User = interfaceType({
   name: 'User',
   definition(t) {
+    t.resolveType((user) => {
+      if (user.hasOwnProperty('articles')) {
+        return 'Author'
+      }
+      return 'Photographer'
+    })
     t.model.id()
     t.model.name()
     t.model.email()
