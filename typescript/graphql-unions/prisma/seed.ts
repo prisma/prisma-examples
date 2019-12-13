@@ -2,7 +2,7 @@ import { Photon } from '@prisma/photon'
 const photon = new Photon()
 
 async function main() {
-  const user1 = await photon.users.create({
+  const author1 = await photon.users.create({
     data: {
       email: 'alice@prisma.io',
       name: 'Alice',
@@ -13,14 +13,9 @@ async function main() {
           published: true,
         },
       },
-      photos: {
-        create: {
-          description: 'Mist over the park',
-        }
-      },
     },
   })
-  const user2 = await photon.users.create({
+  const author2 = await photon.users.create({
     data: {
       email: 'bob@prisma.io',
       name: 'Bob',
@@ -38,14 +33,30 @@ async function main() {
           },
         ],
       },
+    },
+  })
+  const photographer1 = await photon.users.create({
+    data: {
+      email: 'eve@prisma.io',
+      name: 'Eve',
       photos: {
         create:
           { description: 'Self-portrait #18', },
-      }
+      },
+    },
+  })
+  const photographer2 = await photon.users.create({
+    data: {
+      email: 'mallory@prisma.io',
+      name: 'Mallory',
+      photos: {
+        create:
+          { description: 'Mist over the park', },
+      },
     },
   })
 
-  console.log({ user1, user2 })
+  console.log({ author1, author2, photographer1, photographer2 })
 }
 
 main()
