@@ -120,3 +120,5 @@ github.com/prisma/prisma-examples v0.0.0-20191214115430-560f3d0f76ba h1:qhekG3lj
 github.com/prisma/prisma-examples v0.0.0-20191214115430-560f3d0f76ba/go.mod h1:i+NAPqF4pXXV33xfPYYM4VPNgSnlCW7Qa/5ULDN3DTg=
 github.com/prisma/prisma-examples v0.0.0-20191216123304-f5717c1a47e3 h1:zKJu0hKl5V9zAXxYW7B2+vYtu17YJVy4EpSDmNOAa2c=
 github.com/prisma/prisma-examples v0.0.0-20191216123304-f5717c1a47e3/go.mod h1:i+NAPqF4pXXV33xfPYYM4VPNgSnlCW7Qa/5ULDN3DTg=
+github.com/prisma/prisma-examples v0.0.0-20191217122711-65cbf9620235 h1:Z7k+bdQ+APYPmuvfvABxlTnTpb9J1occ3qHL3tdWWG0=
+github.com/prisma/prisma-examples v0.0.0-20191217122711-65cbf9620235/go.mod h1:i+NAPqF4pXXV33xfPYYM4VPNgSnlCW7Qa/5ULDN3DTg=
