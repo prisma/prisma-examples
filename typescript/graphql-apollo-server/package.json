@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@prisma/sdk": "0.0.102",
-    "@types/node": "12.12.20",
+    "@types/node": "12.12.21",
     "prisma2": "2.0.0-preview018.2",
     "ts-node": "8.5.4",
     "ts-node-dev": "1.0.0-pre.44",
