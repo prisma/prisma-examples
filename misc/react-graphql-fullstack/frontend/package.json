@@ -45,6 +45,6 @@
     "@graphql-codegen/typescript": "1.9.1",
     "@graphql-codegen/typescript-operations": "1.9.1",
     "@types/react-router-dom": "5.1.3",
-    "concurrently": "5.0.1"
+    "concurrently": "5.0.2"
   }
 }
