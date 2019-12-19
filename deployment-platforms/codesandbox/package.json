@@ -11,6 +11,6 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview018.2"
+    "@prisma/photon": "2.0.0-preview019"
   }
 }
