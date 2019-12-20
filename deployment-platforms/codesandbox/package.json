@@ -4,7 +4,7 @@
   "devDependencies": {
     "prisma2": "2.0.0-preview019",
     "ts-node": "8.5.4",
-    "typescript": "3.7.3"
+    "typescript": "3.7.4"
   },
   "scripts": {
     "start": "prisma2 generate && npm run seed && ts-node src/script.ts",
