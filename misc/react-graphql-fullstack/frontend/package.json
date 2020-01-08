@@ -41,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "1.11.1",
+    "@graphql-codegen/cli": "1.11.2",
     "@graphql-codegen/typescript": "1.11.1",
     "@graphql-codegen/typescript-operations": "1.11.1",
     "@types/react-router-dom": "5.1.3",
