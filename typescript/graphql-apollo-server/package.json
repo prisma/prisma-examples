@@ -14,7 +14,7 @@
   "dependencies": {
     "@prisma/photon": "2.0.0-preview019",
     "@types/node-fetch": "2.5.4",
-    "apollo-server": "2.9.15",
+    "apollo-server": "2.9.16",
     "graphql": "14.5.8",
     "nexus": "0.12.0-rc.5",
     "nexus-prisma": "0.6.1"
