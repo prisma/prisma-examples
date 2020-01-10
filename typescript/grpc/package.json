@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview019",
-    "ts-node": "8.5.4",
+    "ts-node": "8.6.0",
     "typescript": "3.7.4"
   }
 }
