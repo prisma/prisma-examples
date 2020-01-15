@@ -62,7 +62,35 @@ CREATE TABLE "User" (
 
 ### 3. Generate Prisma Client JS
 
-To generate Prisma's type-safe database client, navigate back into the project's root directory and run the following command:
+To generate Prisma's type-safe database client, you first need to add a `generator` block to the generated `schema.prisma`:
+
+```diff
+datasource db {
+  provider = "sqlite"
+  url      = "sqlite:./dev.db"
+}
+
++ generator client {
++   provider = "prisma-client-js"
++ }
+
+model Post {
+  id        Int     @id
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?
+}
+
+model User {
+  id    Int     @id
+  email String  @unique
+  name  String?
+  posts Post[]
+}
+```
+
+Now you can navigate back into the project's root directory and generate Prisma Client JS:
 
 ```
 cd ..
