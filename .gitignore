@@ -10,4 +10,5 @@ package-lock.json
 flow-typed
 yarn.lock
 migrations/
-*.db
+javascript/**/*.db
+typescript/**/*.db
