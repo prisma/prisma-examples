@@ -16,7 +16,7 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.0",
     "tachyons": "4.11.1",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   },
   "scripts": {
     "start": "react-scripts start",
