@@ -1,6 +1,6 @@
 # Simple Node.js Script Example
 
-This example shows how to use [Prisma Client JS](https://photonjs.prisma.io/) in a **simple Node.js script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./db/dev.db`](./db/dev.db).
+This example shows how to use [Prisma Client JS](https://photonjs.prisma.io/) in a **simple Node.js script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
