@@ -8,7 +8,7 @@ generator client {
 }
 
 model Post {
-  id        Int     @id
+  id        Int     @id @default(autoincrement())
   title     String
   content   String?
   published Boolean @default(false)
@@ -16,7 +16,7 @@ model Post {
 }
 
 model User {
-  id    Int     @id
+  id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
   posts Post[]
