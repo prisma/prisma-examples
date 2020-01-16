@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview018.2"
+    "@prisma/client": "alpha"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview018.2"
+    "prisma2": "alpha"
   },
   "scripts": {
     "dev": "node ./script.js"

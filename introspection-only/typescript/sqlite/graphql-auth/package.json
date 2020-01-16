@@ -9,11 +9,10 @@
     "generate:prisma": "prisma2 generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
-    "seed": "ts-node prisma/seed"
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview018.2",
+    "@prisma/client": "alpha",
     "bcryptjs": "2.4.3",
     "graphql": "14.5.8",
     "graphql-shield": "5.7.3",
@@ -28,7 +27,7 @@
     "@types/jsonwebtoken": "8.3.5",
     "@types/node": "12.12.17",
     "@types/ws": "6.0.4",
-    "prisma2": "2.0.0-preview018.2",
+    "prisma2": "alpha",
     "ts-node": "8.5.4",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.7.3"
