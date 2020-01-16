@@ -1,19 +1,17 @@
-# Simple Node Script Example
+# Simple Node.js Script Example
 
-This example shows how to use [Photon.js](https://photonjs.prisma.io/) in a **simple Node.js script** to read and write data in a database.
+This example shows how to use [Prisma Client JS](https://photonjs.prisma.io/) in a **simple Node.js script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./db/dev.db`](./db/dev.db).
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/javascript/script
+cd prisma-examples/introspection-only/javascript/sqlite/script
 __INLINE(../_setup-2_script.md)__
 
-### 3. Run the script
+### 4. Run the script
 
 Execute the script with this command: 
 
 ```
 npm run dev
 ```
-
-> **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
 
 __INLINE(../_next-steps.md)__
