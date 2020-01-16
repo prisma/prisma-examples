@@ -17,6 +17,6 @@
     "@types/node": "12.12.24",
     "prisma2": "2.0.0-preview019",
     "ts-node": "8.6.2",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   }
 }
