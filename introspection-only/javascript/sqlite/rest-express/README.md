@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and [Photon.js](https://photonjs.prisma.io/).
+This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and [Photon.js](https://photonjs.prisma.io/). It uses a SQLite database file with some initial dummy data which you can find at [`./db/dev.db`](./db/dev.db).
 
 ## How to use
 
