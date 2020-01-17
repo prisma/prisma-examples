@@ -97,7 +97,7 @@ npm run dev
 
 The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
-### 5. Using the REST API
+### 3. Using the REST API
 
 #### `GET`
 

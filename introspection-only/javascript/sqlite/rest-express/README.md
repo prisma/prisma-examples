@@ -21,7 +21,7 @@ npm install
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 4. Start the REST API server
+### 2. Start the REST API server
 
 ```
 npm run dev
@@ -29,7 +29,7 @@ npm run dev
 
 The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
-### 5. Using the REST API
+### 3. Using the REST API
 
 #### `GET`
 
