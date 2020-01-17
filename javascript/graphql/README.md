@@ -15,7 +15,7 @@ git clone git@github.com:prisma/prisma-examples.git
 Install npm dependencies:
 
 ```
-cd prisma-examples/introspection-only/javascript/sqlite/graphql
+cd prisma-examples/javascript/graphql
 npm install
 ```
 
