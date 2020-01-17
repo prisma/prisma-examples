@@ -12,8 +12,8 @@ export const schema = makeSchema({
   typegenAutoConfig: {
     sources: [
       {
-        source: '@prisma/photon',
-        alias: 'photon',
+        source: '@prisma/client',
+        alias: 'client',
       },
       {
         source: require.resolve('./context'),

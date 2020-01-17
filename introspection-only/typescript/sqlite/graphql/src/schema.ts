@@ -17,8 +17,6 @@ const Post = objectType({
   name: 'Post',
   definition(t) {
     t.model.id()
-    t.model.createdAt()
-    t.model.updatedAt()
     t.model.title()
     t.model.content()
     t.model.published()
@@ -115,7 +113,7 @@ export const schema = makeSchema({
     contextType: 'Context.Context',
     sources: [
       {
-        source: '@prisma/prisma',
+        source: '@prisma/client',
         alias: 'prisma',
       },
       {
