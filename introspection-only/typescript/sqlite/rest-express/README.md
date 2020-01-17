@@ -15,13 +15,15 @@ git clone git@github.com:prisma/prisma-examples.git
 Install npm dependencies:
 
 ```
-cd prisma-examples/typescript/rest-express
+cd prisma-examples/introspection-only/typescript/sqlite/rest-express
 npm install
 ```
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
 ### 2. Start the REST API server
+
+Execute this command to start the server:
 
 ```
 npm run dev
@@ -69,7 +71,7 @@ Evolving the application typically requires four subsequent steps:
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
-### 1. Change your databse schema using SQL
+### 1. Change your database schema using SQL
 
 The first step would be to add new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
 

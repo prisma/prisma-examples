@@ -222,7 +222,7 @@ Evolving the application typically requires four subsequent steps:
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
-### 1. Change your databse schema using SQL
+### 1. Change your database schema using SQL
 
 The first step would be to add new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
 
