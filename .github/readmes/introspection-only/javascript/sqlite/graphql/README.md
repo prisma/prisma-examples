@@ -10,4 +10,4 @@ __INLINE(../_start-graphql-server.md)__
 
 __INLINE(../../../../_using-the-graphql-api.md)__
 
-__INLINE(../_next-steps.md)__
+__INLINE(../_next-steps-graphql.md)__
