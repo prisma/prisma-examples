@@ -21,7 +21,7 @@ npm install
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 3. Start the GraphQL server
+### 2. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 

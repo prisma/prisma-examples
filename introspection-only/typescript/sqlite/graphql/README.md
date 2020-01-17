@@ -1,8 +1,6 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
-
-[![Edit graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/prisma/prisma-examples/tree/prisma2/typescript/graphql?fontsize=14)
+This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client JS](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -23,7 +21,7 @@ npm install
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 3. Start the GraphQL server
+### 2. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
