@@ -51,7 +51,7 @@ For the following example scenario, assume you want to add a "profile" feature t
 
 ### 1. Change your database schema using SQL
 
-The first step would be to add new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
+The first step would be to add a new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
 
 ```sql
 CREATE TABLE "Profile" (
