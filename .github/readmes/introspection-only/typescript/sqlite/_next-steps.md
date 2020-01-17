@@ -1,12 +1,12 @@
 
 ## Evolving the app
 
-Evolving the application typically requires three subsequent steps:
+Evolving the application typically requires four subsequent steps:
 
 1. Migrating the database schema using SQL
-1. Introspecting the databse schema with `prisma2 introspect` to update your Prisma schema
+1. Update your Prisma schema by untrospecting the database with `prisma2 introspect`
 1. Generating Prisma Client to match the new database schema with `prisma2 generate`
-1. Use the update Prisma Client in your application code
+1. Use the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
