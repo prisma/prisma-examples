@@ -1,0 +1,26 @@
+{
+  "name": "typescript-grpc",
+  "dependencies": {
+    "@grpc/proto-loader": "0.5.3",
+    "@prisma/client": "alpha",
+    "chalk": "2.4.2",
+    "grpc": "1.24.2",
+    "protobufjs": "6.8.8"
+  },
+  "scripts": {
+    "dev": "ts-node ./server/server.ts",
+    "seed": "ts-node prisma/seed.ts",
+    "feed": "ts-node ./client/feed.ts",
+    "filterPosts": "ts-node ./client/filterPosts.ts",
+    "post": "ts-node ./client/post.ts",
+    "signupUser": "ts-node ./client/signupUser.ts",
+    "createDraft": "ts-node ./client/createDraft.ts",
+    "publish": "ts-node ./client/publish.ts",
+    "deletePost": "ts-node ./client/deletePost.ts"
+  },
+  "devDependencies": {
+    "prisma2": "alpha",
+    "ts-node": "8.5.4",
+    "typescript": "3.7.3"
+  }
+}
