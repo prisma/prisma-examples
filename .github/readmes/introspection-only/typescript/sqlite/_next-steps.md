@@ -81,6 +81,8 @@ With the updated Prisma schema, you can now also update the Prisma Client API wi
 npx prisma2 generate
 ```
 
+This command updated the Prisma Client API in `node_modules/@prisma/client`.
+
 ### 4. Use the updated Prisma Client in your application code
 
 You can now use your `PrismaClient` instance to perform operations against the `Profile` new table. Here are some examples. 
