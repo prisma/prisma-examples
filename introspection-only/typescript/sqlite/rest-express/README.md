@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API with TypeScript** using [Express.JS](https://expressjs.com/de/) and [Photon.js](https://photonjs.prisma.io/).
+This example shows how to implement a **REST API with TypeScript** using [Express.JS](https://expressjs.com/de/) and [Prisma Client JS](https://photonjs.prisma.io/). You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -19,19 +19,9 @@ cd prisma-examples/typescript/rest-express
 npm install
 ```
 
-### 2. Generate Prisma Client JS
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-Prisma Client provides an API that's tailored to your database schema. Generate it with this CLI command:
-
-```
-npx prisma2 generate
-```
-
-> **Note**: You're using [npx](https://github.com/npm/npx) to run the Prisma Framework CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
-
-This generates Prisma Client JS into `node_modules/@prisma/client`.
-
-### 4. Start the REST API server
+### 2. Start the REST API server
 
 ```
 npm run dev
