@@ -16,7 +16,7 @@ The first step would be to add new table, e.g. called `Profile`, to the database
 
 ```sql
 CREATE TABLE "Profile" (
-	"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
   "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
@@ -27,7 +27,7 @@ Note that to run the SQL statement against the database, you can use the `sqlite
 ```bash
 sqlite3 test.db \
 'CREATE TABLE "Profile" (
-	"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
   "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
