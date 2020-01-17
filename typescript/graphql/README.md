@@ -1,6 +1,6 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Photon.js](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
+This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client JS](https://photonjs.prisma.io/), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
 
 [![Edit graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/prisma/prisma-examples/tree/prisma2/typescript/graphql?fontsize=14)
 
@@ -257,7 +257,7 @@ npx prisma2 generate
 ### More things to explore
 
 - Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
-- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Photon.js API](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md))
+- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md))
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track the Prisma Framework's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
