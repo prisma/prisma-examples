@@ -8,7 +8,7 @@ __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__
 
-__INLINE(../../_using-the-graphql-api.md)__
+__INLINE(../../../_using-the-graphql-api.md)__
 
 ### 6. Changing the GraphQL schema
 
