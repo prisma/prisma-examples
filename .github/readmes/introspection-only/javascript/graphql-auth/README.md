@@ -8,6 +8,6 @@ __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__
 
-__INLINE(../../../../_using-the-graphql-api-auth.md)__
+__INLINE(../../../_using-the-graphql-api-auth.md)__
 
 __INLINE(../_next-steps-graphql.md)__
