@@ -55,13 +55,12 @@ async function filterPosts(call: any, callback: any) {
 }
 
 async function signupUser(call: any, callback: any) {
-  const { email, name, password } = call.request
+  const { email, name } = call.request
   try {
     const newUser = await prisma.users.create({
       data: {
         name,
         email,
-        password,
       },
     })
     callback(null, newUser)
