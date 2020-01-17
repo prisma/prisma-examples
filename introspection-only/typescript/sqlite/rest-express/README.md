@@ -91,7 +91,7 @@ CREATE TABLE "Profile" (
 );
 ```
 
-Note that to run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
+To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
 
 ```bash
 sqlite3 test.db \
