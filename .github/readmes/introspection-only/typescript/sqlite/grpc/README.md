@@ -1,12 +1,14 @@
 # gRPC Server Example
 
-This example shows how to implement a **gRPC API with TypeScript** and [Photon.js](https://photonjs.prisma.io/).
+This example shows how to implement a **gRPC API with TypeScript** and [Prisma Client JS](https://photonjs.prisma.io/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/typescript/grpc
 __INLINE(../_setup-2.md)__
 
-### 4. Start the gRPC server
+### 2. Start the gRPC server
+
+Execute this command to start the gRPC server:
 
 ```
 npm run dev

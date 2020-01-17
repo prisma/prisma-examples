@@ -1,6 +1,6 @@
 # gRPC Server Example
 
-This example shows how to implement a **gRPC API with TypeScript** and [Photon.js](https://photonjs.prisma.io/).
+This example shows how to implement a **gRPC API with TypeScript** and [Prisma Client JS](https://photonjs.prisma.io/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -21,7 +21,9 @@ npm install
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 4. Start the gRPC server
+### 2. Start the gRPC server
+
+Execute this command to start the gRPC server:
 
 ```
 npm run dev
@@ -74,7 +76,7 @@ sqlite3 test.db \
 
 Note that we're adding a unique constraint to the foreign key on `user`, this means we're expressing a 1:1 relationship between `User` and `Profile`, i.e.: "one user has one profile".
 
-While your database is now is already aware of the new table, you're not yet able to perform any operations against it using Prisma Client. The next two steps will update the Prisma Client API to include operations against the new `Profile` table.
+While your database now is already aware of the new table, you're not yet able to perform any operations against it using Prisma Client. The next two steps will update the Prisma Client API to include operations against the new `Profile` table.
 
 ### 2. Introspect your database
 
