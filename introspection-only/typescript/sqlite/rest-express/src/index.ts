@@ -32,7 +32,7 @@ app.post(`/post`, async (req, res) => {
 app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
   const post = await prisma.posts.update({
-    where: { id },
+    where: { id: Number(id) },
     data: { published: true },
   })
   res.json(post)
@@ -42,7 +42,7 @@ app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
   const post = await prisma.posts.delete({
     where: {
-      id,
+      id: Number(id),
     },
   })
   res.json(post)
@@ -52,14 +52,17 @@ app.get(`/post/:id`, async (req, res) => {
   const { id } = req.params
   const post = await prisma.posts.findOne({
     where: {
-      id,
+      id: Number(id),
     },
   })
   res.json(post)
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await prisma.posts.findMany({ where: { published: true } })
+  const posts = await prisma.posts.findMany({ 
+    where: { published: true },
+    include: { author: true } 
+  })
   res.json(posts)
 })
 
