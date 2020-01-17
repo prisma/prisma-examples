@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/jest": "24.9.0",
-    "@types/node": "12.12.24",
+    "@types/node": "12.12.25",
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
     "apollo-boost": "0.4.7",
