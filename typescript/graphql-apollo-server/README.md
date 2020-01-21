@@ -1,5 +1,7 @@
 # GraphQL Apollo Server Example
 
+> ⚠️ This example is currently broken due to the breaking changes in the [`preview020`](https://github.com/prisma/prisma2/releases/tag/2.0.0-preview020) release. We are already in the process of fixing it, so it will be available very soon again.
+
 This example shows how to implement a **GraphQL server with TypeScript** based on  [Prisma Client JS](https://photonjs.prisma.io/), [apollo-server](https://www.apollographql.com/docs/apollo-server/) and [GraphQL Nexus](https://nexus.js.org/).
 
 ## How to use

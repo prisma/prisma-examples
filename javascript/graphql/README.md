@@ -1,5 +1,7 @@
 # GraphQL Server Example
 
+> ⚠️ This example is currently broken due to the breaking changes in the [`preview020`](https://github.com/prisma/prisma2/releases/tag/2.0.0-preview020) release. We are already in the process of fixing it, so it will be available very soon again.
+
 This example shows how to implement a **GraphQL server with JavaScript (Node.js)** based on [Prisma Client JS](https://photonjs.prisma.io/) & [graphql-yoga](https://github.com/prisma/graphql-yoga). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
