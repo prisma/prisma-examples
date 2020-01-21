@@ -1,4 +1,4 @@
-# Prisma Framework Examples
+# Prisma 2 Examples
 
 This repository contains a number of ready-to-run examples demonstrating various use cases of the [Prisma Framework](https://www.prisma.io/blog/announcing-prisma-2-zq1s745db8i5/) (formerly called _Prisma 2_). Pick an example and follow the instructions in the corresponding README.
 
