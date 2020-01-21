@@ -3,7 +3,7 @@
 This example shows how to implement a **GraphQL server with JavaScript (Node.js)** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/javascript/graphql
+cd prisma-examples/experimental/javascript/graphql
 __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__

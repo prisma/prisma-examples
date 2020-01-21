@@ -5,7 +5,7 @@ This example shows how to implement a **GraphQL server with TypeScript** based o
 [![Edit graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/prisma/prisma-examples/tree/prisma2/typescript/graphql?fontsize=14)
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/typescript/graphql
+cd prisma-examples/experimental/typescript/graphql
 __INLINE(../_setup-2.md)__
 
 __INLINE(../_start-graphql-server.md)__

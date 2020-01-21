@@ -3,7 +3,7 @@
 This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) in a **simple TypeScript script** to read and write data in a database.
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/typescript/script
+cd prisma-examples/experimental/typescript/script
 __INLINE(../_setup-2_script.md)__
 
 ### 3. Run the script

@@ -15,7 +15,7 @@ git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples
 Install Node dependencies:
 
 ```
-cd prisma-examples/javascript/script
+cd prisma-examples/experimental/javascript/script
 npm install
 ```
 
