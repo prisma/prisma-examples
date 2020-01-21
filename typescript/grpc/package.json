@@ -2,7 +2,7 @@
   "name": "typescript-grpc",
   "dependencies": {
     "@grpc/proto-loader": "0.5.3",
-    "@prisma/photon": "2.0.0-preview019",
+    "@prisma/client": "2.0.0-preview020",
     "chalk": "2.4.2",
     "grpc": "1.24.2",
     "protobufjs": "6.8.8"
@@ -20,7 +20,10 @@
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview020",
-    "ts-node": "8.6.2",
-    "typescript": "3.7.5"
+    "ts-node": "8.5.4",
+    "typescript": "3.7.3"
+  },
+  "engines" : { 
+    "node" : ">=10.0.0" 
   }
 }

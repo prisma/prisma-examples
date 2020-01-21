@@ -1,0 +1,14 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/photon": "2.0.0-preview018.2"
+  },
+  "devDependencies": {
+    "prisma2": "2.0.0-preview018.2"
+  },
+  "scripts": {
+    "dev": "node ./script.js"
+  }
+}

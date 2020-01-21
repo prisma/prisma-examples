@@ -1,11 +1,11 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 // A `main` function so that we can use async/await
 async function main() {
   // Seed the database with users and posts
-  const user1 = await photon.users.create({
+  const user1 = await prisma.users.create({
     data: {
       email: 'alice@prisma.io',
       name: 'Alice',
@@ -21,7 +21,7 @@ async function main() {
       posts: true,
     },
   })
-  const user2 = await photon.users.create({
+  const user2 = await prisma.users.create({
     data: {
       email: 'bob@prisma.io',
       name: 'Bob',
@@ -47,13 +47,13 @@ async function main() {
   console.log(`Created users: ${user1.name} (${user1.posts.length} post) and (${user2.posts.length} posts) `)
 
   // Retrieve all published posts
-  const allPosts = await photon.posts.findMany({
+  const allPosts = await prisma.posts.findMany({
     where: { published: true },
   })
   console.log(`Retrieved all published posts: `, allPosts)
 
   // Create a new post (written by an already existing user with email alice@prisma.io)
-  const newPost = await photon.posts.create({
+  const newPost = await prisma.posts.create({
     data: {
       title: 'Join the Prisma Slack community',
       content: 'http://slack.prisma.io',
@@ -68,7 +68,7 @@ async function main() {
   console.log(`Created a new post: `, newPost)
 
   // Publish the new post
-  const updatedPost = await photon.posts.update({
+  const updatedPost = await prisma.posts.update({
     where: {
       id: newPost.id,
     },
@@ -79,7 +79,7 @@ async function main() {
   console.log(`Published the newly created post: `, updatedPost)
 
   // Retrieve all posts by user with email alice@prisma.io
-  const postsByUser = await photon.users
+  const postsByUser = await prisma.users
     .findOne({
       where: {
         email: 'alice@prisma.io',
@@ -92,5 +92,5 @@ async function main() {
 main()
   .catch(e => console.error(e))
   .finally(async () => {
-    await photon.disconnect()
+    await prisma.disconnect()
   })

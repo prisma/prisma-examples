@@ -8,11 +8,10 @@
     "generate:prisma": "prisma2 generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
-    "seed": "ts-node prisma/seed"
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview019",
+    "@prisma/client": "2.0.0-preview020",
     "@types/node-fetch": "2.5.4",
     "apollo-server": "2.9.16",
     "graphql": "14.5.8",
@@ -20,10 +19,10 @@
     "nexus-prisma": "0.6.1"
   },
   "devDependencies": {
-    "@prisma/sdk": "0.0.160",
-    "@types/node": "12.12.25",
+    "@prisma/sdk": "0.0.99",
+    "@types/node": "12.12.17",
     "prisma2": "2.0.0-preview020",
-    "ts-node": "8.6.2",
+    "ts-node": "8.5.4",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.7.5"
   },
@@ -31,5 +30,8 @@
     "singleQuote": true,
     "semi": false,
     "trailingComma": "all"
+  },
+  "engines" : { 
+    "node" : ">=10.0.0" 
   }
 }

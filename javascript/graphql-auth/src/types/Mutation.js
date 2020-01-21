@@ -14,7 +14,7 @@ const Mutation = mutationType({
       },
       resolve: async (parent, { name, email, password }, ctx) => {
         const hashedPassword = await hash(password, 10)
-        const user = await ctx.photon.users.create({
+        const user = await ctx.prisma.users.create({
           data: {
             name,
             email,
@@ -35,7 +35,7 @@ const Mutation = mutationType({
         password: stringArg(),
       },
       resolve: async (parent, { email, password }, context) => {
-        const user = await context.photon.users.findOne({
+        const user = await context.prisma.users.findOne({
           where: {
             email,
           },
@@ -62,7 +62,7 @@ const Mutation = mutationType({
       },
       resolve: (parent, { title, content }, ctx) => {
         const userId = getUserId(ctx)
-        return ctx.photon.posts.create({
+        return ctx.prisma.posts.create({
           data: {
             title,
             content,
@@ -78,7 +78,7 @@ const Mutation = mutationType({
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.delete({
+        return ctx.prisma.posts.delete({
           where: {
             id,
           },
@@ -91,7 +91,7 @@ const Mutation = mutationType({
       nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.update({
+        return ctx.prisma.posts.update({
           where: { id },
           data: { published: true },
         })

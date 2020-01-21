@@ -1,19 +1,17 @@
 # Simple TypeScript Script Example
 
-This example shows how to use [Photon.js](https://photonjs.prisma.io/) in a **simple TypeScript script** to read and write data in a database.
+This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) in a **simple TypeScript script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/typescript/script
 __INLINE(../_setup-2_script.md)__
 
-### 3. Run the script
+### 2. Run the script
 
 Execute the script with this command: 
 
 ```
 npm run dev
 ```
-
-> **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
 
 __INLINE(../_next-steps.md)__

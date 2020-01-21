@@ -1,12 +1,14 @@
 # gRPC Server Example
 
-This example shows how to implement a **gRPC API with TypeScript** and [Photon.js](https://photonjs.prisma.io/).
+This example shows how to implement a **gRPC API with TypeScript** and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/typescript/grpc
 __INLINE(../_setup-2.md)__
 
-### 4. Start the gRPC server
+### 2. Start the gRPC server
+
+Execute this command to start the gRPC server:
 
 ```
 npm run dev
@@ -14,7 +16,7 @@ npm run dev
 
 The server is now running on `0.0.0.0:50051`. 
 
-### 5. Using the gRPC API
+### 3. Using the gRPC API
 
 To use the gRPC API, you need a gRPC client. We provide several client scripts inside the [`./client`](./client) directory. Each script is named according to the operation it performs against the gRPC API (e.g. the [`feed.js`](./client/feed.js) script sends the [`Feed`](./service.proto#L7) operation). Each script can be invoked by running the corresponding NPM script defined in [`package.json`](./package.json), e.g. `npm run feed`.
 

@@ -1,14 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Photon } = require('@prisma/photon')
+const { PrismaClient } = require('@prisma/client')
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 const app = express()
 
 app.use(bodyParser.json())
 
 app.post(`/user`, async (req, res) => {
-  const result = await photon.users.create({
+  const result = await prisma.users.create({
     data: {
       ...req.body,
     },
@@ -18,10 +18,11 @@ app.post(`/user`, async (req, res) => {
 
 app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
-  const result = await photon.posts.create({
+  const result = await prisma.posts.create({
     data: {
-      title: title,
-      content: content,
+      title,
+      content,
+      published: false,
       author: { connect: { email: authorEmail } },
     },
   })
@@ -30,7 +31,7 @@ app.post(`/post`, async (req, res) => {
 
 app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.update({
+  const post = await prisma.posts.update({
     where: { id },
     data: { published: true },
   })
@@ -39,7 +40,7 @@ app.put('/publish/:id', async (req, res) => {
 
 app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.delete({
+  const post = await prisma.posts.delete({
     where: {
       id,
     },
@@ -49,7 +50,7 @@ app.delete(`/post/:id`, async (req, res) => {
 
 app.get(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.findOne({
+  const post = await prisma.posts.findOne({
     where: {
       id,
     },
@@ -58,13 +59,16 @@ app.get(`/post/:id`, async (req, res) => {
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await photon.posts.findMany({ where: { published: true } })
+  const posts = await prisma.posts.findMany({ 
+    where: { published: true },
+    include: { author: true } 
+  })
   res.json(posts)
 })
 
 app.get('/filterPosts', async (req, res) => {
   const { searchString } = req.query
-  const draftPosts = await photon.posts.findMany({
+  const draftPosts = await prisma.posts.findMany({
     where: {
       OR: [
         {
@@ -85,6 +89,6 @@ app.get('/filterPosts', async (req, res) => {
 
 const server = app.listen(3000, () =>
   console.log(
-    '🚀 Server ready at: http://localhost:3000\n⭐️ See sample requests: http://pris.ly/e/js/rest-express#5-using-the-rest-api',
+    '🚀 Server ready at: http://localhost:3000\n⭐️ See sample requests: http://pris.ly/e/ts/rest-express#5-using-the-rest-api',
   ),
 )

@@ -1,14 +1,14 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 import * as bodyParser from 'body-parser'
 import * as express from 'express'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 const app = express()
 
 app.use(bodyParser.json())
 
 app.post(`/user`, async (req, res) => {
-  const result = await photon.users.create({
+  const result = await prisma.users.create({
     data: {
       ...req.body,
     },
@@ -18,7 +18,7 @@ app.post(`/user`, async (req, res) => {
 
 app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
-  const result = await photon.posts.create({
+  const result = await prisma.posts.create({
     data: {
       title,
       content,
@@ -31,8 +31,8 @@ app.post(`/post`, async (req, res) => {
 
 app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.update({
-    where: { id },
+  const post = await prisma.posts.update({
+    where: { id: Number(id) },
     data: { published: true },
   })
   res.json(post)
@@ -40,9 +40,9 @@ app.put('/publish/:id', async (req, res) => {
 
 app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.delete({
+  const post = await prisma.posts.delete({
     where: {
-      id,
+      id: Number(id),
     },
   })
   res.json(post)
@@ -50,22 +50,25 @@ app.delete(`/post/:id`, async (req, res) => {
 
 app.get(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.findOne({
+  const post = await prisma.posts.findOne({
     where: {
-      id,
+      id: Number(id),
     },
   })
   res.json(post)
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await photon.posts.findMany({ where: { published: true } })
+  const posts = await prisma.posts.findMany({ 
+    where: { published: true },
+    include: { author: true } 
+  })
   res.json(posts)
 })
 
 app.get('/filterPosts', async (req, res) => {
   const { searchString } = req.query
-  const draftPosts = await photon.posts.findMany({
+  const draftPosts = await prisma.posts.findMany({
     where: {
       OR: [
         {

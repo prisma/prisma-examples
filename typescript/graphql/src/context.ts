@@ -1,11 +1,11 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 export interface Context {
-  photon: Photon
+  prisma: PrismaClient
 }
 
 export function createContext(): Context {
-  return { photon }
+  return { prisma }
 }
