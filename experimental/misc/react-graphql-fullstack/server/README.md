@@ -23,7 +23,7 @@ npm install
 
 <Details><Summary>Learn more about the development mode</Summary>
 
-Prisma's [development mode](https://github.com/prisma/prisma2/blob/master/docs/development-mode.md) watches your [Prisma schema](https://github.com/prisma/prisma2/blob/master/docs/prisma-schema-file.md) on the file system. Whenever there's a change in the schema, the Prisma Framework CLI performs two major tasks in the background:
+Prisma's [development mode](https://github.com/prisma/prisma2/blob/master/docs/development-mode.md) watches your [Prisma schema](https://github.com/prisma/prisma2/blob/master/docs/prisma-schema-file.md) on the file system. Whenever there's a change in the schema, Prisma 2 CLI performs two major tasks in the background:
 
 - map the Prisma schema to your database schema (i.e., perform a schema migration in the database) 
 - regenerate the Photon.js database client based on the new Prisma schema
@@ -40,7 +40,7 @@ Start the development mode with the following command:
 npx prisma2 dev
 ```
 
-> **Note**: You're using [npx](https://github.com/npm/npx) to run the Prisma Framework CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
+> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
 
 You can now open [Prisma Studio](https://github.com/prisma/studio). Open your browser and navigate to the the URL displayed by the CLI output (typically at [`http://localhost:5555`](http://localhost:5555)).
 
@@ -257,4 +257,4 @@ npx prisma2 generate
 - Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Photon.js API](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md))
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
-- Track the Prisma Framework's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
+- Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
