@@ -6,7 +6,7 @@
     "@prisma/photon": "2.0.0-preview019"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview019"
+    "prisma2": "2.0.0-preview020"
   },
   "scripts": {
     "dev": "node ./script.js"
