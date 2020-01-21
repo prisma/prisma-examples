@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API with TypeScript** using [Express.JS](https://expressjs.com/de/) and [Prisma Client JS](https://photonjs.prisma.io/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **REST API with TypeScript** using [Express.JS](https://expressjs.com/de/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 

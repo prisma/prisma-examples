@@ -1,6 +1,6 @@
 # gRPC Server Example
 
-This example shows how to implement a **gRPC API with Node.js** and [Prisma Client JS](https://photonjs.prisma.io/).
+This example shows how to implement a **gRPC API with Node.js** and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
 ## How to use
 
