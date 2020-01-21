@@ -18,13 +18,13 @@
     "nexus-prisma": "0.6.1"
   },
   "devDependencies": {
-    "@prisma/sdk": "0.0.99",
-    "@types/node": "12.12.17",
+    "@prisma/sdk": "0.0.160",
+    "@types/node": "12.12.25",
     "@types/ws": "6.0.4",
-    "prisma2": "2.0.0-preview018.2",
-    "ts-node": "8.5.4",
+    "prisma2": "2.0.0-preview020",
+    "ts-node": "8.6.2",
     "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.7.3"
+    "typescript": "3.7.5"
   },
   "prettier": {
     "singleQuote": true,

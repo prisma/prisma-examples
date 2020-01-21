@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "24.0.23",
-    "@types/node": "12.12.17",
-    "@types/react": "16.9.16",
-    "@types/react-dom": "16.9.4",
-    "apollo-boost": "0.4.4",
+    "@types/jest": "24.9.0",
+    "@types/node": "12.12.25",
+    "@types/react": "16.9.18",
+    "@types/react-dom": "16.9.5",
+    "apollo-boost": "0.4.7",
     "graphql": "14.5.8",
     "react": "16.12.0",
     "react-apollo": "3.1.3",
@@ -16,7 +16,7 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.0",
     "tachyons": "4.11.1",
-    "typescript": "3.7.3"
+    "typescript": "3.7.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,10 +41,10 @@
     ]
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "1.9.1",
-    "@graphql-codegen/typescript": "1.9.1",
-    "@graphql-codegen/typescript-operations": "1.9.1",
+    "@graphql-codegen/cli": "1.11.2",
+    "@graphql-codegen/typescript": "1.11.2",
+    "@graphql-codegen/typescript-operations": "1.11.2",
     "@types/react-router-dom": "5.1.3",
-    "concurrently": "5.0.1"
+    "concurrently": "5.0.2"
   }
 }
