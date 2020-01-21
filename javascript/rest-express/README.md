@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [Express.JS](https://ex
 Clone this repository:
 
 ```
-git clone git@github.com:prisma/prisma-examples.git
+git clone git@github.com:prisma/prisma-examples.git --depth=1
 ```
 
 Install npm dependencies:

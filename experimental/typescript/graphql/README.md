@@ -11,7 +11,7 @@ This example shows how to implement a **GraphQL server with TypeScript** based o
 Clone the `prisma2` branch of this repository:
 
 ```
-git clone --single-branch --branch prisma2 git@github.com:prisma/prisma-examples.git
+git clone git@github.com:prisma/prisma-examples.git --depth=1
 ```
 
 Install Node dependencies:

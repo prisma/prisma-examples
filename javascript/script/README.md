@@ -9,7 +9,7 @@ This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/
 Clone this repository:
 
 ```
-git clone git@github.com:prisma/prisma-examples.git
+git clone git@github.com:prisma/prisma-examples.git --depth=1
 ```
 
 Install npm dependencies:
