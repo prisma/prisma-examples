@@ -6,7 +6,7 @@
     "@types/jest": "24.9.0",
     "@types/node": "12.12.25",
     "@types/react": "16.9.17",
-    "@types/react-dom": "16.9.4",
+    "@types/react-dom": "16.9.5",
     "apollo-boost": "0.4.7",
     "graphql": "14.5.8",
     "react": "16.12.0",
