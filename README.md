@@ -1,6 +1,6 @@
-# Prisma Framework Examples
+# Prisma 2 Examples
 
-This repository contains a number of ready-to-run examples demonstrating various use cases of the [Prisma Framework](https://www.prisma.io/blog/announcing-prisma-2-zq1s745db8i5/) (formerly called _Prisma 2_). Pick an example and follow the instructions in the corresponding README.
+This repository contains a number of ready-to-run examples demonstrating various use cases of the Prisma 2. Pick an example and follow the instructions in the corresponding README.
 
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
 
@@ -26,3 +26,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-auth) | GraphQL server with email-password authentication & permissions |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/rest-express) | Simple REST API with Express.JS |
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/grpc) | Simple gRPC API |
+
+
+## Experimental
+
+The [`experimental`](`./experimentral) directory contains the same examples as the `javascript` and `typescript` directories. The main difference is that it uses Prisma to perform database migrations which are currently an experimental feature.
