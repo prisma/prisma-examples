@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "2.0.0-preview020"
+    "@prisma/client": "2.0.0-preview020.1"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview020"
