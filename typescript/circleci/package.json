@@ -10,7 +10,7 @@
     "prisma-client-lib": "1.34.10"
   },
   "devDependencies": {
-    "jest": "23.6.0",
+    "jest": "25.1.0",
     "ts-jest": "23.10.5",
     "typescript": "3.7.5"
   },
