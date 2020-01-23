@@ -18,6 +18,6 @@
     "deletePost": "node ./client/deletePost.js"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview020.1"
+    "prisma2": "2.0.0-preview020.2"
   }
 }

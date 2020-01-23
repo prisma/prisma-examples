@@ -6,7 +6,7 @@
     "@prisma/client": "2.0.0-preview020.2"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview020.1"
+    "prisma2": "2.0.0-preview020.2"
   },
   "scripts": {
     "dev": "node ./script.js"
