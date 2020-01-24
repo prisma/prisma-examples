@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@prisma/photon": "^2.0.0-preview017",
-    "prisma2": "2.0.0-preview020.2"
+    "prisma2": "2.0.0-preview020.3"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "1.3.2"
