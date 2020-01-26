@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "apollo-server": "2.9.16",
-    "graphql": "14.5.8",
+    "graphql": "14.6.0",
     "nexus": "0.11.7",
     "nexus-prisma": "0.3.8",
     "prisma-client-lib": "1.34.10"
