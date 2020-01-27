@@ -58,12 +58,12 @@ input PostCreateWithoutAuthorInput {
 
 const resolvers = {
   Query: {
-    feed: (parent, args, ctx: Context) => {
+    feed: (parent, args, ctx) => {
       return ctx.prisma.posts.findMany({
         where: { published: true },
       })
     },
-    filterPosts: (parent, args, ctx: Context) => {
+    filterPosts: (parent, args, ctx) => {
       return ctx.prisma.posts.findMany({
         where: {
           OR: [
@@ -73,7 +73,7 @@ const resolvers = {
         },
       })
     },
-    post: (parent, args, ctx: Context) => {
+    post: (parent, args, ctx) => {
       return ctx.prisma.posts.findOne({
         where: { id: Number(args.where.id) },
       })
@@ -92,23 +92,23 @@ const resolvers = {
         },
       })
     },
-    deleteOnePost: (parent, args, ctx: Context) => {
+    deleteOnePost: (parent, args, ctx) => {
       return ctx.prisma.posts.delete({
         where: { id: Number(args.where.id) },
       })
     },
-    publish: (parent, args, ctx: Context) => {
+    publish: (parent, args, ctx) => {
       return ctx.prisma.posts.update({
         where: { id: Number(args.id) },
         data: { published: true },
       })
     },
-    signupUser: (parent, args, ctx: Context) => {
+    signupUser: (parent, args, ctx) => {
       return ctx.prisma.users.create(args)
     },
   },
   User: {
-    posts: (parent, args, ctx: Context) => {
+    posts: (parent, args, ctx) => {
       return ctx.prisma.users
         .findOne({
           where: { id: parent.id },
@@ -117,7 +117,7 @@ const resolvers = {
     },
   },
   Post: {
-    author: (parent, args, ctx: Context) => {
+    author: (parent, args, ctx) => {
       return ctx.prisma.posts
         .findOne({
           where: { id: parent.id },
