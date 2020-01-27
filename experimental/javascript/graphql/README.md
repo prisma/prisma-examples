@@ -159,7 +159,7 @@ mutation {
 
 ```graphql
 mutation {
-  publish(id: "__POST_ID__") {
+  publish(id: __POST_ID__) {
     id
     published
   }
@@ -190,7 +190,7 @@ mutation {
 
 ```graphql
 {
-  post(where: { id: "__POST_ID__" }) {
+  post(where: { id: __POST_ID__ }) {
     id
     title
     content
@@ -210,7 +210,7 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: "__POST_ID__"})
+  deleteOnePost(where: {id: __POST_ID__})
   {
     id
   }

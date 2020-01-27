@@ -139,7 +139,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 ```graphql
 mutation {
-  publish(id: "__POST_ID__") {
+  publish(id: __POST_ID__) {
     id
     published
   }
@@ -174,7 +174,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 ```graphql
 {
-  post(id: "__POST_ID__") {
+  post(id: __POST_ID__) {
     id
     title
     content
@@ -196,7 +196,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 ```graphql
 mutation {
-  deletePost(id: "__POST_ID__") {
+  deletePost(id: __POST_ID__) {
     id
   }
 }
