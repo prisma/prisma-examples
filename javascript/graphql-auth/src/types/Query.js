@@ -57,7 +57,7 @@ const Query = queryType({
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.posts.findOne({
           where: {
-            id,
+            id: Number(id),
           },
         })
       },
