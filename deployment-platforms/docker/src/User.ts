@@ -31,7 +31,7 @@ export const User = new GraphQLObjectType<UserType, Context>({
     posts: {
       type: GraphQLList(Post),
       resolve: (user, args, context) => {
-        return context.photon.posts.findMany({
+        return context.prisma.posts.findMany({
           where: {
             author: {
               id: user.id,

@@ -34,8 +34,8 @@ export const Mutation = mutationType({
         email: stringArg({ nullable: false }),
         password: stringArg({ nullable: false }),
       },
-      resolve: async (_parent, { email, password }, context) => {
-        const user = await context.photon.users.findOne({
+      resolve: async (_parent, { email, password }, ctx) => {
+        const user = await ctx.prisma.users.findOne({
           where: {
             email,
           },
