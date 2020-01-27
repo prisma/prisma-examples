@@ -127,7 +127,11 @@ const resolvers = {
   },
 }
 
-export const schema = makeExecutableSchema({
+const schema = makeExecutableSchema({
   resolvers,
   typeDefs,
 })
+
+module.exports = {
+  schema
+}
