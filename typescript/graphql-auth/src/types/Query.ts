@@ -10,7 +10,7 @@ export const Query = queryType({
         const userId = getUserId(ctx)
         return ctx.prisma.users.findOne({
           where: {
-            id: userId,
+            id: Number(userId),
           },
         })
       },
@@ -57,7 +57,7 @@ export const Query = queryType({
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.posts.findOne({
           where: {
-            id,
+            id: Number(id),
           },
         })
       },
