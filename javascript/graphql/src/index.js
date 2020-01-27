@@ -29,9 +29,7 @@ const Post = objectType({
 const Query = objectType({
   name: 'Query',
   definition(t) {
-    t.crud.post({
-      alias: 'post',
-    })
+    t.crud.post()
 
     t.list.field('feed', {
       type: 'Post',

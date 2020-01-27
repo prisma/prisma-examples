@@ -27,9 +27,7 @@ const Post = objectType({
 const Query = objectType({
   name: 'Query',
   definition(t) {
-    t.crud.post({
-      alias: 'post',
-    })
+    t.crud.post()
 
     t.list.field('feed', {
       type: 'Post',
@@ -94,7 +92,7 @@ const Mutation = objectType({
       },
       resolve: (_, { id }, ctx) => {
         return ctx.prisma.posts.update({
-          where: { id },
+          where: { id: Number(id) },
           data: { published: true },
         })
       },
