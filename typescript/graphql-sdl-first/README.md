@@ -1,6 +1,6 @@
-# GraphQL Server Example
+# GraphQL Server Example (SDL-first)
 
-This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [graphql-tools](https://www.apollographql.com/docs/graphql-tools/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -241,51 +241,9 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-#### Option A: Expose `Profile` operations via `nexus-prisma`
+You can now use your `PrismaClient` instance to perform operations against the `Profile` new table. Here are some examples. 
 
-With the `nexus-prisma` package, you can expose the new `Profile` model in the API like so:
-
-```diff
-// ... as before 
-
-const User = objectType({
-  name: 'User',
-  definition(t) {
-    t.model.id()
-    t.model.name()
-    t.model.email()
-    t.model.posts({
-      pagination: false,
-    })
-+   t.model.profile()
-  },
-})
-
-// ... as before 
-
-+const Profile = objectType({
-+  name: 'Profile',
-+  definition(t) {
-+    t.model.id()
-+    t.model.bio()
-+    t.model.user()
-+  },
-+})
-
-// ... as before 
-
-export const schema = makeSchema({
-+  types: [Query, Mutation, Post, User, Profile],
-  // ... as before
-}
-
-```
-
-#### Option B: Use the `PrismaClient` instance directly
-
-As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profiles` directly.
-
-##### Create a new profile for an existing user
+#### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profiles.create({
@@ -298,7 +256,7 @@ const profile = await prisma.profiles.create({
 })
 ```
 
-##### Create a new user with a new profile
+#### Create a new user with a new profile
 
 ```ts
 const user = await prisma.users.create({
@@ -314,7 +272,7 @@ const user = await prisma.users.create({
 })
 ```
 
-##### Update the profile of an existing user
+#### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.users.update({
