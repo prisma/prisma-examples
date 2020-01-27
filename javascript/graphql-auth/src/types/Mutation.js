@@ -67,7 +67,7 @@ const Mutation = mutationType({
             title,
             content,
             published: false,
-            author: { connect: { id: userId } },
+            author: { connect: { id: Number(userId) } },
           },
         })
       },
@@ -79,9 +79,7 @@ const Mutation = mutationType({
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.posts.delete({
-          where: {
-            id,
-          },
+          where: { id: Number(id) },
         })
       },
     })
@@ -92,7 +90,7 @@ const Mutation = mutationType({
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.posts.update({
-          where: { id },
+          where: { id: Number(id) },
           data: { published: true },
         })
       },
