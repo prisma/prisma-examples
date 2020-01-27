@@ -25,6 +25,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/script) | Simple usage of Photon in a Node.js script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql) | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma-labs/graphql-yoga) |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-auth) | GraphQL server with email-password authentication & permissions |
+| [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-apollo-server) | Simple GraphQL server based on the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/) (Apollo) |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/rest-express) | Simple REST API with Express.JS |
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/grpc) | Simple gRPC API |
 
