@@ -19,7 +19,7 @@
     "nexus-prisma": "0.8.0"
   },
   "devDependencies": {
-    "@types/node": "12.12.17",
+    "@types/node": "12.12.26",
     "prisma2": "2.0.0-preview020.3",
     "ts-node": "8.5.4",
     "ts-node-dev": "1.0.0-pre.44",
