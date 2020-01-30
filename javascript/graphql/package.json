@@ -14,7 +14,7 @@
     "dev": "node src"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview020.3"
+    "prisma2": "2.0.0-preview021"
   },
   "prettier": {
     "singleQuote": true,
