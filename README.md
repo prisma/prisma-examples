@@ -10,7 +10,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 | Demo | Description |
 |:------|:----------|
-| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/script) | Simple usage of Photon in a TypeScript script |
+| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/script) | Simple usage of Prisma Client JS in a TypeScript script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql) | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma-labs/graphql-yoga) |
 | [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-apollo-server) | Simple GraphQL server based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) |
 | [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-sdl-first) | Simple GraphQL server based on the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/) (Apollo) |
@@ -22,7 +22,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 | Demo | Description |
 |:------|:----------|
-| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/script) | Simple usage of Photon in a Node.js script |
+| [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/script) | Simple usage of Prisma Client JS in a Node.js script |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql) | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma-labs/graphql-yoga) |
 | [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-apollo-server) | Simple GraphQL server based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/graphql-auth) | GraphQL server with email-password authentication & permissions |

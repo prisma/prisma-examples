@@ -21,4 +21,4 @@ npx prisma2 dev
 ## Next steps
 
 - [Use Prisma with an existing database](https://github.com/prisma/prisma2/blob/master/docs/introspection.md)
-- [Explore the Photon API](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md)
+- [Explore the Photon API](https://github.com/prisma/prisma2/tree/master/docs/prisma-client-js/api.md)
