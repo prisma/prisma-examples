@@ -59,12 +59,12 @@ input PostCreateWithoutAuthorInput {
 const resolvers = {
   Query: {
     feed: (parent, args, ctx: Context) => {
-      return ctx.prisma.posts.findMany({
+      return ctx.prisma.post.findMany({
         where: { published: true },
       })
     },
     filterPosts: (parent, args, ctx: Context) => {
-      return ctx.prisma.posts.findMany({
+      return ctx.prisma.post.findMany({
         where: {
           OR: [
             { title: { contains: args.searchString } },
@@ -74,14 +74,14 @@ const resolvers = {
       })
     },
     post: (parent, args, ctx: Context) => {
-      return ctx.prisma.posts.findOne({
+      return ctx.prisma.post.findOne({
         where: { id: Number(args.where.id) },
       })
     },
   },
   Mutation: {
     createDraft: (parent, args, ctx) => {
-      return ctx.prisma.posts.create({
+      return ctx.prisma.post.create({
         data: {
           title: args.title,
           content: args.content,
@@ -93,23 +93,23 @@ const resolvers = {
       })
     },
     deleteOnePost: (parent, args, ctx: Context) => {
-      return ctx.prisma.posts.delete({
+      return ctx.prisma.post.delete({
         where: { id: Number(args.where.id) },
       })
     },
     publish: (parent, args, ctx: Context) => {
-      return ctx.prisma.posts.update({
+      return ctx.prisma.post.update({
         where: { id: Number(args.id) },
         data: { published: true },
       })
     },
     signupUser: (parent, args, ctx: Context) => {
-      return ctx.prisma.users.create(args)
+      return ctx.prisma.user.create(args)
     },
   },
   User: {
     posts: (parent, args, ctx: Context) => {
-      return ctx.prisma.users
+      return ctx.prisma.user
         .findOne({
           where: { id: parent.id },
         })
@@ -118,7 +118,7 @@ const resolvers = {
   },
   Post: {
     author: (parent, args, ctx: Context) => {
-      return ctx.prisma.posts
+      return ctx.prisma.post
         .findOne({
           where: { id: parent.id },
         })

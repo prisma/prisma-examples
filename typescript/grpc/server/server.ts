@@ -18,7 +18,7 @@ const { blog } = grpc.loadPackageDefinition(packageDefinition) as any
 
 async function post(call: any, callback: any) {
   const { id } = call.request
-  const post = await prisma.posts.findOne({
+  const post = await prisma.post.findOne({
     where: {
       id,
     },
@@ -27,7 +27,7 @@ async function post(call: any, callback: any) {
 }
 
 async function feed(call: any, callback: any) {
-  const feed = await prisma.posts.findMany({
+  const feed = await prisma.post.findMany({
     where: { published: true },
   })
   callback(null, { feed })
@@ -35,7 +35,7 @@ async function feed(call: any, callback: any) {
 
 async function filterPosts(call: any, callback: any) {
   const { searchString } = call.request
-  const filteredPosts = await prisma.posts.findMany({
+  const filteredPosts = await prisma.post.findMany({
     where: {
       OR: [
         {
@@ -57,7 +57,7 @@ async function filterPosts(call: any, callback: any) {
 async function signupUser(call: any, callback: any) {
   const { email, name } = call.request
   try {
-    const newUser = await prisma.users.create({
+    const newUser = await prisma.user.create({
       data: {
         name,
         email,
@@ -72,7 +72,7 @@ async function signupUser(call: any, callback: any) {
 async function createDraft(call: any, callback: any) {
   const { title, content, authorEmail } = call.request
   try {
-    const newDraft = await prisma.posts.create({
+    const newDraft = await prisma.post.create({
       data: {
         title,
         content,
@@ -89,7 +89,7 @@ async function createDraft(call: any, callback: any) {
 async function deletePost(call: any, callback: any) {
   const { id } = call.request
   try {
-    const deletedPost = await prisma.posts.delete({
+    const deletedPost = await prisma.post.delete({
       where: {
         id,
       },
@@ -103,7 +103,7 @@ async function deletePost(call: any, callback: any) {
 async function publish(call: any, callback: any) {
   const { id } = call.request
   try {
-    const publishedPost = await prisma.posts.update({
+    const publishedPost = await prisma.post.update({
       where: { id },
       data: { published: true },
     })

@@ -333,12 +333,12 @@ export const schema = makeSchema({
 
 #### Option B: Use the `PrismaClient` instance directly
 
-As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profiles` directly.
+As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
 
 ##### Create a new profile for an existing user
 
 ```ts
-const profile = await prisma.profiles.create({
+const profile = await prisma.profile.create({
   data: {
     bio: "Hello World",
     user: {
@@ -351,7 +351,7 @@ const profile = await prisma.profiles.create({
 ##### Create a new user with a new profile
 
 ```ts
-const user = await prisma.users.create({
+const user = await prisma.user.create({
   data: {
     email: 'john@prisma.io',
     name: 'John',
@@ -367,7 +367,7 @@ const user = await prisma.users.create({
 ##### Update the profile of an existing user
 
 ```ts
-const userWithUpdatedProfile = await prisma.users.update({
+const userWithUpdatedProfile = await prisma.user.update({
   where: { email: "alice@prisma.io" },
   data: {
     profile: {
@@ -382,7 +382,7 @@ const userWithUpdatedProfile = await prisma.users.update({
 ## Next steps
 
 - Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
-- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md))
+- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/tree/master/docs/prisma-client-js/api.md))
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)

@@ -32,7 +32,7 @@ const Query = objectType({
     t.list.field('feed', {
       type: 'Post',
       resolve: (_parent, _args, ctx) => {
-        return ctx.prisma.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: { published: true },
         })
       },
@@ -44,7 +44,7 @@ const Query = objectType({
         searchString: stringArg({ nullable: true }),
       },
       resolve: (_, { searchString }, ctx) => {
-        return ctx.prisma.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: {
             OR: [
               { title: { contains: searchString } },
@@ -71,7 +71,7 @@ const Mutation = objectType({
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
-        return ctx.prisma.posts.create({
+        return ctx.prisma.post.create({
           data: {
             title,
             content,
@@ -91,7 +91,7 @@ const Mutation = objectType({
         id: idArg(),
       },
       resolve: (_, { id }, ctx) => {
-        return ctx.prisma.posts.update({
+        return ctx.prisma.post.update({
           where: { id: Number(id) },
           data: { published: true },
         })

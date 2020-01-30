@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 
 app.post(`/user`, async (req, res) => {
-  const result = await prisma.users.create({
+  const result = await prisma.user.create({
     data: {
       ...req.body,
     },
@@ -18,7 +18,7 @@ app.post(`/user`, async (req, res) => {
 
 app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
-  const result = await prisma.posts.create({
+  const result = await prisma.post.create({
     data: {
       title,
       content,
@@ -31,7 +31,7 @@ app.post(`/post`, async (req, res) => {
 
 app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
-  const post = await prisma.posts.update({
+  const post = await prisma.post.update({
     where: { id: Number(id) },
     data: { published: true },
   })
@@ -40,7 +40,7 @@ app.put('/publish/:id', async (req, res) => {
 
 app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await prisma.posts.delete({
+  const post = await prisma.post.delete({
     where: {
       id: Number(id),
     },
@@ -50,7 +50,7 @@ app.delete(`/post/:id`, async (req, res) => {
 
 app.get(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await prisma.posts.findOne({
+  const post = await prisma.post.findOne({
     where: {
       id: Number(id),
     },
@@ -59,7 +59,7 @@ app.get(`/post/:id`, async (req, res) => {
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await prisma.posts.findMany({ 
+  const posts = await prisma.post.findMany({ 
     where: { published: true },
     include: { author: true } 
   })
@@ -68,7 +68,7 @@ app.get('/feed', async (req, res) => {
 
 app.get('/filterPosts', async (req, res) => {
   const { searchString } = req.query
-  const draftPosts = await prisma.posts.findMany({
+  const draftPosts = await prisma.post.findMany({
     where: {
       OR: [
         {
