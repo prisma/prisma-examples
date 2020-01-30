@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview020.3",
+    "@prisma/client": "2.0.0-preview021",
     "@types/node-fetch": "2.5.4",
     "apollo-server": "2.9.16",
     "graphql": "14.6.0",
