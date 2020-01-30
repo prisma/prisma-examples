@@ -129,7 +129,7 @@ You can now use your `PrismaClient` instance to perform operations against the `
 #### Create a new profile for an existing user
 
 ```ts
-const profile = await prisma.profiles.create({
+const profile = await prisma.profile.create({
   data: {
     bio: "Hello World",
     user: {
@@ -142,7 +142,7 @@ const profile = await prisma.profiles.create({
 #### Create a new user with a new profile
 
 ```ts
-const user = await prisma.users.create({
+const user = await prisma.user.create({
   data: {
     email: 'john@prisma.io',
     name: 'John',
@@ -158,7 +158,7 @@ const user = await prisma.users.create({
 #### Update the profile of an existing user
 
 ```ts
-const userWithUpdatedProfile = await prisma.users.update({
+const userWithUpdatedProfile = await prisma.user.update({
   where: { email: "alice@prisma.io" },
   data: {
     profile: {
