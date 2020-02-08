@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/de/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
 ## How to use
 
