@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview019",
+    "@prisma/client": "2.0.0-preview021",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.1.5",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/node": "^13.1.2",
     "@types/react": "^16.9.17",
-    "prisma2": "^2.0.0-preview018.2",
+    "prisma2": "2.0.0-preview021",
     "typescript": "^3.7.4"
   }
 }
