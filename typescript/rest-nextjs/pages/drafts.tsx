@@ -3,7 +3,6 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 
 const Post = ({ post }) => {
-  console.log(post)
   const authorName = post.author ? post.author.name : 'Unknown author'
   return (
     <Link href="/p/[id]" as={`/p/${post.id}`}>

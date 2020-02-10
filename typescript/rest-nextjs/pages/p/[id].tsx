@@ -41,7 +41,6 @@ const Post = props => {
               }
             )
             const data = await res.json()
-            console.log(`deleted`, data)
             Router.push('/')
           }}>
           Delete

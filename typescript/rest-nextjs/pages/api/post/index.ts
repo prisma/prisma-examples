@@ -15,6 +15,5 @@ export default async function handle(req, res) {
       author: { connect: { email: authorEmail } },
     },
   })
-  console.log(result)
   res.json(result)
 }
