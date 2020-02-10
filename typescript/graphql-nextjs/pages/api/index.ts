@@ -1,8 +1,12 @@
-import { idArg, makeSchema, objectType, stringArg } from 'nexus'
+import { idArg, makeSchema, objectType, stringArg, asNexusMethod } from 'nexus'
+import { GraphQLDate } from 'graphql-iso-date'
+import { PrismaClient } from '@prisma/client'
 import { graphql } from 'graphql'
-import { Photon } from '@prisma/photon'
+import path from 'path'
 
-const photon = new Photon()
+export const GQLDate = asNexusMethod(GraphQLDate, 'date')
+
+const prisma = new PrismaClient()
 
 const User = objectType({
   name: 'User',
@@ -12,9 +16,12 @@ const User = objectType({
     t.string('email')
     t.list.field('posts', {
       type: 'Post',
-      resolve: parent => photon.users.findOne({
-        where: { id: parent.id }
-      }).posts()
+      resolve: parent =>
+        prisma.user
+          .findOne({
+            where: { id: parent.id },
+          })
+          .posts(),
     })
   },
 })
@@ -23,19 +30,22 @@ const Post = objectType({
   name: 'Post',
   definition(t) {
     t.id('id')
-    t.string('createdAt')
-    t.string('updatedAt')
+    t.date('createdAt')
+    t.date('updatedAt')
     t.string('title')
     t.string('content', {
-      nullable: true
+      nullable: true,
     })
     t.boolean('published')
     t.field('author', {
       type: 'User',
       nullable: true,
-      resolve: parent => photon.posts.findOne({
-        where: { id: parent.id }
-      }).author()
+      resolve: parent =>
+        prisma.post
+          .findOne({
+            where: { id: parent.id },
+          })
+          .author(),
     })
   },
 })
@@ -46,20 +56,20 @@ const Query = objectType({
     t.field('post', {
       type: 'Post',
       args: {
-        postId: idArg({ nullable: false })
+        postId: idArg({ nullable: false }),
       },
       resolve: (_, args) => {
         console.log(`resolve post`, args)
-        return photon.posts.findOne({
-          where: { id: args.postId }
+        return prisma.post.findOne({
+          where: { id: args.postId },
         })
-      }
+      },
     })
 
     t.list.field('feed', {
       type: 'Post',
       resolve: (_parent, _args, ctx) => {
-        return photon.posts.findMany({
+        return prisma.post.findMany({
           where: { published: true },
         })
       },
@@ -68,7 +78,7 @@ const Query = objectType({
     t.list.field('drafts', {
       type: 'Post',
       resolve: (_parent, _args, ctx) => {
-        return photon.posts.findMany({
+        return prisma.post.findMany({
           where: { published: false },
         })
       },
@@ -80,7 +90,7 @@ const Query = objectType({
         searchString: stringArg({ nullable: true }),
       },
       resolve: (_, { searchString }, ctx) => {
-        return photon.posts.findMany({
+        return prisma.post.findMany({
           where: {
             OR: [
               { title: { contains: searchString } },
@@ -103,7 +113,7 @@ const Mutation = objectType({
         email: stringArg({ nullable: false }),
       },
       resolve: (_, { name, email }, ctx) => {
-        return photon.users.create({
+        return prisma.user.create({
           data: {
             name,
             email,
@@ -119,12 +129,11 @@ const Mutation = objectType({
         postId: idArg(),
       },
       resolve: (_, { postId }, ctx) => {
-        return photon.posts.delete({
+        return prisma.post.delete({
           where: { id: postId },
         })
       },
     })
-
 
     t.field('createDraft', {
       type: 'Post',
@@ -134,7 +143,7 @@ const Mutation = objectType({
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
-        return photon.posts.create({
+        return prisma.post.create({
           data: {
             title,
             content,
@@ -154,7 +163,7 @@ const Mutation = objectType({
         postId: idArg(),
       },
       resolve: (_, { postId }, ctx) => {
-        return photon.posts.update({
+        return prisma.post.update({
           where: { id: postId },
           data: { published: true },
         })
@@ -164,13 +173,16 @@ const Mutation = objectType({
 })
 
 export const schema = makeSchema({
-  types: [Query, Mutation, Post, User],
+  types: [Query, Mutation, Post, User, GQLDate],
+  outputs: {
+    typegen: path.join(__dirname, 'nexus-typegen.ts'),
+  },
 })
 
 export default async (req, res) => {
   const query = req.body.query
   const variables = req.body.variables
-console.log(`serve graphql`, query, variables)
+  console.log(`serve graphql`, query, variables)
   const response = await graphql(schema, query, {}, {}, variables)
 
   return res.end(JSON.stringify(response))

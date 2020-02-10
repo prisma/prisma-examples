@@ -19,55 +19,58 @@ const FeedQuery = gql`
   }
 `
 
-const PostLink = ({ post }) => (
-  <li>
-    <Link href="/p/[id]" as={`/p/${post.id}`}>
-      <a>{post.title}</a>
-    </Link>
-  </li>
+const Post = ({ post }) => (
+  <Link href="/p/[id]" as={`/p/${post.id}`}>
+    <a>
+      <h2>{post.title}</h2>
+      <small>By {post.author.name}</small>
+      <p>{post.content}</p>
+      <style jsx>{`
+        a {
+          text-decoration: none;
+          color: inherit;
+          padding: 2rem;
+          display: block;
+        }
+      `}</style>
+    </a>
+  </Link>
 )
 
 const Blog = () => {
-
   const { loading, error, data } = useQuery(FeedQuery)
 
   if (loading) {
     return <div>Loading ...</div>
-  } 
+  }
   if (error) {
     return <div>Error: {error.message}</div>
   }
 
   return (
     <Layout>
-      <h1>My Blog</h1>
-      <ul>
-        {data.feed.map(post => (
-          <PostLink key={post.id} post={post} />
-        ))}
-      </ul>
+      <div className="page">
+        <h1>My Blog</h1>
+        <main>
+          {data.feed.map(post => (
+            <div className="post">
+              <Post key={post.id} post={post} />
+            </div>
+          ))}
+        </main>
+      </div>
       <style jsx>{`
-        h1,
-        a {
-          font-family: 'Arial';
+        .post {
+          background: white;
+          transition: box-shadow 0.1s ease-in;
         }
 
-        ul {
-          padding: 0;
+        .post:hover {
+          box-shadow: 1px 1px 3px #aaa;
         }
 
-        li {
-          list-style: none;
-          margin: 5px 0;
-        }
-
-        a {
-          text-decoration: none;
-          color: blue;
-        }
-
-        a:hover {
-          opacity: 0.6;
+        .post + .post {
+          margin-top: 2rem;
         }
       `}</style>
     </Layout>

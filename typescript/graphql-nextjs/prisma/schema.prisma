@@ -4,7 +4,7 @@ datasource db {
 }
 
 generator photon {
-  provider = "photonjs"
+  provider = "prisma-client-js"
 }
 
 model User {
