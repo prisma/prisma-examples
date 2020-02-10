@@ -24,7 +24,7 @@ export default class Draft extends React.Component {
                 body: JSON.stringify(body),
               })
               const data = await res.json()
-              await Router.push('/')
+              await Router.push('/drafts')
             }}>
             <h1>Create Draft</h1>
             <input

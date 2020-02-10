@@ -25,12 +25,12 @@ const Post = props => {
   if (!props.published) {
     title = `${title} (Draft)`
   }
-
+  const authorName = props.author ? props.author.name : 'Unknown author'
   return (
     <Layout>
       <div className="page">
         <h2>{title}</h2>
-        <small>By {props.author.name || 'Unknown author'}</small>
+        <small>By {authorName}</small>
         <p>{props.content}</p>
         <div className="actions">
           {!props.published && (

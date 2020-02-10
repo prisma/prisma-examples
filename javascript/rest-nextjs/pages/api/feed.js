@@ -1,10 +1,10 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 export default async function handle(req, res) {
   console.log(JSON.stringify(req.method))
-  const posts = await photon.posts.findMany({
+  const posts = await prisma.post.findMany({
     where: { published: true },
     include: { author: true },
   })
