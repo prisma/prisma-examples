@@ -1,19 +1,23 @@
-//@ts-check
-const { Photon } = require('@prisma/photon')
 const express = require('express')
-const helmet = require('helmet')
-const moment = require('moment')
 
-const photon = new Photon()
+const { PrismaClient } = require('@prisma/client')
+const client = new PrismaClient()
 
 const app = express()
-app.use(helmet())
 
-app.get('*', async (req, res) => {
-  const currentTime = moment().format('MMMM Do YYYY, h:mm:ss a')
-  let users = await photon.users()
-  res.set('Access-Control-Allow-Origin', '*')
-  res.status(200).send(`${JSON.stringify(users)} - ${currentTime}`)
+app.get('/users', async (req, res) => {
+  // let users = await client.user.findMany()
+  res.status(200).send({ todo: "" })
+})
+
+app.post('/users', async (req, res) => {
+  // let users = await client.user.findMany()
+  res.status(200).send(users)
+})
+
+app.delete('/users/:id', async (req, res) => {
+  // let users = await client.user.findMany()
+  res.status(200).send(users)
 })
 
 module.exports = app

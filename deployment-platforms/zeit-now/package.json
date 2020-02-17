@@ -1,5 +1,15 @@
 {
+  "name": "prisma-zeit-now",
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview019"
+    "@prisma/client": "2.0.0-preview021",
+    "express": "4.17.1"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "postinstall": "prisma2 generate"
+  },
+  "devDependencies": {
+    "prisma2": "2.0.0-preview021",
+    "now": "^16.7.3"
   }
 }

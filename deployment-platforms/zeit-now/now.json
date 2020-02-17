@@ -1,7 +1,11 @@
 {
   "version": 2,
-  "name": "express-photon",
   "env": {
-    "POSTGRESQL_URL": "@postgresql_url"
+    "DATABASE_URL": "@database_url"
+  },
+  "build": {
+    "env": {
+      "DATABASE_URL": "@database_url"
+    }
   }
 }

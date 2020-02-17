@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>A simple deployment with the Now API!</title>
-    <link rel="stylesheet" href="/style.css" />
+    <title>Prisma example with Zeit Now</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss/dist/tailwind.min.css"
+    />
   </head>
   <body>
-    <h1>Welcome to a Static Site with Data from an Express API</h1>
-    <h2>
-      Deployed with
-      <a href="https://zeit.co/docs" target="_blank" rel="noreferrer noopener"
-        >ZEIT Now</a
-      >!
-    </h2>
-    <p>
-      <a
-        href="https://github.com/zeit/now-examples/blob/master/express"
-        target="_blank"
-        rel="noreferrer noopener"
-        >This project</a
-      >
-      includes three files. A static <code>index.html</code> (rewritten with
-      <a
-        href="https://zeit.co/docs/v2/deployments/routes/"
-        target="_blank"
-        rel="noreferrer noopener"
-        >Routes</a
-      >
-      for access from the root) file as the homepage, a static
-      <code>style.css</code> file for styling, and a
-      <code>api/index.js</code> serverless function that returns the date on
-      invocation. See
-      <a href="/api/index.js"
-        ><code>api/index.js</code> for the Date API with Express</a
-      >.
-    </p>
-    <br />
-    <h3>The date according to Express is:</h3>
-    <p class="date js-date">Loading date...</p>
+    <div class="py-24" style="background: rgb(12, 52, 75)">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-white">
+          Prisma example with Zeit Now
+        </h2>
+
+        <button
+          onclick="getData()"
+          class="fetch-button bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider"
+        >
+          Load posts
+        </button>
+      </div>
+    </div>
+
+    <div class="container mx-auto">
+      <pre
+        class="data-container text-white bg-black shadow-md px-8 pt-6 pb-8 invisible"
+      ></pre>
+    </div>
+
     <script>
-      function main() {
-        fetch('/api/index.js')
+      const dataContainer = document.querySelector('.data-container')
+
+      function getData() {
+        fetch('/api/')
           .then(function(response) {
-            return response.text()
+            return response.json()
           })
-          .then(function(date) {
-            document.querySelector('.js-date').textContent = date
+          .then(function(response) {
+            dataContainer.classList.remove('invisible')
+            dataContainer.textContent = response
+          })
+          .catch(function(err) {
+            dataContainer.classList.remove('invisible')
+            dataContainer.textContent = 'Error fetching'
           })
       }
-      main()
     </script>
   </body>
 </html>
