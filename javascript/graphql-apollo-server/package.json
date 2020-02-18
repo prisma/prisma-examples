@@ -11,7 +11,7 @@
     "nexus-prisma": "0.9.1"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview021"
+    "prisma2": "2.0.0-preview022"
   },
   "prettier": {
     "singleQuote": true,
