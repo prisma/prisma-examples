@@ -1,0 +1,30 @@
+{
+  "name": "hello-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^2.0.0-preview021",
+    "express": "^4.17.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.1.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-markdown": "^4.2.2",
+    "tachyons": "^4.11.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.2",
+    "@types/react": "^16.9.17",
+    "prisma2": "^2.0.0-preview021",
+    "typescript": "^3.7.4"
+  }
+}

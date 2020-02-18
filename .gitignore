@@ -11,3 +11,4 @@ flow-typed
 yarn.lock
 migrations/
 experimental/**/*.db
+.next
