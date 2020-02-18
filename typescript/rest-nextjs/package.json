@@ -22,9 +22,9 @@
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
-    "@types/node": "^13.1.2",
-    "@types/react": "^16.9.17",
-    "prisma2": "^2.0.0-preview021",
-    "typescript": "^3.7.4"
+    "@types/node": "13.7.1",
+    "@types/react": "16.9.20",
+    "prisma2": "2.0.0-preview021",
+    "typescript": "3.7.5"
   }
 }
