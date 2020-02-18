@@ -5,9 +5,7 @@ const prisma = new PrismaClient()
 export default async function handle(req, res) {
   const posts = await prisma.post.findMany({
     where: { published: false },
-    include: {
-      author: true,
-    },
+    include: { author: true },
   })
   res.json(posts)
 }
