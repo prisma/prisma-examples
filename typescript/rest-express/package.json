@@ -6,7 +6,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview021",
+    "@prisma/client": "2.0.0-preview022",
     "@types/node": "12.12.27",
     "body-parser": "1.19.0",
     "express": "4.17.1"
