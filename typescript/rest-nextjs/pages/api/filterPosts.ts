@@ -1,18 +1,18 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 // GET /api/filterPosts?searchString=:searchString
 export default async function handle(req, res) {
   const { searchString } = req.query
-  const resultPosts = await photon.posts.findMany({
+  const resultPosts = await prisma.post.findMany({
     where: {
       OR: [
         {
-          title: { contains: searchString, },
+          title: { contains: searchString },
         },
         {
-          content: { contains: searchString, },
+          content: { contains: searchString },
         },
       ],
     },

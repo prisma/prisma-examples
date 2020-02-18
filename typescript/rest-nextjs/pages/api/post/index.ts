@@ -1,6 +1,6 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 // POST /api/post
 // Required fields in body: title, authorEmail
@@ -8,7 +8,7 @@ const photon = new Photon()
 export default async function handle(req, res) {
   console.log(`POST api/post`, req.body)
   const { title, content, authorEmail } = req.body
-  const result = await photon.posts.create({
+  const result = await prisma.post.create({
     data: {
       title: title,
       content: content,
