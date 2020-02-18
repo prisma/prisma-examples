@@ -24,7 +24,6 @@ const Post = ({ post }) => {
 }
 
 const Drafts = props => {
-  console.log(props)
   return (
     <Layout>
       <div className="page">

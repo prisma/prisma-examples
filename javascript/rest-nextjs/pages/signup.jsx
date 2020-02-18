@@ -23,7 +23,6 @@ export default class Signup extends React.Component {
                 body: JSON.stringify(body),
               })
               const data = await res.json()
-              console.log(`Created user: `, data)
               Router.push('/')
             }}>
             <h1>Signup user</h1>

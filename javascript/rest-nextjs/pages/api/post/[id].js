@@ -22,7 +22,6 @@ async function handleGET(postId, res) {
     where: { id: Number(postId) },
     include: { author: true },
   })
-  console.log(post)
   res.json(post)
 }
 

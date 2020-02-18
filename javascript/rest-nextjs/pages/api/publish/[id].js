@@ -9,6 +9,5 @@ export default async function handle(req, res) {
     where: { id: Number(postId) },
     data: { published: true },
   })
-  console.log(post)
   res.json(post)
 }
