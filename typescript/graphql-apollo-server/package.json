@@ -15,7 +15,7 @@
     "@types/node-fetch": "2.5.4",
     "apollo-server": "2.10.1",
     "graphql": "14.6.0",
-    "nexus": "0.12.0-rc.11",
+    "nexus": "0.12.0-rc.12",
     "nexus-prisma": "0.9.1"
   },
   "devDependencies": {
