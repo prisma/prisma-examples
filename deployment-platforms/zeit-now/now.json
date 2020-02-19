@@ -7,5 +7,17 @@
     "env": {
       "DATABASE_URL": "@database_url"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/api/users",
+      "methods": ["GET"],
+      "dest": "/api/getUsers.js"
+    },
+    {
+      "src": "/api/users",
+      "methods": ["POST", "PUT"],
+      "dest": "/api/createUser.js"
+    }
+  ]
 }
