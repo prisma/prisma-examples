@@ -6,10 +6,12 @@
   },
   "scripts": {
     "start": "node index.js",
+    "prisma:introspect": "prisma2 introspect",
+    "prisma:generate": "prisma2 generate",
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview021",
+    "prisma2": "2.0.0-preview022",
     "now": "^16.7.3"
   }
 }
