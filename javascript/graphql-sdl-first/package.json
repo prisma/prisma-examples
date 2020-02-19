@@ -6,7 +6,7 @@
   "dependencies": {
     "@prisma/client": "2.0.0-preview022",
     "graphql": "14.6.0",
-    "graphql-tools": "4.0.6",
+    "graphql-tools": "4.0.7",
     "graphql-yoga": "1.18.3"
   },
   "devDependencies": {
