@@ -40,6 +40,6 @@
     "@types/node": "13.7.4",
     "@types/react": "16.9.21",
     "prisma2": "2.0.0-preview021",
-    "typescript": "3.7.5"
+    "typescript": "3.8.2"
   }
 }
