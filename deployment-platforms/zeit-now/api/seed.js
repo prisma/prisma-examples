@@ -1,6 +1,26 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
+module.exports = async (req, res) => {
+  try {
+    await Promise.all([prisma.profile.deleteMany(), prisma.post.deleteMany()])
+    await prisma.user.deleteMany()
+
+    const createdUser = await prisma.user.create({
+      data: seedUser
+    })
+
+    const createdUser2 = await prisma.user.create({
+      data: seedUser2
+    })
+
+    res.status(201).json([createdUser, createdUser2])
+  } catch (error) {
+    console.error(error)
+    res.status(500)
+  }
+}
+
 const seedUser = {
   email: 'jane@prisma.io',
   name: 'Jane',
@@ -64,25 +84,5 @@ const seedUser2 = {
         content: ''
       }
     ]
-  }
-}
-
-module.exports = async (req, res) => {
-  try {
-    await Promise.all([prisma.profile.deleteMany(), prisma.post.deleteMany()])
-    await prisma.user.deleteMany()
-
-    const createdUser = await prisma.user.create({
-      data: seedUser
-    })
-
-    const createdUser2 = await prisma.user.create({
-      data: seedUser2
-    })
-
-    res.status(201).json([createdUser, createdUser2])
-  } catch (error) {
-    console.error(error)
-    res.status(500)
   }
 }

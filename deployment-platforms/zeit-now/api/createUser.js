@@ -1,11 +1,6 @@
 const { PrismaClient, PrismaClientRequestError } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-// app.delete('/users/:id', async (req, res) => {
-//   // let users = await prisma.user.findMany()
-//   res.status(200).send(users)
-// })
-
 module.exports = async (req, res) => {
   try {
     const createdUser = await prisma.user.create({
