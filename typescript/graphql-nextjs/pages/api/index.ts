@@ -19,7 +19,7 @@ const User = objectType({
       resolve: parent =>
         prisma.user
           .findOne({
-            where: { id: parent.id },
+            where: { id: Number(parent.id) },
           })
           .posts(),
     })
@@ -43,7 +43,7 @@ const Post = objectType({
       resolve: parent =>
         prisma.post
           .findOne({
-            where: { id: parent.id },
+            where: { id: Number(parent.id) },
           })
           .author(),
     })
@@ -59,9 +59,8 @@ const Query = objectType({
         postId: idArg({ nullable: false }),
       },
       resolve: (_, args) => {
-        console.log(`resolve post`, args)
         return prisma.post.findOne({
-          where: { id: args.postId },
+          where: { id: Number(args.postId) },
         })
       },
     })
@@ -130,7 +129,7 @@ const Mutation = objectType({
       },
       resolve: (_, { postId }, ctx) => {
         return prisma.post.delete({
-          where: { id: postId },
+          where: { id: Number(postId) },
         })
       },
     })
@@ -164,7 +163,7 @@ const Mutation = objectType({
       },
       resolve: (_, { postId }, ctx) => {
         return prisma.post.update({
-          where: { id: postId },
+          where: { id: Number(postId) },
           data: { published: true },
         })
       },
@@ -183,8 +182,6 @@ export const schema = makeSchema({
 export default async (req, res) => {
   const query = req.body.query
   const variables = req.body.variables
-  console.log(`serve graphql`, query, variables)
   const response = await graphql(schema, query, {}, {}, variables)
-
   return res.end(JSON.stringify(response))
 }
