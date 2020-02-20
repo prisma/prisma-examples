@@ -15,6 +15,11 @@
       "dest": "/api/getUsers.js"
     },
     {
+      "src": "/api/posts",
+      "methods": ["GET"],
+      "dest": "/api/getPosts.js"
+    },
+    {
       "src": "/api/users",
       "methods": ["POST", "PUT"],
       "dest": "/api/createUser.js"
