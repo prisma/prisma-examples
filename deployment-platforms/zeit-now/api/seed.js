@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 const seedUser = {
   email: 'jane@prisma.io',
   name: 'Jane',
-  profiles: {
+  profile: {
     create: [
       {
         bio: 'Technical Writer'
@@ -37,7 +37,7 @@ const seedUser = {
       }
     ]
   },
-  posts: {
+  post: {
     create: [
       {
         title:
@@ -56,7 +56,7 @@ const seedUser = {
 const seedUser2 = {
   email: 'toru@prisma.io',
   name: 'Toru Takemitsu',
-  profiles: {
+  profile: {
     create: [
       {
         bio: 'Composer'
@@ -69,7 +69,7 @@ const seedUser2 = {
       }
     ]
   },
-  posts: {
+  post: {
     create: [
       {
         title: 'Requiem for String Orchestra',

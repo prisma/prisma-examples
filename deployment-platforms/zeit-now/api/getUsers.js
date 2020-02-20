@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 module.exports = async (req, res) => {
   try {
     const users = await prisma.user.findMany({
-      include: { profiles: true }
+      include: { profile: true }
     })
     res.status(200).json(users)
   } catch (error) {
