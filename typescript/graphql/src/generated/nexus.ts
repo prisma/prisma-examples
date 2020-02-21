@@ -4,7 +4,7 @@
  */
 
 import * as Context from "../context"
-import * as photon from "@prisma/photon"
+import * as prisma from "@prisma/client"
 
 
 
@@ -20,26 +20,22 @@ declare global {
 }
 
 export interface NexusGenInputs {
-  PostCreateManyWithoutPostsInput: { // input type
+  PostCreateManyWithoutAuthorInput: { // input type
     connect?: NexusGenInputs['PostWhereUniqueInput'][] | null; // [PostWhereUniqueInput!]
     create?: NexusGenInputs['PostCreateWithoutAuthorInput'][] | null; // [PostCreateWithoutAuthorInput!]
   }
   PostCreateWithoutAuthorInput: { // input type
     content?: string | null; // String
-    createdAt?: any | null; // DateTime
-    id?: string | null; // ID
     published?: boolean | null; // Boolean
     title: string; // String!
-    updatedAt?: any | null; // DateTime
   }
   PostWhereUniqueInput: { // input type
-    id?: string | null; // ID
+    id?: number | null; // Int
   }
   UserCreateInput: { // input type
     email: string; // String!
-    id?: string | null; // ID
     name?: string | null; // String
-    posts?: NexusGenInputs['PostCreateManyWithoutPostsInput'] | null; // PostCreateManyWithoutPostsInput
+    posts?: NexusGenInputs['PostCreateManyWithoutAuthorInput'] | null; // PostCreateManyWithoutAuthorInput
   }
 }
 
@@ -48,19 +44,18 @@ export interface NexusGenEnums {
 
 export interface NexusGenRootTypes {
   Mutation: {};
-  Post: photon.Post;
+  Post: prisma.Post;
   Query: {};
-  User: photon.User;
+  User: prisma.User;
   String: string;
   Int: number;
   Float: number;
   Boolean: boolean;
   ID: string;
-  DateTime: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  PostCreateManyWithoutPostsInput: NexusGenInputs['PostCreateManyWithoutPostsInput'];
+  PostCreateManyWithoutAuthorInput: NexusGenInputs['PostCreateManyWithoutAuthorInput'];
   PostCreateWithoutAuthorInput: NexusGenInputs['PostCreateWithoutAuthorInput'];
   PostWhereUniqueInput: NexusGenInputs['PostWhereUniqueInput'];
   UserCreateInput: NexusGenInputs['UserCreateInput'];
@@ -76,11 +71,9 @@ export interface NexusGenFieldTypes {
   Post: { // field return type
     author: NexusGenRootTypes['User'] | null; // User
     content: string | null; // String
-    createdAt: any; // DateTime!
-    id: string; // ID!
+    id: number; // Int!
     published: boolean; // Boolean!
     title: string; // String!
-    updatedAt: any; // DateTime!
   }
   Query: { // field return type
     feed: NexusGenRootTypes['Post'][]; // [Post!]!
@@ -89,7 +82,7 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     email: string; // String!
-    id: string; // ID!
+    id: number; // Int!
     name: string | null; // String
     posts: NexusGenRootTypes['Post'][]; // [Post!]!
   }
@@ -129,13 +122,13 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Mutation" | "Post" | "Query" | "User";
 
-export type NexusGenInputNames = "PostCreateManyWithoutPostsInput" | "PostCreateWithoutAuthorInput" | "PostWhereUniqueInput" | "UserCreateInput";
+export type NexusGenInputNames = "PostCreateManyWithoutAuthorInput" | "PostCreateWithoutAuthorInput" | "PostWhereUniqueInput" | "UserCreateInput";
 
 export type NexusGenEnumNames = never;
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 
