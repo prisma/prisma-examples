@@ -37,4 +37,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 
 	echo "$item done"
 	cd "$dir"
+
+	# somehow ports are still in use in GitHub actions, so kill everything here again
+	pkill node || true
 done
