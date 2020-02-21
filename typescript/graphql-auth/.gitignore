@@ -1,3 +1,4 @@
 node_modules/
-.serverless/
+dist/
+src/generated/
 *.env*

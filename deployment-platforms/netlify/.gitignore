@@ -1,5 +1,5 @@
-functions-build
+node_modules/
+functions-build/
 .netlify/
-.env
 functions/generated/
-.envrc
+*.env*
