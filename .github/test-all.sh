@@ -11,7 +11,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 	echo "running $item"
 
 	case "$item" in
-		*".github"*|*"experimental"*|*"deployment-platforms"*|*"graphql-nextjs"*|*"graphql-auth"*)
+		*".github"*|*"experimental"*|*"deployment-platforms"*)
 			echo "ignoring $item"
 			continue
 			;;
@@ -28,8 +28,9 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 	if [ -f "$run_file" ]; then
 		sh "$run_file"
 	else
-		# TODO in the future, fail if no run.sh exists to force testing all examples
-		echo "no test file set up for $item, skipping"
+		echo "no test file set up for $item,"
+		echo "please create a test shell file at $run_file"
+		exit 1
 	fi
 
 	## END
