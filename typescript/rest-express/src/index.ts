@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import * as bodyParser from 'body-parser'
-import * as express from 'express'
+import express from 'express'
 
 const prisma = new PrismaClient()
 const app = express()
@@ -59,9 +59,9 @@ app.get(`/post/:id`, async (req, res) => {
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await prisma.post.findMany({ 
+  const posts = await prisma.post.findMany({
     where: { published: true },
-    include: { author: true } 
+    include: { author: true }
   })
   res.json(posts)
 })
