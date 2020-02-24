@@ -86,11 +86,52 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement a new route in the REST API, e.g. `/api/profile`.
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement queries and mutations in the GraphQL API.
 
-Here are some examples for some Prisma Client operations:
+#### Option A: Expose `Profile` operations via `nexus-prisma`
 
-#### Create a new profile for an existing user
+With the `nexus-prisma` package, you can expose the new `Profile` model in the API like so:
+
+```diff
+// ... as before 
+
+const User = objectType({
+  name: 'User',
+  definition(t) {
+    t.model.id()
+    t.model.name()
+    t.model.email()
+    t.model.posts({
+      pagination: false,
+    })
++   t.model.profile()
+  },
+})
+
+// ... as before 
+
++const Profile = objectType({
++  name: 'Profile',
++  definition(t) {
++    t.model.id()
++    t.model.bio()
++    t.model.user()
++  },
++})
+
+// ... as before 
+
+export const schema = makeSchema({
++  types: [Query, Mutation, Post, User, Profile],
+  // ... as before
+}
+```
+
+#### Option B: Use the `PrismaClient` instance directly
+
+As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
+
+##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
@@ -103,7 +144,7 @@ const profile = await prisma.profile.create({
 })
 ```
 
-#### Create a new user with a new profile
+##### Create a new user with a new profile
 
 ```ts
 const user = await prisma.user.create({
@@ -119,7 +160,7 @@ const user = await prisma.user.create({
 })
 ```
 
-#### Update the profile of an existing user
+##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
@@ -136,9 +177,9 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ### 5. Build new UI features in React
 
-Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a UI component in React. It could be called `profile.tsx` and would be located in the `pages` directory. 
+Once you have added a new query or mutation to the API, you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory. 
 
-In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
+In the application code, you can access the new operations via Apollo Client and populate the UI with the data you receive from the API calls.
 
 ## Next steps
 

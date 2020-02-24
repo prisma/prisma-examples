@@ -122,7 +122,6 @@ export const schema = makeSchema({
 +  types: [Query, Mutation, Post, User, Profile],
   // ... as before
 }
-
 ```
 
 #### Option B: Use the `PrismaClient` instance directly

@@ -223,7 +223,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ### 5. Build new UI features in React
 
-Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a UI component in React. It could be called `profile.tsx` and would be located in the `pages` directory. 
+Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory. 
 
 In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
 
