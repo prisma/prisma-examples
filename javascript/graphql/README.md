@@ -218,7 +218,7 @@ model User {
   email   String   @unique
   id      Int      @id
   name    String?
-  posts   Post[]
+  post    Post[]
   profile Profile?
 }
 
