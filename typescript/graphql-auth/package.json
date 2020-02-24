@@ -7,7 +7,7 @@
   "dependencies": {
     "bcrypt": "3.0.8",
     "graphql": "14.6.0",
-    "graphql-shield": "5.7.3",
+    "graphql-shield": "7.0.14",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
     "nexus": "0.11.7",
