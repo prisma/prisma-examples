@@ -16,9 +16,9 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <details><summary>Expand for a tour through the UI of the app</summary>
 
-**Blog** (located in [`./src/pages/index.ts`](./src/pages/index.ts))
+**Blog** (located in [`./src/pages/index.ts`](./src/pages/index.ts)
 
-[](https://imgur.com/eepbOUO.png)
+![](https://imgur.com/eepbOUO.png)
 
 **Signup** (located in [`./src/pages/signup.ts`](./src/pages/signup.ts))
 
@@ -38,6 +38,6 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 </details>
 
-__INLINE(../../_using-the-rest-api.md)__
+__INLINE(../../_using-the-rest-api-nextjs.md)__
 
 __INLINE(../_next-steps-fullstack.md)__
