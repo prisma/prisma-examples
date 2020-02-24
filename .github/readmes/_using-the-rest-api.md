@@ -1,5 +1,7 @@
 ### 3. Using the REST API
 
+You can access the REST API of the server using the following endpoints:
+
 #### `GET`
 
 - `/post/:id`: Fetch a single post by its `id`

@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API with TypeScript** using [Express.JS](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement a **REST API with TypeScript** using [Express](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/experimental/typescript/rest-express
