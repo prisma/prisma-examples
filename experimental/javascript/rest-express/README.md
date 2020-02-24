@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API** using [Express.JS](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement a **REST API** using [Express](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
 ## How to use
 
@@ -98,6 +98,8 @@ npm run dev
 The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
 ### 3. Using the REST API
+
+You can access the REST API of the server using the following endpoints:
 
 #### `GET`
 
