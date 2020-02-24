@@ -1,7 +1,7 @@
-const { PrismaClient } = require('@prisma/client')
+import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   try {
     const users = await prisma.user.findMany({
       include: { profile: true }

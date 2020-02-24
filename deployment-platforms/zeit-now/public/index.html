@@ -59,27 +59,27 @@
         </h2>
         <button
           onclick="getApi('')"
-          class="fetch-button bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
+          class="fetch-button focus:outline-none bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
         >
           Check API status
         </button>
         <button
+          onclick="getApi('seed')"
+          class="fetch-button focus:outline-none bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
+        >
+          Seed data
+        </button>
+        <button
           onclick="getApi('users')"
-          class="fetch-button bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
+          class="fetch-button focus:outline-none bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
         >
           Load users with profiles
         </button>
         <button
           onclick="getApi('posts')"
-          class="fetch-button bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
+          class="fetch-button focus:outline-none bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
         >
           Load posts
-        </button>
-        <button
-          onclick="getApi('seed')"
-          class="fetch-button bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
-        >
-          Seed data
         </button>
         <div class="loader invisible"></div>
       </div>

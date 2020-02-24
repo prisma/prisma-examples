@@ -1,7 +1,7 @@
-const { PrismaClient, PrismaClientRequestError } = require('@prisma/client')
+import { PrismaClient, PrismaClientRequestError } from '@prisma/client'
 const prisma = new PrismaClient()
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   try {
     const createdUser = await prisma.user.create({
       data: req.body
