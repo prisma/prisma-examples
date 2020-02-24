@@ -16,23 +16,23 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <details><summary>Expand for a tour through the UI of the app</summary>
 
-**Blog** (located in [`./src/pages/index.ts`](./src/pages/index.ts)
+**Blog** (located in [`./pages/index.ts`](./pages/index.ts)
 
 ![](https://imgur.com/eepbOUO.png)
 
-**Signup** (located in [`./src/pages/signup.ts`](./src/pages/signup.ts))
+**Signup** (located in [`./pages/signup.ts`](./pages/signup.ts))
 
 ![](https://imgur.com/iE6OaBI.png)
 
-**Create post (draft)** (located in [`./src/pages/create.ts`](./src/pages/create.ts))
+**Create post (draft)** (located in [`./pages/create.ts`](./pages/create.ts))
 
 ![](https://imgur.com/olCWRNv.png)
 
-**Drafts** (located in [`./src/pages/drafts.ts`](./src/pages/drafts.ts))
+**Drafts** (located in [`./pages/drafts.ts`](./pages/drafts.ts))
 
 ![](https://imgur.com/PSMzhcd.png)
 
-**View post** (located in [`./src/pages/p/[id].ts`](./src/pages/p/[id].ts)) (delete or publish here)
+**View post** (located in [`./pages/p/[id].ts`](./pages/p/[id].ts)) (delete or publish here)
 
 ![](https://imgur.com/zS1B11O.png)
 
