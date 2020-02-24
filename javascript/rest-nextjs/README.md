@@ -31,6 +31,8 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <details><summary>Expand for a tour through the UI of the app</summary>
 
+<br />
+
 **Blog** (located in [`./pages/index.ts`](./pages/index.ts)
 
 ![](https://imgur.com/eepbOUO.png)
