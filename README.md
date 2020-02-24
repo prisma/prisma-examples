@@ -15,6 +15,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | Demo | Description |
 |:------|:----------|
 | [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/rest-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a REST API |
+| [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a GraphQL API |
 
 ### Backend only
 
