@@ -12,7 +12,7 @@ new GraphQLServer({
     types,
     plugins: [nexusPrismaPlugin()],
     outputs: {
-      schema: __dirname + '/generated/schema.graphql',
+      schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
     },
   }),
