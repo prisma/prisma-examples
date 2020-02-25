@@ -1,0 +1,14 @@
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+
+      - name: test
+        run: sh .github/test-all.sh
