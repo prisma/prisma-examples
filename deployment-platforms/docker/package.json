@@ -7,7 +7,7 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview019",
+    "@prisma/client": "~2.0.0-preview022",
     "dotenv": "8.2.0",
     "graphql": "14.6.0",
     "graphql-yoga": "1.18.3"
@@ -17,6 +17,6 @@
     "@types/node": "12.12.28",
     "prisma2": "2.0.0-preview022",
     "ts-node": "8.6.2",
-    "typescript": "3.7.5"
+    "typescript": "3.8.2"
   }
 }

@@ -125,7 +125,6 @@ function createApolloClient(initialState = {}) {
   const ssrMode = typeof window === 'undefined'
   const cache = new InMemoryCache().restore(initialState)
 
-  // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
     ssrMode,
     link: createIsomorphLink(),
@@ -134,15 +133,9 @@ function createApolloClient(initialState = {}) {
 }
 
 function createIsomorphLink() {
-  // if (typeof window === 'undefined') {
-  //   const { SchemaLink } = require('apollo-link-schema')
-  //   const { schema } = require('../pages/api')
-  //   return new SchemaLink({ schema })
-  // } else {
   const { HttpLink } = require('apollo-link-http')
   return new HttpLink({
     uri: 'http://localhost:3000/api',
     credentials: 'same-origin',
   })
-  // }
 }

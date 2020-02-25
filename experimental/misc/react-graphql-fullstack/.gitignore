@@ -1,4 +1,3 @@
-node_modules
-migrations
+node_modules/
+src/generated/
 *.db
-*lock

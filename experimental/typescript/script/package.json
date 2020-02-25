@@ -3,13 +3,13 @@
   "license": "MIT",
   "devDependencies": {
     "prisma2": "2.0.0-preview022",
-    "ts-node": "8.5.4",
-    "typescript": "3.7.3"
+    "ts-node": "8.6.2",
+    "typescript": "3.8.2"
   },
   "scripts": {
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview018.2"
+    "@prisma/photon": "2.0.0-preview019"
   }
 }

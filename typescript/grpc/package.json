@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview022",
-    "ts-node": "8.5.4",
-    "typescript": "3.7.3"
+    "ts-node": "8.6.2",
+    "typescript": "3.8.2"
   },
   "engines" : { 
     "node" : ">=10.0.0" 

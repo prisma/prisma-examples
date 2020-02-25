@@ -1,2 +1,5 @@
 [build]
 functions = "functions/"
+
+[build.environment]
+NODE_ENV = "production"

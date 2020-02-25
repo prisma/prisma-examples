@@ -4,9 +4,9 @@
 Evolving the application typically requires four subsequent steps:
 
 1. Migrating the database schema using SQL
-1. Update your Prisma schema by introspecting the database with `prisma2 introspect`
+1. Updating your Prisma schema by introspecting the database with `prisma2 introspect`
 1. Generating Prisma Client to match the new database schema with `prisma2 generate`
-1. Use the updated Prisma Client in your application code
+1. Using the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -25,7 +25,7 @@ CREATE TABLE "Profile" (
 To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
 
 ```bash
-sqlite3 test.db \
+sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
@@ -62,7 +62,7 @@ model User {
   email   String   @unique
   id      Int      @id
   name    String?
-  posts   Post[]
+  post    Post[]
   profile Profile?
 }
 
@@ -122,7 +122,6 @@ export const schema = makeSchema({
 +  types: [Query, Mutation, Post, User, Profile],
   // ... as before
 }
-
 ```
 
 #### Option B: Use the `PrismaClient` instance directly

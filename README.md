@@ -10,6 +10,15 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## TypeScript
 
+### Fullstack
+
+| Demo | Description |
+|:------|:----------|
+| [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/rest-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a REST API |
+| [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/graphql-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a GraphQL API |
+
+### Backend only
+
 | Demo | Description |
 |:------|:----------|
 | [`script`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/script) | Simple usage of Prisma Client JS in a TypeScript script |
@@ -21,6 +30,14 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/prisma2/typescript/grpc) | Simple gRPC API |
 
 ## JavaScript (Node.js)
+
+### Fullstack
+
+| Demo | Description |
+|:------|:----------|
+| [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/prisma2/javascript/rest-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a REST API |
+
+### Backend only
 
 | Demo | Description |
 |:------|:----------|
@@ -34,4 +51,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## Experimental
 
-The [`experimental`](`./experimentral) directory contains the same examples as the `javascript` and `typescript` directories. The main difference is that it uses Prisma to perform database migrations which are currently an experimental feature.
+The [`experimental`](./experimental) directory contains the same examples as the `javascript` and `typescript` directories. The main difference is that it uses Prisma to perform database migrations which are currently an experimental feature.
+
+## Deployment platform
+
+The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Note that they are currently unmaintained but will be updated soon.

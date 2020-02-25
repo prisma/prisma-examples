@@ -17,7 +17,9 @@
           .then(function(date) {
             document.querySelector('.js-users').textContent = date
           })
-          .catch(e => console.log(e))
+          .catch(e => {
+            throw e
+          })
       }
       main()
     </script>

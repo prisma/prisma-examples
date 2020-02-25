@@ -66,7 +66,7 @@ CREATE TABLE "Profile" (
 To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
 
 ```bash
-sqlite3 test.db \
+sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
@@ -103,7 +103,7 @@ model User {
   email   String   @unique
   id      Int      @id
   name    String?
-  posts   Post[]
+  post    Post[]
   profile Profile?
 }
 
@@ -126,7 +126,7 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-You can now use your `PrismaClient` instance to perform operations against the `Profile` new table. Here are some examples. 
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
 
 #### Create a new profile for an existing user
 
