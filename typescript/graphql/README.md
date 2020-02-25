@@ -178,10 +178,11 @@ CREATE TABLE "Profile" (
 );
 ```
 
-To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
+To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal. 
+Make sure you're in the example's `prisma` directory (`typescript/graphql/prisma`), and run:
 
 ```bash
-sqlite3 test.db \
+sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
