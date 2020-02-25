@@ -88,7 +88,7 @@ CREATE TABLE "Profile" (
 To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
 
 ```bash
-sqlite3 test.db \
+sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
