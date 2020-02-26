@@ -1,5 +1,4 @@
 [build]
-functions = "functions/"
+  functions = "functions/"
 
-[build.environment]
-NODE_ENV = "production"
+  publish = "public/"
