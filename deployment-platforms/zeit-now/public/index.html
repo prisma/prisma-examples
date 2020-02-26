@@ -110,8 +110,11 @@
             loader.classList.add('invisible')
           })
           .catch(function(err) {
-            responseContainer.textContent = 'Error fetching'
             responseContainer.classList.remove('invisible')
+            responseContainer.textContent = 'Error fetching'
+          })
+          .finally(function() {
+            loader.classList.add('invisible')
           })
       }
     </script>
