@@ -1,7 +1,7 @@
 {
   "name": "prisma-zeit-now",
   "dependencies": {
-    "@prisma/client": "2.0.0-preview022",
+    "@prisma/client": "2.0.0-preview022"
   },
   "scripts": {
     "start": "node index.js",
