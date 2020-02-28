@@ -21,7 +21,7 @@
   "devDependencies": {
     "prisma2": "2.0.0-preview022",
     "ts-node": "8.6.2",
-    "typescript": "3.8.2"
+    "typescript": "3.8.3"
   },
   "engines": {
     "node": ">=10.0.0"
