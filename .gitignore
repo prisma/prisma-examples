@@ -17,3 +17,4 @@ yarn.lock
 migrations/
 experimental/**/*.db
 .next
+.vscode/
