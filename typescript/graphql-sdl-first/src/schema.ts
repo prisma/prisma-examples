@@ -55,7 +55,6 @@ input PostCreateWithoutAuthorInput {
 }
 `
 
-
 const resolvers = {
   Query: {
     feed: (parent, args, ctx: Context) => {
