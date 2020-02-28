@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
-import { idArg, mutationType, stringArg } from 'nexus'
+import { mutationType, stringArg, intArg } from 'nexus'
 import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation = mutationType({
@@ -62,12 +62,13 @@ export const Mutation = mutationType({
       },
       resolve: (parent, { title, content }, ctx) => {
         const userId = getUserId(ctx)
+        if (!userId) throw new Error('Could not authenticate user.')
         return ctx.prisma.post.create({
           data: {
             title,
             content,
             published: false,
-            author: { connect: { id: userId } },
+            author: { connect: { id: Number(userId) } },
           },
         })
       },
@@ -76,7 +77,7 @@ export const Mutation = mutationType({
     t.field('deletePost', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg({ nullable: false }) },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.delete({
           where: {
@@ -89,7 +90,7 @@ export const Mutation = mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.update({
           where: { id },

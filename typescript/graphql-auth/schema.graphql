@@ -9,9 +9,9 @@ type AuthPayload {
 
 type Mutation {
   createDraft(content: String, title: String!): Post!
-  deletePost(id: ID): Post
+  deletePost(id: Int!): Post
   login(email: String!, password: String!): AuthPayload!
-  publish(id: ID): Post
+  publish(id: Int): Post
   signup(email: String!, name: String, password: String!): AuthPayload!
 }
 
