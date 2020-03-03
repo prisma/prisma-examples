@@ -1,0 +1,34 @@
+name: check-for-update
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+jobs:
+  check-for-preview-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: use node 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: check preview update
+        run: sh .github/scripts/check-for-update.sh preview master
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+
+  check-for-alpha-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: use node 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: check alpha update
+        run: sh .github/scripts/check-for-update.sh alpha alpha
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
