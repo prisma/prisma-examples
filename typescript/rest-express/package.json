@@ -6,7 +6,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview022",
+    "@prisma/client": "2.0.0-alpha.846",
     "@types/node": "12.12.29",
     "body-parser": "1.19.0",
     "express": "4.17.1"
@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/body-parser": "1.19.0",
     "@types/express": "4.17.2",
-    "prisma2": "2.0.0-preview022",
+    "prisma2": "2.0.0-alpha.846",
     "ts-node": "8.6.2",
     "typescript": "3.8.3"
   },
