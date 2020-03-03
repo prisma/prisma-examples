@@ -21,7 +21,7 @@ git config --global user.name "Prismo"
 
 git remote add github "git@github.com:$GITHUB_REPOSITORY.git"
 git fetch github "$branch"
-git checkout "$branch"
+git reset --hard "github/$branch"
 
 # since GH actions are limited to 5 minute cron jobs, just run this continuously for 5 minutes
 minutes=5 # cron job runs each x minutes
