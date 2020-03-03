@@ -12,7 +12,7 @@ git config --global user.name "Prismo"
 
 git remote add github "git@github.com:$GITHUB_REPOSITORY.git"
 
-sh .github/scripts/ugrade-all.sh alpha
+sh .github/scripts/upgrade-all.sh alpha
 
 git commit -am "chore(packages): bump prisma2 to $v"
 

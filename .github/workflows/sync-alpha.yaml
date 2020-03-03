@@ -2,18 +2,14 @@ name: sync-alpha
 on:
   push:
     branches:
-      - master
+      - prisma2
 jobs:
-  test:
+  sync-alpha:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/setup-node@v1
-        with:
-          version: 12
-
-      - name: test
+      - name: sync alpha
         run: sh .github/scripts/sync-alpha.sh
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}

@@ -2,9 +2,7 @@
 
 set -eu
 
-dir=$1
-
-echo "running $dir tests"
+echo "upgrading all packages"
 
 packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
 
