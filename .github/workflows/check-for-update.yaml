@@ -14,7 +14,7 @@ jobs:
           node-version: 10
 
       - name: check preview update
-        run: sh .github/scripts/check-for-update.sh preview prisma2
+        run: sh .github/scripts/check-for-update.sh latest prisma2
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
 
