@@ -20,6 +20,8 @@ git config --global user.email "prismabots@gmail.com"
 git config --global user.name "Prismo"
 
 git remote add github "git@github.com:$GITHUB_REPOSITORY.git"
+git fetch github "$branch"
+git checkout "$branch"
 
 # since GH actions are limited to 5 minute cron jobs, just run this continuously for 5 minutes
 minutes=5 # cron job runs each x minutes
@@ -36,7 +38,7 @@ while [ $i -le $count ]; do
 
 	dir=$(pwd)
 
-	git pull github $branch --ff-only
+	git pull github "$branch" --ff-only
 	packages=$(find . -not -path "*/node_modules/*" -type f -name "package.json")
 
 	echo "checking info..."
@@ -92,7 +94,7 @@ while [ $i -le $count ]; do
 	# fail silently if the unlikely event happens that this change already has been pushed either manually
 	# or by an overlapping upgrade action
 	git pull github "$branch" --rebase || true
-	git push github HEAD:$branch || true
+	git push github "HEAD:$branch" || true
 
 	echo "pushed commit"
 
