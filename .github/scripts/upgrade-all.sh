@@ -2,12 +2,16 @@
 
 set -eu
 
+channel="$1"
+
 echo "upgrading all packages"
 
 packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
 
 channel="alpha"
-v=$(yarn info prisma2@$channel --json | jq '.data["dist-tags"].alpha' | tr -d '"')
+v=$(yarn info "prisma2@$channel" --json | jq ".data[\"dist-tags\"].$channel" | tr -d '"')
+
+export PRISMA_VERSION="$v"
 
 dir=$(pwd)
 
