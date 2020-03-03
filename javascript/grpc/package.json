@@ -2,7 +2,7 @@
   "name": "node-grpc",
   "dependencies": {
     "@grpc/proto-loader": "0.5.3",
-    "@prisma/client": "2.0.0-alpha.848",
+    "@prisma/client": "2.0.0-preview023",
     "chalk": "2.4.2",
     "grpc": "1.24.2"
   },
@@ -18,7 +18,7 @@
     "deletePost": "node ./client/deletePost.js"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.848"
+    "prisma2": "2.0.0-preview023"
   },
   "engines": {
     "node": ">=10.0.0"

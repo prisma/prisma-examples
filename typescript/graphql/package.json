@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-alpha.848",
+    "@prisma/client": "2.0.0-preview023",
     "graphql": "14.6.0",
     "graphql-yoga": "1.18.3",
     "nexus": "0.12.0-rc.13",
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/node": "12.12.29",
     "@types/ws": "7.2.2",
-    "prisma2": "2.0.0-alpha.848",
+    "prisma2": "2.0.0-preview023",
     "ts-node": "8.6.2",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.8.3"
