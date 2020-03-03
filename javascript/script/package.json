@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "2.0.0-alpha.847"
+    "@prisma/client": "2.0.0-alpha.848"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-alpha.847"
+    "prisma2": "2.0.0-alpha.848"
   },
   "scripts": {
     "dev": "node ./script.js"

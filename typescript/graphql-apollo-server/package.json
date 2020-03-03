@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-alpha.847",
+    "@prisma/client": "2.0.0-alpha.848",
     "@types/node-fetch": "2.5.5",
     "apollo-server": "2.10.1",
     "graphql": "14.6.0",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "12.12.29",
-    "prisma2": "2.0.0-alpha.847",
+    "prisma2": "2.0.0-alpha.848",
     "ts-node": "8.6.2",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.8.3"
