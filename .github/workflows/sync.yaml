@@ -1,5 +1,8 @@
 name: test
-on: push
+on:
+  push:
+    branches:
+      - master
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,4 +14,6 @@ jobs:
           version: 12
 
       - name: test
-        run: sh .github/scripts/test-all.sh
+        run: sh .github/scripts/sync-alpha.sh
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}

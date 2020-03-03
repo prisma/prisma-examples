@@ -12,5 +12,9 @@
       "packageNames": ["nexus-prisma"],
       "enabled": false
     }
+  ],
+  "ignoreDeps": [
+    "prisma2",
+    "@prisma/client"
   ]
 }
