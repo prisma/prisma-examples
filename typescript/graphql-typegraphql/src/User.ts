@@ -18,15 +18,3 @@ export class User {
   @Field(type => [Post], {nullable: true})
   posts?: [Post] | null;
 }
-
-@InputType()
-export class UserCreateInput {
-
-  @Field()
-  @IsEmail()  
-  email: string;
-
-  @Field(type => String, { nullable: true })
-  name?: string | null; 
-
-}

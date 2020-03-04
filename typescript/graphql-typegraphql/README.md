@@ -1,6 +1,6 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [TypeGraphQL](https://typegraphql.ml/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to use the **TypeGraphQL library** to **implement a GraphQL server with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [TypeGraphQL](https://typegraphql.ml/). It is based on a SQLite database - you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -33,7 +33,16 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ### 3. Using the GraphQL API
 
-The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
+The schema specifies the API operations of your GraphQL server. TypeGraphQL allows you to define a schema using TypeScript classes and decorators. The schema is generated at runtime, and is defined by the following classes:
+
+* [`./src/PostResolvers.ts`](./src/PostResolvers.ts)
+* [`./src/UserResolvers.ts`](./src/UserResolvers.ts)
+* [`./src/User.ts`](./src/User.ts)
+* [`./src/Post.ts`](./src/Post.ts)
+* [`./src/UserCreateInput.ts`](./src/UserCreateInput.ts)
+* [`./src/PostCreateInput.ts`](./src/PostCreateInput.ts)
+
+ Below are a number of operations that you can send to the API using the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 

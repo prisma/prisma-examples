@@ -1,7 +1,8 @@
 import "reflect-metadata";
 import { Resolver, Query, Mutation, Arg, Args, Authorized, Ctx, FieldResolver, Root } from "type-graphql"
 import { Post, PostCreateInput } from "./Post";
-import { User, UserCreateInput } from "./User";
+import { User } from "./User";
+import { UserCreateInput } from "./UserCreateInput"
 import { Context } from "./context";
 
 @Resolver(Post)
