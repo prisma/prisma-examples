@@ -16,7 +16,7 @@ git remote add github "git@github.com:$GITHUB_REPOSITORY.git"
 
 sh .github/scripts/upgrade-all.sh "$channel"
 
-git commit -am "chore(packages): bump prisma2 to $(sh .github/scripts/prisma-version.sh "$channel")"
+git commit -am "chore: sync, use $(sh .github/scripts/prisma-version.sh "$channel")"
 
 # fail silently if the unlikely event happens that this change already has been pushed either manually
 # or by an overlapping upgrade action

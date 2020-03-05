@@ -89,12 +89,27 @@ while [ $i -le $count ]; do
 
 	echo "changes, upgrading..."
 
+	echo "$v" > .github/prisma-version.txt
+
 	git commit -am "chore(packages): bump prisma2 to $v"
 
 	# fail silently if the unlikely event happens that this change already has been pushed either manually
 	# or by an overlapping upgrade action
 	git pull github "$branch" --rebase || true
-	git push github "HEAD:$branch" || true
+
+	set +e
+	git push github "HEAD:refs/heads/$branch"
+	code=$?
+	set -e
+	echo "pushed commit"
+
+	if [ $code -eq 0 ]; then
+		export version="$v"
+
+		export webhook="$SLACK_WEBHOOK_URL_FAILING"
+		(cd .github/slack/ && yarn install)
+		node .github/slack/notify.js "Prisma version $v released"
+	fi
 
 	echo "pushed commit"
 

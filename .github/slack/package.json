@@ -1,0 +1,15 @@
+{
+  "name": "slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "notify.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/webhook": "^5.0.3"
+  }
+}

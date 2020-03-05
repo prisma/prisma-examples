@@ -12,3 +12,5 @@ jobs:
 
       - name: test
         run: sh .github/scripts/test-all.sh
+        env:
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
