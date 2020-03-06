@@ -8,10 +8,11 @@ datasource db {
 }
 
 model User {
-  email String  @unique
-  id    Int     @default(autoincrement()) @id
-  name  String?
-  post  Post[]
+  email   String   @unique
+  id      Int      @default(autoincrement()) @id
+  name    String?
+  post    Post[]
+  profile Profile?
 }
 
 model Post {
@@ -20,4 +21,10 @@ model Post {
   published Boolean @default(false)
   title     String
   author    User?
+}
+
+model Profile {
+  bio  String?
+  id   Int     @default(autoincrement()) @id
+  user User
 }

@@ -4,7 +4,6 @@ import { Post, PostCreateInput } from "./Post";
 import { User } from "./User";
 import { UserCreateInput } from "./UserCreateInput";
 import { Context } from "./context";
-
 @Resolver(User)
 export class UserResolvers {
 
@@ -17,8 +16,11 @@ export class UserResolvers {
     }).post())!
   }
 
+
   @Mutation(returns => User)
-  async signupUser(@Arg("data") data: UserCreateInput, @Ctx() ctx: Context): Promise<User> {
+  async signupUser(
+    @Arg("data") data: UserCreateInput, 
+    @Ctx() ctx: Context): Promise<User> {
     try {
       return await ctx.prisma.user.create({
         data: {
@@ -38,7 +40,7 @@ export class UserResolvers {
       const user = await ctx.prisma.user.findOne({
         where:
           { id: id }
-      });
+      });    
 
       return user;
     }
@@ -46,5 +48,4 @@ export class UserResolvers {
       throw error;
     }
   }
-
 }

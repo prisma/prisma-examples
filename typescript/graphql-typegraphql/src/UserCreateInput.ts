@@ -10,5 +10,4 @@ export class UserCreateInput {
 
   @Field(type => String, { nullable: true })
   name?: string | null; 
-
 }
