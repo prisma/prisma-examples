@@ -8,7 +8,7 @@
     "graphql": "^14.5.8",
     "graphql-yoga": "^1.16.1",
     "nexus": "0.12.0-rc.13",
-    "nexus-prisma": "^0.10.0"
+    "nexus-prisma": "^0.11.0"
   },
   "scripts": {
     "dev": "node src",
