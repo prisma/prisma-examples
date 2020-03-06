@@ -5,13 +5,11 @@ import { User } from "./User"
 
 @ObjectType()
 export class Post {
-  @Field(type => ID) // Auto-generated
+  @Field(type => ID)
   id: number;
 
   @Field()  
   title: string;
-
-  // From docs: We should be aware that when we declare our type as a nullable union (e.g. string | null), we need to explicitly provide the type to the @Field decorator.
 
   @Field(type => String, { nullable: true })  
   content: string | null;

@@ -18,7 +18,7 @@ The first step would be to add a new table, e.g. called `Profile`, to the databa
 CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
-  "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
+  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
 ```
 
@@ -29,7 +29,7 @@ sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
   "bio" TEXT,
-  "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
+  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
 ```
 
@@ -85,9 +85,9 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-#### Option A: Expose `Profile` operations via `typegraphql`
+#### Option A: Expose `Profile` operations via TypeGraphQL
 
-You can expose use the `typegraphql` package to expose the new `Profile` model.
+You can use TypeGraphQL to expose the new `Profile` model.
 
 Create a new file named `src\Profile.ts` and add the following code:
 
@@ -124,14 +124,14 @@ export class ProfileCreateInput {
 }
 ```
 
-Add an additional field to the `.src\User.ts` class:
+Add an additional field to `.src\User.ts` and import the `Profile` class.
 
 ```ts
   @Field(type => Profile, { nullable: true })
   bio?: Profile | null; 
 ```
 
-Add an additional field to the `src\UserCreateInput.ts` class:
+Add an additional field to =`src\UserCreateInput.ts`  and import the `ProfileCreateInput` class:
 
 ```ts
   @Field(type => ProfileCreateInput, { nullable: true })
@@ -151,7 +151,7 @@ Extend the `src\UserResolver.ts` class with an additional field resolver:
   }
 ```
 
-Update the `signupUser` mutation to include creating a user profile:
+Update the `signupUser` mutation to include the option to create a profile when you sign up a new user:
 
 ```ts
   @Mutation(returns => User)
@@ -181,7 +181,7 @@ Run the following mutation to create a user with a profile:
 
 ```
 mutation {
-  signupUser(data: {email:"katla@prisma.io", bio: { bio: "Sometimes I'm an Icelandic volcano, sometimes I'm a dragon."}})
+  signupUser(data: {email:"katla@prisma.io", bio: { bio: "Sometimes I'm an Icelandic volcano, sometimes I'm a dragon from a book."}})
   {
     id,
     email,
