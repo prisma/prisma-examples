@@ -13,6 +13,6 @@
     "prisma2": "2.0.0-preview022"
   },
   "devDependencies": {
-    "@google-cloud/functions-framework": "1.4.0"
+    "@google-cloud/functions-framework": "1.5.0"
   }
 }
