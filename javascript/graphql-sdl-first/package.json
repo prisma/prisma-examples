@@ -4,13 +4,13 @@
     "dev": "node ./src/server.js"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-previewnull-1",
+    "@prisma/client": "2.0.0-preview024",
     "graphql": "14.6.0",
     "graphql-tools": "4.0.7",
     "graphql-yoga": "1.18.3"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-previewnull-1"
+    "prisma2": "2.0.0-preview024"
   },
   "prettier": {
     "singleQuote": true,

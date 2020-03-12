@@ -6,12 +6,12 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-previewnull-1",
+    "@prisma/client": "2.0.0-preview024",
     "body-parser": "1.19.0",
     "express": "4.17.1"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-previewnull-1"
+    "prisma2": "2.0.0-preview024"
   },
   "engines": {
     "node": ">=10.0.0"
