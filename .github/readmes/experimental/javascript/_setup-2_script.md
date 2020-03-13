@@ -1,9 +1,9 @@
 npm install
 ```
 
-### 2. Migrate your database schema & generate Prisma Client
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2.1. Perform initial schem migration
+### 2. Migrate your database schema
 
 Perform an initial schema migration against your database using the following commands:
 
@@ -11,6 +11,8 @@ Perform an initial schema migration against your database using the following co
 npx prisma2 migrate save --name 'init' --experimental
 npx prisma2 migrate up --experimental
 ```
+
+The first step will save the migration in the `prisma/migrations` folder. The second step will execute the migrations.
 
 > **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
 
@@ -43,7 +45,7 @@ datasource postgresql {
 
 </Details>
 
-### 2.2. Generate Prisma Client
+### 3. Generate Prisma Client
 
 Run the following command to generate your Prisma Client API:
 
@@ -51,14 +53,4 @@ Run the following command to generate your Prisma Client API:
 npx prisma2 generate
 ```
 
-This generates Prisma Client into `node_modules/@prisma/client` from where it can be imported like so:
-
-```ts
-import { PrismaClient } from '@prisma/client'
-```
-
-or
-
-```js
-const { PrismaClient } = require('@prisma/client')
-```
+This command updated the Prisma Client API in `node_modules/@prisma/client`.
