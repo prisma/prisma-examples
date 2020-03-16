@@ -99,13 +99,13 @@ npm run dev
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-### 3. Using the GraphQL API
+## Using the GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
-#### Retrieve all published posts and their authors
+### Retrieve all published posts and their authors
 
 ```graphql
 query {
@@ -125,7 +125,7 @@ query {
 
 <Details><Summary><strong>See more API operations</strong></Summary>
 
-#### Create a new user
+### Create a new user
 
 ```graphql
 mutation {
@@ -140,7 +140,7 @@ mutation {
 }
 ```
 
-#### Create a new draft
+### Create a new draft
 
 ```graphql
 mutation {
@@ -155,7 +155,7 @@ mutation {
 }
 ```
 
-#### Publish an existing draft
+### Publish an existing draft
 
 ```graphql
 mutation {
@@ -168,7 +168,7 @@ mutation {
 
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
-#### Search for posts with a specific title or content
+### Search for posts with a specific title or content
 
 ```graphql
 {
@@ -186,7 +186,7 @@ mutation {
 }
 ```
 
-#### Retrieve a single post
+### Retrieve a single post
 
 ```graphql
 {
@@ -206,7 +206,7 @@ mutation {
 
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
-#### Delete a post
+### Delete a post
 
 ```graphql
 mutation {
