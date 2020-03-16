@@ -1,6 +1,8 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { makeSchema, objectType, idArg, stringArg } = require('nexus')
-const { Photon } = require('@prisma/photon')
+const { PrismaClient } = require('@prisma/client')
+
+
 const { nexusPrismaPlugin } = require('nexus-prisma')
 
 const User = objectType({
@@ -38,7 +40,7 @@ const Query = objectType({
     t.list.field('feed', {
       type: 'Post',
       resolve: (_, _args, ctx) => {
-        return ctx.photon.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: { published: true },
         })
       },
@@ -50,7 +52,7 @@ const Query = objectType({
         searchString: stringArg({ nullable: true }),
       },
       resolve: (_, { searchString }, ctx) => {
-        return ctx.photon.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: {
             OR: [
               { title: { contains: searchString } },
@@ -77,7 +79,7 @@ const Mutation = objectType({
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
-        return ctx.photon.posts.create({
+        return ctx.prisma.post.create({
           data: {
             title,
             content,
@@ -97,7 +99,7 @@ const Mutation = objectType({
         id: idArg(),
       },
       resolve: (_, { id }, ctx) => {
-        return ctx.photon.posts.update({
+        return ctx.prisma.post.update({
           where: { id },
           data: { published: true },
         })
@@ -106,7 +108,7 @@ const Mutation = objectType({
   },
 })
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 new GraphQLServer({
   schema: makeSchema({
@@ -117,7 +119,7 @@ new GraphQLServer({
       typegen: __dirname + '/generated/nexus.ts',
     },
   }),
-  context: { photon },
+  context: { prisma },
 }).start(() =>
   console.log(
     `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#3-using-the-graphql-api`,
