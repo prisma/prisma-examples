@@ -1,4 +1,4 @@
-# Simple Node Script Example
+# Simple Node.js Script Example
 
 This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) in combination with [Prisma Migrate](https://github.com/prisma/migrate). Prisma Client is used in a **simple Node.js script** to read and write data in a database. Prisma Migrate is used to perform database schema migrations.
 
