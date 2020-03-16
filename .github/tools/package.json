@@ -1,7 +1,7 @@
 {
-  "name": "photonjs-examples",
+  "name": "prisma-client-examples",
   "version": "1.0.0",
-  "repository": "git@github.com:prisma/photonjs.git",
+  "repository": "git@github.com:prisma/prisma-client-js.git",
   "license": "MIT",
   "scripts": {
     "test": "yarn prettier-check && yarn build-readmes",
