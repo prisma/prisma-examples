@@ -1,8 +1,8 @@
-const { Photon } = require('@prisma/photon')
-const photon = new Photon()
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 async function main() {
-  const user1 = await photon.users.create({
+  const user1 = await prisma.user.create({
     data: {
       email: 'alice@prisma.io',
       name: 'Alice',
@@ -15,7 +15,7 @@ async function main() {
       },
     },
   })
-  const user2 = await photon.users.create({
+  const user2 = await prisma.user.create({
     data: {
       email: 'bob@prisma.io',
       name: 'Bob',
@@ -43,5 +43,5 @@ main()
     throw e
   })
   .finally(async () => {
-    await photon.disconnect()
+    await prisma.disconnect()
   })

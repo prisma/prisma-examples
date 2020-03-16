@@ -1,8 +1,8 @@
 const chalk = require('chalk')
 const PROTO_PATH = __dirname + '/../service.proto'
 
-const { Photon } = require('@prisma/photon')
-const photon = new Photon()
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 const grpc = require('grpc')
 const protoLoader = require('@grpc/proto-loader')
@@ -17,7 +17,7 @@ const { blog } = grpc.loadPackageDefinition(packageDefinition)
 
 async function post(call, callback) {
   const { id } = call.request
-  const post = await photon.posts.findOne({
+  const post = await prisma.post.findOne({
     where: {
       id,
     },
@@ -26,7 +26,7 @@ async function post(call, callback) {
 }
 
 async function feed(call, callback) {
-  const feed = await photon.posts.findMany({
+  const feed = await prisma.post.findMany({
     where: { published: true },
   })
   callback(null, { feed })
@@ -34,7 +34,7 @@ async function feed(call, callback) {
 
 async function filterPosts(call, callback) {
   const { searchString } = call.request
-  const filteredPosts = await photon.posts.findMany({
+  const filteredPosts = await prisma.post.findMany({
     where: {
       OR: [
         {
@@ -56,7 +56,7 @@ async function filterPosts(call, callback) {
 async function signupUser(call, callback) {
   const { email, name } = call.request
   try {
-    const newUser = await photon.users.create({
+    const newUser = await prisma.user.create({
       data: {
         name,
         email,
@@ -71,7 +71,7 @@ async function signupUser(call, callback) {
 async function createDraft(call, callback) {
   const { title, content, authorEmail } = call.request
   try {
-    const newDraft = await photon.posts.create({
+    const newDraft = await prisma.post.create({
       data: {
         title,
         content,
@@ -88,7 +88,7 @@ async function createDraft(call, callback) {
 async function deletePost(call, callback) {
   const { id } = call.request
   try {
-    const deletedPost = await prisma.deletePost({
+    const deletedPost = await prisma.post.delete({
       where: {
         id,
       },
@@ -102,7 +102,7 @@ async function deletePost(call, callback) {
 async function publish(call, callback) {
   const { id } = call.request
   try {
-    const publishedPost = await photon.posts.update({
+    const publishedPost = await prisma.post.update({
       where: { id },
       data: { published: true },
     })
