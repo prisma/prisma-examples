@@ -2,7 +2,7 @@
   "name": "graphql-auth",
   "version": "1.0.0",
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview019",
+    "@prisma/client": "2.0.0-preview024",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
@@ -16,7 +16,7 @@
     "seed": "node prisma/seed"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview022"
+    "prisma2": "2.0.0-preview024"
   },
   "prettier": {
     "singleQuote": true,

@@ -9,19 +9,18 @@ generator photon {
 }
 
 model Post {
-  id        String   @default(cuid()) @id
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
+  id        Int     @id @default(autoincrement())
   title     String
   content   String?
+  published Boolean @default(false)
   author    User?
 }
 
 model User {
-  id       String  @default(cuid()) @id
-  email    String  @unique
+  id       Int    @id @default(autoincrement())
+  email    String @unique
   password String
-  name     String?
-  posts    Post[]
+
+  name  String?
+  posts Post[]
 }
