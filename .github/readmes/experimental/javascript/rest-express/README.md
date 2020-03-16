@@ -5,8 +5,9 @@ This example shows how to implement a **REST API** using [Express](https://expre
 __INLINE(../_setup-1.md)__
 cd prisma-examples/experimental/javascript/rest-express
 __INLINE(../_setup-2.md)__
+__INLINE(../_seed.md)__
 
-### 4. Start the REST API server
+### 5. Start the REST API server
 
 ```
 npm run dev

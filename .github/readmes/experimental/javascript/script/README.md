@@ -4,7 +4,7 @@ This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/experimental/javascript/script
-__INLINE(../_setup-2_script.md)__
+__INLINE(../_setup-2.md)__
 
 ### 4. Run the script
 
