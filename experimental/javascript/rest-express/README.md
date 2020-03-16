@@ -19,9 +19,9 @@ cd prisma-examples/experimental/javascript/rest-express
 npm install
 ```
 
-### 2. Migrate your database schema & generate Prisma Client
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2.1. Perform initial schem migration
+### 2. Migrate your database schema
 
 Perform an initial schema migration against your database using the following commands:
 
@@ -29,6 +29,8 @@ Perform an initial schema migration against your database using the following co
 npx prisma2 migrate save --name 'init' --experimental
 npx prisma2 migrate up --experimental
 ```
+
+The first step will save the migration in the `prisma/migrations` folder. The second step will execute the migrations.
 
 > **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
 
@@ -61,7 +63,7 @@ datasource postgresql {
 
 </Details>
 
-### 2.2. Generate Prisma Client
+### 3. Generate Prisma Client
 
 Run the following command to generate your Prisma Client API:
 
@@ -69,19 +71,9 @@ Run the following command to generate your Prisma Client API:
 npx prisma2 generate
 ```
 
-This generates Prisma Client into `node_modules/@prisma/client` from where it can be imported like so:
+This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
-```ts
-import { PrismaClient } from '@prisma/client'
-```
-
-or
-
-```js
-const { PrismaClient } = require('@prisma/client')
-```
-
-### 3. Seed the database with test data
+### 4. Seed the database with test data
 
 The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
 
@@ -89,7 +81,7 @@ The `seed` script from `package.json` contains some code to seed the database wi
 npm run seed
 ```
 
-### 4. Start the REST API server
+### 5. Start the REST API server
 
 ```
 npm run dev
@@ -97,17 +89,17 @@ npm run dev
 
 The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
-### 3. Using the REST API
+## Using the REST API
 
 You can access the REST API of the server using the following endpoints:
 
-#### `GET`
+### `GET`
 
 - `/post/:id`: Fetch a single post by its `id`
 - `/feed`: Fetch all _published_ posts
 - `/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
-#### `POST`
+### `POST`
 
 - `/post`: Create a new post
   - Body:
@@ -119,13 +111,14 @@ You can access the REST API of the server using the following endpoints:
     - `email: String` (required): The email address of the user
     - `name: String` (optional): The name of the user
 
-#### `PUT`
+### `PUT`
 
 - `/publish/:id`: Publish a post by its `id`
 
-#### `DELETE`
-  
+### `DELETE`
+
 - `/post/:id`: Delete a post by its `id`
+
 
 ### Next steps
 

@@ -1,14 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { Photon } = require('@prisma/photon')
+const { PrismaClient } = require('@prisma/client')
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 const app = express()
 
 app.use(bodyParser.json())
 
 app.post(`/user`, async (req, res) => {
-  const result = await photon.users.create({
+  const result = await prisma.user.create({
     data: {
       ...req.body,
     },
@@ -18,7 +18,7 @@ app.post(`/user`, async (req, res) => {
 
 app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
-  const result = await photon.posts.create({
+  const result = await prisma.post.create({
     data: {
       title: title,
       content: content,
@@ -30,7 +30,7 @@ app.post(`/post`, async (req, res) => {
 
 app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.update({
+  const post = await prisma.post.update({
     where: { id },
     data: { published: true },
   })
@@ -39,7 +39,7 @@ app.put('/publish/:id', async (req, res) => {
 
 app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.delete({
+  const post = await prisma.post.delete({
     where: {
       id,
     },
@@ -49,7 +49,7 @@ app.delete(`/post/:id`, async (req, res) => {
 
 app.get(`/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await photon.posts.findOne({
+  const post = await prisma.post.findOne({
     where: {
       id,
     },
@@ -58,13 +58,13 @@ app.get(`/post/:id`, async (req, res) => {
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await photon.posts.findMany({ where: { published: true } })
+  const posts = await prisma.post.findMany({ where: { published: true } })
   res.json(posts)
 })
 
 app.get('/filterPosts', async (req, res) => {
   const { searchString } = req.query
-  const draftPosts = await photon.posts.findMany({
+  const draftPosts = await prisma.post.findMany({
     where: {
       OR: [
         {
