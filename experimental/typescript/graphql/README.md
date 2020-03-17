@@ -2,13 +2,11 @@
 
 This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
 
-[![Edit graphql](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/prisma/prisma-examples/tree/prisma2/typescript/graphql?fontsize=14)
-
 ## How to use
 
 ### 1. Download example & install dependencies
 
-Clone the `prisma2` branch of this repository:
+Clone this repository:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -21,9 +19,9 @@ cd prisma-examples/experimental/typescript/graphql
 npm install
 ```
 
-### 2. Migrate your database schema & generate Prisma Client
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2.1. Perform initial schem migration
+### 2. Migrate your database schema
 
 Perform an initial schema migration against your database using the following commands:
 
@@ -31,6 +29,8 @@ Perform an initial schema migration against your database using the following co
 npx prisma2 migrate save --name 'init' --experimental
 npx prisma2 migrate up --experimental
 ```
+
+The first step will save the migration in the `prisma/migrations` folder. The second step will execute the migrations.
 
 > **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
 
@@ -63,7 +63,7 @@ datasource postgresql {
 
 </Details>
 
-### 2.2. Generate Prisma Client
+### 3. Generate Prisma Client
 
 Run the following command to generate your Prisma Client API:
 
@@ -71,25 +71,8 @@ Run the following command to generate your Prisma Client API:
 npx prisma2 generate
 ```
 
-This generates Prisma Client into `node_modules/@prisma/client` from where it can be imported like so:
+This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
-```ts
-import { PrismaClient } from '@prisma/client'
-```
-
-or
-
-```js
-import { PrismaClient } from '@prisma/client'
-```
-
-### 3. Seed the database with test data
-
-The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
-
-```
-npm run seed
-```
 
 ### 4. Start the GraphQL server
 
@@ -224,40 +207,16 @@ mutation {
 </Details>
 
 
-### 6. Changing the GraphQL schema
+## Changing the GraphQL schema
 
 To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`schema.ts`](./src/schema.ts). 
 
 Note that the [`dev`](./package.json#L4) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
 
-
 ## Next steps
-
-### Use Lift to persist the schema migration
-
-The migrations that were generated throughout the development mode are _development migrations_ that are thrown away once the desired schema has been found. In that case, you need to persist the schema using the `lift` subcommands.
-
-To persist your schema migration with Lift, run:
-
-```
-npx prisma2 lift save --name 'init'
-npx prisma2 lift up
-```
-
-The first command, `lift save`, stores a number of migration files on the file sytem with details about the migration (such as the required migration steps and SQL operations), this doesn't yet affect the database. It also deletes the old development migrations. The second command, `lift up`, actually performs the schema migration against the database.
-
-### Generate Photon.js with the CLI
-
-Sometimes, e.g. in CI/CD environments, it can be helpful to generate Photon.js with a CLI command. This can be done with the `prisma2 generate command`. If you want to run it in this project, you need to prepend `npx` again:
-
-```
-npx prisma2 generate
-```
-
-### More things to explore
 
 - Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
 - Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/tree/master/docs/prisma-client-js/api.md))
-- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
+- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)

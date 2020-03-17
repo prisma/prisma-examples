@@ -76,7 +76,7 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Run the script
 
-Execute the script with this command:
+Execute the script with this command: 
 
 ```
 npm run dev
