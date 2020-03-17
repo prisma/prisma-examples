@@ -1,11 +1,11 @@
 import chalk from 'chalk'
 const PROTO_PATH = __dirname + '/../service.proto'
 
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 import * as protoLoader from '@grpc/proto-loader'
 import * as grpc from 'grpc'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
@@ -18,16 +18,16 @@ const { blog } = grpc.loadPackageDefinition(packageDefinition) as any
 
 async function post(call: any, callback: any) {
   const { id } = call.request
-  const post = await photon.posts.findOne({
+  const post = await prisma.post.findOne({
     where: {
-      id,
+      id: Number.parseInt(id),
     },
   })
   callback(null, post)
 }
 
 async function feed(call: any, callback: any) {
-  const feed = await photon.posts.findMany({
+  const feed = await prisma.post.findMany({
     where: { published: true },
   })
   callback(null, { feed })
@@ -35,7 +35,7 @@ async function feed(call: any, callback: any) {
 
 async function filterPosts(call: any, callback: any) {
   const { searchString } = call.request
-  const filteredPosts = await photon.posts.findMany({
+  const filteredPosts = await prisma.post.findMany({
     where: {
       OR: [
         {
@@ -55,13 +55,12 @@ async function filterPosts(call: any, callback: any) {
 }
 
 async function signupUser(call: any, callback: any) {
-  const { email, name, password } = call.request
+  const { email, name } = call.request
   try {
-    const newUser = await photon.users.create({
+    const newUser = await prisma.user.create({
       data: {
         name,
         email,
-        password,
       },
     })
     callback(null, newUser)
@@ -73,7 +72,7 @@ async function signupUser(call: any, callback: any) {
 async function createDraft(call: any, callback: any) {
   const { title, content, authorEmail } = call.request
   try {
-    const newDraft = await photon.posts.create({
+    const newDraft = await prisma.post.create({
       data: {
         title,
         content,
@@ -90,9 +89,9 @@ async function createDraft(call: any, callback: any) {
 async function deletePost(call: any, callback: any) {
   const { id } = call.request
   try {
-    const deletedPost = await photon.posts.delete({
+    const deletedPost = await prisma.post.delete({
       where: {
-        id,
+        id: Number.parseInt(id),
       },
     })
     callback(null, deletedPost)
@@ -104,8 +103,8 @@ async function deletePost(call: any, callback: any) {
 async function publish(call: any, callback: any) {
   const { id } = call.request
   try {
-    const publishedPost = await photon.posts.update({
-      where: { id },
+    const publishedPost = await prisma.post.update({
+      where: { id: Number.parseInt(id) },
       data: { published: true },
     })
     callback(null, publishedPost)
@@ -134,13 +133,9 @@ ${chalk.bold(`$ npm run feed`)}
 or
 ${chalk.bold(`$ npm run signupUser`)}
 
-See ${chalk.bold(
-  `package.json`,
-)} for a list of all available scripts or use ${chalk.bold(
+See ${chalk.bold(`package.json`)} for a list of all available scripts or use ${chalk.bold(
   `BloomRPC`,
-)} if you prefer a GUI client (download: ${chalk.bold(
-  `https://github.com/uw-labs/bloomrpc`,
-)}).
+)} if you prefer a GUI client (download: ${chalk.bold(`https://github.com/uw-labs/bloomrpc`)}).
 `
 console.log(message)
 server.start()

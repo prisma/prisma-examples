@@ -1,13 +1,12 @@
-import { Photon } from '@prisma/photon'
+import { PrismaClient } from '@prisma/client'
 
-const photon = new Photon()
+const prisma = new PrismaClient()
 
 async function main() {
-  const user1 = await photon.users.create({
+  const user1 = await prisma.user.create({
     data: {
       email: 'alice@prisma.io',
       name: 'Alice',
-      password: 'alice',
       posts: {
         create: {
           title: 'Watch the talks from Prisma Day 2019',
@@ -17,11 +16,10 @@ async function main() {
       },
     },
   })
-  const user2 = await photon.users.create({
+  const user2 = await prisma.user.create({
     data: {
       email: 'bob@prisma.io',
       name: 'Bob',
-      password: 'alice',
       posts: {
         create: [
           {
@@ -46,5 +44,5 @@ main()
     throw e
   })
   .finally(async () => {
-    await photon.disconnect()
+    await prisma.disconnect()
   })

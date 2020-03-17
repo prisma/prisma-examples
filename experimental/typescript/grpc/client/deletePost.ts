@@ -17,7 +17,7 @@ function main() {
     grpc.credentials.createInsecure(),
   )
 
-  const id = ''
+  const id = 1
   client.deletePost({ id }, (err: any, response: any) => {
     if (err) {
       console.error(err)

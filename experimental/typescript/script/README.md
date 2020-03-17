@@ -78,7 +78,7 @@ import { PrismaClient } from '@prisma/client'
 or
 
 ```js
-const { PrismaClient } = require('@prisma/client')
+import { PrismaClient } from '@prisma/client'
 ```
 
 ### 3. Run the script
