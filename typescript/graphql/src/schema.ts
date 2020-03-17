@@ -1,5 +1,5 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { idArg, makeSchema, objectType, stringArg } from 'nexus'
+import { intArg, makeSchema, objectType, stringArg } from 'nexus'
 
 const User = objectType({
   name: 'User',
@@ -88,7 +88,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        id: idArg(),
+        id: intArg(),
       },
       resolve: (_, { id }, ctx) => {
         return ctx.prisma.post.update({

@@ -1,5 +1,5 @@
 const { GraphQLServer } = require('graphql-yoga')
-const { makeSchema, objectType, idArg, stringArg } = require('nexus')
+const { makeSchema, objectType, intArg, stringArg } = require('nexus')
 const { PrismaClient } = require('@prisma/client')
 
 
@@ -94,7 +94,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        id: idArg(),
+        id: intArg(),
       },
       resolve: (_, { id }, ctx) => {
         return ctx.prisma.post.update({

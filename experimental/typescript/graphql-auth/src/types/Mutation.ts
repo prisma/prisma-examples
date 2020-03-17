@@ -1,6 +1,6 @@
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
-import { idArg, mutationType, stringArg } from 'nexus'
+import { intArg, mutationType, stringArg } from 'nexus'
 import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation = mutationType({
@@ -76,7 +76,7 @@ export const Mutation = mutationType({
     t.field('deletePost', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.photon.posts.delete({
           where: {
@@ -89,7 +89,7 @@ export const Mutation = mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.photon.posts.update({
           where: { id },
