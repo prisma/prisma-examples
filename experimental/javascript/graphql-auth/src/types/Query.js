@@ -1,4 +1,4 @@
-const { idArg, queryType, stringArg } = require('nexus')
+const { intArg, queryType, stringArg } = require('nexus')
 const { getUserId } = require('../utils')
 
 const Query = queryType({
@@ -53,7 +53,7 @@ const Query = queryType({
     t.field('post', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.findOne({
           where: {

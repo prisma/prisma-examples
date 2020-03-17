@@ -1,6 +1,6 @@
 const { compare, hash } = require('bcryptjs')
 const { sign } = require('jsonwebtoken')
-const { idArg, mutationType, stringArg } = require('nexus')
+const { mutationType, stringArg, intArg } = require('nexus')
 const { APP_SECRET, getUserId } = require('../utils')
 
 const Mutation = mutationType({
@@ -76,7 +76,7 @@ const Mutation = mutationType({
     t.field('deletePost', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.delete({
           where: {
@@ -89,7 +89,7 @@ const Mutation = mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.update({
           where: { id },
