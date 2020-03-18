@@ -1,12 +1,12 @@
 # Simple TypeScript Script Example
 
-This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) in a **simple TypeScript script** to read and write data in a database.
+This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) in combination with [Prisma Migrate](https://github.com/prisma/migrate). Prisma Client is used in a **simple TypeScript script** to read and write data in a database. Prisma Migrate is used to perform database schema migrations.
 
 ## How to use
 
 ### 1. Download example & install dependencies
 
-Clone the `prisma2` branch of this repository:
+Clone this repository:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,9 +19,9 @@ cd prisma-examples/experimental/typescript/script
 npm install
 ```
 
-### 2. Migrate your database schema & generate Prisma Client
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2.1. Perform initial schem migration
+### 2. Migrate your database schema
 
 Perform an initial schema migration against your database using the following commands:
 
@@ -29,6 +29,8 @@ Perform an initial schema migration against your database using the following co
 npx prisma2 migrate save --name 'init' --experimental
 npx prisma2 migrate up --experimental
 ```
+
+The first step will save the migration in the `prisma/migrations` folder. The second step will execute the migrations.
 
 > **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
 
@@ -61,7 +63,7 @@ datasource postgresql {
 
 </Details>
 
-### 2.2. Generate Prisma Client
+### 3. Generate Prisma Client
 
 Run the following command to generate your Prisma Client API:
 
@@ -69,19 +71,10 @@ Run the following command to generate your Prisma Client API:
 npx prisma2 generate
 ```
 
-This generates Prisma Client into `node_modules/@prisma/client` from where it can be imported like so:
+This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
-```ts
-import { PrismaClient } from '@prisma/client'
-```
 
-or
-
-```js
-const { PrismaClient } = require('@prisma/client')
-```
-
-### 3. Run the script
+### 4. Run the script
 
 Execute the script with this command: 
 
@@ -91,34 +84,87 @@ npm run dev
 
 > **Note**: You need to execute the command in a new terminal window/tab, since the development mode is taking up your currrent terminal session.
 
+## Evolving the app with Prisma Migrate
 
-## Next steps
+Evolving the application typically requires four subsequent steps:
 
-### Use Lift to persist the schema migration
+1. Update your Prisma schema
+1. Save and migrate the database schema using Prisma Migrate
+1. Generate Prisma Client to match the new schema with `prisma2 generate`
+1. Use the updated Prisma Client in your application code
 
-The migrations that were generated throughout the development mode are _development migrations_ that are thrown away once the desired schema has been found. In that case, you need to persist the schema using the `lift` subcommands.
+For the following example scenario, assume you want to add a "profile" feature to the app where users can create a single profile (1:1 relationship) and write a short bio about themselves and add a link to an image.
 
-To persist your schema migration with Lift, run:
+### 1. Update your Prisma schema
+
+The first step would be to add a new model to the Prisma schema, e.g. called `Profile`. Prisma Migrate will create a corresponding table in the database.
+
+To define a `1:1` relationship between `User` and `Profile`, you need to specify the relation field on both models as follows:
+
+Add the Profile model with a `user` field of type `User`:
+
+```prisma
+model Profile {
+  id       Int    @id @default(autoincrement())
+  user     User
+  bio      String
+  imageURL String?
+}
+```
+
+Add the `Profile` relation field to the `User` model:
+
+```diff
+model User {
+   id      Int      @id @default(autoincrement())
+   email   String   @unique
+   name    String?
+   posts   Post[]
++  profile Profile?
+}
+```
+
+### 2. Save and run the migration
+
+#### Save the migration
+
+To migrate the database schema you first need to save the migration as follows:
 
 ```
-npx prisma2 lift save --name 'init'
-npx prisma2 lift up
+npx prisma2 migrate save --name 'add-profile' --experimental
 ```
 
-The first command, `lift save`, stores a number of migration files on the file sytem with details about the migration (such as the required migration steps and SQL operations), this doesn't yet affect the database. It also deletes the old development migrations. The second command, `lift up`, actually performs the schema migration against the database.
+The CLI will output the planned changes and save the migration files in `prisma/migrations/20200313000000-add-profile/` (they contain details about required migrations steps and SQL operations).
 
-### Generate Photon.js with the CLI
+#### Run the migration
 
-Sometimes, e.g. in CI/CD environments, it can be helpful to generate Photon.js with a CLI command. This can be done with the `prisma2 generate command`. If you want to run it in this project, you need to prepend `npx` again:
+Now that the migration has been saved you can run the migration as follows:
+
+```
+npx prisma2 migrate up --experimental
+```
+
+This will actually perform the schema migration against the database.
+
+Assuming everything went right, the CLI should output:
+
+```
+🚀    Done with 1 migration
+```
+
+### 3. Generate Prisma Client
+
+With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
 
 ```
 npx prisma2 generate
 ```
 
-### More things to explore
+This command updated the Prisma Client API in `node_modules/@prisma/client`.
+## Next steps
 
 - Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
 - Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/tree/master/docs/prisma-client-js/api.md))
-- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
+- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)

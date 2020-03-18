@@ -73,8 +73,15 @@ npx prisma2 generate
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
+### 4. Seed the database with test data
 
-### 4. Start the GraphQL server
+The `seed` script from `package.json` contains some code to seed the database with test data. Execute it with the following command:
+
+```
+npm run seed
+```
+
+### 5. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
@@ -207,12 +214,7 @@ mutation {
 </Details>
 
 
-## Changing the GraphQL schema
-
-To make changes to the GraphQL schema, you need to manipulate the `Query` and `Mutation` types that are defined in [`schema.ts`](./src/schema.ts). 
-
-Note that the [`dev`](./package.json#L6) script also starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./schema.graphql) updates whenever you make changes in to the `Query` or `Mutation` types inside your TypeScript code.
-## Evolving the app
+## Evolving the app with Prisma Migrate
 
 Evolving the application typically requires four subsequent steps:
 
@@ -289,12 +291,15 @@ npx prisma2 generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
-
 ### 4. Use the updated Prisma Client in your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table.
 
-#### Create a new profile for an existing user
+Additionally, you need to expose `Profile` through your GraphQL API.
+
+#### Using the updated Prisma Client
+
+##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
@@ -308,7 +313,7 @@ const profile = await prisma.profile.create({
 })
 ```
 
-#### Create a new user with a new profile
+##### Create a new user with a new profile
 
 ```ts
 const user = await prisma.user.create({
@@ -324,7 +329,7 @@ const user = await prisma.user.create({
 })
 ```
 
-#### Update the profile of an existing user
+##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
@@ -339,6 +344,83 @@ const userWithUpdatedProfile = await prisma.user.update({
   },
 })
 ```
+
+#### Exposing profile on the GraphQL API
+
+With the `nexus-prisma` package, exposing the new `Profile` model in the API involves the following:
+
+1. Project the `Profile` model onto your GraphQL schema
+2. Add the `profile` field to the `User` GraphQL object
+3. Add `profile` query type for fetching single profiles
+4. Add the `Profile` object to your GraphQL schema
+
+##### 1. Project the `Profile` model onto your GraphQL schema
+
+To project the `Profile` model, define a new object type:
+
+```js
+const Profile = objectType({
+  name: 'Profile',
+  definition(t) {
+    t.model.id()
+    t.model.user()
+    t.model.bio()
+    t.model.imageURL()
+  },
+})
+```
+
+Here we project the profile model fields from the Prisma schema with the `t.model` methods, which are exposed by [nexus-prisma](https://github.com/graphql-nexus/nexus-prisma).
+
+##### 2. Add the `profile` field to the `User` GraphQL object
+
+```diff
+const User = objectType({
+  name: 'User',
+  definition(t) {
+    // existing fields omitted
++   t.model.profile()
+  },
+})
+```
+
+This allows selecting associated profile fields when fetching a user.
+
+##### 3. Add `profile` query type for fetching single profiles
+
+Add the `t.crud.profile()` to the `Query` object type:
+
+```diff
+const Query = objectType({
+  name: 'Query',
+  definition(t) {
+    // ...
++   t.crud.profile()
+```
+
+This allows querying single profiles as follows:
+
+```graphql
+{
+  profile(where: { id: 1 }) {
+    id
+    bio
+  }
+}
+```
+
+##### 4. Add the `Profile` object to your GraphQL schema
+
+Pass the `Profile` object defined in step 1 to the `makeSchema` `types` parameter:
+
+```diff
+makeSchema({
+-    types: [Query, Mutation, Post, User],
++    types: [Query, Mutation, Post, User, Profile],
+})
+```
+
+Note that the [`dev`](./package.json) script starts a development server that automatically updates your schema every time you save a file. This way, the auto-generated [GraphQL schema](./schema.graphql) updates whenever you make changes the `Query` or `Mutation` types inside your code.
 
 ## Next steps
 
