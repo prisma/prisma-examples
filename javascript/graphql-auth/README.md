@@ -204,7 +204,6 @@ mutation {
 
 </Details>
 
-
 ## Evolving the app
 
 Evolving the application typically requires four subsequent steps:
@@ -222,7 +221,7 @@ The first step would be to add a new table, e.g. called `Profile`, to the databa
 
 ```sql
 CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
   "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
@@ -233,7 +232,7 @@ To run the SQL statement against the database, you can use the `sqlite3` CLI in 
 ```bash
 sqlite3 dev.db \
 'CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
   "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
@@ -296,7 +295,7 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 With the `nexus-prisma` package, you can expose the new `Profile` model in the API like so:
 
 ```diff
-// ... as before 
+// ... as before
 
 const User = objectType({
   name: 'User',
@@ -311,7 +310,7 @@ const User = objectType({
   },
 })
 
-// ... as before 
+// ... as before
 
 +const Profile = objectType({
 +  name: 'Profile',
@@ -322,7 +321,7 @@ const User = objectType({
 +  },
 +})
 
-// ... as before 
+// ... as before
 
 export const schema = makeSchema({
 +  types: [Query, Mutation, Post, User, Profile],
@@ -340,10 +339,10 @@ As the Prisma Client API was updated, you can now also invoke "raw" operations v
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: "Hello World",
+    bio: 'Hello World',
     user: {
-      connect: { email: "alice@prisma.io" }
-    }
+      connect: { email: 'alice@prisma.io' },
+    },
   },
 })
 ```
@@ -356,10 +355,10 @@ const user = await prisma.user.create({
     email: 'john@prisma.io',
     name: 'John',
     profile: {
-      create: { 
-        bio: "Hello World"
-      }
-    }
+      create: {
+        bio: 'Hello World',
+      },
+    },
   },
 })
 ```
@@ -368,14 +367,14 @@ const user = await prisma.user.create({
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: "alice@prisma.io" },
+  where: { email: 'alice@prisma.io' },
   data: {
     profile: {
       update: {
-        bio: "Hello Friends"
-      }
-    }
-  }
+        bio: 'Hello Friends',
+      },
+    },
+  },
 })
 ```
 

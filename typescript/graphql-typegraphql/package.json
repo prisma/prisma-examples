@@ -1,14 +1,8 @@
 {
-  "name": "typegraph-example",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "name": "typegraphql-example",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index.ts"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@prisma/client": "^2.0.0-preview022",
     "graphql": "^14.6.0",
@@ -17,10 +11,12 @@
     "type-graphql": "^0.17.6"
   },
   "devDependencies": {
-    "@types/graphql": "^14.5.0",
-    "@types/ws": "^7.2.2",
-    "prisma2": "^2.0.0-preview022",
-    "ts-node": "^8.6.2",
+    "@types/graphql": "14.5.0",
+    "@types/node": "12.12.30",
+    "@types/ws": "7.2.3",
+    "prisma2": "^2.0.0-preview024",
+    "ts-node": "8.7.0",
+    "ts-node-dev": "1.0.0-pre.44",
     "typescript": "^3.8.3"
   }
 }

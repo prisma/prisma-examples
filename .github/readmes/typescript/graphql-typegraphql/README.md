@@ -10,4 +10,5 @@ __INLINE(../_start-graphql-server.md)__
 
 __INLINE(../../_using-the-graphql-api-typegraphql.md)__
 
-__INLINE(../_next-steps-graphql.md)__
+__INLINE(../_evolving-the-app-typegraphql.md)__
+__INLINE(../_next-steps.md)__

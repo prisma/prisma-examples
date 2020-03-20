@@ -42,4 +42,5 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 __INLINE(../../_using-the-rest-api-nextjs.md)__
 
-__INLINE(../_next-steps-rest-nextjs.md)__
+__INLINE(../_evolving-the-app-rest-nextjs.md)__
+__INLINE(../_next-steps.md)__

@@ -1,15 +1,15 @@
-### 3. Using the GraphQL API
+## Using the GraphQL API
 
 The schema specifies the API operations of your GraphQL server. TypeGraphQL allows you to define a schema using TypeScript classes and decorators. The schema is generated at runtime, and is defined by the following classes:
 
-* [`./src/PostResolvers.ts`](./src/PostResolvers.ts)
-* [`./src/UserResolvers.ts`](./src/UserResolvers.ts)
-* [`./src/User.ts`](./src/User.ts)
-* [`./src/Post.ts`](./src/Post.ts)
-* [`./src/UserCreateInput.ts`](./src/UserCreateInput.ts)
-* [`./src/PostCreateInput.ts`](./src/PostCreateInput.ts)
+- [`./src/PostResolvers.ts`](./src/PostResolvers.ts)
+- [`./src/UserResolvers.ts`](./src/UserResolvers.ts)
+- [`./src/User.ts`](./src/User.ts)
+- [`./src/Post.ts`](./src/Post.ts)
+- [`./src/UserCreateInput.ts`](./src/UserCreateInput.ts)
+- [`./src/PostCreateInput.ts`](./src/PostCreateInput.ts)
 
- Below are a number of operations that you can send to the API using the GraphQL Playground.
+Below are a number of operations that you can send to the API using the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
@@ -37,10 +37,9 @@ query {
 
 ```graphql
 mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
+  signupUser(data: {
+    name: "Sarah",
+    email: "sarah@prisma.io"
     }
   ) {
     id
@@ -53,9 +52,11 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
-    authorEmail: "alice@prisma.io"
+    data: {
+      title: "Join the Prisma Slack",
+      content: "https://slack.prisma.io"
+      email: "alice@prisma.io"
+    }
   ) {
     id
     published
@@ -98,7 +99,7 @@ mutation {
 
 ```graphql
 {
-  post(where: { id: __POST_ID__ }) {
+  post(id: __POST_ID__) {
     id
     title
     content
@@ -118,8 +119,7 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: __POST_ID__})
-  {
+  deleteOnePost(id: __POST_ID__) {
     id
   }
 }

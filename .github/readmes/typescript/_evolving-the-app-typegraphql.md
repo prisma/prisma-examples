@@ -1,4 +1,3 @@
-
 ## Evolving the app
 
 Evolving the application typically requires four subsequent steps:
@@ -16,7 +15,7 @@ The first step would be to add a new table, e.g. called `Profile`, to the databa
 
 ```sql
 CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
   "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
@@ -27,7 +26,7 @@ To run the SQL statement against the database, you can use the `sqlite3` CLI in 
 ```bash
 sqlite3 dev.db \
 'CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
   "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
@@ -92,35 +91,34 @@ You can use TypeGraphQL to expose the new `Profile` model.
 Create a new file named `src\Profile.ts` and add the following code:
 
 ```ts
-import "reflect-metadata";
-import { ObjectType, Field, ID } from "type-graphql"
-import { User } from "./User";
+import 'reflect-metadata'
+import { ObjectType, Field, ID } from 'type-graphql'
+import { User } from './User'
 
 @ObjectType()
 export class Profile {
   @Field(type => ID)
-  id: number;
+  id: number
 
-  @Field(type => User, {nullable: true})
-  user?: User | null;
+  @Field(type => User, { nullable: true })
+  user?: User | null
 
   @Field(type => String, { nullable: true })
-  bio?: string | null; 
+  bio?: string | null
 }
 ```
 
 Create a new file named `src\ProfileCreateInput.ts` with the following code:
 
 ```ts
-import "reflect-metadata";
-import { ObjectType, Field, ID, InputType } from "type-graphql"
-import { User } from "./User";
+import 'reflect-metadata'
+import { ObjectType, Field, ID, InputType } from 'type-graphql'
+import { User } from './User'
 
 @InputType()
 export class ProfileCreateInput {
- 
   @Field(type => String, { nullable: true })
-  bio?: string | null; 
+  bio?: string | null
 }
 ```
 
@@ -128,10 +126,10 @@ Add an additional field to `.src\User.ts` and import the `Profile` class.
 
 ```ts
   @Field(type => Profile, { nullable: true })
-  bio?: Profile | null; 
+  bio?: Profile | null;
 ```
 
-Add an additional field to =`src\UserCreateInput.ts`  and import the `ProfileCreateInput` class:
+Add an additional field to `src\UserCreateInput.ts` and import the `ProfileCreateInput` class:
 
 ```ts
   @Field(type => ProfileCreateInput, { nullable: true })
@@ -156,7 +154,7 @@ Update the `signupUser` mutation to include the option to create a profile when 
 ```ts
   @Mutation(returns => User)
   async signupUser(
-    @Arg("data") data: UserCreateInput, 
+    @Arg("data") data: UserCreateInput,
     @Ctx() ctx: Context): Promise<User> {
     try {
       return await ctx.prisma.user.create({
@@ -225,10 +223,10 @@ As the Prisma Client API was updated, you can now also invoke "raw" operations v
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: "Hello World",
+    bio: 'Hello World',
     user: {
-      connect: { email: "alice@prisma.io" }
-    }
+      connect: { email: 'alice@prisma.io' },
+    },
   },
 })
 ```
@@ -241,10 +239,10 @@ const user = await prisma.user.create({
     email: 'john@prisma.io',
     name: 'John',
     profile: {
-      create: { 
-        bio: "Hello World"
-      }
-    }
+      create: {
+        bio: 'Hello World',
+      },
+    },
   },
 })
 ```
@@ -253,21 +251,13 @@ const user = await prisma.user.create({
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: "alice@prisma.io" },
+  where: { email: 'alice@prisma.io' },
   data: {
     profile: {
       update: {
-        bio: "Hello Friends"
-      }
-    }
-  }
+        bio: 'Hello Friends',
+      },
+    },
+  },
 })
 ```
-
-## Next steps
-
-- Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
-- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/tree/master/docs/prisma-client-js/api.md))
-- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
-- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
-- Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)

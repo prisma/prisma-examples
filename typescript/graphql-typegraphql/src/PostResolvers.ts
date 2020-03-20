@@ -25,14 +25,14 @@ export class PostResolvers {
 
 
   @Query(returns => [Post])
-  async filterPosts(@Arg("searchQuery") searchQuery: string, @Ctx() ctx: Context
+  async filterPosts(@Arg("searchString") searchString: string, @Ctx() ctx: Context
   ) {
     try {
       const posts = await ctx.prisma.post.findMany({
         where: {
           OR: [
-            { title: { contains: searchQuery } },
-            { content: { contains: searchQuery } },
+            { title: { contains: searchString } },
+            { content: { contains: searchString } },
           ]
         }
       });

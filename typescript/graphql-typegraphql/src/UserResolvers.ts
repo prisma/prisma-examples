@@ -13,7 +13,7 @@ export class UserResolvers {
       where: {
         id: user.id
       }
-    }).post())!
+    }).posts())!
   }
 
 

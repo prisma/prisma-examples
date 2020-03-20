@@ -14,4 +14,5 @@ Execute the script with this command:
 npm run dev
 ```
 
+__INLINE(../_evolving-the-app.md)__
 __INLINE(../_next-steps.md)__
