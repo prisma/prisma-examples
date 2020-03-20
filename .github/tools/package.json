@@ -14,6 +14,6 @@
     "inline-markdown": "0.1.6",
     "prettier": "1.19.1",
     "prettier-check": "2.0.0",
-    "watch": "^1.0.2"
+    "watch": "1.0.2"
   }
 }
