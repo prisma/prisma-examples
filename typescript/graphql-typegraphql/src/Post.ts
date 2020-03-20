@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { ObjectType, Field, ID, InputType } from "type-graphql"
 import { IsEmail } from "class-validator"
-import { User } from "./User"
+import { User } from "./user"
 
 @ObjectType()
 export class Post {

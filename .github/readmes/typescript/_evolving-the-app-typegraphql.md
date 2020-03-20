@@ -122,14 +122,14 @@ export class ProfileCreateInput {
 }
 ```
 
-Add an additional field to `.src\User.ts` and import the `Profile` class.
+Add the `bio` field to `.src\User.ts` and import the `Profile` class.
 
 ```ts
   @Field(type => Profile, { nullable: true })
   bio?: Profile | null;
 ```
 
-Add an additional field to `src\UserCreateInput.ts` and import the `ProfileCreateInput` class:
+Add the `bio` field to `src\UserCreateInput.ts` and import the `ProfileCreateInput` class:
 
 ```ts
   @Field(type => ProfileCreateInput, { nullable: true })
@@ -198,8 +198,7 @@ Run the following query to return a user and their profile:
 
 ```
 query {
-  user(id:20)
-  {
+  user(id:1) {
     email,
     bio {
       id,
@@ -209,7 +208,6 @@ query {
       title,
       content
       }
-    }
   }
 }
 ```

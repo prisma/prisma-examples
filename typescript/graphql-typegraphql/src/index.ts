@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import * as tq from "type-graphql"
-import { PostResolvers } from "./PostResolvers"
-import  { UserResolvers } from "./UserResolvers"
+import { PostResolvers } from "./post-resolvers"
+import  { UserResolvers } from "./user-resolvers"
 import { GraphQLServer } from 'graphql-yoga'
 import { createContext } from "./context";
 
