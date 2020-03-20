@@ -13,7 +13,7 @@
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview019",
+    "@prisma/client": "2.0.0-preview024",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
@@ -26,8 +26,7 @@
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.8",
     "@types/node": "12.12.30",
-    "@types/ws": "7.2.3",
-    "prisma2": "2.0.0-preview022",
+    "prisma2": "2.0.0-preview024",
     "ts-node": "8.7.0",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.8.3"

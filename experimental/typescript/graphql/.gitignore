@@ -2,3 +2,4 @@ node_modules/
 dist/
 src/generated/
 *.env*
+schema.graphql

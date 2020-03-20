@@ -1,5 +1,5 @@
 const { GraphQLServer } = require('graphql-yoga')
-const { makeSchema, objectType, idArg, stringArg } = require('nexus')
+const { makeSchema, objectType, intArg, stringArg } = require('nexus')
 const { PrismaClient } = require('@prisma/client')
 const { nexusPrismaPlugin } = require('nexus-prisma')
 
@@ -90,7 +90,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        id: idArg(),
+        id: intArg(),
       },
       resolve: (_, { id }, ctx) => {
         return ctx.prisma.post.update({
@@ -116,7 +116,7 @@ new GraphQLServer({
   context: { prisma },
 }).start(() =>
   console.log(
-    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#3-using-the-graphql-api`,
+    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
   ),
 )
 

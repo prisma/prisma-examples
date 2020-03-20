@@ -1,4 +1,4 @@
-import { idArg, queryType, stringArg } from 'nexus'
+import { intArg, queryType, stringArg } from 'nexus'
 import { getUserId } from '../utils'
 
 export const Query = queryType({
@@ -8,9 +8,12 @@ export const Query = queryType({
       nullable: true,
       resolve: (parent, args, ctx) => {
         const userId = getUserId(ctx)
-        return ctx.photon.users.findOne({
+        if (!userId) {
+          throw new Error('Invalid userId')
+        }
+        return ctx.prisma.user.findOne({
           where: {
-            id: userId,
+            id: parseInt(userId),
           },
         })
       },
@@ -19,7 +22,7 @@ export const Query = queryType({
     t.list.field('feed', {
       type: 'Post',
       resolve: (parent, args, ctx) => {
-        return ctx.photon.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: { published: true },
         })
       },
@@ -31,7 +34,7 @@ export const Query = queryType({
         searchString: stringArg({ nullable: true }),
       },
       resolve: (parent, { searchString }, ctx) => {
-        return ctx.photon.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: {
             OR: [
               {
@@ -53,9 +56,9 @@ export const Query = queryType({
     t.field('post', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.findOne({
+        return ctx.prisma.post.findOne({
           where: {
             id,
           },

@@ -2,11 +2,12 @@
 
 This example shows how to implement a **REST API** using [Express](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
-__INLINE(../_setup-1.md)__
+__INLINE(../../_setup-1.md)__
 cd prisma-examples/experimental/javascript/rest-express
-__INLINE(../_setup-2.md)__
+__INLINE(../../_setup-2.md)__
+__INLINE(../../_seed.md)__
 
-### 4. Start the REST API server
+### 5. Start the REST API server
 
 ```
 npm run dev
@@ -16,4 +17,6 @@ The server is now running on `http://localhost:3000`. You can send the API reque
 
 __INLINE(../../../_using-the-rest-api.md)__
 
-__INLINE(../_next-steps.md)__
+__INLINE(../../_evolving-the-app.md)__
+
+__INLINE(../../_next-steps.md)__

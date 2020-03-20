@@ -1,6 +1,6 @@
 const { compare, hash } = require('bcryptjs')
 const { sign } = require('jsonwebtoken')
-const { idArg, mutationType, stringArg } = require('nexus')
+const { mutationType, stringArg, intArg } = require('nexus')
 const { APP_SECRET, getUserId } = require('../utils')
 
 const Mutation = mutationType({
@@ -14,7 +14,7 @@ const Mutation = mutationType({
       },
       resolve: async (parent, { name, email, password }, ctx) => {
         const hashedPassword = await hash(password, 10)
-        const user = await ctx.photon.users.create({
+        const user = await ctx.prisma.user.create({
           data: {
             name,
             email,
@@ -35,7 +35,7 @@ const Mutation = mutationType({
         password: stringArg(),
       },
       resolve: async (parent, { email, password }, context) => {
-        const user = await context.photon.users.findOne({
+        const user = await context.prisma.user.findOne({
           where: {
             email,
           },
@@ -62,7 +62,7 @@ const Mutation = mutationType({
       },
       resolve: (parent, { title, content }, ctx) => {
         const userId = getUserId(ctx)
-        return ctx.photon.posts.create({
+        return ctx.prisma.post.create({
           data: {
             title,
             content,
@@ -76,9 +76,9 @@ const Mutation = mutationType({
     t.field('deletePost', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.delete({
+        return ctx.prisma.post.delete({
           where: {
             id,
           },
@@ -89,9 +89,9 @@ const Mutation = mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
-        return ctx.photon.posts.update({
+        return ctx.prisma.post.update({
           where: { id },
           data: { published: true },
         })

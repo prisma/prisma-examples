@@ -17,8 +17,6 @@ service Blog {
 
 message Post {
   string id = 1;
-  string createdAt = 2;
-  string updatedAt = 3;
   string title = 4;
   string content = 5;
   bool published = 6;
@@ -53,7 +51,6 @@ message PostRequest {
 message SignupUserRequest {
   string name = 1;
   string email = 2;
-  string password = 3;
 }
 
 message CreateDraftRequest {

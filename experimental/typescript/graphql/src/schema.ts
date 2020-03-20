@@ -1,5 +1,5 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { idArg, makeSchema, objectType, stringArg } from 'nexus'
+import { intArg, makeSchema, objectType, stringArg } from 'nexus'
 
 const User = objectType({
   name: 'User',
@@ -17,8 +17,6 @@ const Post = objectType({
   name: 'Post',
   definition(t) {
     t.model.id()
-    t.model.createdAt()
-    t.model.updatedAt()
     t.model.title()
     t.model.content()
     t.model.published()
@@ -36,7 +34,7 @@ const Query = objectType({
     t.list.field('feed', {
       type: 'Post',
       resolve: (_parent, _args, ctx) => {
-        return ctx.photon.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: { published: true },
         })
       },
@@ -48,7 +46,7 @@ const Query = objectType({
         searchString: stringArg({ nullable: true }),
       },
       resolve: (_, { searchString }, ctx) => {
-        return ctx.photon.posts.findMany({
+        return ctx.prisma.post.findMany({
           where: {
             OR: [
               { title: { contains: searchString } },
@@ -75,7 +73,7 @@ const Mutation = objectType({
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
-        return ctx.photon.posts.create({
+        return ctx.prisma.post.create({
           data: {
             title,
             content,
@@ -92,10 +90,10 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        id: idArg(),
+        id: intArg(),
       },
       resolve: (_, { id }, ctx) => {
-        return ctx.photon.posts.update({
+        return ctx.prisma.post.update({
           where: { id },
           data: { published: true },
         })
@@ -115,8 +113,8 @@ export const schema = makeSchema({
     contextType: 'Context.Context',
     sources: [
       {
-        source: '@prisma/photon',
-        alias: 'photon',
+        source: '@prisma/client',
+        alias: 'prisma',
       },
       {
         source: require.resolve('./context'),

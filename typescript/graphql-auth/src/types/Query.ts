@@ -1,4 +1,4 @@
-import { idArg, queryType, stringArg } from 'nexus'
+import { intArg, queryType, stringArg } from 'nexus'
 import { getUserId } from '../utils'
 
 export const Query = queryType({
@@ -53,7 +53,7 @@ export const Query = queryType({
     t.field('post', {
       type: 'Post',
       nullable: true,
-      args: { id: idArg() },
+      args: { id: intArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.findOne({
           where: {

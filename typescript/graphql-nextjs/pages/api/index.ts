@@ -1,4 +1,4 @@
-import { idArg, makeSchema, objectType, stringArg, asNexusMethod } from 'nexus'
+import { intArg, makeSchema, objectType, stringArg, asNexusMethod } from 'nexus'
 import { GraphQLDate } from 'graphql-iso-date'
 import { PrismaClient } from '@prisma/client'
 import { graphql } from 'graphql'
@@ -56,7 +56,7 @@ const Query = objectType({
     t.field('post', {
       type: 'Post',
       args: {
-        postId: idArg({ nullable: false }),
+        postId: intArg({ nullable: false }),
       },
       resolve: (_, args) => {
         return prisma.post.findOne({
@@ -125,7 +125,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        postId: idArg(),
+        postId: intArg(),
       },
       resolve: (_, { postId }, ctx) => {
         return prisma.post.delete({
@@ -159,7 +159,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        postId: idArg(),
+        postId: intArg(),
       },
       resolve: (_, { postId }, ctx) => {
         return prisma.post.update({
