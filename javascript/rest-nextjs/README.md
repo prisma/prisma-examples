@@ -85,7 +85,6 @@ You can also access the REST API of the API server directly. It is running on th
   
 - `/api/post/:id`: Delete a post by its `id`
 
-
 ## Evolving the app
 
 Evolving the application typically requires five subsequent steps:
@@ -104,7 +103,7 @@ The first step would be to add a new table, e.g. called `Profile`, to the databa
 
 ```sql
 CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
   "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
@@ -115,7 +114,7 @@ To run the SQL statement against the database, you can use the `sqlite3` CLI in 
 ```bash
 sqlite3 dev.db \
 'CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
   "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
@@ -182,10 +181,10 @@ Here are some examples for some Prisma Client operations:
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: "Hello World",
+    bio: 'Hello World',
     user: {
-      connect: { email: "alice@prisma.io" }
-    }
+      connect: { email: 'alice@prisma.io' },
+    },
   },
 })
 ```
@@ -198,10 +197,10 @@ const user = await prisma.user.create({
     email: 'john@prisma.io',
     name: 'John',
     profile: {
-      create: { 
-        bio: "Hello World"
-      }
-    }
+      create: {
+        bio: 'Hello World',
+      },
+    },
   },
 })
 ```
@@ -210,20 +209,20 @@ const user = await prisma.user.create({
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: "alice@prisma.io" },
+  where: { email: 'alice@prisma.io' },
   data: {
     profile: {
       update: {
-        bio: "Hello Friends"
-      }
-    }
-  }
+        bio: 'Hello Friends',
+      },
+    },
+  },
 })
 ```
 
 ### 5. Build new UI features in React
 
-Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory. 
+Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory.
 
 In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
 

@@ -3,9 +3,9 @@
 Evolving the application typically requires four subsequent steps:
 
 1. Migrating the database schema using SQL
-1. Update your Prisma schema by introspecting the database with `prisma2 introspect`
+1. Updating your Prisma schema by introspecting the database with `prisma2 introspect`
 1. Generating Prisma Client to match the new database schema with `prisma2 generate`
-1. Use the updated Prisma Client in your application code
+1. Using the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -17,7 +17,7 @@ The first step would be to add a new table, e.g. called `Profile`, to the databa
 CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
-  "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
+  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
 ```
 
@@ -28,7 +28,7 @@ sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
-  "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
+  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
 ```
 
@@ -84,9 +84,139 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
+#### Option A: Expose `Profile` operations via TypeGraphQL
 
-#### Create a new profile for an existing user
+You can use TypeGraphQL to expose the new `Profile` model.
+
+Create a new file named `src\Profile.ts` and add the following code:
+
+```ts
+import 'reflect-metadata'
+import { ObjectType, Field, ID } from 'type-graphql'
+import { User } from './User'
+
+@ObjectType()
+export class Profile {
+  @Field(type => ID)
+  id: number
+
+  @Field(type => User, { nullable: true })
+  user?: User | null
+
+  @Field(type => String, { nullable: true })
+  bio?: string | null
+}
+```
+
+Create a new file named `src\ProfileCreateInput.ts` with the following code:
+
+```ts
+import 'reflect-metadata'
+import { ObjectType, Field, ID, InputType } from 'type-graphql'
+import { User } from './User'
+
+@InputType()
+export class ProfileCreateInput {
+  @Field(type => String, { nullable: true })
+  bio?: string | null
+}
+```
+
+Add the `bio` field to `.src\User.ts` and import the `Profile` class.
+
+```ts
+  @Field(type => Profile, { nullable: true })
+  bio?: Profile | null;
+```
+
+Add the `bio` field to `src\UserCreateInput.ts` and import the `ProfileCreateInput` class:
+
+```ts
+  @Field(type => ProfileCreateInput, { nullable: true })
+  bio?: ProfileCreateInput | null;
+```
+
+Extend the `src\UserResolver.ts` class with an additional field resolver:
+
+```ts
+  @FieldResolver()
+  async bio(@Root() user: User, @Ctx() ctx: Context): Promise<Profile> {
+    return (await ctx.prisma.user.findOne({
+      where: {
+        id: user.id
+      }
+    }).profile())!
+  }
+```
+
+Update the `signupUser` mutation to include the option to create a profile when you sign up a new user:
+
+```ts
+  @Mutation(returns => User)
+  async signupUser(
+    @Arg("data") data: UserCreateInput,
+    @Ctx() ctx: Context): Promise<User> {
+    try {
+      return await ctx.prisma.user.create({
+        data: {
+          email: data.email,
+          name: data.name,
+          profile: {
+            create: {
+              bio: data.bio?.bio
+            }
+          }
+        }
+      });
+    }
+    catch (error) {
+      throw error;
+    }
+  }
+```
+
+Run the following mutation to create a user with a profile:
+
+```
+mutation {
+  signupUser(data: {email:"katla@prisma.io", bio: { bio: "Sometimes I'm an Icelandic volcano, sometimes I'm a dragon from a book."}})
+  {
+    id,
+    email,
+    posts {
+      title
+    }
+    bio {
+      id,
+      bio
+    }
+  }
+}
+```
+
+Run the following query to return a user and their profile:
+
+```
+query {
+  user(id:1) {
+    email,
+    bio {
+      id,
+      bio
+    }
+    posts {
+      title,
+      content
+      }
+  }
+}
+```
+
+#### Option B: Use the `PrismaClient` instance directly
+
+As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
+
+##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
@@ -99,7 +229,7 @@ const profile = await prisma.profile.create({
 })
 ```
 
-#### Create a new user with a new profile
+##### Create a new user with a new profile
 
 ```ts
 const user = await prisma.user.create({
@@ -115,7 +245,7 @@ const user = await prisma.user.create({
 })
 ```
 
-#### Update the profile of an existing user
+##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
@@ -129,11 +259,3 @@ const userWithUpdatedProfile = await prisma.user.update({
   },
 })
 ```
-
-## Next steps
-
-- Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
-- Check out the [Prisma Framework docs](https://github.com/prisma/prisma2) (e.g. for [data modeling](https://github.com/prisma/prisma2/blob/master/docs/data-modeling.md), [relations](https://github.com/prisma/prisma2/blob/master/docs/relations.md) or the [Prisma Client API](https://github.com/prisma/prisma2/tree/master/docs/prisma-client-js/api.md))
-- Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
-- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
-- Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
