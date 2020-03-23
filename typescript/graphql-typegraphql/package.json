@@ -5,10 +5,10 @@
   },
   "dependencies": {
     "@prisma/client": "^2.0.0-preview022",
-    "graphql": "^14.6.0",
-    "graphql-yoga": "^1.18.3",
-    "reflect-metadata": "^0.1.13",
-    "type-graphql": "^0.17.6"
+    "graphql": "14.6.0",
+    "graphql-yoga": "1.18.3",
+    "reflect-metadata": "0.1.13",
+    "type-graphql": "0.17.6"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
@@ -17,6 +17,6 @@
     "prisma2": "^2.0.0-preview024",
     "ts-node": "8.7.0",
     "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "^3.8.3"
+    "typescript": "3.8.3"
   }
 }
