@@ -7,7 +7,7 @@
     "start": "node index.js",
     "prisma:introspect": "prisma2 introspect",
     "prisma:generate": "prisma2 generate",
-    "postinsall": "prisma2 generate"
+    "postinstall": "prisma2 generate"
   },
   "devDependencies": {
     "prisma2": "2.0.0-preview024",
