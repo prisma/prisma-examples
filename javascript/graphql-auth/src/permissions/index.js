@@ -11,7 +11,7 @@ isPostOwner: rule()(async (parent, { id }, context) => {
     const author = await context.prisma
       .post.findOne({
         where: {
-          id: parseInt(id, 10)
+          id: Number(id)
         }
       })
       .author()
