@@ -11,7 +11,7 @@ const rules = {
     const author = await context.prisma.post
       .findOne({
         where: {
-          id,
+          id: Number(id),
         },
       })
       .author()
