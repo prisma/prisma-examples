@@ -14,7 +14,7 @@
     }
   ],
   "ignoreDeps": [
-    "prisma2",
+    "@prisma/cli",
     "@prisma/client"
   ]
 }
