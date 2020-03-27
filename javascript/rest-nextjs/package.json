@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "2.0.0-preview024",
+    "@prisma/client": "2.0.0-preview025",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.1.5",
@@ -22,6 +22,6 @@
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
-    "prisma2": "2.0.0-preview024"
+    "@prisma/cli": "2.0.0-preview025"
   }
 }
