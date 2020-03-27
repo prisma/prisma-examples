@@ -1,0 +1,40 @@
+service: prisma-aws-lambda-example
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs12.x
+
+functions:
+  status:
+    handler: handlers/status.handler
+    events:
+      - http:
+          method: GET
+          path: /
+  seed:
+    handler: handlers/seed.handler
+    events:
+      - http:
+          method: GET
+          path: /seed
+  getUsers:
+    handler: handlers/users.handler
+    events:
+      - http:
+          method: GET
+          path: /users
+  createUser:
+    handler: handlers/create-user.handler
+    events:
+      - http:
+          method: POST
+          path: /users
+  getPosts:
+    handler: handlers/posts.handler
+    events:
+      - http:
+          method: GET
+          path: /posts
