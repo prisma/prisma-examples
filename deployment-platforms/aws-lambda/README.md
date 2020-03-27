@@ -1,0 +1,1 @@
+# Prisma deployment to AWS Lambda example
