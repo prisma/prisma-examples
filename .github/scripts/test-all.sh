@@ -7,6 +7,12 @@ dir="$(pwd)"
 packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
 
 echo "$packages" | tr ' ' '\n' | while read -r item; do
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
+	echo ""
 	echo "---------------------"
 	echo "running $item"
 
