@@ -10,7 +10,7 @@
     "graphql-yoga": "1.18.3"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-preview024"
+    "prisma2": "2.0.0-preview024"
   },
   "prettier": {
     "singleQuote": true,

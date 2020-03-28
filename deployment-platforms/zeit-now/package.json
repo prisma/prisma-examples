@@ -10,7 +10,7 @@
     "postinstall": "prisma2 generate"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-preview024",
+    "prisma2": "2.0.0-preview024",
     "now": "16.7.3"
   }
 }

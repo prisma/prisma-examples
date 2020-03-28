@@ -22,6 +22,6 @@
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-preview024"
+    "prisma2": "2.0.0-preview024"
   }
 }
