@@ -1,0 +1,7 @@
+generates:
+  ./src/generated/types.ts:
+    documents: ./src/**/*.tsx
+    schema: http://localhost:4000
+    plugins:
+      - typescript
+      - typescript-operations
