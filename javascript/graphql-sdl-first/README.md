@@ -205,26 +205,29 @@ npx prisma2 introspect
 The `introspect` command updates your `schema.prisma` file. It now includes the `Profile` model and its 1:1 relation to `User`:
 
 ```prisma
-model Post {
-  author    User?
-  content   String?
-  id        Int     @id
-  published Boolean @default(false)
-  title     String
-}
 
 model User {
   email   String   @unique
-  id      Int      @id
+  id      Int      @default(autoincrement()) @id
   name    String?
-  post    Post[]
-  profile Profile?
+  Post    Post[]
+  Profile Profile?
+}
+
+model Post {
+  authorId  Int?
+  content   String?
+  id        Int     @default(autoincrement()) @id
+  published Boolean @default(false)
+  title     String
+  User      User?   @relation(fields: [authorId], references: [id])
 }
 
 model Profile {
   bio  String?
-  id   Int     @id
-  user User
+  id   Int     @default(autoincrement()) @id
+  user String  @unique
+  User User    @relation(fields: [user], references: [id])
 }
 ```
 
@@ -293,3 +296,4 @@ const userWithUpdatedProfile = await prisma.user.update({
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the Prisma Slack
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
+
