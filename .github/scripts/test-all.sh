@@ -29,6 +29,8 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 	yarn install
 	yarn prisma2 generate
 
+	echo "+++++++++++"
+	echo "executing .github/tests/$(dirname "$item")/run.sh (tests)"
 	run_file="$dir/.github/tests/$(dirname "$item")/run.sh"
 
 	if [ -f "$run_file" ]; then
