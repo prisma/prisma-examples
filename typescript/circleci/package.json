@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "jest": "23.6.0",
-    "ts-jest": "23.10.5",
+    "ts-jest": "25.3.0",
     "typescript": "3.8.3"
   },
   "jest": {
