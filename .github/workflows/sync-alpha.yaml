@@ -2,7 +2,7 @@ name: sync-alpha
 on:
   push:
     branches:
-      - prisma2
+      - master
 jobs:
   sync-alpha:
     runs-on: ubuntu-latest
