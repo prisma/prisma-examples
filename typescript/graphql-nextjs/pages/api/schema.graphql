@@ -11,8 +11,8 @@ scalar Date
 
 type Mutation {
   createDraft(authorEmail: String, content: String, title: String!): Post!
-  deletePost(postId: ID): Post
-  publish(postId: ID): Post
+  deletePost(postId: String): Post
+  publish(postId: String): Post
   signupUser(email: String!, name: String): User!
 }
 
@@ -20,7 +20,7 @@ type Post {
   author: User
   content: String
   createdAt: Date!
-  id: ID!
+  id: String!
   published: Boolean!
   title: String!
   updatedAt: Date!
@@ -30,12 +30,12 @@ type Query {
   drafts: [Post!]!
   feed: [Post!]!
   filterPosts(searchString: String): [Post!]!
-  post(postId: ID!): Post!
+  post(postId: String!): Post!
 }
 
 type User {
   email: String!
-  id: ID!
+  id: String!
   name: String!
   posts: [Post!]!
 }
