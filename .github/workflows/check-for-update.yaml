@@ -14,10 +14,11 @@ jobs:
           node-version: 10
 
       - name: check preview update
-        run: sh .github/scripts/check-for-update.sh latest prisma2
+        run: sh .github/scripts/check-for-update.sh latest master
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
-
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+  
   check-for-alpha-update:
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +33,4 @@ jobs:
         run: sh .github/scripts/check-for-update.sh alpha alpha
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}

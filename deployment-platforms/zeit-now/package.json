@@ -1,16 +1,16 @@
 {
   "name": "prisma-zeit-now",
   "dependencies": {
-    "@prisma/client": "2.0.0-preview025"
+    "@prisma/client": "2.0.0-beta.1"
   },
   "scripts": {
     "start": "node index.js",
-    "prisma:introspect": "prisma2 introspect",
-    "prisma:generate": "prisma2 generate",
-    "postinstall": "prisma2 generate"
+    "prisma:introspect": "prisma introspect",
+    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-preview025",
+    "@prisma/cli": "2.0.0-beta.1",
     "now": "16.7.3"
   }
 }

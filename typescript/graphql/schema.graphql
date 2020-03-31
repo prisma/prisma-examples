@@ -5,7 +5,7 @@
 type Mutation {
   createDraft(authorEmail: String, content: String, title: String!): Post!
   deleteOnePost(where: PostWhereUniqueInput!): Post
-  publish(id: ID): Post
+  publish(id: Int): Post
   signupUser(data: UserCreateInput!): User!
 }
 

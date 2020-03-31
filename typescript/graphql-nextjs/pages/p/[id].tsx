@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
 const PostQuery = gql`
-  query PostQuery($postId: ID!) {
+  query PostQuery($postId: String!) {
     post(postId: $postId) {
       id
       title
@@ -20,7 +20,7 @@ const PostQuery = gql`
 `
 
 const PublishMutation = gql`
-  mutation PublishMutation($postId: ID!) {
+  mutation PublishMutation($postId: String!) {
     publish(postId: $postId) {
       id
       title
@@ -35,7 +35,7 @@ const PublishMutation = gql`
 `
 
 const DeleteMutation = gql`
-  mutation DeleteMutation($postId: ID!) {
+  mutation DeleteMutation($postId: String!) {
     deletePost(postId: $postId) {
       id
       title

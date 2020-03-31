@@ -27,7 +27,7 @@ type Query {
   feed: [Post!]!
   filterPosts(searchString: String): [Post!]!
   me: User
-  post(id: ID): Post
+  post(id: Int): Post
 }
 
 type User {

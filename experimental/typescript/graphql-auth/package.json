@@ -6,27 +6,27 @@
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
-    "generate:prisma": "prisma2 generate",
+    "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "postinstall": "npm -s run generate",
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server",
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-preview025",
+    "@prisma/client": "2.0.0-beta.1",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "nexus": "0.12.0-rc.14",
+    "nexus": "0.12.0",
     "nexus-prisma": "0.11.1"
   },
   "devDependencies": {
+    "@prisma/cli": "2.0.0-beta.1",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.8",
-    "@types/node": "12.12.32",
-    "@prisma/cli": "2.0.0-preview025",
+    "@types/node": "12.12.34",
     "ts-node": "8.8.1",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.8.3"
