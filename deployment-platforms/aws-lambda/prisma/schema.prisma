@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
@@ -9,22 +9,24 @@ datasource db {
 }
 
 model Post {
+  author_id Int?
   content   String?
   post_id   Int     @default(autoincrement()) @id
   title     String
-  author_id User?
+  User      User?   @relation(fields: [author_id], references: [user_id])
 }
 
 model Profile {
   bio        String?
   profile_id Int     @default(autoincrement()) @id
-  user_id    User
+  user_id    Int
+  User       User    @relation(fields: [user_id], references: [user_id])
 }
 
 model User {
   email   String    @unique
   name    String?
   user_id Int       @default(autoincrement()) @id
-  post    Post[]
-  profile Profile[]
+  Post    Post[]
+  Profile Profile[]
 }
