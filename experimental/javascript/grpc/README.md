@@ -26,8 +26,8 @@ Note that this also generates Prisma Client JS into `node_modules/@prisma/client
 Perform an initial schema migration against your database using the following commands:
 
 ```
-npx prisma2 migrate save --name 'init' --experimental
-npx prisma2 migrate up --experimental
+npx prisma migrate save --name 'init' --experimental
+npx prisma migrate up --experimental
 ```
 
 The first step will save the migration in the `prisma/migrations` folder. The second step will execute the migrations.
@@ -144,7 +144,7 @@ model User {
 To migrate the database schema you first need to save the migration as follows:
 
 ```
-npx prisma2 migrate save --name 'add-profile' --experimental
+npx prisma migrate save --name 'add-profile' --experimental
 ```
 
 The CLI will output the planned changes and save the migration files in `prisma/migrations/20200313000000-add-profile/` (they contain details about required migrations steps and SQL operations).
@@ -154,7 +154,7 @@ The CLI will output the planned changes and save the migration files in `prisma/
 Now that the migration has been saved you can run the migration as follows:
 
 ```
-npx prisma2 migrate up --experimental
+npx prisma migrate up --experimental
 ```
 
 This will actually perform the schema migration against the database.
