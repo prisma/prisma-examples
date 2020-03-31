@@ -22,7 +22,7 @@
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
-    "@types/node": "13.9.7",
+    "@types/node": "13.9.8",
     "@types/react": "16.9.27",
     "@prisma/cli": "2.0.0-preview025",
     "typescript": "3.8.3"
