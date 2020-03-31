@@ -14,7 +14,7 @@ npx prisma migrate up --experimental
 
 The first step will save the migration in the `prisma/migrations` folder. The second step will execute the migrations.
 
-> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
+> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g @prisma/cli`. When using Yarn, you can run: `yarn prisma dev`.
 
 <Details>
 <Summary><b>Alternative: </b>Connect to your own database</Summary>
