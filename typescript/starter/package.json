@@ -2,7 +2,7 @@
   "name": "script",
   "license": "MIT",
   "devDependencies": {
-    "@prisma/cli": "alpha",
+    "@prisma/cli": "2.0.0-beta.1",
     "ts-node": "8.7.0",
     "typescript": "3.8.3"
   },
@@ -10,7 +10,7 @@
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/client": "alpha"
+    "@prisma/client": "2.0.0-beta.1"
   },
   "engines": {
     "node": ">=10.0.0"
