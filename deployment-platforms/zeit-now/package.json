@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.1",
-    "now": "16.7.3"
+    "now": "17.1.1"
   }
 }
