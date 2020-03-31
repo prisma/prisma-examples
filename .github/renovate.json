@@ -5,7 +5,7 @@
     "automerge": false
   },
   "masterIssue": true,
-  "baseBranches": ["master", "prisma2"],
+  "baseBranches": ["master"],
   "packageRules": [
     {
       "baseBranchList": ["master"],

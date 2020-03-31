@@ -27,7 +27,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 
 	## ACTION
 	yarn install
-	yarn prisma2 generate
+	yarn prisma generate
 
 	echo "+++++++++++"
 	echo "executing .github/tests/$(dirname "$item")/run.sh (tests)"
@@ -44,7 +44,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 		if [ $code -ne 0 ]; then
 			echo "$(dirname "$item") failed"
 
-			if [ "$GITHUB_REF" = "refs/heads/prisma2" ]; then
+			if [ "$GITHUB_REF" = "refs/heads/master" ]; then
 				export webhook="$SLACK_WEBHOOK_URL_FAILING"
 				version="$(cat .github/prisma-version.txt)"
 				sha="$(git rev-parse HEAD | cut -c -7)"

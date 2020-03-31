@@ -12,7 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "2.0.0-alpha.981",
+=======
+    "@prisma/client": "2.0.0-beta.1",
+>>>>>>> master
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.1.5",
@@ -22,9 +26,15 @@
     "tachyons": "^4.11.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@prisma/cli": "2.0.0-alpha.981",
     "@types/node": "13.9.5",
     "@types/react": "16.9.26",
+=======
+    "@prisma/cli": "2.0.0-beta.1",
+    "@types/node": "13.9.8",
+    "@types/react": "16.9.29",
+>>>>>>> master
     "typescript": "3.8.3"
   }
 }
