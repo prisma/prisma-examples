@@ -2,11 +2,7 @@
   "name": "graphql-auth",
   "version": "1.0.0",
   "dependencies": {
-<<<<<<< HEAD
-    "@prisma/client": "2.0.0-alpha.981",
-=======
     "@prisma/client": "2.0.0-beta.1",
->>>>>>> master
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
@@ -20,11 +16,7 @@
     "seed": "node prisma/seed"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "@prisma/cli": "2.0.0-alpha.981"
-=======
     "@prisma/cli": "2.0.0-beta.1"
->>>>>>> master
   },
   "prettier": {
     "singleQuote": true,
