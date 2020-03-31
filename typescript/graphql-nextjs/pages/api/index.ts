@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
 const User = objectType({
   name: 'User',
   definition(t) {
-    t.id('id')
+    t.string('id')
     t.string('name')
     t.string('email')
     t.list.field('posts', {
@@ -29,7 +29,7 @@ const User = objectType({
 const Post = objectType({
   name: 'Post',
   definition(t) {
-    t.id('id')
+    t.string('id')
     t.date('createdAt')
     t.date('updatedAt')
     t.string('title')
@@ -56,7 +56,7 @@ const Query = objectType({
     t.field('post', {
       type: 'Post',
       args: {
-        postId: intArg({ nullable: false }),
+        postId: stringArg({ nullable: false }),
       },
       resolve: (_, args) => {
         return prisma.post.findOne({
@@ -125,7 +125,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        postId: intArg(),
+        postId: stringArg(),
       },
       resolve: (_, { postId }, ctx) => {
         return prisma.post.delete({
@@ -159,7 +159,7 @@ const Mutation = objectType({
       type: 'Post',
       nullable: true,
       args: {
-        postId: intArg(),
+        postId: stringArg(),
       },
       resolve: (_, { postId }, ctx) => {
         return prisma.post.update({

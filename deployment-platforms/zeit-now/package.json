@@ -1,7 +1,11 @@
 {
   "name": "prisma-zeit-now",
   "dependencies": {
+<<<<<<< HEAD
+    "@prisma/client": "2.0.0-alpha.981"
+=======
     "@prisma/client": "2.0.0-beta.1"
+>>>>>>> master
   },
   "scripts": {
     "start": "node index.js",
@@ -10,7 +14,11 @@
     "postinstall": "prisma generate"
   },
   "devDependencies": {
+<<<<<<< HEAD
+    "@prisma/cli": "2.0.0-alpha.981",
+=======
     "@prisma/cli": "2.0.0-beta.1",
+>>>>>>> master
     "now": "16.7.3"
   }
 }

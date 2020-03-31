@@ -6,12 +6,20 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "@prisma/client": "2.0.0-alpha.981",
+=======
     "@prisma/client": "2.0.0-beta.1",
+>>>>>>> master
     "body-parser": "1.19.0",
     "express": "4.17.1"
   },
   "devDependencies": {
+<<<<<<< HEAD
+    "@prisma/cli": "2.0.0-alpha.981"
+=======
     "@prisma/cli": "2.0.0-beta.1"
+>>>>>>> master
   },
   "engines": {
     "node": ">=10.0.0"
