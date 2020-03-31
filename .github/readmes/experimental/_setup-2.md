@@ -50,7 +50,7 @@ datasource postgresql {
 Run the following command to generate your Prisma Client API:
 
 ```
-npx prisma2 generate
+npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.

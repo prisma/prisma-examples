@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
-    "generate:prisma": "prisma2 generate",
+    "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only pages/api"
   },
   "keywords": [],

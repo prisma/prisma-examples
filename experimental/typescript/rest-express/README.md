@@ -68,7 +68,7 @@ datasource postgresql {
 Run the following command to generate your Prisma Client API:
 
 ```
-npx prisma2 generate
+npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
@@ -126,7 +126,7 @@ Evolving the application typically requires four subsequent steps:
 
 1. Update your Prisma schema
 1. Save and migrate the database schema using Prisma Migrate
-1. Generate Prisma Client to match the new schema with `prisma2 generate`
+1. Generate Prisma Client to match the new schema with `prisma generate`
 1. Use the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a single profile (1:1 relationship) and write a short bio about themselves and add a link to an image.
@@ -193,7 +193,7 @@ Assuming everything went right, the CLI should output:
 With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
 
 ```
-npx prisma2 generate
+npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
@@ -205,3 +205,4 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
+

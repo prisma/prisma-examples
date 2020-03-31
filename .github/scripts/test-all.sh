@@ -21,7 +21,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
 
 	## ACTION
 	yarn install
-	yarn prisma2 generate
+	yarn prisma generate
 
 	run_file="$dir/.github/tests/$(dirname "$item")/run.sh"
 

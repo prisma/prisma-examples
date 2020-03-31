@@ -90,8 +90,8 @@ You can also access the REST API of the API server directly. It is running on th
 Evolving the application typically requires five subsequent steps:
 
 1. Migrating the database schema using SQL
-1. Updating your Prisma schema by introspecting the database with `prisma2 introspect`
-1. Generating Prisma Client to match the new database schema with `prisma2 generate`
+1. Updating your Prisma schema by introspecting the database with `prisma introspect`
+1. Generating Prisma Client to match the new database schema with `prisma generate`
 1. Using the updated Prisma Client in your application code and extending the REST API
 1. Building new UI features in React
 
@@ -129,7 +129,7 @@ While your database now is already aware of the new table, you're not yet able t
 The Prisma schema is the foundation for the generated Prisma Client API. Therefore, you first need to make sure the new `Profile` table is represented in it as well. The easiest way to do so is by introspecting your database:
 
 ```
-npx prisma2 introspect
+npx prisma introspect
 ```
 
 > **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
@@ -165,7 +165,7 @@ model Profile {
 With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
 
 ```
-npx prisma2 generate
+npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
