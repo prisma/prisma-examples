@@ -15,10 +15,10 @@
     "@prisma/client": "2.0.0-beta.1",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.1.5",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-markdown": "^4.2.2",
+    "next": "^9.3.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-markdown": "^4.3.1",
     "tachyons": "^4.11.1"
   },
   "devDependencies": {

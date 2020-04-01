@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-import Markdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
@@ -31,7 +30,7 @@ const Post = props => {
       <div className="page">
         <h2>{title}</h2>
         <small>By {authorName}</small>
-        <p>{props.content}</p>
+        <ReactMarkdown source={props.content} />
         <div className="actions">
           {!props.published && (
             <button onClick={() => publish(props.id)}>Publish</button>
@@ -64,10 +63,10 @@ const Post = props => {
   )
 }
 
-Post.getInitialProps = async function(context) {
-  const res = await fetch(`http://localhost:3000/api/post/${context.query.id}`)
+export const getServerSideProps = async (context) => {
+  const res = await fetch(`http://localhost:3000/api/post/${context.params.id}`)
   const data = await res.json()
-  return data
+  return {props: {...data}}
 }
 
 export default Post
