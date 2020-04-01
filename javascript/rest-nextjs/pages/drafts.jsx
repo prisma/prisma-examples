@@ -1,27 +1,6 @@
-import Layout from '../components/Layout'
-import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
-
-const Post = ({ post }) => {
-  const authorName = post.author ? post.author.name : 'Unknown author'
-  return (
-    <Link href="/p/[id]" as={`/p/${post.id}`}>
-      <a>
-        <h2>{post.title}</h2>
-        <small>By {authorName}</small>
-        <p>{post.content}</p>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: inherit;
-            padding: 2rem;
-            display: block;
-          }
-        `}</style>
-      </a>
-    </Link>
-  )
-}
+import Layout from '../components/Layout'
+import Post from '../components/Post'
 
 const Drafts = props => {
   return (
@@ -30,8 +9,8 @@ const Drafts = props => {
         <h1>Drafts</h1>
         <main>
           {props.drafts.map(post => (
-            <div className="post">
-              <Post key={post.id} post={post} />
+            <div key={post.id} className="post">
+              <Post post={post} />
             </div>
           ))}
         </main>
@@ -54,11 +33,11 @@ const Drafts = props => {
   )
 }
 
-Drafts.getInitialProps = async function() {
+export const getServerSideProps = async () => {
   const res = await fetch('http://localhost:3000/api/drafts')
-  const data = await res.json()
+  const drafts = await res.json()
   return {
-    drafts: data,
+    props : { drafts },
   }
 }
 
