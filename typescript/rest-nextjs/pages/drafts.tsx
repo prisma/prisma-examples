@@ -1,29 +1,14 @@
+import React from 'react'
+import { GetServerSideProps } from 'next'
 import Layout from '../components/Layout'
-import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
+import Post, { PostProps } from '../components/Post'
 
-const Post = ({ post }) => {
-  const authorName = post.author ? post.author.name : 'Unknown author'
-  return (
-    <Link href="/p/[id]" as={`/p/${post.id}`}>
-      <a>
-        <h2>{post.title}</h2>
-        <small>By {authorName}</small>
-        <p>{post.content}</p>
-        <style jsx>{`
-          a {
-            text-decoration: none;
-            color: inherit;
-            padding: 2rem;
-            display: block;
-          }
-        `}</style>
-      </a>
-    </Link>
-  )
+type Props = {
+  drafts: PostProps[]
 }
 
-const Drafts = props => {
+const Drafts : React.FC<Props> = props => {
   return (
     <Layout>
       <div className="page">
@@ -54,11 +39,11 @@ const Drafts = props => {
   )
 }
 
-Drafts.getInitialProps = async function() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await fetch('http://localhost:3000/api/drafts')
-  const data = await res.json()
+  const drafts = await res.json()
   return {
-    drafts: data,
+    props: { drafts },
   }
 }
 
