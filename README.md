@@ -4,8 +4,6 @@ This repository contains a number of ready-to-run examples demonstrating various
 
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
 
-> **Note**: The examples in the [`deployment-platforms`](./deployment-platforms) and [`experimental`](./experimental) directories are currently outdated but will be updated soon.
-
 <!-- Please keep the absolute URLs so it's easier to copy&paste to prisma/prisma/README.md  -->
 
 ## TypeScript
