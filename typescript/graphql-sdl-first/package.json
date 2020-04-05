@@ -14,7 +14,7 @@
     "@types/graphql": "14.5.0",
     "@types/node": "12.12.34",
     "@types/ws": "7.2.3",
-    "ts-node": "8.8.1",
+    "ts-node": "8.8.2",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.8.3"
   },
