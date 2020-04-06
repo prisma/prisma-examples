@@ -1,6 +1,24 @@
-# Prisma 2 Examples
+<br />
 
-This repository contains a number of ready-to-run examples demonstrating various use cases of the Prisma 2. Pick an example and follow the instructions in the corresponding README.
+<div align="center">
+  <h1>Prisma Examples</h1>
+  <p><h3 align="center">Ready-to-run Prisma example projects 🚀</h3></p>
+  <a href="https://www.prisma.io/">Website</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.prisma.io/docs/">Docs</a>
+    <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.prisma.io/blog">Blog</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://slack.prisma.io/">Slack</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://twitter.com/prisma">Twitter</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.youtube.com/watch?v=0RhtQgIs-TE&list=PLn2e1F9Rfr6k9PnR_figWOcSHgc_erDr5&index=1">Demo videos</a>
+</div>
+
+<hr>
+
+This repository contains a number of ready-to-run examples demonstrating various use cases of Prisma. Pick an example and follow the instructions in the corresponding README.
 
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
 
@@ -50,8 +68,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## Experimental
 
-The [`experimental`](./experimental) directory contains the same examples as the `javascript` and `typescript` directories. The main difference is that it uses Prisma to perform database migrations which are currently an experimental feature.
+The [`experimental`](./experimental) directory contains the same examples as the `javascript` and `typescript` directories. The main difference is that it uses [Prisma Migrate](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-migrate) to perform database migrations which are currently an experimental feature.
 
 ## Deployment platform
 
-The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Note that they are currently unmaintained but will be updated soon.
+The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
