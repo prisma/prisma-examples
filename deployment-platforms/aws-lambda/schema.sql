@@ -1,21 +1,22 @@
 CREATE TABLE "public"."User" (
-  user_id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255),
   email VARCHAR(255) UNIQUE NOT NULL
 );
 
 CREATE TABLE "public"."Post" (
-  post_id SERIAL PRIMARY KEY NOT NULL,
-  -- created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
+  "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
   content TEXT,
-  author_id INTEGER,
-  FOREIGN KEY (author_id) REFERENCES "public"."User"(user_id)
+  published BOOLEAN NOT NULL DEFAULT false,
+  "authorId" INTEGER NOT NULL,
+  FOREIGN KEY ("authorId") REFERENCES "public"."User"(id)
 );
 
 CREATE TABLE "public"."Profile" (
-  profile_id SERIAL PRIMARY KEY NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL,
   bio TEXT,
-  user_id INTEGER NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES "public"."User"(user_id)
+  "userId" INTEGER UNIQUE NOT NULL,
+  FOREIGN KEY ("userId") REFERENCES "public"."User"(id)
 );
