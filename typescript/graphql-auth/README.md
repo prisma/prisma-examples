@@ -377,6 +377,11 @@ const userWithUpdatedProfile = await prisma.user.update({
 })
 ```
 
+## Some more resources
+
+- Step by step walkthrough of this example: https://usecodeflow.com/tutorials/view/prisma/prisma-examples/tree/363fe0/ck89d0r6r00000vlakovqxcqv
+- GraphQL shield repository - https://github.com/maticzav/graphql-shield
+
 ## Next steps
 
 - Read the holistic, step-by-step [Prisma Framework tutorial](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md)
