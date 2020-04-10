@@ -12,7 +12,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-beta.1",
+    "@prisma/client": "2.0.0-beta.2",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",
     "graphql-shield": "5.7.3",
@@ -22,7 +22,7 @@
     "nexus-prisma": "0.11.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-beta.1",
+    "@prisma/cli": "2.0.0-beta.2",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.3.9",
     "@types/node": "12.12.35",
