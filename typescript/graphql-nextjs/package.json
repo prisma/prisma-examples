@@ -25,7 +25,7 @@
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.10.3",
     "isomorphic-unfetch": "3.0.0",
-    "next": "9.3.4",
+    "next": "9.3.6",
     "nexus": "0.12.0",
     "nexus-prisma": "0.11.1",
     "react": "16.13.1",
