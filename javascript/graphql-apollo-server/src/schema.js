@@ -1,5 +1,5 @@
 const { nexusPrismaPlugin } = require('nexus-prisma')
-const { idArg, makeSchema, objectType, stringArg } = require('nexus')
+const { idArg, makeSchema, objectType, stringArg } = require('@nexus/schema')
 
 const User = objectType({
   name: 'User',

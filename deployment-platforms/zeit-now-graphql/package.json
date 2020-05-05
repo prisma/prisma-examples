@@ -1,0 +1,38 @@
+{
+  "name": "prisma-zeit-now-graphql",
+  "scripts": {
+    "start": "node dist/graphql",
+    "clean": "rm -rf dist",
+    "buildo": "npm -s run generate",
+    "build-local": "npm -s run clean && npm -s run generate && tsc",
+    "postinstall": "npm -s run generate",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "GENERATE_ARTIFACTS=true ts-node --transpile-only api/_lib/schema",
+    "dev": "GENERATE_ARTIFACTS=true ts-node-dev --no-notify --respawn --transpileOnly api/index"
+  },
+  "dependencies": {
+    "@nexus/schema": "0.13.1",
+    "@prisma/client": "2.0.0-beta.2",
+    "@types/node-fetch": "2.5.6",
+    "apollo-server-micro": "2.12.0",
+    "graphql": "14.6.0",
+    "nexus-prisma": "0.12.0"
+  },
+  "devDependencies": {
+    "@now/node": "1.5.1",
+    "@prisma/cli": "2.0.0-beta.2",
+    "@types/node": "12.12.37",
+    "ts-node": "8.9.0",
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.8.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}

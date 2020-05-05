@@ -67,7 +67,7 @@ app.get('/feed', async (req, res) => {
 })
 
 app.get('/filterPosts', async (req, res) => {
-  const { searchString } = req.query
+  const { searchString }: { searchString?: string } = req.query;
   const draftPosts = await prisma.post.findMany({
     where: {
       OR: [

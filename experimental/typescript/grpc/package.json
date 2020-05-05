@@ -1,11 +1,11 @@
 {
   "name": "typescript-grpc",
   "dependencies": {
-    "@grpc/proto-loader": "0.5.3",
+    "@grpc/proto-loader": "0.5.4",
     "@prisma/client": "2.0.0-beta.1",
     "chalk": "2.4.2",
     "grpc": "1.24.2",
-    "protobufjs": "6.8.9"
+    "protobufjs": "6.9.0"
   },
   "scripts": {
     "dev": "ts-node ./server/server.ts",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.1",
-    "ts-node": "8.8.1",
+    "ts-node": "8.9.0",
     "typescript": "3.8.3"
   }
 }
