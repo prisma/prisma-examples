@@ -21,7 +21,8 @@
 <div align="center">
   
   ![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)
-  ![check-for-update](https://github.com/prisma/prisma-examples/workflows/check-for-update/badge.svg)
+  ![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)
+  ![keep-alpha-branch-in-sync-with-master](https://github.com/prisma/prisma-examples/workflows/keep-alpha-branch-in-sync-with-master/badge.svg)
   
 </div>
 
