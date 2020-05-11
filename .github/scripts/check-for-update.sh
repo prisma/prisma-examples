@@ -49,7 +49,7 @@ while [ $i -le $count ]; do
 		echo "checking $item"
 
 		case "$item" in
-			*".github"*)
+			*".github"*|*"experimental"*)
 				echo "ignoring $item"
 				continue
 				;;
@@ -62,14 +62,14 @@ while [ $i -le $count ]; do
 		if [ "$vCLI" != "" ]; then
 			if [ "$v" != "$vCLI" ]; then
 				echo "$item: @prisma/cli expected $v, actual $vCLI"
-				yarn add "@prisma/cli@$v" --dev
+				yarn add --ignore-engines "@prisma/cli@$v" --dev
 			fi
 
 			vPrismaClient="$(node -e "console.log(require('./package.json').dependencies['@prisma/client'])")"
 
 			if [ "$v" != "$vPrismaClient" ]; then
 				echo "$item: @prisma/client expected $v, actual $vPrismaClient"
-				yarn add "@prisma/client@$v"
+				yarn add --ignore-engines "@prisma/client@$v"
 			fi
 		fi
 

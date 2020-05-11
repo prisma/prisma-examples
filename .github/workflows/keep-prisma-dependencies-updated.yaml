@@ -1,4 +1,4 @@
-name: check-for-update
+name: keep-prisma-dependencies-updated
 on:
   schedule:
     - cron: '*/5 * * * *'
@@ -18,7 +18,7 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
-  
+
   check-for-alpha-update:
     runs-on: ubuntu-latest
     steps:
@@ -33,4 +33,20 @@ jobs:
         run: sh .github/scripts/check-for-update.sh alpha alpha
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
+  report-to-slack-failure:
+    runs-on: ubuntu-latest
+    needs: [check-for-preview-update, check-for-alpha-update]
+    if: failure()
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+
+      - name: report failure to slack
+        run: bash .github/scripts/slack-workflow-status.sh "check-for-update :x:"
+        env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}

@@ -1,5 +1,5 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { intArg, makeSchema, objectType, stringArg } from 'nexus'
+import { intArg, makeSchema, objectType, stringArg } from '@nexus/schema'
 
 const User = objectType({
   name: 'User',
@@ -21,6 +21,7 @@ const Post = objectType({
     t.model.content()
     t.model.published()
     t.model.author()
+    t.model.authorId()
   },
 })
 
