@@ -8,7 +8,7 @@
     "start": "next start",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only pages/api"
+    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
   },
   "keywords": [],
   "author": "",
