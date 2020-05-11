@@ -16,7 +16,7 @@
     "@prisma/cli": "2.0.0-beta.1",
     "@types/body-parser": "1.19.0",
     "@types/express": "4.17.6",
-    "ts-node": "8.9.0",
+    "ts-node": "8.10.1",
     "typescript": "3.8.3"
   }
 }
