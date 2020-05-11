@@ -1,4 +1,4 @@
-name: check-for-update
+name: keep-prisma-dependencies-updated
 on:
   schedule:
     - cron: '*/5 * * * *'

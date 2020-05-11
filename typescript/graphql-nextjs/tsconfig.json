@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    /* 
+      Note that the "module" setting will be overriden by nextjs automatically
+      (cf. https://github.com/zeit/next.js/discussions/10780).
+      If you need to change it, you should use the --compiler-options or provide a separate 
+      tsconfig.json entirely.
+    */
     "module": "esnext",
     "target": "ES2019",
     "lib": [

@@ -1,4 +1,4 @@
-import { intArg, makeSchema, objectType, stringArg, asNexusMethod } from 'nexus'
+import { makeSchema, objectType, stringArg, asNexusMethod } from '@nexus/schema'
 import { GraphQLDate } from 'graphql-iso-date'
 import { PrismaClient } from '@prisma/client'
 import { graphql } from 'graphql'
@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
 const User = objectType({
   name: 'User',
   definition(t) {
-    t.string('id')
+    t.int('id')
     t.string('name')
     t.string('email')
     t.list.field('posts', {
@@ -29,9 +29,7 @@ const User = objectType({
 const Post = objectType({
   name: 'Post',
   definition(t) {
-    t.string('id')
-    t.date('createdAt')
-    t.date('updatedAt')
+    t.int('id')
     t.string('title')
     t.string('content', {
       nullable: true,
@@ -174,8 +172,8 @@ const Mutation = objectType({
 export const schema = makeSchema({
   types: [Query, Mutation, Post, User, GQLDate],
   outputs: {
-    typegen: path.join(__dirname, 'nexus-typegen.ts'),
-    schema: path.join(__dirname, 'schema.graphql')
+    typegen: path.join(process.cwd(), 'pages', 'api', 'nexus-typegen.ts'),
+    schema: path.join(process.cwd(), 'pages', 'api', 'schema.graphql')
   },
 })
 
