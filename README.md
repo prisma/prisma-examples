@@ -19,8 +19,10 @@
 <hr>
 
 <div align="center">
+  
   ![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)
   ![check-for-update](https://github.com/prisma/prisma-examples/workflows/check-for-update/badge.svg)
+  
 </div>
 
 <hr>
