@@ -1,17 +1,17 @@
 # GraphQL Server with Authentication & Permissions
 
-This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [GraphQL Nexus](https://nexus.js.org/).
+This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [Nexus Schema](https://nexusjs.org/#/components/schema/about).
 
-__INLINE(../../_setup-1.md)__
+**INLINE(../../\_setup-1.md)**
 cd prisma-examples/experimental/typescript/graphql-auth
-__INLINE(../../_setup-2.md)__
-__INLINE(../../_seed.md)__
+**INLINE(../../\_setup-2.md)**
+**INLINE(../../\_seed.md)**
 
-__INLINE(../../_start-graphql-server.md)__
+**INLINE(../../\_start-graphql-server.md)**
 
-__INLINE(../../../_using-the-graphql-api-auth.md)__
+**INLINE(../../../\_using-the-graphql-api-auth.md)**
 
-__INLINE(../../_evolving-the-app.md)__
-__INLINE(../../_evolving-the-app-2-graphql.md)__
+**INLINE(../../\_evolving-the-app.md)**
+**INLINE(../../\_evolving-the-app-2-graphql.md)**
 
-__INLINE(../../_next-steps.md)__
+**INLINE(../../\_next-steps.md)**

@@ -1,6 +1,6 @@
+import { intArg, mutationType, stringArg } from '@nexus/schema'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
-import { intArg, mutationType, stringArg } from 'nexus'
 import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation = mutationType({

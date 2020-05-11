@@ -1,6 +1,6 @@
 # Fullstack Example with Next.js (GraphQL API)
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/), [Apollo Client](https://www.apollographql.com/docs/react/) (frontend), [GraphQL Nexus](https://nexus.js.org/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/), [Apollo Client](https://www.apollographql.com/docs/react/) (frontend), [Nexus Schema](https://nexusjs.org/#/components/schema/about) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -85,12 +85,7 @@ query {
 
 ```graphql
 mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
-    }
-  ) {
+  signupUser(data: { name: "Sarah", email: "sarah@prisma.io" }) {
     id
   }
 }
@@ -166,8 +161,7 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: __POST_ID__})
-  {
+  deleteOnePost(where: { id: __POST_ID__ }) {
     id
   }
 }
@@ -176,7 +170,6 @@ mutation {
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
 </Details>
-
 
 ## Evolving the app
 
@@ -315,12 +308,12 @@ As the Prisma Client API was updated, you can now also invoke "raw" operations v
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: 'Hello World',
+    bio: "Hello World",
     user: {
-      connect: { email: 'alice@prisma.io' },
+      connect: { email: "alice@prisma.io" },
     },
   },
-})
+});
 ```
 
 ##### Create a new user with a new profile
@@ -328,30 +321,30 @@ const profile = await prisma.profile.create({
 ```ts
 const user = await prisma.user.create({
   data: {
-    email: 'john@prisma.io',
-    name: 'John',
+    email: "john@prisma.io",
+    name: "John",
     profile: {
       create: {
-        bio: 'Hello World',
+        bio: "Hello World",
       },
     },
   },
-})
+});
 ```
 
 ##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: 'alice@prisma.io' },
+  where: { email: "alice@prisma.io" },
   data: {
     profile: {
       update: {
-        bio: 'Hello Friends',
+        bio: "Hello Friends",
       },
     },
   },
-})
+});
 ```
 
 ### 5. Build new UI features in React

@@ -1,6 +1,6 @@
 # GraphQL Server with Authentication & Permissions
 
-This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [GraphQL Nexus](https://nexus.js.org/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [Nexus Schema](https://nexusjs.org/#/components/schema/about). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -148,7 +148,7 @@ mutation {
 
 ### Search for posts with a specific title or content
 
-You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. 
+You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground.
 
 ```graphql
 {
@@ -156,7 +156,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
     id
     title
     content
-    published 
+    published
     author {
       id
       name
@@ -168,7 +168,7 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 ### Retrieve a single post
 
-You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. 
+You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground.
 
 ```graphql
 {

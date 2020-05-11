@@ -1,17 +1,17 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [GraphQL Nexus](https://nexus.js.org/).
+This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [Nexus Schema](https://nexusjs.org/#/components/schema/about).
 
-__INLINE(../../_setup-1.md)__
+**INLINE(../../\_setup-1.md)**
 cd prisma-examples/experimental/typescript/graphql
-__INLINE(../../_setup-2.md)__
-__INLINE(../../_seed.md)__
+**INLINE(../../\_setup-2.md)**
+**INLINE(../../\_seed.md)**
 
-__INLINE(../../_start-graphql-server.md)__
+**INLINE(../../\_start-graphql-server.md)**
 
-__INLINE(../../../_using-the-graphql-api.md)__
+**INLINE(../../../\_using-the-graphql-api.md)**
 
-__INLINE(../../_evolving-the-app.md)__
-__INLINE(../../_evolving-the-app-2-graphql.md)__
+**INLINE(../../\_evolving-the-app.md)**
+**INLINE(../../\_evolving-the-app-2-graphql.md)**
 
-__INLINE(../../_next-steps.md)__
+**INLINE(../../\_next-steps.md)**
