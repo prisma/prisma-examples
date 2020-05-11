@@ -20,7 +20,7 @@
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
     "@nexus/schema": "0.13.1",
-    "nexus-prisma": "0.11.1"
+    "nexus-prisma": "0.13.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.1",
