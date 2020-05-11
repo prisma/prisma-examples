@@ -1,6 +1,6 @@
 # GraphQL Server with Authentication & Permissions
 
-This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [Nexus Schema](https://nexusjs.org/#/components/schema/about).
+This example shows how to implement a **GraphQL server with an email-password-based authentication workflow and authentication rules**, based on Prisma, [graphql-yoga](https://github.com/prisma/graphql-yoga), [graphql-shield](https://github.com/maticzav/graphql-shield) & [Nexus Schema](https://nxs.li/components/schema).
 
 ## How to use
 
