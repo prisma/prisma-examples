@@ -1,4 +1,4 @@
-name: sync-alpha
+name: keep-alpha-branch-in-sync-with-master
 on:
   push:
     branches:
