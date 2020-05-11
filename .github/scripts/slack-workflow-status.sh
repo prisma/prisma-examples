@@ -6,7 +6,7 @@ set -eu
 
 emoji="$1"
 
-export webhook="$SLACK_WEBHOOK_URL_WORKFLOWS"
+export webhook="SLACK_WEBHOOK_URL_FAILING"
 version="$(cat .github/prisma-version.txt)"
 branch="$(git rev-parse --abbrev-ref HEAD)"
 sha="$(git rev-parse HEAD)"
