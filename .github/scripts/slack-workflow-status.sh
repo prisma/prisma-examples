@@ -13,7 +13,7 @@ sha="$(git rev-parse HEAD)"
 short_sha="$(echo "$sha" | cut -c -7)"
 message="$(git log -1 --pretty=%B | head -n 1)"
 
-commit_link="\`<https://github.com/prisma/prisma2-e2e-tests/commit/$sha|$branch@$short_sha>\`"
-workflow_link="<https://github.com/prisma/prisma2-e2e-tests/actions/runs/$GITHUB_RUN_ID|$message>"
+commit_link="\`<https://github.com/prisma/prisma-examples/commit/$sha|$branch@$short_sha>\`"
+workflow_link="<https://github.com/prisma/prisma-examples/actions/runs/$GITHUB_RUN_ID|$message>"
 
 node .github/slack/notify.js "prisma@$version: $emoji $workflow_link (via $commit_link)"
