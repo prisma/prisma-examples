@@ -1,6 +1,6 @@
-# Fullstack Example with Next.js (REST API)
+# Subscriptions Apollo Server + Nexus
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **Subscriptions in TypeScript** based on  [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [apollo-server](https://www.apollographql.com/docs/apollo-server/) and [GraphQL Nexus](https://nexus.js.org/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -15,85 +15,70 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/typescript/rest-nextjs
+cd prisma-examples/typescript/subscriptions-pubsub
 npm install
 ```
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2. Start the app
+### 2. Start the GraphQL server
+
+Launch your GraphQL server with this command:
 
 ```
 npm run dev
 ```
 
-The app is now running, navigate to [`http://localhost:3000/`](http://localhost:3000/) in your browser to explore its UI.
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-<details><summary>Expand for a tour through the UI of the app</summary>
+## Using the GraphQL API
 
-<br />
+The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
 
-**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx)
+Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
-![](https://imgur.com/eepbOUO.png)
+### Call the subscription and watch for it in the Playground
 
-**Signup** (located in [`./pages/signup.tsx`](./pages/signup.tsx))
+```graphql
+subscription latestPost {
+  latestPost {
+    title
+    content
+  }
+}
+```
 
-![](https://imgur.com/iE6OaBI.png)
+This will listen whenever you create a new draft as follows:
 
-**Create post (draft)** (located in [`./pages/create.tsx`](./pages/create.tsx))
+### Create a new draft
 
-![](https://imgur.com/olCWRNv.png)
+```graphql
+mutation {
+  createDraft(
+    title: "Join the Prisma Slack"
+    content: "https://slack.prisma.io"
+    authorEmail: "alice@prisma.io"
+  ) {
+    id
+    published
+  }
+}
+```
 
-**Drafts** (located in [`./pages/drafts.tsx`](./pages/drafts.tsx))
+### For viewing it best:
 
-![](https://imgur.com/PSMzhcd.png)
-
-**View post** (located in [`./pages/p/[id].tsx`](./pages/p/[id].tsx)) (delete or publish here)
-
-![](https://imgur.com/zS1B11O.png)
-
-</details>
-
-## Using the REST API
-
-You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/api` route (in this case that is `localhost:3000/api/`, so you can e.g. reach the API with [`localhost:3000/api/feed`](http://localhost:3000/api/feed)).
-
-### `GET`
-
-- `/api/post/:id`: Fetch a single post by its `id`
-- `/api/feed`: Fetch all _published_ posts
-- `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
-
-### `POST`
-
-- `/api/post`: Create a new post
-  - Body:
-    - `title: String` (required): The title of the post
-    - `content: String` (optional): The content of the post
-    - `authorEmail: String` (required): The email of the user that creates the post
-- `/api/user`: Create a new user
-  - Body:
-    - `email: String` (required): The email address of the user
-    - `name: String` (optional): The name of the user
-
-### `PUT`
-
-- `/api/publish/:id`: Publish a post by its `id`
-
-### `DELETE`
-  
-- `/api/post/:id`: Delete a post by its `id`
+- Keep two tabs of the playground open side by side.
+- Run the subscription in one tab.
+- Fire the mutation in the other tab and view results in the subscriptions pane in real-time!
 
 ## Evolving the app
 
-Evolving the application typically requires five subsequent steps:
+Evolving the application typically requires four subsequent steps:
 
 1. Migrating the database schema using SQL
 1. Updating your Prisma schema by introspecting the database with `prisma introspect`
 1. Generating Prisma Client to match the new database schema with `prisma generate`
-1. Using the updated Prisma Client in your application code and extending the REST API
-1. Building new UI features in React
+1. Using the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -173,11 +158,50 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement a new route in the REST API, e.g. `/api/profile`.
+#### Option A: Expose `Profile` operations via `nexus-prisma`
 
-Here are some examples for some Prisma Client operations:
+With the `nexus-prisma` package, you can expose the new `Profile` model in the API like so:
 
-#### Create a new profile for an existing user
+```diff
+// ... as before
+
+const User = objectType({
+  name: 'User',
+  definition(t) {
+    t.model.id()
+    t.model.name()
+    t.model.email()
+    t.model.posts({
+      pagination: false,
+    })
++   t.model.profile()
+  },
+})
+
+// ... as before
+
++const Profile = objectType({
++  name: 'Profile',
++  definition(t) {
++    t.model.id()
++    t.model.bio()
++    t.model.user()
++  },
++})
+
+// ... as before
+
+export const schema = makeSchema({
++  types: [Query, Mutation, Post, User, Profile],
+  // ... as before
+}
+```
+
+#### Option B: Use the `PrismaClient` instance directly
+
+As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
+
+##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
@@ -190,7 +214,7 @@ const profile = await prisma.profile.create({
 });
 ```
 
-#### Create a new user with a new profile
+##### Create a new user with a new profile
 
 ```ts
 const user = await prisma.user.create({
@@ -206,7 +230,7 @@ const user = await prisma.user.create({
 });
 ```
 
-#### Update the profile of an existing user
+##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
@@ -220,12 +244,6 @@ const userWithUpdatedProfile = await prisma.user.update({
   },
 });
 ```
-
-### 5. Build new UI features in React
-
-Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory.
-
-In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
 
 ## Next steps
 

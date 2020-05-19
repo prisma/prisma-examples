@@ -2,7 +2,7 @@
   "name": "subscriptions-pubsub",
   "license": "MIT",
   "scripts": {
-    "postinstall": "typesync",
+    "postinstall": "npm run generate",
     "predev": "npm run generate:prisma",
     "dev": "cross-env NODE_ENV=development tsnd --no-notify --respawn --transpileOnly ./src",
     "prebuild": "cross-env NODE_ENV=production npm run clean && npm run generate",
