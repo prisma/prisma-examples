@@ -48,7 +48,7 @@ datasource mysql {
 }
 ```
 
-_OR_
+*OR*
 
 For a PostgreSQL provider:
 
@@ -121,7 +121,12 @@ query {
 
 ```graphql
 mutation {
-  signupUser(data: { name: "Sarah", email: "sarah@prisma.io" }) {
+  signupUser(
+    data: {
+      name: "Sarah"
+      email: "sarah@prisma.io"
+    }
+  ) {
     id
   }
 }
@@ -197,7 +202,8 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: { id: __POST_ID__ }) {
+  deleteOnePost(where: {id: __POST_ID__})
+  {
     id
   }
 }
@@ -206,6 +212,7 @@ mutation {
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
 </Details>
+
 
 ## Evolving the app with Prisma Migrate
 
@@ -284,7 +291,6 @@ npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
-
 ### 4. Use the updated Prisma Client in your application code
 
 You can now use your `PrismaClient` instance to perform operations against the new `Profile` table.
@@ -423,3 +429,4 @@ Note that the [`dev`](./package.json) script starts a development server that au
 - Share your feedback in the [`prisma2-preview`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma2/)
 - Track Prisma 2's progress on [`isprisma2ready.com`](https://isprisma2ready.com)
+
