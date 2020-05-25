@@ -1,6 +1,6 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with JavaScript (Node.js)** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) & [graphql-yoga](https://github.com/prisma/graphql-yoga).
+This example shows how to implement a \*\*GraphQL server with JavaScript (Node.js)\_\_ based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) & [graphql-yoga](https://github.com/prisma/graphql-yoga).
 
 ## How to use
 
@@ -48,7 +48,7 @@ datasource mysql {
 }
 ```
 
-*OR*
+_OR_
 
 For a PostgreSQL provider:
 
@@ -121,12 +121,7 @@ query {
 
 ```graphql
 mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
-    }
-  ) {
+  signupUser(data: { name: "Sarah", email: "sarah@prisma.io" }) {
     id
   }
 }
@@ -202,8 +197,7 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: __POST_ID__})
-  {
+  deleteOnePost(where: { id: __POST_ID__ }) {
     id
   }
 }
@@ -212,7 +206,6 @@ mutation {
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
 </Details>
-
 
 ## Evolving the app with Prisma Migrate
 
@@ -291,6 +284,7 @@ npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
+
 ### 4. Use the updated Prisma Client in your application code
 
 You can now use your `PrismaClient` instance to perform operations against the new `Profile` table.
