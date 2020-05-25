@@ -40,7 +40,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 </details>
 
-**INLINE(../../_using-the-graphql-api-nextjs.md)**
+__INLINE(../../_using-the-graphql-api-nextjs.md)**
 
 __INLINE(../_evolving-the-app-graphql-nextjs.md)**
 __INLINE(../_next-steps.md)**

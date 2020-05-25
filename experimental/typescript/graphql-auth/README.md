@@ -5,13 +5,13 @@ This example shows how to implement a **GraphQL server with an email-password-ba
 __INLINE(../../_setup-1.md)**
 cd prisma-examples/experimental/typescript/graphql-auth
 __INLINE(../../_setup-2.md)__
-**INLINE(../../_seed.md)__
+__INLINE(../../_seed.md)__
 
-**INLINE(../../_start-graphql-server.md)**
+__INLINE(../../_start-graphql-server.md)**
 
-**INLINE(../../../_using-the-graphql-api-auth.md)**
+__INLINE(../../../_using-the-graphql-api-auth.md)**
 
 __INLINE(../../_evolving-the-app.md)**
 __INLINE(../../_evolving-the-app-2-graphql.md)**
 
-**INLINE(../../_next-steps.md)**
+__INLINE(../../_next-steps.md)**

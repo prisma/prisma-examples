@@ -6,8 +6,8 @@ __INLINE(../_setup-1.md)**
 cd prisma-examples/javascript/graphql-apollo-server
 __INLINE(../_setup-2.md)**
 
-**INLINE(../_start-graphql-server.md)**
+__INLINE(../_start-graphql-server.md)**
 
-**INLINE(../../_using-the-graphql-api.md)**
+__INLINE(../../_using-the-graphql-api.md)**
 
-**INLINE(../_next-steps-graphql.md)**
+__INLINE(../_next-steps-graphql.md)**
