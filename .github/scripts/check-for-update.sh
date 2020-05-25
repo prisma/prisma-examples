@@ -38,7 +38,8 @@ while [ $i -le $count ]; do
 
 	dir=$(pwd)
 
-	git pull github "$branch" --ff-only
+	git fetch github "$branch"
+	git reset --hard "github/$branch"
 	packages=$(find . -not -path "*/node_modules/*" -type f -name "package.json")
 
 	echo "checking info..."

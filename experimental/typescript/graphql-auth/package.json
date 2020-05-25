@@ -25,11 +25,11 @@
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.1",
     "@types/bcryptjs": "2.4.2",
-    "@types/jsonwebtoken": "8.3.9",
-    "@types/node": "12.12.37",
-    "ts-node": "8.9.0",
+    "@types/jsonwebtoken": "8.5.0",
+    "@types/node": "12.12.39",
+    "ts-node": "8.10.1",
     "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.8.3"
+    "typescript": "3.9.3"
   },
   "prettier": {
     "singleQuote": true,
