@@ -48,7 +48,7 @@ The first step would be to add a new table, e.g. called `Profile`, to the databa
 CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
-  "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
+  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );
 ```
 
@@ -59,7 +59,7 @@ sqlite3 dev.db \
 'CREATE TABLE "Profile" (
   "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   "bio" TEXT,
-  "user" TEXT NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
+  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
 );'
 ```
 
@@ -125,12 +125,12 @@ You can now use your `PrismaClient` instance to perform operations against the n
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: 'Hello World',
+    bio: "Hello World",
     user: {
-      connect: { email: 'alice@prisma.io' },
+      connect: { email: "alice@prisma.io" },
     },
   },
-})
+});
 ```
 
 #### Create a new user with a new profile
@@ -138,30 +138,30 @@ const profile = await prisma.profile.create({
 ```ts
 const user = await prisma.user.create({
   data: {
-    email: 'john@prisma.io',
-    name: 'John',
+    email: "john@prisma.io",
+    name: "John",
     profile: {
       create: {
-        bio: 'Hello World',
+        bio: "Hello World",
       },
     },
   },
-})
+});
 ```
 
 #### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: 'alice@prisma.io' },
+  where: { email: "alice@prisma.io" },
   data: {
     profile: {
       update: {
-        bio: 'Hello Friends',
+        bio: "Hello Friends",
       },
     },
   },
-})
+});
 ```
 
 ## Next steps

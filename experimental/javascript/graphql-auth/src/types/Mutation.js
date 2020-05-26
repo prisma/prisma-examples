@@ -1,6 +1,6 @@
 const { compare, hash } = require('bcryptjs')
 const { sign } = require('jsonwebtoken')
-const { mutationType, stringArg, intArg } = require('nexus')
+const { mutationType, stringArg, intArg } = require('@nexus/schema')
 const { APP_SECRET, getUserId } = require('../utils')
 
 const Mutation = mutationType({
