@@ -1,5 +1,5 @@
 {
-  "name": "prisma-zeit-now",
+  "name": "prisma-vercel",
   "dependencies": {
     "@prisma/client": "2.0.0-beta.5"
   },
@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.5",
-    "now": "16.7.3"
+    "vercel": "^19.0.1"
   }
 }
