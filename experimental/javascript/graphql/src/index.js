@@ -1,7 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
-const { makeSchema, objectType, intArg, stringArg } = require('nexus')
+const { makeSchema, objectType, intArg, stringArg } = require('@nexus/schema')
 const { PrismaClient } = require('@prisma/client')
-
 
 const { nexusPrismaPlugin } = require('nexus-prisma')
 

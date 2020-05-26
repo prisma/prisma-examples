@@ -1,4 +1,4 @@
-const { intArg, queryType, stringArg } = require('nexus')
+const { intArg, queryType, stringArg } = require('@nexus/schema')
 const { getUserId } = require('../utils')
 
 const Query = queryType({

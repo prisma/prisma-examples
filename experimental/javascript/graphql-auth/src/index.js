@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { nexusPrismaPlugin } = require('nexus-prisma')
-const { makeSchema } = require('nexus')
+const { makeSchema } = require('@nexus/schema')
 const { PrismaClient } = require('@prisma/client')
 const { permissions } = require('./permissions')
 const types = require('./types')
@@ -17,7 +17,7 @@ new GraphQLServer({
     },
   }),
   middlewares: [permissions],
-  context: request => {
+  context: (request) => {
     return {
       ...request,
       prisma,

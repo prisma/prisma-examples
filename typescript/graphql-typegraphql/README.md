@@ -168,8 +168,8 @@ mutation {
 Evolving the application typically requires four subsequent steps:
 
 1. Migrating the database schema using SQL
-1. Updating your Prisma schema by introspecting the database with `prisma2 introspect`
-1. Generating Prisma Client to match the new database schema with `prisma2 generate`
+1. Updating your Prisma schema by introspecting the database with `prisma introspect`
+1. Generating Prisma Client to match the new database schema with `prisma generate`
 1. Using the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
@@ -206,10 +206,10 @@ While your database now is already aware of the new table, you're not yet able t
 The Prisma schema is the foundation for the generated Prisma Client API. Therefore, you first need to make sure the new `Profile` table is represented in it as well. The easiest way to do so is by introspecting your database:
 
 ```
-npx prisma2 introspect
+npx prisma introspect
 ```
 
-> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma2`. When using Yarn, you can run: `yarn prisma2 dev`.
+> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g @prisma/cli`. When using Yarn, you can run: `yarn prisma dev`.
 
 The `introspect` command updates your `schema.prisma` file. It now includes the `Profile` model and its 1:1 relation to `User`:
 
@@ -232,8 +232,9 @@ model User {
 
 model Profile {
   bio  String?
-  id   Int     @id
-  user User
+  id   Int     @default(autoincrement()) @id
+  user Int     @unique
+  User User    @relation(fields: [user], references: [id])
 }
 ```
 
@@ -242,7 +243,7 @@ model Profile {
 With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
 
 ```
-npx prisma2 generate
+npx prisma generate
 ```
 
 This command updated the Prisma Client API in `node_modules/@prisma/client`.
@@ -256,34 +257,34 @@ You can use TypeGraphQL to expose the new `Profile` model.
 Create a new file named `src\Profile.ts` and add the following code:
 
 ```ts
-import 'reflect-metadata'
-import { ObjectType, Field, ID } from 'type-graphql'
-import { User } from './User'
+import "reflect-metadata";
+import { ObjectType, Field, ID } from "type-graphql";
+import { User } from "./User";
 
 @ObjectType()
 export class Profile {
-  @Field(type => ID)
-  id: number
+  @Field((type) => ID)
+  id: number;
 
-  @Field(type => User, { nullable: true })
-  user?: User | null
+  @Field((type) => User, { nullable: true })
+  user?: User | null;
 
-  @Field(type => String, { nullable: true })
-  bio?: string | null
+  @Field((type) => String, { nullable: true })
+  bio?: string | null;
 }
 ```
 
 Create a new file named `src\ProfileCreateInput.ts` with the following code:
 
 ```ts
-import 'reflect-metadata'
-import { ObjectType, Field, ID, InputType } from 'type-graphql'
-import { User } from './User'
+import "reflect-metadata";
+import { ObjectType, Field, ID, InputType } from "type-graphql";
+import { User } from "./User";
 
 @InputType()
 export class ProfileCreateInput {
-  @Field(type => String, { nullable: true })
-  bio?: string | null
+  @Field((type) => String, { nullable: true })
+  bio?: string | null;
 }
 ```
 
@@ -386,12 +387,12 @@ As the Prisma Client API was updated, you can now also invoke "raw" operations v
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: 'Hello World',
+    bio: "Hello World",
     user: {
-      connect: { email: 'alice@prisma.io' },
+      connect: { email: "alice@prisma.io" },
     },
   },
-})
+});
 ```
 
 ##### Create a new user with a new profile
@@ -399,30 +400,30 @@ const profile = await prisma.profile.create({
 ```ts
 const user = await prisma.user.create({
   data: {
-    email: 'john@prisma.io',
-    name: 'John',
+    email: "john@prisma.io",
+    name: "John",
     profile: {
       create: {
-        bio: 'Hello World',
+        bio: "Hello World",
       },
     },
   },
-})
+});
 ```
 
 ##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: 'alice@prisma.io' },
+  where: { email: "alice@prisma.io" },
   data: {
     profile: {
       update: {
-        bio: 'Hello Friends',
+        bio: "Hello Friends",
       },
     },
   },
-})
+});
 ```
 
 ## Next steps

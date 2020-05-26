@@ -19,17 +19,17 @@
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "nexus": "0.12.0",
-    "nexus-prisma": "0.11.1"
+    "@nexus/schema": "0.13.1",
+    "nexus-prisma": "0.13.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.1",
     "@types/bcryptjs": "2.4.2",
-    "@types/jsonwebtoken": "8.3.9",
-    "@types/node": "12.12.39",
+    "@types/jsonwebtoken": "8.5.0",
+    "@types/node": "12.12.42",
     "ts-node": "8.10.1",
     "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.9.2"
+    "typescript": "3.9.3"
   },
   "prettier": {
     "singleQuote": true,

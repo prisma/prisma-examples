@@ -25,8 +25,8 @@
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.10.3",
     "isomorphic-unfetch": "3.0.0",
-    "next": "9.4.0",
-    "nexus": "0.20.0",
+    "next": "9.4.2",
+    "@nexus/schema": "0.13.1",
     "nexus-prisma": "^0.12.0",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
@@ -36,8 +36,8 @@
   "devDependencies": {
     "@prisma/cli": "2.0.0-beta.5",
     "@types/graphql": "14.5.0",
-    "@types/node": "13.13.6",
+    "@types/node": "13.13.9",
     "@types/react": "16.9.35",
-    "typescript": "3.9.2"
+    "typescript": "3.9.3"
   }
 }
