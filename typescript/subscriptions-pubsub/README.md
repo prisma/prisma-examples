@@ -65,11 +65,13 @@ mutation {
 }
 ```
 
+Running the above mutation will automatically send the created data to the subscription!
+
 ### For viewing it best:
 
 - Keep two tabs of the playground open side by side.
 - Run the subscription in one tab.
-- Fire the mutation in the other tab and view results in the subscriptions pane in real-time!
+- Fire the mutation in the other tab and view results in the subscriptions tab in real-time!
 
 ## Evolving the app
 
