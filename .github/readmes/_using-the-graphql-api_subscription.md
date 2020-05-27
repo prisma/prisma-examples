@@ -4,7 +4,7 @@ The schema that specifies the API operations of your GraphQL server is defined i
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
-### Call the subscription and watch for it in the Playground
+### Call the subscription and watch for it in the GraphQL Playground
 
 ```graphql
 subscription latestPost {
@@ -34,8 +34,8 @@ mutation {
 
 Running the above mutation will automatically send the created data to the subscription!
 
-### For viewing it best:
+### For viewing it best
 
-- Keep two tabs of the playground open side by side.
+- Keep two tabs of the GraphQL Playground open side by side.
 - Run the subscription in one tab.
 - Fire the mutation in the other tab and view results in the subscriptions tab in real-time!
