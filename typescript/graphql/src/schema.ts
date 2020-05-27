@@ -1,5 +1,5 @@
+import { intArg, makeSchema, objectType, stringArg } from '@nexus/schema'
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { intArg, makeSchema, objectType, stringArg } from 'nexus'
 
 const User = objectType({
   name: 'User',
