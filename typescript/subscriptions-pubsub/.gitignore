@@ -1,0 +1,11 @@
+# env vars
+.env*
+
+# nexus/prisma
+dist/
+src/generated
+
+# misc
+node_modules
+.DS_Store
+query-engine*
