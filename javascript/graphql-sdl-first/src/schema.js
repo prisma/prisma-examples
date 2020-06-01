@@ -1,5 +1,4 @@
 const { makeExecutableSchema } = require('graphql-tools')
-const { Context } = require('./context')
 
 const typeDefs = `
 type User {
