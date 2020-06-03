@@ -42,9 +42,9 @@ const Query = objectType({
   name: 'Query',
   definition(t) {
     t.crud.post()
-
     t.crud.profile()
-    
+    t.crud.users()
+
     t.list.field('allProfiles', {
       type: 'Profile',
       resolve: (_, args, ctx) => {
@@ -64,7 +64,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: stringArg({ required: true }),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -111,7 +111,7 @@ const Mutation = objectType({
       args: {
         title: stringArg({ nullable: false }),
         content: stringArg(),
-        authorEmail: stringArg(),
+        authorEmail: stringArg({ required: true }),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.prisma.post.create({
