@@ -42,7 +42,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: stringArg({ nullable: false, default: ''}),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -69,7 +69,7 @@ const Mutation = objectType({
       args: {
         title: stringArg({ nullable: false }),
         content: stringArg(),
-        authorEmail: stringArg(),
+        authorEmail: stringArg({ nullable: false }),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.prisma.post.create({
