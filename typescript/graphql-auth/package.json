@@ -12,7 +12,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@nexus/schema": "0.13.1",
+    "@nexus/schema": "0.14.0",
     "@prisma/client": "2.0.0-beta.8",
     "bcryptjs": "2.4.3",
     "graphql": "14.6.0",

@@ -11,7 +11,7 @@
     "dev": "GENERATE_ARTIFACTS=true ts-node-dev --no-notify --respawn --transpileOnly api/index"
   },
   "dependencies": {
-    "@nexus/schema": "0.13.1",
+    "@nexus/schema": "0.14.0",
     "@prisma/client": "2.0.0-beta.8",
     "@types/node-fetch": "2.5.7",
     "apollo-server-micro": "2.13.1",
