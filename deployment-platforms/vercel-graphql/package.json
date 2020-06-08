@@ -22,7 +22,7 @@
     "@now/node": "1.6.1",
     "@prisma/cli": "2.0.0-beta.8",
     "@types/node": "12.12.44",
-    "ts-node": "8.10.1",
+    "ts-node": "8.10.2",
     "ts-node-dev": "1.0.0-pre.44",
     "typescript": "3.9.5",
     "vercel": "19.0.1"
