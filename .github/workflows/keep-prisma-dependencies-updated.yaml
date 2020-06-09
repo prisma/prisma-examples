@@ -19,7 +19,7 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
-  check-for-alpha-update:
+  check-for-dev-update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -29,15 +29,15 @@ jobs:
         with:
           node-version: 10
 
-      - name: check alpha update
-        run: sh .github/scripts/check-for-update.sh alpha alpha
+      - name: check dev update
+        run: sh .github/scripts/check-for-update.sh dev dev
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   report-to-slack-failure:
     runs-on: ubuntu-latest
-    needs: [check-for-preview-update, check-for-alpha-update]
+    needs: [check-for-preview-update, check-for-dev-update]
     if: failure()
     steps:
       - uses: actions/checkout@v1

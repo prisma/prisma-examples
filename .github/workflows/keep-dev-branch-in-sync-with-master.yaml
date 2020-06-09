@@ -1,15 +1,15 @@
-name: keep-alpha-branch-in-sync-with-master
+name: keep-dev-branch-in-sync-with-master
 on:
   push:
     branches:
       - master
 jobs:
-  sync-alpha:
+  sync-dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
 
-      - name: sync alpha
-        run: sh .github/scripts/sync-alpha.sh
+      - name: sync dev
+        run: sh .github/scripts/sync-dev.sh
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
