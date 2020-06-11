@@ -2,7 +2,6 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
-import fetch from 'isomorphic-unfetch'
 import Router from 'next/router'
 import { PostProps } from '../../components/Post'
 

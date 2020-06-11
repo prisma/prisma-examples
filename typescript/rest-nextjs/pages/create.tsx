@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import fetch from 'isomorphic-unfetch'
 import Layout from '../components/Layout'
 import Router from 'next/router'
 
