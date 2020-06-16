@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@nexus/schema": "0.14.0",
-    "@prisma/client": "2.0.0",
+    "@prisma/client": "2.0.1",
     "apollo-server": "2.14.3",
     "dotenv": "8.2.0",
     "nexus-prisma": "^0.12.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0",
+    "@prisma/cli": "2.0.1",
     "@types/node": "13.13.11",
     "@types/prettier": "2.0.1",
     "cross-env": "7.0.2",
