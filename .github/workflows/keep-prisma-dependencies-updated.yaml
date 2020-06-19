@@ -35,6 +35,22 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
+  check-for-patch-dev-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: use node 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: check patch-dev update
+        run: sh .github/scripts/check-for-update.sh patch-dev patch-dev
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
   report-to-slack-failure:
     runs-on: ubuntu-latest
     needs: [check-for-preview-update, check-for-dev-update]
