@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 export default async (req, res) => {
   try {
     const users = await prisma.post.findMany({
-      include: { author_id: true }
+      include: { author: true }
     })
     res.status(200).json(users)
   } catch (error) {
