@@ -3,8 +3,11 @@ const prisma = new PrismaClient()
 
 export default async (req, res) => {
   try {
-    await Promise.all([prisma.profile.deleteMany(), prisma.post.deleteMany()])
-    await prisma.user.deleteMany()
+    await Promise.all([
+      prisma.profile.deleteMany({}),
+      prisma.post.deleteMany({}),
+    ])
+    await prisma.user.deleteMany({})
 
     const createdUser = await prisma.user.create({
       data: seedUser
@@ -37,7 +40,7 @@ const seedUser = {
       }
     ]
   },
-  post: {
+  posts: {
     create: [
       {
         title:
@@ -69,7 +72,7 @@ const seedUser2 = {
       }
     ]
   },
-  post: {
+  posts: {
     create: [
       {
         title: 'Requiem for String Orchestra',
