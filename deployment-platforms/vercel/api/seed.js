@@ -27,7 +27,7 @@ export default async (req, res) => {
 const seedUser = {
   email: 'jane@prisma.io',
   name: 'Jane',
-  profile: {
+  profiles: {
     create: [
       {
         bio: 'Technical Writer'
@@ -59,7 +59,7 @@ const seedUser = {
 const seedUser2 = {
   email: 'toru@prisma.io',
   name: 'Toru Takemitsu',
-  profile: {
+  profiles: {
     create: [
       {
         bio: 'Composer'
