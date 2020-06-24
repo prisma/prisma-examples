@@ -1,7 +1,7 @@
 {
   "name": "prisma-vercel",
   "dependencies": {
-    "@prisma/client": "2.1.0"
+    "@prisma/client": "2.1.1"
   },
   "scripts": {
     "start": "node index.js",
@@ -10,7 +10,7 @@
     "postinstall": "prisma generate"
   },
   "devDependencies": {
-    "@prisma/cli": "2.1.0",
+    "@prisma/cli": "2.1.1",
     "vercel": "19.0.1"
   }
 }
