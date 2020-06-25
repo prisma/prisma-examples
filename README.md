@@ -88,9 +88,9 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## About this repository
 
-The `master` branch of this repository contains the examples with the latest stable version of Prisma CLI and Prisma Client. These dependencies are kept up to date with a GitHub Action workflow, that updates them every time a new version of Prisma is released.
+The `master` branch of this repository contains the examples with the latest stable version of Prisma CLI and Prisma Client. These dependencies are kept up to date with a GitHub Action workflow, which updates them every time a new version of Prisma is released.
 
-There also is a `alpha` branch that mirrors the code from `master` (synced via a GitHub Action workflow), but uses the latest unstable version of Prisma CLI and Prisma Client instead (also updated via a GitHub Action workflow). Thanks to the test coverage of all projects, this can point us to incompatibilities early.
+There also is a `dev` branch that mirrors the code from `master` (synced via a GitHub Action workflow), but uses the latest development version of Prisma CLI and Prisma Client instead (also updated via a GitHub Action workflow). Thanks to the test coverage of all projects, this can point us to incompatibilities early.
 
 ## Security
 
