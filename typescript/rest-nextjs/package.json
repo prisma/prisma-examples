@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.1.3",
-    "@types/node": "13.13.11",
+    "@types/node": "13.13.12",
     "@types/react": "16.9.35",
     "typescript": "3.9.5"
   }
