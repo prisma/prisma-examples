@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.1.3",
-    "vercel": "19.0.1"
+    "vercel": "19.1.1"
   }
 }
