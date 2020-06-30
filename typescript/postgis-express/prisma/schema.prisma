@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+model Location {
+  id          Int        @default(autoincrement()) @id
+  // This type is currently not supported.
+  // location geography?
+  name        String
+}
+
+model User {
+  id          Int        @default(autoincrement()) @id
+  // This type is currently not supported.
+  // location geography?
+  name        String
+}
+
+model spatial_ref_sys {
+  auth_name String?
+  auth_srid Int?
+  proj4text String?
+  srid      Int     @id
+  srtext    String?
+}
