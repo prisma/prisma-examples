@@ -2,13 +2,15 @@
 
 - The recommended way of trying this out would be using a Docker image of Postgres + Postgis that can be pulled from [here](https://github.com/postgis/docker-postgis).
 
+- A [docker-compose.yml](./docker-compose.yml) is included for a quick start so that you do not need any prior setup. Just run `docker-compose up -d` and Postgres will be up and running on PORT 5432.
+
 - Connect to Postgres by any database viewer of your choice and run the following command:
 
 ```sql
 create database geoexample;
 ```
 
-- Rename the `.env.example` to `.env` and specify the necessary credentials. The *DBNAME* placeholder should be replaced with the database created in the above step.
+- Rename the `.env.example` to `.env` and replace the *DBNAME* placeholder with the database name `geoexample` created in the above step.
 
 Run the following command to create the tables and the function required for this example.
 
