@@ -16,7 +16,7 @@
     "@types/node-fetch": "2.5.7",
     "apollo-server-micro": "2.15.1",
     "graphql": "14.6.0",
-    "nexus-plugin-prisma": "^0.16.1"
+    "nexus-plugin-prisma": "0.16.1"
   },
   "devDependencies": {
     "@now/node": "1.7.1",
@@ -24,7 +24,7 @@
     "@types/node": "12.12.47",
     "ts-node": "8.10.2",
     "ts-node-dev": "1.0.0-pre.49",
-    "tsc-watch": "^4.2.9",
+    "tsc-watch": "4.2.9",
     "typescript": "3.9.5",
     "vercel": "19.1.1"
   },
