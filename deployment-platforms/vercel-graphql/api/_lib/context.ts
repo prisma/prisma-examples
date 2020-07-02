@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient({
-  log: ['query', 'info', 'warn'],
+  // Uncomment for debugging purposes
+  // log: ['query', 'info', 'warn'],
 })
 
 export interface Context {
