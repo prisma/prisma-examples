@@ -64,7 +64,7 @@ type Query {
   filterPosts(searchString: String!): [Post!]!
   post(where: PostWhereUniqueInput!): Post
   profile(where: ProfileWhereUniqueInput!): Profile
-  users(skip: Int): [User!]!
+  users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!
 }
 
 type User {
@@ -79,4 +79,9 @@ input UserCreateInput {
   name: String
   posts: PostCreateManyWithoutAuthorInput
   profile: ProfileCreateOneWithoutUserInput
+}
+
+input UserWhereUniqueInput {
+  email: String
+  id: Int
 }
