@@ -24,7 +24,7 @@
     "ts-node": "8.10.2",
     "ts-node-dev": "1.0.0-pre.50",
     "tsc-watch": "4.2.9",
-    "typescript": "3.9.5",
+    "typescript": "3.9.6",
     "vercel": "19.1.1"
   },
   "prettier": {
