@@ -19,18 +19,18 @@ seed()
 
 async function generateSQL() {
   const sql = `
-  create extension if not exists postgis;
+  create extension if not exists postgis schema "public";
 
   create table "${schema}"."User" (
     id serial primary key,
     "name" text not null,
-    location geography(Point, 4326)
+    location "public"."geography"(Point, 4326)
   );
   
   create table "${schema}"."Location" (
     id serial primary key,
     name text not null,
-    location geography(Point, 4326)
+    location "public"."geography"(Point, 4326)
   );
   
   create function "${schema}"."locations_near_user" (
@@ -38,7 +38,7 @@ async function generateSQL() {
     distance int
   ) returns table (id int, name text) as $$
     select l.id, l.name from "Location" l
-    where st_distance(
+    where "public"."st_distance"(
       l.location,
       (select location from "User" u where u.id = user_id)
     ) / 1000 <= distance

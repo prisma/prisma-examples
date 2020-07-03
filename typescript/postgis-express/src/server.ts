@@ -12,7 +12,7 @@ app.post('/user', async (req, res) => {
   try {
     const response = await prisma.queryRaw`
     insert into "User" ("name", "location") values
-    (${name}, st_point(${location.lng}, ${location.lat}))
+    (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
     returning id`
 
     res.json({
@@ -32,7 +32,7 @@ app.post('/location', async (req, res) => {
   try {
     await prisma.executeRaw`
     insert into "Location" ("name", "location") values
-    (${name}, st_point(${location.lng}, ${location.lat}))
+    (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
     `
 
     res.json({
