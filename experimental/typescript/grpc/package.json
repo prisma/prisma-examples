@@ -4,7 +4,7 @@
     "@grpc/proto-loader": "0.5.4",
     "@prisma/client": "2.0.0-beta.1",
     "chalk": "2.4.2",
-    "grpc": "1.24.2",
+    "grpc": "1.24.3",
     "protobufjs": "6.9.0"
   },
   "scripts": {
