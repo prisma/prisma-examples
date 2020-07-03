@@ -4,7 +4,6 @@
     "start": "node dist/graphql",
     "clean": "rm -rf dist",
     "build": "npm -s run generate && tsc",
-    "postinstall": "npm -s run generate",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "GENERATE_ARTIFACTS=true ts-node --transpile-only api/_lib/schema",
