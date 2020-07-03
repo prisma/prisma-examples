@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 const schema = process.env.DB_URL?.split('?schema=')[1] || 'public'
+console.log('schema', schema)
 
 async function seed() {
   const sql = await generateSQL()
@@ -11,6 +12,7 @@ async function seed() {
 }
 
 seed()
+  .then(() => console.log('seeded!'))
   .catch(console.error)
   .finally(async () => {
     await prisma.disconnect()
