@@ -1,8 +1,8 @@
-name: Geolocation
+name: postgis-express
 on: push
 
 jobs:
-  setup:
+  integration_tests:
     runs-on: ubuntu-latest
     container: node:12.18.2-stretch
 
@@ -24,6 +24,14 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+
+      - name: Use cached node_modules
+        uses: actions/cache@v2
+        with:
+          path: typescript/postgis-express/node_modules
+          key: geolocation-${{ hashFiles('typescript/postgis-express/package.json') }}
+          restore-keys: |
+            geolocation-
       
       - name: Run tests
         run: |

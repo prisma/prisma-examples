@@ -4,9 +4,6 @@ const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 const { PrismaClient } = require('@prisma/client')
 
-/**
- * Custom test environment for Nexus, Prisma and Postgres
- */
 class PrismaTestEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config)
@@ -33,8 +30,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     const url = `${this.databaseUrl}?schema=${this.schema}`
     process.env.DB_URL = url
     this.global.process.env.DB_URL = url
-    const run = await exec('npm run seed')
-    console.log('run', run.stdout, run.stderr)
+    await exec('npm run seed')
 
     return super.setup()
   }
