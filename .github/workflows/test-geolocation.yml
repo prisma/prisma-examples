@@ -1,0 +1,34 @@
+name: Geolocation
+on: push
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    container: 12.18.2-stretch
+
+    services:
+      postgres:
+        image: postgis/postgis:12-2.5-alpine
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testing
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - '5432:5432'
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Test
+        run: yarn test
+        env:
+          CI: true
