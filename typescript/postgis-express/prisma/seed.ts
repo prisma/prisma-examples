@@ -21,19 +21,19 @@ async function generateSQL() {
   const sql = `
   create extension if not exists postgis;
 
-  create table if not exists "${schema}"."User" (
+  create table "${schema}"."User" (
     id serial primary key,
     "name" text not null,
     location geography(Point, 4326)
   );
   
-  create table if not exists "${schema}"."Location" (
+  create table "${schema}"."Location" (
     id serial primary key,
     name text not null,
     location geography(Point, 4326)
   );
   
-  create function if not exists "${schema}"."locations_near_user" (
+  create function "${schema}"."locations_near_user" (
     user_id int,
     distance int
   ) returns table (id int, name text) as $$
