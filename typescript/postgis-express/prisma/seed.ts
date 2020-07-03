@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 const schema = process.env.DB_URL?.split('?schema=')[1] || 'public'
-console.log('schema', schema)
 
 async function seed() {
   const sql = await generateSQL()
@@ -20,21 +19,21 @@ seed()
 
 async function generateSQL() {
   const sql = `
-  create extension postgis;
+  create extension if not exists postgis;
 
-  create table "${schema}"."User" (
+  create table if not exists "${schema}"."User" (
     id serial primary key,
     "name" text not null,
     location geography(Point, 4326)
   );
   
-  create table "${schema}"."Location" (
+  create table if not exists "${schema}"."Location" (
     id serial primary key,
     name text not null,
     location geography(Point, 4326)
   );
   
-  create function "${schema}"."locations_near_user" (
+  create function if not exists "${schema}"."locations_near_user" (
     user_id int,
     distance int
   ) returns table (id int, name text) as $$
