@@ -29,6 +29,6 @@ jobs:
         run: yarn
 
       - name: Test
-        run: yarn test
+        run: cd typescript/postgis-express && yarn test
         env:
           CI: true
