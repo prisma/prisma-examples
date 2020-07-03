@@ -25,13 +25,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       
-      - name: Enter directory
-        run: cd typescript/postgis-express
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Test
-        run: yarn test
+      - name: Run tests
+        run: |
+          cd typescript/postgis-express
+          yarn
+          yarn test
         env:
           CI: true
