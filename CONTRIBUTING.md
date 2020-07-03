@@ -2,6 +2,8 @@
 
 ## General guidelines
 
+We use [conventional commits](https://www.conventionalcommits.org) (also known as semantic commits) to ensure consistent and descriptive commit messages.
+
 Every example should follow a number of guidelines.
 
 ### Example guidelines
