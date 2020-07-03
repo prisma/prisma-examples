@@ -19,7 +19,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     })}`
 
     // Generate the pg connection string for the test schema
-    this.databaseUrl = 'postgres://postgres:password@localhost:5432/testing'
+    this.databaseUrl = 'postgres://postgres:password@postgres:5432/testing'
     process.env.DB_URL = this.databaseUrl
     this.global.process.env.DB_URL = this.databaseUrl
     this.client = new PrismaClient()
