@@ -31,10 +31,10 @@ class PrismaTestEnvironment extends NodeEnvironment {
     // Set the required environment variable to contain the connection string
     // to our database test schema
     const url = `${this.databaseUrl}?schema=${this.schema}`
-    console.log('url', url)
     process.env.DB_URL = url
     this.global.process.env.DB_URL = url
-    await exec('npm run seed')
+    const run = await exec('npm run seed')
+    console.log('run', run.stdout, run.stderr)
 
     return super.setup()
   }
