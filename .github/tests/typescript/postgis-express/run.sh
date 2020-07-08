@@ -2,4 +2,4 @@
 
 set -eu
 
-echo "Test for this project is in another worflow"
+yarn && yarn test

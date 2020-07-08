@@ -21,13 +21,10 @@ jobs:
           - '5432:5432'
 
     steps:
-      - uses: actions/checkout@v1
-
-      - uses: actions/setup-node@v1
-        with:
-          version: 12
+      - uses: actions/checkout@v2
 
       - name: test
         run: sh .github/scripts/test-all.sh
         env:
+          CI: true
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
