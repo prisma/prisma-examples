@@ -1,4 +1,4 @@
-### 2. Setup Postgres
+### 2. Setup PostgreSQL
 
 - The recommended way of trying this out would be using a Docker image of Postgres + Postgis that can be pulled from [here](https://github.com/postgis/docker-postgis).
 
