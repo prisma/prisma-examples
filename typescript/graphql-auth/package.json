@@ -15,7 +15,7 @@
     "@nexus/schema": "0.14.0",
     "@prisma/client": "2.2.0",
     "bcryptjs": "2.4.3",
-    "graphql": "14.6.0",
+    "graphql": "15.3.0",
     "graphql-middleware": "4.0.1",
     "graphql-shield": "5.7.3",
     "graphql-yoga": "1.18.3",
