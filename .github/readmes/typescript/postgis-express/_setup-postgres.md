@@ -25,4 +25,4 @@ npm run prisma -- introspect
 npm run prisma -- generate
 ```
 
-__*Limitation*__: Currently Prisma doesn't support custom data types so querying for the *geography* type is not possible. Only operations can be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
+__*Limitation*__: Currently Prisma doesn't support custom data types, so querying for the *geography* type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
