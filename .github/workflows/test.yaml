@@ -3,7 +3,6 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: node:12.18.2-stretch
 
     services:
       postgres:
@@ -23,8 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+
       - name: test
         run: sh .github/scripts/test-all.sh
         env:
-          CI: true
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
