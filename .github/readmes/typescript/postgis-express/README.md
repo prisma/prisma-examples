@@ -1,6 +1,6 @@
 # Postgres Geolocation example
 
-This example shows how to implement **Geolocation in Postgres** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
 __INLINE(../_setup-1.md)__
 cd prisma-examples/typescript/postgis-express
