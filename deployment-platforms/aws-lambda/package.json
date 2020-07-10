@@ -12,5 +12,5 @@
     "@prisma/cli": "2.2.0",
     "serverless-dotenv-plugin": "2.4.2"
   },
-  "license": "Apache 2.0"
+  "license": "MIT"
 }

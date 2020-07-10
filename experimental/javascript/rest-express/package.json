@@ -1,7 +1,7 @@
 {
   "name": "rest-express",
   "version": "1.0.0",
-  "license": "Apache 2.0",
+  "license": "MIT",
   "scripts": {
     "dev": "node src/index.js",
     "seed": "node prisma/seed.js"

@@ -1,6 +1,6 @@
 {
   "name": "script",
-  "license": "Apache 2.0",
+  "license": "MIT",
   "devDependencies": {
     "@prisma/cli": "2.2.0",
     "ts-node": "8.10.2",

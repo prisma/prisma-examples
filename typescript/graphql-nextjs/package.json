@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "Apache 2.0",
+  "license": "MIT",
   "dependencies": {
     "@apollo/react-hooks": "3.1.5",
     "@apollo/react-ssr": "3.1.5",

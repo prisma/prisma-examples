@@ -54,7 +54,9 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-sdl-first)         | Simple GraphQL server based on the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/) (Apollo)                      |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-auth)                   | GraphQL server with email-password authentication & permissions                                                                                             |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/rest-express)                   | Simple REST API with Express.JS                                                                                                                             |
-| [`grpc`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Simple gRPC API                                                                                                                                             |
+| [`grpc`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Simple gRPC API
+| [`postgis-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/postgis-express)                                   | Querying for Postgis datatypes with Express
+| [`testing-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Integration testing with express                                                                                                                             |
 
 ## JavaScript (Node.js)
 

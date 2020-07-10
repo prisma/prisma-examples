@@ -1,6 +1,6 @@
 {
   "name": "subscriptions-pubsub",
-  "license": "Apache 2.0",
+  "license": "MIT",
   "scripts": {
     "postinstall": "npm run generate",
     "predev": "npm run generate:prisma",
