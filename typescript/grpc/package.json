@@ -5,7 +5,7 @@
     "@prisma/client": "2.2.2",
     "chalk": "4.1.0",
     "grpc": "1.24.3",
-    "protobufjs": "6.10.0"
+    "protobufjs": "6.10.1"
   },
   "scripts": {
     "dev": "ts-node ./server/server.ts",
