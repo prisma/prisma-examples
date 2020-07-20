@@ -1,5 +1,12 @@
 name: test
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+      - alpha
+      - dev
+      - patch-dev
+  pull_request:
 jobs:
   test:
     runs-on: ubuntu-latest
