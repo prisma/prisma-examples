@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@nexus/schema": "0.14.0",
-    "@prisma/client": "2.2.2",
+    "@prisma/client": "2.3.0",
     "bcryptjs": "2.4.3",
     "graphql": "15.3.0",
     "graphql-middleware": "4.0.1",
@@ -16,7 +16,7 @@
     "dev": "node src"
   },
   "devDependencies": {
-    "@prisma/cli": "2.2.2"
+    "@prisma/cli": "2.3.0"
   },
   "prettier": {
     "singleQuote": true,
