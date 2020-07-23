@@ -1,6 +1,6 @@
 # Postgres Geolocation example
 
-This example shows how to implement **Geolocation in Postgres** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
 
 ## How to use
 
@@ -21,9 +21,9 @@ npm install
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2. Setup Postgres
+### 2. Setup PostgreSQL
 
-- The recommended way of trying this out would be using a Docker image of Postgres + Postgis that can be pulled from [here](https://github.com/postgis/docker-postgis).
+- The recommended way of trying this out would be using a Docker image of PostgreSQL with Postgis extensions that can be pulled from [here](https://github.com/postgis/docker-postgis).
 
 - A [docker-compose.yml](./docker-compose.yml) is included for a quick start so that you do not need any prior setup. Just run `docker-compose up -d` and Postgres will be up and running on PORT 5432 with username **postgres**.
 
@@ -48,7 +48,7 @@ npm run prisma -- introspect
 npm run prisma -- generate
 ```
 
-__*Limitation*__: Currently Prisma doesn't support custom data types so querying for the *geography* type is not possible. Only operations can be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
+__*Limitation*__: Currently Prisma doesn't support custom data types, so querying for the *geography* type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
 
 
 ### 3. Start the REST API server
