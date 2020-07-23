@@ -13,7 +13,7 @@
     "@nexus/schema": "0.14.0",
     "@prisma/client": "2.3.0",
     "@types/node-fetch": "2.5.7",
-    "apollo-server-micro": "2.15.1",
+    "apollo-server-micro": "2.16.0",
     "graphql": "15.3.0",
     "nexus-plugin-prisma": "0.16.1"
   },
