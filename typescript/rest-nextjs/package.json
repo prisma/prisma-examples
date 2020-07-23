@@ -23,6 +23,6 @@
     "@prisma/cli": "2.3.0",
     "@types/node": "13.13.14",
     "@types/react": "16.9.43",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   }
 }

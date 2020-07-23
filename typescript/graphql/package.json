@@ -23,7 +23,7 @@
     "@types/ws": "7.2.6",
     "ts-node": "8.10.2",
     "ts-node-dev": "1.0.0-pre.50",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   },
   "prettier": {
     "singleQuote": true,
