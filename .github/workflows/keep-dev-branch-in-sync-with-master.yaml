@@ -1,4 +1,4 @@
-name: keep-dev-branch-in-sync-with-master
+name: keep-dev-branches-in-sync-with-master
 on:
   push:
     branches:
@@ -10,6 +10,16 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: sync dev
-        run: sh .github/scripts/sync-dev.sh
+        run: sh .github/scripts/sync.sh dev
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+
+  sync-patch-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: sync patch-dev
+        run: sh .github/scripts/sync.sh patch-dev
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}

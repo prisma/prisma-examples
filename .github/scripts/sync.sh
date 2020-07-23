@@ -2,7 +2,7 @@
 
 set -eu
 
-channel="dev"
+channel="$1"
 
 mkdir -p ~/.ssh
 echo "$SSH_KEY" > ~/.ssh/id_rsa

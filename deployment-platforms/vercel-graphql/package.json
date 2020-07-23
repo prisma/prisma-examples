@@ -3,29 +3,27 @@
   "scripts": {
     "start": "node dist/graphql",
     "clean": "rm -rf dist",
-    "build-local": "npm -s run clean && npm -s run generate && tsc",
-    "postinstall": "npm -s run generate",
+    "build": "npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "GENERATE_ARTIFACTS=true ts-node --transpile-only api/_lib/schema",
-    "dev": "GENERATE_ARTIFACTS=true ts-node-dev --no-notify --respawn --transpileOnly api/index"
+    "dev": "GENERATE_ARTIFACTS=true ./node_modules/.bin/tsc-watch --onSuccess 'npx micro ./dist/index.js'"
   },
   "dependencies": {
     "@nexus/schema": "0.14.0",
-    "@prisma/client": "2.0.0",
     "@types/node-fetch": "2.5.7",
-    "apollo-server-micro": "2.14.3",
-    "graphql": "14.6.0",
-    "nexus-prisma": "0.12.0"
+    "apollo-server-micro": "2.15.1",
+    "graphql": "15.3.0",
+    "nexus-plugin-prisma": "0.16.1"
   },
   "devDependencies": {
-    "@now/node": "1.6.1",
-    "@prisma/cli": "2.0.0",
-    "@types/node": "12.12.45",
+    "@now/node": "1.7.2",
+    "@types/node": "12.12.50",
     "ts-node": "8.10.2",
-    "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.9.5",
-    "vercel": "19.0.1"
+    "ts-node-dev": "1.0.0-pre.50",
+    "tsc-watch": "4.2.9",
+    "typescript": "3.9.6",
+    "vercel": "19.1.2"
   },
   "prettier": {
     "singleQuote": true,

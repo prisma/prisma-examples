@@ -1,4 +1,4 @@
-import { nexusPrismaPlugin } from 'nexus-prisma'
+import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema'
 import { intArg, makeSchema, objectType, stringArg } from '@nexus/schema'
 import { seedUsers } from './seed'
 
@@ -42,9 +42,9 @@ const Query = objectType({
   name: 'Query',
   definition(t) {
     t.crud.post()
-
     t.crud.profile()
-    
+    t.crud.users()
+
     t.list.field('allProfiles', {
       type: 'Profile',
       resolve: (_, args, ctx) => {
@@ -64,7 +64,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: stringArg({ required: true }),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -111,7 +111,7 @@ const Mutation = objectType({
       args: {
         title: stringArg({ nullable: false }),
         content: stringArg(),
-        authorEmail: stringArg(),
+        authorEmail: stringArg({ required: true }),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.prisma.post.create({
@@ -148,7 +148,8 @@ const generateArtifacts = Boolean(process.env.GENERATE_ARTIFACTS)
 export const schema = makeSchema({
   types: [Query, Mutation, Post, User, Profile],
   plugins: [
-    nexusPrismaPlugin({
+    nexusSchemaPrisma({
+      experimentalCRUD: true,
       shouldGenerateArtifacts: generateArtifacts,
       outputs: {
         typegen: path.join(__dirname, '/generated/prisma-nexus.ts'),

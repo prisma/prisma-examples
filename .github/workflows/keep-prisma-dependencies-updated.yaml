@@ -3,7 +3,7 @@ on:
   schedule:
     - cron: '*/5 * * * *'
 jobs:
-  check-for-preview-update:
+  check-for-update-latest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -13,13 +13,13 @@ jobs:
         with:
           node-version: 10
 
-      - name: check preview update
+      - name: check update latest
         run: sh .github/scripts/check-for-update.sh latest master
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
-  check-for-dev-update:
+  check-for-update-dev:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -29,15 +29,31 @@ jobs:
         with:
           node-version: 10
 
-      - name: check dev update
+      - name: check update dev
         run: sh .github/scripts/check-for-update.sh dev dev
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
+  check-for-update-patch-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: use node 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: check update patch-dev
+        run: sh .github/scripts/check-for-update.sh patch-dev patch-dev
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   report-to-slack-failure:
     runs-on: ubuntu-latest
-    needs: [check-for-preview-update, check-for-dev-update]
+    needs: [check-for-update-latest,  check-for-update-dev,  check-for-update-patch-dev]
     if: failure()
     steps:
       - uses: actions/checkout@v1

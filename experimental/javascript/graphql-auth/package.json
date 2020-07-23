@@ -4,8 +4,8 @@
   "dependencies": {
     "@prisma/client": "2.0.0-beta.1",
     "bcryptjs": "2.4.3",
-    "graphql": "14.6.0",
-    "graphql-shield": "5.7.3",
+    "graphql": "15.3.0",
+    "graphql-shield": "7.3.2",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
     "@nexus/schema": "0.14.0",

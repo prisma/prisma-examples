@@ -13,23 +13,21 @@
   },
   "dependencies": {
     "@nexus/schema": "0.14.0",
-    "@prisma/client": "2.0.0",
     "bcryptjs": "2.4.3",
-    "graphql": "14.6.0",
-    "graphql-shield": "5.7.3",
+    "graphql-middleware": "4.0.1",
+    "graphql-shield": "7.3.2",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "nexus-prisma": "0.13.0"
+    "nexus-plugin-prisma": "0.16.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.5.0",
-    "@types/node": "12.12.45",
-    "@types/ws": "7.2.5",
+    "@types/node": "12.12.50",
+    "@types/ws": "7.2.6",
     "ts-node": "8.10.2",
-    "ts-node-dev": "1.0.0-pre.44",
-    "typescript": "3.9.5"
+    "ts-node-dev": "1.0.0-pre.50",
+    "typescript": "3.9.6"
   },
   "prettier": {
     "singleQuote": true,

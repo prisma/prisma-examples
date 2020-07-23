@@ -71,6 +71,12 @@
           Seed Database
         </button>
         <button
+          onclick="callGraphqlApi(graphqlQueries.users)"
+          class="fetch-button focus:outline-none bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
+        >
+          Get Users
+        </button>
+        <button
           onclick="callGraphqlApi(graphqlQueries.feed)"
           class="fetch-button focus:outline-none bg-white font-bold rounded-full py-4 px-8 my-2 shadow-lg uppercase tracking-wider"
         >
@@ -94,10 +100,10 @@
 
     <div class="container flex flex-col mx-auto">
       <pre
-        class="flex-1 query-container text-white px-8 pt-6 pb-8 bg-blue-900 shadow-md invisible"
+        class="flex-1 whitespace-pre-wrap query-container text-white px-8 pt-6 pb-8 bg-blue-900 shadow-md invisible"
       ></pre>
       <pre
-        class="flex-1 response-container text-white px-8 pt-6 pb-8 bg-black shadow-md invisible"
+        class="flex-1 whitespace-pre-wrap response-container text-white px-8 pt-6 pb-8 bg-black shadow-md invisible"
       ></pre>
     </div>
 
@@ -111,52 +117,62 @@
 
       const graphqlQueries = {
         seed: `
-mutation {
-  seed {
-    email
-    posts {
-      title
-    }
-  }
-}
-`,
+      mutation {
+        seed {
+          email
+          posts {
+            title
+          }
+        }
+      }
+      `,
         feed: `
-query {
-  feed {
-    id
-    title
-    content
-    published
-    author {
-      id
-      name
-      email
-    }
-  }
-}
-`,
+      query {
+        feed {
+          id
+          title
+          content
+          published
+          author {
+            id
+            name
+            email
+          }
+        }
+      }
+      `,
+        users: `
+      query {
+        {
+          users {
+            email
+            id
+          }
+        }
+      }
+      `,
         newUser: `
-mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
-    }
-  ) {
-    id
-  }
-}`,
+      mutation {
+        signupUser(
+          data: {
+            name: "Sarah"
+            email: "sarah@prisma.io"
+          }
+        ) {
+          id
+        }
+      }`,
         createDraft: `
-mutation {
-  createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
-    authorEmail: "alice@prisma.io"
-  ) {
-    id
-    published
-  }
-}`,
+      mutation {
+        createDraft(
+          title: "Join the Prisma Slack"
+          content: "https://slack.prisma.io"
+          authorEmail: "jane@prisma.io"
+        ) {
+          id
+          published
+        }
+      }`,
       }
 
       const callGraphqlApi = (query) => {

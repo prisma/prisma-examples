@@ -3,3 +3,5 @@ node_modules/
 *.env*
 dist/
 api/_lib/generated/
+
+.vercel
