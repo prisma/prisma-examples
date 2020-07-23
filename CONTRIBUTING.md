@@ -1,8 +1,10 @@
 # Contribution Guidelines
 
-## General guidelines
+## Commit messages
 
-We use [conventional commits](https://www.conventionalcommits.org) (also known as semantic commits) to ensure consistent and descriptive commit messages.
+Please use [conventional commits](https://www.conventionalcommits.org) (also known as _semantic commits_) to ensure consistent and descriptive commit messages when submitting PRs.
+
+## General guidelines
 
 Every example should follow a number of guidelines.
 
