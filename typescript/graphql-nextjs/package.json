@@ -14,8 +14,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@apollo/react-hooks": "3.1.5",
-    "@apollo/react-ssr": "3.1.5",
+    "@apollo/react-hooks": "4.0.0",
+    "@apollo/react-ssr": "4.0.0",
     "@nexus/schema": "0.14.0",
     "@prisma/client": "2.3.0",
     "apollo-boost": "0.4.9",
