@@ -68,7 +68,7 @@ const Mutation = objectType({
       args: {
         title: stringArg({ nullable: false }),
         content: stringArg(),
-        authorEmail: stringArg(),
+        authorEmail: stringArg({ nullable: false }),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.prisma.post.create({
