@@ -5,7 +5,7 @@
     "target": "ES2018",
     "module": "CommonJS",
     "strict": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext"],
     "esModuleInterop": true
   }
 }
