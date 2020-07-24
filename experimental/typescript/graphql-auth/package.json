@@ -28,7 +28,7 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/node": "12.12.51",
     "ts-node": "8.10.2",
-    "ts-node-dev": "1.0.0-pre.50",
+    "ts-node-dev": "1.0.0-pre.55",
     "typescript": "3.9.6"
   },
   "prettier": {
