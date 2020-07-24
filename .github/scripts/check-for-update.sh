@@ -64,6 +64,7 @@ while [ $i -le $count ]; do
       echo "project uses nexus-plugin-prisma, ignoring"
       yarn remove @prisma/cli || true
       yarn remove @prisma/client || true
+      cd "$dir"
       continue
     fi
 
