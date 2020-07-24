@@ -90,7 +90,7 @@ export const Mutation = mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: intArg() },
+      args: { id: intArg({ nullable: false }) },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.update({
           where: { id },

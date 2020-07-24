@@ -1,8 +1,8 @@
-import Layout from '../components/Layout'
-import Link from 'next/link'
-import { withApollo } from '../apollo/client'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
+import Layout from "../components/Layout"
+import Link from "next/link"
+import { withApollo } from "../apollo/client"
+import gql from "graphql-tag"
+import { useQuery } from "@apollo/react-hooks"
 
 const DraftsQuery = gql`
   query DraftsQuery {
@@ -23,7 +23,7 @@ const Post = ({ post }) => (
   <Link href="/p/[id]" as={`/p/${post.id}`}>
     <a>
       <h2>{post.title}</h2>
-      <small>By {post.author ? post.author.name : 'Unknown Author'}</small>
+      <small>By {post.author ? post.author.name : "Unknown Author"}</small>
       <p>{post.content}</p>
       <style jsx>{`
         a {
@@ -52,9 +52,9 @@ const Drafts = () => {
       <div className="page">
         <h1>Drafts</h1>
         <main>
-          {data.drafts.map(post => (
-            <div className="post">
-              <Post key={post.id} post={post} />
+          {data.drafts.map((post) => (
+            <div key={post.id} className="post">
+              <Post post={post} />
             </div>
           ))}
         </main>

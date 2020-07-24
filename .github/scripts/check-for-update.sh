@@ -6,7 +6,7 @@ channel="$1"
 branch="$2"
 
 no_negatives () {
-	echo "$(( $1 < 0 ? 0 : $1 ))"
+  echo "$(( $1 < 0 ? 0 : $1 ))"
 }
 
 echo "setting up ssh repo"
@@ -30,97 +30,107 @@ i=0
 count=$(((minutes * 60) / interval))
 echo "running loop $count times"
 while [ $i -le $count ]; do
-	# increment to prevent forgetting incrementing, and also prevent overlapping with the next 5-minute job
-	i=$(( i + 1 ))
-	echo "run $i"
+  # increment to prevent forgetting incrementing, and also prevent overlapping with the next 5-minute job
+  i=$(( i + 1 ))
+  echo "run $i"
 
-	start=$(date "+%s")
+  start=$(date "+%s")
 
-	dir=$(pwd)
+  dir=$(pwd)
 
-	git fetch github "$branch"
-	git reset --hard "github/$branch"
-	packages=$(find . -not -path "*/node_modules/*" -type f -name "package.json")
+  git fetch github "$branch"
+  git reset --hard "github/$branch"
+  packages=$(find . -not -path "*/node_modules/*" -type f -name "package.json")
 
-	echo "checking info..."
+  echo "checking info..."
 
-	v=$(sh .github/scripts/prisma-version.sh "$channel")
+  v=$(sh .github/scripts/prisma-version.sh "$channel")
 
-	echo "$packages" | tr ' ' '\n' | while read -r item; do
-		echo "checking $item"
+  echo "$packages" | tr ' ' '\n' | while read -r item; do
+    echo "checking $item"
 
-		case "$item" in
-			*".github"*|*"experimental"*)
-				echo "ignoring $item"
-				continue
-				;;
-		esac
+    case "$item" in
+      *".github"*|*"experimental"*)
+        echo "ignoring $item"
+        continue
+        ;;
+    esac
 
-		cd "$(dirname "$item")/"
+    cd "$(dirname "$item")/"
 
-		vCLI="$(node -e "console.log(require('./package.json').devDependencies['@prisma/cli'])")"
+    hasNexusPluginPrisma="$(node -e "console.log(!!require('./package.json').dependencies['nexus-plugin-prisma'])")"
 
-		if [ "$vCLI" != "" ]; then
-			if [ "$v" != "$vCLI" ]; then
-				echo "$item: @prisma/cli expected $v, actual $vCLI"
-				yarn add --ignore-engines "@prisma/cli@$v" --dev
-			fi
+    if [ "$hasNexusPluginPrisma" = "true" ]; then
+      echo "project uses nexus-plugin-prisma, ignoring"
+      yarn remove @prisma/cli || true
+      yarn remove @prisma/client || true
+      cd "$dir"
+      continue
+    fi
 
-			vPrismaClient="$(node -e "console.log(require('./package.json').dependencies['@prisma/client'])")"
+    vCLI="$(node -e "console.log(require('./package.json').devDependencies['@prisma/cli'])")"
 
-			if [ "$v" != "$vPrismaClient" ]; then
-				echo "$item: @prisma/client expected $v, actual $vPrismaClient"
-				yarn add --ignore-engines "@prisma/client@$v"
-			fi
-		fi
+    if [ "$vCLI" != "" ]; then
+      if [ "$v" != "$vCLI" ]; then
+        echo "$item: @prisma/cli expected $v, actual $vCLI"
+        yarn add --ignore-engines "@prisma/cli@$v" --dev
+      fi
 
-		cd "$dir"
-	done
+      vPrismaClient="$(node -e "console.log(require('./package.json').dependencies['@prisma/client'])")"
 
-	if [ -z "$(git status -s)" ]; then
-		echo "no changes"
-		end=$(date "+%s")
-		diff=$(echo "$end - $start" | bc)
-		remaining=$((interval - 1 - diff))
-		echo "took $diff seconds, sleeping for $remaining seconds"
-		sleep "$(no_negatives $remaining)"
+      if [ "$v" != "$vPrismaClient" ]; then
+        echo "$item: @prisma/client expected $v, actual $vPrismaClient"
+        yarn add --ignore-engines "@prisma/client@$v"
+      fi
+    fi
 
-		continue
-	fi
+    cd "$dir"
+  done
 
-	echo "changes, upgrading..."
+  if [ -z "$(git status -s)" ]; then
+    echo "no changes"
+    end=$(date "+%s")
+    diff=$(echo "$end - $start" | bc)
+    remaining=$((interval - 1 - diff))
+    echo "took $diff seconds, sleeping for $remaining seconds"
+    sleep "$(no_negatives $remaining)"
 
-	echo "$v" > .github/prisma-version.txt
+    continue
+  fi
 
-	git commit -am "chore(packages): bump @prisma/cli to $v"
+  echo "changes, upgrading..."
 
-	# fail silently if the unlikely event happens that this change already has been pushed either manually
-	# or by an overlapping upgrade action
-	git pull github "$branch" --rebase || true
+  echo "$v" > .github/prisma-version.txt
 
-	set +e
-	git push github "HEAD:refs/heads/$branch"
-	code=$?
-	set -e
-	echo "pushed commit"
+  git commit -am "chore(packages): bump @prisma/cli to $v"
 
-	if [ $code -eq 0 ]; then
-		export version="$v"
+  # fail silently if the unlikely event happens that this change already has been pushed either manually
+  # or by an overlapping upgrade action
+  git pull github "$branch" --rebase || true
 
-		export webhook="$SLACK_WEBHOOK_URL_FAILING"
-		(cd .github/slack/ && yarn install)
-		node .github/slack/notify.js "Prisma version $v released"
-	fi
+  set +e
+  git push github "HEAD:refs/heads/$branch"
+  code=$?
+  set -e
+  echo "pushed commit"
 
-	echo "pushed commit"
+  if [ $code -eq 0 ]; then
+    export version="$v"
 
-	end=$(date "+%s")
-	diff=$(echo "$end - $start" | bc)
-	remaining=$((interval - 1 - diff))
-	# upgrading usually takes longer than a few individual loop runs, so skip test runs which would have passed by now
-	skip=$((remaining / interval))
-	i=$((i - skip))
-	echo "took $diff seconds, skipping $skip x $interval second runs"
+    export webhook="$SLACK_WEBHOOK_URL_FAILING"
+    (cd .github/slack/ && yarn install)
+    node .github/slack/notify.js "Prisma version $v released"
+  fi
+
+  echo "pushed commit"
+
+  end=$(date "+%s")
+  diff=$(echo "$end - $start" | bc)
+  remaining=$((interval - 1 - diff))
+  # upgrading usually takes longer than a few individual loop runs, so skip test runs which would have passed by now
+  skip=$((remaining / interval))
+  i=$((i - skip))
+  echo "took $diff seconds, skipping $skip x $interval second runs"
 done
 
 echo "done"

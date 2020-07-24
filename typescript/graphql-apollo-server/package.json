@@ -13,7 +13,7 @@
   "dependencies": {
     "@nexus/schema": "0.14.0",
     "@types/node-fetch": "2.5.7",
-    "apollo-server": "2.15.1",
+    "apollo-server": "2.16.0",
     "graphql": "15.3.0",
     "nexus-plugin-prisma": "^0.16.1"
   },

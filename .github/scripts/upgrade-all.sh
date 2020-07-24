@@ -13,21 +13,21 @@ v=$(sh .github/scripts/prisma-version.sh "$channel")
 dir=$(pwd)
 
 echo "$packages" | tr ' ' '\n' | while read -r item; do
-	case "$item" in
-		*".github"*|*"experimental"*|*"deployment-platforms"*)
-			echo "ignoring $item"
-			continue
-			;;
-	esac
+  case "$item" in
+    *".github"*|*"experimental"*|*"deployment-platforms"*)
+      echo "ignoring $item"
+      continue
+      ;;
+  esac
 
-	echo "running $item"
-	cd "$(dirname "$item")/"
+  echo "running $item"
+  cd "$(dirname "$item")/"
 
-	## ACTION
-	yarn add --ignore-engines "@prisma/cli@$v" --dev
-	yarn add --ignore-engines "@prisma/client@$v"
-	## END
+  ## ACTION
+  yarn add --ignore-engines "@prisma/cli@$v" --dev
+  yarn add --ignore-engines "@prisma/client@$v"
+  ## END
 
-	echo "$item done"
-	cd "$dir"
+  echo "$item done"
+  cd "$dir"
 done
