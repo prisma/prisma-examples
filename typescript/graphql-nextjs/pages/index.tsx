@@ -1,8 +1,8 @@
-import Layout from '../components/Layout'
-import Link from 'next/link'
-import { withApollo } from '../apollo/client'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
+import Layout from "../components/Layout"
+import Link from "next/link"
+import { withApollo } from "../apollo/client"
+import gql from "graphql-tag"
+import { useQuery } from "@apollo/react-hooks"
 
 const FeedQuery = gql`
   query FeedQuery {
@@ -52,9 +52,9 @@ const Blog = () => {
       <div className="page">
         <h1>My Blog</h1>
         <main>
-          {data.feed.map(post => (
-            <div className="post">
-              <Post key={post.id} post={post} />
+          {data.feed.map((post) => (
+            <div key={post.id} className="post">
+              <Post post={post} />
             </div>
           ))}
         </main>

@@ -1,20 +1,19 @@
-import React from 'react'
-import { GetServerSideProps } from 'next'
-import Layout from '../components/Layout'
-import fetch from 'isomorphic-unfetch'
-import Post, { PostProps } from '../components/Post'
+import React from "react"
+import { GetServerSideProps } from "next"
+import Layout from "../components/Layout"
+import Post, { PostProps } from "../components/Post"
 
 type Props = {
   drafts: PostProps[]
 }
 
-const Drafts : React.FC<Props> = props => {
+const Drafts: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
         <h1>Drafts</h1>
         <main>
-          {props.drafts.map(post => (
+          {props.drafts.map((post) => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
@@ -40,7 +39,7 @@ const Drafts : React.FC<Props> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/drafts')
+  const res = await fetch("http://localhost:3000/api/drafts")
   const drafts = await res.json()
   return {
     props: { drafts },
