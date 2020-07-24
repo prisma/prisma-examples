@@ -63,6 +63,6 @@ jobs:
           version: 12
 
       - name: report failure to slack
-        run: bash .github/scripts/slack-workflow-status.sh "check-for-update :x:"
+        run: bash .github/scripts/slack-workflow-status.sh "[keep-prisma-dependencies-updated] check-for-update :x:"
         env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
