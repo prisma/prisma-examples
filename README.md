@@ -56,7 +56,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/rest-express)                   | Simple REST API with Express.JS                                                                                                                             |
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Simple gRPC API
 | [`postgis-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/postgis-express)                                   | Querying for Postgis datatypes with Express
-| [`testing-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Integration testing with express                                                                                                                             |
+| [`testing-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/testing-express)                                   | Integration testing with express                                                                                                                             |
 
 ## JavaScript (Node.js)
 
