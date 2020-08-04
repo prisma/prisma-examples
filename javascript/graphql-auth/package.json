@@ -2,7 +2,7 @@
   "name": "graphql-auth",
   "version": "1.0.0",
   "dependencies": {
-    "@nexus/schema": "0.14.0",
+    "@nexus/schema": "0.15.0",
     "@prisma/client": "2.3.0",
     "bcryptjs": "2.4.3",
     "graphql": "15.3.0",
