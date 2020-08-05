@@ -12,14 +12,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "2.4.0",
+    "@prisma/client": "2.4.1",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.4.0",
+    "@prisma/cli": "2.4.1",
     "@types/node": "13.13.15",
     "@types/react": "16.9.44",
     "typescript": "3.9.6"
