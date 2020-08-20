@@ -19,11 +19,11 @@
 <hr>
 
 <div align="center">
-  
-  ![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)
-  ![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)
-  ![keep-alpha-branch-in-sync-with-master](https://github.com/prisma/prisma-examples/workflows/keep-alpha-branch-in-sync-with-master/badge.svg)
-  
+
+![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)
+![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)
+![keep-alpha-branch-in-sync-with-master](https://github.com/prisma/prisma-examples/workflows/keep-alpha-branch-in-sync-with-master/badge.svg)
+
 </div>
 
 <hr>
@@ -38,15 +38,15 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ### Fullstack
 
-| Demo                                                                                                 | Description                                                          |
-| :--------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------- |
+| Demo                                                                                                | Description                                                          |
+| :-------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------- |
 | [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/master/typescript/rest-nextjs)       | Simple [Next.js](https://nextjs.org/) app (React) with a REST API    |
 | [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a GraphQL API |
 
 ### Backend only
 
-| Demo                                                                                                               | Description                                                                                                                                                 |
-| :----------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Demo                                                                                                              | Description                                                                                                                                                 |
+| :---------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`script`](https://github.com/prisma/prisma-examples/tree/master/typescript/script)                               | Simple usage of Prisma Client JS in a TypeScript script                                                                                                     |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql)                             | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma-labs/graphql-yoga) and [Nexus Schema](https://github.com/graphql-nexus/schema)    |
 | [`graphql-typegraphql`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-typegraphql)     | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma-labs/graphql-yoga) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql) |
@@ -54,22 +54,22 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-sdl-first)         | Simple GraphQL server based on the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/) (Apollo)                      |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/master/typescript/graphql-auth)                   | GraphQL server with email-password authentication & permissions                                                                                             |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/rest-express)                   | Simple REST API with Express.JS                                                                                                                             |
-| [`grpc`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Simple gRPC API
-| [`postgis-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/postgis-express)                                   | Querying for Postgis datatypes with Express
-| [`testing-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/testing-express)                                   | Integration testing with express                                                                                                                             |
+| [`grpc`](https://github.com/prisma/prisma-examples/tree/master/typescript/grpc)                                   | Simple gRPC API                                                                                                                                             |
+| [`postgis-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/postgis-express)             | Querying for Postgis datatypes with Express                                                                                                                 |
+| [`testing-express`](https://github.com/prisma/prisma-examples/tree/master/typescript/testing-express)             | Integration testing with express                                                                                                                            |
 
 ## JavaScript (Node.js)
 
 ### Fullstack
 
-| Demo                                                                                           | Description                                                       |
-| :--------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
+| Demo                                                                                          | Description                                                       |
+| :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------- |
 | [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/master/javascript/rest-nextjs) | Simple [Next.js](https://nextjs.org/) app (React) with a REST API |
 
 ### Backend only
 
-| Demo                                                                                                               | Description                                                                                                                            |
-| :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| Demo                                                                                                              | Description                                                                                                                            |
+| :---------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
 | [`script`](https://github.com/prisma/prisma-examples/tree/master/javascript/script)                               | Simple usage of Prisma Client JS in a Node.js script                                                                                   |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/master/javascript/graphql)                             | Simple GraphQL server based on [`graphql-yoga`](https://github.com/prisma-labs/graphql-yoga)                                           |
 | [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/master/javascript/graphql-apollo-server) | Simple GraphQL server based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/)                                    |
@@ -77,6 +77,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/master/javascript/graphql-sdl-first)         | Simple GraphQL server based on the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/) (Apollo) |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/master/javascript/rest-express)                   | Simple REST API with Express.JS                                                                                                        |
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/master/javascript/grpc)                                   | Simple gRPC API                                                                                                                        |
+| [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/master/javascript/rest-fastify)                   | Simple REST API with Fastify                                                                                                           |
 
 ## Experimental
 
