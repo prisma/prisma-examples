@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+env:
+  PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-dev-branch-in-sync-with-master.yaml"
 jobs:
   sync-dev:
     runs-on: ubuntu-latest
