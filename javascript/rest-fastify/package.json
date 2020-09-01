@@ -6,12 +6,12 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "2.5.1",
+    "@prisma/client": "2.6.0",
     "fastify": "3.3.0",
     "fastify-formbody": "4.0.3"
   },
   "devDependencies": {
-    "@prisma/cli": "2.5.1"
+    "@prisma/cli": "2.6.0"
   },
   "engines": {
     "node": ">=10.0.0"
