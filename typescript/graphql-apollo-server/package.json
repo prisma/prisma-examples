@@ -17,7 +17,7 @@
     "nexus-plugin-prisma": "0.17.0"
   },
   "devDependencies": {
-    "@types/node": "12.12.54",
+    "@types/node": "12.12.55",
     "ts-node": "8.10.2",
     "ts-node-dev": "1.0.0-pre.50",
     "typescript": "3.9.6"
