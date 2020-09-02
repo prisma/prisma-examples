@@ -14,7 +14,7 @@
     "@types/node-fetch": "2.5.7",
     "apollo-server": "2.17.0",
     "graphql": "15.3.0",
-    "nexus-plugin-prisma": "0.17.0"
+    "nexus-plugin-prisma": "0.18.0"
   },
   "devDependencies": {
     "@types/node": "12.12.54",
