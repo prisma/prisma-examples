@@ -7,25 +7,3 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  post_id   Int     @default(autoincrement()) @id
-  author_id Int?
-  content   String?
-  title     String
-  author    User?   @relation(fields: [author_id], references: [user_id]) // renamed from `User` -> `author`
-}
-
-model Profile {
-  bio        String?
-  profile_id Int     @default(autoincrement()) @id
-  user_id    Int
-  user       User    @relation(fields: [user_id], references: [user_id]) // renamed from `User` -> `user`
-}
-
-model User {
-  email    String    @unique
-  name     String?
-  user_id  Int       @default(autoincrement()) @id
-  posts    Post[] // renamed from `Post` -> `posts`
-  profiles Profile[] // renamed from `User` -> `profiles`
-}
