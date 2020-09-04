@@ -2,7 +2,7 @@
   "name": "typescript-grpc",
   "dependencies": {
     "@grpc/proto-loader": "0.5.5",
-    "@prisma/client": "2.6.1",
+    "@prisma/client": "2.6.2",
     "chalk": "4.1.0",
     "grpc": "1.24.3",
     "protobufjs": "6.10.1"
@@ -19,7 +19,7 @@
     "deletePost": "ts-node ./client/deletePost.ts"
   },
   "devDependencies": {
-    "@prisma/cli": "2.6.1",
+    "@prisma/cli": "2.6.2",
     "@types/node": "13.13.16",
     "ts-node": "8.10.2",
     "typescript": "3.9.6"
