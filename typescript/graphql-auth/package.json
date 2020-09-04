@@ -24,7 +24,7 @@
     "@types/jsonwebtoken": "8.5.0",
     "@types/node": "12.12.55",
     "@types/ws": "7.2.6",
-    "ts-node": "8.10.2",
+    "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
     "typescript": "3.9.6"
   },
