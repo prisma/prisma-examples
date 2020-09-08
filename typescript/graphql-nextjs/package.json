@@ -38,6 +38,6 @@
     "@types/graphql": "14.5.0",
     "@types/node": "13.13.16",
     "@types/react": "16.9.49",
-    "typescript": "3.9.6"
+    "typescript": "4.0.2"
   }
 }
