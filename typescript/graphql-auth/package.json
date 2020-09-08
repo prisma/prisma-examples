@@ -17,7 +17,7 @@
     "graphql-shield": "7.3.5",
     "graphql-yoga": "1.18.3",
     "jsonwebtoken": "8.5.1",
-    "nexus-plugin-prisma": "0.18.1"
+    "nexus-plugin-prisma": "0.18.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
