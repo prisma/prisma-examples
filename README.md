@@ -20,9 +20,12 @@
 
 <div align="center">
 
-![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)
-![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)
-![keep-alpha-branch-in-sync-with-master](https://github.com/prisma/prisma-examples/workflows/keep-alpha-branch-in-sync-with-master/badge.svg)
+[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest)
+[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Adev+-branch%3Apatch-dev)
+[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=patch-dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Apatch-dev)
+<br>
+[![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-prisma-dependencies-updated)
+[![keep-alpha-branch-in-sync-with-master](https://github.com/prisma/prisma-examples/workflows/keep-alpha-branch-in-sync-with-master/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-dev-branches-in-sync-with-master)
 
 </div>
 
