@@ -7,7 +7,7 @@ env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-dev-branch-in-sync-with-master.yaml"
 jobs:
   sync-dev:
-    if: github.owner == prisma
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -18,7 +18,7 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
 
   sync-patch-dev:
-    if: github.owner == prisma
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

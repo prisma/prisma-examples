@@ -6,7 +6,7 @@ env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-prisma-dependencies-updated.yaml"
 jobs:
   check-for-update-latest:
-    if: github.owner == prisma
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -23,7 +23,7 @@ jobs:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   check-for-update-dev:
-    if: github.owner == prisma
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -40,7 +40,7 @@ jobs:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   check-for-update-patch-dev:
-    if: github.owner == prisma
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -57,7 +57,7 @@ jobs:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   report-to-slack-failure:
-    if: github.owner == prisma && failure()
+    if: github.repository_owner == 'prisma' && failure()
     runs-on: ubuntu-latest
     needs: [check-for-update-latest,  check-for-update-dev,  check-for-update-patch-dev]
     steps:
