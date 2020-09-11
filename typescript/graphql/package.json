@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.6.2",
-    "@types/node": "12.12.57",
+    "@types/node": "12.12.58",
     "@types/ws": "7.2.6",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
