@@ -81,3 +81,43 @@ jobs:
         run: sh .github/scripts/test.sh ${{ matrix.path }}
         env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
+  test2:
+    needs: projects
+    
+    if: github.repository_owner == 'prisma'
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgis/postgis:12-2.5-alpine
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testing
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - '5432:5432'
+
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.projects.outputs.matrix)}}
+      
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install project and run test
+        run: |
+          $item=${{ matrix.path }}
+          dir="$(pwd)"
+          cd "$(dirname "$item")/"
+          yarn install
+          $dir/.github/tests/$(dirname "$item")/run.sh"
