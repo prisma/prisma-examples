@@ -18,7 +18,7 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
         
       - id: set-matrix
         run: |
