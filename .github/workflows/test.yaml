@@ -56,6 +56,6 @@ jobs:
           version: 12
 
       - name: test
-        run: sh .github/scripts/test.sh ${{ project }}
+        run: sh .github/scripts/test.sh ${{ matrix.project }}
         env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
