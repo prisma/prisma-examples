@@ -29,7 +29,7 @@ jobs:
           # turn list into json array
           json1=$(echo "$packages" | tr ' ' '\n' | jq -R -c . | jq -s .)
           # and package into wanted json structure
-          json2=$(echo "{\"include\":$json}")
+          json2=$(echo "{\"include\":$json1}")
           # set as variable to be used later
           echo "::set-output name=matrix::$json2"
           echo $json2
