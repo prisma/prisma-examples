@@ -36,7 +36,15 @@ jobs:
           echo "::set-output name=matrix::$json3"
           # output for debugging
           echo $json3
-    
+
+  debug:
+    needs: projects
+    runs-on: ubuntu-latest
+    steps:
+      - run: | 
+          echo "${{needs.projects.outputs.matrix}}"
+          echo "${{fromJson(needs.projects.outputs.matrix)}}"
+
   test:
     needs: projects
     
