@@ -2,8 +2,7 @@
 
 set -eu
 
-channel="$1"
-branch="$2"
+branch="$1"
 
 no_negatives () {
   echo "$(( $1 < 0 ? 0 : $1 ))"
@@ -44,7 +43,7 @@ while [ $i -le $count ]; do
 
   echo "checking info..."
 
-  v=$(sh .github/scripts/prisma-version.sh "$channel")
+  v=$(sh .github/scripts/prisma-version.sh "$branch")
 
   echo "$packages" | tr ' ' '\n' | while read -r item; do
     echo "checking $item"
