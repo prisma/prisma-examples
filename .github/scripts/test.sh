@@ -18,7 +18,7 @@ echo "running $item"
 case "$item" in
   *".github"*|*"experimental"*|*"deployment-platforms"*)
     echo "ignoring $item"
-    continue
+    exit 0
     ;;
 esac
 
