@@ -27,10 +27,12 @@ jobs:
           # list all package.json files (not in node_modules)
           packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
           # turn list into json array
-          json=$(echo "$packages" | tr ' ' '\n' | jq -R -c . | jq -s .)
+          json1=$(echo "$packages" | tr ' ' '\n' | jq -R -c . | jq -s .)
+          # and package into wanted json structure
+          json2=$(echo "{\"include\":$json}")
           # set as variable to be used later
-          echo "::set-output name=matrix::{\"include\":$json}"
-          echo $json
+          echo "::set-output name=matrix::$json2"
+          echo $json2
     
   test:
     needs: projects
