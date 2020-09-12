@@ -120,4 +120,4 @@ jobs:
           dir="$(pwd)"
           cd "$(dirname "$path")/"
           yarn install
-          $dir/.github/tests/$(dirname "$path")/run.sh"
+          sh $dir/.github/tests/$(dirname "$path")/run.sh"
