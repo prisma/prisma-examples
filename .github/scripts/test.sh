@@ -15,13 +15,6 @@ echo ""
 echo "---------------------"
 echo "running $item"
 
-case "$item" in
-  *".github"*|*"experimental"*|*"deployment-platforms"*)
-    echo "ignoring $item"
-    exit 0
-    ;;
-esac
-
 cd "$(dirname "$item")/"
 
 ## ACTION
