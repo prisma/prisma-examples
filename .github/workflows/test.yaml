@@ -121,4 +121,5 @@ jobs:
           cd "$(dirname "$path")/"
           yarn install
           run_file="$dir/.github/tests/$(dirname "$item")/run.sh"
-          sh "run_file"
+          echo "$runfile"
+          sh "$run_file"
