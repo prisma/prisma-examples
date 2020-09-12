@@ -12,7 +12,7 @@ env:
 
 jobs:
   
-  # generate json for matrix via https://stackoverflow.com/a/62953566
+  # generate json for matrix, https://github.blog/changelog/2020-04-15-github-actions-new-workflow-features/#new-fromjson-method-in-expressions
   projects:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
@@ -29,10 +29,12 @@ jobs:
           # turn list into json array
           json=$(echo "$packages" | tr ' ' '\n' | jq -R -c . | jq -s .)
           # set as variable to be used later
-          echo "::set-output name=project::$json"
+          echo "::set-output name=matrics::{\"include\":$json}"
           echo $json
     
   test:
+    needs: projects
+    
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
 
