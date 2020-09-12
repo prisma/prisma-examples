@@ -2,6 +2,7 @@
 
 set -eu
 
+item="$1"
 dir="$(pwd)"
 
 
