@@ -6,9 +6,26 @@ on:
       - dev
       - patch-dev
   pull_request:
+    
 env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples test.yaml"
+
 jobs:
+  
+  projects:
+    if: github.repository_owner == 'prisma'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: action/checkout@v2
+        
+      - id: set-matrix
+        run: |
+          packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
+          json=$("$packages" | tr ' ' '\n' | jq -R -c | jq -s)
+          echo "::set-output name=project::$json"
+    
   test:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
@@ -28,6 +45,9 @@ jobs:
         ports:
           - '5432:5432'
 
+    strategy:
+      matrix: ${{fromJson(needs.projects.outputs.matrix)}}
+      
     steps:
       - uses: actions/checkout@v2
 
@@ -36,6 +56,6 @@ jobs:
           version: 12
 
       - name: test
-        run: sh .github/scripts/test-all.sh
+        run: sh .github/scripts/test.sh ${{ project }}
         env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
