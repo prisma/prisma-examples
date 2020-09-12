@@ -116,8 +116,8 @@ jobs:
 
       - name: Install project and run test
         run: |
-          $item="${{ matrix.path }}"
+          path="${{ matrix.path }}"
           dir="$(pwd)"
-          cd "$(dirname "$item")/"
+          cd "$(dirname "$path")/"
           yarn install
-          $dir/.github/tests/$(dirname "$item")/run.sh"
+          $dir/.github/tests/$(dirname "$path")/run.sh"
