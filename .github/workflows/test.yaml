@@ -67,6 +67,7 @@ jobs:
           - '5432:5432'
 
     strategy:
+      fail-fast: false
       matrix: ${{fromJson(needs.projects.outputs.matrix)}}
       
     steps:
