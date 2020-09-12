@@ -29,7 +29,7 @@ jobs:
           # turn each line into json object
           json1=$(echo "$packages" | tr ' ' '\n' | sed 's/.*/{"path": "&" }/')
           # combine objects into json array
-          json2=$(echo $json1 | jq -c . | jq -s .)
+          json2=$(echo $json1 | jq -s -c . )
           # and package into wanted json structure
           json3=$(echo "{\"include\":$json2}")
           # set as variable to be used later
