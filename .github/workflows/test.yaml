@@ -2,8 +2,7 @@ name: test
 on:
   push:
     branches:
-      - master
-      - alpha
+      - latest
       - dev
       - patch-dev
   pull_request:

@@ -90,6 +90,6 @@ app.get("/filterPosts", async (req, res) => {
 
 const server = app.listen(3000, () =>
   console.log(
-    "🚀 Server ready at: http://localhost:3000\n⭐️ See sample requests: https://github.com/prisma/prisma-examples/tree/master/javascript/rest-fastify#using-the-rest-api"
+    "🚀 Server ready at: http://localhost:3000\n⭐️ See sample requests: https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify#using-the-rest-api"
   )
 );

@@ -5,10 +5,10 @@
     "automerge": false
   },
   "masterIssue": true,
-  "baseBranches": ["master"],
+  "baseBranches": ["latest"],
   "packageRules": [
     {
-      "baseBranchList": ["master"],
+      "baseBranchList": ["latest"],
       "packageNames": ["nexus-prisma"],
       "enabled": false
     }
