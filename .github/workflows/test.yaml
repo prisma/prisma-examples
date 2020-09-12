@@ -24,8 +24,8 @@ jobs:
       - name: get list of projects in json array
         id: set-matrix
         run: |
-          # list all package.json files (not in node_modules)
-          packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
+          # list all package.json files (not in node_modules, experimental, .github or deployment-platforms)
+          packages=$(find "." -not -path "*/node_modules/*" -not -path "*/experimental/*" -not -path "*/deployment-platforms/*" -not -path "*/.github/*" -type f -name "package.json")
           # turn each line into json object
           json1=$(echo "$packages" | tr ' ' '\n' | sed 's/.*/{"path": "&" }/')
           # combine objects into json array
