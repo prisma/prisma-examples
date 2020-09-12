@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - latest
-      - alpha
       - dev
       - patch-dev
   pull_request:
