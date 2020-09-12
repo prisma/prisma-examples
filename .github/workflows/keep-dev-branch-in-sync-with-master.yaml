@@ -1,10 +1,10 @@
-name: keep-dev-branches-in-sync-with-master
+name: keep-dev-branches-in-sync-with-latest
 on:
   push:
     branches:
-      - master
+      - latest
 env:
-  PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-dev-branch-in-sync-with-master.yaml"
+  PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-dev-branch-in-sync-with-latest.yaml"
 jobs:
   sync-dev:
     if: github.repository_owner == 'prisma'

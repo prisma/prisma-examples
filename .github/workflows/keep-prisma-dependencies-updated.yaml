@@ -17,7 +17,7 @@ jobs:
           node-version: 10
 
       - name: check update latest
-        run: sh .github/scripts/check-for-update.sh latest master
+        run: sh .github/scripts/check-for-update.sh latest latest
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}

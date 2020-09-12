@@ -5,6 +5,6 @@
 ## Download manually
 
 ```bash
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/master | tar -xz --strip=2 prisma-examples-master/deployment-platforms/aws-lambda
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/deployment-platforms/aws-lambda
 cd aws-lambda
 ```
