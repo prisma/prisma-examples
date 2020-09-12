@@ -12,6 +12,7 @@ env:
 
 jobs:
   
+  # generate json for matrix via https://stackoverflow.com/a/62953566
   projects:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
       - id: set-matrix
         run: |
           packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
-          json=$("echo $packages" | tr ' ' '\n' | jq -R -c | jq -s)
+          json=$(echo "$packages" | tr ' ' '\n' | jq -R -c | jq -s)
           echo "::set-output name=project::$json"
     
   test:
