@@ -27,7 +27,7 @@ jobs:
           # list all package.json files (not in node_modules)
           packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
           # turn list into json array
-          json1=$(echo "$packages" | tr ' ' '\n' | jq -R -c . | jq -s .)
+          json1=$(echo "$packages" | tr ' ' '\n' | sed 's/.*/{"path": "&" }/' | jq -R -c . | jq -s .)
           # and package into wanted json structure
           json2=$(echo "{\"include\":$json1}")
           # set as variable to be used later
@@ -66,6 +66,6 @@ jobs:
           version: 12
 
       - name: test
-        run: sh .github/scripts/test.sh ${{ matrix.project }}
+        run: sh .github/scripts/test.sh ${{ matrix.path }}
         env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
