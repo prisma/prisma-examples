@@ -21,7 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - id: set-matrix
+      - name: get list of projects in json array
+        id: set-matrix
         run: |
           # list all package.json files (not in node_modules)
           packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
@@ -29,6 +30,7 @@ jobs:
           json=$(echo "$packages" | tr ' ' '\n' | jq -R -c . | jq -s .)
           # set as variable to be used later
           echo "::set-output name=project::$json"
+          echo $json
     
   test:
     if: github.repository_owner == 'prisma'
