@@ -24,7 +24,7 @@ jobs:
       - id: set-matrix
         run: |
           packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
-          json=$(echo "$packages" | tr ' ' '\n' | jq -R -c | jq -s)
+          json=$(echo "$packages" | tr ' ' '\n') 
           echo "::set-output name=project::$json"
     
   test:
