@@ -1,13 +1,20 @@
 name: keep-prisma-dependencies-updated
+    
 on:
+  push:
   schedule:
     - cron: '*/5 * * * *'
+  
 env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-prisma-dependencies-updated.yaml"
+
 jobs:
-  check-for-update-latest:
+  check-for-update:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        branch: [latest, dev, patch-dev]
     steps:
       - uses: actions/checkout@v1
 
@@ -16,42 +23,8 @@ jobs:
         with:
           node-version: 10
 
-      - name: check update latest
-        run: sh .github/scripts/check-for-update.sh latest
-        env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
-
-  check-for-update-dev:
-    if: github.repository_owner == 'prisma'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: use node 10
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10
-
-      - name: check update dev
-        run: sh .github/scripts/check-for-update.sh dev
-        env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
-          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
-
-  check-for-update-patch-dev:
-    if: github.repository_owner == 'prisma'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: use node 10
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10
-
-      - name: check update patch-dev
-        run: sh .github/scripts/check-for-update.sh patch-dev
+      - name: check update ${{ matrix.branch }}
+        run: sh .github/scripts/check-for-update.sh ${{ matrix.branch }}
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
@@ -59,7 +32,7 @@ jobs:
   report-to-slack-failure:
     if: github.repository_owner == 'prisma' && failure()
     runs-on: ubuntu-latest
-    needs: [check-for-update-latest,  check-for-update-dev,  check-for-update-patch-dev]
+    needs: [check-for-update]
     steps:
       - uses: actions/checkout@v1
 
