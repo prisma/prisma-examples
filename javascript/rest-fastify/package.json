@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@prisma/client": "2.6.2",
-    "fastify": "3.3.0",
+    "fastify": "3.4.0",
     "fastify-formbody": "5.0.0"
   },
   "devDependencies": {
