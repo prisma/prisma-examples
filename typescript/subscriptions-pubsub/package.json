@@ -23,7 +23,7 @@
   "devDependencies": {
     "@prisma/cli": "2.6.2",
     "@types/node": "13.13.19",
-    "@types/prettier": "2.1.0",
+    "@types/prettier": "2.1.1",
     "cross-env": "7.0.2",
     "prettier": "2.1.1",
     "rimraf": "3.0.2",
