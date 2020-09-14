@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "dotenv -- ts-node src/index.ts",
-    "seed": "dotenv -- ts-node prisma/seed.ts",
+    "dev": "ts-node src/index.ts",
+    "seed": "ts-node prisma/seed.ts",
     "test": "jest",
-    "prisma": "dotenv -- prisma"
+    "prisma": "prisma"
   },
   "dependencies": {
     "@prisma/client": "2.6.2",
@@ -21,7 +21,6 @@
     "@types/jest": "26.0.13",
     "@types/node": "12.12.58",
     "@types/supertest": "2.0.10",
-    "dotenv-cli": "3.2.0",
     "jest": "26.4.2",
     "jest-environment-node": "26.3.0",
     "randomstring": "1.1.5",
