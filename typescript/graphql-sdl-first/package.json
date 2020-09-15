@@ -4,13 +4,13 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.6.2",
+    "@prisma/client": "2.7.0",
     "graphql": "15.3.0",
     "graphql-tools": "6.2.2",
     "graphql-yoga": "1.18.3"
   },
   "devDependencies": {
-    "@prisma/cli": "2.6.2",
+    "@prisma/cli": "2.7.0",
     "@types/graphql": "14.5.0",
     "@types/node": "12.12.58",
     "@types/ws": "7.2.6",
