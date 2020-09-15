@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.5.0",
-    "@types/node": "12.12.58",
+    "@types/node": "12.12.59",
     "@types/ws": "7.2.6",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
