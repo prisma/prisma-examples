@@ -12,7 +12,7 @@
   "devDependencies": {
     "@prisma/cli": "2.7.1",
     "@types/graphql": "14.5.0",
-    "@types/node": "12.12.59",
+    "@types/node": "12.12.60",
     "@types/ws": "7.2.6",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
