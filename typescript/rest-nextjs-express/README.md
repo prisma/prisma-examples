@@ -1,29 +1,37 @@
 # Fullstack Example with Next.js (REST API)
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./backend/prisma/dev.db`](./backend/prisma/dev.db).
 
 ## How to use
 
-### 1. Download example & install dependencies
+### 1. Download example
 
-Clone this repository:
+Clone this repository and navigate into the project folder:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
+cd prisma-examples/typescript/rest-nextjs-express
 ```
 
-Install npm dependencies:
+### 2. Start the server (backend)
+
+The code for the server is located in the [`backend`](./backend) directory. You can start it as follows:
 
 ```
-cd prisma-examples/typescript/rest-nextjs
+cd backend
 npm install
+npm run dev
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+The server is now running at [`http://localhost:3001/`](http://localhost:3001/).
 
-### 2. Start the app
+### 3. Start the app (frontend)
+
+The code for the Next.js app is located in the [`frontend`](./frontend) directory. Once you launched the server, you can start it as follows:
 
 ```
+cd ../frontend
+npm install
 npm run dev
 ```
 
@@ -57,7 +65,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 ## Using the REST API
 
-You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/api` route (in this case that is `localhost:3000/api/`, so you can e.g. reach the API with [`localhost:3000/api/feed`](http://localhost:3000/api/feed)).
+You can also access the REST API of the API server directly. It is running [`localhost:3000`](http://localhost:3000) (so you can e.g. reach the API with [`localhost:3000/feed`](http://localhost:3001/feed)).
 
 ### `GET`
 
