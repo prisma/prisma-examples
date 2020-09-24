@@ -7,6 +7,6 @@ pid=$!
 
 sleep 15
 
-curl --fail 'http://localhost:3000/filterPosts?searchString=Prisma'
+curl --fail 'http://localhost:3001/filterPosts?searchString=Prisma'
 
 kill "$pid"
