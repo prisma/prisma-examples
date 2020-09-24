@@ -4,19 +4,19 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.5.1",
+    "@prisma/client": "2.7.1",
     "graphql": "15.3.0",
-    "graphql-tools": "6.1.0",
+    "graphql-tools": "6.2.3",
     "graphql-yoga": "1.18.3"
   },
   "devDependencies": {
-    "@prisma/cli": "2.5.1",
+    "@prisma/cli": "2.7.1",
     "@types/graphql": "14.5.0",
-    "@types/node": "12.12.54",
+    "@types/node": "12.12.62",
     "@types/ws": "7.2.6",
-    "ts-node": "8.10.2",
+    "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
-    "typescript": "3.9.6"
+    "typescript": "4.0.3"
   },
   "prettier": {
     "singleQuote": true,

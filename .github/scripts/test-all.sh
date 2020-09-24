@@ -44,7 +44,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
     if [ $code -ne 0 ]; then
       echo "$(dirname "$item") failed"
 
-      if [ "$GITHUB_REF" = "refs/heads/master" ]; then
+      if [ "$GITHUB_REF" = "refs/heads/latest" ] || [ "$GITHUB_REF" = "refs/heads/dev" ] || [ "$GITHUB_REF" = "refs/heads/patch-dev" ]; then
         (cd .github/slack/ && yarn install --silent)
 
         export webhook="$SLACK_WEBHOOK_URL_FAILING"

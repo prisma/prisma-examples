@@ -14,7 +14,7 @@ const app = async () => {
 
   new GraphQLServer({ schema, context }).start(() =>
     console.log(
-      `🚀 Server ready at: http://localhost:4000\n⭐️`,
+      `🚀 Server ready at: http://localhost:4000\n⭐️  See sample queries: http://pris.ly/e/ts/graphql-typegraphql#using-the-graphql-api`,
     ),
   )
 }

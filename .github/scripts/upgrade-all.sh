@@ -8,7 +8,7 @@ echo "upgrading all packages"
 
 packages=$(find "." -not -path "*/node_modules/*" -type f -name "package.json")
 
-v=$(sh .github/scripts/prisma-version.sh "$channel")
+version=$(sh .github/scripts/prisma-version.sh "$channel")
 
 dir=$(pwd)
 
@@ -23,9 +23,16 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
   echo "running $item"
   cd "$(dirname "$item")/"
 
+  pkg="var pkg=require('./package.json')"
+  dependsOnNexus="$(node -e "$pkg;console.log(!!pkg.dependencies['nexus-plugin-prisma'])")"
+
   ## ACTION
-  yarn add --ignore-engines "@prisma/cli@$v" --dev
-  yarn add --ignore-engines "@prisma/client@$v"
+  if [ "$dependsOnNexus" = "true" ]; then
+    echo "$item is a nexus project, ignoring dependencies"
+  else
+    yarn add --ignore-engines "@prisma/cli@$version" --dev
+    yarn add --ignore-engines "@prisma/client@$version"
+  fi
   ## END
 
   echo "$item done"

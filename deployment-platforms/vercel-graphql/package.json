@@ -12,18 +12,18 @@
   "dependencies": {
     "@nexus/schema": "0.15.0",
     "@types/node-fetch": "2.5.7",
-    "apollo-server-micro": "2.17.0",
+    "apollo-server-micro": "2.18.0",
     "graphql": "15.3.0",
-    "nexus-plugin-prisma": "0.17.0"
+    "nexus-plugin-prisma": "0.19.0"
   },
   "devDependencies": {
-    "@now/node": "1.8.1",
-    "@types/node": "12.12.54",
-    "ts-node": "8.10.2",
+    "@now/node": "1.8.3",
+    "@types/node": "12.12.62",
+    "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
     "tsc-watch": "4.2.9",
-    "typescript": "3.9.6",
-    "vercel": "19.2.0"
+    "typescript": "4.0.3",
+    "vercel": "20.1.1"
   },
   "prettier": {
     "singleQuote": true,
