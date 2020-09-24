@@ -12,7 +12,7 @@
   "dependencies": {
     "@nexus/schema": "0.15.0",
     "@types/node-fetch": "2.5.7",
-    "apollo-server-micro": "2.18.0",
+    "apollo-server-micro": "2.18.1",
     "graphql": "15.3.0",
     "nexus-plugin-prisma": "0.19.0"
   },
