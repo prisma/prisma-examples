@@ -15,7 +15,7 @@ model Post {
   content   String?
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id]) // renamed from `User` -> `author`
-  authorId  Int // relation scalar field
+  authorId  Int     // relation scalar field
 }
 
 model Profile {
@@ -29,6 +29,6 @@ model User {
   id      Int      @default(autoincrement()) @id
   email   String   @unique
   name    String?
-  posts   Post[] // renamed from `Post` -> `posts`
-  profile Profile? // renamed from `User` -> `profile`
+  posts   Post[]   // renamed from `Post` -> `posts`
+  profile Profile? // renamed from `Profile` -> `profile`
 }
