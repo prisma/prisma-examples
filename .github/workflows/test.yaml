@@ -2,8 +2,7 @@ name: test
 on:
   push:
     branches:
-      - master
-      - alpha
+      - latest
       - dev
       - patch-dev
   pull_request:
@@ -11,6 +10,7 @@ env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples test.yaml"
 jobs:
   test:
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
 
     services:

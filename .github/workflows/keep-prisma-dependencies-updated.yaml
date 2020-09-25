@@ -6,6 +6,7 @@ env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-prisma-dependencies-updated.yaml"
 jobs:
   check-for-update-latest:
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -16,12 +17,13 @@ jobs:
           node-version: 10
 
       - name: check update latest
-        run: sh .github/scripts/check-for-update.sh latest master
+        run: sh .github/scripts/check-for-update.sh latest
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   check-for-update-dev:
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -32,12 +34,13 @@ jobs:
           node-version: 10
 
       - name: check update dev
-        run: sh .github/scripts/check-for-update.sh dev dev
+        run: sh .github/scripts/check-for-update.sh dev
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   check-for-update-patch-dev:
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -48,15 +51,15 @@ jobs:
           node-version: 10
 
       - name: check update patch-dev
-        run: sh .github/scripts/check-for-update.sh patch-dev patch-dev
+        run: sh .github/scripts/check-for-update.sh patch-dev
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 
   report-to-slack-failure:
+    if: github.repository_owner == 'prisma' && failure()
     runs-on: ubuntu-latest
     needs: [check-for-update-latest,  check-for-update-dev,  check-for-update-patch-dev]
-    if: failure()
     steps:
       - uses: actions/checkout@v1
 
