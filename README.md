@@ -92,6 +92,11 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 <hr>
 
+## Real-world & production-ready example projects with Prisma
+
+- [Backend for a real world grading application](https://github.com/2color/real-world-grading-app) (incl video and written tutorials)
+- [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js & Prisma)
+
 ## About this repository
 
 The `latest` branch of this repository contains the examples with the latest stable version of Prisma CLI and Prisma Client (`@latest` on npm). These dependencies are kept up to date with a GitHub Action workflow, which updates them every time a new version of Prisma is released.
