@@ -31,7 +31,7 @@
 
 <hr>
 
-This repository contains a number of ready-to-run examples demonstrating various use cases of Prisma. Pick an example and follow the instructions in the corresponding README. You can also find links to [real-world and production ready examples](real-world--production-ready-example-projects-with-prisma) further below in this README.
+This repository contains a number of ready-to-run examples demonstrating various use cases of Prisma. Pick an example and follow the instructions in the corresponding README. You can also find links to [real-world and production ready examples](#real-world--production-ready-example-projects-with-prisma) further below in this README.
 
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
 
