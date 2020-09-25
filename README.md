@@ -31,7 +31,7 @@
 
 <hr>
 
-This repository contains a number of ready-to-run examples demonstrating various use cases of Prisma. Pick an example and follow the instructions in the corresponding README.
+This repository contains a number of ready-to-run examples demonstrating various use cases of Prisma. Pick an example and follow the instructions in the corresponding README. You can also find links to [real-world and production ready examples](#real-world--production-ready-example-projects-with-prisma) further below in this README.
 
 Are you missing an example? Please feel free to [open an issue](https://github.com/prisma/prisma-examples/issues/new) (read the [contribution guidelines](./CONTRIBUTING.md) for more info).
 
@@ -90,12 +90,12 @@ The [`experimental`](./experimental) directory contains the same examples as the
 
 The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
 
-<hr>
-
 ## Real-world & production-ready example projects with Prisma
 
 - [Backend for a real world grading application](https://github.com/2color/real-world-grading-app) (incl video and written tutorials)
-- [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js & Prisma)
+- [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js)
+
+<hr>
 
 ## About this repository
 
