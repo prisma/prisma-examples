@@ -2,6 +2,7 @@
 
 set -eu
 
+yarn add --dev typescript @types/react @types/node
 yarn dev &
 pid=$!
 
