@@ -1,0 +1,25 @@
+{
+  "name": "rest-express",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "2.5.1",
+    "@types/node": "12.12.54",
+    "body-parser": "1.19.0",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.5.1",
+    "@types/body-parser": "1.19.0",
+    "@types/express": "4.17.7",
+    "@types/node": "12.12.54",
+    "ts-node": "8.10.2",
+    "typescript": "3.9.6"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
