@@ -15,9 +15,10 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
   echo ""
   echo "---------------------"
   echo "running $item"
+done
 
   case "$item" in
-    *".github"*|*"experimental"*|*"deployment-platforms"*)
+    *".github"*|*"experimental"*|*"deployment-platforms"*|"typescript/subscriptions-pubsub")
       echo "ignoring $item"
       continue
       ;;
