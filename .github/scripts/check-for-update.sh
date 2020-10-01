@@ -4,6 +4,14 @@ set -eu
 
 branch="$1"
 
+if [ "$branch" = "patch-dev" ]; then
+    patchDevForLatestExists=`node .github/scripts/patch-dev-for-latest.js`
+    if [ "$patchDevForLatestExists" = "false" ]; then
+        echo "Exiting because there is no 'patch-dev' released for the current latest"
+        exit 0
+    fi
+fi
+
 no_negatives () {
   echo "$(( $1 < 0 ? 0 : $1 ))"
 }
