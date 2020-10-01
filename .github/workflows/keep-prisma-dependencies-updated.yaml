@@ -60,11 +60,7 @@ jobs:
     if: github.repository_owner == 'prisma' && failure()
     runs-on: ubuntu-latest
     needs:
-      [
-        check-for-update-latest,
-        check-for-update-dev,
-        check-for-update-patch-dev,
-      ]
+      [check-for-update-latest, check-for-update-dev, check-for-update-patch-dev]
     steps:
       - uses: actions/checkout@v1
 
