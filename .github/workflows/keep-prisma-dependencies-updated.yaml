@@ -59,7 +59,7 @@ jobs:
   report-to-slack-failure:
     if: github.repository_owner == 'prisma' && failure()
     runs-on: ubuntu-latest
-    needs:
+    needs: [check-for-update-latest,  check-for-update-dev,  check-for-update-patch-dev]
       [check-for-update-latest, check-for-update-dev, check-for-update-patch-dev]
     steps:
       - uses: actions/checkout@v1
