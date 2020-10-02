@@ -1,8 +1,44 @@
-# Fullstack Example with Next.js (REST API)
+# Fullstack Authentication Example with Next.js and NextAuth.js
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Next.js API routes](https://nextjs.org/docs/api-routes/introduction) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Next.js API routes](https://nextjs.org/docs/api-routes/introduction) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It also demonstrates how to implement authentication using [NextAuth.js](https://next-auth.js.org/). The example uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
+
+### 0. Prerequisites
+
+In order to get this example to work, you need to configure the [GitHub](https://next-auth.js.org/providers/github) and/or [Email](https://next-auth.js.org/providers/email) authentication providers from NextAuth.js.
+
+#### Configuring the GitHub authentication provider
+
+<details><summary>Expand to learn how you can configure the GitHub authentication provider</summary>
+
+First, log into your GitHub account.
+
+Then, go to [**Settings**](https://github.com/settings/profile), then navigate to [**Developer Settings**](https://github.com/settings/apps), then switch to [**OAuth Apps**](https://github.com/settings/developers).
+
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--fBiGBXbE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.imgur.com/4eQrMAs.png)
+
+Clicking on the **Register a new application** button will redirect you to a registration form to fill out some information for your app. The **Authorization callback URL** should be the Next.js `/api/auth` route.
+
+An important thing to note here is that the **Authorization callback URL** field only supports a single URL, unlike e.g. Auth0, which allows you to add additional callback URLs separated with a comma. This means if you want to deploy your app later with a production URL, you will need to set up a new GitHub OAuth app.
+
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--v7s0OEs_--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.imgur.com/tYtq5fd.png)
+
+Click on the **Register application** button, and then you will be able to find your newly generated **Client ID** and **Client Secret**. Copy this info into the [`.env`](./env) file in the root directory.
+
+The resulting section in the `.env` file might look like this:
+
+```
+# GitHub oAuth
+GITHUB_ID=6bafeb321963449bdf51
+GITHUB_SECRET=509298c32faa283f28679ad6de6f86b2472e1bff
+```
+
+</details>
+
+#### Configuring the Email authentication provider
+
+You can [follow the instructions in the NextAuth.js documentation](https://next-auth.js.org/providers/email#configuration) to configure the Email authentication provider.
 
 ### 1. Download example & install dependencies
 
@@ -15,7 +51,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/typescript/rest-nextjs-api-routes
+cd prisma-examples/typescript/rest-nextjs-api-routes-auth
 npm install
 ```
 
