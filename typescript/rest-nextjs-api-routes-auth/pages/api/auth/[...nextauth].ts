@@ -1,14 +1,14 @@
-import { NextApiHandler } from "next"
-import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
-import Adapters from "next-auth/adapters"
+import { NextApiHandler } from "next";
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+import Adapters from "next-auth/adapters";
 
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options)
-export default authHandler
+const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+export default authHandler;
 
 const options = {
   providers: [
@@ -30,4 +30,4 @@ const options = {
   ],
   adapter: Adapters.Prisma.Adapter({ prisma }),
   secret: process.env.SECRET,
-}
+};
