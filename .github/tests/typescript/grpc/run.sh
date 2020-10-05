@@ -9,4 +9,4 @@ sleep 10
 
 npm run feed
 
-kill "$pid" || true
+kill "$pid"
