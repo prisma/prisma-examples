@@ -17,7 +17,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
   echo "running $item"
 
   case "$item" in
-    *".github"*|*"experimental"*|*"deployment-platforms"*|"typescript/subscriptions-pubsub")
+    *".github"*|*"experimental"*|*"deployment-platforms"*|*"typescript/subscriptions-pubsub"*|*"typescript/postgis-express"*)
       echo "ignoring $item"
       continue
       ;;

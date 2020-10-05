@@ -27,6 +27,15 @@ export interface NexusGenInputs {
 export interface NexusGenEnums {
 }
 
+export interface NexusGenScalars {
+  String: string
+  Int: number
+  Float: number
+  Boolean: boolean
+  ID: string
+  Date: any
+}
+
 export interface NexusGenRootTypes {
   Mutation: {};
   Post: { // root type
@@ -41,15 +50,15 @@ export interface NexusGenRootTypes {
     id: number; // Int!
     name: string; // String!
   }
-  String: string;
-  Int: number;
-  Float: number;
-  Boolean: boolean;
-  ID: string;
-  Date: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  String: NexusGenScalars['String'];
+  Int: NexusGenScalars['Int'];
+  Float: NexusGenScalars['Float'];
+  Boolean: NexusGenScalars['Boolean'];
+  ID: NexusGenScalars['ID'];
+  Date: NexusGenScalars['Date'];
 }
 
 export interface NexusGenFieldTypes {

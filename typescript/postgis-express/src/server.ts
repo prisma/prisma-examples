@@ -30,7 +30,7 @@ app.post('/user', async (req, res) => {
 app.post('/location', async (req, res) => {
   const { name, location } = req.body
   try {
-    await prisma.executeRaw`
+    await prisma.$executeRaw`
     insert into "Location" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
     `
@@ -55,7 +55,7 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
     const locations = await prisma.queryRaw(
       'select * from "locations_near_user"($1, $2)',
       parseInt(userId),
-      distance
+      distance,
     )
     res.json({ data: { locations } })
   } catch (e) {
