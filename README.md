@@ -43,11 +43,12 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ### Fullstack
 
-| Demo                                                                                                                | Description                                                                                                                                                                                       |
-| :------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`rest-nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes) | [Next.js](https://nextjs.org/) app (React) with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction))                                                          |
-| [`rest-nextjs-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-express)       | [Next.js](https://nextjs.org/) app (React) with a REST API (using [Express](https://expressjs.com/))                                                                                              |
-| [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nextjs)                 | [Next.js](https://nextjs.org/) app (React) with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [Nexus Schema](https://github.com/graphql-nexus/schema)) |
+| Demo                                                                                                                          | Description                                                                                                                                                                                          |
+| :---------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`rest-nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes)           | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction))                                                                     |
+| [`rest-nextjs-api-routes-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes-auth) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) and authentication (using [NextAuth.js](https://next-auth.js.org/)) |
+| [`rest-nextjs-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-express)                 | [Next.js](https://nextjs.org/) app with a REST API (using [Express](https://expressjs.com/))                                                                                                         |
+| [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nextjs)                           | [Next.js](https://nextjs.org/) app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [Nexus Schema](https://github.com/graphql-nexus/schema))            |
 
 ### Backend only
 
@@ -69,9 +70,9 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ### Fullstack
 
-| Demo                                                                                          | Description                                                                                                                              |
-| :-------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nextjs) | [Next.js](https://nextjs.org/) app (React) with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) |
+| Demo                                                                                          | Description                                                                                                                      |
+| :-------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nextjs) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) |
 
 ### Backend only
 
