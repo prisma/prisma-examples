@@ -15,7 +15,6 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
   echo ""
   echo "---------------------"
   echo "running $item"
-done
 
   case "$item" in
     *".github"*|*"experimental"*|*"deployment-platforms"*|"typescript/subscriptions-pubsub")
