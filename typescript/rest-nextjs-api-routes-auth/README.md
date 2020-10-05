@@ -2,43 +2,9 @@
 
 This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Next.js API routes](https://nextjs.org/docs/api-routes/introduction) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It also demonstrates how to implement authentication using [NextAuth.js](https://next-auth.js.org/). The example uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
+Note that the app uses a mix of server-side rendering with `getServerSideProps` (SSR) and static site generation with `getStaticProps` (SSG). When possible, SSG is used to make database queries already at build-time (e.g. when fetching the [public feed](./pages/index.tsx)). Sometimes, the user requesting data needs to be authenticated, so SSR is being used to render data dynamically on the server-side (e.g. when viewing a user's [drafts](./pages/drafts.tsx)).
+
 ## How to use
-
-### 0. Prerequisites
-
-In order to get this example to work, you need to configure the [GitHub](https://next-auth.js.org/providers/github) and/or [Email](https://next-auth.js.org/providers/email) authentication providers from NextAuth.js.
-
-#### Configuring the GitHub authentication provider
-
-<details><summary>Expand to learn how you can configure the GitHub authentication provider</summary>
-
-First, log into your GitHub account.
-
-Then, go to [**Settings**](https://github.com/settings/profile), then navigate to [**Developer Settings**](https://github.com/settings/apps), then switch to [**OAuth Apps**](https://github.com/settings/developers).
-
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--fBiGBXbE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.imgur.com/4eQrMAs.png)
-
-Clicking on the **Register a new application** button will redirect you to a registration form to fill out some information for your app. The **Authorization callback URL** should be the Next.js `/api/auth` route.
-
-An important thing to note here is that the **Authorization callback URL** field only supports a single URL, unlike e.g. Auth0, which allows you to add additional callback URLs separated with a comma. This means if you want to deploy your app later with a production URL, you will need to set up a new GitHub OAuth app.
-
-![](https://res.cloudinary.com/practicaldev/image/fetch/s--v7s0OEs_--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.imgur.com/tYtq5fd.png)
-
-Click on the **Register application** button, and then you will be able to find your newly generated **Client ID** and **Client Secret**. Copy this info into the [`.env`](./env) file in the root directory.
-
-The resulting section in the `.env` file might look like this:
-
-```
-# GitHub oAuth
-GITHUB_ID=6bafeb321963449bdf51
-GITHUB_SECRET=509298c32faa283f28679ad6de6f86b2472e1bff
-```
-
-</details>
-
-#### Configuring the Email authentication provider
-
-You can [follow the instructions in the NextAuth.js documentation](https://next-auth.js.org/providers/email#configuration) to configure the Email authentication provider.
 
 ### 1. Download example & install dependencies
 
@@ -57,69 +23,49 @@ npm install
 
 Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
 
-### 2. Start the app
+### 2. Configuring your authentication provider
+
+In order to get this example to work, you need to configure the [GitHub](https://next-auth.js.org/providers/github) and/or [Email](https://next-auth.js.org/providers/email) authentication providers from NextAuth.js.
+
+#### Configuring the GitHub authentication provider
+
+<details><summary>Expand to learn how you can configure the GitHub authentication provider</summary>
+
+First, log into your [GitHub](https://github.com/) account.
+
+Then, navigate to [**Settings**](https://github.com/settings/profile), then open to [**Developer Settings**](https://github.com/settings/apps), then switch to [**OAuth Apps**](https://github.com/settings/developers).
+
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--fBiGBXbE--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.imgur.com/4eQrMAs.png)
+
+Clicking on the **Register a new application** button will redirect you to a registration form to fill out some information for your app. The **Authorization callback URL** should be the Next.js `/api/auth` route.
+
+An important thing to note here is that the **Authorization callback URL** field only supports a single URL, unlike e.g. Auth0, which allows you to add additional callback URLs separated with a comma. This means if you want to deploy your app later with a production URL, you will need to set up a new GitHub OAuth app.
+
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--v7s0OEs_--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://i.imgur.com/tYtq5fd.png)
+
+Click on the **Register application** button, and then you will be able to find your newly generated **Client ID** and **Client Secret**. Copy and paste this info into the [`.env`](./env) file in the root directory.
+
+The resulting section in the `.env` file might look like this:
+
+```
+# GitHub oAuth
+GITHUB_ID=6bafeb321963449bdf51
+GITHUB_SECRET=509298c32faa283f28679ad6de6f86b2472e1bff
+```
+
+</details>
+
+#### Configuring the Email authentication provider
+
+You can [follow the instructions in the NextAuth.js documentation](https://next-auth.js.org/providers/email#configuration) to configure the Email authentication provider. Once your email authentication proivder is configured, you can set the environment variables in [`.env`](./env) accordingly.
+
+### 3. Start the app
 
 ```
 npm run dev
 ```
 
 The app is now running, navigate to [`http://localhost:3000/`](http://localhost:3000/) in your browser to explore its UI.
-
-<details><summary>Expand for a tour through the UI of the app</summary>
-
-<br />
-
-**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx)
-
-![](https://imgur.com/eepbOUO.png)
-
-**Signup** (located in [`./pages/signup.tsx`](./pages/signup.tsx))
-
-![](https://imgur.com/iE6OaBI.png)
-
-**Create post (draft)** (located in [`./pages/create.tsx`](./pages/create.tsx))
-
-![](https://imgur.com/olCWRNv.png)
-
-**Drafts** (located in [`./pages/drafts.tsx`](./pages/drafts.tsx))
-
-![](https://imgur.com/PSMzhcd.png)
-
-**View post** (located in [`./pages/p/[id].tsx`](./pages/p/[id].tsx)) (delete or publish here)
-
-![](https://imgur.com/zS1B11O.png)
-
-</details>
-
-## Using the REST API
-
-You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/api` route (in this case that is `localhost:3000/api/`, so you can e.g. reach the API with [`localhost:3000/api/feed`](http://localhost:3000/api/feed)).
-
-### `GET`
-
-- `/api/post/:id`: Fetch a single post by its `id`
-- `/api/feed`: Fetch all _published_ posts
-- `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
-
-### `POST`
-
-- `/api/post`: Create a new post
-  - Body:
-    - `title: String` (required): The title of the post
-    - `content: String` (optional): The content of the post
-    - `authorEmail: String` (required): The email of the user that creates the post
-- `/api/user`: Create a new user
-  - Body:
-    - `email: String` (required): The email address of the user
-    - `name: String` (optional): The name of the user
-
-### `PUT`
-
-- `/api/publish/:id`: Publish a post by its `id`
-
-### `DELETE`
-  
-- `/api/post/:id`: Delete a post by its `id`
 
 ## Evolving the app
 
