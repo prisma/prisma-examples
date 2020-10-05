@@ -12,4 +12,4 @@ curl --fail 'http://localhost:3000/api' -H 'Accept-Encoding: gzip, deflate, br' 
 # check frontend
 curl --fail 'http://localhost:3000/'
 
-kill "$pid" || true
+kill "$pid"
