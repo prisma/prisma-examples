@@ -11,7 +11,7 @@ async function run() {
   })
   const branchName = gitBranchName.stdout.trim()
 
-  await post(url, `(Branch: ${branchName})` + message)
+  await post(url, `(Branch: ${branchName}) ` + message)
 }
 
 run().catch((err) => {
