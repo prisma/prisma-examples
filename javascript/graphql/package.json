@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@nexus/schema": "0.15.0",
-    "@prisma/client": "2.6.2",
+    "@nexus/schema": "0.16.0",
+    "@prisma/client": "2.7.1",
     "graphql": "^15.0.0",
     "graphql-yoga": "^1.16.1",
     "nexus-prisma": "0.13.0"
@@ -14,7 +14,7 @@
     "dev": "node src"
   },
   "devDependencies": {
-    "@prisma/cli": "2.6.2"
+    "@prisma/cli": "2.7.1"
   },
   "prettier": {
     "singleQuote": true,

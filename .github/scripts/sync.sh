@@ -4,6 +4,14 @@ set -eu
 
 channel="$1"
 
+if [ "$channel" = "patch-dev" ]; then
+    patchDevForLatestExists=`node .github/scripts/patch-dev-for-latest.js`
+    if [ "$patchDevForLatestExists" = "false" ]; then
+        echo "Exiting because there is no 'patch-dev' released for the current latest"
+        exit 0
+    fi
+fi
+
 mkdir -p ~/.ssh
 echo "$SSH_KEY" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa

@@ -1,6 +1,6 @@
 # Simple TypeScript Script Example
 
-This example shows how to use [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) in combination with [Prisma Migrate](https://github.com/prisma/migrate). Prisma Client is used in a **simple TypeScript script** to read and write data in a database. Prisma Migrate is used to perform database schema migrations.
+This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in combination with [Prisma Migrate](https://github.com/prisma/migrate). Prisma Client is used in a **simple TypeScript script** to read and write data in a database. Prisma Migrate is used to perform database schema migrations.
 
 __INLINE(../../_setup-1.md)__
 cd prisma-examples/experimental/typescript/script

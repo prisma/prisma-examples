@@ -7,7 +7,7 @@ on:
       - patch-dev
   pull_request:
 env:
-  PRISMA_TELEMETRY_INFORMATION: "prisma-examples test.yaml"
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
 jobs:
   test:
     if: github.repository_owner == 'prisma'
@@ -17,6 +17,7 @@ jobs:
       postgres:
         image: postgis/postgis:12-2.5-alpine
         env:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: testing
         # Set health checks to wait until postgres has started
