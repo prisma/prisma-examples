@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "ts-node src/index.ts",
     "seed": "ts-node prisma/seed.ts",
-    "test": "jest",
-    "prisma": "prisma"
+    "test": "jest"
   },
   "dependencies": {
     "@prisma/client": "2.8.0",
