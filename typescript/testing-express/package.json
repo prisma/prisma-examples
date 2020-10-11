@@ -19,7 +19,7 @@
     "@types/jest": "26.0.14",
     "@types/node": "12.12.67",
     "@types/supertest": "2.0.10",
-    "jest": "26.5.2",
+    "jest": "26.5.3",
     "jest-environment-node": "26.5.2",
     "nanoid": "3.1.12",
     "supertest": "4.0.2",
