@@ -1,11 +1,7 @@
-import { nexusPrismaPlugin } from 'nexus-prisma'
 import * as nexus from '@nexus/schema'
+import { nexusPrisma } from 'nexus-plugin-prisma'
 import { join } from 'path'
 import { Context } from './types'
-
-const nexusPrisma = nexusPrismaPlugin({
-  prismaClient: (ctx: Context) => ctx.prisma,
-})
 
 export const Post = nexus.objectType({
   name: 'Post',
@@ -70,7 +66,12 @@ export const Subscription = nexus.subscriptionField('latestPost', {
 
 export const schema = nexus.makeSchema({
   types: [User, Post, Query, Mutation, Subscription],
-  plugins: [nexusPrisma],
+  plugins: [
+    nexusPrisma({
+      experimentalCRUD: true,
+      prismaClient: (ctx: Context) => ctx.prisma,
+    }),
+  ],
   outputs: {
     typegen: join(__dirname, 'generated', 'index.d.ts'),
     schema: join(__dirname, 'generated', 'schema.graphql'),
