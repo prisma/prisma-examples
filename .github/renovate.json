@@ -9,12 +9,9 @@
   "packageRules": [
     {
       "baseBranchList": ["latest"],
-      "packageNames": ["nexus-prisma"],
+      "packageNames": ["nexus-plugin-prisma"],
       "enabled": false
     }
   ],
-  "ignoreDeps": [
-    "@prisma/cli",
-    "@prisma/client"
-  ]
+  "ignoreDeps": ["@prisma/cli", "@prisma/client"]
 }
