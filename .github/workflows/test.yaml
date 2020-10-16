@@ -7,6 +7,7 @@ on:
       - patch-dev
   pull_request:
 env:
+  CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
 jobs:
   test:
@@ -40,3 +41,7 @@ jobs:
         run: sh .github/scripts/test-all.sh
         env:
           SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
+      - name: notify-slack
+        if: failure() && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/patch-dev' || github.ref == 'refs/heads/latest')
+        run: bash .github/scripts/slack-workflow-status.sh ":x:"

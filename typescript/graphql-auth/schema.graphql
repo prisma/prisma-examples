@@ -3,16 +3,16 @@
 
 
 type AuthPayload {
-  token: String!
-  user: User!
+  token: String
+  user: User
 }
 
 type Mutation {
-  createDraft(content: String, title: String!): Post!
+  createDraft(content: String, title: String!): Post
   deletePost(id: Int!): Post
-  login(email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload
   publish(id: Int!): Post
-  signup(email: String!, name: String, password: String!): AuthPayload!
+  signup(email: String!, name: String, password: String!): AuthPayload
 }
 
 type Post {
@@ -24,8 +24,8 @@ type Post {
 }
 
 type Query {
-  feed: [Post!]!
-  filterPosts(searchString: String): [Post!]!
+  feed: [Post]
+  filterPosts(searchString: String): [Post]
   me: User
   post(id: Int): Post
 }

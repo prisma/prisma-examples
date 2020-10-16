@@ -3,7 +3,7 @@
 
 
 type Mutation {
-  createDraft(authorEmail: String!, content: String, title: String!): Post!
+  createDraft(authorEmail: String!, content: String, title: String!): Post
   publish(id: Int): Post
 }
 
@@ -17,8 +17,8 @@ type Post {
 }
 
 type Query {
-  feed: [Post!]!
-  filterPosts(searchString: String): [Post!]!
+  feed: [Post]
+  filterPosts(searchString: String): [Post]
 }
 
 type User {

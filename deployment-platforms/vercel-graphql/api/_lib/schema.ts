@@ -1,8 +1,7 @@
-import { nexusSchemaPrisma } from 'nexus-plugin-prisma/schema'
 import { intArg, makeSchema, objectType, stringArg } from '@nexus/schema'
-import { seedUsers } from './seed'
-
+import { nexusPrisma } from 'nexus-plugin-prisma'
 import path from 'path'
+import { seedUsers } from './seed'
 
 const User = objectType({
   name: 'User',
@@ -148,7 +147,7 @@ const generateArtifacts = Boolean(process.env.GENERATE_ARTIFACTS)
 export const schema = makeSchema({
   types: [Query, Mutation, Post, User, Profile],
   plugins: [
-    nexusSchemaPrisma({
+    nexusPrisma({
       experimentalCRUD: true,
       shouldGenerateArtifacts: generateArtifacts,
       outputs: {
