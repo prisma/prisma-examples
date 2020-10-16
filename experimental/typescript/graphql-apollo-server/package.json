@@ -11,15 +11,15 @@
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@prisma/client": "2.0.0-beta.1",
+    "@nexus/schema": "0.16.0",
+    "@prisma/client": "^2.8.1",
     "@types/node-fetch": "2.5.7",
     "apollo-server": "2.18.2",
     "graphql": "15.3.0",
-    "@nexus/schema": "0.16.0",
-    "nexus-prisma": "0.13.0"
+    "nexus-plugin-prisma": "^0.21.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.0.0-beta.1",
+    "@prisma/cli": "^2.8.1",
     "@types/node": "12.12.67",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",

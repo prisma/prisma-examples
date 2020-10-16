@@ -1,7 +1,7 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { makeSchema, objectType, intArg, stringArg } = require('@nexus/schema')
 const { PrismaClient } = require('@prisma/client')
-const { nexusPrismaPlugin } = require('nexus-prisma')
+const { nexusPrisma } = require('nexus-plugin-prisma')
 
 const User = objectType({
   name: 'User',
@@ -107,7 +107,7 @@ const prisma = new PrismaClient()
 new GraphQLServer({
   schema: makeSchema({
     types: [Query, Mutation, Post, User],
-    plugins: [nexusPrismaPlugin()],
+    plugins: [nexusPrisma({ experimentalCRUD: true })],
     outputs: {
       schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
