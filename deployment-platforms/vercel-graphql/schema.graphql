@@ -5,10 +5,10 @@
 scalar DateTime
 
 type Mutation {
-  createDraft(authorEmail: String!, content: String, title: String!): Post!
+  createDraft(authorEmail: String!, content: String, title: String!): Post
   deleteOnePost(where: PostWhereUniqueInput!): Post
   publish(id: Int): Post
-  seed: [User!]!
+  seed: [User]
   signupUser(data: UserCreateInput!): User!
 }
 
@@ -59,9 +59,9 @@ input ProfileWhereUniqueInput {
 }
 
 type Query {
-  allProfiles: [Profile!]!
-  feed: [Post!]!
-  filterPosts(searchString: String!): [Post!]!
+  allProfiles: [Profile]
+  feed: [Post]
+  filterPosts(searchString: String!): [Post]
   post(where: PostWhereUniqueInput!): Post
   profile(where: ProfileWhereUniqueInput!): Profile
   users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!

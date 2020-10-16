@@ -3,10 +3,8 @@
 
 
 type Mutation {
-  createDraft(authorEmail: String, content: String, title: String!): Post!
-  deleteOnePost(where: PostWhereUniqueInput!): Post
+  createDraft(authorEmail: String!, content: String, title: String!): Post
   publish(id: Int): Post
-  signupUser(data: UserCreateInput!): User!
 }
 
 type Post {
@@ -18,25 +16,9 @@ type Post {
   title: String!
 }
 
-input PostCreateManyWithoutAuthorInput {
-  connect: [PostWhereUniqueInput!]
-  create: [PostCreateWithoutAuthorInput!]
-}
-
-input PostCreateWithoutAuthorInput {
-  content: String
-  published: Boolean
-  title: String!
-}
-
-input PostWhereUniqueInput {
-  id: Int
-}
-
 type Query {
-  feed: [Post!]!
-  filterPosts(searchString: String): [Post!]!
-  post(where: PostWhereUniqueInput!): Post
+  feed: [Post]
+  filterPosts(searchString: String): [Post]
 }
 
 type User {
@@ -44,10 +26,4 @@ type User {
   id: Int!
   name: String
   posts: [Post!]!
-}
-
-input UserCreateInput {
-  email: String!
-  name: String
-  posts: PostCreateManyWithoutAuthorInput
 }

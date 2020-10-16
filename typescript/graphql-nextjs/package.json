@@ -16,28 +16,27 @@
   "dependencies": {
     "@apollo/react-hooks": "4.0.0",
     "@apollo/react-ssr": "4.0.0",
-    "@nexus/schema": "0.15.0",
-    "@prisma/client": "2.6.2",
+    "@nexus/schema": "0.16.0",
+    "@prisma/client": "2.9.0",
     "apollo-boost": "0.4.9",
     "apollo-link-http": "1.5.17",
     "apollo-link-schema": "1.2.5",
-    "apollo-server-micro": "2.17.0",
+    "apollo-server-micro": "2.18.2",
     "express": "4.17.1",
     "graphql": "15.3.0",
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.11.0",
-    "next": "9.5.3",
-    "nexus-prisma": "^0.12.0",
-    "react": "16.13.1",
+    "next": "9.5.5",
+    "react": "16.14.0",
     "react-apollo": "3.1.5",
-    "react-dom": "16.13.1",
+    "react-dom": "16.14.0",
     "react-markdown": "4.3.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.6.2",
+    "@prisma/cli": "2.9.0",
     "@types/graphql": "14.5.0",
-    "@types/node": "13.13.19",
-    "@types/react": "16.9.49",
-    "typescript": "4.0.2"
+    "@types/node": "13.13.26",
+    "@types/react": "16.9.52",
+    "typescript": "4.0.3"
   }
 }

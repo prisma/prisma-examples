@@ -2,9 +2,10 @@ name: keep-prisma-dependencies-updated
     
 on:
   push:
-  schedule:
-    - cron: '*/5 * * * *'
-  
+    branches-ignore:
+      - "**"
+  # schedule:
+  #   - cron: '*/5 * * * *'
 env:
   PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-prisma-dependencies-updated.yaml"
 

@@ -84,7 +84,7 @@ const resolvers = {
           title: args.title,
           content: args.content,
           published: false,
-          author: {
+          author: args.authorEmail && {
             connect: { email: args.authorEmail },
           },
         },

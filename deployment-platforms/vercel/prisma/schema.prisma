@@ -9,9 +9,9 @@ datasource db {
 
 model Post {
   post_id   Int     @default(autoincrement()) @id
-  author_id Int?
   content   String?
   title     String
+  author_id Int?
   author    User?   @relation(fields: [author_id], references: [user_id]) // renamed from `User` -> `author`
 }
 
@@ -26,6 +26,6 @@ model User {
   email    String    @unique
   name     String?
   user_id  Int       @default(autoincrement()) @id
-  posts    Post[] // renamed from `Post` -> `posts`
-  profiles Profile[] // renamed from `User` -> `profiles`
+  posts    Post[]    // renamed from `Post` -> `posts`
+  profiles Profile[] // renamed from `Profile` -> `profiles`
 }

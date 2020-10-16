@@ -7,7 +7,9 @@ on:
       - patch-dev
   pull_request:
 env:
-  PRISMA_TELEMETRY_INFORMATION: "prisma-examples test.yaml"
+  CI: 1
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
+  SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 jobs:
   test:
     if: github.repository_owner == 'prisma'
@@ -17,6 +19,7 @@ jobs:
       postgres:
         image: postgis/postgis:12-2.5-alpine
         env:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: testing
         # Set health checks to wait until postgres has started
@@ -37,5 +40,7 @@ jobs:
 
       - name: test
         run: sh .github/scripts/test-all.sh
-        env:
-          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
+      - name: notify-slack
+        if: failure() && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/patch-dev' || github.ref == 'refs/heads/latest')
+        run: bash .github/scripts/slack-workflow-status.sh ":x:"
