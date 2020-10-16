@@ -4,7 +4,7 @@ on:
     branches:
       - latest
 env:
-  PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-dev-branch-in-sync-with-latest.yaml"
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples keep-dev-branch-in-sync-with-latest.yaml'
 jobs:
   sync-dev:
     if: github.repository_owner == 'prisma'
@@ -27,3 +27,19 @@ jobs:
         run: sh .github/scripts/sync.sh patch-dev
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
+
+  report-to-slack-failure:
+    if: github.repository_owner == 'prisma' && failure()
+    runs-on: ubuntu-latest
+    needs: [sync-dev, sync-patch-dev]
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+
+      - name: report failure to slack
+        run: bash .github/scripts/slack-workflow-status.sh "[keep-dev-branches-in-sync-with-latest] check-for-update :x:"
+        env:
+          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
