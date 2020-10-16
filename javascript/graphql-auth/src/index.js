@@ -10,7 +10,7 @@ const prisma = new PrismaClient()
 new GraphQLServer({
   schema: makeSchema({
     types,
-    plugins: [nexusPrisma({ experimentalCRUD: true })],
+    plugins: [nexusPrisma()],
     outputs: {
       schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
