@@ -16,7 +16,7 @@
     "next-auth": "3.1.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-markdown": "4.3.1"
+    "react-markdown": "5.0.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.9.0",
