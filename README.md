@@ -20,7 +20,7 @@
 
 <div align="center">
 
-[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest)
+[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=latest)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Alatest)
 [![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Adev+-branch%3Apatch-dev)
 [![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=patch-dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Apatch-dev)
 <br>
