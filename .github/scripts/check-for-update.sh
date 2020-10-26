@@ -5,7 +5,7 @@ set -eu
 branch="$1"
 
 if [ "$branch" = "patch-dev" ]; then
-    patchDevForLatestExists=`node .github/scripts/patch-dev-for-latest.js`
+    patchDevForLatestExists=$(node .github/scripts/patch-dev-for-latest.js)
     if [ "$patchDevForLatestExists" = "false" ]; then
         echo "Exiting because there is no 'patch-dev' released for the current latest"
         exit 0
@@ -104,6 +104,17 @@ while [ $i -le $count ]; do
 
     continue
   fi
+
+  echo "=========================="
+  echo "testing before committing the upgrade changes..."
+  sh .github/scripts/test-all.sh
+  code=$?
+  if [ $code -eq 0 ]; then
+    echo "tests passed, proceeding with the upgrade commit"
+  else
+    echo "tests failed, aborting dependencies upgrade"
+  fi
+  echo "=========================="
 
   echo "changes, upgrading..."
 
