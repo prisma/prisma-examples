@@ -9,7 +9,7 @@
     "@prisma/client": "^2.8.1",
     "express": "4.17.1",
     "express-graphql": "0.11.0",
-    "graphql": "15.3.0"
+    "graphql": "15.4.0"
   },
   "devDependencies": {
     "@prisma/cli": "^2.8.1",
