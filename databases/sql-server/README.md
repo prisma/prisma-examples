@@ -162,7 +162,7 @@ model User {
 }
 ```
 
-> **Note:** You can find the introspected schema with the relation fields renameed in `prisma/schema-introspected-renamed.prisma`.
+> **Note:** You can find the introspected schema with the relation fields renamed in `prisma/schema-introspected-renamed.prisma`.
 
 ### 7. Generate Prisma Client
 
