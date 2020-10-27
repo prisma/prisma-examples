@@ -4,7 +4,6 @@ export const prisma = new PrismaClient()
 
 describe('example test with Prisma Client', () => {
   beforeAll(async () => {
-    await prisma.tagToPost.deleteMany({})
     await prisma.tag.deleteMany({})
     await prisma.comment.deleteMany({})
     await prisma.post.deleteMany({})
@@ -70,12 +69,8 @@ describe('example test with Prisma Client', () => {
             title: 'Bringing value to users with rapid deployment',
             published: true,
             tags: {
-              create: {
-                tag: {
-                  connect: {
-                    tag: 'Prisma',
-                  },
-                },
+              connect: {
+                tag: 'Prisma',
               },
             },
           },
@@ -123,27 +118,15 @@ describe('example test with Prisma Client', () => {
                 'Check out the Prisma blog at https://www.prisma.io/blog for more information',
               tags: {
                 // Creates the rows in the m-n relation table
-                create: [
+                connect: [
                   {
-                    tag: {
-                      connect: {
-                        tag: 'Node.js',
-                      },
-                    },
+                    tag: 'Node.js',
                   },
                   {
-                    tag: {
-                      connect: {
-                        tag: 'Microsoft',
-                      },
-                    },
+                    tag: 'Microsoft',
                   },
                   {
-                    tag: {
-                      connect: {
-                        tag: 'Databases',
-                      },
-                    },
+                    tag: 'Databases',
                   },
                 ],
               },
@@ -153,20 +136,12 @@ describe('example test with Prisma Client', () => {
               published: true,
               tags: {
                 // Creates the rows in the m-n relation table
-                create: [
+                connect: [
                   {
-                    tag: {
-                      connect: {
-                        tag: 'Node.js',
-                      },
-                    },
+                    tag: 'Node.js',
                   },
                   {
-                    tag: {
-                      connect: {
-                        tag: 'Databases',
-                      },
-                    },
+                    tag: 'Databases',
                   },
                 ],
               },
@@ -181,11 +156,7 @@ describe('example test with Prisma Client', () => {
       include: {
         posts: {
           include: {
-            tags: {
-              include: {
-                tag: true,
-              },
-            },
+            tags: true,
           },
         },
         comments: {
@@ -201,7 +172,7 @@ describe('example test with Prisma Client', () => {
     expect(user2.email).toEqual(email)
     expect(user2.posts.length).toEqual(3)
     expect(user2.posts[0].authorId).toEqual(user2.id)
-    expect(user2.posts[0].tags[0].tag.tag).toEqual('Node.js')
+    expect(user2.posts[0].tags[0].id).toBeTruthy()
     expect(
       user2.comments[0].comment.toLowerCase().includes('thanks'),
     ).toBeTruthy()
@@ -232,11 +203,7 @@ describe('example test with Prisma Client', () => {
         tag: 'Node.js',
       },
       include: {
-        posts: {
-          include: {
-            post: true,
-          },
-        },
+        posts: true,
       },
     })
     expect(taggedPosts).toBeTruthy()
@@ -256,27 +223,17 @@ describe('example test with Prisma Client', () => {
           },
         },
         tags: {
-          create: [
-            {
-              tag: {
-                connectOrCreate: {
-                  create: {
-                    tag: 'Community',
-                  },
-                  where: {
-                    tag: 'Community',
-                  },
-                },
-              },
+          connectOrCreate: {
+            create: {
+              tag: 'Community',
             },
-            {
-              tag: {
-                connect: {
-                  tag: 'Prisma',
-                },
-              },
+            where: {
+              tag: 'Community',
             },
-          ],
+          },
+          connect: {
+            tag: 'Prisma',
+          },
         },
         comments: {
           create: {
@@ -291,16 +248,12 @@ describe('example test with Prisma Client', () => {
       },
       include: {
         comments: true,
-        tags: {
-          include: {
-            tag: true,
-          },
-        },
+        tags: true,
       },
     })
     expect(newPost).toBeTruthy()
     expect(newPost.tags.length).toEqual(2)
-    expect(newPost.tags[0].tag.tag).toBeTruthy()
+    expect(newPost.tags[0].tag).toBeTruthy()
     expect(newPost.comments.length).toEqual(1)
 
     //

@@ -1,6 +1,6 @@
-# MSSQL (Microsoft SQL Server) example
+# Microsoft SQL Server example
 
-This example shows how to use Prisma to introspect an MSSQL database and use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **Node.js script** to read and write data in an MSSQL database. You can find the database schema in [`./schema.sql`](./schema.sql).
+This example shows how to use Prisma to introspect an SQL Server database and use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **Node.js script** to read and write data in an SQL Server database. You can find the database schema in [`./schema.sql`](./schema.sql).
 
 The example consists of two parts:
 
@@ -20,13 +20,13 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/databases/mssql
+cd prisma-examples/databases/sql-server
 npm install
 ```
 
-### 2. Start MSSQL with Docker Compose
+### 2. Start SQL Server with Docker Compose
 
-Run the following command from the `mssql` folder to start MSSQL server:
+Run the following command from the `sql-server` folder to start SQL Server:
 
 ```
 docker-compose up -d
@@ -34,11 +34,11 @@ docker-compose up -d
 
 > **Note:** The `docker-compose.yml` is where the super admin password is set with the `SA_PASSWORD` environment variable
 
-### 3. Create the database in MSSQL with `schema.sql`
+### 3. Create the database in SQL Server with `schema.sql`
 
 The `schema.sql` file contains the SQL queries to create the database schema (which includes the database and tables).
 
-Run `schema.sql` with the following [MSSQL `sqlcmd` CLI](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-ver15) command:
+Run `schema.sql` with the following [SQL Server `sqlcmd` CLI](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-ver15) command:
 
 ```
 sqlcmd -S 127.0.0.1 -U SA -P prisma123 -i schema.sql
@@ -90,30 +90,21 @@ model Comment {
 }
 
 model Post {
-  id        Int         @id @default(autoincrement())
-  createdAt DateTime    @default(now())
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
   title     String
   content   String?
-  published Boolean     @default(false)
+  published Boolean   @default(false)
   authorId  Int
-  User      User        @relation(fields: [authorId], references: [id])
+  User      User      @relation(fields: [authorId], references: [id])
   Comment   Comment[]
-  TagToPost TagToPost[]
+  Tag       Tag[]     @relation("TagToPost")
 }
 
 model Tag {
-  id        Int         @id @default(autoincrement())
-  tag       String      @unique
-  TagToPost TagToPost[]
-}
-
-model TagToPost {
-  postId Int
-  tagId  Int
-  Post   Post @relation(fields: [postId], references: [id])
-  Tag    Tag  @relation(fields: [tagId], references: [id])
-
-  @@id([postId, tagId])
+  id   Int    @id @default(autoincrement())
+  tag  String @unique
+  Post Post[] @relation("TagToPost")
 }
 
 model User {
@@ -144,30 +135,21 @@ model Comment {
 }
 
 model Post {
-  id        Int         @id @default(autoincrement())
-  createdAt DateTime    @default(now())
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
   title     String
   content   String?
-  published Boolean     @default(false)
+  published Boolean   @default(false)
   authorId  Int
-  author    User        @relation(fields: [authorId], references: [id])
+  author    User      @relation(fields: [authorId], references: [id])
   comments  Comment[]
-  tags      TagToPost[]
+  tags      Tag[]     @relation("TagToPost")
 }
 
 model Tag {
-  id    Int         @id @default(autoincrement())
-  tag   String      @unique
-  posts TagToPost[]
-}
-
-model TagToPost {
-  postId Int
-  tagId  Int
-  post   Post @relation(fields: [postId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
-
-  @@id([postId, tagId])
+  id    Int    @id @default(autoincrement())
+  tag   String @unique
+  posts Post[] @relation("TagToPost")
 }
 
 model User {

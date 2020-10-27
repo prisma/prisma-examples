@@ -51,12 +51,8 @@ async function main() {
           title: 'Bringing value to users with rapid deployment',
           published: true,
           tags: {
-            create: {
-              tag: {
-                connect: {
-                  tag: 'Prisma',
-                },
-              },
+            connect: {
+              tag: 'Prisma',
             },
           },
         },
@@ -92,28 +88,15 @@ async function main() {
             content:
               'Check out the Prisma blog at https://www.prisma.io/blog for more information',
             tags: {
-              // Creates the rows in the m-n relation table
-              create: [
+              connect: [
                 {
-                  tag: {
-                    connect: {
-                      tag: 'Node.js',
-                    },
-                  },
+                  tag: 'Node.js',
                 },
                 {
-                  tag: {
-                    connect: {
-                      tag: 'Microsoft',
-                    },
-                  },
+                  tag: 'Microsoft',
                 },
                 {
-                  tag: {
-                    connect: {
-                      tag: 'Databases',
-                    },
-                  },
+                  tag: 'Databases',
                 },
               ],
             },
@@ -122,21 +105,12 @@ async function main() {
             title: 'Zero cost type safety with Prisma',
             published: true,
             tags: {
-              // Creates the rows in the m-n relation table
-              create: [
+              connect: [
                 {
-                  tag: {
-                    connect: {
-                      tag: 'Node.js',
-                    },
-                  },
+                  tag: 'Node.js',
                 },
                 {
-                  tag: {
-                    connect: {
-                      tag: 'Databases',
-                    },
-                  },
+                  tag: 'Databases',
                 },
               ],
             },
@@ -151,11 +125,7 @@ async function main() {
     include: {
       posts: {
         include: {
-          tags: {
-            include: {
-              tag: true,
-            },
-          },
+          tags: true,
         },
       },
       comments: {
@@ -173,11 +143,7 @@ async function main() {
       tag: 'Node.js',
     },
     include: {
-      posts: {
-        include: {
-          post: true,
-        },
-      },
+      posts: true,
     },
   })
 
@@ -187,26 +153,24 @@ async function main() {
   )
 
   // Retrieve all published posts with a tag
-  // const allPosts = await prisma.post.findMany({
-  //   where: {
-  //     AND: [
-  //       { published: true },
-  //       {
-  //         tags: {
-  //           some: {
-  //             tag: {
-  //               tag: 'Node.js',
-  //             },
-  //           },
-  //         },
-  //       },
-  //     ],
-  //   },
-  // })
-  // console.log(
-  //   `Retrieved all published posts with the Node.js tag: `,
-  //   prettyjson.render(allPosts),
-  // )
+  const allPosts = await prisma.post.findMany({
+    where: {
+      AND: [
+        { published: true },
+        {
+          tags: {
+            some: {
+              tag: 'Node.js',
+            },
+          },
+        },
+      ],
+    },
+  })
+  console.log(
+    `Retrieved all published posts with the Node.js tag: `,
+    prettyjson.render(allPosts),
+  )
 
   // Create a new post (written by an already existing user with email alice@prisma.io)
   const newPost = await prisma.post.create({
@@ -220,26 +184,18 @@ async function main() {
         },
       },
       tags: {
-        create: {
-          tag: {
-            connectOrCreate: {
-              create: {
-                tag: 'New tag',
-              },
-              where: {
-                tag: 'New tag',
-              },
-            },
+        connectOrCreate: {
+          create: {
+            tag: 'Community',
+          },
+          where: {
+            tag: 'Community',
           },
         },
       },
     },
     include: {
-      tags: {
-        include: {
-          tag: true,
-        },
-      },
+      tags: true,
     },
   })
   console.log(`Created a new post: \n`, prettyjson.render(newPost))
@@ -267,7 +223,6 @@ async function main() {
 }
 
 async function clearDB() {
-  await prisma.tagToPost.deleteMany({})
   await prisma.tag.deleteMany({})
   await prisma.comment.deleteMany({})
   await prisma.post.deleteMany({})
