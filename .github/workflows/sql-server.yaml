@@ -1,9 +1,8 @@
 name: sql-server
 on:
-  push
-  # push:
-  #   paths:
-  #      - databases/sql-server/*'
+  push:
+    paths:
+      - databases/sql-server/*'
 
 jobs:
   test:
