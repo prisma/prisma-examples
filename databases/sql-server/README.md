@@ -62,7 +62,7 @@ touch .env
 Then add the following line:
 
 ```
-DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=DANGER_PLAINTEXT
+DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=true
 ```
 
 > **Note:** The database URL uses the `SA` (super admin) user of the database and the same password as defined in `docker-compose.yml`.
