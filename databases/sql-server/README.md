@@ -48,6 +48,7 @@ Alternatively, you can use one of the following tools to create the database sch
 
 - [Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/what-is?view=sql-server-ver15)
 - [TablePlus](https://tableplus.com/)
+- [DBeaver](https://dbeaver.io)
 
 ### 4. Configure the database connection URL
 
