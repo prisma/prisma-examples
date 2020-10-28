@@ -1,0 +1,45 @@
+name: sql-server
+on:
+  push
+  # push:
+  #   paths:
+  #      - databases/sql-server/*'
+
+jobs:
+  test:
+    defaults:
+      run:
+        working-directory: databases/sql-server
+    runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      sql-server:
+        # Docker Hub image
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          ACCEPT_EULA: Y
+          SA_PASSWORD: 'Pr1sm4_Pr1sm4'
+        # Maps tcp port 1433 on service container to the host
+        ports:
+          - '1433:1433'
+        options: --health-cmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P ${SA_PASSWORD} -Q 'SELECT 1' || exit 1"  --health-interval 10s --health-timeout 5s --health-retries 5
+
+    env:
+      DATABASE_URL: sqlserver://localhost:1433;database=prisma;user=SA;password=Pr1sm4_Pr1sm4;trustServerCertificate=true;encrypt=true
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: migrate-db
+        uses: docker://mcr.microsoft.com/mssql-tools
+        with:
+          entrypoint: /opt/mssql-tools/bin/sqlcmd
+          args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -i ./databases/sql-server/schema.sql'
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: npm install
+      - run: npx prisma introspect
+      - run: cp prisma/schema-introspected-renamed.prisma prisma/schema.prisma
+      - run: npx prisma generate
+      - run: npm run test

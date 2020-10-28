@@ -9,7 +9,7 @@ services:
     ports:
       - '1433:1433'
     environment:
-      SA_PASSWORD: 'prisma123'
+      SA_PASSWORD: 'Pr1sm4_Pr1sm4'
       ACCEPT_EULA: 'Y'
     volumes:
       - mssql:/var/opt/mssql
