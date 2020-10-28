@@ -10,7 +10,7 @@
     {
       "baseBranchList": ["latest"],
       "packageNames": ["nexus-plugin-prisma"],
-      "enabled": false
+      "enabled": true
     }
   ],
   "ignoreDeps": ["@prisma/cli", "@prisma/client"]
