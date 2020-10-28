@@ -66,6 +66,7 @@ DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma1
 ```
 
 > **Note:** The database URL uses the `SA` (super admin) user of the database and the same password as defined in `docker-compose.yml`.
+> If you are running on macOS, you may need to use `encrypt=DANGER_PLAINTEXT` to work around the current TLS limitation.
 
 ### 5. Introspect your database
 
