@@ -9,13 +9,13 @@ datasource db {
 }
 
 model Comment {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  comment   String
-  authorId  Int
-  postId    Int
-  author    User     @relation(fields: [authorId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  comment     String
+  writtenById Int
+  postId      Int
+  writtenBy   User     @relation(fields: [writtenById], references: [id])
+  post        Post     @relation(fields: [postId], references: [id])
 }
 
 model Post {

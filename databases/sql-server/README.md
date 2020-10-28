@@ -41,7 +41,7 @@ The `schema.sql` file contains the SQL queries to create the database schema (wh
 Run `schema.sql` with the following [SQL Server `sqlcmd` CLI](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-ver15) command:
 
 ```
-sqlcmd -S 127.0.0.1 -U SA -P prisma123 -i schema.sql
+sqlcmd -S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4 -i schema.sql
 ```
 
 Alternatively, you can use one of the following tools to create the database schema:
@@ -62,11 +62,12 @@ touch .env
 Then add the following line:
 
 ```
-DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=true
+DATABASE_URL=sqlserver://localhost:1433;database=prisma-demo;user=SA;password=Pr1sm4_Pr1sm4;trustServerCertificate=true;encrypt=true
 ```
 
-> **Note:** The database URL uses the `SA` (super admin) user of the database and the same password as defined in `docker-compose.yml`.
-> If you are running on macOS, you may need to use `encrypt=DANGER_PLAINTEXT` to work around the current TLS limitation.
+> **Note:** If you are running on macOS, you must use `encrypt=DANGER_PLAINTEXT` to work around the [current TLS limitation](https://github.com/prisma/prisma/issues/4075).
+
+`DATABASE_URL` uses the `SA` (super admin) user of the database and the same password as defined in `docker-compose.yml`.
 
 ### 5. Introspect your database
 
@@ -127,13 +128,13 @@ Update the schema with the following changes which rename the relation fields:
 
 ```prisma
 model Comment {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  comment   String
-  authorId  Int
-  postId    Int
-  author    User     @relation(fields: [authorId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  comment     String
+  writtenById Int
+  postId      Int
+  writtenBy   User     @relation(fields: [writtenById], references: [id])
+  post        Post     @relation(fields: [postId], references: [id])
 }
 
 model Post {

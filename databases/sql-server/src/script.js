@@ -67,8 +67,8 @@ async function main() {
 
   const user2 = await prisma.user.create({
     data: {
-      name: 'shakuntala@prisma.io',
-      email: 'Shakuntala',
+      email: 'shakuntala@prisma.io',
+      name: 'Shakuntala',
       comments: {
         create: {
           comment:
@@ -192,9 +192,27 @@ async function main() {
             tag: 'Community',
           },
         },
+        connect: {
+          tag: 'Prisma',
+        },
+      },
+      comments: {
+        create: {
+          comment: 'Looking forward to joining to Prisma community.',
+          writtenBy: {
+            connect: {
+              email: 'shakuntala@prisma.io',
+            },
+          },
+        },
       },
     },
     include: {
+      comments: {
+        include: {
+          writtenBy: true,
+        },
+      },
       tags: true,
     },
   })

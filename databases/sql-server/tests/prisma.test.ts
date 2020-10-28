@@ -1,4 +1,4 @@
-import { PrismaClient, Tag } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 export const prisma = new PrismaClient()
 
@@ -238,7 +238,7 @@ describe('example test with Prisma Client', () => {
         comments: {
           create: {
             comment: 'Looking forward to joining to Prisma community.',
-            author: {
+            writtenBy: {
               connect: {
                 email: 'shakuntala@prisma.io',
               },
