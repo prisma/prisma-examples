@@ -1,0 +1,17 @@
+# https://hub.docker.com/_/microsoft-mssql-server
+# https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash
+
+version: '3'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: always
+    ports:
+      - '1433:1433'
+    environment:
+      SA_PASSWORD: 'Pr1sm4_Pr1sm4'
+      ACCEPT_EULA: 'Y'
+    volumes:
+      - mssql:/var/opt/mssql
+volumes:
+  mssql:
