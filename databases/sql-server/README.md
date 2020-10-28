@@ -52,7 +52,7 @@ Alternatively, you can use one of the following tools to create the database sch
 
 ### 4. Configure the database connection URL
 
-Prisma will use the `DATABASE_URL` environment variable in `prisma/.env` to connect to the database.
+Prisma will use the `DATABASE_URL` environment variable in `.env` to connect to the database.
 Create the file:
 
 ```
