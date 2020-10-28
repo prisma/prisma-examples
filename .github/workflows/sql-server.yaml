@@ -1,0 +1,40 @@
+name: sql-server
+on:
+  push:
+    paths:
+      - databases/sql-server/*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      sql-server:
+        # Docker Hub image
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        env:
+          SA_PASSWORD: 'prisma123'
+          ACCEPT_EULA: 'Y'
+        # Maps tcp port 1433 on service container to the host
+        ports:
+          - '1433:1433'
+    env:
+      DATABASE_URL: DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=true
+
+    steps:
+      - name: migrate-db
+        uses: docker://mcr.microsoft.com/mssql-tools
+        shell: bash
+        run: |
+          sqlcmd -h sql-server -U SA -P prisma123 -i /data/schema.sql
+        volumes:
+          - ./databases/sql-server:/data
+        working-directory: ./databases/sql-server/
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: npm ci
+      - run: npx prisma introspect
+      - run: npm run test
