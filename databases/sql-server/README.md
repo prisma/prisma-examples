@@ -56,7 +56,7 @@ Prisma will use the `DATABASE_URL` environment variable in `.env` to connect to 
 Create the file:
 
 ```
-touch prisma/.env
+touch .env
 ```
 
 Then add the following line:
