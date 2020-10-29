@@ -4,7 +4,7 @@
     "dev": "node ./src/server.js"
   },
   "dependencies": {
-    "@nexus/schema": "0.16.0",
+    "@nexus/schema": "0.17.0",
     "@prisma/client": "2.10.0",
     "apollo-server": "2.18.2",
     "graphql": "15.4.0",

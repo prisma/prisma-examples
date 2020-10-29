@@ -11,7 +11,7 @@
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@nexus/schema": "0.16.0",
+    "@nexus/schema": "0.17.0",
     "@prisma/client": "^2.8.1",
     "@types/node-fetch": "2.5.7",
     "apollo-server": "2.18.2",
