@@ -1,20 +1,20 @@
 name: keep-prisma-dependencies-updated
-    
+
 on:
   push:
     branches-ignore:
-      - "**"
-  # schedule:
-  #   - cron: '*/5 * * * *'
+      - '**'
+  schedule:
+    - cron: '*/5 * * * *'
 env:
-  PRISMA_TELEMETRY_INFORMATION: "prisma-examples keep-prisma-dependencies-updated.yaml"
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples keep-prisma-dependencies-updated.yaml'
 
 jobs:
   check-for-update:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     strategy:
-      matrix: 
+      matrix:
         branch: [latest, dev, patch-dev]
     steps:
       - uses: actions/checkout@v1
