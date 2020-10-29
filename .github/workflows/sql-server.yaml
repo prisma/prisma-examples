@@ -2,14 +2,14 @@ name: sql-server
 on:
   push:
     paths:
-      - databases/sql-server/**'
+      - databases/sql-server/**
     branches:
       - latest
       - dev
       - patch-dev
   pull_request:
     paths:
-      - databases/sql-server/**'
+      - databases/sql-server/**
 env:
   CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples sql-server.yaml'
