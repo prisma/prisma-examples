@@ -107,14 +107,18 @@ while [ $i -le $count ]; do
 
   echo "=========================="
   echo "testing before committing the upgrade changes..."
-  sh .github/scripts/test-all.sh
-  code=$?
-  if [ $code -eq 0 ]; then
-    echo "tests passed, proceeding with the upgrade commit"
-  else
-    echo "tests failed, aborting dependencies upgrade"
-  fi
-  echo "=========================="
+  packages=$(find "." -not -path "*/node_modules/*" -not -path "*/experimental/*" -not -path "*/deployment-platforms/*" -not -path "*/.github/*" -not -path "*/.databases/*" -type f -name "package.json")
+  echo "$packages" | tr ' ' '\n' | while read -r item; do
+    sh .github/scripts/test-all.sh "$item"
+    code=$?
+    if [ $code -eq 0 ]; then
+      echo "tests passed, proceeding with the upgrade commit"
+    else
+      echo "tests failed, aborting dependencies upgrade"
+      exit 1
+    fi
+    echo "=========================="
+  done
 
   echo "changes, upgrading..."
 
