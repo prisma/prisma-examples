@@ -5,16 +5,17 @@
   "license": "MIT",
   "dependencies": {
     "@nexus/schema": "0.16.0",
-    "@prisma/client": "^2.8.1",
+    "@prisma/client": "2.10.0",
     "graphql": "^15.0.0",
     "graphql-yoga": "^1.16.1",
-    "nexus-plugin-prisma": "0.23.0"
+    "nexus-plugin-prisma": "0.23.0",
+    "semver": "7.3.2"
   },
   "scripts": {
     "dev": "node src"
   },
   "devDependencies": {
-    "@prisma/cli": "^2.8.1"
+    "@prisma/cli": "2.10.0"
   },
   "prettier": {
     "singleQuote": true,
