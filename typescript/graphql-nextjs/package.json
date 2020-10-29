@@ -35,7 +35,7 @@
   "devDependencies": {
     "@prisma/cli": "2.10.1",
     "@types/graphql": "14.5.0",
-    "@types/node": "13.13.29",
+    "@types/node": "13.13.30",
     "@types/react": "16.9.53",
     "typescript": "4.0.5"
   }
