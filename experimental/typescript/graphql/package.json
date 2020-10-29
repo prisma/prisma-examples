@@ -11,7 +11,7 @@
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@nexus/schema": "0.16.0",
+    "@nexus/schema": "0.17.0",
     "@prisma/client": "^2.8.1",
     "graphql": "15.4.0",
     "graphql-yoga": "1.18.3",
