@@ -65,16 +65,6 @@ while [ $i -le $count ]; do
 
     cd "$(dirname "$item")/"
 
-    hasNexusPluginPrisma="$(node -e "console.log(!!require('./package.json').dependencies['nexus-plugin-prisma'])")"
-
-    if [ "$hasNexusPluginPrisma" = "true" ]; then
-      echo "project uses nexus-plugin-prisma, ignoring"
-      yarn remove @prisma/cli || true
-      yarn remove @prisma/client || true
-      cd "$dir"
-      continue
-    fi
-
     vCLI="$(node -e "console.log(require('./package.json').devDependencies['@prisma/cli'])")"
 
     if [ "$vCLI" != "" ]; then
