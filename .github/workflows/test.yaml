@@ -52,6 +52,8 @@ jobs:
       fail-fast: false
       matrix: ${{fromJson(needs.projects.outputs.matrix)}}
 
+    name: test $matrix_path
+
     services:
       postgres:
         image: postgis/postgis:12-2.5-alpine
@@ -71,12 +73,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: workflow-nice-name
+        run: |
+          matrix_path1="${matrix_path/\/package.json/}"
+          echo $matrix_path1
+          matrix_path2="${matrix_path1/\.\/typescript/ts}"
+          echo $matrix_path2
+          matrix_path3="${matrix_path2/\.\/javascript/js}"
+          echo $matrix_path3
+          echo "::set-env name=matrix_path::$matrix_path3"
+        env:
+          matrix_path: ${{ matrix.path }}
+
       - uses: actions/setup-node@v1
         with:
           version: 12
 
       - name: test
-        run: sh .github/scripts/test-all.sh ${{ matrix.path }}
+        run: sh .github/scripts/test-all.sh "$matrix_path"
 
       - name: notify-slack
         if: failure() && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/patch-dev' || github.ref == 'refs/heads/latest')
