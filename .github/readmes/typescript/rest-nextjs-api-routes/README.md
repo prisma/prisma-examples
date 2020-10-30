@@ -3,7 +3,7 @@
 This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-1.md)__
-cd prisma-examples/typescript/rest-nextjs
+cd prisma-examples/typescript/rest-nextjs-api-routes
 __INLINE(../_setup-2.md)__
 
 ### 2. Start the app
