@@ -16,7 +16,7 @@
   "dependencies": {
     "@nexus/schema": "0.17.0",
     "@prisma/client": "2.10.1",
-    "apollo-server": "2.18.2",
+    "apollo-server": "2.19.0",
     "dotenv": "8.2.0",
     "nexus-plugin-prisma": "0.23.1"
   },
