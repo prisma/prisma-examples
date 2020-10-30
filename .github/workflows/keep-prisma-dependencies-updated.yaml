@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        branch: [latest, dev, patch-dev]
+        branch: [dev, patch-dev]
 
     steps:
       - uses: actions/checkout@v2
