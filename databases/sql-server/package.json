@@ -11,11 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "2.10.1",
+    "@prisma/client": "2.10.2",
     "jest": "^26.6.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.10.1",
+    "@prisma/cli": "2.10.2",
     "@types/jest": "26.0.15",
     "prettyjson": "1.2.1",
     "ts-jest": "26.4.3",
