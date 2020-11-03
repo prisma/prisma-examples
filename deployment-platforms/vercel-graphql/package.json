@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@nexus/schema": "0.17.0",
-    "@prisma/client": "2.10.1",
+    "@prisma/client": "2.10.2",
     "@types/node-fetch": "2.5.7",
     "apollo-server-micro": "2.19.0",
     "graphql": "15.4.0",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@now/node": "1.8.4",
-    "@prisma/cli": "2.10.1",
+    "@prisma/cli": "2.10.2",
     "@types/node": "12.19.3",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",
