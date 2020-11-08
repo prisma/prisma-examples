@@ -18,7 +18,7 @@
     "@prisma/cli": "2.10.2",
     "@types/jest": "26.0.15",
     "prettyjson": "1.2.1",
-    "ts-jest": "26.4.3",
+    "ts-jest": "26.4.4",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0",
     "typescript": "4.0.5"
