@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "@nexus/schema": "0.17.0",
-    "@prisma/client": "2.10.2",
+    "@prisma/client": "2.11.0",
     "graphql": "15.4.0",
     "graphql-yoga": "1.18.3",
     "nexus-plugin-prisma": "0.23.1"
   },
   "devDependencies": {
-    "@prisma/cli": "2.10.2",
+    "@prisma/cli": "2.11.0",
     "@types/node": "12.19.4",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.0.0-pre.50",

@@ -5,14 +5,14 @@
   },
   "dependencies": {
     "@nexus/schema": "0.17.0",
-    "@prisma/client": "2.10.2",
+    "@prisma/client": "2.11.0",
     "apollo-server": "2.19.0",
     "graphql": "15.4.0",
     "nexus-plugin-prisma": "0.23.1",
     "semver": "7.3.2"
   },
   "devDependencies": {
-    "@prisma/cli": "2.10.2"
+    "@prisma/cli": "2.11.0"
   },
   "prettier": {
     "singleQuote": true,

@@ -15,7 +15,7 @@
     "seed": "node prisma/seed"
   },
   "devDependencies": {
-    "@prisma/cli": "2.10.2"
+    "@prisma/cli": "2.11.0"
   },
   "prettier": {
     "singleQuote": true,
