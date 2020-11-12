@@ -18,7 +18,7 @@
     "nexus-plugin-prisma": "0.23.1"
   },
   "devDependencies": {
-    "@now/node": "1.8.4",
+    "@now/node": "1.8.5",
     "@prisma/cli": "2.11.0",
     "@types/node": "12.19.4",
     "ts-node": "9.0.0",
