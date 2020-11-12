@@ -44,7 +44,9 @@ async function main() {
       posts: true,
     },
   })
-  console.log(`Created users: ${user1.name} (${user1.posts.length} post) and (${user2.posts.length} posts) `)
+  console.log(
+    `Created users: ${user1.name} (${user1.posts.length} post) and (${user2.posts.length} posts) `,
+  )
   // Retrieve all published posts
   const allPosts = await prisma.post.findMany({
     where: { published: true },
@@ -82,17 +84,17 @@ async function main() {
     .findOne({
       where: {
         email: 'alice@prisma.io',
-      }
+      },
     })
     .posts()
   console.log(`Retrieved all posts from a specific user: `, postsByUser)
 }
 
 main()
-  .catch(e => {
+  .catch((e) => {
     console.error(e)
     process.exit(1)
   })
   .finally(async () => {
-    await prisma.disconnect()
+    await prisma.$disconnect()
   })
