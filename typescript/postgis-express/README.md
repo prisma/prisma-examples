@@ -33,7 +33,7 @@ Note that this also generates Prisma Client JS into `node_modules/@prisma/client
 create database geoexample;
 ```
 
-- Rename the `.env.example` to `.env` and replace the *DBNAME* placeholder with the database name `geoexample` created in the above step.
+- Rename the `.env.example` to `.env` and replace the _DBNAME_ placeholder with the database name `geoexample` created in the above step.
 
 Run the following command to create the tables and the function required for this example.
 
@@ -48,8 +48,7 @@ npm run prisma -- introspect
 npm run prisma -- generate
 ```
 
-__*Limitation*__: Currently Prisma doesn't support custom data types, so querying for the *geography* type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
-
+**_Limitation_**: Currently Prisma doesn't support custom data types, so querying for the _geography_ type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.$executeRaw`.
 
 ### 3. Start the REST API server
 
@@ -86,8 +85,7 @@ You can access the API using the following endpoints:
   - Params:
     - `userId: String` (required): The id of the user
   - Query Params:
-    - `d: String` (optional): The distance in kms. Default is *5*
-
+    - `d: String` (optional): The distance in kms. Default is _5_
 
 ### Seeding data
 

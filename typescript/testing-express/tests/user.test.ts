@@ -2,7 +2,7 @@ import request from 'supertest'
 import { app, prisma } from '../src/app'
 
 afterAll(async (done) => {
-  await prisma.disconnect()
+  await prisma.$disconnect()
   done()
 })
 
