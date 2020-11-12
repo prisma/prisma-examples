@@ -10,7 +10,7 @@
 create database geoexample;
 ```
 
-- Rename the `.env.example` to `.env` and replace the _DBNAME_ placeholder with the database name `geoexample` created in the above step.
+- Rename the `.env.example` to `.env` and replace the *DBNAME* placeholder with the database name `geoexample` created in the above step.
 
 Run the following command to create the tables and the function required for this example.
 
@@ -25,4 +25,4 @@ npm run prisma -- introspect
 npm run prisma -- generate
 ```
 
-**_Limitation_**: Currently Prisma doesn't support custom data types, so querying for the _geography_ type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.$executeRaw`.
+__*Limitation*__: Currently Prisma doesn't support custom data types, so querying for the *geography* type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
