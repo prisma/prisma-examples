@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.post('/user', async (req, res) => {
   const { name, location } = req.body
   try {
-    const response = await prisma.queryRaw`
+    const response = await prisma.$queryRaw`
     insert into "User" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
     returning id`
@@ -52,7 +52,7 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   const distance = parseInt(String(d)) || 5
 
   try {
-    const locations = await prisma.queryRaw(
+    const locations = await prisma.$queryRaw(
       'select * from "locations_near_user"($1, $2)',
       parseInt(userId),
       distance,
