@@ -1,6 +1,6 @@
 # Postgres Geolocation example
 
-This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client).
 
 ## How to use
 
@@ -50,6 +50,7 @@ npm run prisma -- generate
 
 **_Limitation_**: Currently Prisma doesn't support custom data types, so querying for the _geography_ type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.$queryRaw` or `prisma.$executeRaw`.
 
+
 ### 3. Start the REST API server
 
 Execute this command to start the server:
@@ -85,7 +86,8 @@ You can access the API using the following endpoints:
   - Params:
     - `userId: String` (required): The id of the user
   - Query Params:
-    - `d: String` (optional): The distance in kms. Default is _5_
+    - `d: String` (optional): The distance in kms. Default is *5*
+
 
 ### Seeding data
 

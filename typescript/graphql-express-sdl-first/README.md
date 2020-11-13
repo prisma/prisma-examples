@@ -1,6 +1,6 @@
 # GraphQL Server Example with `express-graphql` (SDL-first)
 
-This example shows how to implement a **GraphQL server (SDL-first) with TypeScript** based on [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md), [express-graphql](https://github.com/graphql/express-graphql) and [`makeExecutableSchema`](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **GraphQL server (SDL-first) with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [express-graphql](https://github.com/graphql/express-graphql) and [`makeExecutableSchema`](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
