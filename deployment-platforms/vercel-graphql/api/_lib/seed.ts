@@ -1,6 +1,6 @@
-import { UserCreateInput } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 
-export const seedUsers: UserCreateInput[] = [
+export const seedUsers: Prisma.UserCreateInput[] = [
   {
     email: 'jane@prisma.io',
     name: 'Jane',
