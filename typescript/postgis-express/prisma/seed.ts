@@ -52,5 +52,5 @@ async function generateSQL() {
     .replace(/\s+/g, ' ')
     .split(';')
     .map((sql) => sql.trim())
-    .filter(Boolean);
+    .filter(Boolean)
 }

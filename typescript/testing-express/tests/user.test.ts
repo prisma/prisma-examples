@@ -28,7 +28,7 @@ test('a user with the same email is rejected', () => {
     .send(user)
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
-    .expect(409);
+    .expect(409)
 })
 
 test('correct list of users returned', async () => {
