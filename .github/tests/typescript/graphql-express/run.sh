@@ -2,6 +2,8 @@
 
 set -eu
 
+yarn
+yarn prisma generate
 yarn dev &
 pid=$!
 
