@@ -1,6 +1,6 @@
 # gRPC Server Example
 
-This example shows how to implement a **gRPC API with TypeScript** and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement a **gRPC API with TypeScript** and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client).
 
 __INLINE(../../_setup-1.md)__
 cd prisma-examples/experimental/typescript/grpc
