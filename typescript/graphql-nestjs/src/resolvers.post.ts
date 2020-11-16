@@ -3,17 +3,18 @@ import {
   Resolver,
   Query,
   Mutation,
-  Arg,
-  Ctx,
-  FieldResolver,
+  Args,
+  ResolveField,
   Root,
+  Context,
   Int,
   InputType,
   Field,
-} from 'type-graphql'
-import { Post } from './Post'
-import { User } from './User'
-import { Context } from './context'
+} from '@nestjs/graphql'
+import { Inject } from '@nestjs/common'
+import { Post } from './post'
+import { User } from './user'
+import { PrismaService } from './prisma.service'
 
 @InputType()
 class PostIDInput {
@@ -23,9 +24,11 @@ class PostIDInput {
 
 @Resolver(Post)
 export class PostResolver {
-  @FieldResolver()
-  author(@Root() post: Post, @Ctx() ctx: Context): Promise<User | null> {
-    return ctx.prisma.post
+  constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
+
+  @ResolveField()
+  author(@Root() post: Post): Promise<User | null> {
+    return this.prismaService.post
       .findOne({
         where: {
           id: post.id,
@@ -35,15 +38,15 @@ export class PostResolver {
   }
 
   @Query((returns) => Post, { nullable: true })
-  post(@Arg('where') where: PostIDInput, @Ctx() ctx: Context) {
-    return ctx.prisma.post.findOne({
+  post(@Args('where') where: PostIDInput) {
+    return this.prismaService.post.findOne({
       where: { id: where.id },
     })
   }
 
   @Query((returns) => [Post])
-  filterPosts(@Arg('searchString') searchString: string, @Ctx() ctx: Context) {
-    return ctx.prisma.post.findMany({
+  filterPosts(@Args('searchString') searchString: string) {
+    return this.prismaService.post.findMany({
       where: {
         OR: [
           { title: { contains: searchString } },
@@ -54,8 +57,8 @@ export class PostResolver {
   }
 
   @Query((returns) => [Post])
-  feed(@Ctx() ctx: Context) {
-    return ctx.prisma.post.findMany({
+  feed(@Context() ctx) {
+    return this.prismaService.post.findMany({
       where: {
         published: true,
       },
@@ -64,13 +67,13 @@ export class PostResolver {
 
   @Mutation((returns) => Post)
   createDraft(
-    @Arg('title') title: string,
-    @Arg('content', { nullable: true }) content: string,
-    @Arg('authorEmail') authorEmail: string,
+    @Args('title') title: string,
+    @Args('content', { nullable: true }) content: string,
+    @Args('authorEmail') authorEmail: string,
 
-    @Ctx() ctx: Context,
+    @Context() ctx,
   ): Promise<Post> {
-    return ctx.prisma.post.create({
+    return this.prismaService.post.create({
       data: {
         title: title,
         content: content,
@@ -82,11 +85,8 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  publish(
-    @Arg('id', (type) => Int) id: number,
-    @Ctx() ctx: Context,
-  ): Promise<Post | null> {
-    return ctx.prisma.post.update({
+  publish(@Args('id') id: number): Promise<Post | null> {
+    return this.prismaService.post.update({
       where: {
         id: id,
       },
@@ -98,10 +98,10 @@ export class PostResolver {
 
   @Mutation((returns) => Post, { nullable: true })
   deleteOnePost(
-    @Arg('where') where: PostIDInput,
-    @Ctx() ctx: Context,
+    @Args('where') where: PostIDInput,
+    @Context() ctx,
   ): Promise<Post | null> {
-    return ctx.prisma.post.delete({
+    return this.prismaService.post.delete({
       where: {
         id: where.id,
       },

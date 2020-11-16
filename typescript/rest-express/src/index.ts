@@ -61,13 +61,13 @@ app.get(`/post/:id`, async (req, res) => {
 app.get('/feed', async (req, res) => {
   const posts = await prisma.post.findMany({
     where: { published: true },
-    include: { author: true }
+    include: { author: true },
   })
   res.json(posts)
 })
 
 app.get('/filterPosts', async (req, res) => {
-  const { searchString }: { searchString?: string } = req.query;
+  const { searchString }: { searchString?: string } = req.query
   const draftPosts = await prisma.post.findMany({
     where: {
       OR: [

@@ -10,7 +10,7 @@ declare module '@hapi/hapi' {
 // plugin to instantiate Prisma Client
 const prismaPlugin: Hapi.Plugin<null> = {
   name: 'prisma',
-  register: async function(server: Hapi.Server) {
+  register: async function (server: Hapi.Server) {
     const prisma = new PrismaClient()
 
     server.app.prisma = prisma

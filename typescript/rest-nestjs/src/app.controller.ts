@@ -7,9 +7,9 @@ import {
   Put,
   Delete,
   Query,
-} from '@nestjs/common';
-import { PrismaService } from './prisma.service';
-import { User as UserModel, Post as PostModel } from '@prisma/client';
+} from '@nestjs/common'
+import { PrismaService } from './prisma.service'
+import { User as UserModel, Post as PostModel } from '@prisma/client'
 
 @Controller()
 export class AppController {
@@ -17,14 +17,14 @@ export class AppController {
 
   @Get('post/:id')
   async getPostById(@Param('id') id: string): Promise<PostModel> {
-    return this.prismaService.post.findOne({ where: { id: Number(id) } });
+    return this.prismaService.post.findOne({ where: { id: Number(id) } })
   }
 
   @Get('feed')
   async getPublishedPosts(): Promise<PostModel[]> {
     return this.prismaService.post.findMany({
       where: { published: true },
-    });
+    })
   }
 
   @Get('filterPosts')
@@ -42,14 +42,14 @@ export class AppController {
           },
         ],
       },
-    });
+    })
   }
 
   @Post('post')
   async createDraft(
     @Body() postData: { title: string; content?: string; authorEmail: string },
   ): Promise<PostModel> {
-    const { title, content, authorEmail } = postData;
+    const { title, content, authorEmail } = postData
     return this.prismaService.post.create({
       data: {
         title,
@@ -58,7 +58,7 @@ export class AppController {
           connect: { email: authorEmail },
         },
       },
-    });
+    })
   }
 
   @Post('user')
@@ -67,7 +67,7 @@ export class AppController {
   ): Promise<UserModel> {
     return this.prismaService.user.create({
       data: userData,
-    });
+    })
   }
 
   @Put('publish/:id')
@@ -75,11 +75,11 @@ export class AppController {
     return this.prismaService.post.update({
       where: { id: Number(id) },
       data: { published: true },
-    });
+    })
   }
 
   @Delete('post/:id')
   async deletePost(@Param('id') id: string): Promise<PostModel> {
-    return this.prismaService.post.delete({ where: { id: Number(id) } });
+    return this.prismaService.post.delete({ where: { id: Number(id) } })
   }
 }

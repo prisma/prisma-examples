@@ -11,7 +11,7 @@ const prismaBinary = path.join(
   '..',
   'node_modules',
   '.bin',
-  'prisma'
+  'prisma',
 )
 
 class PrismaTestEnvironment extends NodeEnvironment {

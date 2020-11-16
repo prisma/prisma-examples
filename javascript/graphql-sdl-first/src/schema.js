@@ -54,7 +54,6 @@ input PostCreateWithoutAuthorInput {
 }
 `
 
-
 const resolvers = {
   Query: {
     feed: (parent, args, ctx) => {
@@ -132,5 +131,5 @@ const schema = makeExecutableSchema({
 })
 
 module.exports = {
-  schema
+  schema,
 }
