@@ -6,6 +6,7 @@ import {
   Body,
   Put,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { User as UserModel, Post as PostModel } from '@prisma/client';
@@ -26,9 +27,9 @@ export class AppController {
     });
   }
 
-  @Get('filtered-posts/:searchString')
+  @Get('filterPosts')
   async getFilteredPosts(
-    @Param('searchString') searchString: string,
+    @Query('searchString') searchString: string,
   ): Promise<PostModel[]> {
     return this.prismaService.post.findMany({
       where: {
