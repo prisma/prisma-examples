@@ -12,6 +12,8 @@ app.use(
     context: createContext(),
     graphiql: true,
   }),
-);
-app.listen(4000);
-console.log(`🚀 Server ready at: http://localhost:4000/graphql\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-express#using-the-graphql-api`)
+)
+app.listen(4000)
+console.log(
+  `🚀 Server ready at: http://localhost:4000/graphql\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-express#using-the-graphql-api`,
+)

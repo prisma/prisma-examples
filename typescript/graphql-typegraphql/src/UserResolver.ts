@@ -9,7 +9,7 @@ import {
   Root,
   Int,
   InputType,
-  Field
+  Field,
 } from 'type-graphql'
 import { Post } from './Post'
 import { User } from './User'
@@ -23,7 +23,6 @@ class SignupUserInput {
   @Field()
   email: string
 }
-
 
 @Resolver(User)
 export class UserResolver {
