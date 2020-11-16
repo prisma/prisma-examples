@@ -1,5 +1,10 @@
 import Hapi from '@hapi/hapi'
-import { PostGetPayload } from '@prisma/client'
+/*
+ * TODO: We can't use this type because it is available only in 2.11.0 and previous versions
+ * In 2.12.0, this will be namespaced under Prisma and can be used as Prisma.PostGetPayload
+ * Once 2.12.0 is release, we can adjust this example.
+ */
+// import { PostGetPayload } from '@prisma/client'
 
 // plugin to instantiate Prisma Client
 const usersPlugin = {
@@ -119,7 +124,7 @@ async function publishHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   try {
     const post = await prisma.post.update({
       where: { id: postId },
-      data: { published: true }
+      data: { published: true },
     })
     return h.response(post || undefined).code(201)
   } catch (err) {
@@ -142,20 +147,20 @@ async function deleteHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   }
 }
 
-
-type PostCreateInput = PostGetPayload<{
-  select: {
-    title: true, 
-    content: true, 
-  }
-}> & { authorEmail: string }
+// type PostCreateInput = PostGetPayload<{
+//   select: {
+//     title: true,
+//     content: true,
+//   }
+// }> & { authorEmail: string }
 
 async function createPostHandler(
   request: Hapi.Request,
   h: Hapi.ResponseToolkit,
 ) {
   const { prisma } = request.server.app
-  const payload = request.payload as PostCreateInput
+  // const payload = request.payload as PostCreateInput
+  const payload = request.payload as any
 
   try {
     const createdPost = await prisma.post.create({
