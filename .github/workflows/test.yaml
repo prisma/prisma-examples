@@ -19,9 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: install deps
+        run: cd .github/scripts && yarn install
+
       - name: get list of projects in json array
         id: set-matrix
-        run: node .github/scripts/get-packages.json
+        run: node .github/scripts/get-packages.js
 
   debug:
     needs: projects
