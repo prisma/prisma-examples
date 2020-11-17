@@ -1,6 +1,8 @@
 const glob = require('glob')
 const path = require('path')
 
+const core = require('@actions/core')
+
 const getTestName = (filePath) => {
   return path.dirname(filePath).split(path.sep).pop()
 }
@@ -29,7 +31,8 @@ async function main() {
       const test = getTestName(file)
       return { path: `${folder}/${test}` }
     })
-  console.log(JSON.stringify({ include: files }))
+
+  core.setOutput('matrix', JSON.stringify({ include: files }))
 }
 
 main()
