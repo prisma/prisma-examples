@@ -23,6 +23,6 @@
     "@types/next-auth": "3.1.16",
     "@types/node": "14.14.9",
     "@types/react": "16.9.56",
-    "typescript": "4.0.5"
+    "typescript": "4.1.2"
   }
 }
