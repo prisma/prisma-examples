@@ -13,7 +13,7 @@
     "@nexus/schema": "0.18.0",
     "@prisma/client": "2.11.0",
     "express": "4.17.1",
-    "express-graphql": "0.11.0",
+    "express-graphql": "0.12.0",
     "graphql": "15.4.0",
     "nexus-plugin-prisma": "0.24.0"
   },
