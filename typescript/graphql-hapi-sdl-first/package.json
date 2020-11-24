@@ -9,7 +9,7 @@
     "@hapi/hapi": "20.0.3",
     "@prisma/client": "2.11.0",
     "@types/node": "14.14.9",
-    "apollo-server-hapi": "^2.19.0"
+    "apollo-server-hapi": "2.19.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.11.0",
