@@ -1,6 +1,6 @@
 # GraphQL Server Example with Hapi (SDL first)
 
-This example shows how to implement a **GraphQL server** using  using [hapi](https://hapi.dev/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement an **GraphQL Server Example with Hapi (SDL first)** based on [hapi](https://hapi.dev/), [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [Apollo Server Hapi](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-hapi). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -61,8 +61,8 @@ query {
 mutation {
   signupUser(
     data: {
-      name: "Hello"
-      email: "hello@prisma.io"
+      name: "Sarah"
+      email: "sarah@prisma.io"
     }
   ) {
     id
@@ -77,7 +77,7 @@ mutation {
   createDraft(
     title: "Join the Prisma Slack"
     content: "https://slack.prisma.io"
-    authorEmail: "hello@prisma.io"
+    authorEmail: "alice@prisma.io"
   ) {
     id
     published
@@ -290,3 +290,4 @@ const userWithUpdatedProfile = await prisma.user.update({
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+
