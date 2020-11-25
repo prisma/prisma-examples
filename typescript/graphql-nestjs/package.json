@@ -29,7 +29,7 @@
     "apollo-server-express": "2.19.0",
     "class-validator": "0.12.2",
     "graphql": "15.4.0",
-    "graphql-tools": "7.0.1",
+    "graphql-tools": "7.0.2",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "6.6.3"
