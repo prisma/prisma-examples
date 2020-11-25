@@ -14,7 +14,7 @@
     "start": "cross-env NODE_ENV=production node dist/src/index.js"
   },
   "dependencies": {
-    "@nexus/schema": "0.18.0",
+    "@nexus/schema": "0.19.0",
     "@prisma/client": "2.11.0",
     "apollo-server": "2.19.0",
     "dotenv": "8.2.0",
