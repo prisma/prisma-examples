@@ -1,0 +1,33 @@
+{
+  "name": "graphql-hapi",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index",
+    "clean": "rm -rf dist",
+    "build": "npm -s run clean && npm -s run generate && tsc",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema",
+    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index"
+  },
+  "dependencies": {
+    "@nexus/schema": "0.18.0",
+    "@hapi/hapi": "20.0.3",
+    "@prisma/client": "2.11.0",
+    "@types/node": "14.14.10",
+    "apollo-server-hapi": "2.19.0",
+    "nexus-plugin-prisma": "0.24.0"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.12.0",
+    "@types/hapi__hapi": "20.0.2",
+    "@types/node": "14.14.10",
+    "ts-node": "9.0.0",
+    "typescript": "4.1.2",
+    "ts-node-dev": "1.0.0-pre.50"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}
