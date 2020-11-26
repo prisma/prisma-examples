@@ -1,9 +1,11 @@
-const { GraphQLServer } = require('graphql-yoga')
+const { ApolloServer } = require('apollo-server')
 const { schema } = require('./schema')
 const { createContext } = require('./context')
 
-new GraphQLServer({ schema, context: createContext }).start(() =>
+const server = new ApolloServer({ schema, context: createContext })
+
+server.listen().then(({ url }) =>
   console.log(
-    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql-sdl-first#using-the-graphql-api`,
+    `🚀 Server ready at: ${url}\n⭐️ See sample queries: http://pris.ly/e/js/graphql-sdl-first#using-the-graphql-api`,
   ),
 )
