@@ -11,7 +11,7 @@ const prismaBinary = path.join(
   '..',
   'node_modules',
   '.bin',
-  'prisma',
+  'prisma'
 )
 
 class PrismaTestEnvironment extends NodeEnvironment {
@@ -32,7 +32,11 @@ class PrismaTestEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    await fs.promises.unlink(this.dbPath)
+    try {
+      await fs.promises.unlink(this.dbPath)
+    } catch (error) {
+      // doesn't matter as the environment is torn down
+    }
   }
 }
 
