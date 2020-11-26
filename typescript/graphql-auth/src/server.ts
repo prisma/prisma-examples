@@ -1,7 +1,6 @@
 import { ApolloServer } from 'apollo-server'
-import { permissions } from './permissions'
-import { schema } from './schema'
 import { createContext } from './context'
+import { schema } from './schema'
 
 const server = new ApolloServer({
   schema,
