@@ -1,14 +1,15 @@
-import { GraphQLServer } from 'graphql-yoga'
+import { ApolloServer } from 'apollo-server'
 import { permissions } from './permissions'
 import { schema } from './schema'
 import { createContext } from './context'
 
-new GraphQLServer({
+const server = new ApolloServer({
   schema,
   context: createContext,
-  middlewares: [permissions],
-}).start(() =>
+})
+
+server.listen().then(({ url }) =>
   console.log(
-    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-auth#using-the-graphql-api`,
+    `🚀 Server ready at: ${url}\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-auth#using-the-graphql-api`,
   ),
 )
