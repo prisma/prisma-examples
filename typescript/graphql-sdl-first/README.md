@@ -1,6 +1,6 @@
 # GraphQL Server Example (SDL-first)
 
-This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [graphql-yoga](https://github.com/prisma/graphql-yoga) and [graphql-tools](https://www.apollographql.com/docs/graphql-tools/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [apollo-server](https://www.apollographql.com/docs/apollo-server) and [graphql-tools](https://www.apollographql.com/docs/graphql-tools/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## How to use
 
@@ -292,3 +292,4 @@ const userWithUpdatedProfile = await prisma.user.update({
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+

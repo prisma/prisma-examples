@@ -3,7 +3,7 @@
  * @typedef { import("@prisma/client").UserCreateArgs } UserCreateArgs
  */
 
-const { makeExecutableSchema } = require('graphql-tools')
+const { makeExecutableSchema } = require('apollo-server')
 
 const typeDefs = `
 type User {

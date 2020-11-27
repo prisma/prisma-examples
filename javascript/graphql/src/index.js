@@ -1,5 +1,5 @@
-const { GraphQLServer } = require('graphql-yoga')
-const { makeSchema, objectType, intArg, stringArg } = require('@nexus/schema')
+const { ApolloServer } = require('apollo-server')
+const { makeSchema, objectType, intArg, stringArg, declarativeWrappingPlugin } = require('@nexus/schema')
 const { PrismaClient } = require('@prisma/client')
 const { nexusPrisma } = require('nexus-plugin-prisma')
 
@@ -104,20 +104,20 @@ const Mutation = objectType({
 
 const prisma = new PrismaClient()
 
-new GraphQLServer({
+const server = new ApolloServer({
   schema: makeSchema({
     types: [Query, Mutation, Post, User],
-    plugins: [nexusPrisma({ experimentalCRUD: true })],
+    plugins: [nexusPrisma({ experimentalCRUD: true }), declarativeWrappingPlugin()],
     outputs: {
       schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
     },
   }),
   context: { prisma },
-}).start(() =>
+})
+
+server.listen().then(({ url }) =>
   console.log(
-    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
+    `🚀 Server ready at: ${url}\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
   ),
 )
-
-module.exports = { User, Post }
