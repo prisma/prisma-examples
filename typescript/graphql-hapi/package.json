@@ -12,7 +12,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index"
   },
   "dependencies": {
-    "@nexus/schema": "0.19.1",
+    "@nexus/schema": "0.19.2",
     "@hapi/hapi": "20.0.3",
     "@prisma/client": "2.12.1",
     "@types/node": "14.14.10",
