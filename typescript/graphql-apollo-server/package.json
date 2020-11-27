@@ -10,7 +10,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@nexus/schema": "0.19.1",
+    "@nexus/schema": "0.19.2",
     "@prisma/cli": "2.12.1",
     "@prisma/client": "2.12.1",
     "@types/node-fetch": "2.5.7",

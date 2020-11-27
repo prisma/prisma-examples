@@ -12,7 +12,7 @@
     "seed": "ts-node prisma/seed"
   },
   "dependencies": {
-    "@nexus/schema": "0.19.1",
+    "@nexus/schema": "0.19.2",
     "@prisma/client": "2.12.1",
     "bcryptjs": "2.4.3",
     "graphql": "15.4.0",
