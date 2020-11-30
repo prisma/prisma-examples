@@ -5,7 +5,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
   },
   "dependencies": {
-    "@graphql-tools/schema": "7.1.0",
+    "@graphql-tools/schema": "7.1.2",
     "@prisma/client": "2.12.1",
     "express": "4.17.1",
     "express-graphql": "0.12.0",
