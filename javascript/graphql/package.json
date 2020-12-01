@@ -9,7 +9,7 @@
     "apollo-server": "^2.19.0",
     "graphql": "^15.0.0",
     "nexus-plugin-prisma": "0.25.0",
-    "semver": "7.3.2"
+    "semver": "7.3.4"
   },
   "scripts": {
     "dev": "nodemon src"
