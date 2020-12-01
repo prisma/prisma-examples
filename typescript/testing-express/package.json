@@ -21,7 +21,7 @@
     "@types/supertest": "2.0.10",
     "jest": "26.6.3",
     "jest-environment-node": "26.6.2",
-    "nanoid": "3.1.19",
+    "nanoid": "3.1.20",
     "supertest": "6.0.1",
     "ts-jest": "26.4.4",
     "ts-node": "9.0.0",
