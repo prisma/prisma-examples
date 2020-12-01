@@ -24,7 +24,7 @@
     "@prisma/cli": "2.12.1",
     "@types/node": "13.13.34",
     "@types/prettier": "2.1.5",
-    "cross-env": "7.0.2",
+    "cross-env": "7.0.3",
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
     "ts-node": "9.0.0",
