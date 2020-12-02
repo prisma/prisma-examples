@@ -1,7 +1,6 @@
-import { makeExecutableSchema } from 'graphql-tools'
 import { Context } from './context'
 
-const typeDefs = `
+export const typeDefs = `
 type User {
   email: String!
   id: ID!
@@ -54,7 +53,7 @@ input PostCreateWithoutAuthorInput {
 }
 `
 
-const resolvers = {
+export const resolvers = {
   Query: {
     feed: (parent, args, ctx: Context) => {
       return ctx.prisma.post.findMany({
@@ -124,8 +123,3 @@ const resolvers = {
     },
   },
 }
-
-export const schema = makeExecutableSchema({
-  resolvers,
-  typeDefs,
-})
