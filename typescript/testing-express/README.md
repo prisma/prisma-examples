@@ -29,7 +29,7 @@ Rename the `.env.example` to `.env` and execute this command to start the server
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
+The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/user`](http://localhost:3000/user).
 
 ### 3. Testing the endpoints
 
