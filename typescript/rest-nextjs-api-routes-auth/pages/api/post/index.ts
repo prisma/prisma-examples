@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from '../../../lib/prisma'
 import { getSession } from "next-auth/client";
 
-const prisma = new PrismaClient();
 
 // POST /api/post
 // Required fields in body: title
