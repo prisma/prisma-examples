@@ -1,12 +1,10 @@
 import { makeSchema, objectType, stringArg, asNexusMethod } from '@nexus/schema'
 import { GraphQLDate } from 'graphql-iso-date'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../lib/prisma'
 import { ApolloServer } from 'apollo-server-micro'
 import path from 'path'
 
 export const GQLDate = asNexusMethod(GraphQLDate, 'date')
-
-const prisma = new PrismaClient()
 
 const User = objectType({
   name: 'User',
