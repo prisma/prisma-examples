@@ -4,10 +4,9 @@ import ReactMarkdown from "react-markdown";
 import Layout from "../../components/Layout";
 import Router from "next/router";
 import { PostProps } from "../../components/Post";
-import { PrismaClient } from "@prisma/client";
+import prisma from '../../lib/prisma'
 import { useSession } from "next-auth/client";
 
-const prisma = new PrismaClient();
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const post = await prisma.post.findOne({
