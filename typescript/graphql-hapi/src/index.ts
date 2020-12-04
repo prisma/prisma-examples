@@ -3,7 +3,7 @@ import * as  Hapi from '@hapi/hapi';
 import { schema } from './schema';
 import { createContext } from './context';
 
-async function StartServer() {
+async function startServer() {
     const server = new ApolloServer({ schema, context: createContext })
 
     const app = Hapi.server({
@@ -15,7 +15,7 @@ async function StartServer() {
     await app.start()
 }
 
-StartServer()
+startServer()
     .then((server) => {
         console.log(`🚀 Server ready at: http://localhost:4000`)
     })
