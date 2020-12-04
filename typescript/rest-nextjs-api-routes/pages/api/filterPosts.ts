@@ -1,6 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../lib/prisma'
 
-const prisma = new PrismaClient()
 
 // GET /api/filterPosts?searchString=:searchString
 export default async function handle(req, res) {

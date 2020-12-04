@@ -1,6 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../lib/prisma'
 
-const prisma = new PrismaClient()
 
 // POST /api/post
 // Required fields in body: title, authorEmail
