@@ -20,10 +20,10 @@ const server = new ApolloServer({
     }),
     permissions
   ),
-  context: (request) => {
+  context: ({ req }) => {
     return {
-      ...request,
-      prisma,
+      ...req,
+      prisma
     }
   },
 })
