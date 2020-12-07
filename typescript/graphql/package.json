@@ -20,7 +20,7 @@
     "@prisma/cli": "2.12.1",
     "@types/node": "12.19.8",
     "@types/ws": "7.4.0",
-    "ts-node": "9.1.0",
+    "ts-node": "9.1.1",
     "ts-node-dev": "1.0.0-pre.50",
     "typescript": "4.1.2"
   },
