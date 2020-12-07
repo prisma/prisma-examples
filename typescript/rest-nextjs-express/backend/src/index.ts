@@ -73,6 +73,7 @@ app.get(`/post/:id`, async (req, res) => {
     where: {
       id: Number(id),
     },
+    include: { author: true }
   })
   res.json(post)
 })
