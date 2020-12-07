@@ -19,7 +19,7 @@
     "@types/jest": "26.0.16",
     "prettyjson": "1.2.1",
     "ts-jest": "26.4.4",
-    "ts-node": "9.1.0",
+    "ts-node": "9.1.1",
     "ts-node-dev": "1.0.0",
     "typescript": "4.1.2"
   }
