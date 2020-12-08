@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "2.13.0",
-    "@types/node": "13.13.34"
+    "@types/node": "13.13.35"
   },
   "engines": {
     "node": ">=10.0.0"
