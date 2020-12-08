@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@nexus/schema": "0.19.2",
-    "@prisma/client": "2.12.1",
+    "@prisma/client": "2.13.0",
     "bcryptjs": "2.4.3",
     "graphql": "15.4.0",
     "graphql-shield": "7.4.3",
@@ -22,7 +22,7 @@
     "nexus-plugin-prisma": "0.25.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.12.1",
+    "@prisma/cli": "2.13.0",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.5.0",
     "@types/node": "12.19.8",

@@ -14,13 +14,13 @@
   "dependencies": {
     "@nexus/schema": "0.19.2",
     "@hapi/hapi": "20.0.3",
-    "@prisma/client": "2.12.1",
+    "@prisma/client": "2.13.0",
     "@types/node": "14.14.10",
     "apollo-server-hapi": "2.19.0",
     "nexus-plugin-prisma": "0.25.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.12.1",
+    "@prisma/cli": "2.13.0",
     "@types/hapi__hapi": "20.0.2",
     "@types/node": "14.14.10",
     "ts-node": "9.1.1",
