@@ -2,11 +2,31 @@
 
 This example shows how to implement an **GraphQL server (SDL-first) with Node.js** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [Apollo Server](https://www.apollographql.com/docs/apollo-server/) and [graphql-tools](https://www.apollographql.com/docs/graphql-tools/). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
+```
+
+Install npm dependencies:
+```
 ## How to use
 
 ### 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/graphql-sdl-first
+```
+
+Install npm dependencies:
+```
+cd graphql-sdl-first
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative: Clone the entire repo</Summary>
+
+Clone this repository
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,7 +39,7 @@ cd prisma-examples/javascript/graphql-sdl-first
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Start the GraphQL server
 
