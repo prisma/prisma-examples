@@ -2,9 +2,13 @@
 
 This example shows how to implement a **REST API** using [NestJS](https://docs.nestjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db). The example was bootstrapped using the NestJS CLI command `nest new rest-nestjs`.
 
+__INLINE(../_setup-0.md)__
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-nestjs
 __INLINE(../_setup-1.md)__
-cd prisma-examples/typescript/rest-nestjs
+cd rest-nestjs
 __INLINE(../_setup-2.md)__
+cd prisma-examples/typescript/rest-nestjs
+__INLINE(../_setup-3.md)__
 
 ### 2. Start the REST API server
 

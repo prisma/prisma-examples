@@ -6,7 +6,23 @@ This example shows how to implement integration tests using [Express](https://ex
 
 ### 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/testing-express
+```
+
+Install npm dependencies:
+```
+cd testing-express
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative: Clone the entire repo</Summary>
+
+Clone this repository
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,7 +35,7 @@ cd prisma-examples/typescript/testing-express
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Start the REST API server
 
@@ -29,7 +45,7 @@ Rename the `.env.example` to `.env` and execute this command to start the server
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/user`](http://localhost:3000/user).
+The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
 ### 3. Testing the endpoints
 

@@ -6,7 +6,23 @@ This example shows how to implement a **GraphQL server with TypeScript** based o
 
 ### 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-express
+```
+
+Install npm dependencies:
+```
+cd graphql-express
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative: Clone the entire repo</Summary>
+
+Clone this repository
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,7 +35,7 @@ cd prisma-examples/typescript/graphql-express
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Start the GraphQL server
 

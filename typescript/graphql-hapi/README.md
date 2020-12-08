@@ -6,7 +6,23 @@ This example shows how to implement an **GraphQL Server Example with Hapi** base
 
 ### 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-hapi
+```
+
+Install npm dependencies:
+```
+d graphql-hapi
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative: Clone the entire repo</Summary>
+
+Clone this repository
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,7 +35,7 @@ cd prisma-examples/typescript/graphql-hapi
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Start the GraphQL server
 
@@ -159,9 +175,9 @@ mutation {
 Evolving the application typically requires four subsequent steps:
 
 1. Migrating the database schema using SQL
-1. Update your Prisma schema by introspecting the database with `prisma introspect`
+1. Updating your Prisma schema by introspecting the database with `prisma introspect`
 1. Generating Prisma Client to match the new database schema with `prisma generate`
-1. Use the updated Prisma Client in your application code
+1. Using the updated Prisma Client in your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -241,9 +257,50 @@ This command updated the Prisma Client API in `node_modules/@prisma/client`.
 
 ### 4. Use the updated Prisma Client in your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
+#### Option A: Expose `Profile` operations via `nexus-prisma`
 
-#### Create a new profile for an existing user
+With the `nexus-prisma` package, you can expose the new `Profile` model in the API like so:
+
+```diff
+// ... as before
+
+const User = objectType({
+  name: 'User',
+  definition(t) {
+    t.model.id()
+    t.model.name()
+    t.model.email()
+    t.model.posts({
+      pagination: false,
+    })
++   t.model.profile()
+  },
+})
+
+// ... as before
+
++const Profile = objectType({
++  name: 'Profile',
++  definition(t) {
++    t.model.id()
++    t.model.bio()
++    t.model.user()
++  },
++})
+
+// ... as before
+
+export const schema = makeSchema({
++  types: [Query, Mutation, Post, User, Profile],
+  // ... as before
+}
+```
+
+#### Option B: Use the `PrismaClient` instance directly
+
+As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
+
+##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
@@ -256,7 +313,7 @@ const profile = await prisma.profile.create({
 });
 ```
 
-#### Create a new user with a new profile
+##### Create a new user with a new profile
 
 ```ts
 const user = await prisma.user.create({
@@ -272,7 +329,7 @@ const user = await prisma.user.create({
 });
 ```
 
-#### Update the profile of an existing user
+##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
