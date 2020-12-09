@@ -94,10 +94,6 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify)                   | REST API with [Fastify](https://www.fastify.io/)                                                                       |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script)                               | Usage of Prisma Client JS in a Node.js script                                                                          |
 
-## Experimental
-
-The [`experimental`](./experimental) directory contains the same examples as the `javascript` and `typescript` directories. The main difference is that it uses [Prisma Migrate](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-migrate) to perform database migrations which are currently an experimental feature.
-
 ## Deployment platforms
 
 The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
