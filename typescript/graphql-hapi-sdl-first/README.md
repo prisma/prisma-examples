@@ -6,7 +6,23 @@ This example shows how to implement an **GraphQL Server Example with Hapi (SDL f
 
 ### 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-hapi-sdl-first
+```
+
+Install npm dependencies:
+```
+cd graphql-hapi-sdl-first
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
+
+Clone this repository
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,7 +35,7 @@ cd prisma-examples/typescript/graphql-hapi-sdl-first
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Start the GraphQL server
 
@@ -33,7 +49,9 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ## Using the GraphQL API
 
-The schema that specifies the API operations of your GraphQL server is defined in [`src/schema.ts`](src/schema.ts).
+The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
+
+Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
 ### Retrieve all published posts and their authors
 

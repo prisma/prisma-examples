@@ -6,7 +6,23 @@ This example shows how to implement a **gRPC API with TypeScript** and [Prisma C
 
 ### 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/grpc
+```
+
+Install npm dependencies:
+```
+cd grpc
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
+
+Clone this repository
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -19,7 +35,7 @@ cd prisma-examples/typescript/grpc
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Start the gRPC server
 
