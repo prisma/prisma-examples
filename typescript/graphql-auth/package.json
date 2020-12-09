@@ -18,7 +18,7 @@
     "graphql-middleware": "4.0.2",
     "graphql-shield": "7.4.3",
     "jsonwebtoken": "8.5.1",
-    "nexus-plugin-prisma": "0.25.0"
+    "nexus-plugin-prisma": "0.26.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.13.0",
