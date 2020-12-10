@@ -34,7 +34,7 @@
     "rxjs": "6.6.3"
   },
   "devDependencies": {
-    "@nestjs/cli": "7.5.3",
+    "@nestjs/cli": "7.5.4",
     "@nestjs/schematics": "7.2.5",
     "@nestjs/testing": "7.5.5",
     "@prisma/cli": "2.13.0",
