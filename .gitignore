@@ -18,3 +18,4 @@ migrations/
 experimental/**/*.db
 .next
 .vscode/
+.nuxt

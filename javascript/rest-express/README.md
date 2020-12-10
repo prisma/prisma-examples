@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [Express](https://expre
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-express`
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-express
 ```
 
 Install npm dependencies:
@@ -22,7 +22,7 @@ Note that this also generates Prisma Client JS into `node_modules/@prisma/client
 
 <Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
 
-Clone this repository
+Clone this repository:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
