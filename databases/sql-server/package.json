@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.13.0",
-    "@types/jest": "26.0.18",
+    "@types/jest": "26.0.19",
     "prettyjson": "1.2.1",
     "ts-jest": "26.4.4",
     "ts-node": "9.1.1",
