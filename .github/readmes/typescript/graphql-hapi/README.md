@@ -5,7 +5,7 @@ This example shows how to implement an **GraphQL Server Example with Hapi** base
 __INLINE(../_setup-0.md)__
 curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-hapi
 __INLINE(../_setup-1.md)__
-d graphql-hapi
+cd graphql-hapi
 __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/graphql-hapi
 __INLINE(../_setup-3.md)__

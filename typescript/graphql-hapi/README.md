@@ -14,7 +14,7 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 
 Install npm dependencies:
 ```
-d graphql-hapi
+cd graphql-hapi
 npm install
 ```
 
