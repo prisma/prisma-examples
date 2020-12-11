@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "predev": "npm run generate:prisma",
-    "dev": "cross-env NODE_ENV=development tsnd --no-notify --respawn --transpileOnly ./src",
+    "dev": "cross-env NODE_ENV=development tsnd --no-notify --respawn --transpile-only ./src",
     "prebuild": "npm run clean && npm run generate",
     "build": "tsc",
     "seed": "ts-node prisma/seed.ts",

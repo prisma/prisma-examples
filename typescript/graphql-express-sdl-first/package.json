@@ -2,7 +2,7 @@
   "name": "graphql",
   "scripts": {
     "start": "node dist/server",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/server"
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
     "@graphql-tools/schema": "7.1.2",
