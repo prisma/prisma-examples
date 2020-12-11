@@ -116,7 +116,7 @@ while [ $i -le $count ]; do
 
     export webhook="$SLACK_WEBHOOK_URL_FAILING"
     (cd .github/slack/ && yarn install)
-    node .github/slack/notify.js "Prisma version $v released"
+    node .github/slack/notify.js "Prisma version $v released via the action https://github.com/prisma/prisma-examples/commit/$GITHUB_SHA/checks?check_suite_id=$GITHUB_ACTION"
   fi
 
   echo "pushed commit"
