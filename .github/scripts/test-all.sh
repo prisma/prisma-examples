@@ -15,7 +15,7 @@ echo "---------------------"
 echo "running $item"
 
 case "$item" in
-  (*".github"*|*"deployment-platforms"*|*"databases"*)
+  *".github"*|*"deployment-platforms"*|*"databases"*)
     echo "ignoring $item"
     exit 0
     ;;

@@ -57,7 +57,7 @@ while [ $i -le $count ]; do
     echo "checking $item"
 
     case "$item" in
-      (*".github"*)
+      *".github"*)
         echo "ignoring $item"
         continue
         ;;
