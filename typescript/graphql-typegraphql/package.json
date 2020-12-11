@@ -1,7 +1,7 @@
 {
   "name": "typegraphql-example",
   "scripts": {
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index.ts"
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts"
   },
   "dependencies": {
     "@prisma/client": "2.13.0",

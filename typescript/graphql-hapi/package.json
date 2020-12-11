@@ -9,7 +9,7 @@
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
-    "dev": "ts-node-dev --no-notify --respawn --transpileOnly src/index"
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index"
   },
   "dependencies": {
     "@nexus/schema": "0.19.2",
