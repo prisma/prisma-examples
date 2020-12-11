@@ -19,6 +19,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: '${{ matrix.branch }}'
 
       - name: use node 10
         uses: actions/setup-node@v1
