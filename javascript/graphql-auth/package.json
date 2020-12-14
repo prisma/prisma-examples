@@ -10,7 +10,7 @@
     "graphql-middleware": "4.0.2",
     "graphql-shield": "7.4.3",
     "jsonwebtoken": "8.5.1",
-    "nexus-plugin-prisma": "0.26.0"
+    "nexus-plugin-prisma": "0.27.0"
   },
   "scripts": {
     "dev": "node src"
