@@ -1,6 +1,6 @@
-import { intArg, mutationType, stringArg } from '@nexus/schema'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
+import { intArg, mutationType, nonNull, stringArg } from 'nexus'
 import { APP_SECRET, getUserId } from '../utils'
 
 export const Mutation = mutationType({
@@ -9,8 +9,8 @@ export const Mutation = mutationType({
       type: 'AuthPayload',
       args: {
         name: stringArg(),
-        email: stringArg({ nullable: false }),
-        password: stringArg({ nullable: false }),
+        email: nonNull(stringArg()),
+        password: nonNull(stringArg()),
       },
       resolve: async (_parent, { name, email, password }, ctx) => {
         const hashedPassword = await hash(password, 10)
@@ -31,8 +31,8 @@ export const Mutation = mutationType({
     t.field('login', {
       type: 'AuthPayload',
       args: {
-        email: stringArg({ nullable: false }),
-        password: stringArg({ nullable: false }),
+        email: nonNull(stringArg()),
+        password: nonNull(stringArg()),
       },
       resolve: async (_parent, { email, password }, ctx) => {
         const user = await ctx.prisma.user.findOne({
@@ -57,7 +57,7 @@ export const Mutation = mutationType({
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: stringArg({ nullable: false }),
+        title: nonNull(stringArg()),
         content: stringArg(),
       },
       resolve: (parent, { title, content }, ctx) => {
@@ -74,10 +74,9 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('deletePost', {
+    t.nullable.field('deletePost', {
       type: 'Post',
-      nullable: true,
-      args: { id: intArg({ nullable: false }) },
+      args: { id: nonNull(intArg()) },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.delete({
           where: {
@@ -87,10 +86,11 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
-      args: { id: intArg({ nullable: false }) },
+      args: {
+        id: nonNull(intArg()),
+      },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.update({
           where: { id },

@@ -1,6 +1,6 @@
 const { compare, hash } = require('bcryptjs')
 const { sign } = require('jsonwebtoken')
-const { idArg, mutationType, stringArg } = require('@nexus/schema')
+const { nullable, idArg, mutationType, stringArg } = require('nexus')
 const { APP_SECRET, getUserId } = require('../utils')
 
 const Mutation = mutationType({
@@ -8,7 +8,7 @@ const Mutation = mutationType({
     t.field('signup', {
       type: 'AuthPayload',
       args: {
-        name: stringArg({ nullable: true }),
+        name: nullable(stringArg()),
         email: stringArg(),
         password: stringArg(),
       },
@@ -58,7 +58,7 @@ const Mutation = mutationType({
       type: 'Post',
       args: {
         title: stringArg(),
-        content: stringArg({ nullable: true }),
+        content: nullable(stringArg()),
       },
       resolve: (parent, { title, content }, ctx) => {
         const userId = getUserId(ctx)
@@ -67,26 +67,30 @@ const Mutation = mutationType({
             title,
             content,
             published: false,
-            author: { connect: { id: Number(userId) } },
+            author: {
+              connect: {
+                id: Number(userId),
+              },
+            },
           },
         })
       },
     })
 
-    t.field('deletePost', {
+    t.nullable.field('deletePost', {
       type: 'Post',
-      nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.delete({
-          where: { id: Number(id) },
+          where: {
+            id: Number(id),
+          },
         })
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.update({

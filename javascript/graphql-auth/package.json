@@ -2,7 +2,6 @@
   "name": "graphql-auth",
   "version": "1.0.0",
   "dependencies": {
-    "@nexus/schema": "0.20.1",
     "@prisma/client": "2.13.0",
     "apollo-server": "2.19.0",
     "bcryptjs": "2.4.3",
@@ -10,7 +9,8 @@
     "graphql-middleware": "4.0.2",
     "graphql-shield": "7.4.3",
     "jsonwebtoken": "8.5.1",
-    "nexus-plugin-prisma": "0.26.0"
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.27.0"
   },
   "scripts": {
     "dev": "node src"

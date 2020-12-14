@@ -1,11 +1,10 @@
-const { idArg, queryType, stringArg } = require('@nexus/schema')
+const { nullable, idArg, queryType, stringArg } = require('nexus')
 const { getUserId } = require('../utils')
 
 const Query = queryType({
   definition(t) {
-    t.field('me', {
+    t.nullable.field('me', {
       type: 'User',
-      nullable: true,
       resolve: (parent, args, ctx) => {
         const userId = getUserId(ctx)
         return ctx.prisma.user.findOne({
@@ -28,7 +27,7 @@ const Query = queryType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: nullable(stringArg()),
       },
       resolve: (parent, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -50,9 +49,8 @@ const Query = queryType({
       },
     })
 
-    t.field('post', {
+    t.nullable.field('post', {
       type: 'Post',
-      nullable: true,
       args: { id: idArg() },
       resolve: (parent, { id }, ctx) => {
         return ctx.prisma.post.findOne({
