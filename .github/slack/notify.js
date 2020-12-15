@@ -8,7 +8,7 @@ async function run() {
   })
   let branchName = args['--branch-name']
   const url = process.env.webhook
-  const message = process.argv[2]
+  const message = args._[0]
 
   const gitBranchName = spawnSync('git', ['branch', '--show-current'], {
     encoding: 'utf-8',
