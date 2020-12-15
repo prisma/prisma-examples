@@ -6,19 +6,17 @@ import Router from 'next/router'
 import { PostProps } from '../../components/Post'
 
 async function publish(id: number): Promise<void> {
-  const res = await fetch(`http://localhost:3000/api/publish/${id}`, {
+  await fetch(`http://localhost:3000/api/publish/${id}`, {
     method: 'PUT',
   })
-  const data = await res.json()
   await Router.push('/')
 }
 
 async function destroy(id: number): Promise<void> {
-  const res = await fetch(`http://localhost:3000/api/post/${id}`, {
+  await fetch(`http://localhost:3000/api/post/${id}`, {
     method: 'DELETE',
   })
-  const data = await res.json()
-  Router.push('/')
+  await Router.push('/')
 }
 
 const Post: React.FC<PostProps> = props => {
@@ -34,11 +32,11 @@ const Post: React.FC<PostProps> = props => {
         <p>By {props?.author?.name || 'Unknown author'}</p>
         <ReactMarkdown source={props.content} />
         {!props.published && (
-          <button onClick={()=> publish(props.id)}>
+          <button onClick={() => publish(props.id)}>
             Publish
           </button>
         )}
-        <button onClick={()=> destroy(props.id)}>
+        <button onClick={() => destroy(props.id)}>
           Delete
         </button>
       </div>
@@ -70,7 +68,7 @@ const Post: React.FC<PostProps> = props => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(`http://localhost:3000/api/post/${context.params.id}`)
   const data = await res.json()
-  return {props: { ...data }}
+  return { props: { ...data } }
 }
 
 export default Post

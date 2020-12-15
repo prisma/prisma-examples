@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch'
 import Layout from '../components/Layout'
 import Post from '../components/Post'
 
@@ -37,7 +36,7 @@ export const getServerSideProps = async () => {
   const res = await fetch('http://localhost:3000/api/drafts')
   const drafts = await res.json()
   return {
-    props : { drafts },
+    props: { drafts },
   }
 }
 

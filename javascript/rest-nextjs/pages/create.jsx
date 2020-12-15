@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import fetch from 'isomorphic-unfetch'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import Router from 'next/router'
 
@@ -11,13 +10,12 @@ const Draft = () => {
   const submitData = async e => {
     e.preventDefault()
     try {
-      const body = {title, content, authorEmail}
-      const res = await fetch(`http://localhost:3000/api/post`, {
+      const body = { title, content, authorEmail }
+      await fetch(`http://localhost:3000/api/post`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      const data = await res.json()
       await Router.push('/drafts')
     } catch (error) {
       console.error(error)
