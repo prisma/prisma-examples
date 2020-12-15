@@ -16,7 +16,6 @@
   "dependencies": {
     "@apollo/react-hooks": "4.0.0",
     "@apollo/react-ssr": "4.0.0",
-    "@nexus/schema": "0.20.1",
     "@prisma/client": "2.13.0",
     "apollo-boost": "0.4.9",
     "apollo-link-http": "1.5.17",
@@ -27,6 +26,8 @@
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.11.0",
     "next": "10.0.3",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.27.0",
     "react": "17.0.1",
     "react-apollo": "3.1.5",
     "react-dom": "17.0.1",

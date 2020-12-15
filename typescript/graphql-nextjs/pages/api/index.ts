@@ -1,8 +1,15 @@
-import { makeSchema, objectType, stringArg, asNexusMethod } from '@nexus/schema'
-import { GraphQLDate } from 'graphql-iso-date'
-import prisma from '../../lib/prisma'
 import { ApolloServer } from 'apollo-server-micro'
+import { GraphQLDate } from 'graphql-iso-date'
+import {
+  asNexusMethod,
+  makeSchema,
+  nonNull,
+  nullable,
+  objectType,
+  stringArg,
+} from 'nexus'
 import path from 'path'
+import prisma from '../../lib/prisma'
 
 export const GQLDate = asNexusMethod(GraphQLDate, 'date')
 
@@ -14,7 +21,7 @@ const User = objectType({
     t.string('email')
     t.list.field('posts', {
       type: 'Post',
-      resolve: parent =>
+      resolve: (parent) =>
         prisma.user
           .findOne({
             where: { id: Number(parent.id) },
@@ -29,14 +36,11 @@ const Post = objectType({
   definition(t) {
     t.int('id')
     t.string('title')
-    t.string('content', {
-      nullable: true,
-    })
+    t.nullable.string('content')
     t.boolean('published')
-    t.field('author', {
+    t.nullable.field('author', {
       type: 'User',
-      nullable: true,
-      resolve: parent =>
+      resolve: (parent) =>
         prisma.post
           .findOne({
             where: { id: Number(parent.id) },
@@ -52,7 +56,7 @@ const Query = objectType({
     t.field('post', {
       type: 'Post',
       args: {
-        postId: stringArg({ nullable: false }),
+        postId: nonNull(stringArg()),
       },
       resolve: (_, args) => {
         return prisma.post.findOne({
@@ -63,7 +67,7 @@ const Query = objectType({
 
     t.list.field('feed', {
       type: 'Post',
-      resolve: (_parent, _args, ctx) => {
+      resolve: (_parent, _args) => {
         return prisma.post.findMany({
           where: { published: true },
         })
@@ -82,7 +86,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: nullable(stringArg()),
       },
       resolve: (_, { searchString }, ctx) => {
         return prisma.post.findMany({
@@ -105,7 +109,7 @@ const Mutation = objectType({
       type: 'User',
       args: {
         name: stringArg(),
-        email: stringArg({ nullable: false }),
+        email: nonNull(stringArg()),
       },
       resolve: (_, { name, email }, ctx) => {
         return prisma.user.create({
@@ -117,9 +121,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('deletePost', {
+    t.nullable.field('deletePost', {
       type: 'Post',
-      nullable: true,
       args: {
         postId: stringArg(),
       },
@@ -133,7 +136,7 @@ const Mutation = objectType({
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: stringArg({ nullable: false }),
+        title: nonNull(stringArg()),
         content: stringArg(),
         authorEmail: stringArg(),
       },
@@ -151,9 +154,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
       args: {
         postId: stringArg(),
       },
@@ -170,8 +172,8 @@ const Mutation = objectType({
 export const schema = makeSchema({
   types: [Query, Mutation, Post, User, GQLDate],
   outputs: {
-    typegen: path.join(process.cwd(), 'pages', 'api', 'nexus-typegen.ts'),
-    schema: path.join(process.cwd(), 'pages', 'api', 'schema.graphql')
+    typegen: path.join(process.cwd(), 'pages/api/nexus-typegen.ts'),
+    schema: path.join(process.cwd(), 'pages/api/schema.graphql'),
   },
 })
 
@@ -179,8 +181,8 @@ export const config = {
   api: {
     bodyParser: false,
   },
-};
+}
 
 export default new ApolloServer({ schema }).createHandler({
   path: '/api',
-});
+})

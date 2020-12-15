@@ -1,5 +1,5 @@
 const { ApolloServer } = require('apollo-server')
-const { makeSchema, objectType, intArg, stringArg, declarativeWrappingPlugin } = require('@nexus/schema')
+const { makeSchema, nullable, objectType, intArg, stringArg } = require('nexus')
 const { PrismaClient } = require('@prisma/client')
 const { nexusPrisma } = require('nexus-plugin-prisma')
 
@@ -43,7 +43,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: nullable(stringArg()),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -69,7 +69,7 @@ const Mutation = objectType({
       type: 'Post',
       args: {
         title: stringArg(),
-        content: stringArg({ nullable: true }),
+        content: nullable(stringArg()),
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
@@ -86,9 +86,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
       args: {
         id: intArg(),
       },
@@ -107,7 +106,7 @@ const prisma = new PrismaClient()
 const server = new ApolloServer({
   schema: makeSchema({
     types: [Query, Mutation, Post, User],
-    plugins: [nexusPrisma({ experimentalCRUD: true }), declarativeWrappingPlugin()],
+    plugins: [nexusPrisma({ experimentalCRUD: true })],
     outputs: {
       schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
@@ -116,8 +115,10 @@ const server = new ApolloServer({
   context: { prisma },
 })
 
-server.listen().then(({ url }) =>
-  console.log(
-    `🚀 Server ready at: ${url}\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
-  ),
-)
+server
+  .listen()
+  .then(({ url }) =>
+    console.log(
+      `🚀 Server ready at: ${url}\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
+    ),
+  )
