@@ -14,7 +14,7 @@ dir=$(pwd)
 
 echo "$packages" | tr ' ' '\n' | while read -r item; do
   case "$item" in
-    *".github"*|*"experimental"*|*"deployment-platforms"*)
+    *".github"*|*"deployment-platforms"*)
       echo "ignoring $item"
       continue
       ;;

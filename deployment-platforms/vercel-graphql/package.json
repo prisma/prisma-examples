@@ -10,7 +10,7 @@
     "dev": "GENERATE_ARTIFACTS=true ./node_modules/.bin/tsc-watch --onSuccess 'npx micro ./dist/index.js'"
   },
   "dependencies": {
-    "@nexus/schema": "0.19.2",
+    "@nexus/schema": "0.20.1",
     "@prisma/client": "2.13.0",
     "@types/node-fetch": "2.5.7",
     "apollo-server-micro": "2.19.0",
@@ -20,11 +20,11 @@
   "devDependencies": {
     "@now/node": "1.8.5",
     "@prisma/cli": "2.13.0",
-    "@types/node": "12.19.8",
+    "@types/node": "12.19.9",
     "ts-node": "9.1.1",
-    "ts-node-dev": "1.0.0-pre.50",
+    "ts-node-dev": "1.1.1",
     "tsc-watch": "4.2.9",
-    "typescript": "4.1.2",
+    "typescript": "4.1.3",
     "vercel": "21.0.1"
   },
   "prettier": {
