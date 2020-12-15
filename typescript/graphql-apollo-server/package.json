@@ -1,5 +1,6 @@
 {
   "name": "typescript-graphql",
+  "license": "MIT",
   "scripts": {
     "start": "node dist/server",
     "clean": "rm -rf dist",
@@ -10,13 +11,13 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "@nexus/schema": "0.20.1",
     "@prisma/cli": "2.13.0",
     "@prisma/client": "2.13.0",
     "@types/node-fetch": "2.5.7",
     "apollo-server": "2.19.0",
     "graphql": "15.4.0",
-    "nexus-plugin-prisma": "0.26.0"
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.27.0"
   },
   "devDependencies": {
     "@types/node": "12.19.9",
