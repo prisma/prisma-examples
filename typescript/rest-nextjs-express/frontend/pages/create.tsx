@@ -10,13 +10,12 @@ const Draft: React.FC = () => {
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     try {
-      const body = {title, content, authorEmail}
-      const res = await fetch(`http://localhost:3001/post`, {
+      const body = { title, content, authorEmail }
+      await fetch(`http://localhost:3001/post`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      const data = await res.json()
       await Router.push('/drafts')
     } catch (error) {
       console.error(error)
@@ -50,7 +49,7 @@ const Draft: React.FC = () => {
             value={content}
           />
           <input
-            disabled={!content ||!title ||!authorEmail}
+            disabled={!content || !title || !authorEmail}
             type="submit"
             value="Create"
           />
@@ -91,4 +90,4 @@ const Draft: React.FC = () => {
   )
 }
 
-export default Draft;
+export default Draft
