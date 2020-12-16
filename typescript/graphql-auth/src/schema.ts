@@ -1,30 +1,30 @@
-import { declarativeWrappingPlugin, makeSchema } from '@nexus/schema'
-import { nexusPrisma } from 'nexus-plugin-prisma'
-import * as types from './types'
-import { permissions } from './permissions'
 import { applyMiddleware } from 'graphql-middleware'
+import { makeSchema } from 'nexus'
+import { nexusPrisma } from 'nexus-plugin-prisma'
+import { permissions } from './permissions'
+import * as types from './types'
 
 export const schema = applyMiddleware(
   makeSchema({
     types,
-    plugins: [nexusPrisma(), declarativeWrappingPlugin()],
+    plugins: [nexusPrisma()],
     outputs: {
       schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
     },
-    typegenAutoConfig: {
-      sources: [
+    contextType: {
+      module: require.resolve('./context'),
+      alias: 'Context',
+      export: 'Context',
+    },
+    sourceTypes: {
+      modules: [
         {
-          source: '@prisma/client',
+          module: '@prisma/client',
           alias: 'client',
         },
-        {
-          source: require.resolve('./context'),
-          alias: 'Context',
-        },
       ],
-      contextType: 'Context.Context',
     },
   }),
-  permissions
+  permissions,
 )

@@ -4,11 +4,11 @@
     "dev": "node ./src/server.js"
   },
   "dependencies": {
-    "@nexus/schema": "0.20.1",
     "@prisma/client": "2.13.0",
     "apollo-server": "2.19.0",
     "graphql": "15.4.0",
-    "nexus-plugin-prisma": "0.26.0",
+    "nexus": "1.0.0",
+    "nexus-plugin-prisma": "0.27.0",
     "semver": "7.3.4"
   },
   "devDependencies": {

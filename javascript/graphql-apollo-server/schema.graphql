@@ -19,7 +19,13 @@ type Post {
 
 input PostCreateManyWithoutAuthorInput {
   connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
   create: [PostCreateWithoutAuthorInput!]
+}
+
+input PostCreateOrConnectWithoutauthorInput {
+  create: PostCreateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
 }
 
 input PostCreateWithoutAuthorInput {

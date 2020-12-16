@@ -1,9 +1,17 @@
-import * as nexus from '@nexus/schema'
+import {
+  makeSchema,
+  mutationType,
+  nullable,
+  objectType,
+  queryType,
+  stringArg,
+  subscriptionField,
+} from 'nexus'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 import { join } from 'path'
 import { Context } from './types'
 
-export const Post = nexus.objectType({
+export const Post = objectType({
   name: 'Post',
   definition(t) {
     t.model.id()
@@ -12,7 +20,7 @@ export const Post = nexus.objectType({
     t.model.content()
   },
 })
-export const User = nexus.objectType({
+export const User = objectType({
   name: 'User',
   definition(t) {
     t.model.id()
@@ -22,20 +30,20 @@ export const User = nexus.objectType({
   },
 })
 
-export const Query = nexus.queryType({
+export const Query = queryType({
   definition(t) {
     t.crud.users()
     t.crud.posts()
   },
 })
 
-export const Mutation = nexus.mutationType({
+export const Mutation = mutationType({
   definition(t) {
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: nexus.stringArg(),
-        content: nexus.stringArg({ nullable: true }),
+        title: stringArg(),
+        content: nullable(stringArg()),
       },
       resolve: async (_parent, { title, content }, ctx) => {
         const newPost = await ctx.prisma.post.create({
@@ -54,7 +62,7 @@ export const Mutation = nexus.mutationType({
   },
 })
 
-export const Subscription = nexus.subscriptionField('latestPost', {
+export const Subscription = subscriptionField('latestPost', {
   type: 'Post',
   subscribe(_root, _args, ctx) {
     return ctx.pubsub.asyncIterator('latestPost')
@@ -64,7 +72,7 @@ export const Subscription = nexus.subscriptionField('latestPost', {
   },
 })
 
-export const schema = nexus.makeSchema({
+export const schema = makeSchema({
   types: [User, Post, Query, Mutation, Subscription],
   plugins: [
     nexusPrisma({
@@ -73,20 +81,19 @@ export const schema = nexus.makeSchema({
     }),
   ],
   outputs: {
-    typegen: join(__dirname, 'generated', 'index.d.ts'),
-    schema: join(__dirname, 'generated', 'schema.graphql'),
+    typegen: join(__dirname, 'generated/index.d.ts'),
+    schema: join(__dirname, 'generated/schema.graphql'),
   },
-  typegenAutoConfig: {
-    sources: [
+  contextType: {
+    module: join(__dirname, 'types.ts'),
+    export: 'Context',
+  },
+  sourceTypes: {
+    modules: [
       {
-        source: '@prisma/client',
+        module: '@prisma/client',
         alias: 'prisma',
       },
-      {
-        source: join(__dirname, 'types.ts'),
-        alias: 'ctx',
-      },
     ],
-    contextType: 'ctx.Context',
   },
 })

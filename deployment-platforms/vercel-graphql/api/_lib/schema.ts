@@ -1,4 +1,4 @@
-import { intArg, makeSchema, objectType, stringArg } from '@nexus/schema'
+import { intArg, makeSchema, nonNull, objectType, stringArg } from 'nexus'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 import path from 'path'
 import { seedUsers } from './seed'
@@ -63,7 +63,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ required: true }),
+        searchString: nonNull(stringArg()),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -108,9 +108,9 @@ const Mutation = objectType({
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: stringArg({ nullable: false }),
+        title: nonNull(stringArg()),
         content: stringArg(),
-        authorEmail: stringArg({ required: true }),
+        authorEmail: nonNull(stringArg()),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.prisma.post.create({
@@ -126,9 +126,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
       args: {
         id: intArg(),
       },
@@ -160,16 +159,15 @@ export const schema = makeSchema({
     schema: path.join(__dirname, '/../../schema.graphql'),
     typegen: path.join(__dirname, '/generated/nexus.ts'),
   },
-  typegenAutoConfig: {
-    contextType: 'Context.Context',
-    sources: [
+  contextType: {
+    module: require.resolve('./context'),
+    export: 'Context',
+  },
+  sourceTypes: {
+    modules: [
       {
-        source: '@prisma/client',
+        module: '@prisma/client',
         alias: 'prisma',
-      },
-      {
-        source: require.resolve('./context'),
-        alias: 'Context',
       },
     ],
   },

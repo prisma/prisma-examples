@@ -1,4 +1,11 @@
-import { declarativeWrappingPlugin, intArg, makeSchema, objectType, stringArg } from '@nexus/schema'
+import {
+  intArg,
+  makeSchema,
+  nonNull,
+  nullable,
+  objectType,
+  stringArg,
+} from 'nexus'
 import { nexusPrisma } from 'nexus-plugin-prisma'
 
 const User = objectType({
@@ -41,7 +48,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: nullable(stringArg()),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -66,9 +73,9 @@ const Mutation = objectType({
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: stringArg({ nullable: false }),
+        title: nonNull(stringArg()),
         content: stringArg(),
-        authorEmail: stringArg({ nullable: false }),
+        authorEmail: nonNull(stringArg()),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
         return ctx.prisma.post.create({
@@ -84,9 +91,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
       args: {
         id: intArg(),
       },
@@ -102,21 +108,20 @@ const Mutation = objectType({
 
 export const schema = makeSchema({
   types: [Query, Mutation, Post, User],
-  plugins: [nexusPrisma({ experimentalCRUD: true }), declarativeWrappingPlugin()],
+  plugins: [nexusPrisma({ experimentalCRUD: true })],
   outputs: {
     schema: __dirname + '/../schema.graphql',
     typegen: __dirname + '/generated/nexus.ts',
   },
-  typegenAutoConfig: {
-    contextType: 'Context.Context',
-    sources: [
+  contextType: {
+    module: require.resolve('./context'),
+    export: 'Context',
+  },
+  sourceTypes: {
+    modules: [
       {
-        source: '@prisma/client',
+        module: '@prisma/client',
         alias: 'prisma',
-      },
-      {
-        source: require.resolve('./context'),
-        alias: 'Context',
       },
     ],
   },
