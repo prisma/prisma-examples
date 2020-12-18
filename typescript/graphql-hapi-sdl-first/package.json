@@ -7,12 +7,12 @@
   },
   "dependencies": {
     "@hapi/hapi": "20.0.3",
-    "@prisma/client": "2.13.0",
+    "@prisma/client": "2.13.1",
     "@types/node": "14.14.14",
     "apollo-server-hapi": "2.19.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.13.0",
+    "@prisma/cli": "2.13.1",
     "@types/hapi__hapi": "20.0.3",
     "@types/node": "12.19.9",
     "ts-node": "9.1.1",
