@@ -1,4 +1,7 @@
-const { PrismaClient, PrismaClientRequestError } = require('@prisma/client')
+const {
+  Prisma,
+  PrismaClient
+} = require('@prisma/client')
 const prisma = new PrismaClient()
 
 exports.handler = async (event, context, callback) => {
@@ -12,7 +15,7 @@ exports.handler = async (event, context, callback) => {
       body: JSON.stringify(createdUser)
     }
   } catch (e) {
-    if (e instanceof PrismaClientRequestError) {
+    if (e instanceof Prisma.PrismaClientRequestError) {
       if (e.code === 'P2002') {
         return {
           statusCode: 409,

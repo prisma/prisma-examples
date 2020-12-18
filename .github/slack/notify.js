@@ -1,10 +1,21 @@
+const { spawnSync } = require('child_process')
+const arg = require('arg')
 const post = require('./post')
 
 async function run() {
+  const args = arg({
+    '--branch-name': String,
+  })
+  let branchName = args['--branch-name']
   const url = process.env.webhook
-  const message = process.argv[2]
+  const message = args._[0]
 
-  await post(url, message)
+  const gitBranchName = spawnSync('git', ['branch', '--show-current'], {
+    encoding: 'utf-8',
+  })
+  branchName = branchName || gitBranchName.stdout.trim()
+
+  await post(url, `(Branch: ${branchName}) ` + message)
 }
 
 run().catch((err) => {

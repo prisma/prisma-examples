@@ -44,7 +44,9 @@ async function main() {
       posts: true,
     },
   })
-  console.log(`Created users: ${user1.name} (${user1.posts.length} post) and (${user2.posts.length} posts) `)
+  console.log(
+    `Created users: ${user1.name} (${user1.posts.length} post) and ${user2.name} (${user2.posts.length} posts) `,
+  )
 
   // Retrieve all published posts
   const allPosts = await prisma.post.findMany({
@@ -90,10 +92,10 @@ async function main() {
 }
 
 main()
-  .catch(e => {
+  .catch((e) => {
     console.error(e)
     process.exit(1)
   })
   .finally(async () => {
-    await prisma.disconnect()
+    await prisma.$disconnect()
   })

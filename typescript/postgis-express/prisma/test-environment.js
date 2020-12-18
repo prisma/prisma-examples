@@ -23,7 +23,9 @@ class PrismaTestEnvironment extends NodeEnvironment {
   }
 
   async setup() {
-    await this.client.executeRaw(`create schema if not exists "${this.schema}"`)
+    await this.client.$executeRaw(
+      `create schema if not exists "${this.schema}"`,
+    )
 
     // Set the required environment variable to contain the connection string
     // to our database test schema
@@ -37,10 +39,10 @@ class PrismaTestEnvironment extends NodeEnvironment {
 
   async teardown() {
     // Drop the schema after the tests have completed
-    await this.client.executeRaw(
-      `drop schema if exists "${this.schema}" cascade`
+    await this.client.$executeRaw(
+      `drop schema if exists "${this.schema}" cascade`,
     )
-    await this.client.disconnect()
+    await this.client.$disconnect()
   }
 }
 

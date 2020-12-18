@@ -24,7 +24,7 @@ class PostIDInput {
 @Resolver(Post)
 export class PostResolver {
   @FieldResolver()
-  async author(@Root() post: Post, @Ctx() ctx: Context): Promise<User | null> {
+  author(@Root() post: Post, @Ctx() ctx: Context): Promise<User | null> {
     return ctx.prisma.post
       .findOne({
         where: {
@@ -35,35 +35,26 @@ export class PostResolver {
   }
 
   @Query((returns) => Post, { nullable: true })
-  async post(@Arg('where') where: PostIDInput, @Ctx() ctx: Context) {
+  post(@Arg('where') where: PostIDInput, @Ctx() ctx: Context) {
     return ctx.prisma.post.findOne({
       where: { id: where.id },
     })
   }
 
   @Query((returns) => [Post])
-  async filterPosts(
-    @Arg('searchString') searchString: string,
-    @Ctx() ctx: Context,
-  ) {
-    try {
-      const posts = await ctx.prisma.post.findMany({
-        where: {
-          OR: [
-            { title: { contains: searchString } },
-            { content: { contains: searchString } },
-          ],
-        },
-      })
-
-      return posts
-    } catch (error) {
-      throw error
-    }
+  filterPosts(@Arg('searchString') searchString: string, @Ctx() ctx: Context) {
+    return ctx.prisma.post.findMany({
+      where: {
+        OR: [
+          { title: { contains: searchString } },
+          { content: { contains: searchString } },
+        ],
+      },
+    })
   }
 
   @Query((returns) => [Post])
-  async feed(@Ctx() ctx: Context) {
+  feed(@Ctx() ctx: Context) {
     return ctx.prisma.post.findMany({
       where: {
         published: true,
@@ -72,7 +63,7 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post)
-  async createDraft(
+  createDraft(
     @Arg('title') title: string,
     @Arg('content', { nullable: true }) content: string,
     @Arg('authorEmail') authorEmail: string,
@@ -91,7 +82,7 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  async publish(
+  publish(
     @Arg('id', (type) => Int) id: number,
     @Ctx() ctx: Context,
   ): Promise<Post | null> {
@@ -106,11 +97,11 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  async deleteOnePost(
+  deleteOnePost(
     @Arg('where') where: PostIDInput,
     @Ctx() ctx: Context,
   ): Promise<Post | null> {
-    return await ctx.prisma.post.delete({
+    return ctx.prisma.post.delete({
       where: {
         id: where.id,
       },

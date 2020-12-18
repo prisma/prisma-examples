@@ -1,10 +1,26 @@
 # Postgres Geolocation example
 
-This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md).
+This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client).
 
 ## How to use
 
 ### 1. Download example & install dependencies
+
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/postgis-express
+```
+
+Install npm dependencies:
+```
+cd postgis-express
+npm install
+```
+
+Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+
+<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
 
 Clone this repository:
 
@@ -19,7 +35,7 @@ cd prisma-examples/typescript/postgis-express
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</Details>
 
 ### 2. Setup PostgreSQL
 
@@ -33,7 +49,7 @@ Note that this also generates Prisma Client JS into `node_modules/@prisma/client
 create database geoexample;
 ```
 
-- Rename the `.env.example` to `.env` and replace the *DBNAME* placeholder with the database name `geoexample` created in the above step.
+- Rename the `.env.example` to `.env` and replace the _DBNAME_ placeholder with the database name `geoexample` created in the above step.
 
 Run the following command to create the tables and the function required for this example.
 
@@ -48,7 +64,7 @@ npm run prisma -- introspect
 npm run prisma -- generate
 ```
 
-__*Limitation*__: Currently Prisma doesn't support custom data types, so querying for the *geography* type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.queryRaw` or `prisma.executeRaw`.
+**_Limitation_**: Currently Prisma doesn't support custom data types, so querying for the _geography_ type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.$queryRaw` or `prisma.$executeRaw`.
 
 
 ### 3. Start the REST API server

@@ -1,4 +1,4 @@
-import { PrismaClient, PrismaClientRequestError } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default async (req, res) => {
@@ -8,7 +8,7 @@ export default async (req, res) => {
     })
     res.status(200).json(createdUser)
   } catch (e) {
-    if (e instanceof PrismaClientRequestError) {
+    if (e instanceof Prisma.PrismaClientRequestError) {
       if (e.code === 'P2002') {
         return res
           .status(409)

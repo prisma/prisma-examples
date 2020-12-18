@@ -2,8 +2,15 @@
 
 set -eu
 
-channel="$1"
-branch="$2"
+branch="$1"
+
+if [ "$branch" = "patch-dev" ]; then
+    patchDevForLatestExists=$(node .github/scripts/patch-dev-for-latest.js)
+    if [ "$patchDevForLatestExists" = "false" ]; then
+        echo "Exiting because there is no 'patch-dev' released for the current latest"
+        exit 0
+    fi
+fi
 
 no_negatives () {
   echo "$(( $1 < 0 ? 0 : $1 ))"
@@ -44,29 +51,19 @@ while [ $i -le $count ]; do
 
   echo "checking info..."
 
-  v=$(sh .github/scripts/prisma-version.sh "$channel")
+  v=$(sh .github/scripts/prisma-version.sh "$branch")
 
   echo "$packages" | tr ' ' '\n' | while read -r item; do
     echo "checking $item"
 
     case "$item" in
-      *".github"*|*"experimental"*)
+      *".github"*)
         echo "ignoring $item"
         continue
         ;;
     esac
 
     cd "$(dirname "$item")/"
-
-    hasNexusPluginPrisma="$(node -e "console.log(!!require('./package.json').dependencies['nexus-plugin-prisma'])")"
-
-    if [ "$hasNexusPluginPrisma" = "true" ]; then
-      echo "project uses nexus-plugin-prisma, ignoring"
-      yarn remove @prisma/cli || true
-      yarn remove @prisma/client || true
-      cd "$dir"
-      continue
-    fi
 
     vCLI="$(node -e "console.log(require('./package.json').devDependencies['@prisma/cli'])")"
 
@@ -119,7 +116,7 @@ while [ $i -le $count ]; do
 
     export webhook="$SLACK_WEBHOOK_URL_FAILING"
     (cd .github/slack/ && yarn install)
-    node .github/slack/notify.js "Prisma version $v released"
+    node .github/slack/notify.js --branch-name $branch "Prisma version $v released via the action https://github.com/prisma/prisma-examples/actions/runs/$GITHUB_RUN_ID?check_suite_focus=true"
   fi
 
   echo "pushed commit"

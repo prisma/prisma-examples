@@ -2,19 +2,52 @@ name: test
 on:
   push:
     branches:
-      - master
-      - alpha
+      - latest
       - dev
       - patch-dev
   pull_request:
+env:
+  CI: 1
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
+  SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
 jobs:
-  test:
+  projects:
+    if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install deps
+        run: cd .github/scripts && yarn install
+
+      - name: get list of projects in json array
+        id: set-matrix
+        run: node .github/scripts/get-packages.js
+
+  debug:
+    needs: projects
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "${{needs.projects.outputs.matrix}}"
+          echo "${{fromJson(needs.projects.outputs.matrix)}}"
+
+  test:
+    needs: projects
+    if: github.repository_owner == 'prisma'
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.projects.outputs.matrix)}}
 
     services:
       postgres:
         image: postgis/postgis:12-2.5-alpine
         env:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: testing
         # Set health checks to wait until postgres has started
@@ -34,6 +67,8 @@ jobs:
           version: 12
 
       - name: test
-        run: sh .github/scripts/test-all.sh
-        env:
-          SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+        run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
+
+      - name: notify-slack
+        if: failure() && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/patch-dev' || github.ref == 'refs/heads/latest')
+        run: bash .github/scripts/slack-workflow-status.sh ":x:"

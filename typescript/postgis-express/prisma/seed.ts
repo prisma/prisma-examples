@@ -6,7 +6,7 @@ const schema = process.env.DB_URL?.split('?schema=')[1] || 'public'
 async function seed() {
   const sql = await generateSQL()
   for (let statement of sql) {
-    await prisma.executeRaw(statement)
+    await prisma.$executeRaw(statement)
   }
 }
 
@@ -14,7 +14,7 @@ seed()
   .then(() => console.log('seeded!'))
   .catch(console.error)
   .finally(async () => {
-    await prisma.disconnect()
+    await prisma.$disconnect()
   })
 
 async function generateSQL() {

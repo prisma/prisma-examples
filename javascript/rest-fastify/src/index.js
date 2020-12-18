@@ -94,7 +94,7 @@ const start = async () => {
  
     app.blipp();
  
-    console.log(`server listening on ${app.server.address().port}`);
+    console.log('🚀 Server ready at: http://localhost:3000\n⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api');
   } catch (err) {
     app.log.error(err);
     process.exit(1);

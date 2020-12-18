@@ -5,16 +5,19 @@
     "automerge": false
   },
   "masterIssue": true,
-  "baseBranches": ["master"],
+  "baseBranches": ["latest"],
+  "additionalReviewers": ["divyenduz", "nikolasburk"],
   "packageRules": [
     {
-      "baseBranchList": ["master"],
-      "packageNames": ["nexus-prisma"],
-      "enabled": false
+      "baseBranchList": ["latest"],
+      "packageNames": ["nexus-plugin-prisma"],
+      "enabled": true
+    },
+    {
+      "baseBranchList": ["latest"],
+      "packageNames": ["@prisma/cli", "@prisma/client"],
+      "enabled": true,
+      "updateTypes": ["major"]
     }
-  ],
-  "ignoreDeps": [
-    "@prisma/cli",
-    "@prisma/client"
   ]
 }

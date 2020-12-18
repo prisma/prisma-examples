@@ -13,7 +13,6 @@ Every example should follow a number of guidelines.
 - Simple and minimal instead of complex and production-ready
 - Focus on one specific Prisma use case
 - Easily extensible
-- Require global installation of the Prisma 2 CLI but all other dependencies (e.g. `graphqlgen`) only as dev dependencies and invoked via a script (e.g. `npm run graphqlgen`)
 
 ### README guidelines
 

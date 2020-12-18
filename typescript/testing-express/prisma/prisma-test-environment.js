@@ -27,12 +27,16 @@ class PrismaTestEnvironment extends NodeEnvironment {
 
   async setup() {
     // Run the migrations to ensure our schema has the required structure
-    await exec(`${prismaBinary} migrate up --create-db --experimental`)
+    await exec(`${prismaBinary} db push --preview-feature`)
     return super.setup()
   }
 
   async teardown() {
-    await fs.promises.unlink(this.dbPath)
+    try {
+      await fs.promises.unlink(this.dbPath)
+    } catch (error) {
+      // doesn't matter as the environment is torn down
+    }
   }
 }
 

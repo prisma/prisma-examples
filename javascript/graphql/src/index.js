@@ -1,7 +1,7 @@
-const { GraphQLServer } = require('graphql-yoga')
-const { makeSchema, objectType, intArg, stringArg } = require('@nexus/schema')
+const { ApolloServer } = require('apollo-server')
+const { makeSchema, nullable, objectType, intArg, stringArg } = require('nexus')
 const { PrismaClient } = require('@prisma/client')
-const { nexusPrismaPlugin } = require('nexus-prisma')
+const { nexusPrisma } = require('nexus-plugin-prisma')
 
 const User = objectType({
   name: 'User',
@@ -43,7 +43,7 @@ const Query = objectType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: stringArg({ nullable: true }),
+        searchString: nullable(stringArg()),
       },
       resolve: (_, { searchString }, ctx) => {
         return ctx.prisma.post.findMany({
@@ -69,7 +69,7 @@ const Mutation = objectType({
       type: 'Post',
       args: {
         title: stringArg(),
-        content: stringArg({ nullable: true }),
+        content: nullable(stringArg()),
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
@@ -86,9 +86,8 @@ const Mutation = objectType({
       },
     })
 
-    t.field('publish', {
+    t.nullable.field('publish', {
       type: 'Post',
-      nullable: true,
       args: {
         id: intArg(),
       },
@@ -104,20 +103,22 @@ const Mutation = objectType({
 
 const prisma = new PrismaClient()
 
-new GraphQLServer({
+const server = new ApolloServer({
   schema: makeSchema({
     types: [Query, Mutation, Post, User],
-    plugins: [nexusPrismaPlugin()],
+    plugins: [nexusPrisma({ experimentalCRUD: true })],
     outputs: {
       schema: __dirname + '/../schema.graphql',
       typegen: __dirname + '/generated/nexus.ts',
     },
   }),
   context: { prisma },
-}).start(() =>
-  console.log(
-    `🚀 Server ready at: http://localhost:4000\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
-  ),
-)
+})
 
-module.exports = { User, Post }
+server
+  .listen()
+  .then(({ url }) =>
+    console.log(
+      `🚀 Server ready at: ${url}\n⭐️ See sample queries: http://pris.ly/e/js/graphql#using-the-graphql-api`,
+    ),
+  )
