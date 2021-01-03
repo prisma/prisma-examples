@@ -12,7 +12,7 @@
     "@nuxt/http": "0.6.2",
     "@prisma/client": "2.13.1",
     "body-parser": "1.19.0",
-    "core-js": "3.8.1",
+    "core-js": "3.8.2",
     "express": "4.17.1",
     "nuxt": "2.14.12"
   },
