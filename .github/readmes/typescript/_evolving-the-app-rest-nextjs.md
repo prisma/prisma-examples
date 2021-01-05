@@ -1,6 +1,6 @@
 ## Evolving the app
 
-Evolving the application typically requires two steps:
+Evolving the application typically requires three steps:
 
 1. Migrate your database using Prisma Migrate
 1. Update your server-side application code
