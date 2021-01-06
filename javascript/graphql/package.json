@@ -8,7 +8,7 @@
     "apollo-server": "^2.19.0",
     "graphql": "^15.0.0",
     "nexus": "^1.0.0",
-    "nexus-plugin-prisma": "^0.27.0",
+    "nexus-plugin-prisma": "^0.28.0",
     "semver": "7.3.4"
   },
   "scripts": {
