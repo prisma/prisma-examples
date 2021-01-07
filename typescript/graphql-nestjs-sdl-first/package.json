@@ -39,7 +39,7 @@
     "@nestjs/testing": "7.6.5",
     "@prisma/cli": "2.14.0",
     "@types/express": "4.17.9",
-    "@types/jest": "26.0.19",
+    "@types/jest": "26.0.20",
     "@types/node": "14.14.20",
     "@types/supertest": "2.0.10",
     "@typescript-eslint/eslint-plugin": "4.12.0",
