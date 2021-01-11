@@ -9,7 +9,7 @@ This example shows how to implement a **GraphQL server with an email-password-ba
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-server-auth
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-auth
 ```
 
 Install npm dependencies:
