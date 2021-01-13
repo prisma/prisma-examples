@@ -232,7 +232,7 @@ model User {
 +  id     Int     @default(autoincrement()) @id
 +  bio    String?
 +  userId Int     @unique
-+  user   User    @relation(fields: [user], references: [id])
++  user   User    @relation(fields: [userId], references: [id])
 +}
 ```
 
