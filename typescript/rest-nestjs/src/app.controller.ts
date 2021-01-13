@@ -17,7 +17,7 @@ export class AppController {
 
   @Get('post/:id')
   async getPostById(@Param('id') id: string): Promise<PostModel> {
-    return this.prismaService.post.findOne({ where: { id: Number(id) } })
+    return this.prismaService.post.findUnique({ where: { id: Number(id) } })
   }
 
   @Get('feed')

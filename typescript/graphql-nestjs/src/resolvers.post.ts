@@ -29,7 +29,7 @@ export class PostResolver {
   @ResolveField()
   author(@Root() post: Post): Promise<User | null> {
     return this.prismaService.post
-      .findOne({
+      .findUnique({
         where: {
           id: post.id,
         },
@@ -39,7 +39,7 @@ export class PostResolver {
 
   @Query((returns) => Post, { nullable: true })
   post(@Args('where') where: PostIDInput) {
-    return this.prismaService.post.findOne({
+    return this.prismaService.post.findUnique({
       where: { id: where.id },
     })
   }

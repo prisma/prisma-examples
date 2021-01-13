@@ -35,7 +35,7 @@ export const Mutation = mutationType({
         password: nonNull(stringArg()),
       },
       resolve: async (_parent, { email, password }, ctx) => {
-        const user = await ctx.prisma.user.findOne({
+        const user = await ctx.prisma.user.findUnique({
           where: {
             email,
           },

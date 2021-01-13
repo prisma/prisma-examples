@@ -106,7 +106,7 @@ Extend the `src\UserResolver.ts` class with an additional field resolver:
 ```ts
 @FieldResolver()
 async profile(@Root() user: User, @Ctx() ctx: Context): Promise<Profile> {
-  return (await ctx.prisma.user.findOne({
+  return (await ctx.prisma.user.findUnique({
     where: {
       id: user.id
     }
