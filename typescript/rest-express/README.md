@@ -125,7 +125,7 @@ model User {
   email   String   @unique
   id      Int      @id
   name    String?
-  post    Post[]
+  posts   Post[]
   profile Profile?
 }
 
@@ -133,7 +133,7 @@ model Profile {
   bio  String?
   id   Int     @default(autoincrement()) @id
   user Int     @unique
-  User User    @relation(fields: [user], references: [id])
+  User User    @relation(fields: [userId], references: [id])
 }
 ```
 
