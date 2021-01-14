@@ -14,7 +14,7 @@
   "devDependencies": {
     "@prisma/cli": "2.14.0",
     "@types/hapi__hapi": "20.0.4",
-    "@types/node": "12.19.13",
+    "@types/node": "12.19.14",
     "ts-node": "9.1.1",
     "typescript": "4.1.3"
   },
