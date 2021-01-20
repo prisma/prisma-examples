@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.14.0",
+    "@prisma/client": "2.15.0",
     "apollo-server": "2.19.2",
     "bcryptjs": "2.4.3",
     "graphql": "15.4.0",
@@ -22,7 +22,7 @@
     "nexus-plugin-prisma": "0.28.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.14.0",
+    "@prisma/cli": "2.15.0",
     "@types/bcryptjs": "2.4.2",
     "@types/jsonwebtoken": "8.5.0",
     "@types/node": "12.19.14",
