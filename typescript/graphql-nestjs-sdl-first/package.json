@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@nestjs/cli": "7.5.4",
-    "@nestjs/schematics": "7.2.6",
+    "@nestjs/schematics": "7.2.7",
     "@nestjs/testing": "7.6.5",
     "@prisma/cli": "2.15.0",
     "@types/express": "4.17.11",
