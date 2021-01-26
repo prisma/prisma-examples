@@ -12,7 +12,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index"
   },
   "dependencies": {
-    "@hapi/hapi": "20.0.3",
+    "@hapi/hapi": "20.1.0",
     "@prisma/client": "2.15.0",
     "@types/node": "14.14.22",
     "apollo-server-hapi": "2.19.2",
