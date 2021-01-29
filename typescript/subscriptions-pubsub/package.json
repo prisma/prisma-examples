@@ -18,7 +18,7 @@
     "apollo-server": "2.19.2",
     "dotenv": "8.2.0",
     "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.28.0"
+    "nexus-plugin-prisma": "0.29.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.15.0",
