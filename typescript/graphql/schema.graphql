@@ -2,46 +2,47 @@
 ### Do not make changes to this file directly
 
 
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
 type Mutation {
-  createDraft(authorEmail: String!, content: String, title: String!): Post
-  deleteOnePost(where: PostWhereUniqueInput!): Post
-  publish(id: Int): Post
+  createDraft(authorEmail: String!, data: PostCreateInput!): Post
+  deletePost(id: Int!): Post
+  incrementPostViewCount(id: Int!): Post
   signupUser(data: UserCreateInput!): User!
+  togglePublishPost(id: Int!): Post
 }
 
 type Post {
   author: User
   content: String
+  createdAt: DateTime!
   id: Int!
   published: Boolean!
   title: String!
+  updatedAt: DateTime!
+  viewCount: Int!
 }
 
-input PostCreateManyWithoutAuthorInput {
-  connect: [PostWhereUniqueInput!]
-  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
-  create: [PostCreateWithoutAuthorInput!]
-}
-
-input PostCreateOrConnectWithoutauthorInput {
-  create: PostCreateWithoutAuthorInput!
-  where: PostWhereUniqueInput!
-}
-
-input PostCreateWithoutAuthorInput {
+input PostCreateInput {
   content: String
-  published: Boolean
   title: String!
 }
 
-input PostWhereUniqueInput {
-  id: Int
+enum PostOrderBy {
+  createdAt_asc
+  createdAt_desc
+  updatedAt_asc
+  updatedAt_desc
 }
 
 type Query {
-  feed: [Post]
-  filterPosts(searchString: String): [Post]
-  post(where: PostWhereUniqueInput!): Post
+  draftsByUser(userUniqueInput: UserUniqueInput!): [Post]
+  feed(orderBy: PostOrderBy, searchString: String, skip: Int, take: Int): [Post!]!
+  hello: String
+  postById(id: Int): Post
 }
 
 type User {
@@ -54,5 +55,10 @@ type User {
 input UserCreateInput {
   email: String!
   name: String
-  posts: PostCreateManyWithoutAuthorInput
+  posts: [PostCreateInput!]!
+}
+
+input UserUniqueInput {
+  email: String
+  id: Int
 }
