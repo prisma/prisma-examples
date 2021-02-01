@@ -21,10 +21,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "7.6.7",
-    "@nestjs/core": "7.6.7",
+    "@nestjs/common": "7.6.8",
+    "@nestjs/core": "7.6.8",
     "@nestjs/graphql": "7.9.8",
-    "@nestjs/platform-express": "7.6.7",
+    "@nestjs/platform-express": "7.6.8",
     "@prisma/client": "2.15.0",
     "apollo-server-express": "2.19.2",
     "class-validator": "0.13.1",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@nestjs/cli": "7.5.4",
     "@nestjs/schematics": "7.2.7",
-    "@nestjs/testing": "7.6.7",
+    "@nestjs/testing": "7.6.8",
     "@prisma/cli": "2.15.0",
     "@types/express": "4.17.11",
     "@types/jest": "26.0.20",
