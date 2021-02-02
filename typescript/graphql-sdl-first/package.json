@@ -9,7 +9,7 @@
     "apollo-server": "2.19.2"
   },
   "devDependencies": {
-    "@prisma/cli": "2.15.0",
+    "prisma": "2.15.0",
     "@types/graphql": "14.5.0",
     "@types/node": "12.19.15",
     "@types/ws": "7.4.0",

@@ -12,7 +12,7 @@
     "apollo-server-hapi": "2.19.2"
   },
   "devDependencies": {
-    "@prisma/cli": "2.15.0",
+    "prisma": "2.15.0",
     "@types/hapi__hapi": "20.0.5",
     "@types/node": "12.19.15",
     "ts-node": "9.1.1",

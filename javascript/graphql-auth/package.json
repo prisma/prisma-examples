@@ -16,7 +16,7 @@
     "dev": "node src"
   },
   "devDependencies": {
-    "@prisma/cli": "2.15.0"
+    "prisma": "2.15.0"
   },
   "prettier": {
     "singleQuote": true,
