@@ -5,7 +5,6 @@
   },
   "scripts": {
     "start": "node index.js",
-    "prisma:introspect": "prisma introspect",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },
