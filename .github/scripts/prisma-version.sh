@@ -4,4 +4,4 @@ set -eu
 
 channel="$1"
 
-npm show @prisma/cli@"$channel" version
+npm show prisma@"$channel" version
