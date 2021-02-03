@@ -12,7 +12,7 @@
     "semver": "7.3.4"
   },
   "devDependencies": {
-    "@prisma/cli": "2.16.0"
+    "prisma": "2.16.0"
   },
   "prettier": {
     "singleQuote": true,

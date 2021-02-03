@@ -20,6 +20,6 @@
     "react-markdown": "^5.0.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.16.0"
+    "prisma": "2.16.0"
   }
 }

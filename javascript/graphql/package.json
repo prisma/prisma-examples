@@ -15,7 +15,7 @@
     "dev": "nodemon src"
   },
   "devDependencies": {
-    "@prisma/cli": "2.16.0",
+    "prisma": "2.16.0",
     "nodemon": "2.0.7"
   },
   "prettier": {

@@ -21,7 +21,7 @@
     "nexus-plugin-prisma": "0.29.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.16.0",
+    "prisma": "2.16.0",
     "@types/node": "13.13.40",
     "@types/prettier": "2.1.6",
     "cross-env": "7.0.3",

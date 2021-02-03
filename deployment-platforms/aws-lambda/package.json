@@ -9,7 +9,7 @@
     "prisma:generate": "prisma generate"
   },
   "devDependencies": {
-    "@prisma/cli": "2.16.0",
+    "prisma": "2.16.0",
     "serverless-dotenv-plugin": "3.1.0"
   },
   "license": "MIT"
