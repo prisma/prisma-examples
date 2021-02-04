@@ -1,7 +1,7 @@
 {
   "name": "prisma-aws-lambda-example",
   "dependencies": {
-    "@prisma/client": "2.17.0-dev.10"
+    "@prisma/client": "2.17.0-dev.11"
   },
   "scripts": {
     "start": "node index.js",
@@ -9,7 +9,7 @@
     "prisma:generate": "prisma generate"
   },
   "devDependencies": {
-    "prisma": "2.17.0-dev.10",
+    "prisma": "2.17.0-dev.11",
     "serverless-dotenv-plugin": "3.1.0"
   },
   "license": "MIT"
