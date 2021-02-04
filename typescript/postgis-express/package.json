@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@prisma/client": "2.16.0",
-    "@types/node": "12.19.15",
+    "@types/node": "12.19.16",
     "body-parser": "1.19.0",
     "express": "4.17.1"
   },
@@ -18,7 +18,7 @@
     "@types/body-parser": "1.19.0",
     "@types/express": "4.17.11",
     "@types/jest": "26.0.20",
-    "@types/node": "12.19.15",
+    "@types/node": "12.19.16",
     "@types/supertest": "2.0.10",
     "jest": "26.6.3",
     "jest-environment-node": "26.6.2",
