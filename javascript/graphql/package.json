@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "2.17.0-dev.11",
+    "@prisma/client": "2.17.0-dev.12",
     "apollo-server": "^2.19.0",
     "graphql": "^15.0.0",
     "nexus": "^1.0.0",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "nodemon": "2.0.7",
-    "prisma": "2.17.0-dev.11"
+    "prisma": "2.17.0-dev.12"
   },
   "prettier": {
     "singleQuote": true,
