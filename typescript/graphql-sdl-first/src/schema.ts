@@ -71,7 +71,7 @@ export const resolvers = {
       })
     },
     post: (parent, args, ctx: Context) => {
-      return ctx.prisma.post.findOne({
+      return ctx.prisma.post.findUnique({
         where: { id: Number(args.where.id) },
       })
     },
@@ -107,7 +107,7 @@ export const resolvers = {
   User: {
     posts: (parent, args, ctx: Context) => {
       return ctx.prisma.user
-        .findOne({
+        .findUnique({
           where: { id: parent.id },
         })
         .posts()
@@ -116,7 +116,7 @@ export const resolvers = {
   Post: {
     author: (parent, args, ctx: Context) => {
       return ctx.prisma.post
-        .findOne({
+        .findUnique({
           where: { id: parent.id },
         })
         .author()

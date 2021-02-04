@@ -26,7 +26,7 @@ model User {
   id      Int      @default(autoincrement()) @id 
   name    String? 
   email   String   @unique
-  post    Post[]
+  posts   Post[]
 + profile Profile?
 }
 
@@ -34,14 +34,14 @@ model User {
 +  id     Int     @default(autoincrement()) @id
 +  bio    String?
 +  userId Int     @unique
-+  user   User    @relation(fields: [user], references: [id])
++  user   User    @relation(fields: [userId], references: [id])
 +}
 ```
 
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --preview-feature
 ```
 
 ### 2. Update your application code

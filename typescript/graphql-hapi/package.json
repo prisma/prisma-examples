@@ -12,17 +12,17 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index"
   },
   "dependencies": {
-    "@hapi/hapi": "20.0.3",
-    "@prisma/client": "2.14.0",
-    "@types/node": "14.14.20",
-    "apollo-server-hapi": "2.19.1",
+    "@hapi/hapi": "20.1.0",
+    "@prisma/client": "2.16.0",
+    "@types/node": "14.14.24",
+    "apollo-server-hapi": "2.19.2",
     "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.28.0"
+    "nexus-plugin-prisma": "0.29.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.14.0",
-    "@types/hapi__hapi": "20.0.3",
-    "@types/node": "14.14.20",
+    "prisma": "2.16.0",
+    "@types/hapi__hapi": "20.0.5",
+    "@types/node": "14.14.24",
     "ts-node": "9.1.1",
     "typescript": "4.1.3",
     "ts-node-dev": "1.1.1"

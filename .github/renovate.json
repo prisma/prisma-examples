@@ -15,7 +15,7 @@
     },
     {
       "baseBranchList": ["latest"],
-      "packageNames": ["@prisma/cli", "@prisma/client"],
+      "packageNames": ["prisma", "@prisma/client"],
       "enabled": true,
       "updateTypes": ["major"]
     }

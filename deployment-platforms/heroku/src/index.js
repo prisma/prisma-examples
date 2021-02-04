@@ -103,7 +103,7 @@ app.delete(`/api/post/:id`, async (req, res) => {
 
 app.get(`/api/post/:id`, async (req, res) => {
   const { id } = req.params
-  const post = await prisma.post.findOne({
+  const post = await prisma.post.findUnique({
     where: {
       id: parseInt(id),
     },

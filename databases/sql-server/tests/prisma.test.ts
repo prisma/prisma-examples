@@ -198,7 +198,7 @@ describe('example test with Prisma Client', () => {
 
   test('Get all published posts with a given tag', async () => {
     // Retrieve all published posts
-    const taggedPosts = await prisma.tag.findOne({
+    const taggedPosts = await prisma.tag.findUnique({
       where: {
         tag: 'Node.js',
       },
@@ -270,7 +270,7 @@ describe('example test with Prisma Client', () => {
   test('Find comments by a user', async () => {
     // Retrieve all published posts
     const userComments = await prisma.user
-      .findOne({
+      .findUnique({
         where: {
           email: 'shakuntala@prisma.io',
         },
@@ -283,7 +283,7 @@ describe('example test with Prisma Client', () => {
   test('Fetch posts by a user', async () => {
     // Retrieve all published posts
     const userPosts = await prisma.user
-      .findOne({
+      .findUnique({
         where: {
           email: 'shakuntala@prisma.io',
         },
