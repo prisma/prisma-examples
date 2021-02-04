@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "2.16.0",
+    "@prisma/client": "2.17.0-dev.10",
     "next": "10.0.6",
     "next-auth": "3.2.0",
     "react": "17.0.1",
@@ -19,10 +19,10 @@
     "react-markdown": "5.0.3"
   },
   "devDependencies": {
-    "prisma": "2.16.0",
     "@types/next-auth": "3.1.24",
     "@types/node": "14.14.25",
     "@types/react": "17.0.1",
+    "prisma": "2.17.0-dev.10",
     "typescript": "4.1.3"
   }
 }
