@@ -11,13 +11,13 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "prisma": "2.16.0",
-    "@prisma/client": "2.16.0",
+    "@prisma/client": "2.17.0-dev.10",
     "@types/node-fetch": "2.5.8",
     "apollo-server": "2.19.2",
     "graphql": "15.5.0",
     "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.29.0"
+    "nexus-plugin-prisma": "0.29.0",
+    "prisma": "2.17.0-dev.10"
   },
   "devDependencies": {
     "@types/node": "12.19.16",
