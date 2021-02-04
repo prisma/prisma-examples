@@ -17,7 +17,7 @@
     "@types/node": "14.14.25",
     "apollo-server-hapi": "2.19.2",
     "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.29.0"
+    "nexus-plugin-prisma": "0.30.0"
   },
   "devDependencies": {
     "prisma": "2.16.0",
