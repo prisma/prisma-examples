@@ -45,6 +45,8 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm install
+      - run: docker-compose version
+      - run: docker version
       - run: npx prisma introspect
       - run: cp prisma/schema-introspected-renamed.prisma prisma/schema.prisma
       - run: npx prisma generate
