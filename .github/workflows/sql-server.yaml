@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm install
-      - run: mv /etc/hosts /etc/hosts.backup; echo 'localhost 127.0.0.1' > /etc/hosts
+      - run: echo '127.0.0.1 localhost' > /etc/hosts
       - run: npx prisma introspect
       - run: cp prisma/schema-introspected-renamed.prisma prisma/schema.prisma
       - run: npx prisma generate
