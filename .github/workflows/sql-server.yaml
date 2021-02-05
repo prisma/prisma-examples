@@ -37,4 +37,4 @@ jobs:
         run: /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
       - name: test ::1
         continue-on-error: true
-        run: /opt/mssql-tools/bin/sqlcmd -S ::1 -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
+        run: /opt/mssql-tools/bin/sqlcmd -S [::1] -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
