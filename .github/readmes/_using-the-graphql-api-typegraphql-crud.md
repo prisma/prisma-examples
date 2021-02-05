@@ -62,7 +62,11 @@ mutation {
     data: {
       title: "Join the Prisma Slack",
       content: "https://slack.prisma.io"
-      email: "alice@prisma.io"
+      author: {
+        connect: {
+          email: "alice@prisma.io"
+        }
+      }
     }
   ) {
     id

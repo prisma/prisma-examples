@@ -49,21 +49,23 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ## Using the GraphQL API
 
-`typegraphql-prisma` emits the generated TypeGraphql classes to `@generated/typegraphql-prisma` that is located in the `node_modules` whenever `npx prisma generate` is invoked. It also generates a number of model classes, enums and CRUD resolvers and relations resolver based on your `schema.prisma` file. CRUD resolvers support the following operations that are 1:1 matching with the `PrismaClient` API:
+`typegraphql-prisma` emits the generated TypeGraphQL classes to `node_modules/@generated/typegraphql-prisma` whenever `npx prisma generate` is invoked. 
 
-- create
-- update
-- delete
-- findUnique
-- findFirst
-- findMany
-- updateMany
-- deleteMany
-- upsert
-- aggregate
-- groupBy
+It also generates a number of model classes, enums as well CRUD and relation resolver based on your `schema.prisma` file. The generated CRUD resolvers match the operations of the [Prisma Client API](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference):
 
-Below are example operations that you can send to the API using the GraphQL Playground. You can explore other operations in the Docs section of the GraphQL Playground.
+- `create`
+- `update`
+- `delete`
+- `findUnique`
+- `findFirst`
+- `findMany`
+- `updateMany`
+- `deleteMany`
+- `upsert`
+- `aggregate`
+- `groupBy`
+
+Below are example operations that you can send to the API using the GraphQL Playground. You can explore other operations in the **Docs** section of the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
@@ -109,7 +111,11 @@ mutation {
     data: {
       title: "Join the Prisma Slack",
       content: "https://slack.prisma.io"
-      email: "alice@prisma.io"
+      author: {
+        connect: {
+          email: "alice@prisma.io"
+        }
+      }
     }
   ) {
     id
@@ -217,7 +223,7 @@ model User {
   id      Int      @default(autoincrement()) @id 
   name    String? 
   email   String   @unique
-  post    Post[]
+  posts   Post[]
 + profile Profile?
 }
 
@@ -225,14 +231,14 @@ model User {
 +  id     Int     @default(autoincrement()) @id
 +  bio    String?
 +  userId Int     @unique
-+  user   User    @relation(fields: [user], references: [id])
++  user   User    @relation(fields: [userId], references: [id])
 +}
 ```
 
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --preview-feature
 ```
 
 ### 2. Update your application code
@@ -296,7 +302,7 @@ Extend the `src\UserResolver.ts` class with an additional field resolver:
 ```ts
 @FieldResolver()
 async profile(@Root() user: User, @Ctx() ctx: Context): Promise<Profile> {
-  return (await ctx.prisma.user.findOne({
+  return (await ctx.prisma.user.findUnique({
     where: {
       id: user.id
     }
