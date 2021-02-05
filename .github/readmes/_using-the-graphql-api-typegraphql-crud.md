@@ -1,20 +1,22 @@
 ## Using the GraphQL API
 
-`typegraphql-prisma` emits the generated TypeGraphql classes to `@generated/typegraphql-prisma` that is located in the `node_modules` whenever `npx prisma generate` is invoked. It also generates a number of model classes, enums and CRUD resolvers and relations resolver based on your `schema.prisma` file. CRUD resolvers support the following operations that are 1:1 matching with the `PrismaClient` API:
+`typegraphql-prisma` emits the generated TypeGraphQL classes to `node_modules/@generated/typegraphql-prisma` whenever `npx prisma generate` is invoked. 
 
-- create
-- update
-- delete
-- findUnique
-- findFirst
-- findMany
-- updateMany
-- deleteMany
-- upsert
-- aggregate
-- groupBy
+It also generates a number of model classes, enums as well CRUD and relation resolver based on your `schema.prisma` file. The generated CRUD resolvers match the operations of the [Prisma Client API](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference):
 
-Below are example operations that you can send to the API using the GraphQL Playground. You can explore other operations in the Docs section of the GraphQL Playground.
+- `create`
+- `update`
+- `delete`
+- `findUnique`
+- `findFirst`
+- `findMany`
+- `updateMany`
+- `deleteMany`
+- `upsert`
+- `aggregate`
+- `groupBy`
+
+Below are example operations that you can send to the API using the GraphQL Playground. You can explore other operations in the **Docs** section of the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
 
