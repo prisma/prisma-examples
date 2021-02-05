@@ -38,25 +38,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: test sql-server
         continue-on-error: true
-        uses: docker://mcr.microsoft.com/mssql-tools
-        with:
-          entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"'
+        run: /opt/mssql-tools/bin/sqlcmd -S sql-server -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
       - name: test localhost
         continue-on-error: true
-        uses: docker://mcr.microsoft.com/mssql-tools
-        with:
-          entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S localhost -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"'
+        run: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
       - name: test 127.0.0.1
         continue-on-error: true
-        uses: docker://mcr.microsoft.com/mssql-tools
-        with:
-          entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"'
+        run: /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
       - name: test ::1
         continue-on-error: true
-        uses: docker://mcr.microsoft.com/mssql-tools
-        with:
-          entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S ::1 -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"'
+        run: /opt/mssql-tools/bin/sqlcmd -S ::1 -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
