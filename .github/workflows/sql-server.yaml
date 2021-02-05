@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: apt-cache madison moby-engine
-      - run: sudo apt install moby-engine=19.03.14+azure-1
+      - run: sudo apt install moby-engine=19.03.14+azure-1 --allow-downgrades
       - name: test localhost
         continue-on-error: true
         run: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
