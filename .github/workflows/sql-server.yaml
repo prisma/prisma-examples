@@ -52,10 +52,10 @@ jobs:
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: "-S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4' -Q 'SELECT 1'"
+          args: "-S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4 -Q 'SELECT 1'"
       - name: test ::1
         continue-on-error: true
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: "-S ::1 -U SA -P Pr1sm4_Pr1sm4' -Q 'SELECT 1'"
+          args: "-S ::1 -U SA -P Pr1sm4_Pr1sm4 -Q 'SELECT 1'"
