@@ -29,8 +29,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: apt-cache madison docker-ce
-      - run: sudo apt install docker-ce=5:20.10.1~3-0~ubuntu-bionic
+      - run: apt-cache madison moby-engine
+      - run: sudo apt install moby-engine=5:20.10.1~3-0~ubuntu-bionic
       - name: test localhost
         continue-on-error: true
         run: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P Pr1sm4_Pr1sm4 -Q "SELECT 1"
