@@ -41,18 +41,21 @@ jobs:
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
           args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -i ./databases/sql-server/schema.sql'
-      - name: test 1
+      - name: test localhost
+        continue-on-error: true
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S localhost -U SA -P Pr1sm4_Pr1sm4'
-      - name: test 2
+          args: "-S localhost -U SA -P Pr1sm4_Pr1sm4' -Q 'SELECT 1'"
+      - name: test 127.0.0.1
+        continue-on-error: true
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4'
-      - name: test 3
+          args: "-S 127.0.0.1 -U SA -P Pr1sm4_Pr1sm4' -Q 'SELECT 1'"
+      - name: test ::1
+        continue-on-error: true
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S ::1 -U SA -P Pr1sm4_Pr1sm4'
+          args: "-S ::1 -U SA -P Pr1sm4_Pr1sm4' -Q 'SELECT 1'"
