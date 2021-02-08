@@ -14,14 +14,14 @@
     "start": "cross-env NODE_ENV=production node dist/src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "2.16.0",
+    "@prisma/client": "2.16.1",
     "apollo-server": "2.19.2",
     "dotenv": "8.2.0",
     "nexus": "1.0.0",
     "nexus-plugin-prisma": "0.30.0"
   },
   "devDependencies": {
-    "prisma": "2.16.0",
+    "prisma": "2.16.1",
     "@types/node": "13.13.41",
     "@types/prettier": "2.2.0",
     "cross-env": "7.0.3",
