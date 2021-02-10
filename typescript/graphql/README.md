@@ -2,16 +2,15 @@
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
-
-- **Apollo Server**: HTTP server specialized for GraphQL     
+- **Apollo Server**: HTTP server for GraphQL APIs   
 - **GraphQL Nexus**: GraphQL schema definition and resolver implementation 
 - **Prisma Client**: Databases access (ORM)                  
-- **Prisma Migrate**: Database migrations                  
+- **Prisma Migrate**: Database migrations               
 - **SQLite**: Local, file-based SQL database          
 
 ## How to use
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
 
 Download this example:
 
@@ -43,9 +42,9 @@ npm install
 
 </details>
 
-### 2. Create & seed the database
+### 2. Create and seed the database
 
-Run the following command to create your SQLite database file, including the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
 ```
 npx prisma migrate dev --name init --preview-feature
@@ -101,7 +100,17 @@ query {
     userUniqueInput: {
       email: "alice@prisma.io"
     }
-  )
+  ) {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
 }
 ```
 
