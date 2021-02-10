@@ -31,18 +31,20 @@ input PostCreateInput {
   title: String!
 }
 
-enum PostOrderBy {
-  createdAt_asc
-  createdAt_desc
-  updatedAt_asc
-  updatedAt_desc
+input PostOrderByUpdatedAtInput {
+  updatedAt: SortOrder!
 }
 
 type Query {
+  allUsers: [User!]!
   draftsByUser(userUniqueInput: UserUniqueInput!): [Post]
-  feed(orderBy: PostOrderBy, searchString: String, skip: Int, take: Int): [Post!]!
-  hello: String
+  feed(orderBy: PostOrderByUpdatedAtInput, searchString: String, skip: Int, take: Int): [Post!]!
   postById(id: Int): Post
+}
+
+enum SortOrder {
+  asc
+  desc
 }
 
 type User {
@@ -55,7 +57,7 @@ type User {
 input UserCreateInput {
   email: String!
   name: String
-  posts: [PostCreateInput!]!
+  posts: [PostCreateInput!]
 }
 
 input UserUniqueInput {

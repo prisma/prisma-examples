@@ -10,15 +10,29 @@ import {
   enumType,
 } from 'nexus'
 import { GraphQLDateTime } from 'graphql-iso-date'
-import { Prisma } from '@prisma/client'
 
 export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
 
 const Query = objectType({
   name: 'Query',
   definition(t) {
-    t.string('hello', {
-      resolve: () => 'Hello World',
+    t.nonNull.list.nonNull.field('allUsers', {
+      type: 'User',
+      resolve: (_parent, _args, context) => {
+        return context.prisma.user.findMany()
+      },
+    })
+
+    t.nullable.field('postById', {
+      type: 'Post',
+      args: {
+        id: intArg(),
+      },
+      resolve: (_parent, args, context) => {
+        return context.prisma.post.findUnique({
+          where: { id: args.id || undefined },
+        })
+      },
     })
 
     t.nonNull.list.nonNull.field('feed', {
@@ -28,21 +42,27 @@ const Query = objectType({
         skip: intArg(),
         take: intArg(),
         orderBy: arg({
-          type: 'PostOrderBy',
+          type: 'PostOrderByUpdatedAtInput',
         }),
       },
       resolve: (_parent, args, context) => {
+        const or = args.searchString
+          ? {
+              OR: [
+                { title: { contains: args.searchString } },
+                { content: { contains: args.searchString } },
+              ],
+            }
+          : {}
+
         return context.prisma.post.findMany({
           where: {
             published: true,
-            OR: [
-              { title: { contains: args.searchString || undefined } },
-              { content: { contains: args.searchString || undefined } },
-            ],
+            ...or,
           },
           take: args.take || undefined,
           skip: args.skip || undefined,
-          orderBy: transformOrderBy(args.orderBy),
+          orderBy: args.orderBy || undefined,
         })
       },
     })
@@ -66,21 +86,9 @@ const Query = objectType({
           })
           .posts({
             where: {
-              published: true,
+              published: false,
             },
           })
-      },
-    })
-
-    t.nullable.field('postById', {
-      type: 'Post',
-      args: {
-        id: intArg(),
-      },
-      resolve: (_parent, args, context) => {
-        return context.prisma.post.findUnique({
-          where: { id: args.id || undefined },
-        })
       },
     })
   },
@@ -99,7 +107,7 @@ const Mutation = objectType({
         ),
       },
       resolve: (_, args, context) => {
-        const postData = args.data.posts.map((post) => {
+        const postData = args.data.posts?.map((post) => {
           return { title: post.title, content: post.content || undefined }
         })
         return context.prisma.user.create({
@@ -216,12 +224,8 @@ const Post = objectType({
   name: 'Post',
   definition(t) {
     t.nonNull.int('id')
-    t.nonNull.field('createdAt', {
-      type: 'DateTime',
-    })
-    t.nonNull.field('updatedAt', {
-      type: 'DateTime',
-    })
+    t.nonNull.field('createdAt', { type: 'DateTime' })
+    t.nonNull.field('updatedAt', { type: 'DateTime' })
     t.nonNull.string('title')
     t.string('content')
     t.nonNull.boolean('published')
@@ -239,14 +243,16 @@ const Post = objectType({
   },
 })
 
-const PostOrderBy = enumType({
-  name: 'PostOrderBy',
-  members: [
-    'createdAt_asc',
-    'createdAt_desc',
-    'updatedAt_asc',
-    'updatedAt_desc',
-  ],
+const SortOrder = enumType({
+  name: 'SortOrder',
+  members: ['asc', 'desc'],
+})
+
+const PostOrderByUpdatedAtInput = inputObjectType({
+  name: 'PostOrderByUpdatedAtInput',
+  definition(t) {
+    t.nonNull.field('updatedAt', { type: 'SortOrder' })
+  },
 })
 
 const UserUniqueInput = inputObjectType({
@@ -270,9 +276,7 @@ const UserCreateInput = inputObjectType({
   definition(t) {
     t.nonNull.string('email')
     t.string('name')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'PostCreateInput',
-    })
+    t.list.nonNull.field('posts', { type: 'PostCreateInput' })
   },
 })
 
@@ -285,7 +289,8 @@ export const schema = makeSchema({
     UserUniqueInput,
     UserCreateInput,
     PostCreateInput,
-    PostOrderBy,
+    SortOrder,
+    PostOrderByUpdatedAtInput,
     DateTime,
   ],
   outputs: {
@@ -305,14 +310,3 @@ export const schema = makeSchema({
     ],
   },
 })
-
-function transformOrderBy(
-  orderBy: string | null | undefined,
-): Prisma.PostOrderByInput | undefined {
-  if (!orderBy) {
-    return undefined
-  }
-  const raw = orderBy.split('_') as [string, string]
-  const map = new Map([raw])
-  return Object.fromEntries(map)
-}

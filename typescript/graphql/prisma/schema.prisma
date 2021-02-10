@@ -12,6 +12,7 @@ model User {
   email String  @unique
   name  String?
   posts Post[]
+  profile Profile?
 }
 
 model Post {
@@ -24,4 +25,11 @@ model Post {
   viewCount Int      @default(0)
   authorId  Int?
   author    User?    @relation(fields: [authorId], references: [id])
+}
+
+model Profile {
+  id     Int     @default(autoincrement()) @id
+  bio    String?
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id])
 }

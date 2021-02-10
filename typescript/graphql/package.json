@@ -18,7 +18,7 @@
     "nexus": "1.0.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.15.0",
+    "prisma": "2.15.0",
     "@types/graphql-iso-date": "^3.4.0",
     "@types/node": "12.19.15",
     "@types/ws": "7.4.0",
