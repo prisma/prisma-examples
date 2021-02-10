@@ -1,6 +1,14 @@
 # GraphQL Server Example
 
-This example shows how to implement a **GraphQL server with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [Apollo Server](https://www.apollographql.com/docs/apollo-server/getting-started/) and [Nexus Schema](https://nxs.li/components/standalone/schema). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
+
+| Tool / Library | Description                             |
+| :------------- | :-------------------------------------- |
+| Apollo Server  | HTTP server specialized for GraphQL     |
+| GraphQL Nexus  | Define and implement the GraphQL schema |
+| Prisma Client  | Databases access (ORM)                  |
+| Prisma Migrate | Database migrations                     |
+| SQLite         | Local, file-based SQL database          |
 
 ## How to use
 
@@ -13,14 +21,13 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 ```
 
 Install npm dependencies:
+
 ```
 cd graphql
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
-
-<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
 Clone this repository:
 
@@ -35,7 +42,21 @@ cd prisma-examples/typescript/graphql
 npm install
 ```
 
-</Details>
+</details>
+
+### 2. Create & seed the database
+
+Run the following command to create your SQLite database file, including the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+
+```
+npx prisma migrate dev --name init --preview-feature
+```
+
+Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
+
+```
+npx prisma db seed --preview-feature
+```
 
 ### 2. Start the GraphQL server
 
@@ -71,18 +92,26 @@ query {
 }
 ```
 
-<Details><Summary><strong>See more API operations</strong></Summary>
+<details><summary><strong>See more API operations</strong></summary>
+
+### Retrieve the drafts of a user
+
+```graphql
+{
+  draftsByUser(
+    userUniqueInput: {
+      email: "alice@prisma.io"
+    }
+  )
+}
+```
+
 
 ### Create a new user
 
 ```graphql
 mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
-    }
-  ) {
+  signupUser(data: { name: "Sarah", email: "sarah@prisma.io" }) {
     id
   }
 }
@@ -93,21 +122,25 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
-    authorEmail: "alice@prisma.io"
+    data: { title: "Join the Prisma Slack", content: "https://slack.prisma.io" }
+    authorEmail: "sarah@prisma.io"
   ) {
     id
+    viewCount
     published
+    author {
+      id
+      name
+    }
   }
 }
 ```
 
-### Publish an existing draft
+### Publish/unpublish an existing draft
 
 ```graphql
 mutation {
-  publish(id: __POST_ID__) {
+  togglePublishPost(id: __POST_ID__) {
     id
     published
   }
@@ -116,20 +149,48 @@ mutation {
 
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
-### Search for posts with a specific title or content
+### Increment the view count of a post
+
+```graphql
+mutation {
+  incrementViewCount(id: __POST_ID__) {
+    id
+    viewCount
+  }
+}
+```
+
+> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+
+### Search for posts that contain a specific string in their title or content
 
 ```graphql
 {
-  filterPosts(searchString: "graphql") {
+  feed(
+    searchString: "graphql"
+    orderBy: createdAt_desc
+  ) {
     id
     title
     content
     published
-    author {
-      id
-      name
-      email
-    }
+  }
+}
+```
+
+### Paginate and order the returned posts
+
+```graphql
+{
+  feed(
+    skip: 20
+    take: 10
+    orderBy: createdAt_desc
+  ) {
+    id
+    title
+    content
+    published
   }
 }
 ```
@@ -138,16 +199,11 @@ mutation {
 
 ```graphql
 {
-  post(where: { id: __POST_ID__ }) {
+  postById(id: __POST_ID__ ) {
     id
     title
     content
     published
-    author {
-      id
-      name
-      email
-    }
   }
 }
 ```
@@ -158,8 +214,7 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: __POST_ID__})
-  {
+  deletePost(id: __POST_ID__) {
     id
   }
 }
@@ -167,8 +222,7 @@ mutation {
 
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
-</Details>
-
+</details>
 
 ## Evolving the app
 
@@ -195,8 +249,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -236,7 +290,14 @@ const User = objectType({
     t.model.posts({
       pagination: false,
     })
-+   t.model.profile()
++   t.field('profile', {
++     type: 'Profile',
++     resolve: (parent, _, context) => {
++       return context.prisma.user.findUnique({
++         where: { id: parent.id }
++       }).profile()
++     }
+    })
   },
 })
 
@@ -268,12 +329,12 @@ As the Prisma Client API was updated, you can now also invoke "raw" operations v
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: "Hello World",
+    bio: 'Hello World',
     user: {
-      connect: { email: "alice@prisma.io" },
+      connect: { email: 'alice@prisma.io' },
     },
   },
-});
+})
 ```
 
 ##### Create a new user with a new profile
@@ -281,35 +342,38 @@ const profile = await prisma.profile.create({
 ```ts
 const user = await prisma.user.create({
   data: {
-    email: "john@prisma.io",
-    name: "John",
+    email: 'john@prisma.io',
+    name: 'John',
     profile: {
       create: {
-        bio: "Hello World",
+        bio: 'Hello World',
       },
     },
   },
-});
+})
 ```
 
 ##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: "alice@prisma.io" },
+  where: { email: 'alice@prisma.io' },
   data: {
     profile: {
       update: {
-        bio: "Hello Friends",
+        bio: 'Hello Friends',
       },
     },
   },
-});
+})
 ```
+
+## Switch to a different database provider (PostgreSQL, MySQL, SQL Server)
+
+...
 
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-

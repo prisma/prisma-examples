@@ -4,6 +4,18 @@ const prisma = new PrismaClient()
 
 const userData: Prisma.UserCreateInput[] = [
   {
+    name: 'Alice',
+    email: 'alice@prisma.io',
+    posts: {
+      create: [
+        {
+          title: 'Join the Prisma Slack',
+          content: 'https://slack.prisma.io',
+        },
+      ],
+    },
+  },
+  {
     name: 'Nilu',
     email: 'nilu@prisma.io',
     posts: {
@@ -31,18 +43,6 @@ const userData: Prisma.UserCreateInput[] = [
         {
           title: 'Prisma on YouTube',
           content: 'https://pris.ly/youtube',
-        },
-      ],
-    },
-  },
-  {
-    name: 'Etel',
-    email: 'etel@prisma.io',
-    posts: {
-      create: [
-        {
-          title: 'Join the Prisma Slack',
-          content: 'https://slack.prisma.io',
         },
       ],
     },
