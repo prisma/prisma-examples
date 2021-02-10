@@ -21,9 +21,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "7.6.11",
-    "@nestjs/core": "7.6.11",
-    "@nestjs/platform-express": "7.6.11",
+    "@nestjs/common": "7.6.12",
+    "@nestjs/core": "7.6.12",
+    "@nestjs/platform-express": "7.6.12",
     "@prisma/client": "2.16.1",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@nestjs/cli": "7.5.4",
     "@nestjs/schematics": "7.2.7",
-    "@nestjs/testing": "7.6.11",
+    "@nestjs/testing": "7.6.12",
     "prisma": "2.16.1",
     "@types/express": "4.17.11",
     "@types/jest": "26.0.20",
