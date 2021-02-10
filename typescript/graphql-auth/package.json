@@ -29,7 +29,7 @@
     "@types/ws": "7.4.0",
     "ts-node": "9.1.1",
     "ts-node-dev": "1.1.1",
-    "typescript": "4.1.4"
+    "typescript": "4.1.5"
   },
   "prettier": {
     "singleQuote": true,
