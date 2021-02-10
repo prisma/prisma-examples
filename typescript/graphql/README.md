@@ -2,13 +2,12 @@
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
-| Tool / Library | Description                             |
-| :------------- | :-------------------------------------- |
-| Apollo Server  | HTTP server specialized for GraphQL     |
-| GraphQL Nexus  | Define and implement the GraphQL schema |
-| Prisma Client  | Databases access (ORM)                  |
-| Prisma Migrate | Database migrations                     |
-| SQLite         | Local, file-based SQL database          |
+
+- **Apollo Server**: HTTP server specialized for GraphQL     
+- **GraphQL Nexus**: GraphQL schema definition and resolver implementation 
+- **Prisma Client**: Databases access (ORM)                  
+- **Prisma Migrate**: Database migrations                  
+- **SQLite**: Local, file-based SQL database          
 
 ## How to use
 
