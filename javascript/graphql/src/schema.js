@@ -312,5 +312,5 @@ const schema = makeSchema({
 })
 
 module.exports = {
-  schema: schema
+  schema: schema,
 }

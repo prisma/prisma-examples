@@ -7,5 +7,5 @@ const context = {
 }
 
 module.exports = {
-  context: context
+  context: context,
 }
