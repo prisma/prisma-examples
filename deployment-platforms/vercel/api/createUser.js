@@ -8,7 +8,7 @@ export default async (req, res) => {
     })
     res.status(200).json(createdUser)
   } catch (e) {
-    if (e instanceof Prisma.PrismaClientRequestError) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === 'P2002') {
         return res
           .status(409)

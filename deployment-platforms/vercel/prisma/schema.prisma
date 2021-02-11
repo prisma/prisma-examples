@@ -8,24 +8,24 @@ datasource db {
 }
 
 model Post {
-  post_id   Int     @default(autoincrement()) @id
+  post_id   Int     @id @default(autoincrement())
   content   String?
   title     String
   author_id Int?
-  author    User?   @relation(fields: [author_id], references: [user_id]) // renamed from `User` -> `author`
+  author    User?   @relation(fields: [author_id], references: [user_id])
 }
 
 model Profile {
   bio        String?
-  profile_id Int     @default(autoincrement()) @id
+  profile_id Int     @id @default(autoincrement())
   user_id    Int
-  user       User    @relation(fields: [user_id], references: [user_id]) // renamed from `User` -> `user`
+  user       User    @relation(fields: [user_id], references: [user_id])
 }
 
 model User {
   email    String    @unique
   name     String?
-  user_id  Int       @default(autoincrement()) @id
-  posts    Post[]    // renamed from `Post` -> `posts`
-  profiles Profile[] // renamed from `Profile` -> `profiles`
+  user_id  Int       @id @default(autoincrement())
+  posts    Post[]
+  profiles Profile[]
 }
