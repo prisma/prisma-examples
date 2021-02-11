@@ -107,9 +107,11 @@ const Mutation = objectType({
         ),
       },
       resolve: (_, args, context) => {
-        const postData = args.data.posts?.map((post) => {
-          return { title: post.title, content: post.content || undefined }
-        })
+        const postData = args.data.posts
+          ? args.data.posts.map((post) => {
+              return { title: post.title, content: post.content || undefined }
+            })
+          : []
         return context.prisma.user.create({
           data: {
             name: args.data.name,
@@ -151,22 +153,23 @@ const Mutation = objectType({
         id: nonNull(intArg()),
       },
       resolve: async (_, args, context) => {
-        try {
-          const post = await context.prisma.post.findUnique({
-            where: { id: args.id || undefined },
-            select: {
-              published: true,
-            },
-          })
-          return context.prisma.post.update({
-            where: { id: args.id || undefined },
-            data: { published: !post?.published },
-          })
-        } catch (e) {
+        const post = await context.prisma.post.findUnique({
+          where: { id: args.id || undefined },
+          select: {
+            published: true,
+          },
+        })
+
+        if (!post) {
           throw new Error(
             `Post with ID ${args.id} does not exist in the database.`,
           )
         }
+
+        return context.prisma.post.update({
+          where: { id: args.id || undefined },
+          data: { published: !post.published },
+        })
       },
     })
 
@@ -296,10 +299,6 @@ const schema = makeSchema({
   outputs: {
     schema: __dirname + '/../schema.graphql',
     typegen: __dirname + '/generated/nexus.ts',
-  },
-  contextType: {
-    module: require.resolve('./context'),
-    export: 'Context',
   },
   sourceTypes: {
     modules: [
