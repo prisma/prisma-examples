@@ -2,9 +2,9 @@
 
 This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **simple TypeScript script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
-## How to use
+## Getting started
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
 
 Download this example:
 
@@ -13,14 +13,13 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 ```
 
 Install npm dependencies:
+
 ```
 cd script
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
-
-<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
 Clone this repository:
 
@@ -35,7 +34,7 @@ cd prisma-examples/typescript/script
 npm install
 ```
 
-</Details>
+</details>
 
 ### 2. Run the script
 
@@ -145,3 +144,4 @@ const userWithUpdatedProfile = await prisma.user.update({
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

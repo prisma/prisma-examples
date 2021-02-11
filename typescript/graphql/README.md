@@ -8,7 +8,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 - **Prisma Migrate**: Database migrations               
 - **SQLite**: Local, file-based SQL database          
 
-## How to use
+## Getting started
 
 ### 1. Download example and install dependencies
 
@@ -56,7 +56,8 @@ Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.
 npx prisma db seed --preview-feature
 ```
 
-### 2. Start the GraphQL server
+
+### 3. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
@@ -65,6 +66,7 @@ npm run dev
 ```
 
 Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+
 
 ## Using the GraphQL API
 
@@ -256,8 +258,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id
-  name    String?
+  id      Int      @default(autoincrement()) @id 
+  name    String? 
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -274,162 +276,67 @@ model User {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev --name add-profile --preview-feature
+npx prisma migrate dev --preview-feature
 ```
-
-This adds another migration to the `prisma/migrations` directory and creates the new `Profile` table in the database.
 
 ### 2. Update your application code
 
 You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement queries and mutations in the GraphQL API.
 
-#### 2.1. Add the `Profile` type to your GraphQL schema
+#### Option A: Expose `Profile` operations via `nexus-prisma`
 
-First, add a new GraphQL type via Nexus' `objectType` function:
+With the `nexus-prisma` package, you can expose the new `Profile` model in the API like so:
 
 ```diff
-// schema.ts
-
-+const Profile = objectType({
-+  name: 'Profile',
-+  definition(t) {
-+    t.nonNull.int('id')
-+    t.string('bio')
-+    t.field('user', {
-+      type: 'User',
-+      resolve: (parent, _, context) => {
-+        return context.prisma.profile
-+          .findUnique({
-+            where: { id: parent.id || undefined },
-+          })
-+          .user()
-+      },
-+    })
-+  },
-+})
+// ... as before
 
 const User = objectType({
   name: 'User',
   definition(t) {
-    t.nonNull.int('id')
-    t.string('name')
-    t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'Post',
-      resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
-      },
-+   t.field('profile', {
-+     type: 'Profile',
-+     resolve: (parent, _, context) => {
-+       return context.prisma.user.findUnique({
-+         where: { id: parent.id }
-+       }).profile()
-+     }
-+   })
+    t.model.id()
+    t.model.name()
+    t.model.email()
+    t.model.posts({
+      pagination: false,
+    })
++   t.model.profile()
   },
 })
-```
 
-Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
+// ... as before
 
-```diff
++const Profile = objectType({
++  name: 'Profile',
++  definition(t) {
++    t.model.id()
++    t.model.bio()
++    t.model.user()
++  },
++})
+
+// ... as before
+
 export const schema = makeSchema({
-  types: [
-    Query,
-    Mutation,
-    Post,
-    User,
-+   Profile,
-    UserUniqueInput,
-    UserCreateInput,
-    PostCreateInput,
-    PostOrderBy,
-    DateTime,
-  ],
++  types: [Query, Mutation, Post, User, Profile],
   // ... as before
 }
 ```
 
-Note that in order to resolve any type errors, your development server needs to be running so that the Nexus types can be generated. If it's not running, you can start it with `npm run dev`.
+#### Option B: Use the `PrismaClient` instance directly
 
-#### 2.2. Add a `createProfile` GraphQL mutation
-
-```diff
-const Mutation = objectType({
-  name: 'Mutation',
-  definition(t) {
-
-    // other mutations
-
-+   t.field('addProfileForUser', {
-+     type: 'Profile',
-+     args: {
-+       userUniqueInput: nonNull(
-+         arg({
-+           type: 'UserUniqueInput',
-+         }),
-+       ),
-+       bio: stringArg()
-+     }, 
-+     resolve: async (_, args, context) => {
-+       return context.prisma.profile.create({
-+         data: {
-+           bio: args.bio,
-+           user: {
-+             connect: {
-+               id: args.userUniqueInput.id || undefined,
-+               email: args.userUniqueInput.email || undefined,
-+             }
-+           }
-+         }
-+       })
-+     }
-
-  }
-})
-```
-
-Finally, you can test the new mutation like this:
-
-```graphql
-mutation {
-  addProfileForUser(
-    userUniqueInput: {
-      email: "mahmoud@prisma.io"
-    }
-    bio: "I like turtles"
-  ) {
-    id
-    bio
-    user {
-      id
-      name
-    }
-  }
-}
-```
-
-<details><summary>Expand to view more sample Prisma Client queries on <code>Profile</code></summary>
-
-
-Here are some more sample Prisma Client queries on the new <code>Profile</code> model:
+As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
 
 ##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: 'Hello World',
+    bio: "Hello World",
     user: {
-      connect: { email: 'alice@prisma.io' },
+      connect: { email: "alice@prisma.io" },
     },
   },
-})
+});
 ```
 
 ##### Create a new user with a new profile
@@ -437,34 +344,31 @@ const profile = await prisma.profile.create({
 ```ts
 const user = await prisma.user.create({
   data: {
-    email: 'john@prisma.io',
-    name: 'John',
+    email: "john@prisma.io",
+    name: "John",
     profile: {
       create: {
-        bio: 'Hello World',
+        bio: "Hello World",
       },
     },
   },
-})
+});
 ```
 
 ##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: 'alice@prisma.io' },
+  where: { email: "alice@prisma.io" },
   data: {
     profile: {
       update: {
-        bio: 'Hello Friends',
+        bio: "Hello Friends",
       },
     },
   },
-})
+});
 ```
-
-</details>
-
 
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)

@@ -2,9 +2,9 @@
 
 This example shows how to implement integration tests using [Express](https://expressjs.com/), [Supertest](https://github.com/visionmedia/supertest) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
-## How to use
+## Getting started
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
 
 Download this example:
 
@@ -13,14 +13,13 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 ```
 
 Install npm dependencies:
+
 ```
 cd testing-express
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
-
-<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
 Clone this repository:
 
@@ -35,7 +34,7 @@ cd prisma-examples/typescript/testing-express
 npm install
 ```
 
-</Details>
+</details>
 
 ### 2. Start the REST API server
 

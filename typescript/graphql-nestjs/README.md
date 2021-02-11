@@ -2,9 +2,9 @@
 
 This example shows how to implement an **GraphQL server (code-first) with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client) and [NestJS](https://docs.nestjs.com/graphql/quick-start) . It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db). The example was bootstrapped using the NestJS CLI command `nest new graphql-nestjs`.
 
-## How to use
+## Getting started
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
 
 Download this example:
 
@@ -13,14 +13,13 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 ```
 
 Install npm dependencies:
+
 ```
 cd graphql-nestjs
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
-
-<Details><Summary><strong>Alternative:</strong> Clone the entire repo</Summary>
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
 Clone this repository:
 
@@ -35,7 +34,7 @@ cd prisma-examples/typescript/graphql-nestjs
 npm install
 ```
 
-</Details>
+</details>
 
 ### 2. Start the GraphQL server
 
@@ -270,3 +269,4 @@ const userWithUpdatedProfile = await prisma.user.update({
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)
