@@ -108,7 +108,7 @@ query {
 {
   draftsByUser(
     userUniqueInput: {
-      email: "alice@prisma.io"
+      email: "mahmoud@prisma.io"
     }
   ) {
     id
