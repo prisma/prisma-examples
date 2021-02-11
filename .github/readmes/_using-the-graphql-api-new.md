@@ -146,6 +146,7 @@ mutation {
     orderBy: { updatedAt: desc }
   ) {
     id
+    updatedAt
     title
     content
     published
