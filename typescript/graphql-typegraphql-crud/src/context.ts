@@ -1,9 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient({
-  // Uncomment for debugging purposes
-  // log: ['query', 'info', 'warn'],
-})
+const prisma = new PrismaClient()
 
 export interface Context {
   prisma: PrismaClient

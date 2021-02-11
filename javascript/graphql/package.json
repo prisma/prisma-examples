@@ -4,18 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "2.15.0",
+    "@prisma/client": "2.16.1",
     "apollo-server": "^2.19.0",
     "graphql": "^15.0.0",
     "nexus": "^1.0.0",
-    "nexus-plugin-prisma": "^0.28.0",
+    "nexus-plugin-prisma": "^0.30.0",
     "semver": "7.3.4"
   },
   "scripts": {
     "dev": "nodemon src"
   },
   "devDependencies": {
-    "@prisma/cli": "2.15.0",
+    "prisma": "2.16.1",
     "nodemon": "2.0.7"
   },
   "prettier": {

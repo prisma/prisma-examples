@@ -2,7 +2,7 @@ const { spawnSync } = require("child_process");
 
 const latestPrismaVersion = spawnSync(
   "npm",
-  ["info", "@prisma/cli@latest", "version"],
+  ["info", "prisma@latest", "version"],
   {
     encoding: "utf-8",
   }
@@ -10,7 +10,7 @@ const latestPrismaVersion = spawnSync(
 
 const patchDevPrismaVersion = spawnSync(
   "npm",
-  ["info", "@prisma/cli@patch-dev", "version"],
+  ["info", "prisma@patch-dev", "version"],
   {
     encoding: "utf-8",
   }

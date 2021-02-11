@@ -1,16 +1,15 @@
 {
   "name": "prisma-vercel",
   "dependencies": {
-    "@prisma/client": "2.15.0"
+    "@prisma/client": "2.16.1"
   },
   "scripts": {
     "start": "node index.js",
-    "prisma:introspect": "prisma introspect",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },
   "devDependencies": {
-    "@prisma/cli": "2.15.0",
-    "vercel": "21.2.1"
+    "prisma": "2.16.1",
+    "vercel": "21.2.3"
   }
 }
