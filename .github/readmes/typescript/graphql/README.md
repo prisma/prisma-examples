@@ -22,9 +22,9 @@ __INLINE(../_setup-1.md)__
 cd graphql
 __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/graphql
-__INLINE(../_setup-3-new.md)__
+__INLINE(../../_setup-3-new.md)__
 
-__INLINE(../_start-graphql-server-new.md)__
+__INLINE(../../_start-graphql-server-new.md)__
 
 __INLINE(../../_using-the-graphql-api-new.md)__
 
