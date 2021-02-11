@@ -88,7 +88,16 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  togglePublishPost(id: 5) {
+    id
+    published
+  }
+}
+```
 
 ### Increment the view count of a post
 
@@ -101,7 +110,16 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  incrementPostViewCount(id: 5) {
+    id
+    viewCount
+  }
+}
+```
 
 ### Search for posts that contain a specific string in their title or content
 
@@ -148,7 +166,18 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+{
+  postById(id: 5 ) {
+    id
+    title
+    content
+    published
+  }
+}
+```
 
 ### Delete a post
 
@@ -160,6 +189,14 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  deletePost(id: 5) {
+    id
+  }
+}
+```
 
 </details>
