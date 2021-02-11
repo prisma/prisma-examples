@@ -3,24 +3,26 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/index",
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "start": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only src/schema",
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index"
+    "generate:nexus": "ts-node --transpile-only src/schema"
   },
   "dependencies": {
     "@hapi/hapi": "20.1.0",
     "@prisma/client": "2.16.1",
     "@types/node": "14.14.25",
     "apollo-server-hapi": "2.20.0",
-    "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.30.0"
+    "graphql": "15.5.0",
+    "graphql-iso-date": "^3.6.1",
+    "nexus": "1.0.0"
   },
   "devDependencies": {
     "prisma": "2.16.1",
+    "@types/graphql-iso-date": "^3.4.0",
     "@types/hapi__hapi": "20.0.5",
     "@types/node": "14.14.25",
     "ts-node": "9.1.1",
