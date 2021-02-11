@@ -13,14 +13,6 @@ The first step is to add a new table, e.g. called `Profile`, to the database. Yo
 
 ```diff
 // schema.prisma
-model Post {
-  id        Int     @default(autoincrement()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
 
 model User {
   id      Int      @default(autoincrement()) @id
@@ -30,11 +22,23 @@ model User {
 + profile Profile?
 }
 
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  viewCount Int      @default(0)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+
 +model Profile {
 +  id     Int     @default(autoincrement()) @id
 +  bio    String?
-+  userId Int     @unique
 +  user   User    @relation(fields: [userId], references: [id])
++  userId Int     @unique
 +}
 ```
 
