@@ -12,7 +12,7 @@ For the following example scenario, assume you want to add a "profile" feature t
 The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
 
 ```diff
-// schema.prisma
+// ./prisma/schema.prisma
 
 model User {
   id      Int      @default(autoincrement()) @id
@@ -59,7 +59,7 @@ You can now use your `PrismaClient` instance to perform operations against the n
 First, add a new GraphQL type via Nexus' `objectType` function:
 
 ```diff
-// schema.ts
+// ./src/schema.ts
 
 +const Profile = objectType({
 +  name: 'Profile',
@@ -131,6 +131,8 @@ Note that in order to resolve any type errors, your development server needs to 
 #### 2.2. Add a `createProfile` GraphQL mutation
 
 ```diff
+// ./src/schema.ts
+
 const Mutation = objectType({
   name: 'Mutation',
   definition(t) {
