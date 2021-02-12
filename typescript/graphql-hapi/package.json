@@ -17,12 +17,12 @@
     "@types/node": "14.14.27",
     "apollo-server-hapi": "2.20.0",
     "graphql": "15.5.0",
-    "graphql-iso-date": "^3.6.1",
+    "graphql-iso-date": "3.6.1",
     "nexus": "1.0.0"
   },
   "devDependencies": {
     "prisma": "2.16.1",
-    "@types/graphql-iso-date": "^3.4.0",
+    "@types/graphql-iso-date": "3.4.0",
     "@types/hapi__hapi": "20.0.5",
     "@types/node": "14.14.27",
     "ts-node": "9.1.1",
