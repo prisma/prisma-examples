@@ -8,7 +8,8 @@
   "dependencies": {
     "@hapi/hapi": "20.1.0",
     "@prisma/client": "2.16.1",
-    "apollo-server-hapi": "2.20.0"
+    "apollo-server-hapi": "2.20.0",
+    "graphql": "^15.5.0"
   },
   "devDependencies": {
     "prisma": "2.16.1",
