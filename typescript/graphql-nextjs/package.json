@@ -25,7 +25,7 @@
     "graphql": "15.5.0",
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.11.0",
-    "next": "10.0.6",
+    "next": "10.0.7",
     "nexus": "1.0.0",
     "nexus-plugin-prisma": "0.30.0",
     "react": "17.0.1",
