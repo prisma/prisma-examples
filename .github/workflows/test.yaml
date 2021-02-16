@@ -11,6 +11,7 @@ env:
   CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
   SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+  SKIP_PRISMA_VERSION_CHECK: 1 # Skip Prisma version check in typegraphl-prisma
 
 jobs:
   projects-matrix:
