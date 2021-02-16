@@ -1,95 +1,59 @@
 ## Evolving the app
 
-Evolving the application typically requires four subsequent steps:
+Evolving the application typically requires two steps:
 
-1. Migrating the database schema using SQL
-1. Updating your Prisma schema by introspecting the database with `prisma introspect`
-1. Generating Prisma Client to match the new database schema with `prisma generate`
-1. Using the updated Prisma Client in your application code
+1. Migrate your database using Prisma Migrate
+1. Update your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
-### 1. Change your database schema using SQL
+### 1. Migrate your database using Prisma Migrate
 
-The first step would be to add a new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
+The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
 
-```sql
-CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "bio" TEXT,
-  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
-);
-```
+```diff
+// schema.prisma
 
-To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
-
-```bash
-sqlite3 dev.db \
-'CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "bio" TEXT,
-  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
-);'
-```
-
-Note that we're adding a unique constraint to the foreign key on `user`, this means we're expressing a 1:1 relationship between `User` and `Profile`, i.e.: "one user has one profile".
-
-While your database now is already aware of the new table, you're not yet able to perform any operations against it using Prisma Client. The next two steps will update the Prisma Client API to include operations against the new `Profile` table.
-
-### 2. Introspect your database
-
-The Prisma schema is the foundation for the generated Prisma Client API. Therefore, you first need to make sure the new `Profile` table is represented in it as well. The easiest way to do so is by introspecting your database:
-
-```
-npx prisma introspect
-```
-
-> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g @prisma/cli`. When using Yarn, you can run: `yarn prisma dev`.
-
-The `introspect` command updates your `schema.prisma` file. It now includes the `Profile` model and its 1:1 relation to `User`:
-
-```prisma
 model Post {
-  author    User?
-  content   String?
-  id        Int     @id
-  published Boolean @default(false)
+  id        Int     @default(autoincrement()) @id
   title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  Int
 }
 
 model User {
+  id      Int      @default(autoincrement()) @id 
+  name    String? 
   email   String   @unique
-  id      Int      @id
-  name    String?
-  post    Post[]
-  profile Profile?
+  posts   Post[]
++ profile Profile?
 }
 
-model Profile {
-  bio  String?
-  id   Int     @default(autoincrement()) @id
-  user Int     @unique
-  User User    @relation(fields: [user], references: [id])
-}
++model Profile {
++  id     Int     @default(autoincrement()) @id
++  bio    String?
++  userId Int     @unique
++  user   User    @relation(fields: [userId], references: [id])
++}
 ```
 
-### 3. Generate Prisma Client
-
-With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
+Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma generate
+npx prisma migrate dev --preview-feature
 ```
 
-This command updated the Prisma Client API in `node_modules/@prisma/client`.
+### 2. Update your application code
 
-### 4. Use the updated Prisma Client in your application code
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement new queries and mutations in the GraphQL API.
 
-#### Option A: Expose `Profile` operations via TypeGraphQL
+#### 2.1. Use the updated Prisma Client in your application code
 
-You can use TypeGraphQL to expose the new `Profile` model.
+#### 2.1. Create GraphQL type for `Profile` model using TypeGraphQL
 
-Create a new file named `src\Profile.ts` and add the following code:
+You can use TypeGraphQL to expose the new `Profile` model. Create a new file named `src\Profile.ts` and add the following code:
 
 ```ts
 import "reflect-metadata";
@@ -123,72 +87,75 @@ export class ProfileCreateInput {
 }
 ```
 
-Add the `bio` field to `.src\User.ts` and import the `Profile` class.
+Add the `profile` field to `src\User.ts` and import the `Profile` class.
 
 ```ts
-  @Field(type => Profile, { nullable: true })
-  bio?: Profile | null;
+@Field(type => Profile, { nullable: true })
+profile?: Profile | null;
 ```
 
-Add the `bio` field to `src\UserCreateInput.ts` and import the `ProfileCreateInput` class:
+Add the `profile` field to `src\UserCreateInput.ts` and import the `ProfileCreateInput` class:
 
 ```ts
-  @Field(type => ProfileCreateInput, { nullable: true })
-  bio?: ProfileCreateInput | null;
+@Field(type => ProfileCreateInput, { nullable: true })
+profile?: ProfileCreateInput | null;
 ```
 
 Extend the `src\UserResolver.ts` class with an additional field resolver:
 
 ```ts
-  @FieldResolver()
-  async bio(@Root() user: User, @Ctx() ctx: Context): Promise<Profile> {
-    return (await ctx.prisma.user.findOne({
-      where: {
-        id: user.id
-      }
-    }).profile())!
-  }
+@FieldResolver()
+async profile(@Root() user: User, @Ctx() ctx: Context): Promise<Profile> {
+  return (await ctx.prisma.user.findUnique({
+    where: {
+      id: user.id
+    }
+  }).profile())!
+}
 ```
 
 Update the `signupUser` mutation to include the option to create a profile when you sign up a new user:
 
 ```ts
-  @Mutation(returns => User)
-  async signupUser(
-    @Arg("data") data: UserCreateInput,
-    @Ctx() ctx: Context): Promise<User> {
-    try {
-      return await ctx.prisma.user.create({
-        data: {
-          email: data.email,
-          name: data.name,
-          profile: {
-            create: {
-              bio: data.bio?.bio
-            }
+@Mutation(returns => User)
+async signupUser(
+  @Arg("data") data: UserCreateInput,
+  @Ctx() ctx: Context): Promise<User> {
+  try {
+    return await ctx.prisma.user.create({
+      data: {
+        email: data.email,
+        name: data.name,
+        profile: {
+          create: {
+            bio: data.bio?.bio
           }
         }
-      });
-    }
-    catch (error) {
-      throw error;
-    }
+      }
+    });
   }
+  catch (error) {
+    throw error;
+  }
+}
 ```
 
 Run the following mutation to create a user with a profile:
 
-```
+```graphql
 mutation {
-  signupUser(data: {email:"katla@prisma.io", bio: { bio: "Sometimes I'm an Icelandic volcano, sometimes I'm a dragon from a book."}})
+  signupUser(data: {
+    email:"katla@prisma.io", 
+    profile: { bio: "Sometimes I'm an Icelandic volcano, sometimes I'm a dragon from a book."}
+  })
   {
-    id,
-    email,
+    id
+    email
     posts {
       title
     }
-    bio {
-      id,
+    profile {
+      id
       bio
     }
   }
@@ -197,23 +164,23 @@ mutation {
 
 Run the following query to return a user and their profile:
 
-```
+```graphql
 query {
-  user(id:1) {
-    email,
-    bio {
-      id,
+  user(id: 1) {
+    email
+    profile {
+      id
       bio
     }
     posts {
-      title,
+      title
       content
-      }
+    }
   }
 }
 ```
 
-#### Option B: Use the `PrismaClient` instance directly
+#### 2.2. Update usage of Prisma Client
 
 As the Prisma Client API was updated, you can now also invoke "raw" operations via `prisma.profile` directly.
 

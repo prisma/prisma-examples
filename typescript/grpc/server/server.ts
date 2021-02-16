@@ -18,7 +18,7 @@ const { blog } = grpc.loadPackageDefinition(packageDefinition) as any
 
 async function post(call: any, callback: any) {
   const { id } = call.request
-  const post = await prisma.post.findOne({
+  const post = await prisma.post.findUnique({
     where: {
       id,
     },

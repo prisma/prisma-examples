@@ -83,7 +83,7 @@ async function getPostHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   const postId = parseInt(request.params.postId, 10)
 
   try {
-    const post = await prisma.post.findOne({
+    const post = await prisma.post.findUnique({
       where: { id: postId },
     })
     return h.response(post || undefined).code(201)

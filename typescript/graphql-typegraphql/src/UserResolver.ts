@@ -29,7 +29,7 @@ export class UserResolver {
   @FieldResolver()
   async posts(@Root() user: User, @Ctx() ctx: Context): Promise<Post[]> {
     return ctx.prisma.user
-      .findOne({
+      .findUnique({
         where: {
           id: user.id,
         },
@@ -52,7 +52,7 @@ export class UserResolver {
 
   @Query((returns) => User, { nullable: true })
   async user(@Arg('id', (type) => Int) id: number, @Ctx() ctx: Context) {
-    return ctx.prisma.user.findOne({
+    return ctx.prisma.user.findUnique({
       where: { id: id },
     })
   }

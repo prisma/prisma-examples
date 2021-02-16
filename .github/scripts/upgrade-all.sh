@@ -30,7 +30,7 @@ echo "$packages" | tr ' ' '\n' | while read -r item; do
   if [ "$dependsOnNexus" = "true" ]; then
     echo "$item is a nexus project, ignoring dependencies"
   else
-    yarn add --ignore-engines "@prisma/cli@$version" --dev
+    yarn add --ignore-engines "prisma@$version" --dev
     yarn add --ignore-engines "@prisma/client@$version"
   fi
   ## END

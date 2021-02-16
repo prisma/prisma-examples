@@ -114,7 +114,7 @@ The Prisma schema is the foundation for the generated Prisma Client API. Therefo
 npx prisma introspect
 ```
 
-> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g @prisma/cli`. When using Yarn, you can run: `yarn prisma dev`.
+> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma`. When using Yarn, you can run: `yarn prisma dev`.
 
 The `introspect` command updates your `schema.prisma` file. It now includes the `Profile` model and its 1:1 relation to `User`:
 
@@ -131,7 +131,7 @@ model User {
   email   String   @unique
   id      Int      @id
   name    String?
-  post    Post[]
+  posts   Post[]
   profile Profile?
 }
 
@@ -139,7 +139,7 @@ model Profile {
   bio  String?
   id   Int     @default(autoincrement()) @id
   user Int     @unique
-  User User    @relation(fields: [user], references: [id])
+  User User    @relation(fields: [userId], references: [id])
 }
 ```
 

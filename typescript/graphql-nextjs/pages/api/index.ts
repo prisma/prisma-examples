@@ -23,7 +23,7 @@ const User = objectType({
       type: 'Post',
       resolve: (parent) =>
         prisma.user
-          .findOne({
+          .findUnique({
             where: { id: Number(parent.id) },
           })
           .posts(),
@@ -42,7 +42,7 @@ const Post = objectType({
       type: 'User',
       resolve: (parent) =>
         prisma.post
-          .findOne({
+          .findUnique({
             where: { id: Number(parent.id) },
           })
           .author(),
@@ -59,7 +59,7 @@ const Query = objectType({
         postId: nonNull(stringArg()),
       },
       resolve: (_, args) => {
-        return prisma.post.findOne({
+        return prisma.post.findUnique({
           where: { id: Number(args.postId) },
         })
       },
