@@ -1,4 +1,4 @@
-name: sql-server
+name: test-sql-server
 on:
   push:
     paths:
@@ -10,9 +10,10 @@ on:
   pull_request:
     paths:
       - databases/sql-server/**
+
 env:
   CI: 1
-  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples sql-server.yaml'
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test-sql-server.yaml'
 
 jobs:
   test:
@@ -44,9 +45,9 @@ jobs:
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
           args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -i ./databases/sql-server/schema.sql'
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
+          node-version: '14'
       - run: npm install
       - run: npx prisma introspect
       - run: cp prisma/schema-introspected-renamed.prisma prisma/schema.prisma

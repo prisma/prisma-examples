@@ -6,12 +6,14 @@ on:
       - dev
       - patch-dev
   pull_request:
+
 env:
   CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
   SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
 jobs:
-  projects:
+  projects-matrix:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     outputs:
@@ -22,26 +24,26 @@ jobs:
       - name: install deps
         run: cd .github/scripts && yarn install
 
-      - name: get list of projects in json array
+      - name: get list of projects as json array
         id: set-matrix
         run: node .github/scripts/get-packages.js
 
-  debug:
-    needs: projects
+  debug-projects-matrix:
+    needs: projects-matrix
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "${{needs.projects.outputs.matrix}}"
-          echo "${{fromJson(needs.projects.outputs.matrix)}}"
+          echo "${{needs.projects-matrix.outputs.matrix}}"
+          echo "${{fromJson(needs.projects-matrix.outputs.matrix)}}"
 
   test:
-    needs: projects
+    needs: projects-matrix
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(needs.projects.outputs.matrix)}}
+      matrix: ${{fromJson(needs.projects-matrix.outputs.matrix)}}
 
     services:
       postgres:
@@ -61,10 +63,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          version: 12
+          node-version: '12'
 
       - name: test
         run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
