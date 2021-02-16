@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "prisma": "2.16.1",
-    "serverless-dotenv-plugin": "3.3.0"
+    "serverless-dotenv-plugin": "3.5.1"
   },
   "license": "MIT"
 }
