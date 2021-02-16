@@ -11,7 +11,7 @@ env:
   CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
   SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
-  SKIP_PRISMA_VERSION_CHECK: 1 # Skip Prisma version check in typegraphl-prisma
+  SKIP_PRISMA_VERSION_CHECK: true # Skip Prisma version check in typegraphl-prisma (https://github.com/MichalLytek/typegraphql-prisma/blob/fc7cfa756a60dd6671a902c38f00ee74698a681a/Readme.md#lifting-prisma-version-restriction)
 
 jobs:
   projects-matrix:
