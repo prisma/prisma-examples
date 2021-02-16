@@ -3,8 +3,10 @@ on:
   push:
     branches:
       - latest
+
 env:
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples keep-dev-branch-in-sync-with-latest.yaml'
+
 jobs:
   sync-dev:
     if: github.repository_owner == 'prisma'
@@ -34,10 +36,9 @@ jobs:
     needs: [sync-dev, sync-patch-dev]
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          version: 12
+          node-version: '12'
 
       - name: report failure to slack
         run: bash .github/scripts/slack-workflow-status.sh "[keep-dev-branches-in-sync-with-latest] check-for-update :x:"
