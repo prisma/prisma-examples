@@ -4,12 +4,12 @@
     "dev": "node ./src/server.js"
   },
   "dependencies": {
-    "@prisma/client": "2.13.0",
-    "apollo-server": "2.19.0",
-    "graphql": "15.4.0"
+    "@prisma/client": "2.16.1",
+    "apollo-server": "2.21.0",
+    "graphql": "15.5.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.13.0"
+    "prisma": "2.16.1"
   },
   "prettier": {
     "singleQuote": true,

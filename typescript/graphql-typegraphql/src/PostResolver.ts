@@ -26,7 +26,7 @@ export class PostResolver {
   @FieldResolver()
   author(@Root() post: Post, @Ctx() ctx: Context): Promise<User | null> {
     return ctx.prisma.post
-      .findOne({
+      .findUnique({
         where: {
           id: post.id,
         },
@@ -36,7 +36,7 @@ export class PostResolver {
 
   @Query((returns) => Post, { nullable: true })
   post(@Arg('where') where: PostIDInput, @Ctx() ctx: Context) {
-    return ctx.prisma.post.findOne({
+    return ctx.prisma.post.findUnique({
       where: { id: where.id },
     })
   }

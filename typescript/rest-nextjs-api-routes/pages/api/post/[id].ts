@@ -18,7 +18,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
 // GET /api/post/:id
 async function handleGET(postId, res) {
-  const post = await prisma.post.findOne({
+  const post = await prisma.post.findUnique({
     where: { id: Number(postId) },
     include: { author: true },
   })

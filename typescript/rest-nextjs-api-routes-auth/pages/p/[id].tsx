@@ -9,7 +9,7 @@ import { useSession } from "next-auth/client";
 
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const post = await prisma.post.findOne({
+  const post = await prisma.post.findUnique({
     where: {
       id: Number(params?.id) || -1,
     },

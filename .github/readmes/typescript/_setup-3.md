@@ -1,4 +1,4 @@
 npm install
 ```
 
-</Details>
+</details>
