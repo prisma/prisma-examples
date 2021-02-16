@@ -6,10 +6,12 @@ on:
       - dev
       - patch-dev
   pull_request:
+
 env:
   CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
   SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
+
 jobs:
   projects:
     if: github.repository_owner == 'prisma'
@@ -61,10 +63,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          version: 12
+          node-version: '12'
 
       - name: test
         run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
