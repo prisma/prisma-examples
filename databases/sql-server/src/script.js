@@ -138,7 +138,7 @@ async function main() {
 
   console.log('Created second user: \n', prettyjson.render(user2))
 
-  const taggedPosts = await prisma.tag.findOne({
+  const taggedPosts = await prisma.tag.findUnique({
     where: {
       tag: 'Node.js',
     },
@@ -231,7 +231,7 @@ async function main() {
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
-    .findOne({
+    .findUnique({
       where: {
         email: 'alice@prisma.io',
       },

@@ -92,7 +92,7 @@ const resolvers = {
      * @param {{ prisma: Prisma }} ctx
      */
     post: (parent, args, ctx) => {
-      return ctx.prisma.post.findOne({
+      return ctx.prisma.post.findUnique({
         where: { id: Number(args.where.id) },
       })
     },
@@ -153,7 +153,7 @@ const resolvers = {
      */
     posts: (parent, args, ctx) => {
       return ctx.prisma.user
-        .findOne({
+        .findUnique({
           where: { id: parent.id },
         })
         .posts()
@@ -167,7 +167,7 @@ const resolvers = {
      */
     author: (parent, args, ctx) => {
       return ctx.prisma.post
-        .findOne({
+        .findUnique({
           where: { id: parent.id },
         })
         .author()

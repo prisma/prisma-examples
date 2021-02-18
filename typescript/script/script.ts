@@ -82,7 +82,7 @@ async function main() {
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
-    .findOne({
+    .findUnique({
       where: {
         email: 'alice@prisma.io',
       },

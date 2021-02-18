@@ -65,12 +65,12 @@ while [ $i -le $count ]; do
 
     cd "$(dirname "$item")/"
 
-    vCLI="$(node -e "console.log(require('./package.json').devDependencies['@prisma/cli'])")"
+    vCLI="$(node -e "console.log(require('./package.json').devDependencies['prisma'])")"
 
     if [ "$vCLI" != "" ]; then
       if [ "$v" != "$vCLI" ]; then
-        echo "$item: @prisma/cli expected $v, actual $vCLI"
-        yarn add --ignore-engines "@prisma/cli@$v" --dev
+        echo "$item: prisma expected $v, actual $vCLI"
+        yarn add --ignore-engines "prisma@$v" --dev
       fi
 
       vPrismaClient="$(node -e "console.log(require('./package.json').dependencies['@prisma/client'])")"
@@ -99,7 +99,7 @@ while [ $i -le $count ]; do
 
   echo "$v" > .github/prisma-version.txt
 
-  git commit -am "chore(packages): bump @prisma/cli to $v"
+  git commit -am "chore(packages): bump prisma to $v"
 
   # fail silently if the unlikely event happens that this change already has been pushed either manually
   # or by an overlapping upgrade action
