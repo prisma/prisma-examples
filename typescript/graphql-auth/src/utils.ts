@@ -8,9 +8,10 @@ interface Token {
 }
 
 export function getUserId(context: Context) {
-  const Authorization = context.req.get('Authorization')
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '')
+  console.log(`getUserId`, context.req.Authorization)
+  const authHeader = context.req.get('Authorization')
+  if (authHeader) {
+    const token = authHeader.replace('Bearer ', '')
     const verifiedToken = verify(token, APP_SECRET) as Token
     return verifiedToken && verifiedToken.userId
   }
