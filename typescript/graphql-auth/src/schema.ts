@@ -173,16 +173,14 @@ const Mutation = objectType({
             type: 'PostCreateInput',
           }),
         ),
-        authorEmail: nonNull(stringArg()),
       },
       resolve: (_, args, context) => {
+        const userId = getUserId(context)
         return context.prisma.post.create({
           data: {
             title: args.data.title,
             content: args.data.content,
-            author: {
-              connect: { email: args.authorEmail },
-            },
+            authorId: userId,
           },
         })
       },

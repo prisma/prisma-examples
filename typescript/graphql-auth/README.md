@@ -175,8 +175,10 @@ You need to be logged in for this query to work, i.e. an authentication token th
 ```graphql
 mutation {
   createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
+    data: {
+      title: "Join the Prisma Slack"
+      content: "https://slack.prisma.io"
+    }
   ) {
     id
     published
