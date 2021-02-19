@@ -154,7 +154,7 @@ mutation {
 }
 ```
 
-### Publish/unpublish an existing post
+### Publish/unpublish an existing draft
 
 ```graphql
 mutation {
