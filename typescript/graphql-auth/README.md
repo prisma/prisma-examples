@@ -78,50 +78,9 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ## Using the GraphQL API
 
-The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
+The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). [Below](#retrieve-all-published-posts-and-their-authors) are a number of operations that you can send to the API using the GraphQL Playground.
 
 Feel free to adjust any operation by adding or removing fields. The GraphQL Playground helps you with its auto-completion and query validation features.
-
-### Authenticating GraphQL requests
-
-In this example, you authenticate your GraphQL requests using the `Authorization` header field of the HTTP requests which are sent from clients to your GraphQL server. The required authentication token is returned by successful `signup` and `login` queries.
-
-Using the GraphQL Playground, the `Authorization` header can be configured in the **HTTP HEADERS** tab in the bottom-left corner of the GraphQL Playground. The values for the HTTP headers are defined in JSON format. Note that the authentication token needs to be sent with the `Bearer `-prefix:
-
-```json
-{
-  "Authorization": "Bearer __YOUR_TOKEN__"
-}
-```
-
-With a "real" authentication token, it looks similar to this:
-
-```json
-{
-  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanAydHJyczFmczE1MGEwM3kxaWl6c285IiwiaWF0IjoxNTQzNTA5NjY1fQ.Vx6ad6DuXA0FSQVyaIngOHYVzjKwbwq45flQslnqX04"
-}
-```
-
-As mentioned before, you can set HTTP headers in the bottom-left corner of the GraphQL Playground:
-
-![](https://imgur.com/ToRcCTj.png)
-
-
-### Authorization rules
-
-The following [authorization rules](./src/permissions/index.ts) are defined for the GraphQL API via GraphQL Shield:
-
-| Operation name           | Operation type | Rule                  | Description                                                                              |
-| :----------------------- | :------------- | :-------------------- | :--------------------------------------------------------------------------------------- |
-| `me`                     | Query          | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
-| `draftsByUser`           | Query          | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
-| `postById`               | Query          | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
-| `createDraft`            | Mutation       | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
-| `deletePost`             | Mutation       | `isPostOwner`         | Requires the authenticated user to be the author of the post to be deleted               |
-| `incrementPostViewCount` | Mutation       | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
-| `togglePublishPost`      | Mutation       | `isPostOwner`         | Requires the authenticated user to be the author of the post to be published/unpublished |
-
-The `isAuthenticatedUser` rule requires you to send a valid authentication token. The `isPostOwner` rule additionaly requires the user to whom this authentication token belongs to be the author of the post on which the operation is applied.
 
 ### Retrieve all published posts and their authors
 
@@ -297,6 +256,47 @@ mutation {
 > **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
 
 </details>
+
+
+### Authenticating GraphQL requests
+
+In this example, you authenticate your GraphQL requests using the `Authorization` header field of the HTTP requests which are sent from clients to your GraphQL server. The required authentication token is returned by successful `signup` and `login` queries.
+
+Using the GraphQL Playground, the `Authorization` header can be configured in the **HTTP HEADERS** tab in the bottom-left corner of the GraphQL Playground. The values for the HTTP headers are defined in JSON format. Note that the authentication token needs to be sent with the `Bearer `-prefix:
+
+```json
+{
+  "Authorization": "Bearer __YOUR_TOKEN__"
+}
+```
+
+With a "real" authentication token, it looks similar to this:
+
+```json
+{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjanAydHJyczFmczE1MGEwM3kxaWl6c285IiwiaWF0IjoxNTQzNTA5NjY1fQ.Vx6ad6DuXA0FSQVyaIngOHYVzjKwbwq45flQslnqX04"
+}
+```
+
+As mentioned before, you can set HTTP headers in the bottom-left corner of the GraphQL Playground:
+
+![](https://imgur.com/ToRcCTj.png)
+
+### Authorization rules
+
+The following [authorization rules](./src/permissions/index.ts) are defined for the GraphQL API via GraphQL Shield:
+
+| Operation name           | Operation type | Rule                  | Description                                                                              |
+| :----------------------- | :------------- | :-------------------- | :--------------------------------------------------------------------------------------- |
+| `me`                     | Query          | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
+| `draftsByUser`           | Query          | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
+| `postById`               | Query          | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
+| `createDraft`            | Mutation       | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
+| `deletePost`             | Mutation       | `isPostOwner`         | Requires the authenticated user to be the author of the post to be deleted               |
+| `incrementPostViewCount` | Mutation       | `isAuthenticatedUser` | Requires a user to be authenticated                                                      |
+| `togglePublishPost`      | Mutation       | `isPostOwner`         | Requires the authenticated user to be the author of the post to be published/unpublished |
+
+The `isAuthenticatedUser` rule requires you to send a valid authentication token. The `isPostOwner` rule additionaly requires the user to whom this authentication token belongs to be the author of the post on which the operation is applied.
 
 
 ## Evolving the app
