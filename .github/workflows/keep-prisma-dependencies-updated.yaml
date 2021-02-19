@@ -1,11 +1,11 @@
 name: keep-prisma-dependencies-updated
-
 on:
   push:
     branches-ignore:
       - '**'
   schedule:
     - cron: '*/5 * * * *'
+
 env:
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples keep-prisma-dependencies-updated.yaml'
 
@@ -39,10 +39,9 @@ jobs:
     needs: [check-for-update]
     steps:
       - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          version: 12
+          node-version: '12'
 
       - name: report failure to slack
         run: bash .github/scripts/slack-workflow-status.sh "[keep-prisma-dependencies-updated] check-for-update :x:"
