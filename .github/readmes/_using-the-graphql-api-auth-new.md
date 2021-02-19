@@ -24,6 +24,7 @@ query {
 
 <details><summary><strong>See more API operations</strong></summary>
 
+
 ### Register a new user
 
 You can send the following mutation in the Playground to sign up a new user and retrieve an authentication token for them:
@@ -108,37 +109,41 @@ mutation {
 }
 ```
 
-### Publish an existing draft
+### Publish an existing post
 
 You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. The authentication token must belong to the user who created the post.
 
 ```graphql
 mutation {
-  publish(id: __POST_ID__) {
+  togglePublishPost(id: __POST_ID__) {
     id
     published
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  togglePublishPost(id: 5) {
+    id
+    published
+  }
+}
+```
 
 ### Search for posts with a specific title or content
 
-You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground.
-
 ```graphql
 {
-  filterPosts(searchString: "graphql") {
+  feed(
+    searchString: "prisma"
+  ) {
     id
     title
     content
     published
-    author {
-      id
-      name
-      email
-    }
   }
 }
 ```
@@ -149,21 +154,28 @@ You need to be logged in for this query to work, i.e. an authentication token th
 
 ```graphql
 {
-  post(id: __POST_ID__) {
+  postById(id: __POST_ID__ ) {
     id
     title
     content
     published
-    author {
-      id
-      name
-      email
-    }
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+{
+  postById(id: 5 ) {
+    id
+    title
+    content
+    published
+  }
+}
+```
+
 
 ### Delete a post
 
@@ -177,7 +189,37 @@ mutation {
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  deletePost(id: 5) {
+    id
+  }
+}
+```
+
+### Retrieve the drafts of a user
+
+```graphql
+{
+  draftsByUser(
+    userUniqueInput: {
+      email: "mahmoud@prisma.io"
+    }
+  ) {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
 
 </details>
 
