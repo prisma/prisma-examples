@@ -1,18 +1,17 @@
 import { rule, shield } from 'graphql-shield'
 import { getUserId } from '../utils'
-import { Context } from '../context'
 
 const rules = {
-  isAuthenticatedUser: rule()((_parent, _args, context: Context) => {
+  isAuthenticatedUser: rule()((parent, args, context) => {
     const userId = getUserId(context)
     return Boolean(userId)
   }),
-  isPostOwner: rule()(async (_parent, args, context) => {
+  isPostOwner: rule()(async (parent, { id }, context) => {
     const userId = getUserId(context)
     const author = await context.prisma.post
       .findUnique({
         where: {
-          id: Number(args.id),
+          id: Number(id),
         },
       })
       .author()
@@ -23,13 +22,12 @@ const rules = {
 export const permissions = shield({
   Query: {
     me: rules.isAuthenticatedUser,
-    draftsByUser: rules.isAuthenticatedUser,
-    postById: rules.isAuthenticatedUser,
+    filterPosts: rules.isAuthenticatedUser,
+    post: rules.isAuthenticatedUser,
   },
   Mutation: {
     createDraft: rules.isAuthenticatedUser,
     deletePost: rules.isPostOwner,
-    incrementPostViewCount: rules.isAuthenticatedUser,
-    togglePublishPost: rules.isPostOwner,
+    publish: rules.isPostOwner,
   },
 })
