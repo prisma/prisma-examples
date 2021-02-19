@@ -279,6 +279,8 @@ mutation {
 
 ### Retrieve the drafts of a user
 
+You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. 
+
 ```graphql
 {
   draftsByUser(
