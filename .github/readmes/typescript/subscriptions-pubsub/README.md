@@ -15,4 +15,4 @@ __INLINE(../_start-graphql-server.md)__
 __INLINE(../../_using-the-graphql-api_subscription.md)__
 
 __INLINE(../_evolving-the-app-graphql.md)__
-__INLINE(../_next-steps.md)__
+__INLINE(../../_next-steps.md)__

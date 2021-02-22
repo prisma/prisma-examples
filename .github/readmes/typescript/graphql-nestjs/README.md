@@ -15,4 +15,4 @@ __INLINE(../_start-graphql-server-nestjs.md)__
 __INLINE(../../_using-the-graphql-api.md)__
 
 __INLINE(../_evolving-the-app.md)__
-__INLINE(../_next-steps.md)__
+__INLINE(../../_next-steps.md)__
