@@ -27,7 +27,7 @@
     "graphql-tag": "2.11.0",
     "next": "10.0.7",
     "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.30.0",
+    "nexus-plugin-prisma": "0.31.0",
     "react": "17.0.1",
     "react-apollo": "3.1.5",
     "react-dom": "17.0.1",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "prisma": "2.17.0",
     "@types/graphql": "14.5.0",
-    "@types/node": "13.13.42",
+    "@types/node": "13.13.45",
     "@types/react": "17.0.2",
     "typescript": "4.1.5"
   }

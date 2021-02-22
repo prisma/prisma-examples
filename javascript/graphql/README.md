@@ -153,7 +153,7 @@ mutation {
 }
 ```
 
-### Publish/unpublish an existing draft
+### Publish/unpublish an existing post
 
 ```graphql
 mutation {
@@ -273,6 +273,316 @@ mutation {
   deletePost(id: 5) {
     id
   }
+}
+```
+
+</details>
+
+## Evolving the app
+
+Evolving the application typically requires two steps:
+
+1. Migrate your database using Prisma Migrate
+1. Update your application code
+
+For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
+
+### 1. Migrate your database using Prisma Migrate
+
+The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
+
+```diff
+// ./prisma/schema.prisma
+
+model User {
+  id      Int      @default(autoincrement()) @id
+  name    String?
+  email   String   @unique
+  posts   Post[]
++ profile Profile?
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  viewCount Int      @default(0)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+
++model Profile {
++  id     Int     @default(autoincrement()) @id
++  bio    String?
++  user   User    @relation(fields: [userId], references: [id])
++  userId Int     @unique
++}
+```
+
+Once you've updated your data model, you can execute the changes against your database with the following command:
+
+```
+npx prisma migrate dev --name add-profile --preview-feature
+```
+
+This adds another migration to the `prisma/migrations` directory and creates the new `Profile` table in the database.
+
+### 2. Update your application code
+
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement queries and mutations in the GraphQL API.
+
+#### 2.1. Add the `Profile` type to your GraphQL schema
+
+First, add a new GraphQL type via Nexus' `objectType` function:
+
+```diff
+// ./src/schema.js
+
++const Profile = objectType({
++  name: 'Profile',
++  definition(t) {
++    t.nonNull.int('id')
++    t.string('bio')
++    t.field('user', {
++      type: 'User',
++      resolve: (parent, _, context) => {
++        return context.prisma.profile
++          .findUnique({
++            where: { id: parent.id || undefined },
++          })
++          .user()
++      },
++    })
++  },
++})
+
+const User = objectType({
+  name: 'User',
+  definition(t) {
+    t.nonNull.int('id')
+    t.string('name')
+    t.nonNull.string('email')
+    t.nonNull.list.nonNull.field('posts', {
+      type: 'Post',
+      resolve: (parent, _, context) => {
+        return context.prisma.user
+          .findUnique({
+            where: { id: parent.id || undefined },
+          })
+          .posts()
+      },
++   t.field('profile', {
++     type: 'Profile',
++     resolve: (parent, _, context) => {
++       return context.prisma.user.findUnique({
++         where: { id: parent.id }
++       }).profile()
++     }
++   })
+  },
+})
+```
+
+Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
+
+```diff
+export const schema = makeSchema({
+  types: [
+    Query,
+    Mutation,
+    Post,
+    User,
++   Profile,
+    UserUniqueInput,
+    UserCreateInput,
+    PostCreateInput,
+    PostOrderBy,
+    DateTime,
+  ],
+  // ... as before
+}
+```
+
+Note that in order to resolve any type errors, your development server needs to be running so that the Nexus types can be generated. If it's not running, you can start it with `npm run dev`.
+
+#### 2.2. Add a `createProfile` GraphQL mutation
+
+```diff
+// ./src/schema.js
+
+const Mutation = objectType({
+  name: 'Mutation',
+  definition(t) {
+
+    // other mutations
+
++   t.field('addProfileForUser', {
++     type: 'Profile',
++     args: {
++       userUniqueInput: nonNull(
++         arg({
++           type: 'UserUniqueInput',
++         }),
++       ),
++       bio: stringArg()
++     }, 
++     resolve: async (_, args, context) => {
++       return context.prisma.profile.create({
++         data: {
++           bio: args.bio,
++           user: {
++             connect: {
++               id: args.userUniqueInput.id || undefined,
++               email: args.userUniqueInput.email || undefined,
++             }
++           }
++         }
++       })
++     }
++   })
+
+  }
+})
+```
+
+Finally, you can test the new mutation like this:
+
+```graphql
+mutation {
+  addProfileForUser(
+    userUniqueInput: {
+      email: "mahmoud@prisma.io"
+    }
+    bio: "I like turtles"
+  ) {
+    id
+    bio
+    user {
+      id
+      name
+    }
+  }
+}
+```
+
+<details><summary>Expand to view more sample Prisma Client queries on <code>Profile</code></summary>
+
+Here are some more sample Prisma Client queries on the new <code>Profile</code> model:
+
+##### Create a new profile for an existing user
+
+```ts
+const profile = await prisma.profile.create({
+  data: {
+    bio: 'Hello World',
+    user: {
+      connect: { email: 'alice@prisma.io' },
+    },
+  },
+})
+```
+
+##### Create a new user with a new profile
+
+```ts
+const user = await prisma.user.create({
+  data: {
+    email: 'john@prisma.io',
+    name: 'John',
+    profile: {
+      create: {
+        bio: 'Hello World',
+      },
+    },
+  },
+})
+```
+
+##### Update the profile of an existing user
+
+```ts
+const userWithUpdatedProfile = await prisma.user.update({
+  where: { email: 'alice@prisma.io' },
+  data: {
+    profile: {
+      update: {
+        bio: 'Hello Friends',
+      },
+    },
+  },
+})
+```
+
+</details>
+
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+
+Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
+
+<details><summary>Expand for an overview of example configurations with different databases</summary>
+
+### PostgreSQL
+
+For PostgreSQL, the connection URL has the following structure:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+}
+```
+
+Here is an example connection string with a local PostgreSQL database:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://janedoe:mypassword@localhost:5432/notesapi?schema=public"
+}
+```
+
+### MySQL
+
+For MySQL, the connection URL has the following structure:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+}
+```
+
+Here is an example connection string with a local MySQL database:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://janedoe:mypassword@localhost:3306/notesapi"
+}
+```
+
+### Microsoft SQL Server (Preview)
+
+Here is an example connection string with a local Microsoft SQL Server database:
+
+```prisma
+datasource db {
+  provider = "sqlserver"
+  url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
+}
+```
+
+Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+
+```prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["microsoftSqlServer"]
 }
 ```
 
