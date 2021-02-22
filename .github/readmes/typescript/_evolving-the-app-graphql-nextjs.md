@@ -136,11 +136,7 @@ const Mutation = objectType({
 +   t.field('addProfileForUser', {
 +     type: 'Profile',
 +     args: {
-+       userUniqueInput: nonNull(
-+         arg({
-+           type: 'UserUniqueInput',
-+         }),
-+       ),
++       email: : stringArg(),
 +       bio: stringArg()
 +     }, 
 +     resolve: async (_, args, context) => {
@@ -149,8 +145,7 @@ const Mutation = objectType({
 +           bio: args.bio,
 +           user: {
 +             connect: {
-+               id: args.userUniqueInput.id || undefined,
-+               email: args.userUniqueInput.email || undefined,
++               email: args.email || undefined,
 +             }
 +           }
 +         }
@@ -167,9 +162,7 @@ Finally, you can test the new mutation like this:
 ```graphql
 mutation {
   addProfileForUser(
-    userUniqueInput: {
-      email: "mahmoud@prisma.io"
-    }
+    email: "mahmoud@prisma.io"
     bio: "I like turtles"
   ) {
     id
