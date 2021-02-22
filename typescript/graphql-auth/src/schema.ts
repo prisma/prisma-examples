@@ -3,7 +3,6 @@ import { APP_SECRET, getUserId } from './utils'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { applyMiddleware } from 'graphql-middleware'
-// import * as types from './types'
 import {
   intArg,
   makeSchema,
@@ -25,7 +24,6 @@ const Query = objectType({
     t.nonNull.list.nonNull.field('allUsers', {
       type: 'User',
       resolve: (_parent, _args, context) => {
-        console.log(`allUsers`)
         return context.prisma.user.findMany()
       },
     })
@@ -361,30 +359,4 @@ const schemaWithoutPermissions = makeSchema({
   },
 })
 
-export const schema = schemaWithoutPermissions
-// export const schema = applyMiddleware(schemaWithoutPermissions, permissions)
-
-// export const schema = applyMiddleware(
-//   makeSchema({
-//     types,
-//     plugins: [nexusPrisma()],
-//     outputs: {
-//       schema: __dirname + '/../schema.graphql',
-//       typegen: __dirname + '/generated/nexus.ts',
-//     },
-//     contextType: {
-//       module: require.resolve('./context'),
-//       alias: 'Context',
-//       export: 'Context',
-//     },
-//     sourceTypes: {
-//       modules: [
-//         {
-//           module: '@prisma/client',
-//           alias: 'client',
-//         },
-//       ],
-//     },
-//   }),
-//   permissions,
-// )
+export const schema = applyMiddleware(schemaWithoutPermissions, permissions)
