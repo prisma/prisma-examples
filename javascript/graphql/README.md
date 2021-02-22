@@ -16,9 +16,9 @@ This example shows how to implement a **GraphQL server with JavaScript** with th
 - [Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)](#switch-to-another-database-eg-postgresql-mysql-sql-server)
 - [Next steps](#next-steps)
 
-## How to use
+## Getting started
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
 
 Download this example:
 
