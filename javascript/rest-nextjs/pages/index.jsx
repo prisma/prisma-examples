@@ -1,5 +1,4 @@
 import Layout from '../components/Layout'
-import fetch from 'isomorphic-unfetch'
 import Post from '../components/Post'
 
 const Blog = props => {

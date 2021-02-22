@@ -1,11 +1,10 @@
 import { PrismaClient } from '@prisma/client'
-import * as bodyParser from 'body-parser'
 import express from 'express'
 
 const prisma = new PrismaClient()
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.get('/drafts', async (req, res) => {
   const posts = await prisma.post.findMany({
