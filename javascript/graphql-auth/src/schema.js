@@ -199,7 +199,7 @@ const Mutation = objectType({
           })
           return context.prisma.post.update({
             where: { id: args.id || undefined },
-            data: { published: !post?.published },
+            data: { published: !post.published },
           })
         } catch (e) {
           throw new Error(
