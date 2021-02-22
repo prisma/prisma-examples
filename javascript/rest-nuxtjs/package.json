@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "5.0.0",
-    "@nuxtjs/eslint-module": "2.0.0",
+    "@nuxtjs/eslint-module": "3.0.2",
     "prisma": "2.17.0",
     "babel-eslint": "10.1.0",
     "eslint": "7.20.0",
