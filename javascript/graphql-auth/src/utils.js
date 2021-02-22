@@ -2,16 +2,16 @@ const { verify } = require('jsonwebtoken')
 
 const APP_SECRET = 'appsecret321'
 
-function getUserId(req) {
-  const Authorization = req.headers.authorization
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '')
+function getUserId(context) {
+  const authHeader = context.req.get('Authorization')
+  if (authHeader) {
+    const token = authHeader.replace('Bearer ', '')
     const verifiedToken = verify(token, APP_SECRET)
-    return verifiedToken && verifiedToken.userId
+    return verifiedToken && Number(verifiedToken.userId)
   }
 }
 
 module.exports = {
-  getUserId,
-  APP_SECRET,
+  APP_SECRET: APP_SECRET,
+  getUserId: getUserId,
 }
