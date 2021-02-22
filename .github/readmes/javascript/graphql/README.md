@@ -28,4 +28,8 @@ __INLINE(../../_start-graphql-server-new.md)__
 
 __INLINE(../../_using-the-graphql-api-new.md)__
 
+__INLINE(../_evolving-the-app-graphql-new.md)__
+
+__INLINE(../../_switching-databases.md)__
+
 __INLINE(../../_next-steps.md)__

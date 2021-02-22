@@ -1,9 +1,9 @@
-import { permissions } from './permissions'
-import { APP_SECRET, getUserId } from './utils'
-import { compare, hash } from 'bcryptjs'
-import { sign } from 'jsonwebtoken'
-import { applyMiddleware } from 'graphql-middleware'
-import {
+const { permissions } = require('./permissions')
+const { APP_SECRET, getUserId } = require('./utils')
+const { compare, hash } = require('bcryptjs')
+const { sign } = require('jsonwebtoken')
+const { applyMiddleware } = require('graphql-middleware')
+const {
   intArg,
   makeSchema,
   nonNull,
@@ -13,10 +13,10 @@ import {
   arg,
   asNexusMethod,
   enumType,
-} from 'nexus'
-import { GraphQLDateTime } from 'graphql-iso-date'
+} = require('nexus')
+const { GraphQLDateTime } = require('graphql-iso-date')
 
-export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
+const DateTime = asNexusMethod(GraphQLDateTime, 'date')
 
 const Query = objectType({
   name: 'Query',
@@ -199,7 +199,7 @@ const Mutation = objectType({
           })
           return context.prisma.post.update({
             where: { id: args.id || undefined },
-            data: { published: !post?.published },
+            data: { published: !post.published },
           })
         } catch (e) {
           throw new Error(
@@ -359,4 +359,8 @@ const schemaWithoutPermissions = makeSchema({
   },
 })
 
-export const schema = applyMiddleware(schemaWithoutPermissions, permissions)
+const schema = applyMiddleware(schemaWithoutPermissions, permissions)
+
+module.exports = {
+  schema: schema,
+}
