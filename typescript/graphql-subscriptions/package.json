@@ -1,0 +1,34 @@
+{
+  "name": "subscriptions-pubsub",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "start": "node dist/server",
+    "clean": "rm -rf dist",
+    "build": "npm -s run clean && npm -s run generate && tsc",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema"
+  },
+  "dependencies": {
+    "@prisma/client": "2.17.0",
+    "apollo-server": "2.21.0",
+    "graphql": "15.5.0",
+    "nexus": "1.0.0"
+  },
+  "devDependencies": {
+    "prisma": "2.17.0",
+    "@types/node": "13.13.45",
+    "ts-node": "9.1.1",
+    "ts-node-dev": "1.1.1",
+    "typescript": "4.1.5"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}

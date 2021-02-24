@@ -8,3 +8,14 @@ export interface Context {
   res: Response
   pubsub: PubSub
 }
+
+const prisma = new PrismaClient()
+const pubsub = new PubSub()
+
+export const createContext = (ctx: any): Context => {
+  return {
+    ...ctx,
+    prisma,
+    pubsub,
+  }
+}
