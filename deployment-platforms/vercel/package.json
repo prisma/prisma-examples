@@ -10,6 +10,6 @@
   },
   "devDependencies": {
     "prisma": "2.17.0",
-    "vercel": "21.3.0"
+    "vercel": "21.3.1"
   }
 }
