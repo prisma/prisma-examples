@@ -10,15 +10,21 @@ module.exports = async function (context, req) {
         id: parseInt(postId, 10),
       },
     })
-    return  {
+    return {
       body: post,
     }
   } catch (e) {
+    context.log(e)
+    
     if (e instanceof PrismaClientKnownRequestError && e.code === 'P2025') {
-      return  {
+      return {
         status: 400,
         body: `postId ${postId} cannot be deleted because it does not exist.`,
       }
+    }
+
+    return {
+      status: 500,
     }
   }
 }

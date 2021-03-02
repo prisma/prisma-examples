@@ -8,6 +8,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
+  binaryTargets   = ["native", "debian-openssl-1.1.x"]
   previewFeatures = ["microsoftSqlServer"]
 }
 
@@ -26,6 +27,6 @@ model Post {
   title     String
   content   String?
   published Boolean  @default(false)
-  author    User?     @relation(fields: [authorId], references: [id])
+  author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }

@@ -2,7 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "DATABASE_URL": "sqlserver://DB_SERVER_NAME.database.windows.net:1433;database=DB_NAME;user=DB_ADMIN_USER@DB_SERVER_NAME;password={DB_ADMIN_PASSWORD};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30"
+    "FUNCTIONS_WORKER_RUNTIME": "node"
   }
 }
