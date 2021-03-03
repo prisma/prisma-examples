@@ -1,11 +1,12 @@
 const prisma = require('../lib/prisma')
 
 module.exports = async function (context, req) {
-  const { id } = req.query
+  const { postId } = context.bindingData
+
   try {
     const post = await prisma.post.findUnique({
       where: {
-        id: parseInt(id, 10),
+        id: parseInt(postId, 10),
       },
     })
 
@@ -17,6 +18,7 @@ module.exports = async function (context, req) {
     context.log(e)
     return {
       status: 500,
+      body: e.message,
     }
   }
 }

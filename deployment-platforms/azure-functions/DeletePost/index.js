@@ -15,7 +15,7 @@ module.exports = async function (context, req) {
     }
   } catch (e) {
     context.log(e)
-    
+
     if (e instanceof PrismaClientKnownRequestError && e.code === 'P2025') {
       return {
         status: 400,
@@ -25,6 +25,7 @@ module.exports = async function (context, req) {
 
     return {
       status: 500,
+      body: e.message,
     }
   }
 }

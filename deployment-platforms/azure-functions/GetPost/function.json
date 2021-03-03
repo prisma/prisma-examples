@@ -8,8 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "post"
-
+      "route": "post/{postId}"
     },
     {
       "type": "http",
