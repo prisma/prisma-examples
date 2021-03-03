@@ -19,6 +19,7 @@ module.exports = async function (context, req) {
     context.log(e)
     return {
       status: 500,
+      body: e.message,
     }
   }
 }
