@@ -23,6 +23,6 @@
     "ts-node": "9.1.1",
     "ts-node-dev": "1.1.6",
     "typegraphql-prisma": "0.11.2",
-    "typescript": "4.1.5"
+    "typescript": "4.2.3"
   }
 }
