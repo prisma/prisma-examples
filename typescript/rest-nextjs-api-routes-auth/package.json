@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@prisma/client": "2.18.0",
-    "next": "10.0.7",
+    "next": "10.0.8",
     "next-auth": "3.7.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
