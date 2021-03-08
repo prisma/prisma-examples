@@ -17,6 +17,6 @@ async function StartServer() {
 
 StartServer()
   .then((server) => {
-    console.log(`🚀 Server ready at: http://localhost:4000`)
+    console.log(`🚀 Server ready at: http://localhost:4000/graphql`)
   })
   .catch((err) => console.log(err))
