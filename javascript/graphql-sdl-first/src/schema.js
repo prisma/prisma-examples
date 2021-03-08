@@ -4,146 +4,222 @@
  */
 
 const { makeExecutableSchema } = require('apollo-server')
+const { GraphQLDateTime } = require("graphql-iso-date")
 
 const typeDefs = `
-type User {
-  email: String!
-  id: ID!
-  name: String
-  posts: [Post!]!
+type Mutation {
+  createDraft(authorEmail: String!, data: PostCreateInput!): Post
+  deletePost(id: Int!): Post
+  incrementPostViewCount(id: Int!): Post
+  signupUser(data: UserCreateInput!): User!
+  togglePublishPost(id: Int!): Post
 }
 
 type Post {
   author: User
   content: String
-  id: ID!
+  createdAt: DateTime!
+  id: Int!
   published: Boolean!
+  title: String!
+  updatedAt: DateTime!
+  viewCount: Int!
+}
+
+input PostCreateInput {
+  content: String
   title: String!
 }
 
+input PostOrderByUpdatedAtInput {
+  updatedAt: SortOrder!
+}
 
 type Query {
-  feed: [Post!]!
-  filterPosts(searchString: String): [Post!]!
-  post(where: PostWhereUniqueInput!): Post
+  allUsers: [User!]!
+  draftsByUser(userUniqueInput: UserUniqueInput!): [Post]
+  feed(orderBy: PostOrderByUpdatedAtInput, searchString: String, skip: Int, take: Int): [Post!]!
+  postById(id: Int): Post
 }
 
-type Mutation {
-  createDraft(authorEmail: String, content: String, title: String!): Post!
-  deleteOnePost(where: PostWhereUniqueInput!): Post
-  publish(id: ID): Post
-  signupUser(data: UserCreateInput!): User!
+enum SortOrder {
+  asc
+  desc
 }
 
-input PostWhereUniqueInput {
-  id: ID
+type User {
+  email: String!
+  id: Int!
+  name: String
+  posts: [Post!]!
 }
 
 input UserCreateInput {
   email: String!
-  id: ID
   name: String
-  posts: PostCreateManyWithoutPostsInput
+  posts: [PostCreateInput!]
 }
 
-input PostCreateManyWithoutPostsInput {
-  connect: [PostWhereUniqueInput!]
-  create: [PostCreateWithoutAuthorInput!]
+input UserUniqueInput {
+  email: String
+  id: Int
 }
 
-input PostCreateWithoutAuthorInput {
-  content: String
-  id: ID
-  published: Boolean
-  title: String!
-}
+scalar DateTime
 `
 
 const resolvers = {
   Query: {
     /**
-     * @param {any} parent
-     * @param {any} args
-     * @param {{ prisma: Prisma }} ctx
+     * @param {any} _parent
+     * @param {any} _args
+     * @param {{ prisma: Prisma }} context
      */
-    feed: (parent, args, ctx) => {
-      return ctx.prisma.post.findMany({
-        where: { published: true },
+    allUsers: (_parent, _args, context) => {
+      return context.prisma.user.findMany()
+    },
+    /**
+     * 
+     * @param {any} _parent 
+     * @param {{id: number}} args 
+     * @param {{ prisma: Prisma }} context 
+     * @returns 
+     */
+    postById: (_parent, args, context) => {
+      return context.prisma.post.findUnique({
+        where: { id: args.id || undefined }
       })
     },
     /**
-     * @param {any} parent
-     * @param {{ searchString: string }} args
-     * @param {{ prisma: Prisma }} ctx
+     * 
+     * @param {any} _parent 
+     * @param {{searchString?: string, skip?: number, take?: number, orderBy?:{"asc", "desc"}}} args
+     * @param {{ prisma: Prisma }} context
      */
-    filterPosts: (parent, args, ctx) => {
-      return ctx.prisma.post.findMany({
+    feed: (_parent, args, context) => {
+      const or = args.searchString ? {
+        OR: [
+          { title: { contains: args.searchString } },
+          { content: { contains: args.searchString } }
+        ]
+      } : {}
+
+      return context.prisma.post.findMany({
         where: {
-          OR: [
-            { title: { contains: args.searchString } },
-            { content: { contains: args.searchString } },
-          ],
+          published: true,
+          ...or
+        },
+        take: args?.take,
+        skip: args?.skip,
+        orderBy: args?.orderBy
+      })
+    },
+    /**
+     * 
+     * @param {any} _parent 
+     * @param {{userUniqueInput: { id: number, email: string}}} args 
+     * @param {{ prisma: Prisma }} context
+     */
+    draftsByUser: (_parent, args, context) => {
+      return context.prisma.user.findUnique({
+        where: {
+          id: args.userUniqueInput.id || undefined,
+          email: args.userUniqueInput.email || undefined,
+        },
+      }).posts({
+        where: {
+          published: false
+        },
+      })
+    }
+  },
+  Mutation: {
+    /**
+     * @param {any} _parent 
+     * @param {{data: {email: string, name?: string, post?: {title: string, email: string}[]}}} args 
+     * @param {{ prisma: Prisma }} context 
+     */
+    signupUser: (_parent, args, context) => {
+      const postData = args.data.posts?.map(post => {
+        return { title: post.title, content: post.content || undefined }
+      })
+
+      return context.prisma.user.create({
+        data: {
+          name: args.data.name,
+          email: args.data.email,
+          posts: {
+            create: postData
+          }
         },
       })
     },
     /**
-     * @param {any} parent
-     * @param {{ where: { id: string }}} args
-     * @param {{ prisma: Prisma }} ctx
+     * @param {any} _parent 
+     * @param {{data:{ title: string, content?: string }, authorEmail: string}} args 
+     * @param {{ prisma: Prisma }} context
      */
-    post: (parent, args, ctx) => {
-      return ctx.prisma.post.findUnique({
-        where: { id: Number(args.where.id) },
-      })
-    },
-  },
-  Mutation: {
-    /**
-     * @param {any} parent
-     * @param {{ title: string, content: string, authorEmail: (string|undefined) }} args
-     * @param {{ prisma: Prisma }} ctx
-     */
-    createDraft: (parent, args, ctx) => {
-      return ctx.prisma.post.create({
+    createDraft: (_parent, args, context) => {
+      return context.prisma.post.create({
         data: {
-          title: args.title,
-          content: args.content,
-          published: false,
-          author: args.authorEmail && {
+          title: args.data.title,
+          content: args.data.content,
+          author: {
             connect: { email: args.authorEmail },
           },
         },
       })
     },
     /**
-     * @param {any} parent
-     * @param {{ where: { id: string }}} args
-     * @param {{ prisma: Prisma }} ctx
+     * 
+     * @param {any} _parent 
+     * @param {{id: number}} args 
+     * @param {{ prisma: Prisma }} context
      */
-    deleteOnePost: (parent, args, ctx) => {
-      return ctx.prisma.post.delete({
-        where: { id: Number(args.where.id) },
+    togglePublishPost: async (_parent, args, context) => {
+      try {
+        const post = await context.prisma.post.findUnique({
+          where: { id: args.id || undefined },
+          select: {
+            published: true
+          }
+        })
+
+        return context.prisma.post.update({
+          where: { id: args.id || undefined },
+          data: { published: !post?.published },
+        })
+      } catch (error) {
+        throw new Error(
+          `Post with ID ${args.id} does not exist in the database.`,
+        )
+      }
+    },
+    /**
+     * @param {any} _parent 
+     * @param {*} args 
+     * @param {{ prisma: Prisma }} context
+     */
+    incrementPostViewCount: (_parent, args: { id: number }, context) => {
+      return context.prisma.post.update({
+        where: { id: args.id || undefined },
+        data: {
+          viewCount: {
+            increment: 1
+          }
+        },
       })
     },
     /**
-     * @param {any} parent
-     * @param {{ id: string }} args
-     * @param {{ prisma: Prisma }} ctx
+     * @param {any} _parent 
+     * @param {{id: number}} args 
+     * @param {{ prisma: Prisma }} context
      */
-    publish: (parent, args, ctx) => {
-      return ctx.prisma.post.update({
-        where: { id: Number(args.id) },
-        data: { published: true },
+    deletePost: (_parent, args, context) => {
+      return context.prisma.post.delete({
+        where: { id: args.id },
       })
-    },
-    /**
-     * @param {any} parent
-     * @param {UserCreateArgs} args
-     * @param {{ prisma: Prisma }} ctx
-     */
-    signupUser: (parent, args, ctx) => {
-      return ctx.prisma.user.create(args)
-    },
+    }
   },
   User: {
     /**
@@ -173,6 +249,7 @@ const resolvers = {
         .author()
     },
   },
+  DateTime: GraphQLDateTime
 }
 
 const schema = makeExecutableSchema({
