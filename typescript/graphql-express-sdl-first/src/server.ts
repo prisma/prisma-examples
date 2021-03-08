@@ -15,6 +15,7 @@ app.use(
 )
 
 app.listen(4000)
-console.log(
-  `🚀 Server ready at: http://localhost:4000/graphql\n⭐️ See sample queries: http://pris.ly/e/ts/graphql-express-sdl-first#using-the-graphql-api`,
-)
+console.log(`\
+🚀 Server ready at: http://localhost:4000/graphql
+⭐️ See sample queries: http://pris.ly/e/ts/graphql-express-sdl-first#using-the-graphql-api
+`)
