@@ -20,6 +20,8 @@ __INLINE(../_start-graphql-server.md)__
 
 __INLINE(../../_using-the-graphql-api.md)__
 
+__INLINE(../_evolving-the-app-graphql-sdl.md)__
+
 __INLINE(../../_switching-databases.md)__
 
 __INLINE(../../_next-steps.md)__
