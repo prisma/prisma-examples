@@ -200,7 +200,7 @@ const resolvers = {
      * @param {*} args 
      * @param {{ prisma: Prisma }} context
      */
-    incrementPostViewCount: (_parent, args: { id: number }, context) => {
+    incrementPostViewCount: (_parent, args, context) => {
       return context.prisma.post.update({
         where: { id: args.id || undefined },
         data: {
@@ -241,7 +241,7 @@ const resolvers = {
      * @param {any} args
      * @param {{ prisma: Prisma }} ctx
      */
-    author: (parent, args, ctx) => {
+    author: (parent, _args, ctx) => {
       return ctx.prisma.post
         .findUnique({
           where: { id: parent.id },
