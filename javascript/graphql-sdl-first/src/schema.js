@@ -109,9 +109,9 @@ const resolvers = {
           published: true,
           ...or
         },
-        take: args?.take,
-        skip: args?.skip,
-        orderBy: args?.orderBy
+        take: args.take || undefined,
+        skip: args.skip || undefined,
+        orderBy: args.orderBy || undefined
       })
     },
     /**
