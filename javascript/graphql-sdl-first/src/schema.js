@@ -140,7 +140,7 @@ const resolvers = {
      * @param {{ prisma: Prisma }} context 
      */
     signupUser: (_parent, args, context) => {
-      const postData = args.data.posts?.map(post => {
+      const postData = args.data.posts.map(post => {
         return { title: post.title, content: post.content || undefined }
       })
 
@@ -187,7 +187,7 @@ const resolvers = {
 
         return context.prisma.post.update({
           where: { id: args.id || undefined },
-          data: { published: !post?.published },
+          data: { published: !post.published || undefined },
         })
       } catch (error) {
         throw new Error(
