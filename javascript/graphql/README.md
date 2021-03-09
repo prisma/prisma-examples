@@ -57,7 +57,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init --preview-feature
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
+Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
 
 ```
 npx prisma db seed --preview-feature

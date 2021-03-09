@@ -36,6 +36,21 @@ npm install
 
 </details>
 
+### 2. Create and seed the database
+
+Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+
+```
+npx prisma migrate dev --name init --preview-feature
+```
+
+Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
+
+```
+npx prisma db seed --preview-feature
+```
+
+
 ### 2. Setup PostgreSQL
 
 - The recommended way of trying this out would be using a Docker image of PostgreSQL with Postgis extensions that can be pulled from [here](https://github.com/postgis/docker-postgis).
