@@ -15,4 +15,7 @@ __INLINE(../_start-graphql-server.md)__
 __INLINE(../../_using-the-graphql-api-typegraphql-crud.md)__
 
 __INLINE(../_evolving-the-app-typegraphql.md)__
+
+__INLINE(../../_switching-databases.md)__
+
 __INLINE(../../_next-steps.md)__

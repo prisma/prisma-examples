@@ -24,11 +24,11 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/javascript/graphql
 __INLINE(../_setup-3.md)__
 
-__INLINE(../../_start-graphql-server-new.md)__
+__INLINE(../../_start-graphql-server.md)__
 
-__INLINE(../../_using-the-graphql-api-new.md)__
+__INLINE(../../_using-the-graphql-api.md)__
 
-__INLINE(../_evolving-the-app-graphql-new.md)__
+__INLINE(../_evolving-the-app-graphql.md)__
 
 __INLINE(../../_switching-databases.md)__
 

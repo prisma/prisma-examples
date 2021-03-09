@@ -46,4 +46,6 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 __INLINE(../../_using-the-rest-api-nuxtjs.md)__
 
+__INLINE(../../_switching-databases.md)__
+
 __INLINE(../_next-steps-rest-nuxtjs.md)__

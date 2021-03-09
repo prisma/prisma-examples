@@ -19,4 +19,7 @@ npm run dev
 ```
 
 __INLINE(../_evolving-the-app.md)__
+
+__INLINE(../../_switching-databases.md)__
+
 __INLINE(../../_next-steps.md)__

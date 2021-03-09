@@ -1,3 +1,4 @@
+
 ## Using the GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
@@ -22,18 +23,36 @@ query {
 }
 ```
 
-<Details><Summary><strong>See more API operations</strong></Summary>
+<details><summary><strong>See more API operations</strong></summary>
+
+### Retrieve the drafts of a user
+
+```graphql
+{
+  draftsByUser(
+    userUniqueInput: {
+      email: "mahmoud@prisma.io"
+    }
+  ) {
+    id
+    title
+    content
+    published
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
 
 ### Create a new user
 
 ```graphql
 mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
-    }
-  ) {
+  signupUser(data: { name: "Sarah", email: "sarah@prisma.io" }) {
     id
   }
 }
@@ -44,43 +63,93 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
+    data: { title: "Join the Prisma Slack", content: "https://slack.prisma.io" }
     authorEmail: "alice@prisma.io"
   ) {
     id
-    published
-  }
-}
-```
-
-### Publish an existing draft
-
-```graphql
-mutation {
-  publish(id: __POST_ID__) {
-    id
-    published
-  }
-}
-```
-
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
-
-### Search for posts with a specific title or content
-
-```graphql
-{
-  filterPosts(searchString: "graphql") {
-    id
-    title
-    content
+    viewCount
     published
     author {
       id
       name
-      email
     }
+  }
+}
+```
+
+### Publish/unpublish an existing post
+
+```graphql
+mutation {
+  togglePublishPost(id: __POST_ID__) {
+    id
+    published
+  }
+}
+```
+
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  togglePublishPost(id: 5) {
+    id
+    published
+  }
+}
+```
+
+### Increment the view count of a post
+
+```graphql
+mutation {
+  incrementPostViewCount(id: __POST_ID__) {
+    id
+    viewCount
+  }
+}
+```
+
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+mutation {
+  incrementPostViewCount(id: 5) {
+    id
+    viewCount
+  }
+}
+```
+
+### Search for posts that contain a specific string in their title or content
+
+```graphql
+{
+  feed(
+    searchString: "prisma"
+  ) {
+    id
+    title
+    content
+    published
+  }
+}
+```
+
+### Paginate and order the returned posts
+
+```graphql
+{
+  feed(
+    skip: 2
+    take: 2
+    orderBy: { updatedAt: desc }
+  ) {
+    id
+    updatedAt
+    title
+    content
+    published
   }
 }
 ```
@@ -89,33 +158,46 @@ mutation {
 
 ```graphql
 {
-  post(where: { id: __POST_ID__ }) {
+  postById(id: __POST_ID__ ) {
     id
     title
     content
     published
-    author {
-      id
-      name
-      email
-    }
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
+
+```graphql
+{
+  postById(id: 5 ) {
+    id
+    title
+    content
+    published
+  }
+}
+```
 
 ### Delete a post
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: __POST_ID__})
-  {
+  deletePost(id: __POST_ID__) {
     id
   }
 }
 ```
 
-> **Note**: You need to replace the `__POST_ID__`-placeholder with an actual `id` from a `Post` item. You can find one e.g. using the `filterPosts`-query.
+Note that you need to replace the `__POST_ID__` placeholder with an actual `id` from a `Post` record in the database, e.g.`5`:
 
-</Details>
+```graphql
+mutation {
+  deletePost(id: 5) {
+    id
+  }
+}
+```
+
+</details>

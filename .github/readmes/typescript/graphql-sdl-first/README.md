@@ -14,9 +14,9 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/graphql-sdl-first
 __INLINE(../_setup-3.md)__
 
-__INLINE(../../_start-graphql-server-new.md)__
+__INLINE(../../_start-graphql-server.md)__
 
-__INLINE(../../_using-the-graphql-api-new.md)__
+__INLINE(../../_using-the-graphql-api.md)__
 
 __INLINE(../_evolving-the-app-graphql-sdl.md)__
 

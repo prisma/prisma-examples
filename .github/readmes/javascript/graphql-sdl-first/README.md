@@ -7,7 +7,6 @@ This example shows how to implement an **GraphQL server (SDL-first) with Node.js
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
-__INLINE(../_setup-1.md)__
 __INLINE(../_setup-0.md)__
 curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/graphql-sdl-first
 __INLINE(../_setup-1.md)__
