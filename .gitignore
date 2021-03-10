@@ -14,7 +14,10 @@ tmp-resolvers
 package-lock.json
 flow-typed
 yarn.lock
-migrations/
+javascript/**/migrations/
+typescript/**/migrations/
+misc/**/migrations/
+databases/**/migrations/
 experimental/**/*.db
 .next
 .vscode/
