@@ -140,7 +140,7 @@ const resolvers = {
      * @param {{ prisma: Prisma }} context 
      */
     signupUser: (_parent, args, context) => {
-      const postData = args.data.posts.map(post => {
+      const postData = args.data.posts?.map(post => {
         return { title: post.title, content: post.content || undefined }
       })
 
