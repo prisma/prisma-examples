@@ -66,7 +66,7 @@ npx prisma db seed --preview-feature
 ```
 
 
-### 2. Start the GraphQL server
+### 3. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 

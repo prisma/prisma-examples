@@ -2,7 +2,7 @@
 
 This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** with the following stack:
 - [**NestJS**](https://docs.nestjs.com/graphql/quick-start): Web framework for building scalable server-side applications
-- [**`makeExecutableSchema`**](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools): Combines [resolvers and type definitions](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e) into an executable schema
+- [**graphql-tools**](https://www.apollographql.com/docs/graphql-tools/): A tool for combining resolvers and type-definitions into an executable schema 
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
@@ -58,7 +58,7 @@ npx prisma db seed --preview-feature
 ```
 
 
-### 3. Start the GraphQL server
+### 2. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
@@ -66,7 +66,7 @@ Launch your GraphQL server with this command:
 npm run dev
 ```
 
-Navigate to [http://localhost:4000](http://localhost:4000) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+Navigate to [http://localhost:3000/graphql](http://localhost:3000/graphql) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
 
 ## Using the GraphQL API
