@@ -1,7 +1,8 @@
 # GraphQL Server Example (SDL-first)
 
 This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** with the following stack:
-- [**Apollo Server**](https://www.apollographql.com/docs/apollo-server)
+
+- [**Apollo Server**](https://www.apollographql.com/docs/apollo-server): HTTP server for GraphQL APIs
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database

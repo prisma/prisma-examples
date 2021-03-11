@@ -2,8 +2,8 @@
 
 This example shows how to implement a **GraphQL server (SDL-first) with TypeScript** with the following stack:
 
-- [**Express GraphQL**](https://github.com/graphql/express-graphql): HTTP server for GraphQL APIs
-- [`**makeExecutableSchema**`](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools). 
+- [**Express GraphQL**](https://github.com/graphql/express-graphql): Express middleware for GraphQL HTTP servers  
+- [`**makeExecutableSchema**`](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools): A tool for combining resolvers and type-definitions into an executable schema.. 
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database

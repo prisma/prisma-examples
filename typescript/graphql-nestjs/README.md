@@ -1,6 +1,13 @@
 # GraphQL Server Example with NestJS (code-first)
 
-This example shows how to implement an **GraphQL server (code-first) with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client) and [NestJS](https://docs.nestjs.com/graphql/quick-start) . It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db). The example was bootstrapped using the NestJS CLI command `nest new graphql-nestjs`.
+This example shows how to implement an **GraphQL server (code-first) with TypeScript** with the following stack:
+
+- [NestJS](https://docs.nestjs.com/graphql/quick-start): Web framework for building scalable server-side applications
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
+- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
+
+The example was bootstrapped using the NestJS CLI command `nest new graphql-nestjs`.
 
 ## Getting started
 
