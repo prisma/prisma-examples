@@ -5,6 +5,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "build": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "postinstall": "prisma generate"
   },
