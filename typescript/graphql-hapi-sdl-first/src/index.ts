@@ -1,10 +1,10 @@
 import { ApolloServer } from 'apollo-server-hapi'
 import Hapi from '@hapi/hapi'
 import { schema } from './schema'
-import { createContext } from './context'
+import { context } from './context'
 
 async function StartServer() {
-  const server = new ApolloServer({ schema, context: createContext })
+  const server = new ApolloServer({ schema, context: context })
 
   const app = Hapi.server({
     port: 4000,

@@ -1,8 +1,8 @@
 import { ApolloServer } from 'apollo-server'
 import { schema } from './schema'
-import { createContext } from './context'
+import { context } from './context'
 
-new ApolloServer({ schema, context: createContext }).listen(
+new ApolloServer({ schema, context: context }).listen(
   { port: 4000 },
   () =>
     console.log(`

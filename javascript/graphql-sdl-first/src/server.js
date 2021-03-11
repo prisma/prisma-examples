@@ -1,8 +1,8 @@
 const { ApolloServer } = require('apollo-server')
 const { schema } = require('./schema')
-const { createContext } = require('./context')
+const { context } = require('./context')
 
-const server = new ApolloServer({ schema, context: createContext })
+const server = new ApolloServer({ schema, context: context })
 
 server
   .listen()
