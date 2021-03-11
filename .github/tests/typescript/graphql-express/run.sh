@@ -2,8 +2,8 @@
 
 set -eu
 
-yarn
-yarn prisma generate
+yarn 
+yarn prisma db push --preview-feature
 yarn dev &
 pid=$!
 
