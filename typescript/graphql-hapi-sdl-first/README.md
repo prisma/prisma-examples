@@ -404,7 +404,7 @@ const resolvers ={
   Mutation: { 
     // other mutations
 
-+    addUserProfile: (_parent, args: { userUniqueInput: UserUniqueInput, bio: string }, context: Context) => {
++    addProfileForUser: (_parent, args: { userUniqueInput: UserUniqueInput, bio: string }, context: Context) => {
 +      return context.prisma.profile.create({
 +        data: {
 +          bio: args.bio,

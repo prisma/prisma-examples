@@ -131,7 +131,7 @@ const resolvers ={
   Mutation: { 
     // other mutations
 
-+    addUserProfile: (_parent, args, context) => {
++    addProfileForUser: (_parent, args, context) => {
 +      return context.prisma.profile.create({
 +        data: {
 +          bio: args.bio,
