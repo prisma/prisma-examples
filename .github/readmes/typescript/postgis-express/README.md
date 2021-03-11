@@ -28,6 +28,5 @@ __INLINE(./_using-the-api.md)__
 
 Add data of your choice to the "User" and "Location" tables with the above endpoints and then run the `GET` endpoint passing the required parameters.
 
-__INLINE(../../_switching-databases.md)__
 
 __INLINE(../../_next-steps.md)__
