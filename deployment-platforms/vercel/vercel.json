@@ -1,13 +1,5 @@
 {
   "version": 2,
-  "env": {
-    "DATABASE_URL": "@database_url"
-  },
-  "build": {
-    "env": {
-      "DATABASE_URL": "@database_url"
-    }
-  },
   "routes": [
     {
       "src": "/api/users",
