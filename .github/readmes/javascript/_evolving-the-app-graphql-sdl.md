@@ -3,7 +3,7 @@
 Evolving the application typically requires two steps:
 
 1. Migrate your database using Prisma Migrate
-2. Update your application code
+1. Update your application code
 
 For the following example scenario, assume you want to add "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
