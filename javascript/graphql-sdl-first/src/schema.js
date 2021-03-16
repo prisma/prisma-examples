@@ -141,9 +141,11 @@ const resolvers = {
      */
     signupUser: (_parent, args, context) => {
 
-      const postData = args.data.posts?.map(post => {
-        return { title: post.title, content: post.content || undefined }
-      })
+      const postData = args.data.posts
+        ? args.data.posts.map((post) => {
+          return { title: post.title, content: post.content || undefined }
+        })
+        : []
 
       return context.prisma.user.create({
         data: {

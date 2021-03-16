@@ -1,7 +1,7 @@
 {
   "name": "javascript-graphql",
   "scripts": {
-    "dev": "node --harmony ./src/server.js"
+    "dev": "node ./src/server.js"
   },
   "dependencies": {
     "@prisma/client": "2.18.0",
