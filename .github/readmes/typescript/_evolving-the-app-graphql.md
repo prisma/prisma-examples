@@ -45,7 +45,7 @@ model Post {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev --name add-profile --preview-feature
+npx prisma migrate dev --name add-profile
 ```
 
 This adds another migration to the `prisma/migrations` directory and creates the new `Profile` table in the database.
