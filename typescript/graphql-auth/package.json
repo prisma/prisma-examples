@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
     "@types/graphql-iso-date": "3.4.0",
-    "@types/jsonwebtoken": "8.5.0",
+    "@types/jsonwebtoken": "8.5.1",
     "@types/node": "12.20.6",
     "prisma": "2.18.0",
     "ts-node": "9.1.1",
