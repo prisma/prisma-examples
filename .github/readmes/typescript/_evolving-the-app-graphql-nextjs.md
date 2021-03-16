@@ -136,7 +136,7 @@ const Mutation = objectType({
 +   t.field('addProfileForUser', {
 +     type: 'Profile',
 +     args: {
-+       email: : stringArg(),
++       email: stringArg(),
 +       bio: stringArg()
 +     }, 
 +     resolve: async (_, args, context) => {

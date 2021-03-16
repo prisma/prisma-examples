@@ -5,7 +5,7 @@ Evolving the application typically requires two steps:
 1. Migrate your database using Prisma Migrate
 1. Update your application code
 
-For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
+For the following example scenario, assume you want to add "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
 ### 1. Migrate your database using Prisma Migrate
 
@@ -52,121 +52,106 @@ This adds another migration to the `prisma/migrations` directory and creates the
 
 ### 2. Update your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement queries and mutations in the GraphQL API.
+You can now use your `PrismaClient` instance to perform operations against the new `Profile table.
+Those operations can be used to implement queries and mutations in the GraphQL API
 
-#### 2.1. Add the `Profile` type to your GraphQL schema
+#### 2.1 Add the `Profile` type to your GraphQL schema
 
-First, add a new GraphQL type via Nexus' `objectType` function:
+First, add a new GraphQL type to your existing `typeDefs`:
 
 ```diff
 // ./src/schema.ts
 
-+const Profile = objectType({
-+  name: 'Profile',
-+  definition(t) {
-+    t.nonNull.int('id')
-+    t.string('bio')
-+    t.field('user', {
-+      type: 'User',
-+      resolve: (parent, _, context) => {
-+        return context.prisma.profile
-+          .findUnique({
-+            where: { id: parent.id || undefined },
-+          })
-+          .user()
-+      },
-+    })
-+  },
-+})
++type Profile {
++  id: ID!
++  bio: String
++  user: User
++}
 
-const User = objectType({
-  name: 'User',
-  definition(t) {
-    t.nonNull.int('id')
-    t.string('name')
-    t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'Post',
-      resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
-      },
-+   t.field('profile', {
-+     type: 'Profile',
-+     resolve: (parent, _, context) => {
-+       return context.prisma.user.findUnique({
-+         where: { id: parent.id }
-+       }).profile()
-+     }
-+   })
-  },
-})
-```
-
-Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
-
-```diff
-export const schema = makeSchema({
-  types: [
-    Query,
-    Mutation,
-    Post,
-    User,
-+   Profile,
-    UserUniqueInput,
-    UserCreateInput,
-    PostCreateInput,
-    PostOrderBy,
-    DateTime,
-  ],
-  // ... as before
+type User {
+  email: String!
+  id: ID!
+  name: String
+  posts: [Post!]!
++  profile: Profile
 }
 ```
 
-Note that in order to resolve any type errors, your development server needs to be running so that the Nexus types can be generated. If it's not running, you can start it with `npm run dev`.
+Don't forget to include `Profile` and update `User` root types in the `resolvers` object
 
-#### 2.2. Add a `createProfile` GraphQL mutation
+```diff
+
+const resolvers ={
+  Query: { /** as before */ },
+  Mutation: { /** as before */ },
+  DateTime: GraphQLDateTime,
+  Post: { /** as before */ },
+  User: {
+    posts: (parent, _args, context: Context) => {
+      return context.prisma.user.findUnique({
+        where: { id: parent?.id }
+      }).posts()
+    },
++    profile: (parent, _args, context) => {
++      return context.prisma.user.findUnique({
++        where: { id: parent?.id }
++      }).profile()
++    }
+  },
++  Profile: {
++    user: (parent, _args, context) => {
++      return context.prisma.profile.findUnique({
++        where: { id: parent?.id }
++      }).user()
++    }
++  }
+}
+```
+
+#### 2.2 Add a `createProfile` GraphQL mutation
 
 ```diff
 // ./src/schema.ts
 
-const Mutation = objectType({
-  name: 'Mutation',
-  definition(t) {
+const typeDefs = `
+// other types
 
+type Mutation {
+  createDraft(authorEmail: String!, data: PostCreateInput!): Post
+  deletePost(id: Int!): Post
+  incrementPostViewCount(id: Int!): Post
+  signupUser(data: UserCreateInput!): User!
+  togglePublishPost(id: Int!): Post
++  addProfileForUser(bio: String, userUniqueInput: UserUniqueInput): Profile
+}
+`
+
+const resolvers ={
+  Query: { /** as before */ },
+  Mutation: { 
     // other mutations
 
-+   t.field('addProfileForUser', {
-+     type: 'Profile',
-+     args: {
-+       userUniqueInput: nonNull(
-+         arg({
-+           type: 'UserUniqueInput',
-+         }),
-+       ),
-+       bio: stringArg()
-+     }, 
-+     resolve: async (_, args, context) => {
-+       return context.prisma.profile.create({
-+         data: {
-+           bio: args.bio,
-+           user: {
-+             connect: {
-+               id: args.userUniqueInput.id || undefined,
-+               email: args.userUniqueInput.email || undefined,
-+             }
-+           }
-+         }
-+       })
-+     }
-+   })
-
-  }
-})
++    addProfileForUser: (_parent, args, context) => {
++      return context.prisma.profile.create({
++        data: {
++          bio: args.bio,
++          user: {
++            connect: {
++              id: args.userUniqueInput?.id,
++              email: args.userUniqueInput?.email
++            }
++          }
++        }
++      })
++    }
+  },
+  DateTime: GraphQLDateTime,
+  Post: { /** as before */ },
+  User: { /** as before */},
+  Profile: { /** as before */  }
+}
 ```
+
 
 Finally, you can test the new mutation like this:
 
