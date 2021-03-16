@@ -6,7 +6,7 @@
   "dependencies": {
     "@prisma/client": "2.18.0",
     "graphql": "15.5.0",
-    "graphql-iso-date": "^3.6.1",
+    "graphql-iso-date": "3.6.1",
     "apollo-server": "2.21.1"
   },
   "devDependencies": {
