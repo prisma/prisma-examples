@@ -1,16 +1,25 @@
-import { PrismaClient } from '@prisma/client'
-import * as bodyParser from 'body-parser'
+import { Prisma, PrismaClient } from '@prisma/client'
 import express from 'express'
 
 const prisma = new PrismaClient()
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 
-app.post(`/user`, async (req, res) => {
+app.post(`/signup`, async (req, res) => {
+  const { name, email, posts } = req.body
+
+  const postData = posts?.map((post: Prisma.PostCreateInput) => {
+    return { title: post?.title, content: post?.content }
+  })
+
   const result = await prisma.user.create({
     data: {
-      ...req.body,
+      name,
+      email,
+      posts: {
+        create: postData
+      }
     },
   })
   res.json(result)
@@ -22,21 +31,48 @@ app.post(`/post`, async (req, res) => {
     data: {
       title,
       content,
-      published: false,
       author: { connect: { email: authorEmail } },
     },
   })
   res.json(result)
 })
+app.put('/post/:id/views', async (req, res) => {
+  const { id } = req.params
+
+  const post = prisma.post.update({
+    where: { id: Number(id) || undefined },
+    data: {
+      viewCount: {
+        increment: 1
+      }
+    }
+  })
+
+  res.json(post)
+})
 
 app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
-  const post = await prisma.post.update({
-    where: { id: Number(id) },
-    data: { published: true },
-  })
-  res.json(post)
+
+  try {
+    const postData = prisma.post.findUnique({
+      where: { id: Number(id) || undefined },
+      select: {
+        published: true
+      }
+    })
+
+    const updatedPost = prisma.post.update({
+      where: { id: Number(id) || undefined },
+      data: { published: !postData?.published },
+    })
+    res.json(updatedPost)
+  } catch (error) {
+    res.json({ error: `Post with ID ${id} does not exist in the database` })
+  }
+
 })
+
 
 app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
@@ -46,6 +82,27 @@ app.delete(`/post/:id`, async (req, res) => {
     },
   })
   res.json(post)
+})
+
+app.get('/users', async (req, res) => {
+  const users = await prisma.user.findMany()
+  res.json(users)
+})
+
+app.get('/user/:id/drafts', async (req, res) => {
+  const { id } = req.params
+  const { email } = req.body
+
+  const drafts = await prisma.user.findUnique({
+    where: {
+      id: Number(id) || undefined,
+      email: email || undefined
+    }
+  }).posts({
+    where: { published: false }
+  })
+
+  res.json(drafts)
 })
 
 app.get(`/post/:id`, async (req, res) => {
@@ -59,32 +116,27 @@ app.get(`/post/:id`, async (req, res) => {
 })
 
 app.get('/feed', async (req, res) => {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    include: { author: true },
-  })
-  res.json(posts)
-})
+  const { searchString, skip, take, orderBy } = req.body
 
-app.get('/filterPosts', async (req, res) => {
-  const { searchString }: { searchString?: string } = req.query
-  const draftPosts = await prisma.post.findMany({
+  const or = searchString ? {
+    OR: [
+      { title: { contains: searchString } },
+      { content: { contains: searchString } },
+    ],
+  } : {}
+
+  const posts = await prisma.post.findMany({
     where: {
-      OR: [
-        {
-          title: {
-            contains: searchString,
-          },
-        },
-        {
-          content: {
-            contains: searchString,
-          },
-        },
-      ],
+      published: true,
+      ...or
     },
+    include: { author: true },
+    take: Number(take) || undefined,
+    skip: Number(skip) || undefined,
+    orderBy: orderBy || undefined,
   })
-  res.json(draftPosts)
+
+  res.json(posts)
 })
 
 const server = app.listen(3000, () =>
