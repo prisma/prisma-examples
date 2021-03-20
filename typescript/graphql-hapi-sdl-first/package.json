@@ -6,7 +6,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@hapi/hapi": "20.1.1",
+    "@hapi/hapi": "20.1.2",
     "@prisma/client": "2.19.0",
     "graphql": "15.5.0",
     "graphql-iso-date": "3.6.1",
