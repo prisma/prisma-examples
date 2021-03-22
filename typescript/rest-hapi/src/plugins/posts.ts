@@ -37,17 +37,9 @@ const usersPlugin = {
 
     server.route([
       {
-        method: 'GET',
-        path: '/filterPosts',
-        handler: filterPostsHandler,
-      },
-    ])
-
-    server.route([
-      {
         method: 'PUT',
         path: '/publish/{postId}',
-        handler: publishHandler,
+        handler: togglePublishHandler,
       },
     ])
 
@@ -55,8 +47,16 @@ const usersPlugin = {
       {
         method: 'DELETE',
         path: '/post/{postId}',
-        handler: deleteHandler,
+        handler: deletePostHandler,
       },
+    ])
+
+    server.route([
+      {
+        method: 'PUT',
+        path: '/post/{postId}/views',
+        handler: viewIncrementHandler,
+      }
     ])
   },
 }
@@ -66,12 +66,30 @@ export default usersPlugin
 async function feedHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   const { prisma } = request.server.app
 
+  const { searchString, skip, take, orderBy } = request.query
+
+  const or = searchString ? {
+    OR: [
+      { title: { contains: searchString } },
+      { content: { contains: searchString } },
+    ],
+  } : {}
+
   try {
-    const createdPost = await prisma.post.findMany({
-      where: { published: true },
+    const posts = await prisma.post.findMany({
+      where: {
+        published: true,
+        ...or
+      },
       include: { author: true },
+      take: Number(take) || undefined,
+      skip: Number(skip) || undefined,
+      orderBy: {
+        updatedAt: orderBy || undefined
+      },
     })
-    return h.response(createdPost).code(201)
+
+    return h.response(posts).code(200)
   } catch (err) {
     console.log(err)
   }
@@ -80,62 +98,47 @@ async function feedHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
 async function getPostHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   const { prisma } = request.server.app
 
-  const postId = parseInt(request.params.postId, 10)
+  const postId = Number(request.params.postId)
 
   try {
     const post = await prisma.post.findUnique({
       where: { id: postId },
     })
-    return h.response(post || undefined).code(201)
+    return h.response(post || undefined).code(200)
   } catch (err) {
     console.log(err)
   }
 }
 
-async function filterPostsHandler(
-  request: Hapi.Request,
-  h: Hapi.ResponseToolkit,
-) {
+async function togglePublishHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   const { prisma } = request.server.app
 
-  const { searchString } = request.query
+  const postId = Number(request.params.postId)
 
   try {
-    const filteredPosts = await prisma.post.findMany({
-      where: {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      },
-    })
-
-    return h.response(filteredPosts).code(201)
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-async function publishHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
-  const { prisma } = request.server.app
-
-  const postId = parseInt(request.params.postId, 10)
-
-  try {
-    const post = await prisma.post.update({
+    const postData = await prisma.post.findUnique({
       where: { id: postId },
-      data: { published: true },
+      select: {
+        published: true
+      }
     })
-    return h.response(post || undefined).code(201)
+
+    const updatedPost = await prisma.post.update({
+      where: { id: postId || undefined },
+      data: { published: !postData?.published },
+    })
+
+    return h.response(updatedPost || undefined).code(201)
   } catch (err) {
     console.log(err)
+    return h.response({ error: `Post with ID ${postId}es not exist in the database` })
   }
 }
 
-async function deleteHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+async function deletePostHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   const { prisma } = request.server.app
 
-  const postId = parseInt(request.params.postId, 10)
+  const postId = Number(request.params.postId)
 
   try {
     const post = await prisma.post.delete({
@@ -144,22 +147,36 @@ async function deleteHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
     return h.response(post || undefined).code(201)
   } catch (err) {
     console.log(err)
+    return h.response({ error: `Post with ID ${postId}es not exist in the database` })
   }
 }
 
-// type PostCreateInput = PostGetPayload<{
-//   select: {
-//     title: true,
-//     content: true,
-//   }
-// }> & { authorEmail: string }
-
-async function createPostHandler(
-  request: Hapi.Request,
-  h: Hapi.ResponseToolkit,
-) {
+async function viewIncrementHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
   const { prisma } = request.server.app
-  // const payload = request.payload as PostCreateInput
+
+  const postId = Number(request.params.postId)
+  try {
+    const post = await prisma.post.update({
+      where: { id: postId },
+      data: {
+        viewCount: {
+          increment: 1
+        }
+      }
+    })
+
+    return h.response(post).code(201)
+  } catch (err) {
+    console.log(err)
+    return h.response({ error: `Post with ID ${postId}es not exist in the database` })
+
+  }
+
+}
+
+async function createPostHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
+  const { prisma } = request.server.app
+
   const payload = request.payload as any
 
   try {
@@ -170,9 +187,6 @@ async function createPostHandler(
         author: {
           connect: { email: payload.authorEmail },
         },
-      },
-      select: {
-        id: true,
       },
     })
     return h.response(createdPost).code(201)
