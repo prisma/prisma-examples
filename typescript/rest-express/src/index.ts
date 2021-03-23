@@ -118,21 +118,14 @@ app.get(`/post/:id`, async (req, res) => {
   res.json(post)
 })
 
-interface feedRequestQuery {
-  searchString?: string,
-  skip?: number,
-  take?: number,
-  orderBy?: 'asc' | 'desc'
-}
-
 app.get('/feed', async (req, res) => {
 
-  const { searchString, skip, take, orderBy }: feedRequestQuery = req.query
+  const { searchString, skip, take, orderBy } = req.query
 
-  const or = searchString ? {
+  const or: Prisma.PostWhereInput = searchString ? {
     OR: [
-      { title: { contains: searchString } },
-      { content: { contains: searchString } },
+      { title: { contains: searchString as string } },
+      { content: { contains: searchString as string } },
     ],
   } : {}
 
@@ -145,7 +138,7 @@ app.get('/feed', async (req, res) => {
     take: Number(take) || undefined,
     skip: Number(skip) || undefined,
     orderBy: {
-      updatedAt: orderBy || undefined
+      updatedAt: orderBy as Prisma.SortOrder
     },
   })
 

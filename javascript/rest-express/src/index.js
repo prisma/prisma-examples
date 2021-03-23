@@ -9,7 +9,7 @@ app.use(express.json())
 app.post(`/signup`, async (req, res) => {
   const { name, email, posts } = req.body
 
-  const postData = posts ? args.data.posts.map((post) => {
+  const postData = posts ? posts.map((post) => {
     return { title: post.title, content: post.content || undefined }
   }) : []
 
