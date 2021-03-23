@@ -69,7 +69,7 @@ app.put('/publish/:id', async (req, res) => {
 
     const updatedPost = await prisma.post.update({
       where: { id: Number(id) || undefined },
-      data: { published: !postData?.published },
+      data: { published: !post.published || undefined },
     })
     res.send(updatedPost)
   } catch (error) {
