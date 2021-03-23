@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/javascript/rest-nextjs
 __INLINE(../_setup-3.md)__
 
-### 2. Start the app
+### 3. Start the app
 
 ```
 npm run dev

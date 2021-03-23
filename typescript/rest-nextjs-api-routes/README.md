@@ -51,7 +51,7 @@ npx prisma db seed --preview-feature
 ```
 
 
-### 2. Start the app
+### 3. Start the app
 
 ```
 npm run dev

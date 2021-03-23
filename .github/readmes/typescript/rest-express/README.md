@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/rest-express
 __INLINE(../_setup-3.md)__
 
-### 2. Start the REST API server
+### 3. Start the REST API server
 
 ```
 npm run dev

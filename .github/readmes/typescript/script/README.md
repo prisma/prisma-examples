@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/script
 __INLINE(../_setup-3.md)__
 
-### 2. Run the script
+### 3. Run the script
 
 Execute the script with this command: 
 
