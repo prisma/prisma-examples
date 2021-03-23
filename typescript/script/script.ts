@@ -52,7 +52,7 @@ async function main() {
   const allPosts = await prisma.post.findMany({
     where: { published: true },
   })
-  console.log(`Retrieved all published posts: `, allPosts)
+  console.log(`Retrieved all published posts: ${allPosts}`)
 
   // Create a new post (written by an already existing user with email alice@prisma.io)
   const newPost = await prisma.post.create({
@@ -67,7 +67,7 @@ async function main() {
       },
     },
   })
-  console.log(`Created a new post: `, newPost)
+  console.log(`Created a new post: ${newPost}`)
 
   // Publish the new post
   const updatedPost = await prisma.post.update({
@@ -78,7 +78,7 @@ async function main() {
       published: true,
     },
   })
-  console.log(`Published the newly created post: `, updatedPost)
+  console.log(`Published the newly created post: ${updatedPost}`)
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
@@ -88,7 +88,7 @@ async function main() {
       },
     })
     .posts()
-  console.log(`Retrieved all posts from a specific user: `, postsByUser)
+  console.log(`Retrieved all posts from a specific user: ${postsByUser}`)
 }
 
 main()
