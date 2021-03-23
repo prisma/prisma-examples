@@ -50,7 +50,7 @@ npx prisma db seed --preview-feature
 ```
 
 
-### 2. Start the REST API server
+### 3. Start the REST API server
 
 ```
 npm run dev
