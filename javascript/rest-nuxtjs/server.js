@@ -5,154 +5,99 @@ const { PrismaClient } = require('@prisma/client')
 const app = express()
 const prisma = new PrismaClient()
 
+// Body parser, to access `req.body`
 app.use(express.json())
 
-// Body parser, to access `req.body`
-app.post(`api/signup`, async (req, res) => {
-  const { name, email, posts } = req.body
+app.get('/api/drafts', async (req, res) => {
+  const posts = await prisma.post.findMany({
+    where: { published: false },
+    include: { author: true }
+  })
+  res.json(posts)
+})
 
-  const postData = posts ? posts.map((post) => {
-    return { title: post.title, content: post.content || undefined }
-  }) : []
-
+app.post(`/api/user`, async (req, res) => {
   const result = await prisma.user.create({
     data: {
-      name,
-      email,
-      posts: {
-        create: postData
-      }
+      ...req.body,
     },
   })
   res.json(result)
 })
 
-app.post(`api/post`, async (req, res) => {
+app.post(`/api/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
   const result = await prisma.post.create({
     data: {
       title,
       content,
+      published: false,
       author: { connect: { email: authorEmail } },
     },
   })
   res.json(result)
 })
 
-app.put('api/post/:id/views', async (req, res) => {
+app.put('/api/publish/:id', async (req, res) => {
   const { id } = req.params
-
-  try {
-    const post = await prisma.post.update({
-      where: { id: Number(id) },
-      data: {
-        viewCount: {
-          increment: 1
-        }
-      }
-    })
-
-    res.json(post)
-  } catch (error) {
-    res.json({ error: `Post with ID ${id} does not exist in the database` })
-  }
+  const post = await prisma.post.update({
+    where: {
+      id: parseInt(id),
+    },
+    data: { published: true },
+  })
+  res.json(post)
 })
 
-app.put('api/publish/:id', async (req, res) => {
-  const { id } = req.params
-
-  try {
-    const postData = await prisma.post.findUnique({
-      where: { id: Number(id) },
-      select: {
-        published: true
-      }
-    })
-
-    const updatedPost = await prisma.post.update({
-      where: { id: Number(id) || undefined },
-      data: { published: !postData?.published },
-    })
-    res.json(updatedPost)
-  } catch (error) {
-    res.json({ error: `Post with ID ${id} does not exist in the database` })
-  }
-
-})
-
-app.delete(`api/post/:id`, async (req, res) => {
+app.delete(`/api/post/:id`, async (req, res) => {
   const { id } = req.params
   const post = await prisma.post.delete({
     where: {
-      id: Number(id),
+      id: parseInt(id),
     },
   })
   res.json(post)
 })
 
-app.get('api/users', async (req, res) => {
-  const users = await prisma.user.findMany()
-  res.json(users)
-})
-
-app.get('api/user/:id/drafts', async (req, res) => {
+app.get(`/api/post/:id`, async (req, res) => {
   const { id } = req.params
-
-  const drafts = await prisma.user.findUnique({
-    where: {
-      id: Number(id),
-    }
-  }).posts({
-    where: { published: false }
-  })
-
-  res.json(drafts)
-})
-
-app.get(`api/post/:id`, async (req, res) => {
-  const { id } = req.params
-
   const post = await prisma.post.findUnique({
-    where: { id: Number(id) },
+    where: {
+      id: parseInt(id),
+    },
+    include: { author: true }
   })
   res.json(post)
 })
 
-app.get('/api/drafts', async (req, res) => {
-  return prisma.post.findMany({
-    where: {
-      published: false
-    }
-  })
-})
-
-app.get('api/feed', async (req, res) => {
-
-  const { searchString, skip, take, orderBy } = req.query
-
-  const or = searchString ? {
-    OR: [
-      { title: { contains: searchString } },
-      { content: { contains: searchString } },
-    ],
-  } : {}
-
+app.get('/api/feed', async (req, res) => {
   const posts = await prisma.post.findMany({
-    where: {
-      published: true,
-      ...or
-    },
+    where: { published: true },
     include: { author: true },
-    take: Number(take) || undefined,
-    skip: Number(skip) || undefined,
-    orderBy: {
-      updatedAt: orderBy || undefined
-    },
   })
-
   res.json(posts)
 })
 
+app.get('/api/filterPosts', async (req, res) => {
+  const { searchString } = req.query
+  const draftPosts = await prisma.post.findMany({
+    where: {
+      OR: [
+        {
+          title: {
+            contains: searchString,
+          },
+        },
+        {
+          content: {
+            contains: searchString,
+          },
+        },
+      ],
+    },
+  })
+  res.json(draftPosts)
+})
 // We instantiate Nuxt.js with the options
 const isProd = process.env.NODE_ENV === 'production'
 const nuxt = new Nuxt({ dev: !isProd })
