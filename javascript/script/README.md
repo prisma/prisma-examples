@@ -50,7 +50,7 @@ npx prisma db seed --preview-feature
 ```
 
 
-### 2. Run the script
+### 3. Run the script
 
 Execute the script with this command: 
 
