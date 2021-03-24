@@ -8,7 +8,7 @@ __INLINE(../_setup-1.md)__
 cd script
 __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/script
-__INLINE(../_setup-3.md)__
+__INLINE(../_setup-2_script.md)__
 
 ### 3. Run the script
 
