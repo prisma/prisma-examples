@@ -33,7 +33,17 @@ cd prisma-examples/javascript/script
 npm install
 ```
 
-### 2. Run the script
+</details>
+
+### 2. Create the database
+
+Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+
+```
+npx prisma migrate dev --name init
+```
+
+### 3. Run the script
 
 Execute the script with this command: 
 
