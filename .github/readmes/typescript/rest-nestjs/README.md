@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/rest-nestjs
 __INLINE(../_setup-3.md)__
 
-### 2. Start the REST API server
+### 3. Start the REST API server
 
 ```
 npm run dev
@@ -20,7 +20,7 @@ The server is now running on `http://localhost:3000`. You can now the API reques
 
 __INLINE(../../_using-the-rest-api.md)__
 
-__INLINE(../_evolving-the-app.md)__
+__INLINE(../_evolving-the-app-rest-nestjs.md)__
 
 __INLINE(../../_switching-databases.md)__
 

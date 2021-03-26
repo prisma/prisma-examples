@@ -22,9 +22,10 @@ process.on('unhandledRejection', async (err) => {
 
 start()
   .then((server) => {
-    console.log(
-      `🚀 Server ready at: ${server.info.uri}\n⭐️ See sample requests: http://pris.ly/e/ts/rest-hapi#3-using-the-rest-api`,
-    )
+    console.log(`
+🚀 Server ready at: ${server.info.uri}
+⭐️ See sample requests: http://pris.ly/e/ts/rest-hapi#3-using-the-rest-api
+`)
   })
   .catch((err) => {
     console.log(err)
