@@ -172,7 +172,7 @@ app.post('/user/:id/profile', async (req, res) => {
     }
   })
 
-  res.json(profile)
+  res.send(profile)
 })
 ```
 
