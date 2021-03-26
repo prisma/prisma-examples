@@ -56,7 +56,7 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1 Add the API endpoint to your app
 
-Update your `app.controller.ts` file by adding a new endpoint to your API:
+Update your `AppController` class inside `app.controller.ts` file by adding a new endpoint to your API:
 
 ```ts
 @Post('user/:id/profile')
@@ -77,6 +77,11 @@ async createUserProfile(
 }
 ```
 
+At the top of `app.controller.ts`, update your imports to include `Profile` from `@prisma/client` as follows:
+
+```ts
+import { User as UserModel, Post as PostModel, Prisma, Profile } from '@prisma/client'
+```
 
 #### 2.2 Testing out your new endpoint
 
