@@ -20,7 +20,7 @@ The server is now running on `http://localhost:3000`. You can now the API reques
 
 __INLINE(../../_using-the-rest-api.md)__
 
-__INLINE(../_evolving-the-app-rest-hapi.md)__
+__INLINE(../_evolving-the-app-rest-nestjs.md)__
 
 __INLINE(../../_switching-databases.md)__
 

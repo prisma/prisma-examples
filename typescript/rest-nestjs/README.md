@@ -155,47 +155,25 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1 Add the API endpoint to your app
 
-Update your `users.ts` file by adding a new endpoint to your API:
+Update your `app.controller.ts` file by adding a new endpoint to your API:
 
-```diff
-const usersPlugin ={
-  // name and dependencies here
-  register: async function (server: Hapi.Server){
-    // other routes here
-+    server.route([
-+      {
-+        method: 'POST',
-+        path: '/user/{userId}/profile',
-+        handler: createUserProfile
-+      }
-+    ])
-  }
+```ts
+@Post('user/:id/profile')
+async createUserProfile(
+  @Param('id') id: string,
+  @Body() userBio: { bio: string }
+): Promise<Profile> {
+  return this.prismaService.profile.create({
+    data: {
+      bio: userBio.bio,
+      user: {
+        connect: {
+          id: Number(id)
+        }
+      }
+    }
+  })
 }
-// other API hander functions here
-
-+async function createUserProfile(request: Hapi.Request, h: Hapi.ResponseToolkit) {
-+  const { prisma } = request.server.app
-+
-+  const userId = Number(request.params.userId)
-+  const { bio } = request.payload as any
-+
-+  try {
-+    const profile = await prisma.profile.create({
-+      data: {
-+        bio,
-+        user: {
-+          connect: {
-+            id: Number(userId)
-+          }
-+        }
-+      }
-+    })
-+
-+    return h.response(profile).code(200)
-+  } catch (err) {
-+    console.log(err);
-+  }
-+}
 ```
 
 
