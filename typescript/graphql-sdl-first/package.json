@@ -4,7 +4,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "@prisma/client": "2.19.0",
+    "@prisma/client": "2.20.0",
     "graphql": "15.5.0",
     "graphql-iso-date": "3.6.1",
     "apollo-server": "2.22.2"
@@ -14,7 +14,7 @@
     "@types/graphql-iso-date": "3.4.0",
     "@types/node": "12.20.7",
     "@types/ws": "7.4.0",
-    "prisma": "2.19.0",
+    "prisma": "2.20.0",
     "ts-node": "9.1.1",
     "ts-node-dev": "1.1.6",
     "typescript": "4.2.3"
