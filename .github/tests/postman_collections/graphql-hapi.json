@@ -1,0 +1,604 @@
+{
+	"info": {
+		"_postman_id": "ce5cf911-9948-44ef-8a34-b00b90c1cba6",
+		"name": "prisma-examples-graphql-hapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const signupUser = {\r",
+									"        \"data\": {\r",
+									"            \"signupUser\": {\r",
+									"                \"id\": 4\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(signupUser);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  signupUser(data: { name: \"Sarah\", email: \"sarah@prisma.io\" }) {\r\n    id\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createDraft",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const draft = {\r",
+									"    \"data\": {\r",
+									"        \"createDraft\": {\r",
+									"            \"id\": 5,\r",
+									"            \"viewCount\": 0,\r",
+									"            \"published\": false,\r",
+									"            \"author\": {\r",
+									"                \"id\": 1,\r",
+									"                \"name\": \"Alice\"\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"}\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(draft);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createDraft(\r\n    data: { title: \"Join the Prisma Slack\", content: \"https://slack.prisma.io\" }\r\n    authorEmail: \"alice@prisma.io\"\r\n  ) {\r\n    id\r\n    viewCount\r\n    published\r\n    author {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "posts",
+			"item": [
+				{
+					"name": "feed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const feed = {\r",
+									"    \"data\": {\r",
+									"        \"feed\": [\r",
+									"        {\r",
+									"            \"id\": 1,\r",
+									"            \"title\": \"Join the Prisma Slack\",\r",
+									"            \"content\": \"https://slack.prisma.io\",\r",
+									"            \"published\": true,\r",
+									"            \"author\": {\r",
+									"            \"id\": 1,\r",
+									"            \"name\": \"Alice\",\r",
+									"            \"email\": \"alice@prisma.io\"\r",
+									"            }\r",
+									"        },\r",
+									"        {\r",
+									"            \"id\": 2,\r",
+									"            \"title\": \"Follow Prisma on Twitter\",\r",
+									"            \"content\": \"https://www.twitter.com/prisma\",\r",
+									"            \"published\": true,\r",
+									"            \"author\": {\r",
+									"            \"id\": 2,\r",
+									"            \"name\": \"Nilu\",\r",
+									"            \"email\": \"nilu@prisma.io\"\r",
+									"            }\r",
+									"        },\r",
+									"        {\r",
+									"            \"id\": 3,\r",
+									"            \"title\": \"Ask a question about Prisma on GitHub\",\r",
+									"            \"content\": \"https://www.github.com/prisma/prisma/discussions\",\r",
+									"            \"published\": true,\r",
+									"            \"author\": {\r",
+									"            \"id\": 3,\r",
+									"            \"name\": \"Mahmoud\",\r",
+									"            \"email\": \"mahmoud@prisma.io\"\r",
+									"            }\r",
+									"        }\r",
+									"        ]\r",
+									"    }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(feed);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  feed {\r\n    id\r\n    title\r\n    content\r\n    published\r\n    author {\r\n      id\r\n      name\r\n      email\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "feed-searchString",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const feed = {\r",
+									"    \"data\": {\r",
+									"        \"feed\": [\r",
+									"            {\r",
+									"                \"id\": 1,\r",
+									"                \"title\": \"Join the Prisma Slack\",\r",
+									"                \"content\": \"https://slack.prisma.io\",\r",
+									"                \"published\": true\r",
+									"            },\r",
+									"            {\r",
+									"                \"id\": 2,\r",
+									"                \"title\": \"Follow Prisma on Twitter\",\r",
+									"                \"content\": \"https://www.twitter.com/prisma\",\r",
+									"                \"published\": true\r",
+									"            },\r",
+									"            {\r",
+									"                \"id\": 3,\r",
+									"                \"title\": \"Ask a question about Prisma on GitHub\",\r",
+									"                \"content\": \"https://www.github.com/prisma/prisma/discussions\",\r",
+									"                \"published\": true\r",
+									"            }\r",
+									"        ]\r",
+									"    }\r",
+									"}\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(feed);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n    feed(\r\n    searchString: \"prisma\"\r\n  ) {\r\n    id\r\n    title\r\n    content\r\n    published\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "feed-pagination_order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const feed = {\r",
+									"    \"data\": {\r",
+									"        \"feed\": [\r",
+									"            {\r",
+									"                \"id\": 1,\r",
+									"                \"title\": \"Join the Prisma Slack\",\r",
+									"                \"content\": \"https://slack.prisma.io\",\r",
+									"                \"published\": true\r",
+									"            }\r",
+									"        ]\r",
+									"    }\r",
+									"}\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(feed);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  feed(\r\n    skip: 2\r\n    take: 2\r\n    orderBy: { updatedAt: desc }\r\n  ) {\r\n    id\r\n    title\r\n    content\r\n    published\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const post = {\r",
+									"        \"data\": {\r",
+									"            \"postById\": {\r",
+									"                \"id\": 4,\r",
+									"                \"title\": \"Prisma on YouTube\",\r",
+									"                \"content\": \"https://pris.ly/youtube\",\r",
+									"                \"published\": false\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(post);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  postById(id: 4) {\r\n    id\r\n    title\r\n    content\r\n    published\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "draftsByUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const draftsByUser = {\r",
+									"        \"data\": {\r",
+									"            \"draftsByUser\": [\r",
+									"                {\r",
+									"                    \"id\": 4,\r",
+									"                    \"title\": \"Prisma on YouTube\",\r",
+									"                    \"content\": \"https://pris.ly/youtube\",\r",
+									"                    \"published\": false,\r",
+									"                    \"author\": {\r",
+									"                        \"id\": 3,\r",
+									"                        \"name\": \"Mahmoud\",\r",
+									"                        \"email\": \"mahmoud@prisma.io\"\r",
+									"                    }\r",
+									"                }\r",
+									"            ]\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(draftsByUser);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  draftsByUser(\r\n    userUniqueInput: {\r\n      email: \"mahmoud@prisma.io\"\r\n    }\r\n  ) {\r\n    id\r\n    title\r\n    content\r\n    published\r\n    author {\r\n      id\r\n      name\r\n      email\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "togglePublishPost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const post = {\r",
+									"        \"data\": {\r",
+									"            \"togglePublishPost\": {\r",
+									"                \"id\": 5,\r",
+									"                \"published\": true\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(post);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  togglePublishPost(id: 5) {\r\n    id\r\n    published\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "incrementPostViewCount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const post = {\r",
+									"        \"data\": {\r",
+									"            \"incrementPostViewCount\": {\r",
+									"                \"id\": 5,\r",
+									"                \"viewCount\": 1\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(post);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  incrementPostViewCount(id: 5) {\r\n    id\r\n    viewCount\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is valid\", function () {\r",
+									"    const post = {\r",
+									"        \"data\": {\r",
+									"            \"deletePost\": {\r",
+									"                \"id\": 5\r",
+									"            }\r",
+									"        }\r",
+									"    }\r",
+									"    \r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.eql(post);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  deletePost(id: 5) {\r\n    id\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
