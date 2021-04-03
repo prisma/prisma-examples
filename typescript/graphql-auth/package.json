@@ -15,7 +15,7 @@
     "apollo-server": "2.22.2",
     "bcryptjs": "2.4.3",
     "graphql": "15.5.0",
-    "graphql-iso-date": "3.6.1",
+    "graphql-scalars": "1.9.0",
     "graphql-middleware": "6.0.5",
     "graphql-shield": "7.5.0",
     "jsonwebtoken": "8.5.1",
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
-    "@types/graphql-iso-date": "3.4.0",
     "@types/jsonwebtoken": "8.5.1",
     "@types/node": "12.20.7",
     "prisma": "2.20.0",

@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server-micro'
-import { GraphQLDate } from 'graphql-iso-date'
+import { DateTimeResolver } from 'graphql-scalars'
 import {
   asNexusMethod,
   makeSchema,
@@ -11,7 +11,7 @@ import {
 import path from 'path'
 import prisma from '../../lib/prisma'
 
-export const GQLDate = asNexusMethod(GraphQLDate, 'date')
+export const GQLDate = asNexusMethod(DateTimeResolver, 'date')
 
 const User = objectType({
   name: 'User',
