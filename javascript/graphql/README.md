@@ -16,9 +16,9 @@ This example shows how to implement a **GraphQL server with JavaScript** with th
 - [Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)](#switch-to-another-database-eg-postgresql-mysql-sql-server)
 - [Next steps](#next-steps)
 
-## How to use
+## Getting started
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
 
 Download this example:
 
@@ -54,10 +54,10 @@ npm install
 Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
 ```
-npx prisma migrate dev --name init --preview-feature
+npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
+Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
 
 ```
 npx prisma db seed --preview-feature
@@ -325,7 +325,7 @@ model Post {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev --name add-profile --preview-feature
+npx prisma migrate dev --name add-profile
 ```
 
 This adds another migration to the `prisma/migrations` directory and creates the new `Profile` table in the database.

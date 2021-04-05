@@ -1,11 +1,10 @@
 import { PrismaClient } from '@prisma/client'
-import * as bodyParser from 'body-parser'
 import express from 'express'
 
 export const prisma = new PrismaClient()
 export const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.get(`/user`, async (_req, res) => {
   const result = await prisma.user.findMany()
@@ -13,10 +12,12 @@ app.get(`/user`, async (_req, res) => {
 })
 
 app.post(`/user`, async (req, res) => {
+  const {name, email} = req.body
   try {
     const result = await prisma.user.create({
       data: {
-        ...req.body,
+        name,
+        email
       },
     })
     res.json(result)

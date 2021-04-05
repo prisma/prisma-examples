@@ -1,12 +1,12 @@
 const { Nuxt, Builder } = require('nuxt')
-const bodyParser = require('body-parser')
-const app = require('express')()
+const express = require('express')
 const { PrismaClient } = require('@prisma/client')
 
+const app = express()
 const prisma = new PrismaClient()
 
 // Body parser, to access `req.body`
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.get('/api/drafts', async (req, res) => {
   const posts = await prisma.post.findMany({

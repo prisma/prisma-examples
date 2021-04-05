@@ -23,14 +23,14 @@ __INLINE(../_setup-1.md)__
 cd graphql-hapi
 __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/graphql-hapi
-__INLINE(../../_setup-3-new.md)__
+__INLINE(../_setup-3.md)__
 
-__INLINE(../../_start-graphql-server-hapi-new.md)__
+__INLINE(../../_start-graphql-server-hapi.md)__
 
-__INLINE(../../_using-the-graphql-api-new.md)__
+__INLINE(../../_using-the-graphql-api.md)__
 
-__INLINE(../_evolving-the-app-graphql-new.md)__
+__INLINE(../_evolving-the-app-graphql.md)__
 
 __INLINE(../../_switching-databases.md)__
 
-__INLINE(../_next-steps.md)__
+__INLINE(../../_next-steps.md)__

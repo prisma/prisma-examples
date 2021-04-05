@@ -1,0 +1,15 @@
+{
+  "name": "prisma-azure-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "func start"
+  },
+  "dependencies": {
+    "@prisma/client": "2.20.0"
+  },
+  "devDependencies": {
+    "prisma": "2.20.0",
+    "azure-functions-core-tools": "3.0.3388"
+  }
+}

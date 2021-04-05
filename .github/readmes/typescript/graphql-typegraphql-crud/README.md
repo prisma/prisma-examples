@@ -10,9 +10,12 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/graphql-typegraphql-crud
 __INLINE(../_setup-3.md)__
 
-__INLINE(../_start-graphql-server.md)__
+__INLINE(../../_start-graphql-server.md)__
 
 __INLINE(../../_using-the-graphql-api-typegraphql-crud.md)__
 
 __INLINE(../_evolving-the-app-typegraphql.md)__
-__INLINE(../_next-steps.md)__
+
+__INLINE(../../_switching-databases.md)__
+
+__INLINE(../../_next-steps.md)__

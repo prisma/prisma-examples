@@ -10,6 +10,7 @@ import {
   enumType,
 } from 'nexus'
 import { GraphQLDateTime } from 'graphql-iso-date'
+import { Context } from './context'
 
 export const DateTime = asNexusMethod(GraphQLDateTime, 'date')
 
@@ -18,7 +19,7 @@ const Query = objectType({
   definition(t) {
     t.nonNull.list.nonNull.field('allUsers', {
       type: 'User',
-      resolve: (_parent, _args, context) => {
+      resolve: (_parent, _args, context: Context) => {
         return context.prisma.user.findMany()
       },
     })
@@ -28,7 +29,7 @@ const Query = objectType({
       args: {
         id: intArg(),
       },
-      resolve: (_parent, args, context) => {
+      resolve: (_parent, args, context: Context) => {
         return context.prisma.post.findUnique({
           where: { id: args.id || undefined },
         })
@@ -45,7 +46,7 @@ const Query = objectType({
           type: 'PostOrderByUpdatedAtInput',
         }),
       },
-      resolve: (_parent, args, context) => {
+      resolve: (_parent, args, context: Context) => {
         const or = args.searchString
           ? {
               OR: [
@@ -76,7 +77,7 @@ const Query = objectType({
           }),
         ),
       },
-      resolve: (_parent, args, context) => {
+      resolve: (_parent, args, context: Context) => {
         return context.prisma.user
           .findUnique({
             where: {
@@ -106,7 +107,7 @@ const Mutation = objectType({
           }),
         ),
       },
-      resolve: (_, args, context) => {
+      resolve: (_, args, context: Context) => {
         const postData = args.data.posts?.map((post) => {
           return { title: post.title, content: post.content || undefined }
         })
@@ -132,7 +133,7 @@ const Mutation = objectType({
         ),
         authorEmail: nonNull(stringArg()),
       },
-      resolve: (_, args, context) => {
+      resolve: (_, args, context: Context) => {
         return context.prisma.post.create({
           data: {
             title: args.data.title,
@@ -150,7 +151,7 @@ const Mutation = objectType({
       args: {
         id: nonNull(intArg()),
       },
-      resolve: async (_, args, context) => {
+      resolve: async (_, args, context: Context) => {
         try {
           const post = await context.prisma.post.findUnique({
             where: { id: args.id || undefined },
@@ -175,7 +176,7 @@ const Mutation = objectType({
       args: {
         id: nonNull(intArg()),
       },
-      resolve: (_, args, context) => {
+      resolve: (_, args, context: Context) => {
         return context.prisma.post.update({
           where: { id: args.id || undefined },
           data: {
@@ -192,7 +193,7 @@ const Mutation = objectType({
       args: {
         id: nonNull(intArg()),
       },
-      resolve: (_, args, context) => {
+      resolve: (_, args, context: Context) => {
         return context.prisma.post.delete({
           where: { id: args.id },
         })
@@ -209,7 +210,7 @@ const User = objectType({
     t.nonNull.string('email')
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
-      resolve: (parent, _, context) => {
+      resolve: (parent, _, context: Context) => {
         return context.prisma.user
           .findUnique({
             where: { id: parent.id || undefined },
@@ -232,7 +233,7 @@ const Post = objectType({
     t.nonNull.int('viewCount')
     t.field('author', {
       type: 'User',
-      resolve: (parent, _, context) => {
+      resolve: (parent, _, context: Context) => {
         return context.prisma.post
           .findUnique({
             where: { id: parent.id || undefined },

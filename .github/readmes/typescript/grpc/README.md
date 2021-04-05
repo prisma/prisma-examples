@@ -29,4 +29,7 @@ In case you prefer a GUI client, we recommend [BloomRPC](https://github.com/uw-l
 ![](https://imgur.com/0EiIo03.png)
 
 __INLINE(../_evolving-the-app.md)__
-__INLINE(../_next-steps.md)__
+
+__INLINE(../../_switching-databases.md)__
+
+__INLINE(../../_next-steps.md)__

@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/typescript/rest-nextjs-api-routes
 __INLINE(../_setup-3.md)__
 
-### 2. Start the app
+### 3. Start the app
 
 ```
 npm run dev
@@ -47,4 +47,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 __INLINE(../../_using-the-rest-api-nextjs.md)__
 
 __INLINE(../_evolving-the-app-rest-nextjs.md)__
-__INLINE(../_next-steps.md)__
+
+__INLINE(../../_switching-databases.md)__
+
+__INLINE(../../_next-steps.md)__

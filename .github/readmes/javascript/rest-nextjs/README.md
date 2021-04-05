@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/javascript/rest-nextjs
 __INLINE(../_setup-3.md)__
 
-### 2. Start the app
+### 3. Start the app
 
 ```
 npm run dev
@@ -45,5 +45,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 </details>
 
 __INLINE(../../_using-the-rest-api-nextjs.md)__
+
+__INLINE(../../_switching-databases.md)__
 
 __INLINE(../_next-steps-rest-nextjs.md)__
