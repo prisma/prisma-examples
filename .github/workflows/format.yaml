@@ -32,7 +32,13 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
-        
-      - run: npm ci
-      - run: npm run prettier-fix --if-present
+
+      - run: |
+          npm ci
+          npm run prettier-fix --if-present
+          git config --global user.name 'Prismo'
+          git config --global user.email 'prismabots@gmail.com'
+          git commit -am "Automated formatting"
+          git push
+
 
