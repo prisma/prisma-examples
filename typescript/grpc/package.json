@@ -1,7 +1,7 @@
 {
   "name": "typescript-grpc",
   "dependencies": {
-    "@grpc/proto-loader": "0.5.6",
+    "@grpc/proto-loader": "0.6.0",
     "@prisma/client": "2.20.0",
     "chalk": "4.1.0",
     "grpc": "1.24.6",
