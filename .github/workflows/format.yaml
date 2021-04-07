@@ -7,6 +7,8 @@ on:
     paths-ignore:
       - '**/package.json'
       - '**/*.md'
+      - '**/*.yaml'
+      - '**/*.sh'
 
 defaults:
   run:
@@ -38,7 +40,7 @@ jobs:
           npm run prettier-fix --if-present
           git config --global user.name 'Prismo'
           git config --global user.email 'prismabots@gmail.com'
-          git commit -am "Automated formatting"
+          git commit -am 'Automated formatting'
           git push
 
 
