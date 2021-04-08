@@ -1,5 +1,5 @@
 import { makeExecutableSchema, gql } from 'apollo-server-hapi'
-import { GraphQLDateTime } from 'graphql-iso-date'
+import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
 
 const typeDefs = gql`
@@ -172,7 +172,7 @@ const resolvers = {
       })
     }
   },
-  DateTime: GraphQLDateTime,
+  DateTime: DateTimeResolver,
   Post: {
     author: (parent, _args, context: Context) => {
       return context.prisma.post.findUnique({

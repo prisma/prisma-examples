@@ -4,7 +4,7 @@
  */
 
 const { makeExecutableSchema } = require('apollo-server')
-const { GraphQLDateTime } = require("graphql-iso-date")
+const { DateTimeResolver } = require('graphql-scalars')
 
 const typeDefs = `
 type Mutation {
@@ -79,11 +79,11 @@ const resolvers = {
       return context.prisma.user.findMany()
     },
     /**
-     * 
-     * @param {any} _parent 
-     * @param {{id: number}} args 
-     * @param {{ prisma: Prisma }} context 
-     * @returns 
+     *
+     * @param {any} _parent
+     * @param {{id: number}} args
+     * @param {{ prisma: Prisma }} context
+     * @returns
      */
     postById: (_parent, args, context) => {
       return context.prisma.post.findUnique({
@@ -91,8 +91,8 @@ const resolvers = {
       })
     },
     /**
-     * 
-     * @param {any} _parent 
+     *
+     * @param {any} _parent
      * @param {{searchString?: string, skip?: number, take?: number, orderBy?:{"asc", "desc"}}} args
      * @param {{ prisma: Prisma }} context
      */
@@ -115,9 +115,9 @@ const resolvers = {
       })
     },
     /**
-     * 
-     * @param {any} _parent 
-     * @param {{userUniqueInput: { id: number, email: string}}} args 
+     *
+     * @param {any} _parent
+     * @param {{userUniqueInput: { id: number, email: string}}} args
      * @param {{ prisma: Prisma }} context
      */
     draftsByUser: (_parent, args, context) => {
@@ -135,9 +135,9 @@ const resolvers = {
   },
   Mutation: {
     /**
-     * @param {any} _parent 
-     * @param {{data: {email: string, name?: string, post?: {title: string, email: string}[]}}} args 
-     * @param {{ prisma: Prisma }} context 
+     * @param {any} _parent
+     * @param {{data: {email: string, name?: string, post?: {title: string, email: string}[]}}} args
+     * @param {{ prisma: Prisma }} context
      */
     signupUser: (_parent, args, context) => {
 
@@ -158,8 +158,8 @@ const resolvers = {
       })
     },
     /**
-     * @param {any} _parent 
-     * @param {{data:{ title: string, content?: string }, authorEmail: string}} args 
+     * @param {any} _parent
+     * @param {{data:{ title: string, content?: string }, authorEmail: string}} args
      * @param {{ prisma: Prisma }} context
      */
     createDraft: (_parent, args, context) => {
@@ -174,9 +174,9 @@ const resolvers = {
       })
     },
     /**
-     * 
-     * @param {any} _parent 
-     * @param {{id: number}} args 
+     *
+     * @param {any} _parent
+     * @param {{id: number}} args
      * @param {{ prisma: Prisma }} context
      */
     togglePublishPost: async (_parent, args, context) => {
@@ -199,8 +199,8 @@ const resolvers = {
       }
     },
     /**
-     * @param {any} _parent 
-     * @param {*} args 
+     * @param {any} _parent
+     * @param {*} args
      * @param {{ prisma: Prisma }} context
      */
     incrementPostViewCount: (_parent, args, context) => {
@@ -214,8 +214,8 @@ const resolvers = {
       })
     },
     /**
-     * @param {any} _parent 
-     * @param {{id: number}} args 
+     * @param {any} _parent
+     * @param {{id: number}} args
      * @param {{ prisma: Prisma }} context
      */
     deletePost: (_parent, args, context) => {
@@ -252,7 +252,7 @@ const resolvers = {
         .author()
     },
   },
-  DateTime: GraphQLDateTime
+  DateTime: DateTimeResolver
 }
 
 const schema = makeExecutableSchema({
