@@ -16,7 +16,7 @@
   "dependencies": {
     "@apollo/react-hooks": "4.0.0",
     "@apollo/react-ssr": "4.0.0",
-    "@prisma/client": "2.20.0",
+    "@prisma/client": "2.20.1",
     "apollo-boost": "0.4.9",
     "apollo-link-http": "1.5.17",
     "apollo-link-schema": "1.2.5",
@@ -33,7 +33,7 @@
     "react-markdown": "5.0.3"
   },
   "devDependencies": {
-    "prisma": "2.20.0",
+    "prisma": "2.20.1",
     "@types/graphql": "14.5.0",
     "@types/node": "13.13.48",
     "@types/react": "17.0.3",
