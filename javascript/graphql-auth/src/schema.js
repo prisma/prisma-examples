@@ -14,9 +14,9 @@ const {
   asNexusMethod,
   enumType,
 } = require('nexus')
-const { GraphQLDateTime } = require('graphql-iso-date')
+const { DateTimeResolver } = require('graphql-scalars')
 
-const DateTime = asNexusMethod(GraphQLDateTime, 'date')
+const DateTime = asNexusMethod(DateTimeResolver, 'date')
 
 const Query = objectType({
   name: 'Query',
@@ -65,11 +65,11 @@ const Query = objectType({
       resolve: (_parent, args, context) => {
         const or = args.searchString
           ? {
-              OR: [
-                { title: { contains: args.searchString } },
-                { content: { contains: args.searchString } },
-              ],
-            }
+            OR: [
+              { title: { contains: args.searchString } },
+              { content: { contains: args.searchString } },
+            ],
+          }
           : {}
 
         return context.prisma.post.findMany({

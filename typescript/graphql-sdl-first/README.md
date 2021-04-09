@@ -356,7 +356,7 @@ Don't forget to include `Profile` and update `User` root types in the `resolvers
 const resolvers ={
   Query: { /** as before */ },
   Mutation: { /** as before */ },
-  DateTime: GraphQLDateTime,
+  DateTime: DateTimeResolver,
   Post: { /** as before */ },
   User: {
     posts: (parent, _args, context: Context) => {
@@ -400,7 +400,7 @@ type Mutation {
 
 const resolvers ={
   Query: { /** as before */ },
-  Mutation: { 
+  Mutation: {
     // other mutations
 
 +    addProfileForUser: (_parent, args: { userUniqueInput: UserUniqueInput, bio: string }, context: Context) => {
@@ -417,7 +417,7 @@ const resolvers ={
 +      })
 +    }
   },
-  DateTime: GraphQLDateTime,
+  DateTime: DateTimeResolver,
   Post: { /** as before */ },
   User: { /** as before */},
   Profile: { /** as before */  }

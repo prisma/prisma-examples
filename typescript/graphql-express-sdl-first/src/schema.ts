@@ -1,5 +1,5 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import { GraphQLDateTime } from 'graphql-iso-date'
+import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
 
 const typeDefs = `
@@ -172,7 +172,7 @@ const resolvers = {
       })
     }
   },
-  DateTime: GraphQLDateTime,
+  DateTime: DateTimeResolver,
   Post: {
     author: (parent, _args, context: Context) => {
       return context.prisma.post.findUnique({
