@@ -1,0 +1,474 @@
+{
+  "info": {
+    "_postman_id": "0f8cc0ab-4554-4537-b23f-fa62e80a6302",
+    "name": "prisma-examples-rest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "allUsers",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "   const allUsers = [\r",
+                  "        {\r",
+                  "            \"id\": 1,\r",
+                  "            \"email\": \"alice@prisma.io\",\r",
+                  "            \"name\": \"Alice\"\r",
+                  "        },\r",
+                  "        {\r",
+                  "            \"id\": 2,\r",
+                  "            \"email\": \"nilu@prisma.io\",\r",
+                  "            \"name\": \"Nilu\"\r",
+                  "        },\r",
+                  "        {\r",
+                  "            \"id\": 3,\r",
+                  "            \"email\": \"mahmoud@prisma.io\",\r",
+                  "            \"name\": \"Mahmoud\"\r",
+                  "        }\r",
+                  "    ]\r",
+                  "    \r",
+                  "   const jsonData = pm.response.json()\r",
+                  "   pm.expect(jsonData).to.eql(allUsers)\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUserDrafts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "    const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData[0].id).to.eql(4)\r",
+                  "    pm.expect(jsonData[0].title).to.eql(\"Prisma on YouTube\")\r",
+                  "    pm.expect(jsonData[0].content).to.eql(\"https://pris.ly/youtube\")\r",
+                  "    pm.expect(jsonData[0].published).to.eql(false)\r",
+                  "    pm.expect(jsonData[0].viewCount).to.eql(0)\r",
+                  "    pm.expect(jsonData[0].authorId).to.eql(3)\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/user/3/drafts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "user",
+                "3",
+                "drafts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "signup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "    var jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData.id).to.eql(4)\r",
+                  "    pm.expect(jsonData.name).to.eql(\"Alex\")\r",
+                  "    pm.expect(jsonData.email).to.eql(\"alex@prisma.io\")\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"name\": \"Alex\",\r\n\t\"email\": \"alex@prisma.io\",\r\n\t\"posts\":[\r\n\t\t{\r\n\t\t\t\"title\": \"Prisma and APIs\",\r\n            \"content\": \"This works pretty smoothly with any type of API\"\r\n\t\t}\r\n\t]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "noauth"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "posts",
+      "item": [
+        {
+          "name": "feed",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "   const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData[0].id).to.eql(1)\r",
+                  "    pm.expect(jsonData[0].title).to.eql(\"Join the Prisma Slack\")\r",
+                  "    pm.expect(jsonData[0].content).to.eql(\"https://slack.prisma.io\")\r",
+                  "    pm.expect(jsonData[0].published).to.eql(true)\r",
+                  "    pm.expect(jsonData[0].viewCount).to.eql(0)\r",
+                  "    pm.expect(jsonData[0].authorId).to.eql(1)\r",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/feed?searchString=slack",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "feed"
+              ],
+              "query": [
+                {
+                  "key": "searchString",
+                  "value": "slack"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getPostById",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {    \r",
+                  "   const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData.id).to.eql(3)\r",
+                  "    pm.expect(jsonData.title).to.eql(\"Ask a question about Prisma on GitHub\")\r",
+                  "    pm.expect(jsonData.content).to.eql(\"https://www.github.com/prisma/prisma/discussions\")\r",
+                  "    pm.expect(jsonData.published).to.eql(true)\r",
+                  "    pm.expect(jsonData.viewCount).to.eql(0)\r",
+                  "    pm.expect(jsonData.authorId).to.eql(3)\r",
+                  "})"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "post",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "togglePublish",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "    const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData.id).to.eql(4)\r",
+                  "    pm.expect(jsonData.title).to.eql(\"Prisma on YouTube\")\r",
+                  "    pm.expect(jsonData.content).to.eql(\"https://pris.ly/youtube\")\r",
+                  "    pm.expect(jsonData.published).to.eql(true)\r",
+                  "    pm.expect(jsonData.viewCount).to.eql(0)\r",
+                  "    pm.expect(jsonData.authorId).to.eql(3)\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/publish/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "publish",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "incrementPostViewCount",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "    const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData.id).to.eql(4)\r",
+                  "    pm.expect(jsonData.title).to.eql(\"Prisma on YouTube\")\r",
+                  "    pm.expect(jsonData.content).to.eql(\"https://pris.ly/youtube\")\r",
+                  "    pm.expect(jsonData.published).to.eql(true)\r",
+                  "    pm.expect(jsonData.viewCount).to.eql(1)\r",
+                  "    pm.expect(jsonData.authorId).to.eql(3)\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/4/views",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "post",
+                "4",
+                "views"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createDraft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "    const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData.id).to.eql(6)\r",
+                  "    pm.expect(jsonData.title).to.eql(\"Postman and Newman - Testing APIs\")\r",
+                  "    pm.expect(jsonData.content).to.eql(null)\r",
+                  "    pm.expect(jsonData.published).to.eql(false)\r",
+                  "    pm.expect(jsonData.viewCount).to.eql(0)\r",
+                  "    pm.expect(jsonData.authorId).to.eql(2)\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"title\":\"Postman and Newman - Testing APIs\",\r\n\t\"authorEmail\":\"nilu@prisma.io\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/post",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "post"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deletePost",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', () => {\r",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200,201])\r",
+                  "})\r",
+                  "\r",
+                  "pm.test('Response body is valid', function () {\r",
+                  "    const jsonData = pm.response.json()\r",
+                  "    pm.expect(jsonData.id).to.eql(6)\r",
+                  "    pm.expect(jsonData.title).to.eql(\"Postman and Newman - Testing APIs\")\r",
+                  "    pm.expect(jsonData.content).to.eql(null)\r",
+                  "    pm.expect(jsonData.published).to.eql(false)\r",
+                  "    pm.expect(jsonData.viewCount).to.eql(0)\r",
+                  "    pm.expect(jsonData.authorId).to.eql(2)\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/post/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "post",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "allUsers",
+      "value": "const users = [\r\n    {\r\n        \"id\": 1,\r\n        \"email\": \"alice@prisma.io\",\r\n        \"name\": \"Alice\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"email\": \"nilu@prisma.io\",\r\n        \"name\": \"Nilu\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"email\": \"mahmoud@prisma.io\",\r\n        \"name\": \"Mahmoud\"\r\n    },\r\n    {\r\n        \"id\": 4,\r\n        \"email\": \"alex@prisma.io\",\r\n        \"name\": \"Alex\"\r\n    }\r\n]"
+    }
+  ]
+}
