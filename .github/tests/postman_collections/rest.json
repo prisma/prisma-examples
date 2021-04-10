@@ -251,7 +251,6 @@
                   "    pm.expect(jsonData.title).to.eql(\"Ask a question about Prisma on GitHub\")\r",
                   "    pm.expect(jsonData.content).to.eql(\"https://www.github.com/prisma/prisma/discussions\")\r",
                   "    pm.expect(jsonData.published).to.eql(true)\r",
-                  "    pm.expect(jsonData.viewCount).to.eql(0)\r",
                   "    pm.expect(jsonData.authorId).to.eql(3)\r",
                   "})"
                 ],
