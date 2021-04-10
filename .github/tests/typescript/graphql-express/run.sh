@@ -10,6 +10,6 @@ pid=$!
 
 sleep 20
 
-npx newman run https://raw.githubusercontent.com/prisma/prisma-examples/latest/.github/tests/postman_collections/graphql.json -- bail
+npx newman run https://raw.githubusercontent.com/prisma/prisma-examples/latest/.github/tests/postman_collections/graphql-hapi.json --bail
 
 kill "$pid"
