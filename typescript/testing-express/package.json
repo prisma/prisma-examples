@@ -7,12 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/client": "2.20.1",
+    "@prisma/client": "2.21.0",
     "@types/node": "12.20.7",
     "express": "4.17.1"
   },
   "devDependencies": {
-    "prisma": "2.20.1",
+    "prisma": "2.21.0",
     "@types/express": "4.17.11",
     "@types/jest": "26.0.22",
     "@types/node": "12.20.7",
