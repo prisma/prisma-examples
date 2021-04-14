@@ -14,7 +14,7 @@
     "graphql": "15.5.0"
   },
   "devDependencies": {
-    "@types/hapi__hapi": "20.0.6",
+    "@types/hapi__hapi": "20.0.7",
     "@types/node": "12.20.7",
     "prisma": "2.21.0",
     "ts-node": "9.1.1",
