@@ -14,11 +14,24 @@ import {
 import { Post } from './Post'
 import { User } from './User'
 import { Context } from './context'
+@InputType()
+export class PostCreateInput {
+  @Field()
+  title: string
+
+  @Field({ nullable: true })
+  content: string
+}
 
 @InputType()
-class PostIDInput {
-  @Field((type) => Int)
-  id: number
+class PostOrderByUpdatedAtInput {
+  @Field()
+  updatedAt: SortOrder
+}
+
+enum SortOrder {
+  asc = 'asc',
+  desc = 'desc'
 }
 
 @Resolver(Post)
@@ -35,45 +48,51 @@ export class PostResolver {
   }
 
   @Query((returns) => Post, { nullable: true })
-  post(@Arg('where') where: PostIDInput, @Ctx() ctx: Context) {
+  async postById(@Arg('id') id: number, @Ctx() ctx: Context) {
     return ctx.prisma.post.findUnique({
-      where: { id: where.id },
+      where: { id },
     })
   }
 
   @Query((returns) => [Post])
-  filterPosts(@Arg('searchString') searchString: string, @Ctx() ctx: Context) {
-    return ctx.prisma.post.findMany({
-      where: {
+  async feed(
+    @Arg('searchString', { nullable: true }) searchString: string,
+    @Arg('skip', (type) => Int, { nullable: true }) skip: number,
+    @Arg('take', (type) => Int, { nullable: true }) take: number,
+    @Arg('orderBy', { nullable: true }) orderBy: PostOrderByUpdatedAtInput,
+    @Ctx() ctx: Context) {
+
+    const or = searchString
+      ? {
         OR: [
           { title: { contains: searchString } },
           { content: { contains: searchString } },
         ],
-      },
-    })
-  }
+      }
+      : {}
 
-  @Query((returns) => [Post])
-  feed(@Ctx() ctx: Context) {
     return ctx.prisma.post.findMany({
       where: {
         published: true,
+        ...or,
       },
+      take: take || undefined,
+      skip: skip || undefined,
+      orderBy: orderBy || undefined,
     })
   }
 
   @Mutation((returns) => Post)
-  createDraft(
-    @Arg('title') title: string,
-    @Arg('content', { nullable: true }) content: string,
+  async createDraft(
+    @Arg('data') data: PostCreateInput,
     @Arg('authorEmail') authorEmail: string,
 
     @Ctx() ctx: Context,
-  ): Promise<Post> {
+  ) {
     return ctx.prisma.post.create({
       data: {
-        title: title,
-        content: content,
+        title: data.title,
+        content: data.content,
         author: {
           connect: { email: authorEmail },
         },
@@ -82,28 +101,43 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  publish(
+  async togglePublishPost(
     @Arg('id', (type) => Int) id: number,
     @Ctx() ctx: Context,
-  ): Promise<Post | null> {
-    return ctx.prisma.post.update({
-      where: {
-        id: id,
-      },
-      data: {
+  ) {
+    const post = await ctx.prisma.post.findUnique({
+      where: { id: id || undefined },
+      select: {
         published: true,
+      },
+    })
+
+    return ctx.prisma.post.update({
+      where: { id: id || undefined },
+      data: { published: !post?.published },
+    })
+  }
+
+  @Mutation((returns) => Post, { nullable: true })
+  async incrementPostViewCount(@Arg('id', (type) => Int) id: number, @Ctx() ctx: Context) {
+    return ctx.prisma.post.update({
+      where: { id: id || undefined },
+      data: {
+        viewCount: {
+          increment: 1,
+        },
       },
     })
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  deleteOnePost(
-    @Arg('where') where: PostIDInput,
+  async deletePost(
+    @Arg('id', (type) => Int) id: number,
     @Ctx() ctx: Context,
-  ): Promise<Post | null> {
+  ) {
     return ctx.prisma.post.delete({
       where: {
-        id: where.id,
+        id
       },
     })
   }
