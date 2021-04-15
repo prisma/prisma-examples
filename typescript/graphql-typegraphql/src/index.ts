@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import * as tq from 'type-graphql'
-import { PostCreateInput, PostResolver } from './PostResolver'
+import { PostCreateInput, PostResolver, SortOrder } from './PostResolver'
 import { UserResolver } from './UserResolver'
 import { ApolloServer } from 'apollo-server'
 import { DateTimeResolver } from 'graphql-scalars'
@@ -9,6 +9,10 @@ import { GraphQLScalarType } from 'graphql'
 
 
 const app = async () => {
+  tq.registerEnumType(SortOrder, {
+    name: 'SortOrder'
+  })
+
   const schema = await tq.buildSchema({
     resolvers: [PostResolver, UserResolver, PostCreateInput],
     scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }]

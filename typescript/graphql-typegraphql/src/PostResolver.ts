@@ -25,11 +25,11 @@ export class PostCreateInput {
 
 @InputType()
 class PostOrderByUpdatedAtInput {
-  @Field()
+  @Field((type) => SortOrder)
   updatedAt: SortOrder
 }
 
-enum SortOrder {
+export enum SortOrder {
   asc = 'asc',
   desc = 'desc'
 }
