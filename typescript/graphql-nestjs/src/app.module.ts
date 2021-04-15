@@ -9,9 +9,10 @@ import { join } from 'path'
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-    }),
+      buildSchemaOptions: { dateScalarMode: 'timestamp' },
+    })
   ],
   controllers: [],
   providers: [PrismaService, UserResolver, PostResolver],
 })
-export class AppModule {}
+export class AppModule { }

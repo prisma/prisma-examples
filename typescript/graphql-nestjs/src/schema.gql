@@ -3,39 +3,64 @@
 # ------------------------------------------------------
 
 type User {
-  id: ID!
+  id: Int!
   email: String!
   name: String
   posts: [Post!]
 }
 
 type Post {
-  id: ID!
+  id: Int!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
   title: String!
   content: String
   published: Boolean
+  viewCount: Int!
   author: User
 }
 
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
 type Query {
-  post(where: PostIDInput!): Post
-  filterPosts(searchString: String!): [Post!]!
-  feed: [Post!]!
-  user(id: Float!): User
+  allUsers: User
+  draftsByUser(userUniqueInput: UserUniqueInput!): [Post!]
+  postById(id: Float!): Post
+  feed(orderBy: PostOrderByUpdatedAtInput, take: Float, skip: Float, searchString: String): [Post!]!
 }
 
-input PostIDInput {
-  id: Int!
+input UserUniqueInput {
+  id: Float
+  email: String
+}
+
+input PostOrderByUpdatedAtInput {
+  updatedAt: SortOrder!
+}
+
+enum SortOrder {
+  asc
+  desc
 }
 
 type Mutation {
-  createDraft(authorEmail: String!, content: String, title: String!): Post!
-  publish(id: Float!): Post
-  deleteOnePost(where: PostIDInput!): Post
-  signupUser(data: SignupUserInput!): User!
+  signupUser(data: UserCreateInput!): User!
+  createDraft(authorEmail: String!, data: PostCreateInput!): Post!
+  incrementPostViewCount(id: Float!): Post!
+  togglePublishPost(id: Float!): Post
+  deletePost(id: Float!): Post
 }
 
-input SignupUserInput {
-  name: String
+input UserCreateInput {
   email: String!
+  name: String
+  posts: [PostCreateInput!]
+}
+
+input PostCreateInput {
+  title: String!
+  content: String
 }
