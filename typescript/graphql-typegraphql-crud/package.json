@@ -22,7 +22,7 @@
     "prisma": "2.21.2",
     "ts-node": "9.1.1",
     "ts-node-dev": "1.1.6",
-    "typegraphql-prisma": "0.13.0",
+    "typegraphql-prisma": "0.13.1",
     "typescript": "4.2.4"
   }
 }
