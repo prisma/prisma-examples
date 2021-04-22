@@ -15,7 +15,7 @@ function createServer(opts: FastifyServerOptions = {}) {
     context: (request: FastifyRequest, reply: FastifyReply) => {
       return context
     },
-    graphiql: 'playground',
+    graphiql: true,
   })
 
   return server
