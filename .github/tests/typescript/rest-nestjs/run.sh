@@ -2,12 +2,14 @@
 
 set -eu
 
-yarn 
-yarn prisma db push --preview-feature
-yarn dev &
+npm install
+npx prisma migrate dev --name init
+npx prisma db seed --preview-feature
+npm run dev &
 pid=$!
-sleep 15
 
-curl --fail 'http://localhost:3000/feed?searchString=Prisma'
+sleep 20
+
+npx newman run ../../.github/tests/postman_collections/rest.json --bail
 
 kill "$pid"
