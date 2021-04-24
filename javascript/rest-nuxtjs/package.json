@@ -21,7 +21,7 @@
     "prisma": "2.21.2",
     "babel-eslint": "10.1.0",
     "eslint": "7.25.0",
-    "eslint-config-prettier": "8.2.0",
+    "eslint-config-prettier": "8.3.0",
     "eslint-plugin-nuxt": "2.0.0",
     "eslint-plugin-prettier": "3.4.0",
     "prettier": "2.2.1"
