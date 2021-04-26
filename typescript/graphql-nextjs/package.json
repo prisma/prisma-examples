@@ -36,7 +36,7 @@
     "prisma": "2.21.2",
     "@types/graphql": "14.5.0",
     "@types/node": "13.13.50",
-    "@types/react": "17.0.3",
+    "@types/react": "17.0.4",
     "typescript": "4.2.4"
   }
 }
