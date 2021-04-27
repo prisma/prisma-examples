@@ -17,7 +17,7 @@
     "@types/node": "14.14.43",
     "apollo-server-hapi": "2.23.0",
     "graphql": "15.5.0",
-    "graphql-scalars": "1.9.1",
+    "graphql-scalars": "1.9.3",
     "nexus": "1.0.0"
   },
   "devDependencies": {
