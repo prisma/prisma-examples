@@ -24,7 +24,7 @@
     "express": "4.17.1",
     "graphql": "15.5.0",
     "graphql-scalars": "1.9.3",
-    "graphql-tag": "2.11.0",
+    "graphql-tag": "2.12.4",
     "next": "10.2.0",
     "nexus": "1.0.0",
     "react": "17.0.2",
