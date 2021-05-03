@@ -13,7 +13,7 @@
   "dependencies": {
     "@prisma/client": "2.21.2",
     "next": "10.2.0",
-    "next-auth": "3.19.5",
+    "next-auth": "3.19.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-markdown": "5.0.3"
