@@ -7,6 +7,9 @@ async function main() {
     include: {
       author: true,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   })
 
   console.dir(posts, { depth: Infinity })
