@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "run:create-user": "ts-node src/prisma-examples/1-create-user.ts",
+    "run:find-user": "ts-node src/prisma-examples/2-find-user.ts",
+    "run:update-user": "ts-node src/prisma-examples/3-update-user.ts",
+    "run:delete-user": "ts-node src/prisma-examples/4-delete-user.ts",
+    "run:create-user-post": "ts-node src/prisma-examples/5-create-user-post.ts",
+    "run:find-posts": "ts-node src/prisma-examples/6-find-posts.ts"
   },
   "keywords": [],
   "author": "",

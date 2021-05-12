@@ -45,11 +45,13 @@ docker compose up -d
 
 ### 3. Configure the database connection URL
 
-Prisma will use the `DATABASE_URL` environment variable in `prisma/.env` to connect to the database.
+Prisma uses the `DATABASE_URL` environment variable defined in the `.env` file (in the same folder as `package.json`) to connect to the database.
+
+
 Create the file:
 
-```
-touch prisma/.env
+```bash
+touch .env
 ```
 
 Then add the following line:
@@ -58,7 +60,15 @@ Then add the following line:
 DATABASE_URL="mongodb://root:prisma@localhost:27017/prisma-mongo?authSource=admin&retryWrites=true&w=majority"
 ```
 
-### 4. Run the tests
+### 4. Generate Prisma Client
+
+Generate Prisma Client using the following command:
+
+```bash
+npx prisma generate
+```
+
+### 5. Run the tests
 
 To run the test in `tests/prisma.test.ts`, run the following command:
 
@@ -67,7 +77,7 @@ npm run test
 ```
 
 
-### 5. Run the example scripts
+### 6. Run the example scripts
 
 
 To run the example scripts in `src/prisma-examples`, run the following command:
