@@ -1,4 +1,5 @@
 import { prisma } from '../lib/prisma'
+import { generateID } from '../utils/generateID'
 import { Router } from 'express'
 import jwt from 'jsonwebtoken'
 import argon2 from 'argon2'
@@ -38,6 +39,44 @@ auth.post('/signup', async (req, res) => {
   return res.json({ success: true, accessToken: accessToken })
 })
 
-auth.post('/login', async (req, res) => {})
+auth.post('/login', async (req, res) => {
+  const { username, password } = req.body
+
+  if (!username || !password) {
+    return res.json({
+      success: false,
+      error: 'Missing request body properties',
+    })
+  }
+
+  const user = await prisma.user.findFirst({
+    where: {
+      username,
+    },
+  })
+
+  if (!user) {
+    return res.json({ success: false, error: 'User not found' })
+  }
+
+  if (await argon2.verify(user.password, password)) {
+    const sessionID = await generateID(30)
+
+    await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        sessionID: sessionID,
+      },
+    })
+
+    const accessToken = jwt.sign({ userID: user.id, sessionID }, 'secret')
+
+    return res.json({ success: true, accessToken: accessToken })
+  } else {
+    return res.json({ success: false, error: 'Invalid password' })
+  }
+})
 
 auth.post('/logout', async (req, res) => {})

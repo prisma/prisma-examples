@@ -13,7 +13,7 @@ model User {
   password   String
   username       String
   posts      Post[]
-  sessionKey String?
+  sessionID String?
 }
 
 model Post {
