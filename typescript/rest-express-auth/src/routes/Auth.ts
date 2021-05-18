@@ -79,4 +79,13 @@ auth.post('/login', async (req, res) => {
   }
 })
 
-auth.post('/logout', async (req, res) => {})
+auth.post('/logout', async (req, res) => {
+  await prisma.user.update({
+    where: {
+      id: req.user?.id,
+    },
+    data: {
+      sessionID: '',
+    },
+  })
+})
