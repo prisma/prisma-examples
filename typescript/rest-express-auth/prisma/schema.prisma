@@ -1,6 +1,6 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 generator client {
@@ -11,9 +11,9 @@ model User {
   id         Int     @id @default(autoincrement())
   email      String  @unique
   password   String
-  name       String?
+  username       String
   posts      Post[]
-  sessionKey String
+  sessionKey String?
 }
 
 model Post {
