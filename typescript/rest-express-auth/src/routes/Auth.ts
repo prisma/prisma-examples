@@ -1,4 +1,5 @@
 import { prisma } from '../lib/prisma'
+import { isAuth } from '../middlewares/isAuth'
 import { generateID } from '../utils/generateID'
 import { Router } from 'express'
 import jwt from 'jsonwebtoken'
@@ -79,7 +80,7 @@ auth.post('/login', async (req, res) => {
   }
 })
 
-auth.post('/logout', async (req, res) => {
+auth.post('/logout', isAuth, async (req, res) => {
   await prisma.user.update({
     where: {
       id: req.user?.id,
@@ -88,4 +89,6 @@ auth.post('/logout', async (req, res) => {
       sessionID: '',
     },
   })
+
+  res.json({ success: true })
 })
