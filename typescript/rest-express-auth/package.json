@@ -9,6 +9,7 @@
   "author": "",
   "dependencies": {
     "@prisma/client": "^2.22.1",
+    "argon2": "^0.27.2",
     "express": "^4.17.1"
   },
   "devDependencies": {
