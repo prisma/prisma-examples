@@ -31,12 +31,12 @@ export const isAuth = async (
   } catch {
     return res.json({
       success: false,
-      error: 'not authenticated',
+      error: 'invalid token',
     })
   }
 
   if (!tokenBody.userID) {
-    return res.json({ success: false, error: 'not authenticated' })
+    return res.json({ success: false, error: 'invalid token' })
   }
 
   const user = await prisma.user.findUnique({
