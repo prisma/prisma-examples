@@ -6,13 +6,13 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@prisma/client": "2.24.0-dev.22",
+    "@prisma/client": "2.24.0-dev.23",
     "express": "4.17.1"
   },
   "devDependencies": {
     "@types/express": "4.17.11",
     "@types/node": "12.20.13",
-    "prisma": "2.24.0-dev.22",
+    "prisma": "2.24.0-dev.23",
     "ts-node": "9.1.1",
     "typescript": "4.2.4"
   },
