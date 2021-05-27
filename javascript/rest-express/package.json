@@ -6,11 +6,11 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "2.24.0-dev.23",
+    "@prisma/client": "2.24.0-dev.24",
     "express": "4.17.1"
   },
   "devDependencies": {
-    "prisma": "2.24.0-dev.23"
+    "prisma": "2.24.0-dev.24"
   },
   "engines": {
     "node": ">=10.0.0"
