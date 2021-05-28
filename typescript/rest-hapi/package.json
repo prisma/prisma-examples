@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "prisma": "2.23.0",
-    "@types/express": "4.17.11",
+    "@types/express": "4.17.12",
     "@types/hapi__hapi": "20.0.8",
     "@types/node": "12.20.13",
     "ts-node": "9.1.1",
