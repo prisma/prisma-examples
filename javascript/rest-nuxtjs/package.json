@@ -11,7 +11,7 @@
   "dependencies": {
     "@nuxt/http": "0.6.4",
     "@prisma/client": "2.23.0",
-    "core-js": "3.12.1",
+    "core-js": "3.13.0",
     "express": "4.17.1",
     "nuxt": "2.15.6"
   },
