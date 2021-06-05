@@ -121,7 +121,7 @@ If you have a security issue to report, please contact us at [security@prisma.io
 | CI Status                                                                                                                                                                                              | Branch      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | [![test latest](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=latest)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Alatest)            | `latest`    |
-| [![test dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Adev+-branch%3Apatch-dev) | `dev`       |
+| [![test dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+-branch%3Apatch-dev+branch%3Adev) | `dev`       |
 | [![test patch-dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=patch-dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Apatch-dev)   | `patch-dev` |
 
 | CI Status                                                                                                                                                                                                                                                 |
