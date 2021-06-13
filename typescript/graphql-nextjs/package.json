@@ -2,6 +2,9 @@
   "name": "hello-next",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -10,9 +13,6 @@
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@apollo/react-hooks": "4.0.0",
     "@apollo/react-ssr": "4.0.0",
@@ -33,10 +33,10 @@
     "react-markdown": "5.0.3"
   },
   "devDependencies": {
-    "prisma": "2.24.1",
     "@types/graphql": "14.5.0",
     "@types/node": "13.13.52",
     "@types/react": "17.0.11",
+    "prisma": "2.24.1",
     "typescript": "4.3.2"
   }
 }
