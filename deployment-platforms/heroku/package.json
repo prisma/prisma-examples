@@ -13,8 +13,5 @@
     "express": "4.17.1",
     "prisma": "2.25.0"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": ">=12.2.0"
-  }
+  "devDependencies": {}
 }
