@@ -6,10 +6,10 @@
     "dev": "node ./script.js"
   },
   "dependencies": {
-    "@prisma/client": "2.24.1"
+    "@prisma/client": "2.25.0"
   },
   "devDependencies": {
-    "prisma": "2.24.1"
+    "prisma": "2.25.0"
   },
   "engines": {
     "node": ">=10.0.0"
