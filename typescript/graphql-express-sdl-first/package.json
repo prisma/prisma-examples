@@ -23,6 +23,6 @@
     "prisma": "2.25.0",
     "ts-node": "10.0.0",
     "ts-node-dev": "1.1.6",
-    "typescript": "4.3.3"
+    "typescript": "4.3.4"
   }
 }
