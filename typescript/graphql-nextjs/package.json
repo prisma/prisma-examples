@@ -22,7 +22,7 @@
     "apollo-link-schema": "1.2.5",
     "apollo-server-micro": "2.25.1",
     "express": "4.17.1",
-    "graphql": "15.5.0",
+    "graphql": "15.5.1",
     "graphql-scalars": "1.10.0",
     "graphql-tag": "2.12.4",
     "next": "10.2.3",
