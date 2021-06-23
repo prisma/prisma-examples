@@ -18,7 +18,7 @@
     "graphql-scalars": "1.10.0",
     "graphql-shield": "7.5.0",
     "jsonwebtoken": "8.5.1",
-    "nexus": "1.0.0"
+    "nexus": "1.1.0"
   },
   "devDependencies": {
     "nodemon": "2.0.7",
