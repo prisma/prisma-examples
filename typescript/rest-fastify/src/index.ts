@@ -143,9 +143,18 @@ app.get('/feed', async (req, res) => {
   res.send(posts)
 })
 
-const server = app.listen(3000, () =>
-  console.log(`
-🚀 Server ready at: http://localhost:3000
-⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`,
-  ),
-)
+const server = async () => {
+  try {
+
+    await app.listen(3000, () =>
+      console.log(`
+  🚀 Server ready at: http://localhost:3000
+  ⭐️ See sample requests: http://pris.ly/e/ts/rest-fastify#3-using-the-rest-api`,
+      ),
+    )
+  } catch (error) {
+    app.log.error(error)
+    process.exit()
+  }
+}
+server()
