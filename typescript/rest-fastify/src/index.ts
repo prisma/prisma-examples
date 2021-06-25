@@ -46,7 +46,7 @@ app.put<{
 
   try {
     const post = await prisma.post.update({
-      where: { id },
+      where: { id: Number(id) },
       data: {
         viewCount: {
           increment: 1
@@ -69,14 +69,14 @@ app.put<{
 
   try {
     const postData = await prisma.post.findUnique({
-      where: { id },
+      where: { id: Number(id) },
       select: {
         published: true
       }
     })
 
     const updatedPost = await prisma.post.update({
-      where: { id: id || undefined },
+      where: { id: Number(id) || undefined },
       data: { published: !postData?.published },
     })
     res.send(updatedPost)
@@ -109,7 +109,7 @@ app.get<{
   const { id } = req.params
 
   const drafts = await prisma.user.findUnique({
-    where: { id }
+    where: { id: Number(id) }
   }).posts({
     where: { published: false }
   })
@@ -123,7 +123,7 @@ app.get<{
   const { id } = req.params
 
   const post = await prisma.post.findUnique({
-    where: { id },
+    where: { id: Number(id) },
   })
   res.send(post)
 })
