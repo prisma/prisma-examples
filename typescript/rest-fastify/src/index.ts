@@ -4,7 +4,9 @@ import fastify from 'fastify'
 const prisma = new PrismaClient()
 const app = fastify()
 
-app.post(`/signup`, async (req, res) => {
+app.post<{
+  Body: ISignupBody
+}>(`/signup`, async (req, res) => {
   const { name, email, posts } = req.body
 
   const postData = posts?.map((post: Prisma.PostCreateInput) => {
@@ -23,7 +25,9 @@ app.post(`/signup`, async (req, res) => {
   res.send(result)
 })
 
-app.post(`/post`, async (req, res) => {
+app.post<{
+  Body: ICreatePostBody
+}>(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
   const result = await prisma.post.create({
     data: {
@@ -35,12 +39,14 @@ app.post(`/post`, async (req, res) => {
   res.send(result)
 })
 
-app.put('/post/:id/views', async (req, res) => {
+app.put<{
+  Params: IPostByIdParam
+}>('/post/:id/views', async (req, res) => {
   const { id } = req.params
 
   try {
     const post = await prisma.post.update({
-      where: { id: Number(id) },
+      where: { id },
       data: {
         viewCount: {
           increment: 1
@@ -56,19 +62,21 @@ app.put('/post/:id/views', async (req, res) => {
 
 })
 
-app.put('/publish/:id', async (req, res) => {
+app.put<{
+  Params: IPostByIdParam
+}>('/publish/:id', async (req, res) => {
   const { id } = req.params
 
   try {
     const postData = await prisma.post.findUnique({
-      where: { id: Number(id) },
+      where: { id },
       select: {
         published: true
       }
     })
 
     const updatedPost = await prisma.post.update({
-      where: { id: Number(id) || undefined },
+      where: { id: id || undefined },
       data: { published: !postData?.published },
     })
     res.send(updatedPost)
@@ -78,7 +86,9 @@ app.put('/publish/:id', async (req, res) => {
 
 })
 
-app.delete(`/post/:id`, async (req, res) => {
+app.delete<{
+  Params: IPostByIdParam
+}>(`/post/:id`, async (req, res) => {
   const { id } = req.params
   const post = await prisma.post.delete({
     where: {
@@ -93,13 +103,13 @@ app.get('/users', async (req, res) => {
   res.send(users)
 })
 
-app.get('/user/:id/drafts', async (req, res) => {
+app.get<{
+  Params: IPostByIdParam
+}>('/user/:id/drafts', async (req, res) => {
   const { id } = req.params
 
   const drafts = await prisma.user.findUnique({
-    where: {
-      id: Number(id),
-    }
+    where: { id }
   }).posts({
     where: { published: false }
   })
@@ -107,18 +117,22 @@ app.get('/user/:id/drafts', async (req, res) => {
   res.send(drafts)
 })
 
-app.get(`/post/:id`, async (req, res) => {
-  const { id }: { id?: string } = req.params
+app.get<{
+  Params: IPostByIdParam
+}>(`/post/:id`, async (req, res) => {
+  const { id } = req.params
 
   const post = await prisma.post.findUnique({
-    where: { id: Number(id) },
+    where: { id },
   })
   res.send(post)
 })
 
-app.get('/feed', async (req, res) => {
+app.get<{
+  Querystring: IFeedQueryString
+}>('/feed', async (req, res) => {
 
-  const { searchString, skip, take, orderBy } = req.query
+  const { searchString, skip, take, orderBy } = req?.query
 
   const or: Prisma.PostWhereInput = searchString ? {
     OR: [
@@ -142,19 +156,37 @@ app.get('/feed', async (req, res) => {
 
   res.send(posts)
 })
+interface IFeedQueryString {
+  searchString: string | null;
+  skip: number | null;
+  take: number | null;
+  orderBy: Prisma.SortOrder | null
+}
 
-const server = async () => {
-  try {
+interface IPostByIdParam {
+  id: number
+}
 
-    await app.listen(3000, () =>
-      console.log(`
+interface ICreatePostBody {
+  title: string;
+  content: string | null;
+  authorEmail: string;
+}
+
+interface ISignupBody {
+  name: string | null;
+  email: string;
+  posts: Prisma.PostCreateInput[];
+}
+
+app.listen(3000, (err) => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+  console.log(`
   🚀 Server ready at: http://localhost:3000
   ⭐️ See sample requests: http://pris.ly/e/ts/rest-fastify#3-using-the-rest-api`,
-      ),
-    )
-  } catch (error) {
-    app.log.error(error)
-    process.exit()
-  }
-}
-server()
+  )
+})
+
