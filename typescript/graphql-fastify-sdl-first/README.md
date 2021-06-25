@@ -66,7 +66,7 @@ Launch your GraphQL server with this command:
 npm run dev
 ```
 
-Navigate to [http://localhost:4000/graphql](http://localhost:4000/graphql) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+Navigate to [http://localhost:4000/graphiql](http://localhost:4000/graphiql) in your browser to explore the API of your GraphQL server in a [GraphiQL](https://github.com/graphql/graphiql).
 
 
 ## Using the GraphQL API
