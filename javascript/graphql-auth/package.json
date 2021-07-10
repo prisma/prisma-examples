@@ -21,7 +21,7 @@
     "nexus": "1.1.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.11",
+    "nodemon": "2.0.12",
     "prisma": "2.26.0"
   }
 }
