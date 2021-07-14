@@ -1,4 +1,4 @@
-name: test-sql-server
+name: test-mongodb
 on:
   push:
     paths:
@@ -26,7 +26,7 @@ jobs:
       # Label used to access the service container
       mongodb:
         # Docker Hub image
-        image: prismagraphql/mongo-single-replica:latest
+        image: prismagraphql/mongo-single-replica:4.4.3-bionic
         env:
           MONGO_INITDB_ROOT_USERNAME: root
           MONGO_INITDB_ROOT_PASSWORD: prisma
