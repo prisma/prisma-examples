@@ -15,7 +15,7 @@
     "@grpc/proto-loader": "0.6.4",
     "@prisma/client": "2.27.0",
     "chalk": "4.1.1",
-    "grpc": "1.24.10"
+    "grpc": "1.24.11"
   },
   "devDependencies": {
     "prisma": "2.27.0"
