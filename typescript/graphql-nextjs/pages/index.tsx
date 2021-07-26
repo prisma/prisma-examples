@@ -1,8 +1,7 @@
 import Layout from "../components/Layout"
 import Link from "next/link"
-import { withApollo } from "../apollo/client"
 import gql from "graphql-tag"
-import { useQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/client"
 
 const FeedQuery = gql`
   query FeedQuery {
@@ -77,4 +76,4 @@ const Blog = () => {
   )
 }
 
-export default withApollo(Blog)
+export default Blog
