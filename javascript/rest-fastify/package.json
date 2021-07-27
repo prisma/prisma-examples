@@ -6,10 +6,10 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "2.27.0",
+    "@prisma/client": "2.28.0",
     "fastify": "3.19.2"
   },
   "devDependencies": {
-    "prisma": "2.27.0"
+    "prisma": "2.28.0"
   }
 }
