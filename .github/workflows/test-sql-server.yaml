@@ -40,16 +40,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: migrate-db
-        uses: docker://mcr.microsoft.com/mssql-tools
-        with:
-          entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -i ./databases/sql-server/schema.sql'
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
       - run: npm install
-      - run: npx prisma introspect
-      - run: cp prisma/schema-introspected-renamed.prisma prisma/schema.prisma
-      - run: npx prisma generate
+      - run: npx prisma migrate dev --name "init"
       - run: npm run test
