@@ -37,7 +37,9 @@ const Post = ({ post }) => (
 )
 
 const Blog = () => {
-  const { loading, error, data } = useQuery(FeedQuery)
+  const { loading, error, data } = useQuery(FeedQuery, {
+    fetchPolicy: "cache-and-network",
+  })
 
   if (loading) {
     return <div>Loading ...</div>
@@ -51,7 +53,7 @@ const Blog = () => {
       <div className="page">
         <h1>My Blog</h1>
         <main>
-          {data.feed.map((post) => (
+          {data.feed.map(post => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>

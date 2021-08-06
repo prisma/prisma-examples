@@ -11,6 +11,7 @@
     "start": "next start",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
+    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "@types/micro-cors": "0.1.2",
     "@types/node": "16.4.2",
     "@types/react": "17.0.15",
+    "ts-node": "10.1.0",
     "prisma": "2.28.0",
     "typescript": "4.3.5"
   }
