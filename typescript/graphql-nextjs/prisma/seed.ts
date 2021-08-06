@@ -25,7 +25,6 @@ const userData: Prisma.UserCreateInput[] = [
           title: "Follow Prisma on Twitter",
           content: "https://www.twitter.com/prisma",
           published: true,
-          viewCount: 42,
         },
       ],
     },
@@ -39,7 +38,6 @@ const userData: Prisma.UserCreateInput[] = [
           title: "Ask a question about Prisma on GitHub",
           content: "https://www.github.com/prisma/prisma/discussions",
           published: true,
-          viewCount: 128,
         },
         {
           title: "Prisma on YouTube",
@@ -50,7 +48,7 @@ const userData: Prisma.UserCreateInput[] = [
   },
 ]
 
-async function seed() {
+export async function main() {
   try {
     console.log(`Start seeding ...`)
     for (const u of userData) {
@@ -68,4 +66,4 @@ async function seed() {
   }
 }
 
-export default seed
+main()
