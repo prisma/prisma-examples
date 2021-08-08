@@ -15,28 +15,27 @@
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
   },
   "dependencies": {
-    "@apollo/client": "3.3.21",
+    "@apollo/client": "3.4.5",
     "@prisma/client": "2.28.0",
-    "apollo-server-micro": "3.0.2",
-    "express": "4.17.1",
+    "apollo-server-micro": "3.1.2",
     "graphql": "15.5.1",
+    "graphql-middleware": "^6.0.10",
     "graphql-scalars": "1.10.0",
+    "graphql-shield": "^7.5.0",
     "graphql-tag": "2.12.5",
     "micro": "9.3.4",
-    "micro-cors": "0.1.1",
     "next": "11.0.1",
     "nexus": "1.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-markdown": "6.0.2"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
     "@types/micro-cors": "0.1.2",
-    "@types/node": "16.4.2",
-    "@types/react": "17.0.15",
-    "ts-node": "10.1.0",
+    "@types/node": "16.4.13",
+    "@types/react": "17.0.16",
     "prisma": "2.28.0",
+    "ts-node": "10.1.0",
     "typescript": "4.3.5"
   }
 }
