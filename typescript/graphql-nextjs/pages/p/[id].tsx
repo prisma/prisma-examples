@@ -2,6 +2,9 @@ import Layout from "../../components/Layout"
 import Router, { useRouter } from "next/router"
 import gql from "graphql-tag"
 import { useQuery, useMutation } from "@apollo/client"
+import { GetStaticPaths, GetStaticProps } from "next"
+import prisma from "../../lib/prisma"
+import { addApolloState, initializeApollo } from "../../lib/apollo"
 
 const PostQuery = gql`
   query PostQuery($postId: String!) {
@@ -50,17 +53,13 @@ const DeleteMutation = gql`
 
 function Post() {
   const postId = useRouter().query.id
-  const { loading, error, data } = useQuery(PostQuery, {
+  const { error, data } = useQuery(PostQuery, {
     variables: { postId },
   })
 
   const [publish] = useMutation(PublishMutation)
   const [deletePost] = useMutation(DeleteMutation)
 
-  if (loading) {
-    console.log("loading")
-    return <div>Loading ...</div>
-  }
   if (error) {
     console.log("error")
     return <div>Error: {error.message}</div>
@@ -133,3 +132,32 @@ function Post() {
 }
 
 export default Post
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  await prisma.$connect()
+
+  const posts = await prisma.post.findMany()
+
+  const paths = posts.map(post => ({
+    params: { id: String(post.id) },
+  }))
+
+  await prisma.$disconnect()
+  return {
+    paths: paths,
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: PostQuery,
+    variables: { postId: params.id },
+  })
+
+  return addApolloState(apolloClient, {
+    props: {},
+  })
+}

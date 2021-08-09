@@ -2,6 +2,8 @@ import Layout from "../components/Layout"
 import Link from "next/link"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/client"
+import { GetStaticProps, GetStaticPropsContext } from "next"
+import { addApolloState, initializeApollo } from "../lib/apollo"
 
 const DraftsQuery = gql`
   query DraftsQuery {
@@ -37,13 +39,10 @@ const Post = ({ post }) => (
 )
 
 const Drafts = () => {
-  const { loading, error, data } = useQuery(DraftsQuery, {
+  const { error, data } = useQuery(DraftsQuery, {
     fetchPolicy: "cache-and-network",
   })
 
-  if (loading) {
-    return <div>Loading ...</div>
-  }
   if (error) {
     return <div>Error: {error.message}</div>
   }
@@ -76,6 +75,18 @@ const Drafts = () => {
       `}</style>
     </Layout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async context => {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: DraftsQuery,
+  })
+
+  return addApolloState(apolloClient, {
+    props: {},
+  })
 }
 
 export default Drafts

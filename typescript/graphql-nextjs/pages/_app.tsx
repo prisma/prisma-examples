@@ -1,16 +1,14 @@
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: "/api",
-});
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+import { useApollo } from "../lib/apollo"
 
 function MyApp({ Component, pageProps }) {
+  const apolloClient = useApollo(pageProps)
+
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
     </ApolloProvider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

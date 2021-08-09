@@ -2,6 +2,8 @@ import Layout from "../components/Layout"
 import Link from "next/link"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/client"
+import { GetStaticProps } from "next"
+import { addApolloState, initializeApollo } from "../lib/apollo"
 
 const FeedQuery = gql`
   query FeedQuery {
@@ -37,13 +39,10 @@ const Post = ({ post }) => (
 )
 
 const Blog = () => {
-  const { loading, error, data } = useQuery(FeedQuery, {
+  const { error, data } = useQuery(FeedQuery, {
     fetchPolicy: "cache-and-network",
   })
 
-  if (loading) {
-    return <div>Loading ...</div>
-  }
   if (error) {
     return <div>Error: {error.message}</div>
   }
@@ -76,6 +75,18 @@ const Blog = () => {
       `}</style>
     </Layout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async context => {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: FeedQuery,
+  })
+
+  return addApolloState(apolloClient, {
+    props: {},
+  })
 }
 
 export default Blog
