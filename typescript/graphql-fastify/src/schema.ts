@@ -11,6 +11,7 @@ import {
 } from 'nexus'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
+import { Post } from '.prisma/client'
 
 export const DateTime = asNexusMethod(DateTimeResolver, 'date')
 
@@ -19,7 +20,7 @@ const Query = objectType({
   definition(t) {
     t.nonNull.list.nonNull.field('allUsers', {
       type: 'User',
-      resolve: (_parent, _args, context: Context) => {
+      resolve: (_parent, _args, context) => {
         return context.prisma.user.findMany()
       },
     })
@@ -29,7 +30,7 @@ const Query = objectType({
       args: {
         id: intArg(),
       },
-      resolve: (_parent, args, context: Context) => {
+      resolve: (_parent, args, context) => {
         return context.prisma.post.findUnique({
           where: { id: args.id || undefined },
         })
@@ -46,14 +47,14 @@ const Query = objectType({
           type: 'PostOrderByUpdatedAtInput',
         }),
       },
-      resolve: (_parent, args, context: Context) => {
+      resolve: (_parent, args, context) => {
         const or = args.searchString
           ? {
-              OR: [
-                { title: { contains: args.searchString } },
-                { content: { contains: args.searchString } },
-              ],
-            }
+            OR: [
+              { title: { contains: args.searchString } },
+              { content: { contains: args.searchString } },
+            ],
+          }
           : {}
 
         return context.prisma.post.findMany({
@@ -77,7 +78,7 @@ const Query = objectType({
           }),
         ),
       },
-      resolve: (_parent, args, context: Context) => {
+      resolve: (_parent, args, context) => {
         return context.prisma.user
           .findUnique({
             where: {
@@ -107,8 +108,8 @@ const Mutation = objectType({
           }),
         ),
       },
-      resolve: (_, args, context: Context) => {
-        const postData = args.data.posts?.map((post) => {
+      resolve: (_, args, context) => {
+        const postData = args.data.posts?.map((post: Post) => {
           return { title: post.title, content: post.content || undefined }
         })
         return context.prisma.user.create({
@@ -133,37 +134,11 @@ const Mutation = objectType({
         ),
         authorEmail: nonNull(stringArg()),
       },
-      resolve: (_, args, context: Context) => {
+      resolve: (_, args, context) => {
         return context.prisma.post.create({
           data: {
             title: args.data.title,
             content: args.data.content,
-            author: {
-              connect: { email: args.authorEmail },
-            },
-          },
-        })
-      },
-    })
-
-    t.field('createComment', {
-      type: 'Comment',
-      args: {
-        data: nonNull(
-          arg({
-            type: 'CommentCreateInput',
-          }),
-        ),
-        authorEmail: nonNull(stringArg()),
-        postId: nonNull(intArg()),
-      },
-      resolve: (_, args, context: Context) => {
-        return context.prisma.comment.create({
-          data: {
-            comment: args.data.comment,
-            post: {
-              connect: { id: args.postId },
-            },
             author: {
               connect: { email: args.authorEmail },
             },
@@ -177,7 +152,7 @@ const Mutation = objectType({
       args: {
         id: nonNull(intArg()),
       },
-      resolve: async (_, args, context: Context) => {
+      resolve: async (_, args, context) => {
         try {
           const post = await context.prisma.post.findUnique({
             where: { id: args.id || undefined },
@@ -197,12 +172,29 @@ const Mutation = objectType({
       },
     })
 
+    t.field('incrementPostViewCount', {
+      type: 'Post',
+      args: {
+        id: nonNull(intArg()),
+      },
+      resolve: (_, args, context) => {
+        return context.prisma.post.update({
+          where: { id: args.id || undefined },
+          data: {
+            viewCount: {
+              increment: 1,
+            },
+          },
+        })
+      },
+    })
+
     t.field('deletePost', {
       type: 'Post',
       args: {
         id: nonNull(intArg()),
       },
-      resolve: (_, args, context: Context) => {
+      resolve: (_, args, context) => {
         return context.prisma.post.delete({
           where: { id: args.id },
         })
@@ -219,7 +211,7 @@ const User = objectType({
     t.nonNull.string('email')
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
-      resolve: (parent, _, context: Context) => {
+      resolve: (parent, _, context) => {
         return context.prisma.user
           .findUnique({
             where: { id: parent.id || undefined },
@@ -239,59 +231,11 @@ const Post = objectType({
     t.nonNull.string('title')
     t.string('content')
     t.nonNull.boolean('published')
+    t.nonNull.int('viewCount')
     t.field('author', {
       type: 'User',
-      resolve: (parent, _, context: Context) => {
+      resolve: (parent, _, context) => {
         return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .author()
-      },
-    })
-    t.list.nonNull.field('likedBy', {
-      type: 'User',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .likedBy()
-      },
-    })
-    t.list.nonNull.field('comments', {
-      type: 'Comment',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .comments()
-      },
-    })
-  },
-})
-
-const Comment = objectType({
-  name: 'Comment',
-  definition(t) {
-    t.nonNull.int('id')
-    t.nonNull.field('createdAt', { type: 'DateTime' })
-    t.nonNull.string('comment')
-    t.field('post', {
-      type: 'Post',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.comment
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .post()
-      },
-    })
-    t.field('author', {
-      type: 'User',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.comment
           .findUnique({
             where: { id: parent.id || undefined },
           })
@@ -329,13 +273,6 @@ const PostCreateInput = inputObjectType({
   },
 })
 
-const CommentCreateInput = inputObjectType({
-  name: 'CommentCreateInput',
-  definition(t) {
-    t.nonNull.string('comment')
-  },
-})
-
 const UserCreateInput = inputObjectType({
   name: 'UserCreateInput',
   definition(t) {
@@ -351,11 +288,9 @@ export const schema = makeSchema({
     Mutation,
     Post,
     User,
-    Comment,
     UserUniqueInput,
     UserCreateInput,
     PostCreateInput,
-    CommentCreateInput,
     SortOrder,
     PostOrderByUpdatedAtInput,
     DateTime,

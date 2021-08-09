@@ -1,40 +1,25 @@
-import fastify, {
-  FastifyInstance,
-  FastifyReply,
-  FastifyRequest,
-  FastifyServerOptions,
-} from 'fastify'
+import fastify from 'fastify'
 import mercurius from 'mercurius'
 import { schema } from './schema'
 import { context } from './context'
 
-function createServer(opts: FastifyServerOptions = {}) {
-  const server = fastify(opts)
-  server.register(mercurius, {
-    schema,
-    context: (request: FastifyRequest, reply: FastifyReply) => {
-      return context
-    },
-    graphiql: true,
-  })
+declare module 'mercurius' { }
+const app = fastify()
 
-  return server
-}
-
-const start = async (server: FastifyInstance) => {
-  try {
-    const port = process.env.PORT ?? 3000
-    await server.listen(port, '0.0.0.0')
-  } catch (err) {
-    server.log.error(err)
-    process.exit(1)
-  }
-}
-
-const server = createServer({
-  logger: {
-    level: 'info',
-  },
+app.register(mercurius, {
+  schema,
+  graphiql: true,
+  context: () => context
 })
 
-start(server)
+
+app.listen(4000, (err) => {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+  console.log(`\
+  🚀 Server ready at: http://localhost:4000/graphiql
+  ⭐️ See sample queries: http://pris.ly/e/ts/graphql-fastify#using-the-graphql-api
+  `)
+})
