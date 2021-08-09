@@ -1,8 +1,7 @@
 import Layout from "../components/Layout"
 import Link from "next/link"
-import { withApollo } from "../apollo/client"
 import gql from "graphql-tag"
-import { useQuery } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/client"
 
 const DraftsQuery = gql`
   query DraftsQuery {
@@ -38,7 +37,9 @@ const Post = ({ post }) => (
 )
 
 const Drafts = () => {
-  const { loading, error, data } = useQuery(DraftsQuery)
+  const { loading, error, data } = useQuery(DraftsQuery, {
+    fetchPolicy: "cache-and-network",
+  })
 
   if (loading) {
     return <div>Loading ...</div>
@@ -52,7 +53,7 @@ const Drafts = () => {
       <div className="page">
         <h1>Drafts</h1>
         <main>
-          {data.drafts.map((post) => (
+          {data.drafts.map(post => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
@@ -77,4 +78,4 @@ const Drafts = () => {
   )
 }
 
-export default withApollo(Drafts)
+export default Drafts

@@ -2,12 +2,14 @@
 
 set -eu
 
-yarn 
-yarn prisma db push --preview-feature
-yarn dev &
+npm install
+npx prisma migrate dev --name init
+npx prisma db seed --preview-feature
+npm run dev &
 pid=$!
-sleep 15
 
-curl --fail 'http://localhost:4000/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4000' --data-binary '{"query":"query {\n  feed {\n    id\n    content\n    author {\n      id\n      name\n      email\n    }\n  }\n}"}' --compressed
+sleep 20
+
+npx newman run ../../.github/tests/postman_collections/graphql-hapi.json --bail
 
 kill "$pid"

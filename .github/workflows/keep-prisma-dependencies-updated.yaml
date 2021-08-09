@@ -22,10 +22,10 @@ jobs:
         with:
           ref: '${{ matrix.branch }}'
 
-      - name: use node 10
+      - name: use node 12
         uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 12
 
       - name: check update ${{ matrix.branch }}
         run: sh .github/scripts/check-for-update.sh ${{ matrix.branch }}
