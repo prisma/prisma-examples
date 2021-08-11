@@ -16,7 +16,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "2.28.0",
+    "@prisma/client": "2.29.0",
     "apollo-server": "2.25.2",
     "graphql": "15.5.1",
     "graphql-scalars": "1.10.0",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "12.20.19",
-    "prisma": "2.28.0",
+    "prisma": "2.29.0",
     "ts-node": "10.2.0",
     "ts-node-dev": "1.1.8",
     "typescript": "4.3.5"
