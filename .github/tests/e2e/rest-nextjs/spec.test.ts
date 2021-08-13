@@ -1,4 +1,4 @@
-import { test, expect, chromium } from '@playwright/test'
+import { test, expect } from '@playwright/test'
 const baseURL = 'http://localhost:3000/'
 const numberOfPosts = 3
 test.describe('Home page', () => {
@@ -90,5 +90,28 @@ test.describe('Post detail page', () => {
     expect(draftTitle).toBe(publishedTitle)
     expect(draftAuthor).toBe(publishedAuthor)
     expect(draftContent).toBe(publishedContent)
+  })
+
+  test('We should be able to delete a post', async ({ page }) => {
+    await page.goto(baseURL);
+    await page.click("main div.post:first-child div");
+
+    const draftTitle = await page.innerText('main div.post:first-child div h2')
+    const draftAuthor = await page.innerText('main div.post:first-child div small')
+    const draftContent = await page.innerText('main div.post:first-child div p')
+
+    await page.waitForURL(/http:\/\/localhost:3000\/p*/)
+
+    await page.click('#delete')
+
+    await page.goto(baseURL);
+
+    const publishedTitle = await page.innerText('main div.post:last-child div h2')
+    const publishedAuthor = await page.innerText('main div.post:last-child div small')
+    const publishedContent = await page.innerText('main div.post:last-child div p')
+
+    expect(draftTitle).not.toBe(publishedTitle)
+    expect(draftAuthor).not.toBe(publishedAuthor)
+    expect(draftContent).not.toBe(publishedContent)
   })
 })
