@@ -33,16 +33,19 @@ const SignUp: React.FC = () => {
             placeholder="Name"
             type="text"
             value={name}
+            id="name"
           />
           <input
             onChange={e => setEmail(e.target.value)}
             placeholder="Email address"
             type="text"
             value={email}
+            id="email"
           />
           <input
             disabled={!name || !email}
             type="submit"
+            id="submit"
             value="Signup"
           />
           <a className="back" href="#" onClick={() => Router.push('/')}>

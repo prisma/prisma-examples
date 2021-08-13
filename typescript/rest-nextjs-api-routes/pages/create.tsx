@@ -29,6 +29,7 @@ const Draft: React.FC = () => {
           onSubmit={submitData}>
           <h1>Create Draft</h1>
           <input
+            id="title"
             autoFocus
             onChange={e => setTitle(e.target.value)}
             placeholder="Title"
@@ -36,12 +37,14 @@ const Draft: React.FC = () => {
             value={title}
           />
           <input
+            id="email"
             onChange={e => setAuthorEmail(e.target.value)}
             placeholder="Author (email address)"
             type="text"
             value={authorEmail}
           />
           <textarea
+            id="content"
             cols={50}
             onChange={e => setContent(e.target.value)}
             placeholder="Content"
@@ -51,6 +54,7 @@ const Draft: React.FC = () => {
           <input
             disabled={!content || !title || !authorEmail}
             type="submit"
+            id="submit"
             value="Create"
           />
           <a className="back" href="#" onClick={() => Router.push('/')}>

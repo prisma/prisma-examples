@@ -32,11 +32,11 @@ const Post: React.FC<PostProps> = props => {
         <p>By {props?.author?.name || 'Unknown author'}</p>
         <ReactMarkdown source={props.content} />
         {!props.published && (
-          <button onClick={() => publish(props.id)}>
+          <button id="publish" onClick={() => publish(props.id)}>
             Publish
           </button>
         )}
-        <button onClick={() => destroy(props.id)}>
+        <button id="delete" onClick={() => destroy(props.id)}>
           Delete
         </button>
       </div>
