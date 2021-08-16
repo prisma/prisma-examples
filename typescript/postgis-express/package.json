@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "seed": "ts-node prisma/seed.ts",
+    "seed": "prisma db seed --preview-feature",
     "test": "jest"
   },
   "dependencies": {

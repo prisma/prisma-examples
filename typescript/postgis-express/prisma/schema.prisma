@@ -8,23 +8,21 @@ datasource db {
 }
 
 model Location {
-  id          Int        @default(autoincrement()) @id
-  // This type is currently not supported.
-  // location geography?
-  name        String
+  id       Int                       @id @default(autoincrement())
+  name     String
+  location Unsupported("geography")?
 }
 
 model User {
-  id          Int        @default(autoincrement()) @id
-  // This type is currently not supported.
-  // location geography?
-  name        String
+  id       Int                       @id @default(autoincrement())
+  name     String
+  location Unsupported("geography")?
 }
 
 model spatial_ref_sys {
-  auth_name String?
-  auth_srid Int?
-  proj4text String?
   srid      Int     @id
-  srtext    String?
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
 }

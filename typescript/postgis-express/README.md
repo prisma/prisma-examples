@@ -36,28 +36,13 @@ npm install
 
 </details>
 
-### 2. Create and seed the database
-
-Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
-
-```
-npx prisma migrate dev --name init
-```
-
-Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
-
-
 ### 2. Setup PostgreSQL
 
 - The recommended way of trying this out would be using a Docker image of PostgreSQL with Postgis extensions that can be pulled from [here](https://github.com/postgis/docker-postgis).
 
 - A [docker-compose.yml](./docker-compose.yml) is included for a quick start so that you do not need any prior setup. Just run `docker-compose up -d` and Postgres will be up and running on PORT 5432 with username **postgres**.
 
-- Connect to Postgres by any database viewer of your choice and run the following command:
+- Connect to Postgres by a database viewer of your choice and run the following command:
 
 ```sql
 create database geoexample;
@@ -74,12 +59,11 @@ npm run seed
 - Lastly run the following commands to introspect the database and generate Prisma Client.
 
 ```
-npm run prisma -- introspect
-npm run prisma -- generate
+npx prisma db pull
+npx prisma generate
 ```
 
 **_Limitation_**: Currently Prisma doesn't support custom data types, so querying for the _geography_ type in the normal Prisma models is not possible. Operations can only be performed on the types via `prisma.$queryRaw` or `prisma.$executeRaw`.
-
 
 ### 3. Start the REST API server
 
@@ -89,7 +73,7 @@ Execute this command to start the server:
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can send the API requests implemented in [index.ts`](./src/index.ts)
+The server is now running on [http://localhost:3000](http://localhost:3000). You can send the API requests implemented in [`index.ts`](./src/index.ts)
 
 ## Using the API
 
@@ -116,13 +100,11 @@ You can access the API using the following endpoints:
   - Params:
     - `userId: String` (required): The id of the user
   - Query Params:
-    - `d: String` (optional): The distance in kms. Default is *5*
-
+    - `d: String` (optional): The distance in kms. Default is _5_
 
 ### Seeding data
 
 Add data of your choice to the "User" and "Location" tables with the above endpoints and then run the `GET` endpoint passing the required parameters.
-
 
 ## Next steps
 
