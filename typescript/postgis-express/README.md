@@ -40,7 +40,7 @@ npm install
 
 - The recommended way of trying this out would be using a Docker image of PostgreSQL with Postgis extensions that can be pulled from [here](https://github.com/postgis/docker-postgis).
 
-- A [docker-compose.yml](./docker-compose.yml) is included for a quick start so that you do not need any prior setup. Just run `docker-compose up -d` and Postgres will be up and running on PORT 5432 with username **postgres**.
+- A [docker-compose.yml](./docker-compose.yml) is included for a quick start so that you do not need any prior setup. Run `docker-compose up -d` and Postgres will be up and running on PORT 5432 with username **postgres**.
 
 - Connect to Postgres by a database viewer of your choice and run the following command:
 
