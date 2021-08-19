@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   pgDB:
-    image: postgis/postgis:12-2.5-alpine
+    image: postgis/postgis:13-3.1-alpine
     restart: always
     ports:
       - '5432:5432'
