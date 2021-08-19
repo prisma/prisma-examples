@@ -9,5 +9,6 @@ services:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: geoexample
 volumes:
   db_data:
