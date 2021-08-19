@@ -8,21 +8,13 @@ datasource db {
 }
 
 model Location {
-  id       Int                       @id @default(autoincrement())
+  id       Int                                  @id @default(autoincrement())
   name     String
-  location Unsupported("geography")?
+  location Unsupported("\"public\".geography")?
 }
 
 model User {
-  id       Int                       @id @default(autoincrement())
+  id       Int                                  @id @default(autoincrement())
   name     String
-  location Unsupported("geography")?
-}
-
-model spatial_ref_sys {
-  srid      Int     @id
-  auth_name String? @db.VarChar(256)
-  auth_srid Int?
-  srtext    String? @db.VarChar(2048)
-  proj4text String? @db.VarChar(2048)
+  location Unsupported("\"public\".geography")?
 }
