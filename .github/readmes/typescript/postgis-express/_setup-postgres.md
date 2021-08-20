@@ -1,3 +1,4 @@
+cd prisma-examples/typescript/postgis-express
 npm install
 ```
 

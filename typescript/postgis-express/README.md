@@ -15,7 +15,7 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 Install npm dependencies:
 
 ```
-cd prisma-examples/typescript/postgis-express
+cd postgis-express
 npm install
 ```
 
@@ -31,6 +31,7 @@ Install npm dependencies:
 
 ```
 
+cd prisma-examples/typescript/postgis-express
 npm install
 ```
 
