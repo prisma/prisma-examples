@@ -7,8 +7,6 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 __INLINE(../_setup-1.md)__
 cd postgis-express
 __INLINE(../_setup-2.md)__
-cd prisma-examples/typescript/postgis-express
-__INLINE(../_setup-3.md)__
 
 __INLINE(./_setup-postgres.md)__
 

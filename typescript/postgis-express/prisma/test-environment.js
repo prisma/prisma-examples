@@ -23,17 +23,13 @@ class PrismaTestEnvironment extends NodeEnvironment {
   }
 
   async setup() {
-    await this.client.$executeRaw(
-      `create schema if not exists "${this.schema}"`,
-    )
-
     // Set the required environment variable to contain the connection string
     // to our database test schema
     const url = `${this.databaseUrl}?schema=${this.schema}`
     process.env.DB_URL = url
     this.global.process.env.DB_URL = url
-    await exec('npm run seed')
 
+    await exec('yarn prisma migrate deploy')
     return super.setup()
   }
 

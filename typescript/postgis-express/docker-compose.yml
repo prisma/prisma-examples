@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   pgDB:
-    image: postgis/postgis:12-2.5-alpine
+    image: postgis/postgis:13-3.1-alpine
     restart: always
     ports:
       - '5432:5432'
@@ -9,5 +9,6 @@ services:
       - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: geoexample
 volumes:
   db_data:
