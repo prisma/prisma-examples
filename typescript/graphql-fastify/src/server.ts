@@ -3,7 +3,6 @@ import mercurius from 'mercurius'
 import { schema } from './schema'
 import { context } from './context'
 
-declare module 'mercurius' { }
 const app = fastify()
 
 app.register(mercurius, {
