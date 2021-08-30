@@ -19,6 +19,7 @@
     "react-markdown": "^5.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.14.1",
     "prisma": "2.28.0"
   }
 }
