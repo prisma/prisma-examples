@@ -7,6 +7,6 @@
     "glob": "7.1.7"
   },
   "dependencies": {
-    "@actions/core": "1.4.0"
+    "@actions/core": "1.5.0"
   }
 }
