@@ -15,6 +15,8 @@ curl --fail 'http://localhost:3000/api/filterPosts?searchString=Prisma'
 curl --fail 'http://localhost:3000/'
 
 # e2e tests
+npm install -D @playwright/test
+npm install -D ts-node
 npx prisma db seed --preview-feature
 npx playwright test ../../../tests/e2e/rest-nextjs/test.spec.ts
 
