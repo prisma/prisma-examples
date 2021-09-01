@@ -1,8 +1,8 @@
-import { makeExecutableSchema } from 'apollo-server'
+import { gql } from 'apollo-server'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
 
-const typeDefs = `
+export const typeDefs = gql`
 type Mutation {
   createDraft(authorEmail: String!, data: PostCreateInput!): Post
   deletePost(id: Int!): Post
@@ -64,7 +64,7 @@ input UserUniqueInput {
 scalar DateTime
 `
 
-const resolvers = {
+export const resolvers = {
   Query: {
     allUsers: (_parent, _args, context: Context) => {
       return context.prisma.user.findMany()
@@ -213,9 +213,4 @@ interface UserCreateInput {
   name?: string,
   posts?: PostCreateInput[],
 }
-
-export const schema = makeExecutableSchema({
-  resolvers,
-  typeDefs,
-})
 

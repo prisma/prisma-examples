@@ -3,69 +3,74 @@
  * @typedef { import("@prisma/client").UserCreateArgs } UserCreateArgs
  */
 
-const { makeExecutableSchema } = require('apollo-server')
+const { gql } = require('apollo-server')
 const { DateTimeResolver } = require('graphql-scalars')
 
-const typeDefs = `
-type Mutation {
-  createDraft(authorEmail: String!, data: PostCreateInput!): Post
-  deletePost(id: Int!): Post
-  incrementPostViewCount(id: Int!): Post
-  signupUser(data: UserCreateInput!): User!
-  togglePublishPost(id: Int!): Post
-}
+const typeDefs = gql`
+  type Mutation {
+    createDraft(authorEmail: String!, data: PostCreateInput!): Post
+    deletePost(id: Int!): Post
+    incrementPostViewCount(id: Int!): Post
+    signupUser(data: UserCreateInput!): User!
+    togglePublishPost(id: Int!): Post
+  }
 
-type Post {
-  author: User
-  content: String
-  createdAt: DateTime!
-  id: Int!
-  published: Boolean!
-  title: String!
-  updatedAt: DateTime!
-  viewCount: Int!
-}
+  type Post {
+    author: User
+    content: String
+    createdAt: DateTime!
+    id: Int!
+    published: Boolean!
+    title: String!
+    updatedAt: DateTime!
+    viewCount: Int!
+  }
 
-input PostCreateInput {
-  content: String
-  title: String!
-}
+  input PostCreateInput {
+    content: String
+    title: String!
+  }
 
-input PostOrderByUpdatedAtInput {
-  updatedAt: SortOrder!
-}
+  input PostOrderByUpdatedAtInput {
+    updatedAt: SortOrder!
+  }
 
-type Query {
-  allUsers: [User!]!
-  draftsByUser(userUniqueInput: UserUniqueInput!): [Post]
-  feed(orderBy: PostOrderByUpdatedAtInput, searchString: String, skip: Int, take: Int): [Post!]!
-  postById(id: Int): Post
-}
+  type Query {
+    allUsers: [User!]!
+    draftsByUser(userUniqueInput: UserUniqueInput!): [Post]
+    feed(
+      orderBy: PostOrderByUpdatedAtInput
+      searchString: String
+      skip: Int
+      take: Int
+    ): [Post!]!
+    postById(id: Int): Post
+  }
 
-enum SortOrder {
-  asc
-  desc
-}
+  enum SortOrder {
+    asc
+    desc
+  }
 
-type User {
-  email: String!
-  id: Int!
-  name: String
-  posts: [Post!]!
-}
+  type User {
+    email: String!
+    id: Int!
+    name: String
+    posts: [Post!]!
+  }
 
-input UserCreateInput {
-  email: String!
-  name: String
-  posts: [PostCreateInput!]
-}
+  input UserCreateInput {
+    email: String!
+    name: String
+    posts: [PostCreateInput!]
+  }
 
-input UserUniqueInput {
-  email: String
-  id: Int
-}
+  input UserUniqueInput {
+    email: String
+    id: Int
+  }
 
-scalar DateTime
+  scalar DateTime
 `
 
 const resolvers = {
@@ -87,7 +92,7 @@ const resolvers = {
      */
     postById: (_parent, args, context) => {
       return context.prisma.post.findUnique({
-        where: { id: args.id || undefined }
+        where: { id: args.id || undefined },
       })
     },
     /**
@@ -97,21 +102,23 @@ const resolvers = {
      * @param {{ prisma: Prisma }} context
      */
     feed: (_parent, args, context) => {
-      const or = args.searchString ? {
-        OR: [
-          { title: { contains: args.searchString } },
-          { content: { contains: args.searchString } }
-        ]
-      } : {}
+      const or = args.searchString
+        ? {
+            OR: [
+              { title: { contains: args.searchString } },
+              { content: { contains: args.searchString } },
+            ],
+          }
+        : {}
 
       return context.prisma.post.findMany({
         where: {
           published: true,
-          ...or
+          ...or,
         },
         take: args.take || undefined,
         skip: args.skip || undefined,
-        orderBy: args.orderBy || undefined
+        orderBy: args.orderBy || undefined,
       })
     },
     /**
@@ -121,17 +128,19 @@ const resolvers = {
      * @param {{ prisma: Prisma }} context
      */
     draftsByUser: (_parent, args, context) => {
-      return context.prisma.user.findUnique({
-        where: {
-          id: args.userUniqueInput.id || undefined,
-          email: args.userUniqueInput.email || undefined,
-        },
-      }).posts({
-        where: {
-          published: false
-        },
-      })
-    }
+      return context.prisma.user
+        .findUnique({
+          where: {
+            id: args.userUniqueInput.id || undefined,
+            email: args.userUniqueInput.email || undefined,
+          },
+        })
+        .posts({
+          where: {
+            published: false,
+          },
+        })
+    },
   },
   Mutation: {
     /**
@@ -140,11 +149,10 @@ const resolvers = {
      * @param {{ prisma: Prisma }} context
      */
     signupUser: (_parent, args, context) => {
-
       const postData = args.data.posts
         ? args.data.posts.map((post) => {
-          return { title: post.title, content: post.content || undefined }
-        })
+            return { title: post.title, content: post.content || undefined }
+          })
         : []
 
       return context.prisma.user.create({
@@ -152,8 +160,8 @@ const resolvers = {
           name: args.data.name,
           email: args.data.email,
           posts: {
-            create: postData
-          }
+            create: postData,
+          },
         },
       })
     },
@@ -184,8 +192,8 @@ const resolvers = {
         const post = await context.prisma.post.findUnique({
           where: { id: args.id || undefined },
           select: {
-            published: true
-          }
+            published: true,
+          },
         })
 
         return context.prisma.post.update({
@@ -208,8 +216,8 @@ const resolvers = {
         where: { id: args.id || undefined },
         data: {
           viewCount: {
-            increment: 1
-          }
+            increment: 1,
+          },
         },
       })
     },
@@ -222,7 +230,7 @@ const resolvers = {
       return context.prisma.post.delete({
         where: { id: args.id },
       })
-    }
+    },
   },
   User: {
     /**
@@ -252,14 +260,10 @@ const resolvers = {
         .author()
     },
   },
-  DateTime: DateTimeResolver
+  DateTime: DateTimeResolver,
 }
 
-const schema = makeExecutableSchema({
+module.exports = {
   resolvers,
   typeDefs,
-})
-
-module.exports = {
-  schema,
 }
