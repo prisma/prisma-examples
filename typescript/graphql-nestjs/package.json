@@ -43,7 +43,7 @@
     "@nestjs/graphql": "7.11.0",
     "@nestjs/platform-express": "8.0.6",
     "@prisma/client": "2.30.2",
-    "apollo-server-express": "2.25.2",
+    "apollo-server-express": "3.3.0",
     "class-validator": "0.13.1",
     "graphql": "15.5.2",
     "graphql-tools": "8.2.0",
