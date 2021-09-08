@@ -9,12 +9,15 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "2.30.3",
+    "@prisma/client": "3.0.1",
     "apollo-server": "3.3.0",
     "graphql": "15.5.3",
     "graphql-scalars": "1.10.1"
   },
   "devDependencies": {
-    "prisma": "2.30.3"
+    "prisma": "3.0.1"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

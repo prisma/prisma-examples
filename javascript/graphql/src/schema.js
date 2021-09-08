@@ -48,11 +48,11 @@ const Query = objectType({
       resolve: (_parent, args, context) => {
         const or = args.searchString
           ? {
-            OR: [
-              { title: { contains: args.searchString } },
-              { content: { contains: args.searchString } },
-            ],
-          }
+              OR: [
+                { title: { contains: args.searchString } },
+                { content: { contains: args.searchString } },
+              ],
+            }
           : {}
 
         return context.prisma.post.findMany({
@@ -109,8 +109,8 @@ const Mutation = objectType({
       resolve: (_, args, context) => {
         const postData = args.data.posts
           ? args.data.posts.map((post) => {
-            return { title: post.title, content: post.content || undefined }
-          })
+              return { title: post.title, content: post.content || undefined }
+            })
           : []
         return context.prisma.user.create({
           data: {

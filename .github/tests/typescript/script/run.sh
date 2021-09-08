@@ -3,5 +3,5 @@
 set -eu
 
 yarn 
-yarn prisma db push --preview-feature
+yarn prisma db push  
 yarn dev
