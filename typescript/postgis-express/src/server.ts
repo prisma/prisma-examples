@@ -1,11 +1,10 @@
 import { PrismaClient } from '@prisma/client'
-import * as bodyParser from 'body-parser'
 import express from 'express'
 
 export const prisma = new PrismaClient()
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.post('/user', async (req, res) => {
   const { name, location } = req.body
@@ -13,7 +12,7 @@ app.post('/user', async (req, res) => {
     const response = await prisma.$queryRaw`
     insert into "User" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
-    returning id`
+    returning id` as any;
 
     res.json({
       success: true,
@@ -30,10 +29,11 @@ app.post('/user', async (req, res) => {
 app.post('/location', async (req, res) => {
   const { name, location } = req.body
   try {
-    await prisma.$executeRaw`
-    insert into "Location" ("name", "location") values
-    (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
-    `
+    // await prisma.$executeRaw`insert into Location (name, location) values (${name}, "public"."st_point"(${location.lng}, ${location.lat}))`
+    await prisma.$queryRaw`insert into Location (name, location) values ( ${name} , "public"."st_point"( ${location.lng} , ${location.lat} ))`
+
+    // const userId = 42
+    // await prisma.$queryRaw`SELECT * FROM User WHERE id = ${userId};`
 
     res.json({
       success: true,

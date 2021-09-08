@@ -644,15 +644,6 @@ datasource db {
 }
 ```
 
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
-
-```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
-}
-```
-
 </details>
 
 ## Next steps
