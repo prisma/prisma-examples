@@ -52,7 +52,7 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   const distance = parseInt(String(d)) || 5
 
   try {
-    const locations = await prisma.$queryRaw(
+    const locations = await prisma.$queryRawUnsafe(
       'select * from "locations_near_user"($1, $2)',
       parseInt(userId),
       distance,
