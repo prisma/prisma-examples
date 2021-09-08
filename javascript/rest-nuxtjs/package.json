@@ -25,5 +25,8 @@
     "eslint-plugin-prettier": "3.4.1",
     "prettier": "2.3.2",
     "prisma": "3.0.1"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

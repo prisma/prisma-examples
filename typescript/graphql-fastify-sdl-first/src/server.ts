@@ -7,15 +7,14 @@ import mercurius, {
 import { schema } from './schema'
 import { context } from './context'
 
-declare module 'mercurius' { }
+declare module 'mercurius' {}
 const app = fastify()
 
 app.register(mercurius, {
   schema,
   graphiql: true,
-  context: () => context
+  context: () => context,
 })
-
 
 app.listen(4000, (err) => {
   if (err) {

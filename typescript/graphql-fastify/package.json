@@ -19,5 +19,8 @@
     "ts-node": "10.2.1",
     "ts-node-dev": "1.1.8",
     "prisma": "3.0.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

@@ -31,7 +31,7 @@ class PostOrderByUpdatedAtInput {
 
 export enum SortOrder {
   asc = 'asc',
-  desc = 'desc'
+  desc = 'desc',
 }
 
 @Resolver(Post)
@@ -60,15 +60,15 @@ export class PostResolver {
     @Arg('skip', (type) => Int, { nullable: true }) skip: number,
     @Arg('take', (type) => Int, { nullable: true }) take: number,
     @Arg('orderBy', { nullable: true }) orderBy: PostOrderByUpdatedAtInput,
-    @Ctx() ctx: Context) {
-
+    @Ctx() ctx: Context,
+  ) {
     const or = searchString
       ? {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      }
+          OR: [
+            { title: { contains: searchString } },
+            { content: { contains: searchString } },
+          ],
+        }
       : {}
 
     return ctx.prisma.post.findMany({
@@ -119,7 +119,10 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  async incrementPostViewCount(@Arg('id', (type) => Int) id: number, @Ctx() ctx: Context) {
+  async incrementPostViewCount(
+    @Arg('id', (type) => Int) id: number,
+    @Ctx() ctx: Context,
+  ) {
     return ctx.prisma.post.update({
       where: { id: id || undefined },
       data: {
@@ -131,13 +134,10 @@ export class PostResolver {
   }
 
   @Mutation((returns) => Post, { nullable: true })
-  async deletePost(
-    @Arg('id', (type) => Int) id: number,
-    @Ctx() ctx: Context,
-  ) {
+  async deletePost(@Arg('id', (type) => Int) id: number, @Ctx() ctx: Context) {
     return ctx.prisma.post.delete({
       where: {
-        id
+        id,
       },
     })
   }

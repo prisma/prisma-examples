@@ -60,7 +60,7 @@ npx prisma migrate dev --name init
 Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
 
 ```
-npx prisma db seed --preview-feature
+npx prisma db seed 
 ```
 
 
