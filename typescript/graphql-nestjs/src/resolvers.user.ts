@@ -39,7 +39,7 @@ class UserCreateInput {
 
 @Resolver(User)
 export class UserResolver {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) { }
+  constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
   @ResolveField()
   async posts(@Root() user: User, @Context() ctx): Promise<Post[]> {
@@ -66,8 +66,8 @@ export class UserResolver {
         email: data.email,
         name: data.name,
         posts: {
-          create: postData
-        }
+          create: postData,
+        },
       },
     })
   }
@@ -78,16 +78,20 @@ export class UserResolver {
   }
 
   @Query((returns) => [Post], { nullable: true })
-  async draftsByUser(@Args('userUniqueInput') userUniqueInput: UserUniqueInput): Promise<Post[]> {
-    return this.prismaService.user.findUnique({
-      where: {
-        id: userUniqueInput.id || undefined,
-        email: userUniqueInput.email || undefined
-      }
-    }).posts({
-      where: {
-        published: false
-      }
-    })
+  async draftsByUser(
+    @Args('userUniqueInput') userUniqueInput: UserUniqueInput,
+  ): Promise<Post[]> {
+    return this.prismaService.user
+      .findUnique({
+        where: {
+          id: userUniqueInput.id || undefined,
+          email: userUniqueInput.email || undefined,
+        },
+      })
+      .posts({
+        where: {
+          published: false,
+        },
+      })
   }
 }

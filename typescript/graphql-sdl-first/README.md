@@ -52,7 +52,7 @@ npx prisma migrate dev --name init
 Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
 
 ```
-npx prisma db seed --preview-feature
+npx prisma db seed
 ```
 
 
@@ -544,7 +544,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -552,15 +552,6 @@ Here is an example connection string with a local Microsoft SQL Server database:
 datasource db {
   provider = "sqlserver"
   url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
-}
-```
-
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
-
-```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
 }
 ```
 

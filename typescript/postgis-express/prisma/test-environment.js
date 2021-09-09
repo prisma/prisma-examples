@@ -35,7 +35,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
 
   async teardown() {
     // Drop the schema after the tests have completed
-    await this.client.$executeRaw(
+    await this.client.$executeRawUnsafe(
       `drop schema if exists "${this.schema}" cascade`,
     )
     await this.client.$disconnect()

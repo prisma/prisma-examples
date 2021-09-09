@@ -8,9 +8,8 @@ const app = fastify()
 app.register(mercurius, {
   schema,
   graphiql: true,
-  context: () => context
+  context: () => context,
 })
-
 
 app.listen(4000, (err) => {
   if (err) {
