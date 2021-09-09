@@ -9,7 +9,7 @@ app.use(express.json())
 app.post('/user', async (req, res) => {
   const { name, location } = req.body
   try {
-    const response = await prisma.$queryRaw`
+    const response: any = await prisma.$queryRaw`
     insert into "User" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
     returning id` as any;
@@ -29,11 +29,10 @@ app.post('/user', async (req, res) => {
 app.post('/location', async (req, res) => {
   const { name, location } = req.body
   try {
-    // await prisma.$executeRaw`insert into Location (name, location) values (${name}, "public"."st_point"(${location.lng}, ${location.lat}))`
-    await prisma.$queryRaw`insert into Location (name, location) values ( ${name} , "public"."st_point"( ${location.lng} , ${location.lat} ))`
-
-    // const userId = 42
-    // await prisma.$queryRaw`SELECT * FROM User WHERE id = ${userId};`
+    await prisma.$queryRaw`
+    insert into "Location" ("name", "location") values
+    (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
+    `
 
     res.json({
       success: true,
@@ -52,11 +51,9 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   const distance = parseInt(String(d)) || 5
 
   try {
-    const locations = await prisma.$queryRawUnsafe(
-      'select * from "locations_near_user"($1, $2)',
-      parseInt(userId),
-      distance,
-    )
+    const locations = await prisma.$queryRaw`
+      select * from "locations_near_user"(${parseInt(userId)}, ${distance})
+    `
     res.json({ data: { locations } })
   } catch (e) {
     console.error(e)
