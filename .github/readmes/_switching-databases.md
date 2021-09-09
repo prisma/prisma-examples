@@ -46,7 +46,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -54,15 +54,6 @@ Here is an example connection string with a local Microsoft SQL Server database:
 datasource db {
   provider = "sqlserver"
   url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
-}
-```
-
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
-
-```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
 }
 ```
 
