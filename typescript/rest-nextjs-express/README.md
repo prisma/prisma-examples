@@ -2,36 +2,83 @@
 
 This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./backend/prisma/dev.db`](./backend/prisma/dev.db).
 
-## How to use
+## Getting Started
 
-### 1. Download example
+### 1. Download example and install dependencies
 
-Clone this repository and navigate into the project folder:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-nextjs-express
+```
+
+Navigate to the example:
+
+```
+cd rest-nextjs-express
+```
+
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
+
+Clone this repository:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
+```
+
+Navigate to the example:
+
+```
 cd prisma-examples/typescript/rest-nextjs-express
 ```
 
-### 2. Start the server (backend)
+</details>
 
-The code for the server is located in the [`backend`](./backend) directory. You can start it as follows:
+#### Install npm dependencies: 
 
-```
+Install dependencies for your [`backend`](./backend). Open a terminal window and install the `backend`'s dependencies
+
+```bash
 cd backend
 npm install
+```
+
+Open a separate terminal window and navigate to your [`frontend`](./frontend) directory and install its dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+### 2. Create and seed the database (backend)
+
+On the terminal window used to install the backend npm dependencies, run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./backend/prisma/schema.prisma):
+
+```
+npx prisma migrate dev --name init
+```
+
+Now, seed the database with the sample data in [`prisma/seed.ts`](./backend/prisma/seed.ts) by running the following command:
+
+```
+npx prisma db seed
+```
+
+### 3. Start the server (backend)
+
+On the same terminal used in step 2, run the following command to start the server:
+
+```bash
 npm run dev
 ```
 
 The server is now running at [`http://localhost:3001/`](http://localhost:3001/).
 
-### 3. Start the app (frontend)
+### 4. Start the app (frontend)
 
-The code for the Next.js app is located in the [`frontend`](./frontend) directory. Once you launched the server, you can start it as follows:
+On the terminal window used to install frontend npm dependencies, run the following command to start the app:
 
-```
-cd ../frontend
-npm install
+```bash
 npm run dev
 ```
 
@@ -65,7 +112,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 ## Using the REST API
 
-You can also access the REST API of the API server directly. It is running [`localhost:3000`](http://localhost:3000) (so you can e.g. reach the API with [`localhost:3000/feed`](http://localhost:3001/feed)).
+You can also access the REST API of the API server directly. It is running [`localhost:3001`](http://localhost:3001) (so you can e.g. reach the API with [`localhost:3000/feed`](http://localhost:3001/feed)).
 
 ### `GET`
 
@@ -93,97 +140,58 @@ You can also access the REST API of the API server directly. It is running [`loc
   
 - `/api/post/:id`: Delete a post by its `id`
 
+
 ## Evolving the app
 
-Evolving the application typically requires five subsequent steps:
+Evolving the application typically requires three steps:
 
-1. Migrating the database schema using SQL
-1. Updating your Prisma schema by introspecting the database with `prisma introspect`
-1. Generating Prisma Client to match the new database schema with `prisma generate`
-1. Using the updated Prisma Client in your application code and extending the REST API
-1. Building new UI features in React
+1. Migrate your database using Prisma Migrate
+1. Update your server-side application code
+1. Build new UI features in React
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
-### 1. Change your database schema using SQL
+### 1. Migrate your database using Prisma Migrate
 
-The first step would be to add a new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
+The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
 
-```sql
-CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "bio" TEXT,
-  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
-);
-```
+```diff
+// schema.prisma
 
-To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
-
-```bash
-sqlite3 dev.db \
-'CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "bio" TEXT,
-  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
-);'
-```
-
-Note that we're adding a unique constraint to the foreign key on `user`, this means we're expressing a 1:1 relationship between `User` and `Profile`, i.e.: "one user has one profile".
-
-While your database now is already aware of the new table, you're not yet able to perform any operations against it using Prisma Client. The next two steps will update the Prisma Client API to include operations against the new `Profile` table.
-
-### 2. Introspect your database
-
-The Prisma schema is the foundation for the generated Prisma Client API. Therefore, you first need to make sure the new `Profile` table is represented in it as well. The easiest way to do so is by introspecting your database:
-
-```
-npx prisma introspect
-```
-
-> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma`. When using Yarn, you can run: `yarn prisma dev`.
-
-The `introspect` command updates your `schema.prisma` file. It now includes the `Profile` model and its 1:1 relation to `User`:
-
-```prisma
 model Post {
-  author    User?
-  content   String?
-  id        Int     @id
-  published Boolean @default(false)
+  id        Int     @default(autoincrement()) @id
   title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  Int
 }
 
 model User {
+  id      Int      @default(autoincrement()) @id 
+  name    String? 
   email   String   @unique
-  id      Int      @id
-  name    String?
   posts   Post[]
-  profile Profile?
++ profile Profile?
 }
 
-model Profile {
-  bio  String?
-  id   Int     @default(autoincrement()) @id
-  user Int     @unique
-  User User    @relation(fields: [userId], references: [id])
-}
++model Profile {
++  id     Int     @default(autoincrement()) @id
++  bio    String?
++  userId Int     @unique
++  user   User    @relation(fields: [userId], references: [id])
++}
 ```
 
-### 3. Generate Prisma Client
-
-With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
+Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma generate
+npx prisma migrate dev
 ```
 
-This command updated the Prisma Client API in `node_modules/@prisma/client`.
+### 2. Update your application code
 
-### 4. Use the updated Prisma Client in your application code
-
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement a new route in the REST API, e.g. `/api/profile`.
-
-Here are some examples for some Prisma Client operations:
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
 
 #### Create a new profile for an existing user
 
@@ -229,15 +237,87 @@ const userWithUpdatedProfile = await prisma.user.update({
 });
 ```
 
-### 5. Build new UI features in React
+
+### 3. Build new UI features in React
 
 Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory.
 
 In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
+
+
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+
+Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
+
+<details><summary>Expand for an overview of example configurations with different databases</summary>
+
+### PostgreSQL
+
+For PostgreSQL, the connection URL has the following structure:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+}
+```
+
+Here is an example connection string with a local PostgreSQL database:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://janedoe:mypassword@localhost:5432/notesapi?schema=public"
+}
+```
+
+### MySQL
+
+For MySQL, the connection URL has the following structure:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+}
+```
+
+Here is an example connection string with a local MySQL database:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://janedoe:mypassword@localhost:3306/notesapi"
+}
+```
+
+### Microsoft SQL Server (Preview)
+
+Here is an example connection string with a local Microsoft SQL Server database:
+
+```prisma
+datasource db {
+  provider = "sqlserver"
+  url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
+}
+```
+
+Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+
+```prisma
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["microsoftSqlServer"]
+}
+```
+
+</details>
 
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
+- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)
