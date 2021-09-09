@@ -6,11 +6,11 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "3.0.1",
+    "@prisma/client": "3.0.2",
     "fastify": "3.21.0"
   },
   "devDependencies": {
-    "prisma": "3.0.1"
+    "prisma": "3.0.2"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
