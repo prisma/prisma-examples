@@ -29,11 +29,10 @@ app.post('/user', async (req, res) => {
 app.post('/location', async (req, res) => {
   const { name, location } = req.body
   try {
-    // await prisma.$executeRaw`insert into Location (name, location) values (${name}, "public"."st_point"(${location.lng}, ${location.lat}))`
-    await prisma.$queryRaw`insert into Location (name, location) values ( ${name} , "public"."st_point"( ${location.lng} , ${location.lat} ))`
-
-    // const userId = 42
-    // await prisma.$queryRaw`SELECT * FROM User WHERE id = ${userId};`
+    await prisma.$queryRaw`
+    insert into "Location" ("name", "location") values
+    (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
+    `
 
     res.json({
       success: true,
