@@ -28,7 +28,7 @@
     "nexus": "1.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-markdown": "6.0.3"
+    "react-markdown": "7.0.1"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
