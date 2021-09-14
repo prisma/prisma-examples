@@ -15,7 +15,7 @@
     "next": "11.1.2",
     "react": "17.0.0",
     "react-dom": "17.0.0",
-    "react-markdown": "5.0.0"
+    "react-markdown": "7.0.1"
   },
   "devDependencies": {
     "@types/node": "14.17.15",
