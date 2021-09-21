@@ -21,7 +21,7 @@
     "@prisma/client": "3.0.2"
   },
   "devDependencies": {
-    "@types/jest": "27.0.1",
+    "@types/jest": "27.0.2",
     "@types/node": "14.17.17",
     "jest": "27.2.1",
     "prisma": "3.0.2",
