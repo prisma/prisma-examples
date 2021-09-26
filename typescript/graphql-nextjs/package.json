@@ -40,6 +40,6 @@
     "typescript": "4.4.3"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "npm run ts-node prisma/seed.ts"
   }
 }
