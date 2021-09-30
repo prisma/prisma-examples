@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@prisma/client": "3.1.1",
-    "fastify": "3.21.6",
+    "fastify": "3.22.0",
     "graphql": "15.6.0",
     "graphql-scalars": "1.10.1",
     "mercurius": "8.4.2",
