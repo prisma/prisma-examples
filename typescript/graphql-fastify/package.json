@@ -9,7 +9,7 @@
     "@prisma/client": "3.2.0",
     "fastify": "3.22.0",
     "graphql": "15.6.1",
-    "graphql-scalars": "1.11.0",
+    "graphql-scalars": "1.11.1",
     "mercurius": "8.5.0",
     "nexus": "1.1.0"
   },
