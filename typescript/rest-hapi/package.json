@@ -6,7 +6,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@hapi/hapi": "20.2.0",
+    "@hapi/hapi": "20.2.1",
     "@prisma/client": "3.2.1",
     "@types/node": "14.17.21"
   },
