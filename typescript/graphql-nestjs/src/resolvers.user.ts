@@ -72,7 +72,7 @@ export class UserResolver {
     })
   }
 
-  @Query((returns) => User, { nullable: true })
+  @Query((returns) => [User], { nullable: true })
   async allUsers(@Context() ctx) {
     return this.prismaService.user.findMany()
   }
