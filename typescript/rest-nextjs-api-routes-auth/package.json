@@ -8,8 +8,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "ts-node": "ts-node --compiler-options {\\\"module\\\":\\\"commonjs\\\"}"
+    "start": "next start"
   },
   "dependencies": {
     "@prisma/client": "3.1.1",
@@ -17,14 +16,14 @@
     "next-auth": "3.29.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-markdown": "7.0.1",
-    "ts-node": "10.2.1"
+    "react-markdown": "7.0.1"
   },
   "devDependencies": {
     "@types/next-auth": "3.13.0",
     "@types/node": "14.17.20",
     "@types/react": "17.0.27",
     "prisma": "3.1.1",
+    "ts-node": "10.2.1",
     "typescript": "4.4.3"
   },
   "prisma": {
