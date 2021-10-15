@@ -11,7 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "3.1.1",
+    "@prisma/client": "3.2.1",
     "next": "11.1.2",
     "next-auth": "3.29.0",
     "react": "17.0.2",

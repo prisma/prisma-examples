@@ -12,14 +12,14 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "3.1.1",
+    "@prisma/client": "3.2.1",
     "next": "^11.1.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-markdown": "^7.0.0"
   },
   "devDependencies": {
-    "prisma": "3.1.1"
+    "prisma": "3.2.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
