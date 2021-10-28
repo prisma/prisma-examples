@@ -45,7 +45,7 @@
     "@prisma/client": "3.3.0",
     "apollo-server-express": "2.25.2",
     "class-validator": "0.13.1",
-    "graphql": "15.7.1",
+    "graphql": "15.7.2",
     "graphql-tools": "8.2.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
