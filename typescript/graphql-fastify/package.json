@@ -10,7 +10,7 @@
     "fastify": "3.23.1",
     "graphql": "15.7.2",
     "graphql-scalars": "1.12.0",
-    "mercurius": "8.9.0",
+    "mercurius": "8.9.1",
     "nexus": "1.1.0"
   },
   "devDependencies": {
