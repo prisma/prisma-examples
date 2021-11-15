@@ -4,7 +4,7 @@ This example shows how to implement a **GraphQL server (SDL-first) with TypeScri
 
 - [**Mercurius**](https://mercurius.dev/): GraphQL adapter for Fastify
 - [**Fastify**](https://www.fastify.io/): Fast and low overhead web framework for building Node.js applications
-- [**`makeExecutableSchema`**](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools): Combines [resolvers and type definitions](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e) into an executable schema.
+- [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation 
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database

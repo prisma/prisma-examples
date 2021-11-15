@@ -495,7 +495,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 </details>
 
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -554,6 +554,24 @@ datasource db {
 }
 ```
 
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
+
+```prisma
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
+}
+```
+Because MongoDB is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+
+```
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+```
 </details>
 
 ## Next steps
