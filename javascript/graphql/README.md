@@ -579,7 +579,7 @@ datasource db {
 
 ### MongoDB
 
-Here is an example connection string with a local Mongo database:
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
 datasource db {
