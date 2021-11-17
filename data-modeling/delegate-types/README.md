@@ -1,6 +1,6 @@
 # Data modeling: Delegate types
 
-This example shows you how to model [delegate types](https://edgeapi.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) using Prisma, and use [Prisma Client](https://www.prisma.io/client) in a **TypeScript script** to read and write data.
+This example shows you how to model [delegate types](https://edgeapi.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) using Prisma, and use [Prisma Client](https://www.prisma.io/client) in a TypeScript script to read and write data.
 
 This example consists of a `script.ts` file that contains example Prisma Client queries for delegate types
 
