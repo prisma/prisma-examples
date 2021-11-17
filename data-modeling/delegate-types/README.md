@@ -5,7 +5,7 @@ This example shows you how to model [delegate types](https://edgeapi.rubyonrails
 This example consists of a `script.ts` file that contains example Prisma Client queries for delegate types
 
 
-## What are Delegate types?
+## What are delegated types?
 
 An application such as LinkedIn contains a feed that would contain different types of content such as articles, images, and videos. In such an instance, you would have a *parent entity*, `Feed`, containing all the shared properties and *child entities*,`Article`, `Image`, and `Video`, that inherit the *parent entity*'s properties and have their individual properties. 
 
