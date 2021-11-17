@@ -2,16 +2,15 @@
 
 This example shows you how to model [delegate types](https://edgeapi.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) using Prisma, and use [Prisma Client](https://www.prisma.io/client) in a TypeScript script to read and write data.
 
-This example consists of a `script.ts` file that contains example Prisma Client queries for delegate types
 
 
 ## What are delegated types?
 
-An application such as LinkedIn contains a feed that would contain different types of content such as articles, images, and videos. In such an instance, you would have a *parent entity*, `Feed`, containing all the shared properties and *child entities*,`Article`, `Image`, and `Video`, that inherit the *parent entity*'s properties and have their individual properties. 
+An application such as LinkedIn contains a feed that would contain different types of content such as articles, images, and videos. In such an instance, you would have a *parent entity*, `Activity`, containing all the shared properties and *child entities*, `Article`, `Image`, and `Video`, that inherit the *parent entity*'s properties and have their individual properties. 
 
-When querying feed data, you would only query the feed data instead of querying the `Article`, `Image`, and `Video` tables and then merging them into one response. Querying and merging responses from the individual tables wouldn't allow you to perform operations such as ordering and filtering. This is the problem that delegate type solves.
+When querying the feed, you would only query the Feed table instead of querying the `Article`, `Image`, and `Video` tables and then merging them into one response. Querying and merging responses from the individual tables wouldn't allow you to perform operations such as ordering and filtering. This is the problem that delegate type solves.
 
-The `Feed` response mimics union types by using delegate types.
+The `Activity` response mimics union types by using delegate types.
 
 ## How to use
 
@@ -45,7 +44,7 @@ npm install
 
 ### 2. Create and seed the database
 
-Run the following command to create your SQLite database file. This also creates the `Content`, `Video`, `Image` and `Article` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+Run the following command to create your SQLite database file. This also creates the `Activity`, `Video`, `Image` and `Article` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
 ```
 npx prisma migrate dev --name init

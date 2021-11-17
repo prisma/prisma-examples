@@ -10,7 +10,7 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Content {
+model Activity {
   id   String @id @default(uuid())
   type String
 }

@@ -6,7 +6,7 @@ async function main() {
   /**
    * Entire feed
    */
-  const content = await prisma.content.findMany()
+  const content = await prisma.activity.findMany()
 
   const feed = await Promise.all(content.map((contentItem) => {
     // @ts-ignore
@@ -19,7 +19,7 @@ async function main() {
   /**
    * Video Feed
    */
-  const videoContent = await prisma.content.findMany({
+  const videoContent = await prisma.activity.findMany({
     where: {
       type: 'video'
     }
@@ -35,7 +35,7 @@ async function main() {
   /**
    * Image Feed
    */
-  const imageContent = await prisma.content.findMany({
+  const imageContent = await prisma.activity.findMany({
     where: {
       type: 'image'
     }
@@ -51,7 +51,7 @@ async function main() {
   /**
    * Article Feed
    */
-  const articleContent = await prisma.content.findMany({
+  const articleContent = await prisma.activity.findMany({
     where: {
       type: 'article'
     }
