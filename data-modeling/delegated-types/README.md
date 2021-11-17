@@ -1,11 +1,11 @@
 # Data modeling: Delegate types
 
-This example shows you how to model [delegate types](https://edgeapi.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) using Prisma, and use [Prisma Client](https://www.prisma.io/client) in a **TypeScript script** to read and write data.
+This example shows you how to model [delegate types](https://edgeapi.rubyonrails.org/classes/ActiveRecord/DelegatedType.html) using Prisma, and use [Prisma Client](https://www.prisma.io/client) in a TypeScript script to read and write data.
 
 This example consists of a `script.ts` file that contains example Prisma Client queries for delegate types
 
 
-## What are Delegate types?
+## What are delegated types?
 
 An application such as LinkedIn contains a feed that would contain different types of content such as articles, images, and videos. In such an instance, you would have a *parent entity*, `Feed`, containing all the shared properties and *child entities*,`Article`, `Image`, and `Video`, that inherit the *parent entity*'s properties and have their individual properties. 
 
@@ -18,12 +18,12 @@ The `Feed` response mimics union types by using delegate types.
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/data-modeling/delegated-types
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/data-modeling/delegate-types
 ```
 
 Install npm dependencies:
 ```
-cd delegated-types
+cd delegate-types
 npm install
 ```
 
@@ -38,7 +38,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/data-modeling/delegated-types
+cd prisma-examples/data-modeling/delegate-types
 npm install
 ```
 </details>
