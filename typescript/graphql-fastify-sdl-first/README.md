@@ -4,7 +4,7 @@ This example shows how to implement a **GraphQL server (SDL-first) with TypeScri
 
 - [**Mercurius**](https://mercurius.dev/): GraphQL adapter for Fastify
 - [**Fastify**](https://www.fastify.io/): Fast and low overhead web framework for building Node.js applications
-- [**`makeExecutableSchema`**](https://www.graphql-tools.com/docs/generate-schema/) from [`graphql-tools`](https://github.com/ardatan/graphql-tools): Combines [resolvers and type definitions](https://www.prisma.io/blog/graphql-server-basics-the-schema-ac5e2950214e) into an executable schema.
+- [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation 
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
@@ -498,7 +498,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 </details>
 
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -557,6 +557,24 @@ datasource db {
 }
 ```
 
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
+
+```prisma
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
+}
+```
+Because MongoDB is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+
+```
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+```
 </details>
 
 ## Next steps
