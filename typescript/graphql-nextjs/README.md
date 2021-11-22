@@ -261,7 +261,7 @@ You can now use your `PrismaClient` instance to perform operations against the n
 First, add a new GraphQL type via Nexus' `objectType` function:
 
 ```diff
-// ./src/schema.ts
+// ./pages/api/index.ts
 
 +const Profile = objectType({
 +  name: 'Profile',
@@ -296,6 +296,7 @@ const User = objectType({
           })
           .posts()
       },
+    })
 +   t.field('profile', {
 +     type: 'Profile',
 +     resolve: (parent, _, context) => {
