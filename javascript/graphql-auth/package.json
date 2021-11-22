@@ -10,19 +10,19 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "3.4.2",
+    "@prisma/client": "3.5.0",
     "apollo-server": "3.5.0",
     "bcryptjs": "2.4.3",
     "graphql": "15.7.2",
     "graphql-middleware": "6.1.12",
-    "graphql-scalars": "1.12.0",
+    "graphql-scalars": "1.13.6",
     "graphql-shield": "7.5.0",
     "jsonwebtoken": "8.5.1",
     "nexus": "1.1.0"
   },
   "devDependencies": {
     "nodemon": "2.0.15",
-    "prisma": "3.4.2"
+    "prisma": "3.5.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

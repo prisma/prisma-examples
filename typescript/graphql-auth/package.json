@@ -16,24 +16,24 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "3.4.2",
+    "@prisma/client": "3.5.0",
     "apollo-server": "3.5.0",
     "bcryptjs": "2.4.3",
     "graphql": "15.7.2",
     "graphql-middleware": "6.1.12",
-    "graphql-scalars": "1.12.0",
+    "graphql-scalars": "1.13.6",
     "graphql-shield": "7.5.0",
     "jsonwebtoken": "8.5.1",
     "nexus": "1.1.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.2",
-    "@types/jsonwebtoken": "8.5.5",
-    "@types/node": "14.17.33",
-    "prisma": "3.4.2",
+    "@types/jsonwebtoken": "8.5.6",
+    "@types/node": "16.11.9",
+    "prisma": "3.5.0",
     "ts-node": "10.4.0",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.4.4"
+    "typescript": "4.5.2"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

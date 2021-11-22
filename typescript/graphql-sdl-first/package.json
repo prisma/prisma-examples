@@ -9,19 +9,19 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "3.4.2",
+    "@prisma/client": "3.5.0",
     "apollo-server": "3.5.0",
     "graphql": "15.7.2",
-    "graphql-scalars": "1.12.0"
+    "graphql-scalars": "1.13.6"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
-    "@types/node": "14.17.33",
-    "@types/ws": "7.4.7",
-    "prisma": "3.4.2",
+    "@types/node": "16.11.9",
+    "@types/ws": "8.2.0",
+    "prisma": "3.5.0",
     "ts-node": "10.4.0",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.4.4"
+    "typescript": "4.5.2"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
