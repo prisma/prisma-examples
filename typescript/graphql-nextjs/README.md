@@ -270,8 +270,8 @@ First, add a new GraphQL type via Nexus' `objectType` function:
 +    t.string('bio')
 +    t.field('user', {
 +      type: 'User',
-+      resolve: (parent, _, context) => {
-+        return context.prisma.profile
++      resolve: (parent) => {
++        return prisma.profile
 +          .findUnique({
 +            where: { id: parent.id || undefined },
 +          })
@@ -289,8 +289,8 @@ const User = objectType({
     t.nonNull.string('email')
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
-      resolve: (parent, _, context) => {
-        return context.prisma.user
+      resolve: (parent) => {
+        return prisma.user
           .findUnique({
             where: { id: parent.id || undefined },
           })
@@ -299,8 +299,8 @@ const User = objectType({
     })
 +   t.field('profile', {
 +     type: 'Profile',
-+     resolve: (parent, _, context) => {
-+       return context.prisma.user.findUnique({
++     resolve: (parent) => {
++       return prisma.user.findUnique({
 +         where: { id: parent.id }
 +       }).profile()
 +     }
@@ -344,8 +344,8 @@ const Mutation = objectType({
 +       email: stringArg(),
 +       bio: stringArg()
 +     }, 
-+     resolve: async (_, args, context) => {
-+       return context.prisma.profile.create({
++     resolve: async (_, args) => {
++       return prisma.profile.create({
 +         data: {
 +           bio: args.bio,
 +           user: {
