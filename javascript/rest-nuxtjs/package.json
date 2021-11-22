@@ -19,7 +19,7 @@
     "@nuxtjs/eslint-config": "7.0.0",
     "@nuxtjs/eslint-module": "3.0.2",
     "babel-eslint": "10.1.0",
-    "eslint": "7.32.0",
+    "eslint": "8.3.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-nuxt": "3.0.0",
     "eslint-plugin-prettier": "3.4.1",
