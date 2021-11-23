@@ -42,6 +42,8 @@ GITHUB_ID=6bafeb321963449bdf51
 GITHUB_SECRET=509298c32faa283f28679ad6de6f86b2472e1bff
 ```
 
+> **Note**: If you have enabled privacy settings in your GitHub account, the email address will not be returned after sign-in.
+
 </details>
 
 #### Configuring the Email authentication provider
