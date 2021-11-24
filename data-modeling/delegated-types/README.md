@@ -37,7 +37,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/data-modeling/delegate-types
+cd prisma-examples/data-modeling/delegated-types
 npm install
 ```
 </details>
