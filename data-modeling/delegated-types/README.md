@@ -22,7 +22,7 @@ curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz 
 
 Install npm dependencies:
 ```
-cd delegate-types
+cd delegated-types
 npm install
 ```
 
