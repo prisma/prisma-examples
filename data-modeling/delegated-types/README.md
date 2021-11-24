@@ -8,9 +8,9 @@ This example shows you how to model [delegated types](https://edgeapi.rubyonrail
 
 An application such as LinkedIn contains a feed that would contain different types of content such as articles, images, and videos. In such an instance, you would have a *parent entity*, `Activity`, containing all the shared properties and *child entities*, `Article`, `Image`, and `Video`, that inherit the *parent entity*'s properties and have their individual properties. 
 
-When querying the feed, you would only query the Feed table instead of querying the `Article`, `Image`, and `Video` tables and then merging them into one response. Querying and merging responses from the individual tables wouldn't allow you to perform operations such as ordering and filtering. This is the problem that delegate type solves.
+When querying the feed, you would only query the Feed table instead of querying the `Article`, `Image`, and `Video` tables and then merging them into one response. Querying and merging responses from the individual tables wouldn't allow you to perform operations such as ordering and filtering. This is the problem that delegated type solves.
 
-The `Activity` response mimics union types by using delegate types.
+The `Activity` response mimics union types by using delegated types.
 
 ## How to use
 
