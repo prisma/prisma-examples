@@ -17,7 +17,7 @@ The `Activity` response mimics union types by using delegate types.
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/data-modeling/delegate-types
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/data-modeling/delegated-types
 ```
 
 Install npm dependencies:
