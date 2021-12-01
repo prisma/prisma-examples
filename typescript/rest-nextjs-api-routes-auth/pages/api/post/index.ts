@@ -20,6 +20,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     });
     res.json(result);
   } else {
-    res.status(401)
+    res.status(401).send({ message: 'Unauthorized' })
   }
 }

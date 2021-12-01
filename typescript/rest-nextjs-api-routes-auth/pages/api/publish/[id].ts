@@ -6,7 +6,7 @@ import prisma from '../../../lib/prisma'
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const postId = req.query.id;
   const session = await getSession({ req })
-  
+
   if (session) {
     const post = await prisma.post.update({
       where: { id: Number(postId) },
@@ -14,6 +14,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     });
     res.json(post);
   } else {
-    res.status(401)
+    res.status(401).send({ message: 'Unauthorized' })
   }
 }
