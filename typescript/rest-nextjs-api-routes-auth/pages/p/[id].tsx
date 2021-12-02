@@ -39,8 +39,8 @@ async function deletePost(id: number): Promise<void> {
 }
 
 const Post: React.FC<PostProps> = (props) => {
-  const [session, loading] = useSession();
-  if (loading) {
+  const { data: session, status } = useSession();
+  if (status === 'loading') {
     return <div>Authenticating ...</div>;
   }
   const userHasValidSession = Boolean(session);

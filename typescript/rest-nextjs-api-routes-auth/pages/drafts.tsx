@@ -34,7 +34,7 @@ type Props = {
 };
 
 const Drafts: React.FC<Props> = (props) => {
-  const [session] = useSession();
+  const {data: session}= useSession();
 
   if (!session) {
     return (
