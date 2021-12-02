@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import Router from "next/router";
 import { PostProps } from "../../components/Post";
 import prisma from '../../lib/prisma'
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
