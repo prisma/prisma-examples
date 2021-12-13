@@ -11,8 +11,8 @@
   "dependencies": {
     "@prisma/client": "3.5.0",
     "apollo-server": "3.5.0",
-    "graphql": "15.7.2",
-    "graphql-scalars": "1.13.6"
+    "graphql": "15.8.0",
+    "graphql-scalars": "1.14.1"
   },
   "devDependencies": {
     "prisma": "3.5.0"

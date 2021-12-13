@@ -11,7 +11,7 @@
   "dependencies": {
     "@nuxt/http": "0.6.4",
     "@prisma/client": "3.5.0",
-    "core-js": "3.19.2",
+    "core-js": "3.19.3",
     "express": "4.17.1",
     "nuxt": "2.15.8"
   },
@@ -19,11 +19,11 @@
     "@nuxtjs/eslint-config": "8.0.0",
     "@nuxtjs/eslint-module": "3.0.2",
     "babel-eslint": "10.1.0",
-    "eslint": "8.3.0",
+    "eslint": "8.4.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-nuxt": "3.1.0",
     "eslint-plugin-prettier": "4.0.0",
-    "prettier": "2.5.0",
+    "prettier": "2.5.1",
     "prisma": "3.5.0"
   },
   "prisma": {

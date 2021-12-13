@@ -16,58 +16,51 @@ model Post {
   authorId  Int?
 }
 
-model User {
-  id            Int       @id @default(autoincrement())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map(name: "email_verified")
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
-
-  @@map(name: "users")
-}
-
 model Account {
-  id                 Int       @id @default(autoincrement())
-  compoundId         String    @unique @map(name: "compound_id")
-  userId             Int       @map(name: "user_id")
-  providerType       String    @map(name: "provider_type")
-  providerId         String    @map(name: "provider_id")
-  providerAccountId  String    @map(name: "provider_account_id")
-  refreshToken       String?   @map(name: "refresh_token")
-  accessToken        String?   @map(name: "access_token")
-  accessTokenExpires DateTime? @map(name: "access_token_expires")
-  createdAt          DateTime  @default(now()) @map(name: "created_at")
-  updatedAt          DateTime  @default(now()) @map(name: "updated_at")
+  id                Int     @id @default(autoincrement())
+  type              String
+  provider          String
+  providerAccountId String
+  refreshToken      String? @map("refresh_token")
+  accessToken       String? @map("access_token")
+  expiresAt         Int?    @map("expires_at")
+  tokenType         String? @map("token_type")
+  scope             String?
+  idToken           String?
+  sessionState      String? @map("session_state")
+  oauthTokenSecret  String? @map("oauth_token_secret")
+  oauthToken        String? @map("oauth_token")
 
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
 
-  @@index([providerAccountId], name: "providerAccountId")
-  @@index([providerId], name: "providerId")
-  @@index([userId], name: "userId")
-  @@map(name: "accounts")
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
   id           Int      @id @default(autoincrement())
-  userId       Int      @map(name: "user_id")
+  sessionToken String   @unique
+  userId       Int
   expires      DateTime
-  sessionToken String   @unique @map(name: "session_token")
-  accessToken  String   @unique @map(name: "access_token")
-  createdAt    DateTime @default(now()) @map(name: "created_at")
-  updatedAt    DateTime @default(now()) @map(name: "updated_at")
-
-  @@map(name: "sessions")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model VerificationRequest {
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  posts         Post[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
   id         Int      @id @default(autoincrement())
   identifier String
   token      String   @unique
   expires    DateTime
-  createdAt  DateTime @default(now()) @map(name: "created_at")
-  updatedAt  DateTime @default(now()) @map(name: "updated_at")
 
-  @@map(name: "verification_requests")
+  @@unique([identifier, token])
 }
