@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "@prisma/client": "3.6.0",
-    "@types/node": "16.11.13",
+    "@types/node": "16.11.14",
     "express": "4.17.1"
   },
   "devDependencies": {
     "@types/express": "4.17.13",
     "@types/jest": "27.0.3",
-    "@types/node": "16.11.13",
+    "@types/node": "16.11.14",
     "@types/supertest": "2.0.11",
     "jest": "27.4.5",
     "jest-environment-node": "27.4.4",
