@@ -18,7 +18,7 @@
     "@apollo/client": "3.5.6",
     "@prisma/client": "3.6.0",
     "apollo-server-micro": "3.5.0",
-    "express": "4.17.1",
+    "express": "4.17.2",
     "graphql": "15.8.0",
     "graphql-scalars": "1.14.1",
     "graphql-tag": "2.12.6",

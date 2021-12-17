@@ -13,7 +13,7 @@
   "dependencies": {
     "@prisma/client": "3.6.0",
     "@types/node": "16.11.14",
-    "express": "4.17.1"
+    "express": "4.17.2"
   },
   "devDependencies": {
     "@types/express": "4.17.13",
