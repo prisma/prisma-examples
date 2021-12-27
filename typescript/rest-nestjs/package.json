@@ -44,7 +44,7 @@
     "@prisma/client": "3.7.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
-    "rxjs": "7.4.0"
+    "rxjs": "7.5.0"
   },
   "devDependencies": {
     "@nestjs/cli": "8.1.6",
