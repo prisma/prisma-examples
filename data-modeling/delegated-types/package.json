@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@types/jest": "27.4.0",
-    "@types/node": "16.11.17",
+    "@types/node": "16.11.18",
     "@types/uuid": "8.3.3",
     "jest": "27.4.5",
     "prisma": "3.7.0",
