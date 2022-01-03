@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "prisma": "3.7.0",
-    "serverless-dotenv-plugin": "3.12.1"
+    "serverless-dotenv-plugin": "3.12.2"
   }
 }
