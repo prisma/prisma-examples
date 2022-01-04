@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/graphql": "14.5.0",
     "@types/micro-cors": "0.1.2",
-    "@types/node": "16.11.18",
+    "@types/node": "16.11.19",
     "@types/react": "17.0.38",
     "ts-node": "10.4.0",
     "prisma": "3.7.0",
