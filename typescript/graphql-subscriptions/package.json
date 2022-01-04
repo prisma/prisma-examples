@@ -22,7 +22,7 @@
     "nexus": "1.1.0"
   },
   "devDependencies": {
-    "@types/node": "16.11.18",
+    "@types/node": "16.11.19",
     "prisma": "3.7.0",
     "ts-node": "10.4.0",
     "ts-node-dev": "1.1.8",
