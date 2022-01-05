@@ -17,7 +17,7 @@
     "@types/jest": "27.4.0",
     "@types/node": "16.11.19",
     "@types/supertest": "2.0.11",
-    "jest": "27.4.6",
+    "jest": "27.4.7",
     "jest-environment-node": "27.4.6",
     "prisma": "3.7.0",
     "randomstring": "1.2.1",
