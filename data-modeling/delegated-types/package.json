@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/jest": "27.4.0",
     "@types/node": "16.11.19",
-    "@types/uuid": "8.3.3",
+    "@types/uuid": "8.3.4",
     "jest": "27.4.7",
     "prisma": "3.7.0",
     "ts-jest": "27.1.2",
