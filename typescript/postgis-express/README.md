@@ -70,7 +70,7 @@ Execute this command to start the server:
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can send the API requests implemented in [index.ts`](./src/index.ts)
+The server is now running on `http://localhost:3000`. You can send the API requests implemented in [`index.ts`](./src/index.ts)
 
 ## Using the API
 
