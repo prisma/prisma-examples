@@ -67,7 +67,7 @@
     "jest": "27.4.7",
     "prettier": "2.5.1",
     "prisma": "3.7.0",
-    "supertest": "6.1.6",
+    "supertest": "6.2.0",
     "ts-jest": "27.1.2",
     "ts-loader": "9.2.6",
     "ts-node": "10.4.0",
