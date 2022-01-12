@@ -22,7 +22,7 @@
     "@types/supertest": "2.0.11",
     "jest": "27.4.7",
     "jest-environment-node": "27.4.6",
-    "nanoid": "3.1.31",
+    "nanoid": "3.1.32",
     "prisma": "3.8.0",
     "supertest": "6.2.1",
     "ts-jest": "27.1.2",
