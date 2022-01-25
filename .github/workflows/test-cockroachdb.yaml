@@ -27,7 +27,6 @@ jobs:
       cockroachdb:
         # Docker Hub image
         image: cockroachdb/cockroach
-        env:
         ports:
           - '26257:26257'
         options: start-single-node --insecure --advertise-host localhost
@@ -38,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: run-sql
-        uses: cockroachdb/cockroach
+        uses: docker://cockroachdb/cockroach
         with:
           args: 'sql --insecure -f ./databases/cockroachdb/dbinit.sql'
       - uses: actions/setup-node@v2
