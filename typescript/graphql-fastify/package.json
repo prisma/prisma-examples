@@ -6,19 +6,19 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "@prisma/client": "3.7.0",
-    "fastify": "3.25.3",
+    "@prisma/client": "3.8.1",
+    "fastify": "3.27.0",
     "graphql": "15.8.0",
     "graphql-scalars": "1.14.1",
     "mercurius": "8.12.0",
     "nexus": "1.1.0"
   },
   "devDependencies": {
-    "@types/node": "16.11.18",
-    "typescript": "4.5.4",
+    "@types/node": "16.11.21",
+    "typescript": "4.5.5",
     "ts-node": "10.4.0",
     "ts-node-dev": "1.1.8",
-    "prisma": "3.7.0"
+    "prisma": "3.8.1"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

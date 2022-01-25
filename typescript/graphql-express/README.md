@@ -375,6 +375,7 @@ const User = objectType({
           })
           .posts()
       },
+    }),
 +   t.field('profile', {
 +     type: 'Profile',
 +     resolve: (parent, _, context) => {
