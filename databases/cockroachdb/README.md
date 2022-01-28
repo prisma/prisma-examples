@@ -142,9 +142,9 @@ model Comment {
   comment   String
   authorId  String   @db.Uuid
   postId    String   @db.Uuid
--  Post        Post     @relation(fields: [postId], references: [id], map: "fk_postId_ref_Post")
+-  Post      Post     @relation(fields: [postId], references: [id], map: "fk_postId_ref_Post")
 +  post      Post     @relation(fields: [postId], references: [id], map: "fk_postId_ref_Post")
--  User        User     @relation(fields: [authorId], references: [id], map: "fk_writtenById_ref_User")
+-  User      User     @relation(fields: [authorId], references: [id], map: "fk_writtenById_ref_User")
 +  author    User     @relation(fields: [authorId], references: [id], map: "fk_writtenById_ref_User")
 }
 
