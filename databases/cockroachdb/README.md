@@ -12,7 +12,7 @@ The example consists of two parts:
 ## Prerequisites
 
 - Node.js installed.
-- [CockroachDB installed](https://www.cockroachlabs.com/docs/v21.2/install-cockroachdb.html) so you can run CockroachDB locally and use the CockroachDB client (interactive shell) .
+- [CockroachDB installed](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) so you can run CockroachDB locally and use the CockroachDB client (interactive shell) .
 
 > **Note:** You can also conect to a [free CockroachDB Serverless Cluster](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html), however, this requires setting up a root certificate. For simplicity, this example relies on a local single-node CockroachDB server.
 
