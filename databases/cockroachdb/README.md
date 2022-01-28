@@ -1,6 +1,11 @@
 # CockroachDB example
 
-This example shows how to connect Prisma to a CockroachDB database, create the database schema with raw SQL, use introspection to populate the Prisma schema and use [Prisma Client](https://www.prisma.io/client) in a TypeScript script to read and write data in the database.
+This example shows how to:
+
+- Connect Prisma to a CockroachDB database 
+- Create the database schema with raw SQL 
+- Populate the Prisma schema using [`prisma db pull`](https://www.prisma.io/docs/reference/api-reference/command-reference#db-pull)
+- Read and write data to the database using [Prisma Client](https://www.prisma.io/client)
 
 > **Note:** CockroachDB support in Prisma is currently in **Preview** and Prisma Migrate doesn't support it for now. For this reason, the database schema is created with raw SQL.
 
