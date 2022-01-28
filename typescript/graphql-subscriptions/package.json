@@ -19,7 +19,7 @@
     "@prisma/client": "3.8.1",
     "apollo-server": "2.25.3",
     "graphql": "15.8.0",
-    "nexus": "1.1.0"
+    "nexus": "1.2.0"
   },
   "devDependencies": {
     "@types/node": "16.11.21",
