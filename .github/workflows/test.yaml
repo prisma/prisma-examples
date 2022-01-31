@@ -1,6 +1,9 @@
 name: test
 on:
   push:
+    paths:
+      - javascript/**
+      - typescript/**
     branches:
       - latest
       - dev
