@@ -35,13 +35,12 @@ jobs:
           docker run -d --name roach --hostname roach -p 26257:26257 -p 8080:8080 $COCKROACHDB_DOCKER_TAG start-single-node --insecure
           sudo apt update && sudo apt install wait-for-it -y
           wait-for-it -h localhost -p 26257
-          docker exec roach bash -c "echo 'CREATE DATABASE prisma;' | cockroach sql --insecure"
-          ls
+          docker exec roach bash -c "cockroach sql --insecure -f ./dbinit.sql"
 
-      - name: run-sql
-        uses: docker://cockroachdb/cockroach
-        with:
-          args: 'sql --insecure -f ./databases/cockroachdb/dbinit.sql'
+      # - name: run-sql
+      #   uses: docker://cockroachdb/cockroach
+      #   with:
+      #     args: 'sql --insecure -f ./databases/cockroachdb/dbinit.sql'
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
