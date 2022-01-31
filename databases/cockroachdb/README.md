@@ -2,12 +2,12 @@
 
 This example shows how to:
 
-- Connect Prisma to a CockroachDB database 
-- Create the database schema with raw SQL 
+- Connect Prisma to a CockroachDB database
+- Create the database schema with raw SQL
 - Populate the Prisma schema using [`prisma db pull`](https://www.prisma.io/docs/reference/api-reference/command-reference#db-pull)
 - Read and write data to the database using [Prisma Client](https://www.prisma.io/client)
 
-> **Note:** CockroachDB support in Prisma is currently in **Preview** and Prisma Migrate doesn't support it for now. For this reason, the database schema is created with raw SQL.
+> **Note:** CockroachDB support in Prisma is currently in [**Preview**](https://www.prisma.io/docs/about/prisma/releases#preview), and **Prisma Migrate isn't supported for now**. For this reason, you will create the database schema with raw SQL.
 
 The example consists of two parts:
 
@@ -17,9 +17,9 @@ The example consists of two parts:
 ## Prerequisites
 
 - Node.js installed.
-- [CockroachDB installed](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) so you can run CockroachDB locally and use the CockroachDB client (interactive shell) .
+- [Docker](https://www.docker.com/products/docker-desktop) installed
 
-> **Note:** You can also conect to a [free CockroachDB Serverless Cluster](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html), however, this requires setting up a root certificate. For simplicity, this example relies on a local single-node CockroachDB server.
+> **Note:** You can also connect to a [free CockroachDB Serverless Cluster](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html). This requires [setting up a root certificate](https://www.cockroachlabs.com/docs/cockroachcloud/connect-to-a-serverless-cluster.html#step-2-connect-to-your-cluster).
 
 ## 1. Download example & install dependencies
 
@@ -36,7 +36,31 @@ cd prisma-examples/databases/cockroachdb
 npm install
 ```
 
-## 2. Start a CockroachDB database server locally
+## 2. Start a CockroachDB database server
+
+There are two approaches to setting up a CockroachDB database:
+
+1. Locally with Docker using the included [`docker-compose.yml`](./docker-compose.yml) file.
+1. Using a free hosted [CockroachDB Serverless](https://www.cockroachlabs.com/get-started-cockroachdb-v2/).
+
+### (Option 1) Start CockroachDB with Docker
+
+Run the following command from the `cockroachdb` folder to start a CockroachDB Docker container:
+
+```sh
+docker compose up -d
+```
+
+### (Option 2) Using CockroachDB Serverless
+
+Follow the following [guide](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html) to create a free CockroachDB Serverless cluster.
+
+After creating the database, you will need to:
+
+- [Download and configure the CA certificate](https://www.cockroachlabs.com/docs/cockroachcloud/connect-to-a-serverless-cluster.html#step-2-connect-to-your-cluster).
+- [Install the `cockroach` CLI](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) to use the the CockroachDB client (interactive shell) to run the `dbinit.sql` SQL script.
+
+<!-- ### Start a locally installed CockroachDB
 
 Run the following command from the `cockroachdb` folder to start a local CockroachDB node:
 
@@ -61,19 +85,28 @@ storage engine:      pebble
 status:              restarted pre-existing node
 clusterID:           dfa695a0-22e5-4356-8132-449169688432
 nodeID:              1
-```
+``` -->
 
 ## 3. Create the database schema with the included SQL
 
 You will create the database schema using the [`dbinit.sql`](./dbinit.sql) file included in the repository.
 
-Run the following command from the `cockroachdb` folder:
+If you're using Docker to run CockroachDB, run the following command from the `cockroachdb` folder:
 
-```
-cockroach sql --insecure -f dbinit.sql
+```sh
+docker compose exec cockroachdb cockroach sql --insecure -f /app/dbinit.sql
 ```
 
-The script will create the `prisma` database and create three tables.
+> **Note:** The command above relies on the example code mounted to `/app` in the CockroachDB container, which is pre-configured in the `docker-compose.yml` file.
+
+If you are using CockroachDB Serverless, run the following command from the `cockroachdb` folder:
+
+```sh
+cockroach sql --url "postgresql://USER:PASSWORD@aws-eu-west-1.cockroachlabs.cloud:26257/prisma?sslmode=verify-full&sslrootcert=$HOME/.postgresql/root.crt&options=--cluster%3DCLUSTER_NAME" -f dbinit.sql
+```
+> **Note:** Replace the `--url` parameter with the connection string to your CockroachDB Serverless database and make sure you have the Cockroach CA certificate downloaded.
+
+The script creates a database called `prisma` and three tables: `User`, `Post`, and `Comment`.
 
 You should see the following output:
 
@@ -92,7 +125,7 @@ Time: 569m
 
 ## 4. Configure the database connection URL
 
-Prisma will use the `DATABASE_URL` environment variable in `.env` in the `cockroachdb` folder to connect to the database.
+Prisma uses the `DATABASE_URL` environment variable in `.env` in the `cockroachdb` folder to connect to the database.
 
 Create the file:
 
@@ -103,8 +136,10 @@ touch .env
 Then add the following line:
 
 ```
-DATABASE_URL=postgresql://root@localhost:26257/prisma?sslmode=disable
+DATABASE_URL="postgresql://root@localhost:26257/prisma?sslmode=disable"
 ```
+
+> **Note:** If you're using CockroachDB Serverless, see [`.env.example`](./.env.example) for more information on how `DATABASE_URL` should look like with the CA certificate and cluster configruation.
 
 ## 5. Introspect the database
 
@@ -134,7 +169,7 @@ If you open the Prisma schema (`prisma/schema.prisma`) you should see 3 models.
 
 ## 6. Rename relation fields in the Prisma schema
 
-Now that you have introspected your database, you will rename the relation fields in the Prisma schema so that its easier to access relations using the same field naming conventions.
+Now that you have introspected your database, rename the relation fields in the Prisma schema so that it's easier to access relations using the Prisma [naming conventions](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#naming-conventions).
 
 > **Note:** [Prisma-level relation fields](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/use-custom-model-and-field-names#renaming-relation-fields) (sometimes referred to as "virtual relation fields") only exist in the Prisma schema, but do not actually manifest in the underlying database. You can therefore name these fields whatever you want.
 
@@ -180,7 +215,8 @@ model User {
 
 ## 7. Generate Prisma Client
 
-Now that your Prisma schema has been introspected, you will generate Prisma Client.
+Now that your database has been introspected, you will generate Prisma Client.
+
 Prisma Client will be generated from the Prisma schema so that you can access your database in a fully type-safe manner.
 
 To generate Prisma Client run the following command:
@@ -217,4 +253,4 @@ To run the script `src/script.ts`, run the following command:
 npm run start
 ```
 
-As a next step, explore the `script.ts` file to see how to use Prisma Client to read and write data in the database.
+Next, explore the `script.ts` file to see how to use Prisma Client to read and write data in the database.
