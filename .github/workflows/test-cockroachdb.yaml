@@ -21,21 +21,23 @@ jobs:
       run:
         working-directory: databases/cockroachdb
     runs-on: ubuntu-latest
-    # Service containers to run with `container-job`
-    services:
-      # Label used to access the service container
-      cockroachdb:
-        # Docker Hub image
-        image: cockroachdb/cockroach
-        ports:
-          - '26257:26257'
-        # options: -- start-single-node --insecure --advertise-host localhost
 
     env:
       DATABASE_URL: postgresql://root@cockroachdb:26257/prisma?sslmode=disable
 
     steps:
       - uses: actions/checkout@v2
+      - name: Start a single CockroachDB instance with Docker
+        env:
+          COCKROACHDB_DOCKER_TAG: 'cockroachdb/cockroach:latest-v21.2'
+        run: |
+          docker pull $COCKROACHDB_DOCKER_TAG
+          docker run -d --name roach --hostname roach -p 26257:26257 -p 8080:8080 $COCKROACHDB_DOCKER_TAG start-single-node --insecure
+          sudo apt update && sudo apt install wait-for-it -y
+          wait-for-it -h localhost -p 26257
+          docker exec roach bash -c "echo 'CREATE DATABASE prisma;' | cockroach sql --insecure"
+          ls
+
       - name: run-sql
         uses: docker://cockroachdb/cockroach
         with:
