@@ -32,10 +32,14 @@ jobs:
           COCKROACHDB_DOCKER_TAG: 'cockroachdb/cockroach:latest-v21.2'
         run: |
           docker pull $COCKROACHDB_DOCKER_TAG
-          docker run -d --name roach --hostname roach -p 26257:26257 -p 8080:8080 -v "$(pwd):/app" $COCKROACHDB_DOCKER_TAG start-single-node --insecure
+          docker run -d --name roach --hostname roach -p 26257:26257 -p 8080:8080 -v "${{ github.workspace }}:/app" $COCKROACHDB_DOCKER_TAG start-single-node --insecure
           sudo apt update && sudo apt install wait-for-it -y
           wait-for-it -h localhost -p 26257
-          docker exec roach bash -c "ls && cockroach sql --insecure -f /app/databases/cockroachdb/dbinit.sql || true"
+          docker exec roach bash -c "ls / && cockroach sql --insecure -f /app/databases/cockroachdb/dbinit.sql || true"
+      - name: test
+        run: docker ps
+      # - name: Start a single CockroachDB instance with Docker
+      #   run: docker compose up -d
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
