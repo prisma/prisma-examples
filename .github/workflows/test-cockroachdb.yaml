@@ -40,7 +40,7 @@ jobs:
       - name: run-sql
         uses: docker://cockroachdb/cockroach
         with:
-          args: 'sql --url $DATABASE_URL --insecure -f ./databases/cockroachdb/dbinit.sql'
+          args: "sql --url ${{ env.DATABASE_URL }} --insecure -f ./databases/cockroachdb/dbinit.sql"
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
