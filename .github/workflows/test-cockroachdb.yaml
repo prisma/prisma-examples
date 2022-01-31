@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL: postgresql://root@roach:26257/prisma?sslmode=disable
+      DATABASE_URL: postgresql://root@127.0.0.1:26257/prisma?sslmode=disable
 
     steps:
       - uses: actions/checkout@v2
