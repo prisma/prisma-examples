@@ -37,7 +37,7 @@ jobs:
           wait-for-it -h localhost -p 26257
           docker exec roach bash -c "ls / && cockroach sql --insecure -f /app/databases/cockroachdb/dbinit.sql || true"
       - name: test
-        run: docker ps
+        run: docker ps && cat /etc/hosts
       # - name: Start a single CockroachDB instance with Docker
       #   run: docker compose up -d
       - uses: actions/setup-node@v2
