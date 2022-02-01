@@ -55,7 +55,7 @@ describe('example test with Prisma Client', () => {
         email,
         comments: {
           create: {
-            comment:
+            content:
               'Thanks for sharing. Reducing the size of our releases and deployment more frequently has allowed us to bring more value to our customers.',
             post: {
               connect: {
@@ -101,7 +101,7 @@ describe('example test with Prisma Client', () => {
     expect(user2.posts.length).toEqual(3)
     expect(user2.posts[0].authorId).toEqual(user2.id)
     expect(
-      user2.comments[0].comment.toLowerCase().includes('thanks'),
+      user2.comments[0].content.toLowerCase().includes('thanks'),
     ).toBeTruthy()
     expect(user2.comments[0].postId).toEqual(user1.posts[0].id)
 
@@ -136,7 +136,7 @@ describe('example test with Prisma Client', () => {
         },
         comments: {
           create: {
-            comment: 'Looking forward to joining to Prisma community.',
+            content: 'Looking forward to joining to Prisma community.',
             author: {
               connect: {
                 email: 'shakuntala@prisma.io',
