@@ -23,7 +23,23 @@ The example consists of two parts:
 
 ## 1. Download example & install dependencies
 
-Clone this repository:
+Download this example:
+
+```
+curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/databases/cockroachdb
+```
+
+Install npm dependencies:
+
+```
+cd cockroachdb
+npm install
+```
+
+<details>
+<summary><strong>Alternative:</strong>Clone this repository</summary>
+
+Clone this repository: 
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -35,6 +51,7 @@ Install npm dependencies:
 cd prisma-examples/databases/cockroachdb
 npm install
 ```
+</details>
 
 ## 2. Start a CockroachDB database server
 
