@@ -30,7 +30,7 @@ async function main(): Promise<void> {
       name: 'Shakuntala',
       comments: {
         create: {
-          comment:
+          content:
             'Thanks for sharing. CockroachDB has helped us rapidly scale our architecture with very little effort.',
           post: {
             connect: {
@@ -98,7 +98,7 @@ async function main(): Promise<void> {
       },
       comments: {
         create: {
-          comment: 'Looking forward to joining to Prisma community.',
+          content: 'Looking forward to joining to Prisma community.',
           author: {
             connect: {
               email: 'shakuntala@prisma.io',

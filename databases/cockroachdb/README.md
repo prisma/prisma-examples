@@ -179,7 +179,7 @@ Open the Prisma schema and apply the following changes:
 model Comment {
   id        String   @id(map: "primary") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   createdAt DateTime @default(now())
-  comment   String
+  content   String
   authorId  String   @db.Uuid
   postId    String   @db.Uuid
 -  Post      Post     @relation(fields: [postId], references: [id], map: "fk_postId_ref_Post")

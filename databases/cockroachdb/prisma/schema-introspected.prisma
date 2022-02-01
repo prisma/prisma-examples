@@ -11,7 +11,7 @@ datasource db {
 model Comment {
   id        String   @id(map: "primary") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   createdAt DateTime @default(now())
-  comment   String
+  content   String
   authorId  String   @db.Uuid
   postId    String   @db.Uuid
   author    User     @relation(fields: [authorId], references: [id], map: "fk_authorId_ref_User")
