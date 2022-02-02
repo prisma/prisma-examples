@@ -27,7 +27,7 @@ const Post = props => {
       <div className="page">
         <h2>{title}</h2>
         <small>By {authorName}</small>
-        <ReactMarkdown source={props.content} />
+        <ReactMarkdown children={props.content} />
         <div className="actions">
           {!props.published && (
             <button onClick={() => publish(props.id)}>Publish</button>
