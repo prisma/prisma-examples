@@ -9,9 +9,10 @@
   "additionalReviewers": ["ruheni"],
   "packageRules": [
     {
-      "matchPackagePatterns": ["@prisma/*"],
-      "matchPackageNames": ["prisma"],
-      "matchUpdateTypes": ["major", "minor", "patch"],
+      "baseBranchList": ["latest"],
+      "packageNames": ["prisma", "@prisma/client"],
+      "enabled": true,
+      "updateTypes": ["major", "minor", "patch"]
       "groupName": "Prisma Dependencies",
       "groupSlug": "prisma-deps",
     }
