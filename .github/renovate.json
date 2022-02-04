@@ -7,7 +7,22 @@
   "masterIssue": true,
   "baseBranches": ["latest"],
   "additionalReviewers": ["ruheni"],
+  "timezone": "Europe/Berlin",
   "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["major","minor", "patch"],
+      "groupName": "devDependencies",
+      "groupSlug": "dev-dependencies",
+      "schedule": ["every weekend"]
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["major","minor", "patch"],
+      "groupName": "dependencies",
+      "groupSlug": "dependencies",
+      "schedule": ["every weekend"]
+    },
     {
       "baseBranchList": ["latest"],
       "packageNames": ["prisma", "@prisma/client"],
