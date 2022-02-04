@@ -14,7 +14,6 @@
       "matchUpdateTypes": ["major", "minor", "patch"],
       "groupName": "Prisma Dependencies",
       "groupSlug": "prisma-deps",
-      "schedule": ["after 6pm on Tuesday"]
     }
   ]
 }
