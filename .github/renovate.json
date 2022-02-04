@@ -6,18 +6,15 @@
   },
   "masterIssue": true,
   "baseBranches": ["latest"],
-  "additionalReviewers": ["nikolasburk"],
+  "additionalReviewers": ["ruheni"],
   "packageRules": [
     {
-      "baseBranchList": ["latest"],
-      "packageNames": ["nexus-plugin-prisma"],
-      "enabled": true
-    },
-    {
-      "baseBranchList": ["latest"],
-      "packageNames": ["prisma", "@prisma/client"],
-      "enabled": true,
-      "updateTypes": ["major"]
+      "matchPackagePatterns": ["@prisma/*"],
+      "matchPackageNames": ["prisma"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "groupName": "Prisma Dependencies",
+      "groupSlug": "prisma-deps",
+      "schedule": ["after 6pm on Tuesday"]
     }
   ]
 }
