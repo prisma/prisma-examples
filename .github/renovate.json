@@ -14,7 +14,7 @@
       "enabled": true,
       "updateTypes": ["major", "minor", "patch"]
       "groupName": "Prisma Dependencies",
-      "groupSlug": "prisma-deps",
+      "groupSlug": "prisma-deps"
     }
   ]
 }
