@@ -27,7 +27,7 @@
       "baseBranchList": ["latest"],
       "packageNames": ["prisma", "@prisma/client"],
       "enabled": true,
-      "updateTypes": ["major", "minor", "patch"]
+      "updateTypes": ["major", "minor", "patch"],
       "groupName": "Prisma Dependencies",
       "groupSlug": "prisma-deps"
     }
