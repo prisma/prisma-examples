@@ -19,7 +19,7 @@ The example consists of two parts:
 - Node.js installed.
 - [Docker](https://www.docker.com/products/docker-desktop) installed
 
-> **Note:** You can also connect to a [free CockroachDB Serverless Cluster](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html). This requires [setting up a root certificate](https://www.cockroachlabs.com/docs/cockroachcloud/connect-to-a-serverless-cluster.html#step-2-connect-to-your-cluster).
+> **Note:** You can also connect to a [free CockroachDB Serverless Cluster](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html).
 
 ## 1. Download example & install dependencies
 
@@ -72,10 +72,7 @@ docker compose up -d
 
 Follow the following [guide](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html) to create a free CockroachDB Serverless cluster.
 
-After creating the database, you will need to:
-
-- [Download and configure the CA certificate](https://www.cockroachlabs.com/docs/cockroachcloud/connect-to-a-serverless-cluster.html#step-2-connect-to-your-cluster).
-- [Install the `cockroach` CLI](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) to use the the CockroachDB client (interactive shell) to run the `dbinit.sql` SQL script.
+After creating the database, you will need to [Install the `cockroach` CLI](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) to use the the CockroachDB client (interactive shell) to run the `dbinit.sql` SQL script.
 
 <!-- ### Start a locally installed CockroachDB
 
@@ -119,9 +116,9 @@ docker compose exec cockroachdb cockroach sql --insecure -f /app/dbinit.sql
 If you are using CockroachDB Serverless, run the following command from the `cockroachdb` folder:
 
 ```sh
-cockroach sql --url "postgresql://USER:PASSWORD@aws-eu-west-1.cockroachlabs.cloud:26257/prisma?sslmode=verify-full&sslrootcert=$HOME/.postgresql/root.crt&options=--cluster%3DCLUSTER_NAME" -f dbinit.sql
+cockroach sql --url "postgresql://USER:PASSWORD@aws-eu-west-1.cockroachlabs.cloud:26257/prisma?sslmode=verify-full&options=--cluster%3DCLUSTER_NAME" -f dbinit.sql
 ```
-> **Note:** Replace the `--url` parameter with the connection string to your CockroachDB Serverless database and make sure you have the Cockroach CA certificate downloaded.
+> **Note:** Replace the `--url` parameter with the connection string to your CockroachDB Serverless database.
 
 The script creates a database called `prisma` and three tables: `User`, `Post`, and `Comment`.
 
@@ -156,7 +153,7 @@ Then add the following line:
 DATABASE_URL="postgresql://root@localhost:26257/prisma?sslmode=disable"
 ```
 
-> **Note:** If you're using CockroachDB Serverless, see [`.env.example`](./.env.example) for more information on how `DATABASE_URL` should look like with the CA certificate and cluster configruation.
+> **Note:** If you're using CockroachDB Serverless, see [`.env.example`](./.env.example) for more information on how `DATABASE_URL` should look like with the cluster configruation.
 
 ## 5. Introspect the database
 
