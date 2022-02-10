@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/client": "3.8.1",
+    "@prisma/client": "3.9.2",
     "@types/node": "16.11.24",
     "express": "4.17.2"
   },
@@ -19,7 +19,7 @@
     "@types/supertest": "2.0.11",
     "jest": "27.5.1",
     "jest-environment-node": "27.5.1",
-    "prisma": "3.8.1",
+    "prisma": "3.9.2",
     "randomstring": "1.2.2",
     "supertest": "6.2.2",
     "ts-jest": "27.1.3",
