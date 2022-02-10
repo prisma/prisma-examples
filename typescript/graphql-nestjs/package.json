@@ -40,7 +40,7 @@
   "dependencies": {
     "@nestjs/common": "8.2.6",
     "@nestjs/core": "8.2.6",
-    "@nestjs/graphql": "9.1.2",
+    "@nestjs/graphql": "9.2.7",
     "@nestjs/platform-express": "8.2.6",
     "@prisma/client": "3.9.2",
     "apollo-server-express": "3.6.3",
