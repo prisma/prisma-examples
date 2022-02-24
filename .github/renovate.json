@@ -6,7 +6,7 @@
   },
   "masterIssue": true,
   "baseBranches": ["latest"],
-  "additionalReviewers": ["nikolasburk"],
+  "additionalReviewers": ["ruheni"],
   "packageRules": [
     {
       "baseBranchList": ["latest"],
