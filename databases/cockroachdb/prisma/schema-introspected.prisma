@@ -1,0 +1,39 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["cockroachdb"]
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model Comment {
+  id        String   @id(map: "primary") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime @default(now())
+  content   String
+  authorId  String   @db.Uuid
+  postId    String   @db.Uuid
+  author    User     @relation(fields: [authorId], references: [id], map: "fk_authorId_ref_User")
+  post      Post     @relation(fields: [postId], references: [id], map: "fk_postId_ref_Post")
+}
+
+model Post {
+  id        String    @id(map: "primary") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime  @default(now())
+  title     String
+  content   String?
+  published Boolean   @default(false)
+  authorId  String    @db.Uuid
+  author    User      @relation(fields: [authorId], references: [id], map: "fk_authorId_ref_User")
+  comments  Comment[]
+}
+
+model User {
+  id        String    @id(map: "primary") @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime  @default(now())
+  email     String    @unique
+  name      String?
+  comments  Comment[]
+  posts     Post[]
+}

@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS prisma;
+
+USE prisma;
+
+CREATE TABLE "User" (
+  "id"        UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "email"     TEXT NOT NULL UNIQUE,
+  "name"      TEXT
+);
+
+CREATE TABLE "Post" (
+  "id"        UUID PRIMARY KEY DEFAULT gen_random_uuid() ,
+  "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "title"     TEXT NOT NULL,
+  "content"   TEXT,
+  "published" BOOLEAN NOT NULL DEFAULT false,
+  "authorId"  UUID NOT NULL REFERENCES "User"(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE "Comment" (
+  "id"          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  "createdAt"   TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "content"     TEXT NOT NULL,
+  "authorId"    UUID NOT NULL REFERENCES "User"(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+  "postId"      UUID NOT NULL REFERENCES "Post"(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);

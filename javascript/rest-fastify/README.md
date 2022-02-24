@@ -43,11 +43,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
-
-```
-npx prisma db seed 
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the REST API server

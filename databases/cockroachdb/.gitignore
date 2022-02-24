@@ -1,0 +1,4 @@
+node_modules/
+cockroach-data/
+dist/
+*.env*
