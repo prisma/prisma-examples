@@ -104,6 +104,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [Beam - A simple tool that allows members to write posts to share across your organization](https://github.com/planetscale/beam) (based on Next.js)
 - [Backend for a real world grading application](https://github.com/2color/real-world-grading-app) (incl video and written tutorials)
 - [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js)
 
