@@ -20,7 +20,7 @@
     "apollo-server-micro": "3.6.3",
     "express": "4.17.3",
     "graphql": "15.8.0",
-    "graphql-scalars": "1.14.1",
+    "graphql-scalars": "1.15.0",
     "graphql-tag": "2.12.6",
     "micro": "9.3.4",
     "micro-cors": "0.1.1",

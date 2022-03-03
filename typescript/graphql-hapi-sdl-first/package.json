@@ -10,7 +10,7 @@
     "@prisma/client": "3.10.0",
     "apollo-server-hapi": "2.25.3",
     "graphql": "15.8.0",
-    "graphql-scalars": "1.14.1"
+    "graphql-scalars": "1.15.0"
   },
   "devDependencies": {
     "@types/hapi__hapi": "20.0.10",
