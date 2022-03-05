@@ -11,7 +11,7 @@
     "graphql": "15.8.0",
     "graphql-scalars": "1.15.0",
     "mercurius": "8.12.0",
-    "nexus": "1.2.0"
+    "nexus": "1.3.0"
   },
   "devDependencies": {
     "@types/node": "16.11.26",
