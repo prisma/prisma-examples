@@ -36,7 +36,7 @@ jobs:
           sudo apt update && sudo apt install wait-for-it -y
           wait-for-it -h localhost -p 26257
           docker exec roach bash -c "cockroach sql --insecure -f /app/databases/cockroachdb/dbinit.sql"
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
       - run: npm install
