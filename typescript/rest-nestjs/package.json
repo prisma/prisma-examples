@@ -60,7 +60,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "jest": "27.5.1",
-    "prettier": "2.5.1",
+    "prettier": "2.6.0",
     "prisma": "3.11.0",
     "supertest": "6.2.2",
     "ts-jest": "27.1.3",
