@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@prisma/client": "3.11.0",
-    "apollo-server": "3.6.5",
+    "apollo-server": "3.6.6",
     "bcryptjs": "2.4.3",
     "graphql": "15.8.0",
     "graphql-middleware": "6.1.18",
