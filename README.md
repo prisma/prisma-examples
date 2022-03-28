@@ -104,12 +104,15 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [Typebot — A conversational form builder that you can self-host](https://github.com/baptisteArno/typebot.io)
+- [Cal.com](https://github.com/calcom/cal.com)
 - [Beam - A simple tool that allows members to write posts to share across your organization](https://github.com/planetscale/beam) (based on Next.js)
-- [Backend for a real world grading application](https://github.com/2color/real-world-grading-app) (incl video and written tutorials)
-- [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js)
+- [`ironfish-api` — Public API for Iron Fish (A novel cryptocurrency focused on privacy and accessibility)](https://github.com/iron-fish/ironfish-api)
 - [Indie Stack](https://github.com/remix-run/indie-stack)– Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting.
 - [Blues Stack](https://github.com/remix-run/blues-stack) – Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting.
-
+- [Backend for a real world grading application](https://github.com/2color/real-world-grading-app) (incl video and written tutorials)
+- [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js)
+- 
 <hr>
 
 ## About this repository
