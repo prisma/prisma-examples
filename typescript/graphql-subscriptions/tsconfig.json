@@ -11,6 +11,7 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "skipLibCheck": true,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "esModuleInterop": true,
   }
 }
