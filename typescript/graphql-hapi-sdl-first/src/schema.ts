@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-hapi'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
+import { makeExecutableSchema } from '@graphql-tools/schema'
 
 export const typeDefs = gql`
   type Mutation {
