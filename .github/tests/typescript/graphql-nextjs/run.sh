@@ -2,18 +2,21 @@
 
 set -eu
 
-yarn 
-yarn prisma db push  
-yarn dev &
-pid=$!
+# yarn 
+# yarn prisma db push  
+# yarn dev &
+# pid=$!
 
-sleep 15
+# sleep 15
+cd ../../.github/tests/fullstack/
+npm i 
 
+npx playwright test tests/test.spec.ts
 
-npx playwright test ../../.github/tests/fullstack/test.spec.ts
-curl --fail 'http://localhost:3000/api' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4000' --data-binary '{"query":"query {\n  feed {\n    id\n    content\n    author {\n      id\n      name\n      email\n    }\n  }\n}"}' --compressed
+# npx playwright test ../../.github/tests/fullstack/test.spec.ts
+# curl --fail 'http://localhost:3000/api' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4000' --data-binary '{"query":"query {\n  feed {\n    id\n    content\n    author {\n      id\n      name\n      email\n    }\n  }\n}"}' --compressed
 
 # check frontend
-curl --fail 'http://localhost:3000/'
+# curl --fail 'http://localhost:3000/'
 
 kill "$pid"

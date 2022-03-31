@@ -1,6 +1,23 @@
 import { test } from '@playwright/test'
+import execa from 'execa'
 
 test.describe('User Flows - no auth provider', () => {
+
+  /**
+   * Set up stuff
+   */
+  test.beforeAll(async () => {
+    const execaConfig: execa.SyncOptions = {
+      cwd: '../../../typescript/graphql-nextjs'
+    }
+    console.log({ execaConfig })
+    // install
+    execa.execaCommandSync('npm install', execaConfig)
+    // migrate dev
+    execa.execaCommandSync('npx prisma migrate dev --name=init', execaConfig)
+    // start app
+    execa.execaCommandSync('npm run dev', execaConfig)
+  })
 
   test('complete flow', async ({ page }) => {
     /**
