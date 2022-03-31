@@ -13,9 +13,9 @@
     "@graphql-tools/schema": "8.3.6",
     "@prisma/client": "3.11.1",
     "fastify": "3.27.4",
-    "graphql": "15.8.0",
+    "graphql": "16.3.0",
     "graphql-scalars": "1.17.0",
-    "mercurius": "8.12.2"
+    "mercurius": "9.3.6"
   },
   "devDependencies": {
     "@types/node": "16.11.26",
