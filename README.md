@@ -112,7 +112,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Blues Stack](https://github.com/remix-run/blues-stack) – Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting.
 - [Backend for a real world grading application](https://github.com/2color/real-world-grading-app) (incl video and written tutorials)
 - [Tottem – Fullstack app for "social library management"](https://github.com/poulainv/tottem) (based on Next.js)
-- 
+
 <hr>
 
 ## About this repository
