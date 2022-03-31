@@ -38,9 +38,10 @@
     }
   },
   "dependencies": {
+    "@nestjs/apollo": "10.0.8",
     "@nestjs/common": "8.4.3",
     "@nestjs/core": "8.4.3",
-    "@nestjs/graphql": "9.1.2",
+    "@nestjs/graphql": "10.0.8",
     "@nestjs/platform-express": "8.4.3",
     "@prisma/client": "3.11.1",
     "apollo-server-express": "3.6.7",
