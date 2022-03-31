@@ -5,14 +5,15 @@ import { context } from './context'
 
 async function startServer() {
   const server = new ApolloServer({
-    schema: schema,
-    context: context,
+    schema,
+    context,
   })
 
   const app = Hapi.server({
     port: 4000,
   })
 
+  await server.start()
   await server.applyMiddleware({ app })
   await app.start()
 }
