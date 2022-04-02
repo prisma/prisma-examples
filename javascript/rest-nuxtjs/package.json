@@ -23,7 +23,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-nuxt": "3.2.0",
     "eslint-plugin-prettier": "4.0.0",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "prisma": "3.11.1"
   },
   "prisma": {
