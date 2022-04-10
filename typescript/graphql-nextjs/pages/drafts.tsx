@@ -2,9 +2,10 @@ import Layout from "../components/Layout"
 import Link from "next/link"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/client"
+import type { DraftsQuery, DraftsQueryVariables } from "../generated/graphql"
 
-const DraftsQuery = gql`
-  query DraftsQuery {
+const Query = gql`
+  query Drafts {
     drafts {
       id
       title
@@ -18,28 +19,35 @@ const DraftsQuery = gql`
   }
 `
 
-const Post = ({ post }) => (
-  <Link href="/p/[id]" as={`/p/${post.id}`}>
-    <a>
-      <h2>{post.title}</h2>
-      <small>By {post.author ? post.author.name : "Unknown Author"}</small>
-      <p>{post.content}</p>
-      <style jsx>{`
-        a {
-          text-decoration: none;
-          color: inherit;
-          padding: 2rem;
-          display: block;
-        }
-      `}</style>
-    </a>
-  </Link>
-)
+type Drafts = DraftsQuery["drafts"]
+type Draft = NonNullable<Drafts>[number]
+
+const Post = ({ post }: { post: Draft }) =>
+  post && (
+    <Link href="/p/[id]" as={`/p/${post.id}`}>
+      <a>
+        <h2>{post.title}</h2>
+        <small>By {post.author ? post.author.name : "Unknown Author"}</small>
+        <p>{post.content}</p>
+        <style jsx>{`
+          a {
+            text-decoration: none;
+            color: inherit;
+            padding: 2rem;
+            display: block;
+          }
+        `}</style>
+      </a>
+    </Link>
+  )
 
 const Drafts = () => {
-  const { loading, error, data } = useQuery(DraftsQuery, {
-    fetchPolicy: "cache-and-network",
-  })
+  const { loading, error, data } = useQuery<DraftsQuery, DraftsQueryVariables>(
+    Query,
+    {
+      fetchPolicy: "cache-and-network",
+    }
+  )
 
   if (loading) {
     return <div>Loading ...</div>
@@ -53,11 +61,14 @@ const Drafts = () => {
       <div className="page">
         <h1>Drafts</h1>
         <main>
-          {data.drafts.map(post => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
+          {data?.drafts?.map(
+            post =>
+              post && (
+                <div key={post.id} className="post">
+                  <Post post={post} />
+                </div>
+              )
+          )}
         </main>
       </div>
       <style jsx>{`

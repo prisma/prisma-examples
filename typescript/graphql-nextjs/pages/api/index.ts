@@ -91,6 +91,9 @@ const Query = objectType({
         searchString: nullable(stringArg()),
       },
       resolve: (_, { searchString }, ctx) => {
+        if (searchString == null) {
+          return null;
+        }
         return prisma.post.findMany({
           where: {
             OR: [
@@ -143,6 +146,9 @@ const Mutation = objectType({
         authorEmail: stringArg(),
       },
       resolve: (_, { title, content, authorEmail }, ctx) => {
+        if (authorEmail == null) {
+          throw new Error(`Must have an authorEmail to create a draft`);
+        }
         return prisma.post.create({
           data: {
             title,
@@ -212,4 +218,5 @@ const handler: NextApiHandler = async (req, res) => {
   return apolloServerHandler(req, res)
 }
 
+// @ts-ignore (@TODO)
 export default cors()(handler)

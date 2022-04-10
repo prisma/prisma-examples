@@ -2,9 +2,10 @@ import Layout from "../components/Layout"
 import Link from "next/link"
 import gql from "graphql-tag"
 import { useQuery } from "@apollo/client"
+import type { FeedQuery, FeedQueryVariables } from "../generated/graphql"
 
-const FeedQuery = gql`
-  query FeedQuery {
+const Query = gql`
+  query Feed {
     feed {
       id
       title
@@ -18,28 +19,35 @@ const FeedQuery = gql`
   }
 `
 
-const Post = ({ post }) => (
-  <Link href="/p/[id]" as={`/p/${post.id}`}>
-    <a>
-      <h2>{post.title}</h2>
-      <small>By {post.author.name}</small>
-      <p>{post.content}</p>
-      <style jsx>{`
-        a {
-          text-decoration: none;
-          color: inherit;
-          padding: 2rem;
-          display: block;
-        }
-      `}</style>
-    </a>
-  </Link>
-)
+type Feed = FeedQuery["feed"]
+type FeedPost = NonNullable<Feed>[number]
+
+const Post = ({ post }: { post: FeedPost }) =>
+  post && (
+    <Link href="/p/[id]" as={`/p/${post.id}`}>
+      <a>
+        <h2>{post.title}</h2>
+        <small>By {post.author?.name}</small>
+        <p>{post.content}</p>
+        <style jsx>{`
+          a {
+            text-decoration: none;
+            color: inherit;
+            padding: 2rem;
+            display: block;
+          }
+        `}</style>
+      </a>
+    </Link>
+  )
 
 const Blog = () => {
-  const { loading, error, data } = useQuery(FeedQuery, {
-    fetchPolicy: "cache-and-network",
-  })
+  const { loading, error, data } = useQuery<FeedQuery, FeedQueryVariables>(
+    Query,
+    {
+      fetchPolicy: "cache-and-network",
+    }
+  )
 
   if (loading) {
     return <div>Loading ...</div>
@@ -53,11 +61,14 @@ const Blog = () => {
       <div className="page">
         <h1>My Blog</h1>
         <main>
-          {data.feed.map(post => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
+          {data?.feed?.map(
+            post =>
+              post && (
+                <div key={post.id} className="post">
+                  <Post post={post} />
+                </div>
+              )
+          )}
         </main>
       </div>
       <style jsx>{`

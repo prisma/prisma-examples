@@ -9,10 +9,11 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
+    "generate": "npm -s run generate:prisma && npm -s run generate:nexus && npm -s run generate:graphql-codegen",
     "generate:prisma": "prisma generate",
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
-    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
+    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api",
+    "generate:graphql-codegen": "graphql-codegen --config graphql-codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "3.5.10",
@@ -31,6 +32,13 @@
     "react-markdown": "8.0.2"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-codegen/introspection": "2.1.1",
+    "@graphql-codegen/typescript": "2.4.8",
+    "@graphql-codegen/typescript-document-nodes": "2.2.8",
+    "@graphql-codegen/typescript-graphql-files-modules": "2.1.1",
+    "@graphql-codegen/typescript-operations": "2.3.5",
+    "@graphql-codegen/typescript-react-apollo": "3.2.11",
     "@types/graphql": "14.5.0",
     "@types/micro-cors": "0.1.2",
     "@types/node": "16.11.26",

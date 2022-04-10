@@ -1,0 +1,22 @@
+overwrite: true
+schema: "generated/schema.graphql"
+config:
+  gqlImport: graphql-tag
+documents:
+  - "pages/**/*.ts"
+  - "pages/**/*.tsx"
+  - "components/**/*.ts"
+  - "components/**/*.tsx"
+generates:
+  generated/graphql.d.ts:
+    plugins:
+      - "typescript-graphql-files-modules"
+  generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-document-nodes"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
