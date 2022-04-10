@@ -174,7 +174,7 @@ const Mutation = objectType({
 export const schema = makeSchema({
   types: [Query, Mutation, Post, User, GQLDate],
   outputs: {
-    typegen: path.join(process.cwd(), 'generated/nexus-typegen.ts'),
+    typegen: path.join(process.cwd(), 'generated/nexus-typegen.d.ts'),
     schema: path.join(process.cwd(), 'generated/schema.graphql'),
   },
 })
