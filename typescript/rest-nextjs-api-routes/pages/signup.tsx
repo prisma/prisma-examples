@@ -10,7 +10,7 @@ const SignUp: React.FC = () => {
     e.preventDefault()
     try {
       const body = { name, email }
-      await fetch(`http://localhost:3000/api/user`, {
+      await fetch(`/api/user`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
