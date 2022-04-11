@@ -59,7 +59,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <br />
 
-**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx)
+**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx))
 
 ![](https://imgur.com/eepbOUO.png)
 
