@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "studio": "npx prisma studio"
   },
   "dependencies": {
     "@prisma/client": "3.12.0",
