@@ -1,6 +1,6 @@
 # CockroachDB example
 
-This example shows how to connect Prisma to a CockroachDB serverless database, create the database schema with [Prisma Migrate](https://www.prisma.io/migrate) and use [Prisma Client](https://www.prisma.io/client) in a **Node.js script** to read and write data in a CockroachDB serverless database.
+This example shows how to connect Prisma to a CockroachDB database, create the database schema with [Prisma Migrate](https://www.prisma.io/migrate) and use [Prisma Client](https://www.prisma.io/client) in a **Node.js script** to read and write data in a CockroachDB database.
 
 You can find the Prisma schema in [`./prisma/schema.prisma`](./prisma/schema.prisma) from which the SQL for the database schema is generated.
 
@@ -69,8 +69,6 @@ docker compose up -d
 ### (Option 2) Using CockroachDB Serverless
 
 Follow the following [guide](https://www.cockroachlabs.com/docs/cockroachcloud/create-a-serverless-cluster.html) to create a free CockroachDB Serverless cluster.
-
-After creating the database, you will need to [Install the `cockroach` CLI](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) to use the the CockroachDB client (interactive shell) to run the `dbinit.sql` SQL script.
 
 <!-- ### Start a locally installed CockroachDB
 
