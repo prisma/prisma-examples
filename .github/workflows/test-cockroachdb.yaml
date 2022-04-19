@@ -39,5 +39,5 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
-      - run: npx prisma generate
+      - run: npx prisma migrate dev --name "init"
       - run: npm run test
