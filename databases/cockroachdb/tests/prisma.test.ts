@@ -52,7 +52,7 @@ describe('example test with Prisma Client', () => {
     ])
 
     expect(tags.length).toEqual(6)
-    expect(typeof tags[0].id).toEqual('number')
+    expect(typeof tags[0].id).toEqual('string')
     expect(tags[0].tag).toBeTruthy()
   })
 
@@ -112,6 +112,10 @@ describe('example test with Prisma Client', () => {
         posts: {
           create: [
             {
+              title: 'GraphQL Authentication simplified',
+              published: false,
+            },
+            {
               title: 'Introducing to Prisma with CockroachDB',
               published: true,
               content:
@@ -145,10 +149,6 @@ describe('example test with Prisma Client', () => {
                   },
                 ],
               },
-            },
-            {
-              title: 'GraphQL Authentication simplified',
-              published: false,
             },
           ],
         },
