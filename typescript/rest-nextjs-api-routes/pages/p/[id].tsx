@@ -66,7 +66,7 @@ const Post: React.FC<PostProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`/api/post/${context.params.id}`)
+  const res = await fetch(`http://localhost:3000/api/post/${context.params.id}`)
   const data = await res.json()
   return { props: { ...data } }
 }
