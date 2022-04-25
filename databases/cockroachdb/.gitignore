@@ -2,3 +2,4 @@ node_modules/
 cockroach-data/
 dist/
 *.env*
+!.env.example
