@@ -122,7 +122,7 @@ Now that you have defined the `DATABASE_URL` in `.env`, you will use Prisma Migr
 Run the following command from the `cockroachdb` folder:
 
 ```
-npx prisma migrate dev --name "init"
+npx prisma migrate dev --name init
 ```
 
 You should see the following output:
