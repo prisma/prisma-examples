@@ -26,7 +26,7 @@ model Post {
   authorId  String
   author    User      @relation(fields: [authorId], references: [id])
   comments  Comment[]
-  tags      Tag[]     @relation("TagToPost")
+  tags      Tag[]  
 }
 
 model Comment {
