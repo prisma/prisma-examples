@@ -5,11 +5,11 @@
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/client": "3.12.0",
+    "@prisma/client": "3.13.0",
     "@types/node": "16.11.29"
   },
   "devDependencies": {
-    "prisma": "3.12.0",
+    "prisma": "3.13.0",
     "ts-node": "10.7.0",
     "typescript": "4.6.3"
   }
