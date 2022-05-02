@@ -357,30 +357,33 @@ First, add a new GraphQL type via Nexus' `objectType` function:
 +})
 
 const User = objectType({
-  name: 'User',
+  name: "User",
   definition(t) {
-    t.nonNull.int('id')
-    t.string('name')
-    t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'Post',
+    t.nonNull.int("id");
+    t.string("name");
+    t.nonNull.string("email");
+    t.nonNull.list.nonNull.field("posts", {
+      type: "Post",
       resolve: (parent, _, context) => {
         return context.prisma.user
           .findUnique({
             where: { id: parent.id || undefined },
           })
-          .posts()
+          .posts();
       },
-+   t.field('profile', {
-+     type: 'Profile',
-+     resolve: (parent, _, context) => {
-+       return context.prisma.user.findUnique({
-+         where: { id: parent.id }
-+       }).profile()
-+     }
-+   })
+    });
++    t.field("profile", {
++      type: "Profile",
++      resolve: (parent, _, context) => {
++        return context.prisma.user
++          .findUnique({ 
++            where: { id: parent.id }, 
++          })
++          .profile();
++      },
++    });
   },
-})
+});
 ```
 
 Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
