@@ -357,13 +357,13 @@ First, add a new GraphQL type via Nexus' `objectType` function:
 +})
 
 const User = objectType({
-  name: "User",
+  name: 'User',
   definition(t) {
-    t.nonNull.int("id");
-    t.string("name");
-    t.nonNull.string("email");
-    t.nonNull.list.nonNull.field("posts", {
-      type: "Post",
+    t.nonNull.int('id');
+    t.string('name');
+    t.nonNull.string('email');
+    t.nonNull.list.nonNull.field('posts', {
+      type: 'Post',
       resolve: (parent, _, context) => {
         return context.prisma.user
           .findUnique({
@@ -372,8 +372,8 @@ const User = objectType({
           .posts();
       },
     });
-+    t.field("profile", {
-+      type: "Profile",
++    t.field('profile', {
++      type: 'Profile',
 +      resolve: (parent, _, context) => {
 +        return context.prisma.user
 +          .findUnique({ 
