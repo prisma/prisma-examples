@@ -15,8 +15,9 @@ const prismaBinary = path.join(
 )
 
 class PrismaTestEnvironment extends NodeEnvironment {
-  constructor(config) {
-    super(config)
+  constructor({globalConfig, projectConfig}, context) {
+    super({globalConfig, projectConfig}, context);
+    const config = projectConfig;
 
     // Generate a unique sqlite identifier for this test context
     this.dbName = `test_${nanoid()}.db`
