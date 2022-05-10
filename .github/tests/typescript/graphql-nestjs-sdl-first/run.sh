@@ -7,7 +7,7 @@ npx prisma migrate dev --name init
 npm run dev &
 pid=$!
 
-sleep 20
+sleep 30
 
 npx newman run ../../.github/tests/postman_collections/graphql-nestjs.json --bail
 
