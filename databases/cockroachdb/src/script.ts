@@ -4,7 +4,42 @@ import prettyjson from 'prettyjson'
 const prisma = new PrismaClient()
 
 // A `main` function so that we can use async/await
-async function main(): Promise<void> {
+async function main() {
+  const tags = await Promise.all([
+    prisma.tag.create({
+      data: {
+        tag: 'Node.js',
+      },
+    }),
+    prisma.tag.create({
+      data: {
+        tag: 'TypeScript',
+      },
+    }),
+    prisma.tag.create({
+      data: {
+        tag: 'Prisma',
+      },
+    }),
+    prisma.tag.create({
+      data: {
+        tag: 'Databases',
+      },
+    }),
+    prisma.tag.create({
+      data: {
+        tag: 'Cockroach Labs',
+      },
+    }),
+    prisma.tag.create({
+      data: {
+        tag: 'Serverless',
+      },
+    }),
+  ])
+
+  console.log('Created tags: \n', prettyjson.render(tags))
+
   // Seed the database with users and posts
   const user1 = await prisma.user.create({
     data: {
@@ -14,6 +49,16 @@ async function main(): Promise<void> {
         create: {
           title: 'Productive development with Prisma and CockroachDB',
           published: true,
+          tags: {
+            connect: [
+              {
+                tag: 'Prisma',
+              },
+              {
+                tag: 'Cockroach Labs',
+              },
+            ],
+          },
         },
       },
     },
@@ -30,7 +75,7 @@ async function main(): Promise<void> {
       name: 'Shakuntala',
       comments: {
         create: {
-          content:
+          comment:
             'Thanks for sharing. CockroachDB has helped us rapidly scale our architecture with very little effort.',
           post: {
             connect: {
@@ -46,11 +91,33 @@ async function main(): Promise<void> {
             published: true,
             content:
               'Check out the Prisma blog at https://www.prisma.io/blog for more information',
+            tags: {
+              connect: [
+                {
+                  tag: 'Node.js',
+                },
+                {
+                  tag: 'Cockroach Labs',
+                },
+                {
+                  tag: 'Databases',
+                },
+              ],
+            },
           },
           {
-            title:
-              'Zero cost type safety for your database queries with Prisma',
+            title: 'Zero cost type safety with Prisma',
             published: true,
+            tags: {
+              connect: [
+                {
+                  tag: 'Node.js',
+                },
+                {
+                  tag: 'Databases',
+                },
+              ],
+            },
           },
           {
             title: 'Horizontal scaling made easy',
@@ -60,6 +127,11 @@ async function main(): Promise<void> {
       },
     },
     include: {
+      posts: {
+        include: {
+          tags: true,
+        },
+      },
       comments: {
         include: {
           post: true,
@@ -70,18 +142,37 @@ async function main(): Promise<void> {
 
   console.log('Created second user: \n', prettyjson.render(user2))
 
+  const taggedPosts = await prisma.tag.findUnique({
+    where: {
+      tag: 'Node.js',
+    },
+    include: {
+      posts: true,
+    },
+  })
+
+  console.log(
+    'Retrieved all posts with the Node.js tag: ',
+    prettyjson.render(taggedPosts),
+  )
+
+  // Retrieve all published posts with a tag
   const allPosts = await prisma.post.findMany({
     where: {
       AND: [
         { published: true },
         {
-          createdAt: new Date(2020, 0, 1),
+          tags: {
+            some: {
+              tag: 'Cockroach Labs',
+            },
+          },
         },
       ],
     },
   })
   console.log(
-    `Retrieved all published posts created after 2020.1.1:`,
+    `Retrieved all published posts with the Cockroach Labs tag: `,
     prettyjson.render(allPosts),
   )
 
@@ -96,10 +187,23 @@ async function main(): Promise<void> {
           email: 'alice@prisma.io', // Should have been created during initial seeding
         },
       },
+      tags: {
+        connectOrCreate: {
+          create: {
+            tag: 'Community',
+          },
+          where: {
+            tag: 'Community',
+          },
+        },
+        connect: {
+          tag: 'Prisma',
+        },
+      },
       comments: {
         create: {
-          content: 'Looking forward to joining to Prisma community.',
-          author: {
+          comment: 'Looking forward to joining to Prisma community.',
+          writtenBy: {
             connect: {
               email: 'shakuntala@prisma.io',
             },
@@ -110,9 +214,10 @@ async function main(): Promise<void> {
     include: {
       comments: {
         include: {
-          author: true,
+          writtenBy: true,
         },
       },
+      tags: true,
     },
   })
   console.log(`Created a new post: \n`, prettyjson.render(newPost))
@@ -140,6 +245,7 @@ async function main(): Promise<void> {
 }
 
 async function clearDB() {
+  await prisma.tag.deleteMany({})
   await prisma.comment.deleteMany({})
   await prisma.post.deleteMany({})
   await prisma.user.deleteMany({})

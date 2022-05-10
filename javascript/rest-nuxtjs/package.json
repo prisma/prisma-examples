@@ -10,21 +10,21 @@
   },
   "dependencies": {
     "@nuxt/http": "0.6.4",
-    "@prisma/client": "3.11.1",
-    "core-js": "3.21.1",
-    "express": "4.17.3",
+    "@prisma/client": "3.14.0",
+    "core-js": "3.22.5",
+    "express": "4.18.1",
     "nuxt": "2.15.8"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "9.0.0",
-    "@nuxtjs/eslint-module": "3.0.2",
+    "@nuxtjs/eslint-config": "10.0.0",
+    "@nuxtjs/eslint-module": "3.1.0",
     "babel-eslint": "10.1.0",
-    "eslint": "8.12.0",
+    "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-nuxt": "3.2.0",
     "eslint-plugin-prettier": "4.0.0",
-    "prettier": "2.6.1",
-    "prisma": "3.11.1"
+    "prettier": "2.6.2",
+    "prisma": "3.14.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

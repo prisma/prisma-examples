@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "glob": "7.2.0"
+    "glob": "8.0.1"
   },
   "dependencies": {
-    "@actions/core": "1.6.0"
+    "@actions/core": "1.8.0"
   }
 }

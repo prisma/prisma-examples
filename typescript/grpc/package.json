@@ -12,17 +12,17 @@
     "deletePost": "ts-node ./client/deletePost.ts"
   },
   "dependencies": {
-    "@grpc/proto-loader": "0.6.9",
-    "@prisma/client": "3.11.1",
+    "@grpc/proto-loader": "0.6.12",
+    "@prisma/client": "3.14.0",
     "chalk": "4.1.2",
     "grpc": "1.24.11",
     "protobufjs": "6.11.2"
   },
   "devDependencies": {
-    "@types/node": "16.11.26",
-    "prisma": "3.11.1",
+    "@types/node": "16.11.33",
+    "prisma": "3.14.0",
     "ts-node": "10.7.0",
-    "typescript": "4.6.3"
+    "typescript": "4.6.4"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

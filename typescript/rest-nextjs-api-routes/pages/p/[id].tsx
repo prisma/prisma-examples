@@ -6,14 +6,14 @@ import Router from 'next/router'
 import { PostProps } from '../../components/Post'
 
 async function publish(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/publish/${id}`, {
+  await fetch(`/api/publish/${id}`, {
     method: 'PUT',
   })
   await Router.push('/')
 }
 
 async function destroy(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/post/${id}`, {
+  await fetch(`/api/post/${id}`, {
     method: 'DELETE',
   })
   await Router.push('/')
