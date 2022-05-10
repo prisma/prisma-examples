@@ -1,4 +1,4 @@
-const NodeEnvironment = require('jest-environment-node')
+const NodeEnvironment = require('jest-environment-node').default
 const randomString = require('randomstring')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)

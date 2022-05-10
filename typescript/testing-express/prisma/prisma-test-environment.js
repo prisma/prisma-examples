@@ -2,7 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 const util = require('util')
-const NodeEnvironment = require('jest-environment-node')
+const NodeEnvironment = require('jest-environment-node').default
 const { nanoid } = require('nanoid')
 const exec = util.promisify(require('child_process').exec)
 
@@ -15,9 +15,8 @@ const prismaBinary = path.join(
 )
 
 class PrismaTestEnvironment extends NodeEnvironment {
-  constructor({globalConfig, projectConfig}, context) {
-    super({globalConfig, projectConfig}, context);
-    const config = projectConfig;
+  constructor(config) {
+    super(config)
 
     // Generate a unique sqlite identifier for this test context
     this.dbName = `test_${nanoid()}.db`
