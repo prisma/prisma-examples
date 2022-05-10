@@ -2,7 +2,7 @@
 const path = require('path')
 const fs = require('fs')
 const util = require('util')
-const NodeEnvironment = require('jest-environment-node')
+const NodeEnvironment = require('jest-environment-node').default
 const { nanoid } = require('nanoid')
 const exec = util.promisify(require('child_process').exec)
 
