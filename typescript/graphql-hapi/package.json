@@ -14,7 +14,7 @@
   "dependencies": {
     "@hapi/hapi": "20.2.2",
     "@prisma/client": "3.14.0",
-    "@types/node": "16.11.34",
+    "@types/node": "16.11.35",
     "apollo-server-hapi": "3.7.0",
     "graphql": "15.8.0",
     "graphql-scalars": "1.17.0",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@types/hapi__hapi": "20.0.10",
-    "@types/node": "16.11.34",
+    "@types/node": "16.11.35",
     "prisma": "3.14.0",
     "ts-node": "10.7.0",
     "ts-node-dev": "1.1.8",
