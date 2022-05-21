@@ -31,7 +31,7 @@
     "@types/jsonwebtoken": "8.5.8",
     "@types/node": "16.11.36",
     "prisma": "3.14.0",
-    "ts-node": "10.7.0",
+    "ts-node": "10.8.0",
     "ts-node-dev": "1.1.8",
     "typescript": "4.6.4"
   },
