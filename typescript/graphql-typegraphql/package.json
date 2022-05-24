@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@prisma/client": "3.14.0",
-    "apollo-server": "3.7.0",
+    "apollo-server": "3.8.1",
     "class-validator": "0.13.2",
     "graphql": "15.8.0",
     "graphql-scalars": "1.17.0",
