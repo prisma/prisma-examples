@@ -185,11 +185,11 @@ export const config = {
   },
 }
 
-const apolloServer = new ApolloServer({ schema })
-
 let apolloServerHandler: NextApiHandler
 
 async function getApolloServerHandler() {
+  const apolloServer = new ApolloServer({ schema })
+  
   if (!apolloServerHandler) {
     await apolloServer.start()
 
