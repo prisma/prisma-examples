@@ -38,7 +38,7 @@
     }
   },
   "dependencies": {
-    "@nestjs/apollo": "10.0.13",
+    "@nestjs/apollo": "10.0.14",
     "@nestjs/common": "8.4.6",
     "@nestjs/core": "8.4.6",
     "@nestjs/graphql": "10.0.13",
