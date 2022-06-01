@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.13",
-    "@types/jest": "27.5.1",
+    "@types/jest": "27.5.2",
     "@types/node": "16.11.38",
     "@types/supertest": "2.0.12",
     "jest": "28.1.0",

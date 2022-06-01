@@ -15,7 +15,7 @@
     "jest": "^28.0.0"
   },
   "devDependencies": {
-    "@types/jest": "27.5.1",
+    "@types/jest": "27.5.2",
     "prettyjson": "1.2.5",
     "prisma": "3.14.0",
     "ts-jest": "28.0.3",
