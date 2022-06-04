@@ -23,6 +23,6 @@
     "ts-jest": "28.0.4",
     "ts-node": "10.8.1",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.7.2"
+    "typescript": "4.7.3"
   }
 }
