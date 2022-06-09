@@ -33,7 +33,7 @@ const Drafts = props => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('https://localhost:3000/api/drafts')
+  const res = await fetch('http://localhost:3000/api/drafts')
   const drafts = await res.json()
   return {
     props: { drafts },
