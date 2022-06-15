@@ -7,6 +7,6 @@
     "glob": "8.0.3"
   },
   "dependencies": {
-    "@actions/core": "1.8.2"
+    "@actions/core": "1.9.0"
   }
 }
