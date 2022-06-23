@@ -104,6 +104,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
 - [snoopForms](https://github.com/snoopForms/snoopforms?ref=reactjsexample.com): An open-source alternative to Typeform (easy online surveys)
 - [Typebot](https://github.com/baptisteArno/typebot.io): A conversational form builder that you can self-host
 - [Cal.com](https://github.com/calcom/cal.com): An open-source alternative to Calendly (calender-based event scheduling service)
