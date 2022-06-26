@@ -1,10 +1,14 @@
 // @ts-check
-const path = require('path')
-const fs = require('fs')
-const util = require('util')
-const NodeEnvironment = require('jest-environment-node').default
-const { nanoid } = require('nanoid')
-const exec = util.promisify(require('child_process').exec)
+import path from 'path'
+import fs from 'fs'
+import { nanoid } from 'nanoid'
+import { TestEnvironment } from 'jest-environment-node'
+import { exec } from 'child_process'
+import { fileURLToPath } from 'url'
+
+// fix for 'How to fix "__dirname is not defined in ES module scope"'
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
 
 const prismaBinary = path.join(
   __dirname,
@@ -14,9 +18,11 @@ const prismaBinary = path.join(
   'prisma',
 )
 
-class PrismaTestEnvironment extends NodeEnvironment {
-  constructor(config) {
-    super(config)
+class PrismaTestEnvironment extends TestEnvironment {
+  /** @type {import('@jest/types').Config.ProjectConfig} */
+
+  constructor(config, _context) {
+    super(config, _context)
 
     // Generate a unique sqlite identifier for this test context
     this.dbName = `test_${nanoid()}.db`
@@ -40,4 +46,4 @@ class PrismaTestEnvironment extends NodeEnvironment {
   }
 }
 
-module.exports = PrismaTestEnvironment
+export default PrismaTestEnvironment
