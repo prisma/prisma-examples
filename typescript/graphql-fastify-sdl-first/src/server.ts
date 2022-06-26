@@ -16,7 +16,7 @@ app.register(mercurius, {
   context: () => context,
 })
 
-app.listen(4000, (err) => {
+app.listen({ port: 4000 }, (err) => {
   if (err) {
     console.error(err)
     process.exit(1)
