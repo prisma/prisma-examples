@@ -6,7 +6,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@graphql-tools/schema": "8.4.0",
+    "@graphql-tools/schema": "8.5.0",
     "@hapi/hapi": "20.2.2",
     "@prisma/client": "3.15.2",
     "apollo-server-hapi": "3.9.0",
