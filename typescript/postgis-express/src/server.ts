@@ -51,9 +51,8 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   const distance = parseInt(String(d)) || 5
 
   try {
-    const locations = await prisma.$queryRaw`
-      select * from "locations_near_user"(${parseInt(userId)}, ${distance})
-    `
+    const query = `select * from "locations_near_user"(${parseInt(userId)}, ${distance})`
+    const locations = await prisma.$queryRawUnsafe(query)
     res.json({ data: { locations } })
   } catch (e) {
     console.error(e)
