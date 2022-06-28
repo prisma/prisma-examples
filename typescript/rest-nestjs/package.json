@@ -41,7 +41,7 @@
     "@nestjs/common": "8.4.7",
     "@nestjs/core": "8.4.7",
     "@nestjs/platform-express": "8.4.7",
-    "@prisma/client": "3.16.0-dev.106",
+    "@prisma/client": "3.16.0-dev.107",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.5"
@@ -61,7 +61,7 @@
     "eslint-plugin-prettier": "4.1.0",
     "jest": "28.1.1",
     "prettier": "2.7.1",
-    "prisma": "3.16.0-dev.106",
+    "prisma": "3.16.0-dev.107",
     "supertest": "6.2.3",
     "ts-jest": "28.0.5",
     "ts-loader": "9.3.1",
