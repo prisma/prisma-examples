@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@types/jest": "28.1.4",
-    "@types/node": "16.11.42",
+    "@types/node": "16.11.43",
     "jest": "28.1.2",
     "prisma": "3.15.2",
     "ts-jest": "28.0.5",
