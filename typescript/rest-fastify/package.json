@@ -6,12 +6,12 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@prisma/client": "3.15.2",
+    "@prisma/client": "4.0.0",
     "fastify": "4.2.0"
   },
   "devDependencies": {
     "@types/node": "16.11.43",
-    "prisma": "3.15.2",
+    "prisma": "4.0.0",
     "ts-node": "10.8.2",
     "typescript": "4.7.4"
   },

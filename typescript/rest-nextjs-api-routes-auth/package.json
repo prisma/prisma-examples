@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "1.0.3",
-    "@prisma/client": "3.15.2",
+    "@prisma/client": "4.0.0",
     "next": "12.2.0",
     "next-auth": "4.8.0",
     "react": "18.2.0",
@@ -23,7 +23,7 @@
     "@types/next-auth": "3.13.0",
     "@types/node": "16.11.43",
     "@types/react": "18.0.14",
-    "prisma": "3.15.2",
+    "prisma": "4.0.0",
     "ts-node": "10.8.2",
     "typescript": "4.7.4"
   },
