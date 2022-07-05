@@ -52,7 +52,7 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
 
   try {
     const locations = await prisma.$queryRaw`
-      select * from "locations_near_user"(${parseInt(userId)}, ${distance})
+      select * from "locations_near_user"(${parseInt(userId)}::int, ${distance}::int)
     `
     res.json({ data: { locations } })
   } catch (e) {
