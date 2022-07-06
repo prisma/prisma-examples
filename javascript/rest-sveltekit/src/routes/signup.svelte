@@ -24,12 +24,13 @@
     <input
       placeholder="Name"
       type="text"
-      bind:value={name}
       required
+      bind:value={name}
     />
     <input
       placeholder="Email address"
       type="email"
+      required
       bind:value={email}
     />
     <input

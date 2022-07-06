@@ -30,13 +30,14 @@
     <input
       placeholder="Author (email address)"
       type="text"
-      bind:value={authorEmail}
       required
+      bind:value={authorEmail}
     />
     <textarea
       cols={50}
       placeholder="Content"
       rows={8}
+      required
       bind:value={content}
     />
     <input
