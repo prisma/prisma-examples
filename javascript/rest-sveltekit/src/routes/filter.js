@@ -1,4 +1,4 @@
-import { prisma } from '$lib/prisma'
+import prisma from '$lib/prisma'
 
 // GET /api/filter?searchString=:searchString
 export async function get({ url }) {
