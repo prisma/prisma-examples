@@ -42,7 +42,7 @@ Run the following command to create your SQLite database file. This also creates
 
 ```bash
 npx prisma migrate dev --name init
-```bash
+```
 
 When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
 
@@ -297,4 +297,3 @@ In the application code, you can access the new endpoint via `fetch` operations 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
