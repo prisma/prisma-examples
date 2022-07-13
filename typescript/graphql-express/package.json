@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.13",
-    "@types/node": "16.11.43",
+    "@types/node": "16.11.44",
     "prisma": "4.0.0",
     "ts-node": "10.8.2",
     "ts-node-dev": "2.0.0",
