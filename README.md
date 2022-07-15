@@ -113,6 +113,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting.
 - [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting.
 - [Tottem](https://github.com/poulainv/tottem): Fullstack app for "social library management" (based on Next.js)
+- [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative. (based on Next.js, tRPC, and TailwindCSS)
 
 <hr>
 
