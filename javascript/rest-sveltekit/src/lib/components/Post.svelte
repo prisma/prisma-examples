@@ -19,4 +19,8 @@
     color: inherit;
     padding: 2rem;
   }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 </style>
