@@ -17,5 +17,9 @@
 		"svelte": "^3.44.0",
 		"vite": "^2.9.13"
 	},
-	"type": "module"
+	"type": "module",
+	"prisma": {
+		"seed": "node prisma/seed.js"
+	}
+
 }
