@@ -96,6 +96,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/javascript/grpc)                                   | gRPC API including runnable client scripts for testing                                                                 |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-express)                   | REST API with [Express](https://expressjs.com/)                                                                        |
 | [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify)                   | REST API with [Fastify](https://www.fastify.io/)                                                                       |
+| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-koa)                   | REST API with [Koa](https://koajs.com/)                                                                        |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script)                               | Usage of Prisma Client JS in a Node.js script                                                                          |
 
 ## Deployment platforms
