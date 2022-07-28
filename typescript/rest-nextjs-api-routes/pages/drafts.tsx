@@ -2,6 +2,7 @@ import React from "react"
 import { GetServerSideProps } from "next"
 import Layout from "../components/Layout"
 import Post, { PostProps } from "../components/Post"
+import absoluteUrl from "next-absolute-url"
 
 type Props = {
   drafts: PostProps[]
@@ -38,8 +39,9 @@ const Drafts: React.FC<Props> = (props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch("/api/drafts")
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { origin } = absoluteUrl(req)
+  const res = await fetch(`${origin}/api/drafts`)
   const drafts = await res.json()
   return {
     props: { drafts },

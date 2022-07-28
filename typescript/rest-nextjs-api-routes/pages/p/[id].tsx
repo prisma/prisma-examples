@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import Router from 'next/router'
 import { PostProps } from '../../components/Post'
+import absoluteUrl from 'next-absolute-url'
 
 async function publish(id: number): Promise<void> {
   await fetch(`/api/publish/${id}`, {
@@ -66,7 +67,8 @@ const Post: React.FC<PostProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${location.origin}/api/post/${context.params.id}`)
+  const { origin } = absoluteUrl(context.req)
+  const res = await fetch(`${origin}/api/post/${context.params.id}`)
   const data = await res.json()
   return { props: { ...data } }
 }
