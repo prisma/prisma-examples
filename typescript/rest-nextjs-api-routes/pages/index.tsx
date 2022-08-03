@@ -2,7 +2,6 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import Layout from '../components/Layout'
 import Post, { PostProps } from '../components/Post'
-import absoluteUrl from 'next-absolute-url'
 
 type Props = {
   feed: PostProps[]
@@ -39,9 +38,8 @@ const Blog: React.FC<Props> = props => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { origin } = absoluteUrl(req)
-  const res = await fetch(`${origin}/api/feed`)
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch('http://localhost:3000/api/feed')
   const feed = await res.json()
   return {
     props: { feed },
