@@ -39,10 +39,10 @@
   },
   "dependencies": {
     "@nestjs/apollo": "10.0.19",
-    "@nestjs/common": "9.0.7",
-    "@nestjs/core": "9.0.7",
+    "@nestjs/common": "9.0.8",
+    "@nestjs/core": "9.0.8",
     "@nestjs/graphql": "10.0.21",
-    "@nestjs/platform-express": "9.0.7",
+    "@nestjs/platform-express": "9.0.8",
     "@prisma/client": "4.1.1",
     "apollo-server-express": "3.10.0",
     "class-validator": "0.13.2",
@@ -55,7 +55,7 @@
   "devDependencies": {
     "@nestjs/cli": "9.0.0",
     "@nestjs/schematics": "9.0.1",
-    "@nestjs/testing": "9.0.7",
+    "@nestjs/testing": "9.0.8",
     "@types/express": "4.17.13",
     "@types/jest": "28.1.6",
     "@types/node": "16.11.47",
