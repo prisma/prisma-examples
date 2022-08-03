@@ -72,6 +72,7 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`postgis-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/postgis-express) | Demo of spatial queries using [Postgis](http://postgis.net/) and [Express](https://expressjs.com/) |
 | [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express) | REST API with [Express](https://expressjs.com/) |
 | [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-fastify) | REST API with [Fastify](https://www.fastify.io/) |
+| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-koa) | REST API with [Koa](https://koajs.com/) |
 | [`rest-hapi`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-hapi) | REST API with [hapi](https://hapi.dev/) |
 | [`rest-nestjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nestjs) | REST API with [NestJS](https://docs.nestjs.com/) |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/typescript/script) | Usage of Prisma Client JS in a TypeScript script |
