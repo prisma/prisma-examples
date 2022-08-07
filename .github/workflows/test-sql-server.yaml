@@ -26,7 +26,7 @@ jobs:
       # Label used to access the service container
       sql-server:
         # Docker Hub image
-        image: mcr.microsoft.com/mssql/server:2019-latest
+        image: mcr.microsoft.com/mssql/server:2022-latest
         env:
           ACCEPT_EULA: Y
           SA_PASSWORD: 'Pr1sm4_Pr1sm4'
