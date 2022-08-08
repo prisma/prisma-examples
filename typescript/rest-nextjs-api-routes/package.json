@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "16.11.47",
-    "@types/react": "18.0.16",
+    "@types/react": "18.0.17",
     "prisma": "4.1.1",
     "ts-node": "10.9.1",
     "typescript": "4.7.4"
