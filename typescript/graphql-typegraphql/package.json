@@ -8,7 +8,7 @@
     "apollo-server": "3.10.1",
     "class-validator": "0.13.2",
     "graphql": "15.8.0",
-    "graphql-scalars": "1.17.0",
+    "graphql-scalars": "1.18.0",
     "reflect-metadata": "0.1.13",
     "type-graphql": "1.1.1"
   },
