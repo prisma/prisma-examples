@@ -18,7 +18,7 @@
     "mercurius": "10.1.0"
   },
   "devDependencies": {
-    "@types/node": "16.11.47",
+    "@types/node": "16.11.48",
     "prisma": "4.2.1",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
