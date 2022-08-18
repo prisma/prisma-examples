@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import Router from 'next/router'
 import { PostProps } from '../../components/Post'
+import { makeSerializable } from '../../lib/util'
+import prisma from '../../lib/prisma'
 
 async function publish(id: number): Promise<void> {
   await fetch(`/api/publish/${id}`, {
@@ -66,9 +68,12 @@ const Post: React.FC<PostProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3000/api/post/${context.params.id}`)
-  const data = await res.json()
-  return { props: { ...data } }
+  const id = Number(Array.isArray(context.params.id) ? context.params.id[0] : context.params.id)
+  const post = await prisma.post.findUnique({
+    where: { id },
+    include: { author: true },
+  })
+  return { props: { ...makeSerializable(post) } }
 }
 
 export default Post
