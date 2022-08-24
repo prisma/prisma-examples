@@ -8,7 +8,7 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/jest": "28.1.7",
+    "@types/jest": "28.1.8",
     "@types/node": "16.11.55",
     "@types/uuid": "8.3.4",
     "jest": "28.1.3",
