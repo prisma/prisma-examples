@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@koa/router": "12.0.0",
-    "@prisma/client": "4.3.0",
+    "@prisma/client": "4.3.1",
     "koa": "2.13.4",
     "koa-body": "5.0.0"
   },
@@ -15,7 +15,7 @@
     "@types/koa": "2.13.5",
     "@types/koa__router": "8.0.11",
     "@types/node": "18.7.4",
-    "prisma": "4.3.0",
+    "prisma": "4.3.1",
     "ts-node": "10.9.1",
     "typescript": "4.8.2"
   },
