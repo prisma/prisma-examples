@@ -19,7 +19,7 @@
     "@types/node": "17.0.24",
     "@types/prettyjson": "0.0.30",
     "prettyjson": "1.2.5",
-    "prisma": "4.3.0",
+    "prisma": "4.3.1",
     "ts-jest": "28.0.8",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
