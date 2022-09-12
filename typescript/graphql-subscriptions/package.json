@@ -22,7 +22,7 @@
     "express": "4.18.1",
     "graphql": "16.5.0",
     "graphql-subscriptions": "2.0.0",
-    "graphql-ws": "5.10.1",
+    "graphql-ws": "5.10.2",
     "nexus": "1.3.0",
     "ws": "8.8.1"
   },
