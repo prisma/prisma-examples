@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/cors": "2.8.12",
-    "@types/express": "4.17.13",
+    "@types/express": "4.17.14",
     "@types/node": "16.11.58",
     "prisma": "4.3.1",
     "ts-node": "10.9.1",
