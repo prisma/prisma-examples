@@ -106,16 +106,17 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
-- [umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
+- [Coolify](https://github.com/coollabsio/coolify): An open-source & self-hostable Heroku / Netlify alternative
+- [Umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
+- [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative. (based on Next.js, tRPC, and TailwindCSS)
 - [snoopForms](https://github.com/snoopForms/snoopforms?ref=reactjsexample.com): An open-source alternative to Typeform (easy online surveys)
 - [Typebot](https://github.com/baptisteArno/typebot.io): A conversational form builder that you can self-host
 - [Cal.com](https://github.com/calcom/cal.com): An open-source alternative to Calendly (calender-based event scheduling service)
 - [Beam](https://github.com/planetscale/beam): A simple tool that allows members to write posts to share across your organization (based on Next.js)
 - [`ironfish-api`](https://github.com/iron-fish/ironfish-api): Public API for Iron Fish (A novel cryptocurrency focused on privacy and accessibility)
-- [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting.
-- [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting.
+- [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting
+- [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
 - [Tottem](https://github.com/poulainv/tottem): Fullstack app for "social library management" (based on Next.js)
-- [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative. (based on Next.js, tRPC, and TailwindCSS)
 
 <hr>
 
