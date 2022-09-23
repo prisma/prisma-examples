@@ -107,6 +107,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 ## Real-world & production-ready example projects with Prisma
 
 - [Coolify](https://github.com/coollabsio/coolify): An open-source & self-hostable Heroku / Netlify alternative
+- [dub](https://dub.sh/): An open-source link shortener with built-in analytics + free custom domains.
 - [Umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
 - [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative. (based on Next.js, tRPC, and TailwindCSS)
 - [snoopForms](https://github.com/snoopForms/snoopforms?ref=reactjsexample.com): An open-source alternative to Typeform (easy online surveys)
