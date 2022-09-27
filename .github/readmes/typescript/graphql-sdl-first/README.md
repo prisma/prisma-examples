@@ -8,7 +8,7 @@ This example shows how to implement an **GraphQL server (SDL-first) with TypeScr
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-sdl-first
+npx try-prisma --template typescript/graphql-sdl-first
 __INLINE(../_setup-1.md)__
 cd graphql-sdl-first
 __INLINE(../_setup-2.md)__
