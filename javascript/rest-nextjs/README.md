@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app with [Next.js](https://nex
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-nextjs
+npx try-prisma --template javascript/rest-nextjs
 ```
 
 Install npm dependencies:

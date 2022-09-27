@@ -9,7 +9,7 @@ This example shows how to implement a **gRPC API with Node.js** and [Prisma Clie
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/grpc
+npx try-prisma --template javascript/grpc
 ```
 
 Install npm dependencies:

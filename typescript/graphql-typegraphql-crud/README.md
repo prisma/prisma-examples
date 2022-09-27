@@ -9,7 +9,7 @@ This example shows how to **implement a GraphQL server with TypeScript** based o
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-typegraphql-crud
+npx try-prisma --template graphql-typegraphql-crud
 ```
 
 Install npm dependencies:

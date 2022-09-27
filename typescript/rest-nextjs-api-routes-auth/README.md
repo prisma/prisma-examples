@@ -11,7 +11,7 @@ Note that the app uses a mix of server-side rendering with `getServerSideProps` 
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-nextjs-api-routes-auth
+npx try-prisma --template rest-nextjs-api-routes-auth
 ```
 
 Install npm dependencies:

@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [Fastify](https://fasti
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-fastify
+npx try-prisma --template javascript/rest-fastify
 ```
 
 Install npm dependencies:
