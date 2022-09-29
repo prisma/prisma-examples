@@ -276,7 +276,7 @@ describe('example test with Prisma Client', () => {
       })
       .comments()
     expect(userComments).toBeTruthy()
-    expect(userComments.length).toEqual(2)
+    expect(userComments?.length).toEqual(2)
   })
 
   test('Fetch posts by a user', async () => {
