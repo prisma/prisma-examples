@@ -290,6 +290,6 @@ describe('example test with Prisma Client', () => {
       })
       .posts()
     expect(userPosts).toBeTruthy()
-    expect(userPosts.length).toEqual(3)
+    expect(userPosts?.length).toEqual(3)
   })
 })
