@@ -15,7 +15,7 @@
     "@hapi/hapi": "20.2.2",
     "@prisma/client": "4.4.0",
     "@types/node": "16.11.64",
-    "apollo-server-hapi": "3.10.2",
+    "apollo-server-hapi": "3.10.3",
     "graphql": "16.5.0",
     "graphql-scalars": "1.18.0",
     "nexus": "1.3.0"
