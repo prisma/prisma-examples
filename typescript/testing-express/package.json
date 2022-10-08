@@ -13,7 +13,7 @@
   "dependencies": {
     "@prisma/client": "4.4.0",
     "@types/node": "16.11.64",
-    "express": "4.18.1",
+    "express": "4.18.2",
     "jest-config": "29.1.2"
   },
   "devDependencies": {
