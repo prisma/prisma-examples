@@ -11,21 +11,21 @@
     "start": "next start"
   },
   "dependencies": {
-    "@next-auth/prisma-adapter": "1.0.4",
-    "@prisma/client": "4.2.1",
-    "next": "12.2.5",
-    "next-auth": "4.10.3",
+    "@next-auth/prisma-adapter": "1.0.5",
+    "@prisma/client": "4.4.0",
+    "next": "12.3.1",
+    "next-auth": "4.14.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.3"
   },
   "devDependencies": {
     "@types/next-auth": "3.13.0",
-    "@types/node": "16.11.52",
-    "@types/react": "18.0.17",
-    "prisma": "4.2.1",
+    "@types/node": "16.11.65",
+    "@types/react": "18.0.21",
+    "prisma": "4.4.0",
     "ts-node": "10.9.1",
-    "typescript": "4.7.4"
+    "typescript": "4.8.4"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
