@@ -1,6 +1,6 @@
 # Fullstack Example with Next.js (REST API)
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./backend/prisma/dev.db`](./backend/prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). The example uses an SQLite database file with some initial dummy data which you can find at [`./backend/prisma/dev.db`](./backend/prisma/dev.db).
 
 ## Getting Started
 
@@ -34,7 +34,7 @@ cd prisma-examples/typescript/rest-nextjs-express
 
 </details>
 
-#### Install npm dependencies: 
+#### Install npm dependencies:
 
 Install dependencies for your [`backend`](./backend). Open a terminal window and install the `backend`'s dependencies
 
@@ -133,7 +133,7 @@ You can also access the REST API of the API server directly. It is running [`loc
 - `/api/publish/:id`: Publish a post by its `id`
 
 ### `DELETE`
-  
+
 - `/api/post/:id`: Delete a post by its `id`
 
 
