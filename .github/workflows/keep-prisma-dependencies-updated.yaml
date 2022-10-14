@@ -22,10 +22,10 @@ jobs:
         with:
           ref: '${{ matrix.branch }}'
 
-      - name: use node 12
+      - name: use node 14
         uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: '14'
 
       - name: check update ${{ matrix.branch }}
         run: sh .github/scripts/check-for-update.sh ${{ matrix.branch }}
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: report failure to slack
         run: bash .github/scripts/slack-workflow-status.sh "[keep-prisma-dependencies-updated] check-for-update :x:"

@@ -2,6 +2,8 @@ import React from 'react'
 import { GetServerSideProps } from 'next'
 import Layout from '../components/Layout'
 import Post, { PostProps } from '../components/Post'
+import { makeSerializable } from '../lib/util'
+import prisma from '../lib/prisma'
 
 type Props = {
   feed: PostProps[]
@@ -39,10 +41,12 @@ const Blog: React.FC<Props> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/feed')
-  const feed = await res.json()
+  const feed = await prisma.post.findMany({
+    where: { published: true },
+    include: { author: true },
+  })
   return {
-    props: { feed },
+    props: { feed: makeSerializable(feed) },
   }
 }
 

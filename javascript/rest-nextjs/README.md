@@ -86,7 +86,6 @@ You can also access the REST API of the API server directly. It is running on th
 
 ### `GET`
 
-- `/api/post/:id`: Fetch a single post by its `id`
 - `/api/feed`: Fetch all _published_ posts
 - `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
@@ -107,7 +106,7 @@ You can also access the REST API of the API server directly. It is running on th
 - `/api/publish/:id`: Publish a post by its `id`
 
 ### `DELETE`
-  
+
 - `/api/post/:id`: Delete a post by its `id`
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)

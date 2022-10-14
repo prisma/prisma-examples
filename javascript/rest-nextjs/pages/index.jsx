@@ -1,5 +1,7 @@
 import Layout from '../components/Layout'
 import Post from '../components/Post'
+import { makeSerializable } from '../lib/util'
+import prisma from '../lib/prisma';
 
 const Blog = props => {
   return (
@@ -33,10 +35,12 @@ const Blog = props => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/feed')
-  const feed = await res.json()
+  const feed = await prisma.post.findMany({
+    where: { published: true },
+    include: { author: true },
+  })
   return {
-    props: { feed },
+    props: { feed: makeSerializable(feed) },
   }
 }
 

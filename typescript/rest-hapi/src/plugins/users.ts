@@ -92,7 +92,7 @@ async function getDraftsByUserHandler(
         where: { published: false },
       })
 
-    return h.response(drafts).code(200)
+    return h.response(drafts || undefined).code(200)
   } catch (err) {
     console.log(err)
   }

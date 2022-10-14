@@ -23,7 +23,7 @@ export default {
     }
   },
   async fetch() {
-    const drafts = await fetch(`http://localhost:3000/api/drafts`).then((res) =>
+    const drafts = await fetch(`${location.origin}/api/drafts`).then((res) =>
       res.json()
     )
     this.drafts = drafts

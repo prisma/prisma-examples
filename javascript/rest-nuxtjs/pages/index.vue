@@ -23,7 +23,7 @@ export default {
     }
   },
   async fetch() {
-    const feed = await fetch(`http://localhost:3000/api/feed`).then((res) =>
+    const feed = await fetch(`${location.origin}/api/feed`).then((res) =>
       res.json()
     )
     this.feed = feed
