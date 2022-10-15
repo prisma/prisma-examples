@@ -19,7 +19,7 @@
     "react-markdown": "8.0.3"
   },
   "devDependencies": {
-    "@types/node": "16.11.65",
+    "@types/node": "16.11.66",
     "@types/react": "18.0.21",
     "prisma": "4.4.0",
     "ts-node": "10.9.1",
