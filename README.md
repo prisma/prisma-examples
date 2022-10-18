@@ -106,10 +106,11 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [Linen](https://github.com/Linen-dev/linen.dev): An open-source alternative to Slack and Discord with lots of great features
 - [Coolify](https://github.com/coollabsio/coolify): An open-source & self-hostable Heroku / Netlify alternative
-- [dub](https://dub.sh/): An open-source link shortener with built-in analytics + free custom domains.
+- [dub](https://dub.sh/): An open-source link shortener with built-in analytics and free custom domains
 - [Umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
-- [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative. (based on Next.js, tRPC, and TailwindCSS)
+- [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative (based on Next.js, tRPC, and TailwindCSS)
 - [snoopForms](https://github.com/snoopForms/snoopforms?ref=reactjsexample.com): An open-source alternative to Typeform (easy online surveys)
 - [Typebot](https://github.com/baptisteArno/typebot.io): A conversational form builder that you can self-host
 - [Cal.com](https://github.com/calcom/cal.com): An open-source alternative to Calendly (calender-based event scheduling service)
