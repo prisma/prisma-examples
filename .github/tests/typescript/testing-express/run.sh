@@ -2,4 +2,4 @@
 
 set -eu
 
-yarn test
+npm run test

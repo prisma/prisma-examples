@@ -2,4 +2,4 @@
 
 set -eu
 
-yarn && yarn test
+npm install && npm run test
