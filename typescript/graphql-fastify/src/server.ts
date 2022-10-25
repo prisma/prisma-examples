@@ -6,7 +6,7 @@ import { context } from './context'
 const app = fastify()
 
 app.register(mercurius, {
-  schema,
+  ...schema,
   graphiql: true,
   context: () => context,
 })

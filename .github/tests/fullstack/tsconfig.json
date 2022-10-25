@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    // Output
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "importHelpers": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    // DX
+    "incremental": true,
+    "noErrorTruncation": true,
+  },
+  "include": ["."],
+  "exclude": ["node_modules"],
+}
