@@ -4,6 +4,9 @@ set -eu
 
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
 
+# load the nvm environment
+source ~/.bashrc
+
 nvm install 16
 nvm use 16
 
