@@ -2,6 +2,11 @@
 
 set -eu
 
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+
+nvm install 16
+nvm use 16
+
 npm install 
 npx prisma migrate dev --name init
 npm run dev &
