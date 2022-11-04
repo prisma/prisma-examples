@@ -106,6 +106,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [reduced.to](https://github.com/origranot/reduced.to): An open-source link shortener 
 - [Linen](https://github.com/Linen-dev/linen.dev): An open-source alternative to Slack and Discord with lots of great features
 - [Coolify](https://github.com/coollabsio/coolify): An open-source & self-hostable Heroku / Netlify alternative
 - [dub](https://dub.sh/): An open-source link shortener with built-in analytics and free custom domains
