@@ -2,4 +2,5 @@
 
 set -eu
 
-yarn test
+npm install
+npm run test
