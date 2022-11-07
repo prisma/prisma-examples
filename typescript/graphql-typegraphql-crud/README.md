@@ -16,8 +16,10 @@ Install npm dependencies:
 
 ```
 cd graphql-typegraphql-crud
-npm install
+npm install --legacy-peer-deps
 ```
+
+> Note: The `--legacy-peer-deps` flag installs the Prisma version that is compatible with `typegraphql-prisma` as a peer dependency. Refer to [`typegraphql-prisma`'s releases](https://github.com/MichalLytek/typegraphql-prisma/releases) to check the Prisma version that's compatible with the latest `typegraphql-prisma` version.
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
