@@ -1,12 +1,6 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-// function isActive(pathname) {
-//   return (
-//     typeof document !== "undefined" && document.location.pathname === pathname
-//   )
-// }
-
 const Header = () => {
   const router = useRouter()
 
@@ -17,20 +11,20 @@ const Header = () => {
   return (
     <nav>
       <div className="left">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a className="bold" data-active={isActive("/")}>
             Blog
           </a>
         </Link>
-        <Link href="/drafts">
+        <Link href="/drafts" legacyBehavior>
           <a data-active={isActive("/drafts")}>Drafts</a>
         </Link>
       </div>
       <div className="right">
-        <Link href="/signup">
+        <Link href="/signup" legacyBehavior>
           <a data-active={isActive("/signup")}>Signup</a>
         </Link>
-        <Link href="/create">
+        <Link href="/create" legacyBehavior>
           <a data-active={isActive("/create")}>+ Create draft</a>
         </Link>
       </div>
@@ -70,7 +64,7 @@ const Header = () => {
         }
       `}</style>
     </nav>
-  )
+  );
 }
 
 export default Header
