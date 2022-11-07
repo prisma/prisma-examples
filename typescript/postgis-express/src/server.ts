@@ -9,10 +9,10 @@ app.use(express.json())
 app.post('/user', async (req, res) => {
   const { name, location } = req.body
   try {
-    const response: any = await prisma.$queryRaw`
+    const response: any = (await prisma.$queryRaw`
     insert into "User" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
-    returning id` as any;
+    returning id`) as any
 
     res.json({
       success: true,
@@ -52,7 +52,9 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
 
   try {
     const locations = await prisma.$queryRaw`
-      select * from "locations_near_user"(${parseInt(userId)}::int, ${distance}::int)
+      select * from "locations_near_user"(${parseInt(
+        userId,
+      )}::int, ${distance}::int)
     `
     res.json({ data: { locations } })
   } catch (e) {

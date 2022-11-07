@@ -23,6 +23,8 @@ esac
 
 cd "$(dirname "$item")/"
 
+## ACTION
+
 echo "+++++++++++"
 echo "executing .github/tests/$(dirname "$item")/run.sh (tests)"
 run_file="$dir/.github/tests/$(dirname "$item")/run.sh"

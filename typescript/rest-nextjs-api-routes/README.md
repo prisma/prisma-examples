@@ -1,6 +1,6 @@
 # Fullstack Example with Next.js (REST API)
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
 
@@ -87,7 +87,6 @@ You can also access the REST API of the API server directly. It is running on th
 
 ### `GET`
 
-- `/api/post/:id`: Fetch a single post by its `id`
 - `/api/feed`: Fetch all _published_ posts
 - `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
@@ -108,7 +107,7 @@ You can also access the REST API of the API server directly. It is running on th
 - `/api/publish/:id`: Publish a post by its `id`
 
 ### `DELETE`
-  
+
 - `/api/post/:id`: Delete a post by its `id`
 
 ## Evolving the app

@@ -8,7 +8,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       schema,
       context: context,
-      driver: ApolloDriver
+      driver: ApolloDriver,
     }),
   ],
 })

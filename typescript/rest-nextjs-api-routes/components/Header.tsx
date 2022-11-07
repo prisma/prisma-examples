@@ -7,23 +7,23 @@ const Header: React.FC = () => {
   const isActive: (pathname: string) => boolean =
     pathname => router.pathname === pathname
 
-  return(
+  return (
     <nav>
       <div className="left">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a className="bold" data-active={isActive('/')}>
             Blog
           </a>
         </Link>
-        <Link href="/drafts">
+        <Link href="/drafts" legacyBehavior>
           <a data-active={isActive('/drafts')}>Drafts</a>
         </Link>
       </div>
       <div className="right">
-        <Link href="/signup">
+        <Link href="/signup" legacyBehavior>
           <a data-active={isActive('/signup')}>Signup</a>
         </Link>
-        <Link href="/create">
+        <Link href="/create" legacyBehavior>
           <a data-active={isActive('/create')}>+ Create draft</a>
         </Link>
       </div>
@@ -63,7 +63,7 @@ const Header: React.FC = () => {
         }
       `}</style>
     </nav>
-  )
+  );
 }
 
 export default Header
