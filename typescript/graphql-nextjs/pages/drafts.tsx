@@ -8,14 +8,6 @@ const Post = ({ post }) => (
     <h2>{post.title}</h2>
     <small>By {post.author ? post.author.name : "Unknown Author"}</small>
     <p>{post.content}</p>
-    <style jsx>{`
-      a {
-        text-decoration: none;
-        color: inherit;
-        padding: 2rem;
-        display: block;
-      }
-    `}</style>
   </Link>
 )
 
@@ -44,6 +36,13 @@ const Drafts = (props) => {
 
         .post + .post {
           margin-top: 2rem;
+        }
+
+        .post a {
+          text-decoration: none;
+          color: inherit;
+          padding: 2rem;
+          display: block;
         }
       `}</style>
     </Layout>
