@@ -3,7 +3,7 @@ const Router = require('@koa/router')
 
 const { PrismaClient } = require('@prisma/client')
 
-const koaBody = require('koa-body')
+const { koaBody } = require('koa-body');
 
 const app = new Koa()
 const router = new Router()
@@ -17,8 +17,8 @@ router.post('/signup', async (ctx) => {
 
   const postData = posts
     ? posts.map((post) => {
-        return { title: post.title, content: post.content || undefined }
-      })
+      return { title: post.title, content: post.content || undefined }
+    })
     : []
 
   const newUser = await prisma.user.create({
@@ -150,11 +150,11 @@ router.get('/feed', async (ctx) => {
 
   const or = searchString
     ? {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      }
+      OR: [
+        { title: { contains: searchString } },
+        { content: { contains: searchString } },
+      ],
+    }
     : {}
 
   const posts = await prisma.post.findMany({
