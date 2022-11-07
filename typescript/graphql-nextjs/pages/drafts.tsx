@@ -1,25 +1,10 @@
 import Layout from "../components/Layout"
 import Link from "next/link"
 import gql from "graphql-tag"
-import { useQuery } from "@apollo/client"
-
-const DraftsQuery = gql`
-  query DraftsQuery {
-    drafts {
-      id
-      title
-      content
-      published
-      author {
-        id
-        name
-      }
-    }
-  }
-`
+import client from "../lib/apollo-client"
 
 const Post = ({ post }) => (
-  <Link href="/p/[id]" as={`/p/${post.id}`}>
+  <Link href="/p/[id]" as={`/p/${post.id}`} legacyBehavior>
     <a>
       <h2>{post.title}</h2>
       <small>By {post.author ? post.author.name : "Unknown Author"}</small>
@@ -36,24 +21,13 @@ const Post = ({ post }) => (
   </Link>
 )
 
-const Drafts = () => {
-  const { loading, error, data } = useQuery(DraftsQuery, {
-    fetchPolicy: "cache-and-network",
-  })
-
-  if (loading) {
-    return <div>Loading ...</div>
-  }
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
-
+const Drafts = (props) => {
   return (
     <Layout>
       <div className="page">
         <h1>Drafts</h1>
         <main>
-          {data.drafts.map(post => (
+          {props.data.drafts.map(post => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
@@ -76,6 +50,31 @@ const Drafts = () => {
       `}</style>
     </Layout>
   )
+}
+
+export async function getServerSideProps() {
+  const { data } = await client.query({
+    query: gql`
+      query DraftsQuery {
+        drafts {
+          id
+          title
+          content
+          published
+          author {
+            id
+            name
+          }
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      data
+    },
+  };
 }
 
 export default Drafts

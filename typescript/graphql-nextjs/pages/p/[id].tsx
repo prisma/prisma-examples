@@ -1,22 +1,8 @@
 import Layout from "../../components/Layout"
 import Router, { useRouter } from "next/router"
 import gql from "graphql-tag"
-import { useQuery, useMutation } from "@apollo/client"
-
-const PostQuery = gql`
-  query PostQuery($postId: String!) {
-    post(postId: $postId) {
-      id
-      title
-      content
-      published
-      author {
-        id
-        name
-      }
-    }
-  }
-`
+import { useMutation } from "@apollo/client"
+import client from "../../lib/apollo-client"
 
 const PublishMutation = gql`
   mutation PublishMutation($postId: String!) {
@@ -48,39 +34,25 @@ const DeleteMutation = gql`
   }
 `
 
-function Post() {
+function Post(props) {
   const postId = useRouter().query.id
-  const { loading, error, data } = useQuery(PostQuery, {
-    variables: { postId },
-  })
 
   const [publish] = useMutation(PublishMutation)
   const [deletePost] = useMutation(DeleteMutation)
 
-  if (loading) {
-    console.log("loading")
-    return <div>Loading ...</div>
-  }
-  if (error) {
-    console.log("error")
-    return <div>Error: {error.message}</div>
-  }
-
-  console.log(`response`, data)
-
-  let title = data.post.title
-  if (!data.post.published) {
+  let title = props.data.post.title
+  if (!props.data.post.published) {
     title = `${title} (Draft)`
   }
 
-  const authorName = data.post.author ? data.post.author.name : "Unknown author"
+  const authorName = props.data.post.author ? props.data.post.author.name : "Unknown author"
   return (
     <Layout>
       <div>
         <h2>{title}</h2>
         <p>By {authorName}</p>
-        <p>{data.post.content}</p>
-        {!data.post.published && (
+        <p>{props.data.post.content}</p>
+        {!props.data.post.published && (
           <button
             onClick={async e => {
               await publish({
@@ -130,6 +102,33 @@ function Post() {
       `}</style>
     </Layout>
   )
+}
+
+export async function getServerSideProps(context) {
+  const id = Number(Array.isArray(context.params.id) ? context.params.id[0] : context.params.id)
+  const { data } = await client.query({
+    query: gql`
+      query PostQuery($postId: String!) {
+        post(postId: $postId) {
+          id
+          title
+          content
+          published
+          author {
+            id
+            name
+          }
+        }
+      }
+    `,
+    variables: { postId: id },
+  });
+
+  return {
+    props: {
+      data
+    },
+  };
 }
 
 export default Post

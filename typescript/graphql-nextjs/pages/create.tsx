@@ -23,12 +23,12 @@ const CreateDraftMutation = gql`
   }
 `
 
-function Draft(props) {
+function Draft() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [authorEmail, setAuthorEmail] = useState("")
 
-  const [createDraft, { loading, error, data }] =
+  const [createDraft] =
     useMutation(CreateDraftMutation)
 
   return (
