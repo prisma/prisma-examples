@@ -9,8 +9,8 @@ app.post(`/signup`, async (req, res) => {
 
   const postData = posts
     ? posts.map((post) => {
-        return { title: post.title, content: post.content || undefined }
-      })
+      return { title: post.title, content: post.content || undefined }
+    })
     : []
 
   const result = await prisma.user.create({
@@ -22,7 +22,7 @@ app.post(`/signup`, async (req, res) => {
       },
     },
   })
-  res.send(result)
+  return result
 })
 
 app.post(`/post`, async (req, res) => {
@@ -34,7 +34,7 @@ app.post(`/post`, async (req, res) => {
       author: { connect: { email: authorEmail } },
     },
   })
-  res.send(result)
+  return result
 })
 
 app.put('/post/:id/views', async (req, res) => {
@@ -50,9 +50,9 @@ app.put('/post/:id/views', async (req, res) => {
       },
     })
 
-    res.send(post)
+    return post
   } catch (error) {
-    res.send({ error: `Post with ID ${id} does not exist in the database` })
+    return { error: `Post with ID ${id} does not exist in the database` }
   }
 })
 
@@ -71,9 +71,9 @@ app.put('/publish/:id', async (req, res) => {
       where: { id: Number(id) || undefined },
       data: { published: !postData.published || undefined },
     })
-    res.send(updatedPost)
+    return updatedPost
   } catch (error) {
-    res.send({ error: `Post with ID ${id} does not exist in the database` })
+    return { error: `Post with ID ${id} does not exist in the database` }
   }
 })
 
@@ -85,12 +85,12 @@ app.delete(`/post/:id`, async (req, res) => {
       id: Number(id),
     },
   })
-  res.send(post)
+  return post
 })
 
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany()
-  res.send(users)
+  return users
 })
 
 app.get('/user/:id/drafts', async (req, res) => {
@@ -106,7 +106,7 @@ app.get('/user/:id/drafts', async (req, res) => {
       where: { published: false },
     })
 
-  res.send(drafts)
+  return drafts
 })
 
 app.get(`/post/:id`, async (req, res) => {
@@ -115,7 +115,7 @@ app.get(`/post/:id`, async (req, res) => {
   const post = await prisma.post.findUnique({
     where: { id: Number(id) },
   })
-  res.send(post)
+  return post
 })
 
 app.get('/feed', async (req, res) => {
@@ -123,11 +123,11 @@ app.get('/feed', async (req, res) => {
 
   const or = searchString
     ? {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      }
+      OR: [
+        { title: { contains: searchString } },
+        { content: { contains: searchString } },
+      ],
+    }
     : {}
 
   const posts = await prisma.post.findMany({
@@ -143,10 +143,10 @@ app.get('/feed', async (req, res) => {
     },
   })
 
-  res.send(posts)
+  return posts
 })
 
-const server = app.listen(3000, () =>
+app.listen({ port: 3000 }, () =>
   console.log(`
 🚀 Server ready at: http://localhost:3000
 ⭐️ See sample requests: https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify#using-the-rest-api`),

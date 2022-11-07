@@ -2,7 +2,7 @@ import { Prisma, PrismaClient } from '@prisma/client'
 import fastify from 'fastify'
 
 const prisma = new PrismaClient()
-const app = fastify()
+const app = fastify({ logger: true })
 
 app.post<{
   Body: ISignupBody
@@ -22,7 +22,7 @@ app.post<{
       },
     },
   })
-  res.send(result)
+  return result
 })
 
 app.post<{
@@ -36,7 +36,7 @@ app.post<{
       author: { connect: { email: authorEmail } },
     },
   })
-  res.send(result)
+  return result
 })
 
 app.put<{
@@ -54,9 +54,9 @@ app.put<{
       },
     })
 
-    res.send(post)
+    return post
   } catch (error) {
-    res.send({ error: `Post with ID ${id} does not exist in the database` })
+    return { error: `Post with ID ${id} does not exist in the database` }
   }
 })
 
@@ -77,9 +77,9 @@ app.put<{
       where: { id: Number(id) || undefined },
       data: { published: !postData?.published },
     })
-    res.send(updatedPost)
+    return updatedPost
   } catch (error) {
-    res.send({ error: `Post with ID ${id} does not exist in the database` })
+    return { error: `Post with ID ${id} does not exist in the database` }
   }
 })
 
@@ -92,12 +92,12 @@ app.delete<{
       id: Number(id),
     },
   })
-  res.send(post)
+  return post
 })
 
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany()
-  res.send(users)
+  return users
 })
 
 app.get<{
@@ -113,7 +113,7 @@ app.get<{
       where: { published: false },
     })
 
-  res.send(drafts)
+  return drafts
 })
 
 app.get<{
@@ -124,7 +124,7 @@ app.get<{
   const post = await prisma.post.findUnique({
     where: { id: Number(id) },
   })
-  res.send(post)
+  return post
 })
 
 app.get<{
@@ -134,11 +134,11 @@ app.get<{
 
   const or: Prisma.PostWhereInput = searchString
     ? {
-        OR: [
-          { title: { contains: searchString as string } },
-          { content: { contains: searchString as string } },
-        ],
-      }
+      OR: [
+        { title: { contains: searchString as string } },
+        { content: { contains: searchString as string } },
+      ],
+    }
     : {}
 
   const posts = await prisma.post.findMany({
@@ -154,7 +154,7 @@ app.get<{
     },
   })
 
-  res.send(posts)
+  return posts
 })
 interface IFeedQueryString {
   searchString: string | null
@@ -179,7 +179,7 @@ interface ISignupBody {
   posts: Prisma.PostCreateInput[]
 }
 
-app.listen(3000, (err) => {
+app.listen({ port: 3000 }, (err) => {
   if (err) {
     console.error(err)
     process.exit(1)
