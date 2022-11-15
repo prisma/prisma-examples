@@ -67,7 +67,7 @@
     "ts-loader": "9.4.1",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.0",
-    "typescript": "4.8.4"
+    "typescript": "4.9.3"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
