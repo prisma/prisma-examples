@@ -9,7 +9,7 @@ This example shows how to implement a **REST API with TypeScript** using [Expres
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-express
+npx try-prisma --template typescript/rest-express
 ```
 
 Install npm dependencies:

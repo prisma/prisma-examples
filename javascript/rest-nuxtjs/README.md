@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app with [NuxtJs](https://nuxt
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-nuxtjs
+npx try-prisma --template javascript/rest-nuxtjs
 ```
 
 Install npm dependencies:

@@ -24,7 +24,7 @@ Note that **Apollo Server** includes the `PubSub` realtime component from the [`
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-subscriptions
+npx try-prisma --template typescript/graphql-subscriptions
 ```
 
 Install npm dependencies:

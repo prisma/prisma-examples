@@ -9,7 +9,7 @@ This example shows how to use [Prisma Client](https://www.prisma.io/docs/referen
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/script
+npx try-prisma --template javascript/script
 ```
 
 Install npm dependencies:

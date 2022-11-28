@@ -9,7 +9,7 @@ This example shows how to implement integration tests using [Express](https://ex
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/testing-express
+npx try-prisma --template typescript/testing-express
 ```
 
 Install npm dependencies:

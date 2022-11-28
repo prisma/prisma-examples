@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [NestJS](https://docs.n
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-nestjs
+npx try-prisma --template typescript/rest-nestjs
 ```
 
 Install npm dependencies:

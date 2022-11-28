@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Next.j
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-nextjs-api-routes
+npx try-prisma --template typescript/rest-nextjs-api-routes
 ```
 
 Install npm dependencies:
