@@ -16,7 +16,7 @@
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "8.0.3"
+    "react-markdown": "8.0.4"
   },
   "devDependencies": {
     "@types/node": "18.11.10",
