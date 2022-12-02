@@ -158,6 +158,7 @@ describe('example test with Prisma Client', () => {
           include: {
             tags: true,
           },
+          orderBy: { title: 'asc' },
         },
         comments: {
           include: {
@@ -171,8 +172,8 @@ describe('example test with Prisma Client', () => {
     expect(user2.name).toEqual(name)
     expect(user2.email).toEqual(email)
     expect(user2.posts.length).toEqual(3)
-    expect(user2.posts[0].authorId).toEqual(user2.id)
-    expect(user2.posts[0].tags[0].id).toBeTruthy()
+    expect(user2.posts[1].authorId).toEqual(user2.id)
+    expect(user2.posts[1].tags[1].id).toBeTruthy()
     expect(
       user2.comments[0].comment.toLowerCase().includes('thanks'),
     ).toBeTruthy()
