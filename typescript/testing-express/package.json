@@ -25,7 +25,7 @@
     "jest-environment-node": "29.3.1",
     "nanoid": "4.0.0",
     "prisma": "4.7.0",
-    "supertest": "6.3.1",
+    "supertest": "6.3.2",
     "ts-jest": "29.0.3",
     "ts-node": "10.9.1",
     "typescript": "4.9.3"
