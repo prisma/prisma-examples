@@ -141,11 +141,17 @@ builder.mutationFields((t) => ({
     args: {
       id: t.arg.int({ required: true }),
     },
-    resolve: (query, parent, args) => {
+    resolve: async (query, parent, args) => {
+      // Toggling become simpler once this bug is resolved: https://github.com/prisma/prisma/issues/16715
+      const postPublished = await prisma.post.findUnique({
+        where: { id: args.id},
+        select: { published: true }
+      })
+      console.log(postPublished)
       return prisma.post.update({
         ...query,
         where: { id: args.id },
-        data: { published: true },
+        data: { published: !postPublished?.published },
       })
     },
   }),
