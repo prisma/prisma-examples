@@ -1,15 +1,22 @@
-import { ApolloServer } from 'apollo-server'
+import { createYoga } from 'graphql-yoga'
+import { createServer } from 'http'
 import { schema } from './schema'
-import { context } from './context'
 
-const server = new ApolloServer({
-  schema: schema,
-  context: context,
+const yoga = createYoga({
+  graphqlEndpoint: '/',
+  schema,
+  context: (req) => {
+    return {
+      req,
+    }
+  },
 })
 
-server.listen().then(async ({ url }) => {
+const server = createServer(yoga)
+
+server.listen(4000, () => {
   console.log(`\
-🚀 Server ready at: ${url}
+🚀 Server ready at: http://127.0.0.1:4000
 ⭐️ See sample queries: http://pris.ly/e/ts/graphql#using-the-graphql-api
   `)
 })
