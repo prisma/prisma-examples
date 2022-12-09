@@ -4,7 +4,6 @@ set -eu
 
 npm install
 npx prisma migrate dev --name init
-npx prisma migrate reset -f
 npm run dev &
 pid=$!
 
