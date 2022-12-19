@@ -3,7 +3,7 @@
 This example shows how to implement a **fullstack app in TypeScript with [SvelteKit](https://kit.svelte.dev/)** using [Svelte](https://svelte.dev/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-sveltekit
+npx try-prisma --template typescript/rest-sveltekit
 __INLINE(../_setup-1.md)__
 cd rest-sveltekit
 __INLINE(../_setup-2.md)__
