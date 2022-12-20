@@ -8,7 +8,7 @@
   "dependencies": {
     "@graphql-tools/schema": "9.0.12",
     "@hapi/hapi": "21.1.0",
-    "@prisma/client": "4.7.1",
+    "@prisma/client": "4.8.0",
     "apollo-server-hapi": "3.11.1",
     "graphql": "16.5.0",
     "graphql-scalars": "1.20.1"
@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/hapi__hapi": "20.0.13",
     "@types/node": "18.11.17",
-    "prisma": "4.7.1",
+    "prisma": "4.8.0",
     "ts-node": "10.9.1",
     "typescript": "4.9.4"
   },
