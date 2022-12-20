@@ -15,6 +15,7 @@ const app = async () => {
   const schema = await tq.buildSchema({
     resolvers: [PostResolver, UserResolver, PostCreateInput],
     scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }],
+    validate: { forbidUnknownValues: false }
   })
 
   new ApolloServer({ schema, context: context }).listen({ port: 4000 }, () =>
