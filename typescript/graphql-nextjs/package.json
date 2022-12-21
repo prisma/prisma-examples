@@ -15,7 +15,7 @@
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
   },
   "dependencies": {
-    "@apollo/client": "3.7.2",
+    "@apollo/client": "3.7.3",
     "@prisma/client": "4.8.0",
     "apollo-server-micro": "3.11.1",
     "express": "4.18.2",
