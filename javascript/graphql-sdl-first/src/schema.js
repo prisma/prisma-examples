@@ -3,7 +3,7 @@
  * @typedef { import("@prisma/client").UserCreateArgs } UserCreateArgs
  */
 
-const { gql } = require('apollo-server')
+const { gql } = require('@apollo/server')
 const { DateTimeResolver } = require('graphql-scalars')
 
 const typeDefs = gql`

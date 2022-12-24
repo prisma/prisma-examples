@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server'
+import { gql } from '@apollo/server'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
 
@@ -91,11 +91,11 @@ export const resolvers = {
     ) => {
       const or = args.searchString
         ? {
-            OR: [
-              { title: { contains: args.searchString } },
-              { content: { contains: args.searchString } },
-            ],
-          }
+          OR: [
+            { title: { contains: args.searchString } },
+            { content: { contains: args.searchString } },
+          ],
+        }
         : {}
 
       return context.prisma.post.findMany({

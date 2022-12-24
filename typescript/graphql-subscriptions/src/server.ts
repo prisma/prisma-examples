@@ -1,7 +1,6 @@
 import { createServer } from 'http'
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core'
 import { WebSocketServer } from 'ws'
-import { ApolloServer } from 'apollo-server-express'
+import { ApolloServer, ApolloServerPluginDrainHttpServer } from '@apollo/server'
 import express from 'express'
 import { useServer } from 'graphql-ws/lib/use/ws'
 import { schema } from './schema'

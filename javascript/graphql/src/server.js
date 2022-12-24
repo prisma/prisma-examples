@@ -1,4 +1,4 @@
-const { ApolloServer } = require('apollo-server')
+const { ApolloServer } = require('@apollo/server')
 const { schema } = require('./schema')
 const { context } = require('./context')
 
