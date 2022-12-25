@@ -13,7 +13,7 @@
     "@graphql-tools/schema": "9.0.12",
     "@prisma/client": "4.8.0",
     "fastify": "4.10.2",
-    "graphql": "16.5.0",
+    "graphql": "16.6.0",
     "graphql-scalars": "1.20.1",
     "mercurius": "11.4.0"
   },
