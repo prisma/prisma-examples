@@ -6,3 +6,5 @@ node_modules
 .output
 .env
 dist
+prisma/dev.*
+prisma/*.svg
