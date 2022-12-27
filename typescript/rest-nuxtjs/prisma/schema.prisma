@@ -16,15 +16,7 @@ datasource db {
 
 model User {
   id                  String            @id @default(cuid())
-  name                String
+  first_name          String
   last_name           String
-  likes               Likes[]
-  created_at          DateTime          @default(now())
-}
-
-model Likes {
-  id                  String            @id @default(cuid())
-  user_id             String
-  user                User              @relation(fields: [user_id], references: [id])
   created_at          DateTime          @default(now())
 }
