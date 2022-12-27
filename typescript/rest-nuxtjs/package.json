@@ -11,6 +11,7 @@
     "@nuxt/ui": "^0.3.3",
     "nuxt": "^3.0.0-rc.14",
     "@prisma/client": "^4.7.1",
-    "prisma": "^4.7.1"
+    "prisma": "^4.7.1",
+    "prisma-erd-generator": "^1.2.4"
   }
 }
