@@ -1,42 +1,23 @@
-# Nuxt 3 Minimal Starter
+Create an enviromental file and name it `.env` and place it in the root folder of the project. JWT_TOKEN_SECRET of your choice but for this example just paste the one below
+    `JWT_TOKEN_SECRET="PleaseChangeMe!"`
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Open your terminal and install the node dependencies
+    `npm i`
 
-## Setup
+Next run the prisma migration
+    `npx prisma migrate dev --name init`
 
-Make sure to install the dependencies:
+Next run seed to add the first batch of users into the DB. To learn more about DB seeds read this (https://www.prisma.io/docs/guides/database/seed-database#seeding-your-database-via-any-language-with-a-bash-script)
+    `npm run seed`
 
-```bash
-# yarn
-yarn install
+Now switch on your Nuxt server
+    `npm run dev`
 
-# npm
-npm install
+In another terminal open Prisma Studio
+    `npx prisma studio`
 
-# pnpm
-pnpm install --shamefully-hoist
-```
+Start adding users
 
-## Development Server
+This current example uses SQlite as its DB source for Prisma but you can use MySQL, MSSQL, PostgreSQL, MongoDB, CockroachDB 
 
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+If you want to know more about Prisma ORM visit there link here https://www.prisma.io/
