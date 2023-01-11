@@ -122,6 +122,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
 - [Tottem](https://github.com/poulainv/tottem): Fullstack app for "social library management" (based on Next.js)
 - [Dundring](https://github.com/sivertschou/dundring): An in-browser training application created to control and track you training with a smart bike trainer.
+- [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives.
 
 <hr>
 
