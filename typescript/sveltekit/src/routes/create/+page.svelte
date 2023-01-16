@@ -27,7 +27,7 @@
       rows="8"
       value={form?.content ?? ""}
     />
-    <input type="submit" value="Create" />
+    <button type="submit">Create</button>
     <a class="back" href="/"> or Cancel </a>
   </form>
 </div>
@@ -51,7 +51,7 @@
     border: 0.125rem solid rgba(0, 0, 0, 0.2);
   }
 
-  input[type="submit"] {
+  button[type="submit"] {
     background: #ececec;
     border: 0;
     padding: 1rem 2rem;

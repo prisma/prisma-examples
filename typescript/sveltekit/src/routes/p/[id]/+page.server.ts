@@ -22,7 +22,7 @@ export const actions = {
     });
 
     console.log("PUBLISHED :  ", updatedPost)
-    throw redirect(307, `/p/${id}`);
+    throw redirect(303, `/p/${id}`);
   },
 
   deletePost: async ({ params: { id } }: { params: { id: Number } }) => {
@@ -31,6 +31,6 @@ export const actions = {
     });
 
     console.log("DELETED :  ", deletedPost)
-    throw redirect(307, '/')
+    throw redirect(303, '/')
   }
 };

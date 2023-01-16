@@ -11,12 +11,8 @@ export const actions = {
     let name = data.get("name")
     let userEmail = data.get("userEmail")
 
-    if (!name) {
-      return fail(400, { userEmail, missing: true });
-    }
-
-    if (!userEmail) {
-      return fail(400, { name, missing: true });
+    if (!name || !userEmail) {
+      return fail(400, { name, userEmail, missing: true });
     }
 
     if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail))) {
@@ -31,6 +27,6 @@ export const actions = {
     });
 
     console.log("create request:  ", createdUser)
-    throw redirect(307, `/drafts`)
+    throw redirect(303, `/drafts`)
   }
 };

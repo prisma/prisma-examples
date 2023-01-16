@@ -21,7 +21,7 @@
       name="userEmail"
       value={form?.userEmail ?? ""}
     />
-    <input type="submit" value="Signup" />
+    <button type="submit">Signup</button>
 
     <a class="back" href="/"> or Cancel </a>
   </form>
@@ -43,7 +43,7 @@
     border: 0.125rem solid rgba(0, 0, 0, 0.2);
   }
 
-  input[type="submit"] {
+  button[type="submit"] {
     background: #ececec;
     border: 0;
     padding: 1rem 2rem;
