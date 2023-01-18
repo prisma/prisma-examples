@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.7.4",
-    "@prisma/client": "4.8.1",
+    "@prisma/client": "4.9.0",
     "apollo-server-micro": "3.11.1",
     "express": "4.18.2",
     "graphql": "16.6.0",
@@ -36,7 +36,7 @@
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
     "ts-node": "10.9.1",
-    "prisma": "4.8.1",
+    "prisma": "4.9.0",
     "typescript": "4.9.4"
   },
   "prisma": {
