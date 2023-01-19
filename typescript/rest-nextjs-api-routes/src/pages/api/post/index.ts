@@ -16,5 +16,5 @@ export default async function handle(
       author: { connect: { email: authorEmail } },
     },
   })
-  return res.json(result)
+  return res.status(201).json(result)
 }
