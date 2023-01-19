@@ -6,6 +6,7 @@ import Router from 'next/router'
 import { PostProps } from '../../components/Post'
 import { makeSerializable } from '../../lib/util'
 import prisma from '../../lib/prisma'
+import styles from '@/styles/Post.module.css'
 
 async function publish(id: number): Promise<void> {
   await fetch(`/api/publish/${id}`, {
@@ -21,7 +22,7 @@ async function destroy(id: number): Promise<void> {
   await Router.push('/')
 }
 
-const Post: React.FC<PostProps> = props => {
+const Post: React.FC<PostProps> = (props) => {
   let title = props.title
   if (!props.published) {
     title = `${title} (Draft)`
@@ -34,41 +35,22 @@ const Post: React.FC<PostProps> = props => {
         <p>By {props?.author?.name || 'Unknown author'}</p>
         <ReactMarkdown children={props.content} />
         {!props.published && (
-          <button onClick={() => publish(props.id)}>
+          <button className={styles.button} onClick={() => publish(props.id)}>
             Publish
           </button>
         )}
-        <button onClick={() => destroy(props.id)}>
+        <button className={styles.button} onClick={() => destroy(props.id)}>
           Delete
         </button>
       </div>
-      <style jsx>{`
-        .page {
-          background: white;
-          padding: 2rem;
-        }
-
-        .actions {
-          margin-top: 2rem;
-        }
-
-        button {
-          background: #ececec;
-          border: 0;
-          border-radius: 0.125rem;
-          padding: 1rem 2rem;
-        }
-
-        button + button {
-          margin-left: 1rem;
-        }
-      `}</style>
     </Layout>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = Number(Array.isArray(context.params.id) ? context.params.id[0] : context.params.id)
+  const id = Number(
+    Array.isArray(context.params.id) ? context.params.id[0] : context.params.id,
+  )
   const post = await prisma.post.findUnique({
     where: { id },
     include: { author: true },
