@@ -49,7 +49,9 @@ const Post: React.FC<PostProps> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = Number(
-    Array.isArray(context.params.id) ? context.params.id[0] : context.params.id,
+    Array.isArray(context.params?.id)
+      ? context.params?.id[0]
+      : context.params?.id,
   )
   const post = await prisma.post.findUnique({
     where: { id },

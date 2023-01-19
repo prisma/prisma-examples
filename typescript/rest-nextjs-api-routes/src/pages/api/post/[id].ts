@@ -19,7 +19,7 @@ export default async function handle(
 }
 
 // DELETE /api/post/:id
-async function handleDELETE(postId, res) {
+async function handleDELETE(postId: unknown, res: NextApiResponse<any>) {
   const post = await prisma.post.delete({
     where: { id: Number(postId) },
   })
