@@ -43,7 +43,7 @@
     "@nestjs/platform-express": "9.2.1",
     "@prisma/client": "4.9.0",
     "reflect-metadata": "0.1.13",
-    "rimraf": "4.1.0",
+    "rimraf": "4.1.1",
     "rxjs": "7.8.0"
   },
   "devDependencies": {
