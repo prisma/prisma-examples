@@ -103,7 +103,7 @@ import { builder } from "../builder";
 +    type: 'Profile',
 +    args: {
 +      bio: t.arg.string({ required: true }),
-+      userUniqueInput: t.arg({ type: UserUniqueInput })
++      data: t.arg({ type: UserUniqueInput })
 +    },
 +    resolve: async (query, _parent, args, _context) =>
 +      prisma.profile.create({
@@ -112,8 +112,8 @@ import { builder } from "../builder";
 +          bio: args.bio,
 +          user: {
 +            connect: {
-+              id: args.userUniqueInput?.id || undefined,
-+              email: args.userUniqueInput?.email || undefined
++              id: args.data?.id || undefined,
++              email: args.data?.email || undefined
 +            }
 +          }
 +        }
