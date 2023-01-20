@@ -333,7 +333,7 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1. Add the `Profile` type to your GraphQL schema
 
-First, create a new `profile.ts` file add a new GraphQL type via Pothos' `builder.prismaObject` function:
+First, create a new `profile.ts` file add a new GraphQL type via Pothos' `prismaObject` function:
 
 ```diff
 // ./src/schema/profile.ts
