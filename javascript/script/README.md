@@ -120,14 +120,7 @@ datasource db {
   url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
 ```
-Because MongoDB is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
 
-```
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongodb"]
-}
-```
 </details>
 
 ## Next steps
