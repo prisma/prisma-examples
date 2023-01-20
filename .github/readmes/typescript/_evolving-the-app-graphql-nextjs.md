@@ -54,115 +54,67 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1. Add the `Profile` type to your GraphQL schema
 
-First, add a new GraphQL type via Nexus' `objectType` function:
+First, add a new GraphQL type via Pothos's `prismaObject` function:
 
 ```diff
-// ./pages/api/index.ts
+// ./pages/api/graphql.ts
 
-+const Profile = objectType({
-+  name: 'Profile',
-+  definition(t) {
-+    t.nonNull.int('id')
-+    t.string('bio')
-+    t.field('user', {
-+      type: 'User',
-+      resolve: (parent) => {
-+        return prisma.profile
-+          .findUnique({
-+            where: { id: parent.id || undefined },
-+          })
-+          .user()
-+      },
-+    })
-+  },
++builder.prismaObject('Profile', {
++  fields: (t) => ({
++    id: t.exposeInt('id'),
++    bio: t.exposeString('bio', { nullable: true }),
++    user: t.relation('user'),
++  }),
 +})
 
-const User = objectType({
-  name: 'User',
-  definition(t) {
-    t.nonNull.int('id')
-    t.string('name')
-    t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'Post',
-      resolve: (parent) => {
-        return prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
-      },
-    })
-+   t.field('profile', {
-+     type: 'Profile',
-+     resolve: (parent) => {
-+       return prisma.user.findUnique({
-+         where: { id: parent.id }
-+       }).profile()
-+     }
-+   })
-  },
+builder.prismaObject('User', {
+  fields: (t) => ({
+    id: t.exposeInt('id'),
+    name: t.exposeString('name', { nullable: true }),
+    email: t.exposeString('email'),
+    posts: t.relation('posts'),
++    profile: t.relation('profile'),
+  }),
 })
 ```
-
-Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
-
-```diff
-export const schema = makeSchema({
-  types: [
-    Query,
-    Mutation,
-    Post,
-    User,
-+   Profile,
-    GQLDate
-  ],
-  // ... as before
-}
-```
-
-Note that in order to resolve any type errors, your development server needs to be running so that the Nexus types can be generated. If it's not running, you can start it with `npm run dev`.
 
 #### 2.2. Add a `createProfile` GraphQL mutation
 
 ```diff
-// ./pages/api/index.ts
+// ./pages/api/graphql.ts
 
-const Mutation = objectType({
-  name: 'Mutation',
-  definition(t) {
+// other object types, queries and mutations
 
-    // other mutations
 
-+   t.field('addProfileForUser', {
-+     type: 'Profile',
-+     args: {
-+       email: stringArg(),
-+       bio: stringArg()
-+     }, 
-+     resolve: async (_, args) => {
-+       return prisma.profile.create({
-+         data: {
-+           bio: args.bio,
-+           user: {
-+             connect: {
-+               email: args.email || undefined,
-+             }
-+           }
-+         }
-+       })
-+     }
-+   })
-
-  }
-})
++builder.mutationField('createProfile', (t) =>
++  t.prismaField({
++    type: 'Profile',
++    args: {
++      bio: t.arg.string({ required: true }),
++      data: t.arg({ type: UserUniqueInput })
++    },
++    resolve: async (query, _parent, args, _context) =>
++      prisma.profile.create({
++        ...query,
++        data: {
++          bio: args.bio,
++          user: {
++            connect: {
++              id: args.data?.id || undefined,
++              email: args.data?.email || undefined
++            }
++          }
++        }
++      })
++  })
++)
 ```
 
 Finally, you can test the new mutation like this:
 
 ```graphql
 mutation {
-  addProfileForUser(
+  createProfile(
     email: "mahmoud@prisma.io"
     bio: "I like turtles"
   ) {
