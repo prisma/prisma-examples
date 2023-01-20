@@ -8,35 +8,27 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
-    "generate:prisma": "prisma generate",
-    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
-    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "3.7.4",
+    "@pothos/core": "3.24.0",
+    "@pothos/plugin-prisma": "3.40.0",
     "@prisma/client": "4.8.1",
-    "apollo-server-micro": "3.11.1",
-    "express": "4.18.2",
     "graphql": "16.6.0",
     "graphql-scalars": "1.20.1",
-    "graphql-tag": "2.12.6",
-    "micro": "9.4.1",
-    "micro-cors": "0.1.1",
+    "graphql-yoga": "3.3.0",
     "next": "13.1.2",
-    "nexus": "1.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.4"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
-    "@types/micro-cors": "0.1.2",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
-    "ts-node": "10.9.1",
     "prisma": "4.8.1",
+    "ts-node": "10.9.1",
     "typescript": "4.9.4"
   },
   "prisma": {

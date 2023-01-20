@@ -3,10 +3,12 @@ import Router, { useRouter } from "next/router"
 import gql from "graphql-tag"
 import { useMutation } from "@apollo/client"
 import client from "../../lib/apollo-client"
+import { PostProps } from "../../components/Post"
+import { GetServerSideProps } from "next"
 
 const PublishMutation = gql`
-  mutation PublishMutation($postId: String!) {
-    publish(postId: $postId) {
+  mutation PublishMutation($id: ID!) {
+    publish(id: $id) {
       id
       title
       content
@@ -20,8 +22,8 @@ const PublishMutation = gql`
 `
 
 const DeleteMutation = gql`
-  mutation DeleteMutation($postId: String!) {
-    deletePost(postId: $postId) {
+  mutation DeleteMutation($id: ID!) {
+    deletePost(id: $id) {
       id
       title
       content
@@ -34,8 +36,8 @@ const DeleteMutation = gql`
   }
 `
 
-function Post(props) {
-  const postId = useRouter().query.id
+const Post: React.FC<{ data: { post: PostProps } }> = (props) => {
+  const id = useRouter().query.id
 
   const [publish] = useMutation(PublishMutation)
   const [deletePost] = useMutation(DeleteMutation)
@@ -57,7 +59,7 @@ function Post(props) {
             onClick={async e => {
               await publish({
                 variables: {
-                  postId,
+                  id,
                 },
               })
               Router.push("/")
@@ -70,7 +72,7 @@ function Post(props) {
           onClick={async e => {
             await deletePost({
               variables: {
-                postId,
+                id,
               },
             })
             Router.push("/")
@@ -104,12 +106,12 @@ function Post(props) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const id = Number(Array.isArray(context.params.id) ? context.params.id[0] : context.params.id)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = Number(Array.isArray(context.params?.id) ? context.params?.id[0] : context.params?.id)
   const { data } = await client.query({
     query: gql`
-      query PostQuery($postId: String!) {
-        post(postId: $postId) {
+      query PostQuery($id: ID!) {
+        post(id: $id) {
           id
           title
           content
@@ -121,7 +123,7 @@ export async function getServerSideProps(context) {
         }
       }
     `,
-    variables: { postId: id },
+    variables: { id },
   });
 
   return {

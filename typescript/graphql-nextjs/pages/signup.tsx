@@ -14,7 +14,7 @@ const SignupMutation = gql`
   }
 `
 
-function Signup(props) {
+function Signup() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
 
