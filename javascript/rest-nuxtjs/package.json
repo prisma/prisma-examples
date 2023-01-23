@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@nuxt/http": "0.6.4",
-    "@prisma/client": "4.8.1",
-    "core-js": "3.27.1",
+    "@prisma/client": "4.9.0",
+    "core-js": "3.27.2",
     "express": "4.18.2",
     "nuxt": "2.15.8"
   },
@@ -24,7 +24,7 @@
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-prettier": "4.2.1",
     "prettier": "2.8.3",
-    "prisma": "4.8.1"
+    "prisma": "4.9.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
