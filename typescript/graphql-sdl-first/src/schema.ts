@@ -1,8 +1,8 @@
-import { gql } from 'apollo-server'
+import { createSchema } from 'graphql-yoga'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
 
-export const typeDefs = gql`
+export const typeDefs = `
   type Mutation {
     createDraft(authorEmail: String!, data: PostCreateInput!): Post
     deletePost(id: Int!): Post
@@ -250,3 +250,8 @@ interface UserCreateInput {
   name?: string
   posts?: PostCreateInput[]
 }
+
+export const schema = createSchema({
+  typeDefs,
+  resolvers,
+})
