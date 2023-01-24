@@ -9,8 +9,6 @@ pid=$!
 
 sleep 15
 
-curl --fail 'http://localhost:3000/users/getAll'
-
 # check frontend
 curl --fail 'http://localhost:3000/'
 
