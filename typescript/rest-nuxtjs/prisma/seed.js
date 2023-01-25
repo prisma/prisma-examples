@@ -51,24 +51,13 @@ const userData = [
 ]
 
 async function main() {
-  console.log('Clear all previous users and their posts')
-  await prisma.$transaction([prisma.user.deleteMany(), prisma.post.deleteMany()])
-  .catch((error) => {
-    console.error(error);
-  });
-
-  console.log(`Start seeding ...`);
-  const bulkUserPromises = userData.map((user) => {
-    return prisma.user.create({
-      data: user
-    });
-  });
-
-  await prisma.$transaction(bulkUserPromises)
-  .catch((error) => {
-    console.error(error);
-  });
-  
+  console.log(`Start seeding ...`)
+  for (const u of userData) {
+    const user = await prisma.user.create({
+      data: u,
+    })
+    console.log(`Created user with id: ${user.id}`)
+  }
   console.log(`Seeding finished.`)
 }
 
