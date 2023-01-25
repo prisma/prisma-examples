@@ -13,7 +13,7 @@
     "@prisma/client": "4.9.0",
     "core-js": "3.27.2",
     "express": "4.18.2",
-    "nuxt": "2.15.8"
+    "nuxt": "3.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "12.0.0",
