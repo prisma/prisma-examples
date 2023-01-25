@@ -1,11 +1,18 @@
-const { ApolloServer } = require('apollo-server')
-const { typeDefs, resolvers } = require('./schema')
+const { createYoga } = require("graphql-yoga")
+const { createServer } = require("http")
+const { schema } = require('./schema')
 const { context } = require('./context')
 
-const server = new ApolloServer({ typeDefs, resolvers, context: context })
 
-server.listen().then(({ url }) =>
+const yoga = createYoga({
+  graphqlEndpoint: '/',
+  schema: schema,
+  context
+})
+const server = createServer(yoga)
+
+server.listen(4000, () => {
   console.log(`
-🚀 Server ready at: ${url}
-⭐️ See sample queries: http://pris.ly/e/js/graphql-sdl-first#using-the-graphql-api`),
-)
+  🚀 Server ready at: http://localhost:4000
+  ⭐️ See sample queries: http://pris.ly/e/js/graphql-sdl-first#using-the-graphql-api`)
+})

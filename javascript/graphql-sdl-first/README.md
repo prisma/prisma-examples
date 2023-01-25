@@ -2,7 +2,7 @@
 
 This example shows how to implement an **GraphQL server (SDL-first) with Node.js** with the following stack:
 
-- [**Apollo Server**](https://github.com/apollographql/apollo-server): HTTP server for GraphQL APIs   
+- [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): HTTP server for GraphQL APIs   
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
