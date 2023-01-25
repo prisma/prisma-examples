@@ -1,27 +1,10 @@
 import Layout from "../components/Layout"
-import Link from "next/link"
 import gql from "graphql-tag"
 import client from "../lib/apollo-client"
+import Post, { PostProps } from "../components/Post"
 
-const Post = ({ post }) => (
-  <Link href="/p/[id]" as={`/p/${post.id}`} legacyBehavior>
-    <a>
-      <h2>{post.title}</h2>
-      <small>By {post.author.name}</small>
-      <p>{post.content}</p>
-      <style jsx>{`
-        a {
-          text-decoration: none;
-          color: inherit;
-          padding: 2rem;
-          display: block;
-        }
-      `}</style>
-    </a>
-  </Link>
-)
 
-const Blog = (props) => {
+const Blog: React.FC<{ data: { feed: PostProps[] } }> = (props) => {
   return (
     <Layout>
       <div className="page">

@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 const Header = () => {
   const router = useRouter()
 
-  function isActive(pathname) {
+  function isActive(pathname: string) {
     return router.pathname === pathname
   }
 

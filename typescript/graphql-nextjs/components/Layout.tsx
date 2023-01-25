@@ -1,6 +1,9 @@
 import Header from './Header'
 
-const Layout = props => (
+type Props = {
+  children: React.ReactNode
+}
+const Layout: React.FC<Props> = (props) => (
   <div>
     <Header />
     <div className="layout">{props.children}</div>

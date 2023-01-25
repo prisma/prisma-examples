@@ -2,11 +2,10 @@
  * @typedef { import("@prisma/client").PrismaClient } Prisma
  * @typedef { import("@prisma/client").UserCreateArgs } UserCreateArgs
  */
-
-const { gql } = require('apollo-server')
+const { createSchema } = require('graphql-yoga')
 const { DateTimeResolver } = require('graphql-scalars')
 
-const typeDefs = gql`
+const typeDefs = `
   type Mutation {
     createDraft(authorEmail: String!, data: PostCreateInput!): Post
     deletePost(id: Int!): Post
@@ -104,11 +103,11 @@ const resolvers = {
     feed: (_parent, args, context) => {
       const or = args.searchString
         ? {
-            OR: [
-              { title: { contains: args.searchString } },
-              { content: { contains: args.searchString } },
-            ],
-          }
+          OR: [
+            { title: { contains: args.searchString } },
+            { content: { contains: args.searchString } },
+          ],
+        }
         : {}
 
       return context.prisma.post.findMany({
@@ -151,8 +150,8 @@ const resolvers = {
     signupUser: (_parent, args, context) => {
       const postData = args.data.posts
         ? args.data.posts.map((post) => {
-            return { title: post.title, content: post.content || undefined }
-          })
+          return { title: post.title, content: post.content || undefined }
+        })
         : []
 
       return context.prisma.user.create({
@@ -263,7 +262,10 @@ const resolvers = {
   DateTime: DateTimeResolver,
 }
 
-module.exports = {
-  resolvers,
+const schema = createSchema({
   typeDefs,
+  resolvers,
+})
+module.exports = {
+  schema
 }
