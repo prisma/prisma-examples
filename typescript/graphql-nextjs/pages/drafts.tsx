@@ -1,33 +1,16 @@
 import Layout from "../components/Layout"
-import Link from "next/link"
 import gql from "graphql-tag"
 import client from "../lib/apollo-client"
+import Post, { PostProps } from "../components/Post"
 
-const Post = ({ post }) => (
-  <Link href="/p/[id]" as={`/p/${post.id}`} legacyBehavior>
-    <a>
-      <h2>{post.title}</h2>
-      <small>By {post.author ? post.author.name : "Unknown Author"}</small>
-      <p>{post.content}</p>
-      <style jsx>{`
-        a {
-          text-decoration: none;
-          color: inherit;
-          padding: 2rem;
-          display: block;
-        }
-      `}</style>
-    </a>
-  </Link>
-)
 
-const Drafts = (props) => {
+const Drafts: React.FC<{ data: { drafts: PostProps[] } }> = (props) => {
   return (
     <Layout>
       <div className="page">
         <h1>Drafts</h1>
         <main>
-          {props.data.drafts.map(post => (
+          {props.data.drafts.map((post) => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
@@ -52,7 +35,7 @@ const Drafts = (props) => {
   )
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
   const { data } = await client.query({
     query: gql`
       query DraftsQuery {

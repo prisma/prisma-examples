@@ -1,10 +1,9 @@
 ## Evolving the app
 
-Evolving the application typically requires three steps:
+Evolving the application typically requires two steps:
 
 1. Migrate your database using Prisma Migrate
-1. Update your server-side application code
-1. Build new UI features in React
+1. Update your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -25,9 +24,12 @@ model User {
 
 model Post {
   id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   title     String
   content   String?
   published Boolean  @default(false)
+  viewCount Int      @default(0)
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
@@ -54,10 +56,11 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1. Add the `Profile` type to your GraphQL schema
 
-First, add a new GraphQL type via Pothos's `prismaObject` function:
+First, create a new `profile.ts` file add a new GraphQL type via Pothos' `prismaObject` function:
 
 ```diff
-// ./pages/api/graphql.ts
+// ./src/schema/profile.ts
++import { builder } from "../builder";
 
 +builder.prismaObject('Profile', {
 +  fields: (t) => ({
@@ -66,6 +69,12 @@ First, add a new GraphQL type via Pothos's `prismaObject` function:
 +    user: t.relation('user'),
 +  }),
 +})
+```
+
+Update the `User` object type to include the `profile field:
+
+```diff
+// ./src/schema/user.ts
 
 builder.prismaObject('User', {
   fields: (t) => ({
@@ -81,9 +90,12 @@ builder.prismaObject('User', {
 #### 2.2. Add a `createProfile` GraphQL mutation
 
 ```diff
-// ./pages/api/graphql.ts
+// ./src/schema/profile.ts
+import { builder } from "../builder";
++import { prisma } from '../db'
++import { UserUniqueInput } from './user';
 
-// other object types, queries and mutations
+// ... object type
 
 
 +builder.mutationField('createProfile', (t) =>
@@ -115,7 +127,9 @@ Finally, you can test the new mutation like this:
 ```graphql
 mutation {
   createProfile(
-    email: "mahmoud@prisma.io"
+    userUniqueInput: {
+      email: "mahmoud@prisma.io"
+    }
     bio: "I like turtles"
   ) {
     id
@@ -177,9 +191,3 @@ const userWithUpdatedProfile = await prisma.user.update({
 ```
 
 </details>
-
-### 3. Build new UI features in React
-
-Once you have added a new query or mutation to the API, you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory.
-
-In the application code, you can access the new operations via Apollo Client and populate the UI with the data you receive from the API calls.
