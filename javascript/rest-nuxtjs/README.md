@@ -1,6 +1,6 @@
 # Fullstack Example with NuxtJs (REST API)
 
-This example shows how to implement a **fullstack app with [NuxtJs](https://nuxtjs.org//)** using [Vue](https://vuejs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app with [NuxtJs](https://nuxtjs.org//)** using [Vue](https://vuejs.org/) (frontend) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
 
@@ -227,7 +227,7 @@ model User {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --name add-profile
 ```
 
 ### 2. Update your application code
