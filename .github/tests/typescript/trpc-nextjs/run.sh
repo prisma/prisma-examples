@@ -9,7 +9,7 @@ pid=$!
 
 sleep 15
 
-curl --fail 'http://localhost:3000/api/trpc/post.filterPosts?searchString=Prisma'
+curl --fail 'http://localhost:3000/api/trpc/post.feed'
 
 # check frontend
 curl --fail 'http://localhost:3000/'
