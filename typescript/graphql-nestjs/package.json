@@ -47,7 +47,7 @@
     "apollo-server-express": "3.11.1",
     "class-validator": "0.14.0",
     "graphql": "16.6.0",
-    "graphql-tools": "8.3.15",
+    "graphql-tools": "8.3.16",
     "reflect-metadata": "0.1.13",
     "rimraf": "4.1.2",
     "rxjs": "7.8.0"
