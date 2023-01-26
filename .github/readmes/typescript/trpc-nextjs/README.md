@@ -1,13 +1,22 @@
 # Fullstack Example with Next.js (REST API)
 
-This example shows how to implement a **fullstack app with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **Fullstack NextJs app with the t3 strack** with the following tools:
+
+This example shows how to implement a **fullstack app in TypeScript with :
+- [**Next.js**](https://nextjs.org/)**: A [React](https://reactjs.org/) framework
+- [**tRPC**](https://trpc.io/)
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
+- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
+
+> Check out the [t3](https://create.t3.gg/) to learn how to create a production ready example.
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template javascript/rest-nextjs
+npx try-prisma --template typescript/trpc-nextjs
 __INLINE(../_setup-1.md)__
-cd rest-nextjs
+cd rest-nextjs-api-routes
 __INLINE(../_setup-2.md)__
-cd prisma-examples/javascript/rest-nextjs
+cd prisma-examples/typescript/trpc-nextjs
 __INLINE(../_setup-3.md)__
 
 ### 3. Start the app
@@ -44,8 +53,8 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 </details>
 
-__INLINE(../../_using-the-rest-api-nextjs.md)__
+__INLINE(../_evolving-the-app-rest-nextjs.md)__
 
 __INLINE(../../_switching-databases.md)__
 
-__INLINE(../_next-steps-rest-nextjs.md)__
+__INLINE(../../_next-steps.md)__

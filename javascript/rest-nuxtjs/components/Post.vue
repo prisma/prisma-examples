@@ -6,21 +6,18 @@
     <p v-html="post.content"></p>
   </div>
 </template>
-<script>
-export default {
-  name: 'Post',
-  props: {
-    post: {
-      type: Object,
-      default: [],
-    },
-  },
-  methods: {
-    navigate: function (post) {
-      this.$router.push(`/p/${post.id}`)
-    },
-  },
-}
+
+<script setup>
+
+const { post } = defineProps({
+  post: {
+    type: Object,
+  }
+})
+const router = useRouter()
+
+const navigate = (post) => router.push(`/p/${post.id}`)
+
 </script>
 <style scoped>
 div {

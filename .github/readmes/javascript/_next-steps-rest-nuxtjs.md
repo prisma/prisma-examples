@@ -43,7 +43,7 @@ model User {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --name add-profile
 ```
 
 ### 2. Update your application code
