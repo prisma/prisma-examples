@@ -87,7 +87,7 @@ The app is now running, navigate to [`http://localhost:5173/`](http://localhost:
 
 ## Using the SvelteKit Actions and Load functions
 
-The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these funcitons are defined in the `+page.server.ts` in the respective route folders.
+The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these functions are defined in the `+page.server.ts` in the respective route folders.
 
 ### `LOAD`
 - `/`: Fetch all *published* posts
