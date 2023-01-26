@@ -2,47 +2,42 @@
   <div>
     <form @submit="createDraft">
       <h1>Create Draft</h1>
-      <input autoFocus placeholder="Title" type="text" v-model="title" />
-      <input
-        placeholder="Author (email address)"
-        type="text"
-        v-model="authorEmail"
-      />
-      <textarea cols="50" placeholder="Content" rows="8" v-model="content" />
+      <input autoFocus placeholder="Title" type="text" v-model="formData.title" />
+      <input placeholder="Author (email address)" type="text" v-model="formData.authorEmail" />
+      <textarea cols="50" placeholder="Content" rows="8" v-model="formData.content" />
       <input type="submit" value="Create" />
       <NuxtLink class="back" to="/"> or Cancel </NuxtLink>
     </form>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return { title: '', authorEmail: '', content: '' }
-  },
-  methods: {
-    createDraft: async function (e) {
-      e.preventDefault()
-      const body = {
-        title: this.title,
-        authorEmail: this.authorEmail,
-        content: this.content,
-      }
+<script setup>
 
-      try {
-        const res = await fetch(`${location.origin}/api/post`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        })
-        const data = await res.json()
-        await this.$router.push({ name: 'drafts' })
-      } catch (error) {
-        console.error(error)
-      }
-    },
-  },
+
+const router = useRouter()
+
+const formData = reactive({
+  title: '',
+  content: '',
+  authorEmail: '',
+})
+
+const createDraft = async (event) => {
+  event.preventDefault()
+  console.log(formData)
+  const { title, content, authorEmail } = formData
+  const res = await useFetch('/api/post', {
+    method: "POST",
+    body: JSON.stringify({ title, content, authorEmail })
+  })
+  if (!res.data) {
+    throw createError({ statusCode: 400, statusMessage: 'Oops, something went wrong' })
+  }
+
+  router.push('/drafts')
 }
+
 </script>
+
 <style scoped>
 .page {
   background: white;

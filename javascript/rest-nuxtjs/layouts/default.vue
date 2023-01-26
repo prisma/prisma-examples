@@ -1,18 +1,10 @@
 <template>
   <div class="layout">
     <Header />
-    <Nuxt />
+    <slot />
   </div>
 </template>
-<script>
-import Header from '@/components/Header'
 
-export default {
-  components: {
-    Header,
-  },
-}
-</script>
 <style>
 html {
   box-sizing: border-box;
