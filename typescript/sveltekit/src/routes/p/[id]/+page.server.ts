@@ -14,23 +14,21 @@ export const load = async ({ params: { id } }: { params: { id: Number } }) => {
 /** @type {import('./$types').Actions} */
 export const actions = {
   publishPost: async ({ params: { id } }: { params: { id: Number } }) => {
-    const updatedPost = await prisma.post.update({
+    await prisma.post.update({
       where: { id: Number(id) },
       data: {
         published: true,
       },
     });
 
-    console.log("PUBLISHED :  ", updatedPost)
     throw redirect(303, `/p/${id}`);
   },
 
   deletePost: async ({ params: { id } }: { params: { id: Number } }) => {
-    const deletedPost = await prisma.post.delete({
+    await prisma.post.delete({
       where: { id: Number(id) },
     });
 
-    console.log("DELETED :  ", deletedPost)
     throw redirect(303, '/')
   }
 };

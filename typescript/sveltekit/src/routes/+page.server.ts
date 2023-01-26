@@ -6,6 +6,6 @@ export const load = async () => {
     where: { published: true },
     include: { author: true },
   })
-console.log("feed ", response)
+  
   return { feed: response };
 };

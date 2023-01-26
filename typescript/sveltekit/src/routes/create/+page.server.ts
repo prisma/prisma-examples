@@ -14,14 +14,13 @@ export const actions = {
       return fail(400, { content, authorEmail, title, missing: true });
     }
 
-    const createdPost = await prisma.post.create({
+    await prisma.post.create({
       data: {
         title,
         content,
         author: { connect: { email: authorEmail } }
       },
     });
-    console.log("create request:  ", createdPost)
 
     throw redirect(303, `/drafts`)
   }

@@ -19,14 +19,13 @@ export const actions = {
       return fail(400, { name, incorrect: true });
     }
 
-    const createdUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         name,
         email: userEmail,
       },
     });
 
-    console.log("create request:  ", createdUser)
     throw redirect(303, `/drafts`)
   }
 };
