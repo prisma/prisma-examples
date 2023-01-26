@@ -1,4 +1,4 @@
-# Fullstack Example with Next.js (REST API)
+# Fullstack Example with Next.js (tRPC)
 
 This example shows how to implement a **Fullstack NextJs app with the t3 strack** with the following tools:
 
@@ -24,7 +24,7 @@ npx try-prisma --template typescript/trpc-nextjs
 Install npm dependencies:
 
 ```
-cd rest-nextjs-api-routes
+cd trpc-nextjs
 npm install
 ```
 
