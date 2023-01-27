@@ -48,7 +48,9 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`rest-nextjs-api-routes-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes-auth) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) and authentication (using [NextAuth.js](https://next-auth.js.org/)) |
 | [`rest-nextjs-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-express)                 | [Next.js](https://nextjs.org/) app with a REST API (using [Express](https://expressjs.com/))                                                                                                         |
 | [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nextjs)                           | [Next.js](https://nextjs.org/) app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [GraphQL Nexus](https://github.com/graphql-nexus/nexus))            |
-| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app with a REST API                                                                                                                                             |
+| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app with a REST API             |
+| [`sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions            |
+| [`trpc-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/trpc-nextjs)           | [Next.js](https://nextjs.org/) app with [tRPC ](https://trpc.io/))                                                                     |
 
 ### Backend only
 
@@ -85,7 +87,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | Demo                                                                                          | Description                                                                                                                      |
 | :-------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
 | [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nextjs) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) |
-| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nuxtjs) | [NuxtJS](https://nuxtjs.org/) app with a REST API                                                                                |
+| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nuxtjs) | [NuxtJS](https://nuxtjs.org/) app with a REST API  
+| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app with a REST API                                                                                |
 
 ### Backend only
 
