@@ -90,6 +90,30 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 </details>
 
+## Using the tRPC API
+
+The application has the following queries and mutations:
+### Queries
+- `feed`: Fetch all *published* posts
+- `drafts`: Fetch all *drafted* posts
+- `postById`: Fetch a *single* post by `id`
+- `filterPosts`: filter posts containing a specific `searchString` input
+
+### Mutations
+- `createDraft`: Create a new post
+    - Inputs:
+        - `title: String` (required): The title of the post
+        - `content: String` : The content of the post
+        - `authorEmail: String` (required): The email of the post's author
+- `publishPost`: Publish a post by its `id`
+- `deletePost`: Delete a post by its `id`
+- `signup`: Create a new user
+    - Inputs:
+        - `email: String` (required): The email address of the user
+        - `name: String`: The name of the user
+
+
+
 ## Evolving the app
 
 Evolving the application typically requires three steps:
@@ -269,6 +293,6 @@ datasource db {
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

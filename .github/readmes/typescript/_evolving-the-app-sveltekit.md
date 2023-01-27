@@ -97,6 +97,6 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ### 3. Build new UI features in Svelte
 
-Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in Svelte. It could e.g. be called `profile/+page.svelte` and would be located in the `src/routes` directory.
+Once you have added a new route to your app (e.g. `/profile/+page.server.ts` with respective load and action operations), you can start building a new UI component in Svelte. It could e.g. be called `/profile/+page.svelte` and would be located in the `src/routes` directory.
 
-In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
+In the application code, you can manipulate data using `actions` and populate the UI with the data you receive from the `load` function.
