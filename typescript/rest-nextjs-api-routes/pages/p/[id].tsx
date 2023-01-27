@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import Router from 'next/router'
 import { PostProps } from '../../components/Post'
-import { makeSerializable } from '../../lib/util'
 import prisma from '../../lib/prisma'
 
 async function publish(id: number): Promise<void> {
@@ -73,7 +72,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: { id },
     include: { author: true },
   })
-  return { props: { ...makeSerializable(post) } }
+  return { props: { ...post } }
 }
 
 export default Post

@@ -3,7 +3,6 @@ import { GetServerSideProps } from "next"
 import Layout from "../components/Layout"
 import Post, { PostProps } from "../components/Post"
 import prisma from '../lib/prisma'
-import { makeSerializable } from '../lib/util'
 
 type Props = {
   drafts: PostProps[]
@@ -46,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     include: { author: true },
   })
   return {
-    props: { drafts: makeSerializable(drafts) },
+    props: { drafts },
   }
 }
 
