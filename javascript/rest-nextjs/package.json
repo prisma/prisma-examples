@@ -14,9 +14,11 @@
   "dependencies": {
     "@prisma/client": "4.9.0",
     "next": "^13.0.0",
+    "next-superjson": "0.0.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-markdown": "^8.0.0"
+    "react-markdown": "^8.0.0",
+    "superjson": "1.12.2"
   },
   "devDependencies": {
     "prisma": "4.9.0"

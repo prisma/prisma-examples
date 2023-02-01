@@ -1,0 +1,33 @@
+nav {
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000;
+  display: inline-block;
+}
+
+nav a + a {
+  margin-left: 1rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.left a {
+  color: gray;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.right a {
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}

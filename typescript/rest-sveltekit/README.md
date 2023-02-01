@@ -81,35 +81,26 @@ The app is now running, navigate to [`http://localhost:5173/`](http://localhost:
 
 </details>
 
-## Using the REST API
+The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these funcitons are defined in the `+page.server.ts` in the respective route folders.
 
-You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/api` route (in this case that is `localhost:5173/api/`, so you can e.g. reach the API with [`localhost:5173/api/feed`](http://localhost:5173/api/feed)).
+### `LOAD`
+- `/`: Fetch all *published* posts
+- `/drafts`: Fetch all *drafted* posts
+- `/p/:id`: Fetch a *single* post by its `id`
 
-### `GET`
-
-- `/api/post/:id`: Fetch a single post by its `id`
-- `/api/feed`: Fetch all _published_ posts
-- `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
-
-### `POST`
-
-- `/api/post`: Create a new post
-  - Body:
-    - `title: String` (required): The title of the post
-    - `content: String` (optional): The content of the post
-    - `authorEmail: String` (required): The email of the user that creates the post
-- `/api/user`: Create a new user
-  - Body:
-    - `email: String` (required): The email address of the user
-    - `name: String` (optional): The name of the user
-
-### `PUT`
-
-- `/api/publish/:id`: Publish a post by its `id`
-
-### `DELETE`
-  
-- `/api/post/:id`: Delete a post by its `id`
+### `ACTIONS`
+- `/create`: Create a new post
+    - `default` action body:
+        - `title: String` (required): The title of the post
+        - `content: String` (required): The content of the post
+        - `authorEmail: String` (required): The email of the user that creates the post
+- `/p/:id`:
+    - `publishPost` action: Publish a post by its `id`
+    - `deletePost` action: Delete a post by its `id`
+- `/signup`: Create a new user
+    - `default` action body:
+        - `email: String` (required): The email address of the user
+        - `name: String` (required): The name of the user
 
 ## Evolving the app
 
@@ -117,7 +108,7 @@ Evolving the application typically requires three steps:
 
 1. Migrate your database using Prisma Migrate
 1. Update your server-side application code
-1. Build new UI features in React
+1. Build new UI features in Svelte
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -210,9 +201,9 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ### 3. Build new UI features in Svelte
 
-Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in Svelte. It could e.g. be called `profile/+page.svelte` and would be located in the `src/routes` directory.
+Once you have added a new route to your app (e.g. `/profile/+page.server.ts` with respective load and action operations), you can start building a new UI component in Svelte. It could e.g. be called `/profile/+page.svelte` and would be located in the `src/routes` directory.
 
-In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
+In the application code, you can manipulate data using `actions` and populate the UI with the data you receive from the `load` function.
 
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
@@ -290,6 +281,6 @@ datasource db {
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

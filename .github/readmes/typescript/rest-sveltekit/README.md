@@ -44,9 +44,28 @@ The app is now running, navigate to [`http://localhost:5173/`](http://localhost:
 
 </details>
 
-__INLINE(../../_using-the-rest-api-sveltekit.md)__
+The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these funcitons are defined in the `+page.server.ts` in the respective route folders.
 
-__INLINE(../_evolving-the-app-rest-sveltekit.md)__
+### `LOAD`
+- `/`: Fetch all *published* posts
+- `/drafts`: Fetch all *drafted* posts
+- `/p/:id`: Fetch a *single* post by its `id`
+
+### `ACTIONS`
+- `/create`: Create a new post
+    - `default` action body:
+        - `title: String` (required): The title of the post
+        - `content: String` (required): The content of the post
+        - `authorEmail: String` (required): The email of the user that creates the post
+- `/p/:id`:
+    - `publishPost` action: Publish a post by its `id`
+    - `deletePost` action: Delete a post by its `id`
+- `/signup`: Create a new user
+    - `default` action body:
+        - `email: String` (required): The email address of the user
+        - `name: String` (required): The name of the user
+
+__INLINE(../_evolving-the-app-sveltekit.md)__
 
 __INLINE(../../_switching-databases.md)__
 

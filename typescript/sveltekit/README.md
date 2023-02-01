@@ -44,11 +44,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-When `npx prisma migrate dev` is executed against a newly created database, seeding should also triggered. If it wasn't, run this command:
-```
-npx prisma db seed
-```
-The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the app
@@ -65,29 +61,29 @@ The app is now running, navigate to [`http://localhost:5173/`](http://localhost:
 
 **Blog** (located in [`./src/routes/+page.svelte`](./src/routes/+page.svelte))
 
-<img width="1904" alt="home page" src="https://user-images.githubusercontent.com/49971500/214607585-2b21d5ea-7810-4f58-b866-f58f267e48a2.png">
+![home page](https://user-images.githubusercontent.com/49971500/214607585-2b21d5ea-7810-4f58-b866-f58f267e48a2.png)
 
 **Signup** (located in [`./src/routes/signup/+page.svelte`](./src/routes/signup/+page.svelte))
 
-<img width="1904" alt="Sign up page" src="https://user-images.githubusercontent.com/49971500/214607832-be532abb-c28a-496c-b5b9-54295ab40edf.png">
+![Sign up page](https://user-images.githubusercontent.com/49971500/214607832-be532abb-c28a-496c-b5b9-54295ab40edf.png)
 
 **Create post (draft)** (located in [`./src/routes/create/+page.svelte`](./src/routes/create/+page.svelte))
 
-<img width="1904" alt="Create Post page" src="https://user-images.githubusercontent.com/49971500/214608388-022b23c6-05c5-4892-9839-a9e8c2de37c7.png">
+![Create Post page](https://user-images.githubusercontent.com/49971500/214608388-022b23c6-05c5-4892-9839-a9e8c2de37c7.png)
 
 **Drafts** (located in [`./src/routes/drafts/+page.svelte`](./src/routes/drafts/+page.svelte))
 
-<img width="1904" alt="View Draft" src="https://user-images.githubusercontent.com/49971500/214608068-8a8b2b12-f47b-434f-b668-14fdd1df9edd.png">
+![View Draft[(https://user-images.githubusercontent.com/49971500/214608068-8a8b2b12-f47b-434f-b668-14fdd1df9edd.png)
 
 **View post** (located in [`./src/routes/p/[id]/+page.svelte`](./src/routes/p/[id]/+page.svelte)) (delete or publish here)
 
-<img width="1904" alt="View Post" src="https://user-images.githubusercontent.com/49971500/214607411-9b470fa3-bc88-4b14-86e6-9ec18fd2e3dd.png">
+![View Post](https://user-images.githubusercontent.com/49971500/214607411-9b470fa3-bc88-4b14-86e6-9ec18fd2e3dd.png)
 
 </details>
 
 ## Using the SvelteKit Actions and Load functions
 
-The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these funcitons are defined in the `+page.server.ts` in the respective route folders.
+The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these functions are defined in the `+page.server.ts` in the respective route folders.
 
 ### `LOAD`
 - `/`: Fetch all *published* posts
@@ -99,7 +95,7 @@ The `load` functions interact with the server to get data into your pages while 
     - `default` action body:
         - `title: String` (required): The title of the post
         - `content: String` (required): The content of the post
-        - `authorEmail: String` (required): The email of the user that creates the post
+        - `authorEmail: String` (required): The email post's author
 - `/p/:id`:
     - `publishPost` action: Publish a post by its `id`
     - `deletePost` action: Delete a post by its `id`
@@ -114,7 +110,7 @@ Evolving the application typically requires three steps:
 
 1. Migrate your database using Prisma Migrate
 1. Update your server-side application code
-1. Build new UI features in React
+1. Build new UI features in Svelte
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -211,6 +207,7 @@ Once you have added a new route to your app (e.g. `/profile/+page.server.ts` wit
 
 In the application code, you can manipulate data using `actions` and populate the UI with the data you receive from the `load` function.
 
+
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
@@ -286,6 +283,6 @@ datasource db {
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`madewithprisma`](https://prisma.slack.com/archives/C565176N6) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

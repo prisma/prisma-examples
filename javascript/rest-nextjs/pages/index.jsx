@@ -1,6 +1,5 @@
 import Layout from '../components/Layout'
 import Post from '../components/Post'
-import { makeSerializable } from '../lib/util'
 import prisma from '../lib/prisma';
 
 const Blog = props => {
@@ -40,7 +39,7 @@ export const getServerSideProps = async () => {
     include: { author: true },
   })
   return {
-    props: { feed: makeSerializable(feed) },
+    props: { feed },
   }
 }
 
