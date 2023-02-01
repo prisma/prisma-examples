@@ -50,7 +50,8 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nextjs)                           | [Next.js](https://nextjs.org/) app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [GraphQL Nexus](https://github.com/graphql-nexus/nexus))            |
 | [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app with a REST API             |
 | [`sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions            |
-| [`trpc-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/trpc-nextjs)           | [Next.js](https://nextjs.org/) app with [tRPC ](https://trpc.io/))                                                                     |
+| [`trpc-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/trpc-nextjs)           | [Next.js](https://nextjs.org/) app with [tRPC ](https://trpc.io/)
+| [`remix`](https://github.com/prisma/prisma-examples/tree/latest/typescript/remix)           | [Remix](https://remix.run/) app |
 
 ### Backend only
 
