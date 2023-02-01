@@ -26,7 +26,6 @@ function Signup() {
         <form
           onSubmit={async e => {
             e.preventDefault()
-            console.log("submit", name, email)
 
             await signup({
               variables: {
