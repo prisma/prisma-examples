@@ -92,7 +92,7 @@ export default function Signup() {
           type="submit"
           value="Signup"
         />
-        <Link className="back" to="/">
+        <Link className="back ml-10" to="/">
           or Cancel
         </Link>
       </Form>

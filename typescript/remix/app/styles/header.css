@@ -4,22 +4,22 @@ nav {
   align-items: center;
 }
 
-.bold {
-  font-weight: bold;
-}
-
-a {
+nav a {
   text-decoration: none;
   color: #000;
   display: inline-block;
 }
 
-.left {
-  color: gray;
+nav a + a {
+  margin-left: 1rem;
 }
 
-a+a {
-  margin-left: 1rem;
+.bold {
+  font-weight: bold;
+}
+
+.left a {
+  color: gray;
 }
 
 .right {

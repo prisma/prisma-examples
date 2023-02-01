@@ -99,9 +99,9 @@ export default function Signup() {
         </div>
         <input
           type="submit"
-          value="Signup"
+          value="Create"
         />
-        <Link className="back" to="/">
+        <Link className="back ml-10" to="/">
           or Cancel
         </Link>
       </Form>

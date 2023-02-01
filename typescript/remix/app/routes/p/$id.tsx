@@ -1,4 +1,5 @@
-import { ActionArgs, LoaderArgs, MetaFunction, redirect } from "@remix-run/node";
+import type { ActionArgs, LoaderArgs, MetaFunction} from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { marked } from "marked";
 import { json } from "react-router";
@@ -88,13 +89,13 @@ export default function Post() {
       <div style={{ display: 'flex', }}>
         {!post.published && (
           <Form method="put">
-            <button type="submit" value="publish" name="_publish">
+            <button type="submit" value="publish" name="_publish" className="button">
               Publish
             </button>
           </Form>
         )}
         <Form method="delete">
-          <button type="submit" value="delete" name="_delete">
+          <button type="submit" value="delete" name="_delete" className="button ml-10">
             Delete
           </button>
         </Form>
