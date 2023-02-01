@@ -14,8 +14,8 @@
     "@next-auth/prisma-adapter": "1.0.5",
     "@prisma/client": "4.9.0",
     "next": "13.1.6",
-    "next-auth": "4.18.10",
     "next-superjson": "0.0.4",
+    "next-auth": "4.19.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.5",
@@ -27,7 +27,7 @@
     "@types/react": "18.0.27",
     "prisma": "4.9.0",
     "ts-node": "10.9.1",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
