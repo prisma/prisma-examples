@@ -86,7 +86,6 @@ You can also access the REST API of the API server directly. It is running on th
 
 ### `GET`
 
-- `/api/feed`: Fetch all _published_ posts
 - `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
 ### `POST`
