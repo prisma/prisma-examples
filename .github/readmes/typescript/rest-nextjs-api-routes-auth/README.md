@@ -4,6 +4,11 @@ This example shows how to implement a **fullstack app in TypeScript with [Next.j
 
 Note that the app uses a mix of server-side rendering with `getServerSideProps` (SSR) and static site generation with `getStaticProps` (SSG). When possible, SSG is used to make database queries already at build-time (e.g. when fetching the [public feed](./pages/index.tsx)). Sometimes, the user requesting data needs to be authenticated, so SSR is being used to render data dynamically on the server-side (e.g. when viewing a user's [drafts](./pages/drafts.tsx)).
 
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fprisma%2Ffullstack-prisma-nextjs-blog&env=SECRET,GITHUB_ID,GITHUB_SECRET&project-name=fullstack-prisma-nextjs-blog&repo-name=fullstack-prisma-nextjs-blog&integration-ids=oac_eGEyJUf8jDjOQSCNJiyYRbfX)  — with Railway integration for provisioning a database.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fprisma%2Ffullstack-prisma-nextjs-blog&env=DATABASE_URL,SECRET,GITHUB_ID,GITHUB_SECRET&project-name=fullstack-prisma-nextjs-blog&repo-name=fullstack-prisma-nextjs-blog) — without Railway integration, bring your own database
+
 __INLINE(../_setup-0.md)__
 npx try-prisma --template typescript/rest-nextjs-api-routes-auth
 __INLINE(../_setup-1.md)__
@@ -37,7 +42,7 @@ Click on the **Register application** button, and then you will be able to find 
 The resulting section in the `.env` file might look like this:
 
 ```
-# GitHub oAuth
+# GitHub OAuth
 GITHUB_ID=6bafeb321963449bdf51
 GITHUB_SECRET=509298c32faa283f28679ad6de6f86b2472e1bff
 ```
