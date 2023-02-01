@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
-function createContext(req) {
+async function createContext(req) {
   return {
     ...req,
     prisma,
@@ -10,5 +10,5 @@ function createContext(req) {
 }
 
 module.exports = {
-  createContext: createContext,
+  createContext,
 }

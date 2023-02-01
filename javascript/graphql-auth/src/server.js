@@ -1,16 +1,20 @@
-const { ApolloServer } = require('apollo-server')
-const { createContext } = require('./context')
+const { ApolloServer } = require('@apollo/server')
+const { startStandaloneServer } = require("@apollo/server/standalone")
 const { schema } = require('./schema')
+const { createContext } = require('./context')
 
-const server = new ApolloServer({
-  schema,
-  context: createContext,
-})
+const start = async () => {
+  const server = new ApolloServer({ schema })
 
-server.listen().then(({ url }) =>
-  console.log(
-    `\
+  const { url } = await startStandaloneServer(server, {
+    context: createContext,
+    listen: { port: 4000 }
+  })
+
+  console.log(`\
 🚀 Server ready at: ${url}
 ⭐️ See sample queries: http://pris.ly/e/js/graphql-auth#using-the-graphql-api`,
-  ),
-)
+  )
+}
+
+start()
