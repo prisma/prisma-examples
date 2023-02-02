@@ -47,7 +47,7 @@
     "apollo-server-express": "3.11.1",
     "graphql": "16.6.0",
     "graphql-scalars": "1.20.1",
-    "graphql-tools": "8.3.16",
+    "graphql-tools": "8.3.17",
     "reflect-metadata": "0.1.13",
     "rimraf": "4.1.2",
     "rxjs": "7.8.0"
