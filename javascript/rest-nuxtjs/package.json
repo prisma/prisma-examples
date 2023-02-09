@@ -13,7 +13,7 @@
     "nuxt": "3.2.0"
   },
   "devDependencies": {
-    "prisma": "4.10.0"
+    "prisma": "4.10.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
