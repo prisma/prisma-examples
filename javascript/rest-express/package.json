@@ -6,7 +6,7 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "4.10.0",
+    "@prisma/client": "4.10.1",
     "express": "4.18.2"
   },
   "devDependencies": {

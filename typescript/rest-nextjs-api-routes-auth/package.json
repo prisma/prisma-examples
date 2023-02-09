@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "1.0.5",
-    "@prisma/client": "4.10.0",
+    "@prisma/client": "4.10.1",
     "next": "13.1.6",
     "next-superjson": "0.0.4",
     "next-auth": "4.19.2",

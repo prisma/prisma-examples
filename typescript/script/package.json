@@ -5,7 +5,7 @@
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/client": "4.10.0",
+    "@prisma/client": "4.10.1",
     "@types/node": "18.13.0"
   },
   "devDependencies": {
