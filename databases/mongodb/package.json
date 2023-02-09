@@ -18,7 +18,7 @@
     "script:find-posts": "ts-node src/prisma-examples/6-find-posts.ts"
   },
   "dependencies": {
-    "@prisma/client": "4.10.0"
+    "@prisma/client": "4.10.1"
   },
   "devDependencies": {
     "@types/jest": "29.4.0",

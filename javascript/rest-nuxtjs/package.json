@@ -9,7 +9,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@prisma/client": "4.10.0",
+    "@prisma/client": "4.10.1",
     "nuxt": "3.2.0"
   },
   "devDependencies": {

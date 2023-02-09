@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@hapi/hapi": "21.2.1",
-    "@prisma/client": "4.10.0",
+    "@prisma/client": "4.10.1",
     "@types/node": "18.13.0"
   },
   "devDependencies": {
