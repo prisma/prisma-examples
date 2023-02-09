@@ -23,13 +23,13 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 Download this example:
 
 ```
-npx try-prisma --template typescript/graphql
+npx try-prisma --template typescript/graphql-nexus
 ```
 
 Install npm dependencies:
 
 ```
-cd graphql
+cd graphql-nexus
 npm install
 ```
 
