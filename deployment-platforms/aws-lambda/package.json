@@ -10,7 +10,7 @@
     "@prisma/client": "4.10.1"
   },
   "devDependencies": {
-    "prisma": "4.10.0",
+    "prisma": "4.10.1",
     "serverless-dotenv-plugin": "4.0.2"
   }
 }

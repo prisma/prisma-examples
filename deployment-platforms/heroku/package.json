@@ -11,7 +11,7 @@
     "@prisma/client": "4.10.1",
     "body-parser": "1.20.1",
     "express": "4.18.2",
-    "prisma": "4.10.0"
+    "prisma": "4.10.1"
   },
   "devDependencies": {}
 }

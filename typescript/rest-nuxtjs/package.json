@@ -21,7 +21,7 @@
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-prettier": "4.2.1",
     "prettier": "2.8.4",
-    "prisma": "4.10.0"
+    "prisma": "4.10.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
