@@ -10,21 +10,10 @@ import { PrismaClient } from '@prisma/client'
 // Learn more:
 // https://pris.ly/d/help/next-js-best-practices
 
-declare global {
-  var prisma: PrismaClient;
-}
+const globalForPrisma = global as unknown as { prisma: PrismaClient }
 
-let prisma: PrismaClient
+export const prisma = globalForPrisma.prisma || new PrismaClient()
 
-if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient()
-} else {
-  // @ts-ignore 7017
-  if (!global.prisma) {
-    // @ts-ignore 7017
-    global.prisma = new PrismaClient()
-  }
-  // @ts-ignore 7017
-  prisma = global.prisma
-}
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
 export default prisma
