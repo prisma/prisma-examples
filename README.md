@@ -128,6 +128,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
 - [Tottem](https://github.com/poulainv/tottem): Fullstack app for "social library management" (based on Next.js)
 - [Dundring](https://github.com/sivertschou/dundring): An in-browser training application created to control and track you training with a smart bike trainer.
+- [Expense.fyi](https://github.com/gokulkrishh/expense.fyi): A tool for tracking and managing expenses.
 - [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives.
 - [Snippy](https://github.com/kingstarfly/snippy): An open-source code-snippet sharing website.
 <hr>
