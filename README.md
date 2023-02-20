@@ -113,6 +113,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 - [Trigger.dev](https://trigger.dev/): Effortless automation built for developers (Zapier alternative)
 - [Webstudio](https://github.com/webstudio-is/webstudio-designer): A NoCode visual design tool for building apps and websites
+- [Dyrector](https://github.com/dyrector-io/dyrectorio): A self-hosted container management platform
 - [reduced.to](https://github.com/origranot/reduced.to): An open-source link shortener 
 - [Linen](https://github.com/Linen-dev/linen.dev): An open-source alternative to Slack and Discord with lots of great features
 - [Coolify](https://github.com/coollabsio/coolify): An open-source & self-hostable Heroku / Netlify alternative
