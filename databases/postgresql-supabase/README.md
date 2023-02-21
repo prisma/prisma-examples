@@ -1,4 +1,4 @@
-# Delegated types
+# PostgreSQL example using Supabase
 
 This example shows you how to connect to a PostgreSQL database on [Supabase](https://supabase.com/) using Prisma, and use [Prisma Client](https://www.prisma.io/client) in a TypeScript script to read and write data.
 
