@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Next.j
 Download this example:
 
 ```
-npx try-prisma --template typescript/rest-nextjs-express
+npx try-prisma@latest --template typescript/rest-nextjs-express
 ```
 
 Navigate to the example:

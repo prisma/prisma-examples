@@ -16,7 +16,7 @@ The example was bootstrapped using the NestJS CLI command `nest new graphql-nest
 Download this example:
 
 ```
-npx try-prisma --template typescript/graphql-nestjs-sdl-first
+npx try-prisma@latest --template typescript/graphql-nestjs-sdl-first
 ```
 
 Install npm dependencies:

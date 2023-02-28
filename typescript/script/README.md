@@ -9,7 +9,7 @@ This example shows how to use [Prisma Client](https://www.prisma.io/docs/referen
 Download this example:
 
 ```
-npx try-prisma --template typescript/script
+npx try-prisma@latest --template typescript/script
 ```
 
 Install npm dependencies:

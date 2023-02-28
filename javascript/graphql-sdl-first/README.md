@@ -14,7 +14,7 @@ This example shows how to implement an **GraphQL server (SDL-first) with Node.js
 Download this example:
 
 ```
-npx try-prisma --template javascript/graphql-sdl-first
+npx try-prisma@latest --template javascript/graphql-sdl-first
 ```
 
 Install npm dependencies:

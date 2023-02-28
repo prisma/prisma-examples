@@ -23,7 +23,7 @@ This example shows how to implement a **GraphQL server with JavaScript** with th
 Download this example:
 
 ```
-npx try-prisma --template javascript/graphql
+npx try-prisma@latest --template javascript/graphql
 ```
 
 Install npm dependencies:

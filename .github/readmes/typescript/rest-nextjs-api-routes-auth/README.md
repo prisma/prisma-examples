@@ -5,7 +5,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Next.j
 Note that the app uses a mix of server-side rendering with `getServerSideProps` (SSR) and static site generation with `getStaticProps` (SSG). When possible, SSG is used to make database queries already at build-time (e.g. when fetching the [public feed](./pages/index.tsx)). Sometimes, the user requesting data needs to be authenticated, so SSR is being used to render data dynamically on the server-side (e.g. when viewing a user's [drafts](./pages/drafts.tsx)).
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template typescript/rest-nextjs-api-routes-auth
+npx try-prisma@latest --template typescript/rest-nextjs-api-routes-auth
 __INLINE(../_setup-1.md)__
 cd rest-nextjs-api-routes-auth
 __INLINE(../_setup-2.md)__

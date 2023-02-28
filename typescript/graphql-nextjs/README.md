@@ -18,7 +18,7 @@ This example shows how to implement a **fullstack app in TypeScript with :
 Download this example:
 
 ```
-npx try-prisma --template typescript/graphql-nextjs
+npx try-prisma@latest --template typescript/graphql-nextjs
 ```
 
 Install npm dependencies:

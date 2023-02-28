@@ -12,7 +12,7 @@ This example shows how to implement a **fullstack app in TypeScript with :
 > Check out the [t3](https://create.t3.gg/) to learn how to create a production ready example.
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template typescript/trpc-nextjs
+npx try-prisma@latest --template typescript/trpc-nextjs
 __INLINE(../_setup-1.md)__
 cd trpc-nextjs
 __INLINE(../_setup-2.md)__

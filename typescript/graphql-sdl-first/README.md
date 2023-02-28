@@ -14,7 +14,7 @@ This example shows how to implement an **GraphQL server (SDL-first) with TypeScr
 Download this example:
 
 ```
-npx try-prisma --template typescript/graphql-sdl-first
+npx try-prisma@latest --template typescript/graphql-sdl-first
 ```
 
 Install npm dependencies:

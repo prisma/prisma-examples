@@ -3,7 +3,7 @@
 This example shows how to implement a **REST API** using [Koa](https://koajs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template javascript/rest-koa
+npx try-prisma@latest --template javascript/rest-koa
 __INLINE(../_setup-1.md)__
 cd rest-koa
 __INLINE(../_setup-2.md)__

@@ -8,7 +8,7 @@ This example shows how to implement an **GraphQL server (SDL-first) with Node.js
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template javascript/graphql-sdl-first
+npx try-prisma@latest --template javascript/graphql-sdl-first
 __INLINE(../_setup-1.md)__
 cd graphql-sdl-first
 __INLINE(../_setup-2.md)__
