@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [hapi](https://hapi.dev
 Download this example:
 
 ```
-npx try-prisma --template typescript/rest-hapi
+npx try-prisma@latest --template typescript/rest-hapi
 ```
 
 Install npm dependencies:

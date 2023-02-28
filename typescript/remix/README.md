@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Remix]
 Download this example:
 
 ```
-npx try-prisma --template typescript/remix
+npx try-prisma@latest --template typescript/remix
 ```
 
 Install npm dependencies:

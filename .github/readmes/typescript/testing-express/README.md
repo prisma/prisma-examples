@@ -3,7 +3,7 @@
 This example shows how to implement integration tests using [Express](https://expressjs.com/), [Supertest](https://github.com/visionmedia/supertest) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template typescript/testing-express
+npx try-prisma@latest --template typescript/testing-express
 __INLINE(../_setup-1.md)__
 cd testing-express
 __INLINE(../_setup-2.md)__

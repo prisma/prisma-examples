@@ -3,7 +3,7 @@
 This example shows how to implement **Geolocation in PostgreSQL** using [Express](https://expressjs.com/), [Postgis](http://postgis.net/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client).
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template typescript/postgis-express
+npx try-prisma@latest --template typescript/postgis-express
 __INLINE(../_setup-1.md)__
 cd postgis-express
 __INLINE(../_setup-2.md)__

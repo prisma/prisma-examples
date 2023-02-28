@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app with [SvelteKit](https://k
 Download this example:
 
 ```
-npx try-prisma --template javascript/rest-sveltekit
+npx try-prisma@latest --template javascript/rest-sveltekit
 ```
 
 Install npm dependencies:

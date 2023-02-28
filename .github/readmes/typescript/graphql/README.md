@@ -17,7 +17,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 - [Next steps](#next-steps)
 
 __INLINE(../_setup-0.md)__
-npx try-prisma --template typescript/graphql
+npx try-prisma@latest --template typescript/graphql
 __INLINE(../_setup-1.md)__
 cd graphql
 __INLINE(../_setup-2.md)__

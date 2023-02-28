@@ -15,7 +15,7 @@ This example shows how to implement an **GraphQL Server Example with Hapi (SDL f
 Download this example:
 
 ```
-npx try-prisma --template typescript/graphql-hapi-sdl-first
+npx try-prisma@latest --template typescript/graphql-hapi-sdl-first
 ```
 
 Install npm dependencies:

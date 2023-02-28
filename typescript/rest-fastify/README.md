@@ -9,7 +9,7 @@ This example shows how to implement a **REST API with TypeScript** using [Fastif
 Download this example:
 
 ```
-npx try-prisma --template typescript/rest-fastify
+npx try-prisma@latest --template typescript/rest-fastify
 ```
 
 Install npm dependencies:

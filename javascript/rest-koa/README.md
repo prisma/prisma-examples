@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [Koa](https://koajs.com
 Download this example:
 
 ```
-npx try-prisma --template javascript/rest-koa
+npx try-prisma@latest --template javascript/rest-koa
 ```
 
 Install npm dependencies:

@@ -18,7 +18,7 @@ This example shows how to implement a **fullstack app in TypeScript with :
 Download this example:
 
 ```
-npx try-prisma --template typescript/trpc-nextjs
+npx try-prisma@latest --template typescript/trpc-nextjs
 ```
 
 Install npm dependencies:
