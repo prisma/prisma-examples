@@ -9,13 +9,13 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "4.10.1",
+    "@prisma/client": "4.11.0",
     "graphql": "16.6.0",
     "graphql-scalars": "1.20.1",
     "graphql-yoga": "3.7.0"
   },
   "devDependencies": {
-    "prisma": "4.10.1"
+    "prisma": "4.11.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

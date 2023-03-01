@@ -9,11 +9,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@prisma/client": "4.10.1",
+    "@prisma/client": "4.11.0",
     "nuxt": "3.2.3"
   },
   "devDependencies": {
-    "prisma": "4.10.1"
+    "prisma": "4.11.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
