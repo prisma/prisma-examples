@@ -132,6 +132,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Expense.fyi](https://github.com/gokulkrishh/expense.fyi): A tool for tracking and managing expenses.
 - [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives.
 - [Snippy](https://github.com/kingstarfly/snippy): An open-source code-snippet sharing website.
+- [Hitori](https://github.com/astridlol/Hitori): An open-source serverless Discord bot
 <hr>
 
 ## About this repository
