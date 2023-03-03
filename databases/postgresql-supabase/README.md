@@ -53,7 +53,6 @@ npx supabase start
 ```sh
 # .env
 DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres"
-SHADOW_DATABASE_URL="postgresql://postgres:postgres@localhost:54322/postgres_shadow"
 ```
 
 #### Using a managed environment
