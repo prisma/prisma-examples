@@ -15,7 +15,7 @@
     "@prisma/client": "4.11.0",
     "next": "13.2.3",
     "next-superjson": "0.0.4",
-    "next-auth": "4.20.0",
+    "next-auth": "4.20.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.5",
