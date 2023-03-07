@@ -111,7 +111,7 @@ app.post('/logout', isAuthenticated, async (req: Request, res) => {
   }
 })
 
-app.post(`/post`, async (req, res) => {
+app.post(`/post`, isAuthenticated, async (req, res) => {
   const { title, content, authorEmail } = req.body
 
   const result = await prisma.post.create({
@@ -125,7 +125,7 @@ app.post(`/post`, async (req, res) => {
   res.json(result)
 })
 
-app.put('/post/:id/views', async (req, res) => {
+app.put('/post/:id/views', isAuthenticated, async (req, res) => {
   const { id } = req.params
 
   try {
@@ -144,7 +144,7 @@ app.put('/post/:id/views', async (req, res) => {
   }
 })
 
-app.put('/publish/:id', async (req, res) => {
+app.put('/publish/:id', isAuthenticated, async (req, res) => {
   const { id } = req.params
 
   try {
@@ -165,7 +165,7 @@ app.put('/publish/:id', async (req, res) => {
   }
 })
 
-app.delete(`/post/:id`, async (req, res) => {
+app.delete(`/post/:id`, isAuthenticated, async (req, res) => {
   const { id } = req.params
   const post = await prisma.post.delete({
     where: {
@@ -175,12 +175,12 @@ app.delete(`/post/:id`, async (req, res) => {
   res.json(post)
 })
 
-app.get('/users', async (req, res) => {
+app.get('/users', isAuthenticated, async (req, res) => {
   const users = await prisma.user.findMany()
   res.json(users)
 })
 
-app.get('/user/:id/drafts', async (req, res) => {
+app.get('/user/:id/drafts', isAuthenticated, async (req, res) => {
   const { id } = req.params
 
   const drafts = await prisma.user
@@ -196,7 +196,7 @@ app.get('/user/:id/drafts', async (req, res) => {
   res.json(drafts)
 })
 
-app.get(`/post/:id`, async (req, res) => {
+app.get(`/post/:id`, isAuthenticated, async (req, res) => {
   const { id }: { id?: string } = req.params
 
   const post = await prisma.post.findUnique({
@@ -205,7 +205,7 @@ app.get(`/post/:id`, async (req, res) => {
   res.json(post)
 })
 
-app.get('/feed', async (req, res) => {
+app.get('/feed', isAuthenticated, async (req, res) => {
   const { searchString, skip, take, orderBy } = req.query
 
   const or: Prisma.PostWhereInput = searchString
