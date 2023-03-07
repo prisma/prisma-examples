@@ -43,7 +43,7 @@
     "@nestjs/core": "9.3.9",
     "@nestjs/platform-express": "9.3.9",
     "reflect-metadata": "0.1.13",
-    "rimraf": "4.3.0",
+    "rimraf": "4.3.1",
     "rxjs": "7.8.0"
   },
   "devDependencies": {
