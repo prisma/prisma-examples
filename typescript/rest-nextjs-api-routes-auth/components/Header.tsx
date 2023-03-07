@@ -1,18 +1,18 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/client";
+import { signOut, useSession } from "next-auth/react";
 
 const Header: React.FC = () => {
   const router = useRouter();
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
-  const [session, loading] = useSession();
+  const {data: session, status} = useSession();
 
   let left = (
     <div className="left">
-      <Link href="/">
+      <Link href="/" legacyBehavior>
         <a className="bold" data-active={isActive("/")}>
           Feed
         </a>
@@ -41,10 +41,10 @@ const Header: React.FC = () => {
 
   let right = null;
 
-  if (loading) {
+  if (status === 'loading') {
     left = (
       <div className="left">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a className="bold" data-active={isActive("/")}>
             Feed
           </a>
@@ -85,7 +85,7 @@ const Header: React.FC = () => {
   if (!session) {
     right = (
       <div className="right">
-        <Link href="/api/auth/signin">
+        <Link href="/api/auth/signin" legacyBehavior>
           <a data-active={isActive("/signup")}>Log in</a>
         </Link>
         <style jsx>{`
@@ -116,12 +116,12 @@ const Header: React.FC = () => {
   if (session) {
     left = (
       <div className="left">
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <a className="bold" data-active={isActive("/")}>
             Feed
           </a>
         </Link>
-        <Link href="/drafts">
+        <Link href="/drafts" legacyBehavior>
           <a data-active={isActive("/drafts")}>My drafts</a>
         </Link>
         <style jsx>{`
@@ -150,7 +150,7 @@ const Header: React.FC = () => {
         <p>
           {session.user.name} ({session.user.email})
         </p>
-        <Link href="/create">
+        <Link href="/create" legacyBehavior>
           <button>
             <a>New post</a>
           </button>

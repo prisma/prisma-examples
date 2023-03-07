@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Router from 'next/router'
-import { withApollo } from '../apollo/client'
-import gql from 'graphql-tag'
-import { useMutation } from '@apollo/react-hooks'
+import React, { useState } from "react"
+import Layout from "../components/Layout"
+import Router from "next/router"
+import gql from "graphql-tag"
+import { useMutation } from "@apollo/client"
 
 const SignupMutation = gql`
   mutation SignupMutation($name: String, $email: String!) {
@@ -15,9 +14,9 @@ const SignupMutation = gql`
   }
 `
 
-function Signup(props) {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+function Signup() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
 
   const [signup] = useMutation(SignupMutation)
 
@@ -27,7 +26,7 @@ function Signup(props) {
         <form
           onSubmit={async e => {
             e.preventDefault()
-            console.log('submit', name, email)
+            console.log("submit", name, email)
 
             await signup({
               variables: {
@@ -35,8 +34,9 @@ function Signup(props) {
                 email: email,
               },
             })
-            Router.push('/')
-          }}>
+            Router.push("/")
+          }}
+        >
           <h1>Signup user</h1>
           <input
             autoFocus
@@ -52,7 +52,7 @@ function Signup(props) {
             value={email}
           />
           <input disabled={!name || !email} type="submit" value="Signup" />
-          <a className="back" href="#" onClick={() => Router.push('/')}>
+          <a className="back" href="#" onClick={() => Router.push("/")}>
             or Cancel
           </a>
         </form>
@@ -65,7 +65,7 @@ function Signup(props) {
           justify-content: center;
         }
 
-        input[type='text'] {
+        input[type="text"] {
           width: 100%;
           padding: 0.5rem;
           margin: 0.5rem 0;
@@ -73,7 +73,7 @@ function Signup(props) {
           border: 0.125rem solid rgba(0, 0, 0, 0.2);
         }
 
-        input[type='submit'] {
+        input[type="submit"] {
           background: #ececec;
           border: 0;
           padding: 1rem 2rem;
@@ -87,4 +87,4 @@ function Signup(props) {
   )
 }
 
-export default withApollo(Signup)
+export default Signup

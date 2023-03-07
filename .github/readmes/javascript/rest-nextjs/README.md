@@ -1,9 +1,9 @@
 # Fullstack Example with Next.js (REST API)
 
-This example shows how to implement a **fullstack app with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-nextjs
+npx try-prisma@latest --template javascript/rest-nextjs
 __INLINE(../_setup-1.md)__
 cd rest-nextjs
 __INLINE(../_setup-2.md)__
@@ -22,7 +22,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <br />
 
-**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx)
+**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx))
 
 ![](https://imgur.com/eepbOUO.png)
 

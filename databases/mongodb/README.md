@@ -7,16 +7,6 @@ The example consists of two parts:
 - `tests/prisma.test.ts`: Jest test (in TypeScript) with a variety of Prisma Client queries and assertions to showcase access patterns
 - `src/prisma-examples`: TypesScript files containing different Prisma Client queries
 
-## Early Access warning
-
-The Prisma MongoDB connector is currently available in [Early Access](https://www.prisma.io/docs/about/releases#early-access). This means that it **shouldn't be used in production**.
-
-Currently, there are several limitations:
-
-- No support for embedded documents. [Related issue](https://github.com/prisma/prisma/issues/6708)
-- No data migrations functionality: this means that updating your Prisma schema when your database has data that was created with an earlier version of the Prisma schema will raise type error. [Related issue](https://github.com/prisma/prisma/issues/6715).
-- No support for unique indexes. [Related issue](https://github.com/prisma/prisma/issues/6727)
-
 ## How to use
 
 ### 1. Download example & install dependencies

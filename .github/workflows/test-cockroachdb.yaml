@@ -1,0 +1,43 @@
+name: test-cockroachdb
+on:
+  push:
+    paths:
+      - databases/cockroachdb/**
+    branches:
+      - latest
+      - dev
+      - patch-dev
+  pull_request:
+    paths:
+      - databases/cockroachdb/**
+
+env:
+  CI: 1
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test-cockroachdb.yaml'
+
+jobs:
+  test:
+    defaults:
+      run:
+        working-directory: databases/cockroachdb
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: postgresql://root@127.0.0.1:26257/prisma?sslmode=disable
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start a single CockroachDB instance with Docker
+        env:
+          COCKROACHDB_DOCKER_TAG: 'cockroachdb/cockroach:latest-v21.2'
+        run: |
+          docker pull $COCKROACHDB_DOCKER_TAG
+          docker run -d --name roach --hostname roach -p 26257:26257 -p 8080:8080 -v "${{ github.workspace }}:/app" $COCKROACHDB_DOCKER_TAG start-single-node --insecure
+          sudo apt update && sudo apt install wait-for-it -y
+          wait-for-it -h localhost -p 26257
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npx prisma migrate dev --name "init"
+      - run: npm run test

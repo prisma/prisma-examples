@@ -2,7 +2,7 @@
 
 This example shows how to implement an **GraphQL server (SDL-first) with Node.js** with the following stack:
 
-- [**Apollo Server**](https://github.com/apollographql/apollo-server): HTTP server for GraphQL APIs   
+- [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): HTTP server for GraphQL APIs   
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
@@ -14,7 +14,7 @@ This example shows how to implement an **GraphQL server (SDL-first) with Node.js
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/graphql-sdl-first
+npx try-prisma@latest --template javascript/graphql-sdl-first
 ```
 
 Install npm dependencies:
@@ -48,11 +48,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the GraphQL server
@@ -495,7 +491,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 </details>
 
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -543,7 +539,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -554,12 +550,14 @@ datasource db {
 }
 ```
 
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
 ```
 
@@ -568,6 +566,6 @@ generator client {
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

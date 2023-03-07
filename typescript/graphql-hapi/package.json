@@ -12,23 +12,23 @@
     "generate:nexus": "ts-node --transpile-only src/schema"
   },
   "dependencies": {
-    "@hapi/hapi": "20.1.3",
-    "@prisma/client": "2.22.1",
-    "@types/node": "14.14.45",
-    "apollo-server-hapi": "2.24.0",
-    "graphql": "15.5.0",
-    "graphql-scalars": "1.9.3",
-    "nexus": "1.0.0"
+    "@hapi/hapi": "21.3.0",
+    "@prisma/client": "4.11.0",
+    "@types/node": "18.14.6",
+    "apollo-server-hapi": "3.12.0",
+    "graphql": "16.6.0",
+    "graphql-scalars": "1.20.1",
+    "nexus": "1.3.0"
   },
   "devDependencies": {
-    "prisma": "2.22.1",
-    "@types/hapi__hapi": "20.0.8",
-    "@types/node": "14.14.45",
-    "ts-node": "9.1.1",
-    "typescript": "4.2.4",
-    "ts-node-dev": "1.1.6"
+    "@types/hapi__hapi": "20.0.13",
+    "@types/node": "18.14.6",
+    "prisma": "4.11.0",
+    "ts-node": "10.9.1",
+    "ts-node-dev": "2.0.0",
+    "typescript": "4.9.5"
   },
-  "engines": {
-    "node": ">=10.0.0"
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

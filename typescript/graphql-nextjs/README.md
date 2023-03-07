@@ -1,6 +1,15 @@
 # Fullstack Example with Next.js (GraphQL API)
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/), [Apollo Client](https://www.apollographql.com/docs/react/) (frontend), [Nexus Schema](https://nxs.li/components/standalone/schema) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **Fullstack NextJs app with GraphQL** with the following stack:
+
+This example shows how to implement a **fullstack app in TypeScript with :
+- [**Next.js**](https://nextjs.org/)**: A [React](https://reactjs.org/) framework
+- [**Apollo Client**](https://www.apollographql.com/docs/react/) (frontend), 
+- [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): GraphQL server
+- [**Pothos**](https://pothos-graphql.dev/): Code-first GraphQL schema definition library
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
+- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 ## Getting started
 
@@ -9,7 +18,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Next.j
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-nextjs
+npx try-prisma@latest --template typescript/graphql-nextjs
 ```
 
 Install npm dependencies:
@@ -44,11 +53,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
 
 ### 2. Start the app
@@ -63,7 +68,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <br />
 
-**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx)
+**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx))
 
 ![](https://imgur.com/eepbOUO.png)
 
@@ -115,12 +120,7 @@ query {
 
 ```graphql
 mutation {
-  signupUser(
-    data: {
-      name: "Sarah"
-      email: "sarah@prisma.io"
-    }
-  ) {
+  signupUser(name: "Sarah", email: "sarah@prisma.io") {
     id
   }
 }
@@ -145,7 +145,7 @@ mutation {
 
 ```graphql
 mutation {
-  publish(id: __POST_ID__) {
+  publish(postId: "__POST_ID__") {
     id
     published
   }
@@ -176,7 +176,7 @@ mutation {
 
 ```graphql
 {
-  post(where: { id: __POST_ID__ }) {
+  post(postId: "__POST_ID__") {
     id
     title
     content
@@ -196,8 +196,7 @@ mutation {
 
 ```graphql
 mutation {
-  deleteOnePost(where: {id: __POST_ID__})
-  {
+  deletePost(postId: "__POST_ID__") {
     id
   }
 }
@@ -264,114 +263,67 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1. Add the `Profile` type to your GraphQL schema
 
-First, add a new GraphQL type via Nexus' `objectType` function:
+First, add a new GraphQL type via Pothos's `prismaObject` function:
 
 ```diff
-// ./src/schema.ts
+// ./pages/api/graphql.ts
 
-+const Profile = objectType({
-+  name: 'Profile',
-+  definition(t) {
-+    t.nonNull.int('id')
-+    t.string('bio')
-+    t.field('user', {
-+      type: 'User',
-+      resolve: (parent, _, context) => {
-+        return context.prisma.profile
-+          .findUnique({
-+            where: { id: parent.id || undefined },
-+          })
-+          .user()
-+      },
-+    })
-+  },
++builder.prismaObject('Profile', {
++  fields: (t) => ({
++    id: t.exposeInt('id'),
++    bio: t.exposeString('bio', { nullable: true }),
++    user: t.relation('user'),
++  }),
 +})
 
-const User = objectType({
-  name: 'User',
-  definition(t) {
-    t.nonNull.int('id')
-    t.string('name')
-    t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'Post',
-      resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
-      },
-+   t.field('profile', {
-+     type: 'Profile',
-+     resolve: (parent, _, context) => {
-+       return context.prisma.user.findUnique({
-+         where: { id: parent.id }
-+       }).profile()
-+     }
-+   })
-  },
+builder.prismaObject('User', {
+  fields: (t) => ({
+    id: t.exposeInt('id'),
+    name: t.exposeString('name', { nullable: true }),
+    email: t.exposeString('email'),
+    posts: t.relation('posts'),
++    profile: t.relation('profile'),
+  }),
 })
 ```
-
-Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
-
-```diff
-export const schema = makeSchema({
-  types: [
-    Query,
-    Mutation,
-    Post,
-    User,
-+   Profile,
-    GQLDate
-  ],
-  // ... as before
-}
-```
-
-Note that in order to resolve any type errors, your development server needs to be running so that the Nexus types can be generated. If it's not running, you can start it with `npm run dev`.
 
 #### 2.2. Add a `createProfile` GraphQL mutation
 
 ```diff
-// ./pages/api/index.ts
+// ./pages/api/graphql.ts
 
-const Mutation = objectType({
-  name: 'Mutation',
-  definition(t) {
+// other object types, queries and mutations
 
-    // other mutations
 
-+   t.field('addProfileForUser', {
-+     type: 'Profile',
-+     args: {
-+       email: stringArg(),
-+       bio: stringArg()
-+     }, 
-+     resolve: async (_, args, context) => {
-+       return context.prisma.profile.create({
-+         data: {
-+           bio: args.bio,
-+           user: {
-+             connect: {
-+               email: args.email || undefined,
-+             }
-+           }
-+         }
-+       })
-+     }
-+   })
-
-  }
-})
++builder.mutationField('createProfile', (t) =>
++  t.prismaField({
++    type: 'Profile',
++    args: {
++      bio: t.arg.string({ required: true }),
++      data: t.arg({ type: UserUniqueInput })
++    },
++    resolve: async (query, _parent, args, _context) =>
++      prisma.profile.create({
++        ...query,
++        data: {
++          bio: args.bio,
++          user: {
++            connect: {
++              id: args.data?.id || undefined,
++              email: args.data?.email || undefined
++            }
++          }
++        }
++      })
++  })
++)
 ```
 
 Finally, you can test the new mutation like this:
 
 ```graphql
 mutation {
-  addProfileForUser(
+  createProfile(
     email: "mahmoud@prisma.io"
     bio: "I like turtles"
   ) {
@@ -444,6 +396,6 @@ In the application code, you can access the new operations via Apollo Client and
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

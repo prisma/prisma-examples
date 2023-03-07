@@ -2,44 +2,38 @@
   <div class="page">
     <form @submit="signup">
       <h1>Signup user</h1>
-      <input autoFocus placeholder="Name" type="text" v-model="name" />
-      <input placeholder="Email address" type="text" v-model="email" />
-      <input :disabled="!name || !email" type="submit" value="Signup" />
+      <input autoFocus placeholder="Name" type="text" v-model="formData.name" />
+      <input placeholder="Email address" type="text" v-model="formData.email" />
+      <input :disabled="!formData.name || !formData.email" type="submit" value="Signup" />
       <NuxtLink class="back" to="/"> or Cancel </NuxtLink>
     </form>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      name: '',
-      email: '',
-    }
-  },
-  methods: {
-    signup: async function (e) {
-      e.preventDefault()
+<script setup>
 
-      try {
-        const body = {
-          name: this.name,
-          email: this.email,
-        }
+const router = useRouter()
 
-        const res = await fetch(`http://localhost:3000/api/signup`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        })
-        const data = await res.json()
-        this.$router.push({ path: '/' })
-      } catch (error) {
-        console.error(error)
-      }
-    },
-  },
+const formData = reactive({
+  name: '',
+  email: '',
+  authorEmail: '',
+})
+
+
+const signup = async (event) => {
+  event.preventDefault()
+  const { name, email } = formData
+  const res = await useFetch('/api/user/', {
+    method: "POST",
+    body: JSON.stringify({ name, email })
+  })
+  if (!res.data) {
+    throw createError({ statusCode: 400, statusMessage: 'Oops, something went wrong' })
+  }
+
+  router.push('/drafts')
 }
+
 </script>
 <style scoped>
 .page {

@@ -1,9 +1,45 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer", "connectOrCreate"]
 }
 
 datasource db {
   provider = "sqlserver"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  email     String    @unique
+  name      String?
+  comments  Comment[]
+  posts     Post[]
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  title     String
+  content   String?
+  published Boolean   @default(false)
+  authorId  Int
+  author    User      @relation(fields: [authorId], references: [id])
+  comments  Comment[]
+  tags      Tag[]     @relation("TagToPost")
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  comment     String
+  writtenById Int
+  postId      Int
+  writtenBy   User     @relation(fields: [writtenById], references: [id])
+  post        Post     @relation(fields: [postId], references: [id], onUpdate: NoAction)
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  tag   String @unique
+  posts Post[] @relation("TagToPost")
 }

@@ -39,7 +39,7 @@ class UserCreateInput {
 @Resolver(User)
 export class UserResolver {
   @FieldResolver()
-  async posts(@Root() user: User, @Ctx() ctx: Context): Promise<Post[]> {
+  async posts(@Root() user: User, @Ctx() ctx: Context): Promise<Post[] | null> {
     return ctx.prisma.user
       .findUnique({
         where: {
@@ -54,7 +54,6 @@ export class UserResolver {
     @Arg('data') data: UserCreateInput,
     @Ctx() ctx: Context,
   ): Promise<User> {
-
     const postData = data.posts?.map((post) => {
       return { title: post.title, content: post.content || undefined }
     })
@@ -64,8 +63,8 @@ export class UserResolver {
         email: data.email,
         name: data.name,
         posts: {
-          create: postData
-        }
+          create: postData,
+        },
       },
     })
   }
@@ -75,9 +74,11 @@ export class UserResolver {
     return ctx.prisma.user.findMany()
   }
 
-
   @Query((returns) => [Post], { nullable: true })
-  async draftsByUser(@Arg('userUniqueInput') userUniqueInput: UserUniqueInput, @Ctx() ctx: Context) {
+  async draftsByUser(
+    @Arg('userUniqueInput') userUniqueInput: UserUniqueInput,
+    @Ctx() ctx: Context,
+  ) {
     return ctx.prisma.user
       .findUnique({
         where: {

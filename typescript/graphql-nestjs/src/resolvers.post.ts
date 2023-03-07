@@ -34,15 +34,15 @@ class PostOrderByUpdatedAtInput {
 
 enum SortOrder {
   asc = 'asc',
-  desc = 'desc'
+  desc = 'desc',
 }
 
 registerEnumType(SortOrder, {
-  name: 'SortOrder'
+  name: 'SortOrder',
 })
 @Resolver(Post)
 export class PostResolver {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) { }
+  constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
   @ResolveField()
   author(@Root() post: Post): Promise<User | null> {
@@ -68,15 +68,15 @@ export class PostResolver {
     @Args('skip', { nullable: true }) skip: number,
     @Args('take', { nullable: true }) take: number,
     @Args('orderBy', { nullable: true }) orderBy: PostOrderByUpdatedAtInput,
-    @Context() ctx) {
-
+    @Context() ctx,
+  ) {
     const or = searchString
       ? {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      }
+          OR: [
+            { title: { contains: searchString } },
+            { content: { contains: searchString } },
+          ],
+        }
       : {}
 
     return this.prismaService.post.findMany({
@@ -107,17 +107,15 @@ export class PostResolver {
     })
   }
 
-  @Mutation(returns => Post)
-  incrementPostViewCount(
-    @Args('id') id: number
-  ): Promise<Post> {
+  @Mutation((returns) => Post)
+  incrementPostViewCount(@Args('id') id: number): Promise<Post> {
     return this.prismaService.post.update({
       where: { id },
       data: {
         viewCount: {
-          increment: 1
-        }
-      }
+          increment: 1,
+        },
+      },
     })
   }
 

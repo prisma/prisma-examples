@@ -18,7 +18,7 @@ This example shows how to implement a **GraphQL server with JavaScript** with th
 - [Next steps](#next-steps)
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/graphql-auth
+npx try-prisma@latest --template javascript/graphql-auth
 __INLINE(../_setup-1.md)__
 cd graphql-auth
 __INLINE(../_setup-2.md)__

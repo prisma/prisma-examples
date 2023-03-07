@@ -5,7 +5,7 @@ import Layout from "../../components/Layout";
 import Router from "next/router";
 import { PostProps } from "../../components/Post";
 import prisma from '../../lib/prisma'
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
@@ -25,22 +25,22 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 async function publishPost(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/publish/${id}`, {
+  await fetch(`/api/publish/${id}`, {
     method: "PUT",
   });
   await Router.push("/")
 }
 
 async function deletePost(id: number): Promise<void> {
-  await fetch(`http://localhost:3000/api/post/${id}`, {
+  await fetch(`/api/post/${id}`, {
     method: "DELETE",
   });
   await Router.push("/")
 }
 
 const Post: React.FC<PostProps> = (props) => {
-  const [session, loading] = useSession();
-  if (loading) {
+  const { data: session, status } = useSession();
+  if (status === 'loading') {
     return <div>Authenticating ...</div>;
   }
   const userHasValidSession = Boolean(session);
@@ -55,7 +55,7 @@ const Post: React.FC<PostProps> = (props) => {
       <div>
         <h2>{title}</h2>
         <p>By {props?.author?.name || "Unknown author"}</p>
-        <ReactMarkdown source={props.content} />
+        <ReactMarkdown children={props.content} />
         {!props.published && userHasValidSession && postBelongsToUser && (
           <button onClick={() => publishPost(props.id)}>Publish</button>
         )}

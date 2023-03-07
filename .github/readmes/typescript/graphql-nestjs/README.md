@@ -10,7 +10,7 @@ This example shows how to implement an **GraphQL server (code-first) with TypeSc
 The example was bootstrapped using the NestJS CLI command `nest new graphql-nestjs`.
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-nestjs
+npx try-prisma@latest --template typescript/graphql-nestjs
 __INLINE(../_setup-1.md)__
 cd graphql-nestjs
 __INLINE(../_setup-2.md)__

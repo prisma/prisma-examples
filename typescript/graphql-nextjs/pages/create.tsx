@@ -1,9 +1,8 @@
 import React, { useState } from "react"
 import Layout from "../components/Layout"
 import Router from "next/router"
-import { withApollo } from "../apollo/client"
 import gql from "graphql-tag"
-import { useMutation } from "@apollo/react-hooks"
+import { useMutation } from "@apollo/client"
 
 const CreateDraftMutation = gql`
   mutation CreateDraftMutation(
@@ -24,14 +23,13 @@ const CreateDraftMutation = gql`
   }
 `
 
-function Draft(props) {
+function Draft() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [authorEmail, setAuthorEmail] = useState("")
 
-  const [createDraft, { loading, error, data }] = useMutation(
-    CreateDraftMutation
-  )
+  const [createDraft] =
+    useMutation(CreateDraftMutation)
 
   return (
     <Layout>
@@ -113,4 +111,4 @@ function Draft(props) {
   )
 }
 
-export default withApollo(Draft)
+export default Draft

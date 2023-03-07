@@ -1,16 +1,17 @@
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import Router from 'next/router'
+import prisma from '../../lib/prisma';
 
 async function publish(id) {
-  await fetch(`http://localhost:3000/api/publish/${id}`, {
+  await fetch(`/api/publish/${id}`, {
     method: 'PUT',
   })
   await Router.push('/')
 }
 
 async function destroy(id) {
-  await fetch(`http://localhost:3000/api/post/${id}`, {
+  await fetch(`/api/post/${id}`, {
     method: 'DELETE',
   })
   await Router.push('/')
@@ -27,7 +28,7 @@ const Post = props => {
       <div className="page">
         <h2>{title}</h2>
         <small>By {authorName}</small>
-        <ReactMarkdown source={props.content} />
+        <ReactMarkdown children={props.content} />
         <div className="actions">
           {!props.published && (
             <button onClick={() => publish(props.id)}>Publish</button>
@@ -61,9 +62,11 @@ const Post = props => {
 }
 
 export const getServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3000/api/post/${context.params.id}`)
-  const data = await res.json()
-  return { props: { ...data } }
+  const post = await prisma.post.findUnique({
+    where: { id: Number(context.params.id) },
+    include: { author: true },
+  })
+  return { props: { post } }
 }
 
 export default Post

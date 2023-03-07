@@ -95,7 +95,7 @@ describe('example test with Prisma Client', () => {
       .posts()
 
     expect(userPosts).toBeTruthy()
-    expect(userPosts.length).toEqual(2)
+    expect(userPosts?.length).toEqual(2)
   })
 
   test('Find posts based on author id', async () => {

@@ -1,4 +1,4 @@
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -46,7 +46,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -57,12 +57,14 @@ datasource db {
 }
 ```
 
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
 ```
 

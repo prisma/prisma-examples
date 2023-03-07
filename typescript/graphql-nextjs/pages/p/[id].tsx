@@ -1,27 +1,14 @@
-import Layout from '../../components/Layout'
-import Router, { useRouter } from 'next/router'
-import { withApollo } from '../../apollo/client'
-import gql from 'graphql-tag'
-import { useQuery, useMutation } from '@apollo/react-hooks'
-
-const PostQuery = gql`
-  query PostQuery($postId: String!) {
-    post(postId: $postId) {
-      id
-      title
-      content
-      published
-      author {
-        id
-        name
-      }
-    }
-  }
-`
+import Layout from "../../components/Layout"
+import Router, { useRouter } from "next/router"
+import gql from "graphql-tag"
+import { useMutation } from "@apollo/client"
+import client from "../../lib/apollo-client"
+import { PostProps } from "../../components/Post"
+import { GetServerSideProps } from "next"
 
 const PublishMutation = gql`
-  mutation PublishMutation($postId: String!) {
-    publish(postId: $postId) {
+  mutation PublishMutation($id: ID!) {
+    publish(id: $id) {
       id
       title
       content
@@ -35,8 +22,8 @@ const PublishMutation = gql`
 `
 
 const DeleteMutation = gql`
-  mutation DeleteMutation($postId: String!) {
-    deletePost(postId: $postId) {
+  mutation DeleteMutation($id: ID!) {
+    deletePost(id: $id) {
       id
       title
       content
@@ -49,48 +36,35 @@ const DeleteMutation = gql`
   }
 `
 
-function Post() {
-  const postId = useRouter().query.id
-  const { loading, error, data } = useQuery(PostQuery, {
-    variables: { postId },
-  })
+const Post: React.FC<{ data: { post: PostProps } }> = (props) => {
+  const id = useRouter().query.id
 
   const [publish] = useMutation(PublishMutation)
   const [deletePost] = useMutation(DeleteMutation)
 
-  if (loading) {
-    console.log('loading')
-    return <div>Loading ...</div>
-  }
-  if (error) {
-    console.log('error')
-    return <div>Error: {error.message}</div>
-  }
-
-  console.log(`response`, data)
-
-  let title = data.post.title
-  if (!data.post.published) {
+  let title = props.data.post.title
+  if (!props.data.post.published) {
     title = `${title} (Draft)`
   }
 
-  const authorName = data.post.author ? data.post.author.name : 'Unknown author'
+  const authorName = props.data.post.author ? props.data.post.author.name : "Unknown author"
   return (
     <Layout>
       <div>
         <h2>{title}</h2>
         <p>By {authorName}</p>
-        <p>{data.post.content}</p>
-        {!data.post.published && (
+        <p>{props.data.post.content}</p>
+        {!props.data.post.published && (
           <button
             onClick={async e => {
               await publish({
                 variables: {
-                  postId,
+                  id,
                 },
               })
-              Router.push('/')
-            }}>
+              Router.push("/")
+            }}
+          >
             Publish
           </button>
         )}
@@ -98,11 +72,12 @@ function Post() {
           onClick={async e => {
             await deletePost({
               variables: {
-                postId,
+                id,
               },
             })
-            Router.push('/')
-          }}>
+            Router.push("/")
+          }}
+        >
           Delete
         </button>
       </div>
@@ -131,4 +106,31 @@ function Post() {
   )
 }
 
-export default withApollo(Post)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = Number(Array.isArray(context.params?.id) ? context.params?.id[0] : context.params?.id)
+  const { data } = await client.query({
+    query: gql`
+      query PostQuery($id: ID!) {
+        post(id: $id) {
+          id
+          title
+          content
+          published
+          author {
+            id
+            name
+          }
+        }
+      }
+    `,
+    variables: { id },
+  });
+
+  return {
+    props: {
+      data
+    },
+  };
+}
+
+export default Post

@@ -1,6 +1,9 @@
 name: test
 on:
   push:
+    paths:
+      - javascript/**
+      - typescript/**
     branches:
       - latest
       - dev
@@ -20,7 +23,7 @@ jobs:
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: install deps
         run: cd .github/scripts && yarn install
@@ -48,7 +51,7 @@ jobs:
 
     services:
       postgres:
-        image: postgis/postgis:12-2.5-alpine
+        image: postgis/postgis:14-3.1-alpine
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
@@ -63,10 +66,10 @@ jobs:
           - '5432:5432'
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '12'
+          node-version: '14'
 
       - name: test
         run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json

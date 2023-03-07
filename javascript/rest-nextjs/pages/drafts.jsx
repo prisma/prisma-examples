@@ -1,5 +1,6 @@
 import Layout from '../components/Layout'
 import Post from '../components/Post'
+import prisma from '../lib/prisma'
 
 const Drafts = props => {
   return (
@@ -33,8 +34,10 @@ const Drafts = props => {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/drafts')
-  const drafts = await res.json()
+  const drafts = await prisma.post.findMany({
+    where: { published: false },
+    include: { author: true },
+  })
   return {
     props: { drafts },
   }

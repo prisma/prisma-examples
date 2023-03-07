@@ -26,7 +26,7 @@ type Post {
 scalar Timestamp
 
 type Query {
-  allUsers: User
+  allUsers: [User!]
   draftsByUser(userUniqueInput: UserUniqueInput!): [Post!]
   postById(id: Float!): Post
   feed(orderBy: PostOrderByUpdatedAtInput, take: Float, skip: Float, searchString: String): [Post!]!

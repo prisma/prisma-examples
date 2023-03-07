@@ -16,7 +16,7 @@ The example was bootstrapped using the NestJS CLI command `nest new graphql-nest
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-nestjs
+npx try-prisma@latest --template typescript/graphql-nestjs
 ```
 
 Install npm dependencies:
@@ -51,11 +51,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
 
 ### 2. Start the GraphQL server
@@ -370,6 +366,6 @@ const userWithUpdatedProfile = await prisma.user.update({
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

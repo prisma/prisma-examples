@@ -5,7 +5,7 @@ plugins:
 provider:
   name: aws
   region: us-east-1
-  runtime: nodejs12.x
+  runtime: nodejs14.x
 
 functions:
   status:
@@ -42,5 +42,7 @@ functions:
 # only include the Prisma binary required on AWS Lambda while packaging
 package:
   patterns:
-    - '!node_modules/.prisma/client/query-engine-*'
-    - 'node_modules/.prisma/client/query-engine-rhel-*'
+    - '!node_modules/.prisma/client/libquery_engine-*'
+    - 'node_modules/.prisma/client/libquery_engine-rhel-*'
+    - '!node_modules/prisma/libquery_engine-*'
+    - '!node_modules/@prisma/engines/**'

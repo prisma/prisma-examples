@@ -1,6 +1,6 @@
 # Fullstack Example with Next.js (REST API)
 
-This example shows how to implement a **fullstack app with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
 
@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app with [Next.js](https://nex
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-nextjs
+npx try-prisma@latest --template javascript/rest-nextjs
 ```
 
 Install npm dependencies:
@@ -43,11 +43,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the app
@@ -62,7 +58,7 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <br />
 
-**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx)
+**Blog** (located in [`./pages/index.tsx`](./pages/index.tsx))
 
 ![](https://imgur.com/eepbOUO.png)
 
@@ -90,7 +86,6 @@ You can also access the REST API of the API server directly. It is running on th
 
 ### `GET`
 
-- `/api/post/:id`: Fetch a single post by its `id`
 - `/api/feed`: Fetch all _published_ posts
 - `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
@@ -111,10 +106,10 @@ You can also access the REST API of the API server directly. It is running on th
 - `/api/publish/:id`: Publish a post by its `id`
 
 ### `DELETE`
-  
+
 - `/api/post/:id`: Delete a post by its `id`
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -162,7 +157,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -173,12 +168,14 @@ datasource db {
 }
 ```
 
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
 ```
 

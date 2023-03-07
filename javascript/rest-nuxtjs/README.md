@@ -1,6 +1,6 @@
 # Fullstack Example with NuxtJs (REST API)
 
-This example shows how to implement a **fullstack app with [NuxtJs](https://nuxtjs.org//)** using [Vue](https://vuejs.org/) (frontend), [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app with [NuxtJs](https://nuxtjs.org//)** using [Vue](https://vuejs.org/) (frontend) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
 
@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app with [NuxtJs](https://nuxt
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/javascript/rest-nuxtjs
+npx try-prisma@latest --template javascript/rest-nuxtjs
 ```
 
 Install npm dependencies:
@@ -43,11 +43,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.js`](./prisma/seed.js) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the app
@@ -114,7 +110,7 @@ You can also access the REST API of the API server directly. It is running on th
   
 - `/api/post/:id`: Delete a post by its `id`
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -162,7 +158,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -173,12 +169,14 @@ datasource db {
 }
 ```
 
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
 ```
 
@@ -229,7 +227,7 @@ model User {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --name add-profile
 ```
 
 ### 2. Update your application code

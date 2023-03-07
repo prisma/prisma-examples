@@ -24,8 +24,6 @@ esac
 cd "$(dirname "$item")/"
 
 ## ACTION
-yarn install
-yarn prisma generate
 
 echo "+++++++++++"
 echo "executing .github/tests/$(dirname "$item")/run.sh (tests)"

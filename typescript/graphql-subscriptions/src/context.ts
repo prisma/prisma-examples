@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { PubSub } from 'apollo-server'
+import { PubSub } from 'graphql-subscriptions'
 
 export interface Context {
   prisma: PrismaClient

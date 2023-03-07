@@ -1,11 +1,5 @@
 {
   "name": "node-grpc",
-  "dependencies": {
-    "@grpc/proto-loader": "0.6.2",
-    "@prisma/client": "2.22.1",
-    "chalk": "4.1.1",
-    "grpc": "1.24.10"
-  },
   "scripts": {
     "dev": "node ./server/server.js",
     "seed": "node prisma/seed.js",
@@ -17,10 +11,16 @@
     "publish": "node ./client/publish.js",
     "deletePost": "node ./client/deletePost.js"
   },
-  "devDependencies": {
-    "prisma": "2.22.1"
+  "dependencies": {
+    "@grpc/proto-loader": "0.7.5",
+    "@prisma/client": "4.11.0",
+    "chalk": "4.1.2",
+    "grpc": "1.24.11"
   },
-  "engines": {
-    "node": ">=10.0.0"
+  "devDependencies": {
+    "prisma": "4.11.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

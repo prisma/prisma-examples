@@ -3,7 +3,7 @@
 This example shows how to implement a **gRPC API with TypeScript** and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It is based on a SQLite database, you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/grpc
+npx try-prisma@latest --template typescript/grpc
 __INLINE(../_setup-1.md)__
 cd grpc
 __INLINE(../_setup-2.md)__

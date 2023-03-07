@@ -1,12 +1,27 @@
 # Fullstack Authentication Example with Next.js and NextAuth.js
 
-This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Next.js API routes](https://nextjs.org/docs/api-routes/introduction) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It also demonstrates how to implement authentication using [NextAuth.js](https://next-auth.js.org/). The example uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Next.js](https://nextjs.org/)** using [React](https://reactjs.org/) (frontend), [Next.js API routes](https://nextjs.org/docs/api-routes/introduction) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) (backend). It also demonstrates how to implement authentication using [NextAuth.js](https://next-auth.js.org/). The example uses an SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 Note that the app uses a mix of server-side rendering with `getServerSideProps` (SSR) and static site generation with `getStaticProps` (SSG). When possible, SSG is used to make database queries already at build-time (e.g. when fetching the [public feed](./pages/index.tsx)). Sometimes, the user requesting data needs to be authenticated, so SSR is being used to render data dynamically on the server-side (e.g. when viewing a user's [drafts](./pages/drafts.tsx)).
 
-## How to use
+## Getting started
 
-### 1. Download example & install dependencies
+### 1. Download example and install dependencies
+
+Download this example:
+
+```
+npx try-prisma@latest --template typescript/rest-nextjs-api-routes-auth
+```
+
+Install npm dependencies:
+
+```
+cd rest-nextjs-api-routes-auth
+npm install
+```
+
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
 Clone this repository:
 
@@ -21,9 +36,20 @@ cd prisma-examples/typescript/rest-nextjs-api-routes-auth
 npm install
 ```
 
-Note that this also generates Prisma Client JS into `node_modules/@prisma/client` via a `postinstall` hook of the `@prisma/client` package from your `package.json`.
+</details>
 
-### 2. Configuring your authentication provider
+### 2. Create and seed the database
+
+Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+
+```
+npx prisma migrate dev --name init
+```
+
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
+
+
+### 3. Configuring your authentication provider
 
 In order to get this example to work, you need to configure the [GitHub](https://next-auth.js.org/providers/github) and/or [Email](https://next-auth.js.org/providers/email) authentication providers from NextAuth.js.
 
@@ -57,9 +83,9 @@ GITHUB_SECRET=509298c32faa283f28679ad6de6f86b2472e1bff
 
 #### Configuring the Email authentication provider
 
-You can [follow the instructions in the NextAuth.js documentation](https://next-auth.js.org/providers/email#configuration) to configure the Email authentication provider. Once your email authentication proivder is configured, you can set the environment variables in [`.env`](./env) accordingly.
+You can [follow the instructions in the NextAuth.js documentation](https://next-auth.js.org/providers/email#configuration) to configure the Email authentication provider. Once your email authentication provider is configured, you can set the environment variables in [`.env`](./env) accordingly.
 
-### 3. Start the app
+### 4. Start the app
 
 ```
 npm run dev
@@ -69,95 +95,55 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 ## Evolving the app
 
-Evolving the application typically requires five subsequent steps:
+Evolving the application typically requires three steps:
 
-1. Migrating the database schema using SQL
-1. Updating your Prisma schema by introspecting the database with `prisma introspect`
-1. Generating Prisma Client to match the new database schema with `prisma generate`
-1. Using the updated Prisma Client in your application code and extending the REST API
-1. Building new UI features in React
+1. Migrate your database using Prisma Migrate
+1. Update your server-side application code
+1. Build new UI features in React
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
-### 1. Change your database schema using SQL
+### 1. Migrate your database using Prisma Migrate
 
-The first step would be to add a new table, e.g. called `Profile`, to the database. In SQLite, you can do so by running the following SQL statement:
+The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
 
-```sql
-CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "bio" TEXT,
-  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
-);
-```
+```diff
+// schema.prisma
 
-To run the SQL statement against the database, you can use the `sqlite3` CLI in your terminal, e.g.:
-
-```bash
-sqlite3 dev.db \
-'CREATE TABLE "Profile" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "bio" TEXT,
-  "user" INTEGER NOT NULL UNIQUE REFERENCES "User"(id) ON DELETE SET NULL
-);'
-```
-
-Note that we're adding a unique constraint to the foreign key on `user`, this means we're expressing a 1:1 relationship between `User` and `Profile`, i.e.: "one user has one profile".
-
-While your database now is already aware of the new table, you're not yet able to perform any operations against it using Prisma Client. The next two steps will update the Prisma Client API to include operations against the new `Profile` table.
-
-### 2. Introspect your database
-
-The Prisma schema is the foundation for the generated Prisma Client API. Therefore, you first need to make sure the new `Profile` table is represented in it as well. The easiest way to do so is by introspecting your database:
-
-```
-npx prisma introspect
-```
-
-> **Note**: You're using [npx](https://github.com/npm/npx) to run Prisma 2 CLI that's listed as a development dependency in [`package.json`](./package.json). Alternatively, you can install the CLI globally using `npm install -g prisma`. When using Yarn, you can run: `yarn prisma dev`.
-
-The `introspect` command updates your `schema.prisma` file. It now includes the `Profile` model and its 1:1 relation to `User`:
-
-```prisma
 model Post {
-  author    User?
-  content   String?
-  id        Int     @id
-  published Boolean @default(false)
+  id        Int     @default(autoincrement()) @id
   title     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  Int
 }
 
 model User {
+  id      Int      @default(autoincrement()) @id 
+  name    String? 
   email   String   @unique
-  id      Int      @id
-  name    String?
   posts   Post[]
-  profile Profile?
++ profile Profile?
 }
 
-model Profile {
-  bio  String?
-  id   Int     @default(autoincrement()) @id
-  user Int     @unique
-  User User    @relation(fields: [userId], references: [id])
-}
++model Profile {
++  id     Int     @default(autoincrement()) @id
++  bio    String?
++  userId Int     @unique
++  user   User    @relation(fields: [userId], references: [id])
++}
 ```
 
-### 3. Generate Prisma Client
-
-With the updated Prisma schema, you can now also update the Prisma Client API with the following command:
+Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma generate
+npx prisma migrate dev
 ```
 
-This command updated the Prisma Client API in `node_modules/@prisma/client`.
+### 2. Update your application code
 
-### 4. Use the updated Prisma Client in your application code
-
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement a new route in the REST API, e.g. `/api/profile`.
-
-Here are some examples for some Prisma Client operations:
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
 
 #### Create a new profile for an existing user
 
@@ -203,15 +189,89 @@ const userWithUpdatedProfile = await prisma.user.update({
 });
 ```
 
-### 5. Build new UI features in React
+
+### 3. Build new UI features in React
 
 Once you have added a new endpoint to the API (e.g. `/api/profile` with `/POST`, `/PUT` and `GET` operations), you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory.
 
 In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
 
+
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
+
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+
+Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
+
+<details><summary>Expand for an overview of example configurations with different databases</summary>
+
+### PostgreSQL
+
+For PostgreSQL, the connection URL has the following structure:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+}
+```
+
+Here is an example connection string with a local PostgreSQL database:
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://janedoe:mypassword@localhost:5432/notesapi?schema=public"
+}
+```
+
+### MySQL
+
+For MySQL, the connection URL has the following structure:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+}
+```
+
+Here is an example connection string with a local MySQL database:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://janedoe:mypassword@localhost:3306/notesapi"
+}
+```
+
+### Microsoft SQL Server
+
+Here is an example connection string with a local Microsoft SQL Server database:
+
+```prisma
+datasource db {
+  provider = "sqlserver"
+  url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
+}
+```
+
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
+
+```prisma
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
+}
+```
+
+</details>
+
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
+- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

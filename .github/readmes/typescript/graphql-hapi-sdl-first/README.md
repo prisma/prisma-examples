@@ -9,7 +9,7 @@ This example shows how to implement an **GraphQL Server Example with Hapi (SDL f
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql-hapi-sdl-first
+npx try-prisma@latest --template typescript/graphql-hapi-sdl-first
 __INLINE(../_setup-1.md)__
 cd graphql-hapi-sdl-first
 __INLINE(../_setup-2.md)__

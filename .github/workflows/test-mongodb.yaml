@@ -1,0 +1,46 @@
+name: test-mongodb
+on:
+  push:
+    paths:
+      - databases/mongodb/**
+    branches:
+      - latest
+      - dev
+      - patch-dev
+  pull_request:
+    paths:
+      - databases/mongodb/**
+
+env:
+  CI: 1
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test-mongodb.yaml'
+
+jobs:
+  test:
+    defaults:
+      run:
+        working-directory: databases/mongodb
+    runs-on: ubuntu-latest
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      mongodb:
+        # Docker Hub image
+        image: prismagraphql/mongo-single-replica:4.4.3-bionic
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: prisma
+        ports:
+          - 27017:27017
+
+    env:
+      DATABASE_URL: mongodb://root:prisma@localhost:27017/prisma-mongo?authSource=admin&retryWrites=true&w=majority
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npx prisma generate
+      - run: npm run test

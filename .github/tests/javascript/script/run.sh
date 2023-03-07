@@ -2,6 +2,6 @@
 
 set -eu
 
-yarn 
-yarn prisma db push --preview-feature
-yarn dev
+npm install
+npx prisma migrate dev --name init
+npm run dev 

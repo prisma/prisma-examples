@@ -1,7 +1,12 @@
 const path = require('path')
+const { defaults } = require('jest-config')
 
-module.exports = {
+/** @type {import('@jest/types').Config.InitialOptions} */
+const config = {
   preset: 'ts-jest',
-  testEnvironment: path.join(__dirname, 'prisma', 'prisma-test-environment.js'),
+  moduleFileExtensions: [...defaults.moduleFileExtensions, 'mjs'],
+  testEnvironment: path.join(__dirname, 'prisma', 'prisma-test-environment.mjs'),
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
 }
+
+module.exports = config

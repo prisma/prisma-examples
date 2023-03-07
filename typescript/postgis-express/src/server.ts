@@ -1,19 +1,18 @@
 import { PrismaClient } from '@prisma/client'
-import * as bodyParser from 'body-parser'
 import express from 'express'
 
 export const prisma = new PrismaClient()
 const app = express()
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.post('/user', async (req, res) => {
   const { name, location } = req.body
   try {
-    const response = await prisma.$queryRaw`
+    const response: any = (await prisma.$queryRaw`
     insert into "User" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
-    returning id`
+    returning id`) as any
 
     res.json({
       success: true,
@@ -30,7 +29,7 @@ app.post('/user', async (req, res) => {
 app.post('/location', async (req, res) => {
   const { name, location } = req.body
   try {
-    await prisma.$executeRaw`
+    await prisma.$queryRaw`
     insert into "Location" ("name", "location") values
     (${name}, "public"."st_point"(${location.lng}, ${location.lat}))
     `
@@ -52,11 +51,11 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   const distance = parseInt(String(d)) || 5
 
   try {
-    const locations = await prisma.$queryRaw(
-      'select * from "locations_near_user"($1, $2)',
-      parseInt(userId),
-      distance,
-    )
+    const locations = await prisma.$queryRaw`
+      select * from "locations_near_user"(${parseInt(
+        userId,
+      )}::int, ${distance}::int)
+    `
     res.json({ data: { locations } })
   } catch (e) {
     console.error(e)

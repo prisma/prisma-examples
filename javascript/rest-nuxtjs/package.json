@@ -3,27 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
-    "build": "nuxt build",
-    "start": "NODE_ENV=production node server.js",
-    "generate": "nuxt generate"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "start": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/http": "0.6.4",
-    "@prisma/client": "2.22.1",
-    "core-js": "3.12.1",
-    "express": "4.17.1",
-    "nuxt": "2.15.6"
+    "@prisma/client": "4.11.0",
+    "nuxt": "3.2.3"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "6.0.0",
-    "@nuxtjs/eslint-module": "3.0.2",
-    "prisma": "2.22.1",
-    "babel-eslint": "10.1.0",
-    "eslint": "7.26.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-nuxt": "2.0.0",
-    "eslint-plugin-prettier": "3.4.0",
-    "prettier": "2.3.0"
+    "prisma": "4.11.0"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

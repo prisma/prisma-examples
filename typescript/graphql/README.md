@@ -2,10 +2,10 @@
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
-- [**Apollo Server**](https://github.com/apollographql/apollo-server): HTTP server for GraphQL APIs   
-- [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation 
-- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
-- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
+- [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): GraphQL server
+- [**Pothos**](https://pothos-graphql.dev/): Code-first GraphQL schema definition library
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 ## Contents
@@ -23,7 +23,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 Download this example:
 
 ```
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/graphql
+npx try-prisma@latest --template typescript/graphql
 ```
 
 Install npm dependencies:
@@ -58,11 +58,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
-
-```
-npx prisma db seed --preview-feature
-```
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the GraphQL server
@@ -337,123 +333,77 @@ You can now use your `PrismaClient` instance to perform operations against the n
 
 #### 2.1. Add the `Profile` type to your GraphQL schema
 
-First, add a new GraphQL type via Nexus' `objectType` function:
+First, create a new `profile.ts` file add a new GraphQL type via Pothos' `prismaObject` function:
 
 ```diff
-// ./src/schema.ts
+// ./src/schema/profile.ts
++import { builder } from "../builder";
 
-+const Profile = objectType({
-+  name: 'Profile',
-+  definition(t) {
-+    t.nonNull.int('id')
-+    t.string('bio')
-+    t.field('user', {
-+      type: 'User',
-+      resolve: (parent, _, context) => {
-+        return context.prisma.profile
-+          .findUnique({
-+            where: { id: parent.id || undefined },
-+          })
-+          .user()
-+      },
-+    })
-+  },
++builder.prismaObject('Profile', {
++  fields: (t) => ({
++    id: t.exposeInt('id'),
++    bio: t.exposeString('bio', { nullable: true }),
++    user: t.relation('user'),
++  }),
 +})
+```
 
-const User = objectType({
-  name: 'User',
-  definition(t) {
-    t.nonNull.int('id')
-    t.string('name')
-    t.nonNull.string('email')
-    t.nonNull.list.nonNull.field('posts', {
-      type: 'Post',
-      resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
-      },
-+   t.field('profile', {
-+     type: 'Profile',
-+     resolve: (parent, _, context) => {
-+       return context.prisma.user.findUnique({
-+         where: { id: parent.id }
-+       }).profile()
-+     }
-+   })
-  },
+Update the `User` object type to include the `profile field:
+
+```diff
+// ./src/schema/user.ts
+
+builder.prismaObject('User', {
+  fields: (t) => ({
+    id: t.exposeInt('id'),
+    name: t.exposeString('name', { nullable: true }),
+    email: t.exposeString('email'),
+    posts: t.relation('posts'),
++    profile: t.relation('profile'),
+  }),
 })
 ```
-
-Don't forget to include the new type in the `types` array that's passed to `makeSchema`:
-
-```diff
-export const schema = makeSchema({
-  types: [
-    Query,
-    Mutation,
-    Post,
-    User,
-+   Profile,
-    UserUniqueInput,
-    UserCreateInput,
-    PostCreateInput,
-    PostOrderBy,
-    DateTime,
-  ],
-  // ... as before
-}
-```
-
-Note that in order to resolve any type errors, your development server needs to be running so that the Nexus types can be generated. If it's not running, you can start it with `npm run dev`.
 
 #### 2.2. Add a `createProfile` GraphQL mutation
 
 ```diff
-// ./src/schema.ts
+// ./src/schema/profile.ts
+import { builder } from "../builder";
++import { prisma } from '../db'
++import { UserUniqueInput } from './user';
 
-const Mutation = objectType({
-  name: 'Mutation',
-  definition(t) {
+// ... object type
 
-    // other mutations
 
-+   t.field('addProfileForUser', {
-+     type: 'Profile',
-+     args: {
-+       userUniqueInput: nonNull(
-+         arg({
-+           type: 'UserUniqueInput',
-+         }),
-+       ),
-+       bio: stringArg()
-+     }, 
-+     resolve: async (_, args, context) => {
-+       return context.prisma.profile.create({
-+         data: {
-+           bio: args.bio,
-+           user: {
-+             connect: {
-+               id: args.userUniqueInput.id || undefined,
-+               email: args.userUniqueInput.email || undefined,
-+             }
-+           }
-+         }
-+       })
-+     }
-+   })
-
-  }
-})
++builder.mutationField('createProfile', (t) =>
++  t.prismaField({
++    type: 'Profile',
++    args: {
++      bio: t.arg.string({ required: true }),
++      data: t.arg({ type: UserUniqueInput })
++    },
++    resolve: async (query, _parent, args, _context) =>
++      prisma.profile.create({
++        ...query,
++        data: {
++          bio: args.bio,
++          user: {
++            connect: {
++              id: args.data?.id || undefined,
++              email: args.data?.email || undefined
++            }
++          }
++        }
++      })
++  })
++)
 ```
 
 Finally, you can test the new mutation like this:
 
 ```graphql
 mutation {
-  addProfileForUser(
+  createProfile(
     userUniqueInput: {
       email: "mahmoud@prisma.io"
     }
@@ -519,7 +469,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 </details>
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
@@ -567,7 +517,7 @@ datasource db {
 }
 ```
 
-### Microsoft SQL Server (Preview)
+### Microsoft SQL Server
 
 Here is an example connection string with a local Microsoft SQL Server database:
 
@@ -578,12 +528,14 @@ datasource db {
 }
 ```
 
-Because SQL Server is currently in [Preview](https://www.prisma.io/docs/about/releases#preview), you need to specify the `previewFeatures` on your `generator` block:
+### MongoDB
+
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer"]
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
 ```
 
@@ -592,6 +544,6 @@ generator client {
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 - Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)

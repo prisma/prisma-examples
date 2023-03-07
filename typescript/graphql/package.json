@@ -5,31 +5,32 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
     "start": "node dist/server",
     "clean": "rm -rf dist",
-    "build": "npm -s run clean && npm -s run generate && tsc",
-    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
-    "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only src/schema"
-  },
-  "dependencies": {
-    "@prisma/client": "2.22.1",
-    "apollo-server": "2.24.0",
-    "graphql": "15.5.0",
-    "graphql-scalars": "1.9.3",
-    "nexus": "1.0.0"
-  },
-  "devDependencies": {
-    "prisma": "2.22.1",
-    "@types/node": "12.20.13",
-    "ts-node": "9.1.1",
-    "ts-node-dev": "1.1.6",
-    "typescript": "4.2.4"
+    "build": "npm -s run clean && npm -s run generate && tsc && npm run build:schema",
+    "build:schema": "ts-node src/schema/index.ts",
+    "generate": "npm -s run generate:prisma",
+    "generate:prisma": "prisma generate"
   },
   "prettier": {
-    "singleQuote": true,
     "semi": false,
+    "singleQuote": true,
     "trailingComma": "all"
   },
-  "engines": {
-    "node": ">=10.0.0"
+  "dependencies": {
+    "@pothos/core": "^3.23.1",
+    "@pothos/plugin-prisma": "^3.37.0",
+    "@prisma/client": "4.11.0",
+    "graphql": "16.6.0",
+    "graphql-scalars": "1.20.1",
+    "graphql-yoga": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.14.6",
+    "prisma": "4.11.0",
+    "ts-node": "10.9.1",
+    "ts-node-dev": "2.0.0",
+    "typescript": "4.9.5"
+  },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
   }
 }

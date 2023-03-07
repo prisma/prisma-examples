@@ -26,7 +26,7 @@ jobs:
       # Label used to access the service container
       sql-server:
         # Docker Hub image
-        image: mcr.microsoft.com/mssql/server:2019-latest
+        image: mcr.microsoft.com/mssql/server:2022-latest
         env:
           ACCEPT_EULA: Y
           SA_PASSWORD: 'Pr1sm4_Pr1sm4'
@@ -39,17 +39,10 @@ jobs:
       DATABASE_URL: sqlserver://localhost:1433;database=prisma-demo;user=SA;password=Pr1sm4_Pr1sm4;trustServerCertificate=true;encrypt=true
 
     steps:
-      - uses: actions/checkout@v2
-      - name: migrate-db
-        uses: docker://mcr.microsoft.com/mssql-tools
-        with:
-          entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -i ./databases/sql-server/schema.sql'
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
       - run: npm install
-      - run: npx prisma introspect
-      - run: cp prisma/schema-introspected-renamed.prisma prisma/schema.prisma
-      - run: npx prisma generate
+      - run: npx prisma migrate dev --name "init"
       - run: npm run test

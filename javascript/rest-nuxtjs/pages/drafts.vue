@@ -2,33 +2,20 @@
   <div class="page">
     <h1>Drafts</h1>
     <main>
-      <p v-if="$fetchState.pending">
+      <p v-if="pending">
         <span class="loading"></span>
       </p>
-      <p v-else-if="$fetchState.error">Error while fetching drafts 💔</p>
+      <p v-else-if="error">Error while fetching drafts 💔</p>
       <div v-else>
         <Post class="post" v-for="post in drafts" :key="post.id" :post="post" />
       </div>
     </main>
   </div>
 </template>
-<script>
-import Post from '@/components/Post'
+<script setup>
 
-export default {
-  components: { Post },
-  data() {
-    return {
-      drafts: [],
-    }
-  },
-  async fetch() {
-    const drafts = await fetch(`http://localhost:3000/api/drafts`).then((res) =>
-      res.json()
-    )
-    this.drafts = drafts
-  },
-}
+const { data: drafts, error, pending } = await useFetch('/api/drafts')
+
 </script>
 <style scoped>
 .post {
@@ -40,7 +27,7 @@ export default {
   box-shadow: 1px 1px 3px #aaa;
 }
 
-.post + .post {
+.post+.post {
   margin-top: 2rem;
 }
 </style>
