@@ -1,6 +1,6 @@
 # REST API with Authentication
 
-This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
+This example shows how to implement an **Express server with TypeScript** with the following stack:
 
 - [**Express**](https://expressjs.com/): Web framework for building Node.js web applications
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
@@ -60,7 +60,7 @@ npx prisma migrate dev --name init
 Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.ts) by running the following command:
 
 ```
-npx prisma db seed --preview-feature
+npx prisma db seed
 ```
 
 ### 3. Start the REST API server
@@ -69,7 +69,7 @@ npx prisma db seed --preview-feature
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can now the API requests, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
+The server is now running on `http://localhost:3000`. You can send API requests, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
 ## Using the REST API
 
@@ -78,36 +78,50 @@ You can access the REST API of the server using the following endpoints:
 ### `GET`
 
 - `/post/:id`: Fetch a single post by its `id`
+  - Authentication required
 - `/feed?searchString={searchString}&take={take}&skip={skip}&orderBy={orderBy}`: Fetch all _published_ posts
+  - Authentication required
   - Query Parameters
     - `searchString` (optional): This filters posts by `title` or `content`
     - `take` (optional): This specifies how many objects should be returned in the list
     - `skip` (optional): This specifies how many of the returned objects in the list should be skipped
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
 - `/user/:id/drafts`: Fetch user's drafts by their `id`
+  - Authentication required
 - `/users`: Fetch all users
+  - Authentication required
 
 ### `POST`
 
 - `/post`: Create a new post
+  - Authentication required
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
     - `authorEmail: String` (required): The email of the user that creates the post
-- `/signup`: Create a new user
+- `/signup`: Create a new user and session
   - Body:
     - `email: String` (required): The email address of the user
-    - `name: String` (optional): The name of the user
-    - `postData: PostCreateInput[]` (optional): The posts of the user
+    - `password: String` (required): The email of the user
+    - `posts: PostCreateInput[]` (optional): The posts of the user
+- `/login`: Login into account and start a new session
+  - Body:
+    - `email: String` (required): The email address of the user
+    - `password: String` (required): The email of the user
+- `/logout`: Logs out the user and deletes the session
+  - Authentication required
 
 ### `PUT`
 
 - `/publish/:id`: Toggle the publish value of a post by its `id`
+  - Authentication required
 - `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
+  - Authentication required
 
 ### `DELETE`
 
 - `/post/:id`: Delete a post by its `id`
+  - Authentication required
 
 ## Evolving the app
 
@@ -170,7 +184,7 @@ You can now use your `PrismaClient` instance to perform operations against the n
 Update your `index.ts` file by adding a new endpoint to your API:
 
 ```ts
-app.post('/user/:id/profile', async (req, res) => {
+app.post('/user/:id/profile', isAuthenticated, async (req, res) => {
   const { id } = req.params
   const { bio } = req.body
 
