@@ -3,8 +3,8 @@
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
 - [**Express**](https://expressjs.com/): Web framework for building Node.js web applications
-- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
-- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 ## Contents
@@ -63,7 +63,6 @@ Now, seed the database with the sample data in [`prisma/seed.ts`](./prisma/seed.
 npx prisma db seed --preview-feature
 ```
 
-
 ### 3. Start the REST API server
 
 ```
@@ -87,6 +86,7 @@ You can access the REST API of the server using the following endpoints:
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
 - `/user/:id/drafts`: Fetch user's drafts by their `id`
 - `/users`: Fetch all users
+
 ### `POST`
 
 - `/post`: Create a new post
@@ -108,7 +108,6 @@ You can access the REST API of the server using the following endpoints:
 ### `DELETE`
 
 - `/post/:id`: Delete a post by its `id`
-
 
 ## Evolving the app
 
@@ -180,10 +179,10 @@ app.post('/user/:id/profile', async (req, res) => {
       bio,
       user: {
         connect: {
-          id: Number(id)
-        }
-      }
-    }
+          id: Number(id),
+        },
+      },
+    },
   })
 
   res.json(profile)
@@ -199,7 +198,6 @@ Restart your application server and test out your new endpoint.
 - `/user/:id/profile`: Create a new profile based on the user id
   - Body:
     - `bio: String` : The bio of the user
-
 
 <details><summary>Expand to view more sample Prisma Client queries on <code>Profile</code></summary>
 
@@ -253,7 +251,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
