@@ -86,7 +86,7 @@ auth.post('/logout', isAuth, async (req, res) => {
       id: req.user?.id,
     },
     data: {
-      sessionID: '',
+      sessionID: null,
     },
   })
 
