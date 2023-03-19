@@ -29,7 +29,7 @@ type Query {
   allUsers: [User!]
   draftsByUser(userUniqueInput: UserUniqueInput!): [Post!]
   postById(id: Float!): Post
-  feed(orderBy: PostOrderByUpdatedAtInput, take: Float, skip: Float, searchString: String): [Post!]!
+  feed(searchString: String, skip: Float, take: Float, orderBy: PostOrderByUpdatedAtInput): [Post!]!
 }
 
 input UserUniqueInput {
@@ -48,7 +48,7 @@ enum SortOrder {
 
 type Mutation {
   signupUser(data: UserCreateInput!): User!
-  createDraft(authorEmail: String!, data: PostCreateInput!): Post!
+  createDraft(data: PostCreateInput!, authorEmail: String!): Post!
   incrementPostViewCount(id: Float!): Post!
   togglePublishPost(id: Float!): Post
   deletePost(id: Float!): Post
