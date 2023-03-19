@@ -68,7 +68,7 @@ export const getServerSideProps = async (context) => {
     where: { id: Number(context.params.id) },
     include: { author: true },
   })
-  return { props: post }
+  return { props: { post } }
 }
 
 export default Post
