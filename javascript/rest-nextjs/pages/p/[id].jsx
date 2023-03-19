@@ -18,22 +18,24 @@ async function destroy(id) {
 }
 
 const Post = props => {
-  let title = props.title
-  if (!props.published) {
+  console.log("props:", props);
+  let title = props.post.title
+  if (!props.post.published) {
     title = `${title} (Draft)`
   }
-  const authorName = props.author ? props.author.name : 'Unknown author'
+  const authorName = props.post.author ? props.post.author.name : 'Unknown author'
+
   return (
     <Layout>
       <div className="page">
         <h2>{title}</h2>
         <small>By {authorName}</small>
-        <ReactMarkdown children={props.content} />
+        <ReactMarkdown children={props.post.content} />
         <div className="actions">
-          {!props.published && (
-            <button onClick={() => publish(props.id)}>Publish</button>
+          {!props.post.published && (
+            <button onClick={() => publish(props.post.id)}>Publish</button>
           )}
-          <button onClick={() => destroy(props.id)}>Delete</button>
+          <button onClick={() => destroy(props.post.id)}>Delete</button>
         </div>
       </div>
       <style jsx>{`
