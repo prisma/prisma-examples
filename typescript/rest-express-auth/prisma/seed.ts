@@ -1,4 +1,5 @@
 import { PrismaClient, Prisma } from '@prisma/client'
+import argon2 from 'argon2'
 
 const prisma = new PrismaClient()
 
@@ -49,6 +50,13 @@ const userData: Prisma.UserCreateInput[] = [
 ]
 
 async function main() {
+  await Promise.all(
+    userData.map(async (user) => {
+      user.password = await argon2.hash(user.password);
+      return user;
+    })
+  );
+
   console.log(`Start seeding ...`)
   for (const u of userData) {
     const user = await prisma.user.create({
