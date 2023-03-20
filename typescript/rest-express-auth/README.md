@@ -1,6 +1,6 @@
 # REST API with Authentication
 
-This example shows how to implement an **Express server with TypeScript** with the following stack:
+This example shows how to implement a **REST Authentication API with TypeScript** with the following stack:
 
 - [**Express**](https://expressjs.com/): Web framework for building Node.js web applications
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
@@ -10,7 +10,7 @@ This example shows how to implement an **Express server with TypeScript** with t
 ## Contents
 
 - [Getting Started](#getting-started)
-- [Using the GraphQL API](#using-the-rest-api)
+- [Using the REST API](#using-the-rest-api)
 - [Evolving the app](#evolving-the-app)
 - [Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)](#switch-to-another-database-eg-postgresql-mysql-sql-server)
 - [Next steps](#next-steps)
@@ -78,23 +78,18 @@ You can access the REST API of the server using the following endpoints:
 ### `GET`
 
 - `/post/:id`: Fetch a single post by its `id`
-  - Authentication required
 - `/feed?searchString={searchString}&take={take}&skip={skip}&orderBy={orderBy}`: Fetch all _published_ posts
-  - Authentication required
   - Query Parameters
     - `searchString` (optional): This filters posts by `title` or `content`
     - `take` (optional): This specifies how many objects should be returned in the list
     - `skip` (optional): This specifies how many of the returned objects in the list should be skipped
-    - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
-- `/user/:id/drafts`: Fetch user's drafts by their `id`
-  - Authentication required
+    - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`s
+- `/user/:id/drafts`: (protected) Fetch user's drafts by their `id`
 - `/users`: Fetch all users
-  - Authentication required
 
 ### `POST`
 
-- `/post`: Create a new post
-  - Authentication required
+- `/post`: (protected) Create a new post
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
@@ -108,20 +103,16 @@ You can access the REST API of the server using the following endpoints:
   - Body:
     - `email: String` (required): The email address of the user
     - `password: String` (required): The email of the user
-- `/logout`: Logs out the user and deletes the session
-  - Authentication required
+- `/logout`: (protected) Logs out the user and deletes the session
 
 ### `PUT`
 
-- `/publish/:id`: Toggle the publish value of a post by its `id`
-  - Authentication required
-- `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
-  - Authentication required
+- `/publish/:id`: (protected) Toggle the publish value of a post by its `id`
+- `/post/:id/views`: (protected) Increases the `viewCount` of a `Post` by one `id`
 
 ### `DELETE`
 
-- `/post/:id`: Delete a post by its `id`
-  - Authentication required
+- `/post/:id`: (protected) Delete a post by its `id`
 
 ## Evolving the app
 
@@ -209,7 +200,7 @@ Restart your application server and test out your new endpoint.
 
 ##### `POST`
 
-- `/user/:id/profile`: Create a new profile based on the user id
+- `/user/:id/profile`: (protected) Create a new profile based on the user id
   - Body:
     - `bio: String` : The bio of the user
 

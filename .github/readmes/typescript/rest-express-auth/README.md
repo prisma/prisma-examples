@@ -1,22 +1,9 @@
-# REST API with Authentication
+# REST Authentication API Example
 
-This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
-
-- [**Express**](https://expressjs.com/): Web framework for building Node.js web applications
-- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
-- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
-- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
-
-## Contents
-
-- [Getting Started](#getting-started)
-- [Using the GraphQL API](#using-the-rest-api)
-- [Evolving the app](#evolving-the-app)
-- [Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)](#switch-to-another-database-eg-postgresql-mysql-sql-server)
-- [Next steps](#next-steps)
+This example shows how to implement a **REST Authentication API with TypeScript** using [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). The example uses an SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-curl https://codeload.github.com/prisma/prisma-examples/tar.gz/latest | tar -xz --strip=2 prisma-examples-latest/typescript/rest-express-auth
+npx try-prisma@latest --template typescript/rest-express-auth
 __INLINE(../_setup-1.md)__
 cd rest-express-auth
 __INLINE(../_setup-2.md)__
@@ -29,7 +16,7 @@ __INLINE(../_setup-3.md)__
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can now the API requests, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
+The server is now running on `http://localhost:3000`. You can now run the API requests, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
 __INLINE(../../_using-the-rest-api.md)__
 

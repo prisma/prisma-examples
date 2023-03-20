@@ -10,27 +10,33 @@ You can access the REST API of the server using the following endpoints:
     - `searchString` (optional): This filters posts by `title` or `content`
     - `take` (optional): This specifies how many objects should be returned in the list
     - `skip` (optional): This specifies how many of the returned objects in the list should be skipped
-    - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
-- `/user/:id/drafts`: Fetch user's drafts by their `id`
+    - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`s
+- `/user/:id/drafts`: (protected) Fetch user's drafts by their `id`
 - `/users`: Fetch all users
+
 ### `POST`
 
-- `/post`: Create a new post
+- `/post`: (protected) Create a new post
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
     - `authorEmail: String` (required): The email of the user that creates the post
-- `/signup`: Create a new user
+- `/signup`: Create a new user and session
   - Body:
     - `email: String` (required): The email address of the user
-    - `name: String` (optional): The name of the user
-    - `postData: PostCreateInput[]` (optional): The posts of the user
+    - `password: String` (required): The email of the user
+    - `posts: PostCreateInput[]` (optional): The posts of the user
+- `/login`: Login into account and start a new session
+  - Body:
+    - `email: String` (required): The email address of the user
+    - `password: String` (required): The email of the user
+- `/logout`: (protected) Logs out the user and deletes the session
 
 ### `PUT`
 
-- `/publish/:id`: Toggle the publish value of a post by its `id`
-- `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
+- `/publish/:id`: (protected) Toggle the publish value of a post by its `id`
+- `/post/:id/views`: (protected) Increases the `viewCount` of a `Post` by one `id`
 
 ### `DELETE`
 
-- `/post/:id`: Delete a post by its `id`
+- `/post/:id`: (protected) Delete a post by its `id`
