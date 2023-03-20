@@ -12,7 +12,7 @@
   "dependencies": {
     "@graphql-tools/schema": "9.0.17",
     "@prisma/client": "4.11.0",
-    "fastify": "4.14.1",
+    "fastify": "4.15.0",
     "graphql": "16.6.0",
     "graphql-scalars": "1.20.4",
     "mercurius": "12.2.0"
