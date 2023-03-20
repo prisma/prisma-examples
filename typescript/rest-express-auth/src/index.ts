@@ -125,7 +125,7 @@ app.post(`/post`, isAuthenticated, async (req, res) => {
   res.json(result)
 })
 
-app.put('/post/:id/views', isAuthenticated, async (req, res) => {
+app.put('/post/:id/views', async (req, res) => {
   const { id } = req.params
 
   try {
@@ -175,7 +175,7 @@ app.delete(`/post/:id`, isAuthenticated, async (req, res) => {
   res.json(post)
 })
 
-app.get('/users', isAuthenticated, async (req, res) => {
+app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany()
   res.json(users)
 })
@@ -196,7 +196,7 @@ app.get('/user/:id/drafts', isAuthenticated, async (req, res) => {
   res.json(drafts)
 })
 
-app.get(`/post/:id`, isAuthenticated, async (req, res) => {
+app.get(`/post/:id`, async (req, res) => {
   const { id }: { id?: string } = req.params
 
   const post = await prisma.post.findUnique({
@@ -205,7 +205,7 @@ app.get(`/post/:id`, isAuthenticated, async (req, res) => {
   res.json(post)
 })
 
-app.get('/feed', isAuthenticated, async (req, res) => {
+app.get('/feed', async (req, res) => {
   const { searchString, skip, take, orderBy } = req.query
 
   const or: Prisma.PostWhereInput = searchString

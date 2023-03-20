@@ -108,7 +108,7 @@ You can access the REST API of the server using the following endpoints:
 ### `PUT`
 
 - `/publish/:id`: (protected) Toggle the publish value of a post by its `id`
-- `/post/:id/views`: (protected) Increases the `viewCount` of a `Post` by one `id`
+- `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
 
 ### `DELETE`
 
