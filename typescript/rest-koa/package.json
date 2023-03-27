@@ -12,7 +12,7 @@
     "koa-body": "6.0.1"
   },
   "devDependencies": {
-    "@types/koa": "2.13.5",
+    "@types/koa": "2.13.6",
     "@types/koa__router": "12.0.0",
     "@types/node": "18.15.10",
     "prisma": "4.11.0",
