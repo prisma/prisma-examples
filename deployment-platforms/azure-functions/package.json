@@ -9,7 +9,7 @@
     "@prisma/client": "4.11.0"
   },
   "devDependencies": {
-    "azure-functions-core-tools": "4.0.5085",
+    "azure-functions-core-tools": "4.0.5095",
     "prisma": "4.11.0"
   }
 }
