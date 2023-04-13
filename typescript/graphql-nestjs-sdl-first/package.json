@@ -48,7 +48,7 @@
     "@prisma/client": "4.12.0",
     "graphql": "16.6.0",
     "graphql-scalars": "1.21.3",
-    "graphql-tools": "8.3.19",
+    "graphql-tools": "8.3.20",
     "reflect-metadata": "0.1.13",
     "rimraf": "4.4.1",
     "rxjs": "7.8.0"
