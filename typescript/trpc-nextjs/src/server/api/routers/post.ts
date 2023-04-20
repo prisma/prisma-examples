@@ -1,6 +1,6 @@
-
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
+import { prisma } from "../../db";
 
 export const postRouter = createTRPCRouter({
   /**
@@ -59,7 +59,6 @@ export const postRouter = createTRPCRouter({
         : {}
 
       return prisma.post.findMany({
-        ...query,
         where: { ...or }
       })
     }),
