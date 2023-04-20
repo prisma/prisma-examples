@@ -5,7 +5,7 @@ import { useRef, useEffect } from "react";
 import { json } from "react-router";
 
 import { prisma } from '~/lib/prisma.server'
-import signupStyleSheet from "~/styles/global.css"
+import signupStyleSheet from "~/styles/signup.css"
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: signupStyleSheet }];
