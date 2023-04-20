@@ -13,6 +13,7 @@ npx try-prisma@latest --template typescript/rest-nuxtjs
 ```
 
 Install npm dependencies:
+
 ```
 cd rest-nuxtjs
 npm install
@@ -43,7 +44,7 @@ Run the following command to create your SQLite database file. This also creates
 npx prisma migrate dev --name init
 ```
 
-When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
 
 ### 3. Start the app
@@ -82,33 +83,33 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 ## Using the REST API
 
-You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/` route (in this case that is `localhost:3000/`, so you can e.g. reach the API with [`localhost:3000/feed`](http://localhost:3000/feed)).
+You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/api` route (in this case that is `localhost:3000/api/`, so you can e.g. reach the API with [`localhost:3000/api/feed`](http://localhost:3000/api/feed)).
 
 ### `GET`
 
-- `/post/id`: Fetch a single post by its `id`
-- `/feed`: Fetch all _published_ posts
-- `/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
+- `/api/post/:id`: Fetch a single post by its `id`
+- `/api/feed`: Fetch all _published_ posts
+- `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
 
 ### `POST`
 
-- `/post`: Create a new post
+- `/api/post`: Create a new post
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
     - `authorEmail: String` (required): The email of the user that creates the post
-- `/user`: Create a new user
+- `/api/user`: Create a new user
   - Body:
     - `email: String` (required): The email address of the user
     - `name: String` (optional): The name of the user
 
 ### `PUT`
 
-- `/publish/id`: Publish a post by its `id`
+- `/api/publish/:id`: Publish a post by its `id`
 
 ### `DELETE`
   
-- `/post/id`: Delete a post by its `id`
+- `/api/post/:id`: Delete a post by its `id`
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
@@ -227,7 +228,7 @@ model User {
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --name add-profile
 ```
 
 ### 2. Update your application code
