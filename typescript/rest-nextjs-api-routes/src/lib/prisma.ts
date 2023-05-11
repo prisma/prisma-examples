@@ -1,7 +1,3 @@
-// ts-ignore 7017 is used to ignore the error that the global object is not
-// defined in the global scope. This is because the global object is only
-// defined in the global scope in Node.js and not in the browser.
-
 import { PrismaClient } from '@prisma/client'
 
 // PrismaClient is attached to the `global` object in development to prevent

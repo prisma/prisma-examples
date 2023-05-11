@@ -3,9 +3,8 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
-import styles from '@/components/Post.module.css'
+import styles from './Post.module.css'
 import { Post as PrismaPost, Post, User } from '@prisma/client'
-import { tmpdir } from 'os'
 
 export type PostProps = Pick<
   PrismaPost,

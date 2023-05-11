@@ -1,4 +1,4 @@
-import Post, { PostProps } from '@/components/Post'
+import Post from '@/components/Post'
 import prisma from '@/lib/prisma'
 import styles from './page.module.css'
 

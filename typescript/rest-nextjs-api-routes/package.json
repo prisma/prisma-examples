@@ -9,22 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "4.14.0",
-    "next": "13.4.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-markdown": "8.0.7",
-    "superjson": "1.12.3"
-  },
-  "devDependencies": {
     "@types/node": "20.1.2",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
-    "prisma": "4.14.0",
-    "ts-node": "10.9.1",
+    "@prisma/client": "4.14.0",
+    "next": "13.4.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "8.0.7",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "prisma": "4.14.0",
+    "ts-node": "10.9.1"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
