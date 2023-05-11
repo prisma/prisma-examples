@@ -1,30 +1,28 @@
+'use client'
+
 import React from 'react'
-import Router from 'next/router'
+import { useRouter } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import styles from '@/components/Post.module.css'
+import { Post as PrismaPost, Post, User } from '@prisma/client'
+import { tmpdir } from 'os'
 
-export type PostProps = {
-  id: number
-  title: string
-  author: {
-    name: string
-  }
-  content: string
-  published: boolean
+export type PostProps = Pick<
+  PrismaPost,
+  'id' | 'title' | 'content' | 'published'
+> & {
+  author: Pick<User, 'name'> | null
 }
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+export default function Post({ post }: { post: PostProps }) {
+  const router = useRouter()
+
   const authorName = post.author ? post.author.name : 'Unknown author'
   return (
-    <div
-      className={styles.post}
-      onClick={() => Router.push('/p/[id]', `/p/${post.id}`)}
-    >
+    <div className={styles.post} onClick={() => router.push(`/p/${post.id}`)}>
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
       <ReactMarkdown>{post.content}</ReactMarkdown>
     </div>
   )
 }
-
-export default Post

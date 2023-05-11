@@ -1,12 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../lib/prisma'
+import prisma from '@/lib/prisma'
+import { NextRequest, NextResponse } from 'next/server'
 
 // GET /api/filterPosts?searchString=:searchString
-export default async function handle(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  const { searchString } = req.query
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url)
+  const searchString = searchParams.get('searchString')
   const resultPosts = await prisma.post.findMany({
     where: {
       OR: [
@@ -27,5 +25,5 @@ export default async function handle(
       ],
     },
   })
-  return res.json(resultPosts)
+  return NextResponse.json(resultPosts)
 }
