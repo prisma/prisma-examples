@@ -16,7 +16,7 @@ You can access the REST API of the server using the following endpoints:
 
 ### `POST`
 
-- `/post`: (protected) Create a new post
+- `/post`: Create a new post
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
@@ -30,13 +30,13 @@ You can access the REST API of the server using the following endpoints:
   - Body:
     - `email: String` (required): The email address of the user
     - `password: String` (required): The email of the user
-- `/logout`: (protected) Logs out the user and deletes the session
+- `/logout`: Logs out the user and deletes the session
 
 ### `PUT`
 
-- `/publish/:id`: (protected) Toggle the publish value of a post by its `id`
+- `/publish/:id`: Toggle the publish value of a post by its `id`
 - `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
 
 ### `DELETE`
 
-- `/post/:id`: (protected) Delete a post by its `id`
+- `/post/:id`: Delete a post by its `id`

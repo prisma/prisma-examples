@@ -84,12 +84,12 @@ You can access the REST API of the server using the following endpoints:
     - `take` (optional): This specifies how many objects should be returned in the list
     - `skip` (optional): This specifies how many of the returned objects in the list should be skipped
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`s
-- `/user/:id/drafts`: (protected) Fetch user's drafts by their `id`
+- `/user/:id/drafts`: Fetch user's drafts by their `id`
 - `/users`: Fetch all users
 
 ### `POST`
 
-- `/post`: (protected) Create a new post
+- `/post`: Create a new post
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
@@ -103,16 +103,34 @@ You can access the REST API of the server using the following endpoints:
   - Body:
     - `email: String` (required): The email address of the user
     - `password: String` (required): The email of the user
-- `/logout`: (protected) Logs out the user and deletes the session
+- `/logout`: Logs out the user and deletes the session
 
 ### `PUT`
 
-- `/publish/:id`: (protected) Toggle the publish value of a post by its `id`
+- `/publish/:id`: Toggle the publish value of a post by its `id`
 - `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
 
 ### `DELETE`
 
-- `/post/:id`: (protected) Delete a post by its `id`
+- `/post/:id`: Delete a post by its `id`
+
+## Protecting Routes
+If you want to ensure that only authenticated users can access certain routes, you can use the `isAuthenticated` middleware.
+
+To use this middleware, begin by importing it as shown below:
+```
+import { isAuthenticated } from './middlewares/isAuthenticated'
+```
+
+After that, you can easily add the `isAuthenticate` middleware to any route that needs to be protected. For example, you can modify a route to look like this:
+```ts
+app.get('/users', isAuthenticated, async (req, res) => {
+  const users = await prisma.user.findMany()
+  res.json(users)
+})
+```
+
+By doing this, only authenticated users will be able to access the `/users` route.
 
 ## Evolving the app
 
@@ -200,7 +218,7 @@ Restart your application server and test out your new endpoint.
 
 ##### `POST`
 
-- `/user/:id/profile`: (protected) Create a new profile based on the user id
+- `/user/:id/profile`: Create a new profile based on the user id
   - Body:
     - `bio: String` : The bio of the user
 

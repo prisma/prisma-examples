@@ -3,7 +3,6 @@ import { PrismaClient, Prisma } from '@prisma/client'
 import crypto from 'crypto'
 import argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
-import { isAuthenticated } from './middlewares/isAuthenticated'
 
 const prisma = new PrismaClient()
 const app = express()
@@ -93,11 +92,11 @@ app.post('/login', async (req, res) => {
   }
 })
 
-app.post('/logout', isAuthenticated, async (req: Request, res) => {
+app.post('/logout', async (req: Request, res) => {
   try {
     await prisma.user.update({
       where: {
-        id: req.user?.id,
+        id: req.user?.id
       },
       data: {
         sessionId: null,
@@ -111,7 +110,7 @@ app.post('/logout', isAuthenticated, async (req: Request, res) => {
   }
 })
 
-app.post(`/post`, isAuthenticated, async (req, res) => {
+app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
 
   const result = await prisma.post.create({
@@ -144,7 +143,7 @@ app.put('/post/:id/views', async (req, res) => {
   }
 })
 
-app.put('/publish/:id', isAuthenticated, async (req, res) => {
+app.put('/publish/:id', async (req, res) => {
   const { id } = req.params
 
   try {
@@ -165,7 +164,7 @@ app.put('/publish/:id', isAuthenticated, async (req, res) => {
   }
 })
 
-app.delete(`/post/:id`, isAuthenticated, async (req, res) => {
+app.delete(`/post/:id`, async (req, res) => {
   const { id } = req.params
   const post = await prisma.post.delete({
     where: {
@@ -180,7 +179,7 @@ app.get('/users', async (req, res) => {
   res.json(users)
 })
 
-app.get('/user/:id/drafts', isAuthenticated, async (req, res) => {
+app.get('/user/:id/drafts', async (req, res) => {
   const { id } = req.params
 
   const drafts = await prisma.user
