@@ -15,12 +15,11 @@ async function StartServer() {
   })
   
   await app.register({
-    // @ts-ignore
     plugin: hapiApollo,
     options: {
       path: '/graphql',
-      context,
-      apolloServer: apollo,
+      contex: async () => (context),
+      apolloServer:async () apollo,
     }
   });
   await app.start()
