@@ -1,21 +1,28 @@
-import { ApolloServer } from 'apollo-server-hapi'
-import Hapi from '@hapi/hapi'
-import { typeDefs, resolvers } from './schema'
+import { ApolloServer, BaseContext } from '@apollo/server'
+import hapiApollo from "@as-integrations/hapi"
+import { Server } from '@hapi/hapi'
+import { resolvers, typeDefs } from './schema'
 import { context } from './context'
 
 async function StartServer() {
-  const server = new ApolloServer({
+  const apollo = new ApolloServer<BaseContext>({
     typeDefs,
     resolvers,
-    context,
   })
 
-  const app = Hapi.server({
+  const app = new Server({
     port: 4000,
   })
-
-  await server.start()
-  await server.applyMiddleware({ app })
+  
+  await app.register({
+    // @ts-ignore
+    plugin: hapiApollo,
+    options: {
+      path: '/graphql',
+      context,
+      apolloServer: apollo,
+    }
+  });
   await app.start()
 }
 
