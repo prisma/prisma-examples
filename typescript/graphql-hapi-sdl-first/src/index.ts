@@ -18,7 +18,7 @@ async function StartServer() {
     plugin: hapiApollo,
     options: {
       path: '/graphql',
-      contex: async () => (context),
+      context: async () => (context),
       apollo,
     }
   });
