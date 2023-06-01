@@ -19,7 +19,7 @@ async function StartServer() {
     options: {
       path: '/graphql',
       contex: async () => (context),
-      apolloServer:async () apollo,
+      apolloServer,
     }
   });
   await app.start()
