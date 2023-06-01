@@ -6,7 +6,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "fastify": "4.17.0",
     "graphql": "16.6.0",
     "graphql-scalars": "1.21.3",

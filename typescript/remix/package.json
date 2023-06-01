@@ -8,7 +8,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "@remix-run/node": "^1.11.1",
     "@remix-run/react": "^1.11.1",
     "@remix-run/serve": "^1.11.1",

@@ -15,7 +15,7 @@
     "typescript": "4.9.5"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27"
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

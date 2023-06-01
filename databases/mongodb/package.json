@@ -18,7 +18,7 @@
     "script:find-posts": "ts-node src/prisma-examples/6-find-posts.ts"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27"
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27"
   },
   "devDependencies": {
     "@types/jest": "29.5.1",

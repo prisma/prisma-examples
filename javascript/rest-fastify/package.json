@@ -6,7 +6,7 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "fastify": "4.17.0"
   },
   "devDependencies": {

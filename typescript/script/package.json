@@ -5,7 +5,7 @@
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "@types/node": "18.16.3"
   },
   "devDependencies": {

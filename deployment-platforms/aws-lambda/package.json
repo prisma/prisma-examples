@@ -7,7 +7,7 @@
     "prisma:generate": "prisma generate"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27"
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27"
   },
   "devDependencies": {
     "prisma": "4.15.0-integration-feat-client-esm.27",

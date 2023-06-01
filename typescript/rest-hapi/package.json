@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@hapi/hapi": "21.3.2",
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "@types/node": "18.16.3"
   },
   "devDependencies": {

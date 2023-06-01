@@ -9,7 +9,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "graphql": "16.6.0",
     "graphql-scalars": "1.21.3",
     "graphql-yoga": "3.9.1"

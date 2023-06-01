@@ -16,7 +16,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "prisma": "4.15.0-integration-feat-client-esm.27",
+    "@prisma/client": "4.15.0-integration-feat-client-esm.27",
     "apollo-server-core": "3.12.0",
     "apollo-server-express": "3.12.0",
     "express": "4.18.2",
