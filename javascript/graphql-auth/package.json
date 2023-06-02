@@ -14,7 +14,7 @@
     "@prisma/client": "4.15.0",
     "bcryptjs": "2.4.3",
     "graphql": "16.6.0",
-    "graphql-middleware": "6.1.33",
+    "graphql-middleware": "6.1.34",
     "graphql-scalars": "1.22.1",
     "graphql-shield": "7.6.5",
     "jsonwebtoken": "9.0.0",
