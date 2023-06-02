@@ -12,8 +12,8 @@
     "generate:nexus": "ts-node --transpile-only src/schema"
   },
   "dependencies": {
-    "@apollo/server": "^4.7.1",
-    "@as-integrations/hapi": "^2.0.0",
+    "@apollo/server": "4.7.1",
+    "@as-integrations/hapi": "2.0.0",
     "@hapi/hapi": "21.3.2",
     "@prisma/client": "4.13.0",
     "@types/node": "18.16.3",
