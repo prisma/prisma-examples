@@ -19,7 +19,7 @@
     "@apollo/server": "4.5.0",
     "@prisma/client": "4.15.0",
     "graphql": "16.6.0",
-    "graphql-scalars": "1.21.3",
+    "graphql-scalars": "1.22.1",
     "nexus": "1.3.0"
   },
   "devDependencies": {
