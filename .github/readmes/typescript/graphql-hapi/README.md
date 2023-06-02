@@ -3,10 +3,10 @@
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
 - [**hapi**](https://hapi.dev/): Web framework with a focus on security and scalability
-- [**Apollo Server Hapi**](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-hapi): Apollo Server integration for Hapi 
-- [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation 
-- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
-- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
+- [**Apollo Server Integration for Hapi**](https://www.npmjs.com/package/@as-integrations/hapi))
+- [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 ## Contents

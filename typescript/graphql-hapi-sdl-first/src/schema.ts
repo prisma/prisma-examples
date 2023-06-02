@@ -1,9 +1,8 @@
-import { gql } from 'apollo-server-hapi'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
-export const typeDefs = gql`
+export const typeDefs = `#graphql
   type Mutation {
     createDraft(authorEmail: String!, data: PostCreateInput!): Post
     deletePost(id: Int!): Post
@@ -92,11 +91,11 @@ export const resolvers = {
     ) => {
       const or = args.searchString
         ? {
-            OR: [
-              { title: { contains: args.searchString } },
-              { content: { contains: args.searchString } },
-            ],
-          }
+          OR: [
+            { title: { contains: args.searchString } },
+            { content: { contains: args.searchString } },
+          ],
+        }
         : {}
 
       return context.prisma.post.findMany({
