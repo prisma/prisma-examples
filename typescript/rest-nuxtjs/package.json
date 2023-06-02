@@ -15,7 +15,7 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "12.0.0",
     "@nuxtjs/eslint-module": "4.0.2",
-    "@babel/eslint-parser": "7.21.3",
+    "@babel/eslint-parser": "7.21.8",
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-nuxt": "4.0.0",
