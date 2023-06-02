@@ -1,11 +1,12 @@
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import { createServer } from 'http'
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core'
 import { WebSocketServer } from 'ws'
-import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 import { useServer } from 'graphql-ws/lib/use/ws'
 import { schema } from './schema'
-import { context } from './context'
+import { Context, context } from './context'
 
 const PORT = process.env.PORT || 4000
 
@@ -21,16 +22,12 @@ async function start() {
 
   /** hand-in created schema and have the WS Server start listening */
   const serverCleanup = useServer(
-    {
-      schema,
-      context,
-    },
+    { schema, context },
     wsServer,
   )
 
-  const server = new ApolloServer({
+  const server = new ApolloServer<Context>({
     schema,
-    context,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       {
@@ -46,7 +43,7 @@ async function start() {
   })
 
   await server.start()
-  server.applyMiddleware({ app })
+  app.use('/graphql', expressMiddleware<Context>(server, { context: async () => context }))
 
   httpServer.listen(PORT, () => {
     console.log(`🚀 Server ready at http://localhost:4000/graphql`)
