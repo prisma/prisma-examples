@@ -1,12 +1,13 @@
 {
-  "extends": ["config:base", "docker:disable"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":disableRateLimiting", "docker:disable"],
   "automerge": true,
   "major": {
     "automerge": false
   },
-  "masterIssue": true,
+  "rangeStrategy": "pin",
   "baseBranches": ["latest"],
-  "additionalReviewers": ["ruheni"],
+  "reviewers": ["ruheni", "jharrell"],
   "packageRules": [
     {
       "baseBranchList": ["latest"],
