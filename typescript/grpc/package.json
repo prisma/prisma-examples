@@ -12,7 +12,7 @@
     "deletePost": "ts-node ./client/deletePost.ts"
   },
   "dependencies": {
-    "@grpc/proto-loader": "0.7.6",
+    "@grpc/proto-loader": "0.7.7",
     "@prisma/client": "4.15.0",
     "chalk": "4.1.2",
     "grpc": "1.24.11",
