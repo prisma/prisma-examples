@@ -8,7 +8,7 @@
   "dependencies": {
     "@apollo/server": "4.7.1",
     "@as-integrations/hapi": "2.0.0",
-    "@graphql-tools/schema": "9.0.19",
+    "@graphql-tools/schema": "10.0.0",
     "@hapi/hapi": "21.3.2",
     "@prisma/client": "4.15.0",
     "graphql": "16.6.0",
