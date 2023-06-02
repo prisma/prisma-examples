@@ -10,10 +10,12 @@ async function StartServer() {
     resolvers,
   })
 
+  await apollo.start()
+
   const app = new Server({
     port: 4000,
   })
-  
+
   await app.register({
     plugin: hapiApollo,
     options: {
