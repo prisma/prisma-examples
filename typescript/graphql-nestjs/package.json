@@ -38,7 +38,7 @@
     }
   },
   "dependencies": {
-    "@apollo/server": "^4.5.0",
+    "@apollo/server": "4.7.1",
     "@nestjs/apollo": "11.0.6",
     "@nestjs/common": "9.4.2",
     "@nestjs/core": "9.4.2",
