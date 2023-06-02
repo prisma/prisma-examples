@@ -1,5 +1,5 @@
 import { ApolloServer } from '@apollo/server'
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { startStandaloneServer } from '@apollo/server/standalone'
 import { Context, createContext } from './context'
 import { schema } from './schema'
 
