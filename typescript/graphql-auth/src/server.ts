@@ -1,16 +1,15 @@
-import { ApolloServer } from 'apollo-server'
-import { createContext } from './context'
+import { ApolloServer } from '@apollo/server'
+import { startStandaloneServer } from '@apollo/server/standalone'
+import { Context, createContext } from './context'
 import { schema } from './schema'
 
-const server = new ApolloServer({
-  schema,
-  context: createContext,
-})
+const server = new ApolloServer<Context>({ schema })
 
-server.listen().then(({ url }) =>
-  console.log(
-    `\
-🚀 Server ready at: ${url}
-⭐️ See sample queries: http://pris.ly/e/ts/graphql-auth#using-the-graphql-api`,
-  ),
-)
+startStandaloneServer(server, {
+  context: createContext
+}).then(({ url }) => {
+  console.log(`\
+    🚀 Server ready at: ${url}
+    ⭐️ See sample queries: http://pris.ly/e/ts/graphql-auth#using-the-graphql-api`,
+  );
+})
