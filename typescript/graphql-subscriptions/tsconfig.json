@@ -4,7 +4,10 @@
     "module": "commonjs",
     "target": "ES2018",
     "outDir": "dist",
-    "lib": ["esnext", "dom"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "noImplicitAny": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
@@ -12,6 +15,6 @@
     "strictFunctionTypes": true,
     "skipLibCheck": true,
     "noUnusedParameters": false,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   }
 }
