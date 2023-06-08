@@ -8,7 +8,7 @@
     "@prisma/client": "4.15.0",
     "class-validator": "0.14.0",
     "graphql": "15.8.0",
-    "graphql-scalars": "1.22.1",
+    "graphql-scalars": "1.22.2",
     "reflect-metadata": "0.1.13",
     "type-graphql": "1.1.1"
   },
