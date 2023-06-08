@@ -47,7 +47,7 @@
     "@nestjs/platform-express": "9.4.2",
     "@prisma/client": "4.15.0",
     "graphql": "16.6.0",
-    "graphql-scalars": "1.22.1",
+    "graphql-scalars": "1.22.2",
     "graphql-tools": "9.0.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "5.0.1",
