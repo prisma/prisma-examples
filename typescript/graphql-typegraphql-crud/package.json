@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "18.16.16",
-    "@types/ws": "8.5.4",
+    "@types/ws": "8.5.5",
     "prisma": "4.15.0",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
