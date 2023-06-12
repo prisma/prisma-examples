@@ -18,7 +18,7 @@
     "superjson": "1.12.3"
   },
   "devDependencies": {
-    "@types/node": "18.16.16",
+    "@types/node": "18.16.17",
     "@types/react": "18.2.9",
     "@types/react-dom": "18.2.4",
     "eslint": "8.42.0",
