@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@apollo/server": "4.7.1",
-    "@as-integrations/hapi": "2.0.0",
+    "@as-integrations/hapi": "2.0.1",
     "@hapi/hapi": "21.3.2",
     "@prisma/client": "4.15.0",
     "@types/node": "18.16.18",
