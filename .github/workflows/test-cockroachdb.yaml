@@ -37,7 +37,7 @@ jobs:
           wait-for-it -h localhost -p 26257
       - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
       - run: npm install
       - run: npx prisma migrate dev --name "init"
       - run: npm run test
