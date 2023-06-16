@@ -3,9 +3,9 @@
 This example shows how to implement an **GraphQL Server Example with Hapi (SDL first)** with the following stack:
 
 - [**hapi**](https://hapi.dev/): Web framework with a focus on security and scalability
-- [**Apollo Server Hapi**](https://github.com/apollographql/apollo-server/tree/main/packages/apollo-server-hapi): Apollo Server integration for Hapi
-- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
-- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
+- [**Apollo Server Integration for Hapi**](https://www.npmjs.com/package/@as-integrations/hapi)
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 __INLINE(../_setup-0.md)__
