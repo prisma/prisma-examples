@@ -10,7 +10,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@apollo/server": "4.7.1",
+    "@apollo/server": "4.7.4",
     "@prisma/client": "4.15.0",
     "bcryptjs": "2.4.3",
     "graphql": "16.6.0",

@@ -12,7 +12,7 @@
     "generate:nexus": "ts-node --transpile-only src/schema"
   },
   "dependencies": {
-    "@apollo/server": "4.7.1",
+    "@apollo/server": "4.7.4",
     "@as-integrations/hapi": "2.0.1",
     "@hapi/hapi": "21.3.2",
     "@prisma/client": "4.15.0",
