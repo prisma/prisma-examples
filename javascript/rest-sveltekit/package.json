@@ -10,7 +10,7 @@
     "@sveltejs/adapter-auto": "2.1.0",
     "@sveltejs/kit": "1.20.4",
     "prisma": "4.16.0",
-    "svelte": "3.59.1",
+    "svelte": "3.59.2",
     "vite": "4.3.9"
   },
   "type": "module",
