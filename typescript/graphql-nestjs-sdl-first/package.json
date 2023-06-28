@@ -43,7 +43,7 @@
     "@nestjs/apollo": "12.0.4",
     "@nestjs/common": "9.4.3",
     "@nestjs/core": "9.4.3",
-    "@nestjs/graphql": "12.0.4",
+    "@nestjs/graphql": "12.0.5",
     "@nestjs/platform-express": "9.4.3",
     "@prisma/client": "4.16.1",
     "graphql": "16.6.0",
