@@ -12,16 +12,16 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "4.15.0",
+    "@prisma/client": "4.16.1",
     "next": "13.0.0",
     "next-superjson": "0.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.7",
-    "superjson": "1.12.3"
+    "superjson": "1.12.4"
   },
   "devDependencies": {
-    "prisma": "4.15.0"
+    "prisma": "4.16.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

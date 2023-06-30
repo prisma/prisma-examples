@@ -111,7 +111,8 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
-- [Dittofeed](https://www.dittofeed.com): Open-source customer engagement; intuitive marketing tools that scale
+- [Scholarsome](https://scholarsome.com/): An interactive, studying system
+- [Dittofeed](https://www.dittofeed.com): An open-source customer engagement; intuitive marketing tools that scale
 - [Trigger.dev](https://trigger.dev/): Effortless automation built for developers (Zapier alternative)
 - [Webstudio](https://github.com/webstudio-is/webstudio-designer): A NoCode visual design tool for building apps and websites
 - [Dyrector](https://github.com/dyrector-io/dyrectorio): A self-hosted container management platform
