@@ -11,7 +11,7 @@
     "@sveltejs/kit": "1.22.1",
     "prisma": "4.16.2",
     "svelte": "3.59.2",
-    "vite": "4.4.1"
+    "vite": "4.4.2"
   },
   "type": "module",
   "dependencies": {
