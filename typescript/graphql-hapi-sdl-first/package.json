@@ -11,7 +11,7 @@
     "@graphql-tools/schema": "10.0.0",
     "@hapi/hapi": "21.3.2",
     "@prisma/client": "4.16.2",
-    "graphql": "16.6.0",
+    "graphql": "16.7.1",
     "graphql-scalars": "1.22.2"
   },
   "devDependencies": {

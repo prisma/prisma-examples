@@ -13,7 +13,7 @@
     "@apollo/server": "4.7.5",
     "@prisma/client": "4.16.2",
     "bcryptjs": "2.4.3",
-    "graphql": "16.6.0",
+    "graphql": "16.7.1",
     "graphql-middleware": "6.1.35",
     "graphql-scalars": "1.22.2",
     "graphql-shield": "7.6.5",
