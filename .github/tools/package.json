@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "inline-markdown": "0.1.6",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "prettier-check": "2.0.0",
     "watch": "1.0.2"
   }
