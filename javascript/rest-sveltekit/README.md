@@ -188,7 +188,7 @@ Evolving the application typically requires three steps:
 
 1. Migrate your database using Prisma Migrate
 1. Update your server-side application code
-1. Build new UI features in React
+1. Build new UI features in Svelte
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
