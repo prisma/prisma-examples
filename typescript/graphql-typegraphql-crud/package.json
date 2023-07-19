@@ -21,7 +21,7 @@
     "prisma": "4.16.2",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
-    "typegraphql-prisma": "0.26.0",
+    "typegraphql-prisma": "0.27.0",
     "typescript": "5.1.6"
   },
   "prisma": {
