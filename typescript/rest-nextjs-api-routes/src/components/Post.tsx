@@ -13,7 +13,7 @@ export type PostProps = {
   published: boolean
 }
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+export default function Post({ post }: { post: PostProps }) {
   const authorName = post.author ? post.author.name : 'Unknown author'
   return (
     <div
@@ -26,5 +26,3 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
     </div>
   )
 }
-
-export default Post

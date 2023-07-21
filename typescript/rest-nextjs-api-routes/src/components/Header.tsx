@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '@/components/Header.module.css'
 
-const Header: React.FC = () => {
+export default function Header() {
   const router = useRouter()
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname
@@ -31,5 +31,3 @@ const Header: React.FC = () => {
     </nav>
   )
 }
-
-export default Header
