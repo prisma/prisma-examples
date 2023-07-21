@@ -20,7 +20,7 @@ async function destroy(id: number): Promise<void> {
   await Router.push('/')
 }
 
-const Post: React.FC<PostProps> = (props) => {
+export default function Post(props: PostProps) {
   let title = props.title
   if (!props.published) {
     title = `${title} (Draft)`
@@ -55,5 +55,3 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   })
   return { props: { ...post } }
 }
-
-export default Post

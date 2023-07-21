@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Router from 'next/router'
 import styles from '@/styles/SignUp.module.css'
 
-const SignUp: React.FC = () => {
+export default function SignUp() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -46,5 +46,3 @@ const SignUp: React.FC = () => {
     </div>
   )
 }
-
-export default SignUp

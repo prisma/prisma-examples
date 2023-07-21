@@ -8,7 +8,7 @@ type Props = {
   feed: PostProps[]
 }
 
-const Blog: React.FC<Props> = (props) => {
+export default function Blog(props: Props) {
   return (
     <div>
       <h1>My Blog</h1>
@@ -32,5 +32,3 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: { feed },
   }
 }
-
-export default Blog

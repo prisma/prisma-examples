@@ -8,7 +8,7 @@ type Props = {
   drafts: PostProps[]
 }
 
-const Drafts: React.FC<Props> = (props) => {
+export default function Drafts(props: Props) {
   return (
     <div>
       <h1>Drafts</h1>
@@ -32,5 +32,3 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: { drafts },
   }
 }
-
-export default Drafts
