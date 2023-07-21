@@ -1,8 +1,7 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
-import Layout from '../components/Layout'
-import Post, { PostProps } from '../components/Post'
-import prisma from '../lib/prisma'
+import Post, { PostProps } from '@/components/Post'
+import prisma from '@/lib/prisma'
 import styles from '@/styles/Drafts.module.css'
 
 type Props = {

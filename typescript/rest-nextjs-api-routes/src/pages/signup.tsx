@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Router from 'next/router'
-import Layout from '../components/Layout'
 import styles from '@/styles/SignUp.module.css'
 
 const SignUp: React.FC = () => {

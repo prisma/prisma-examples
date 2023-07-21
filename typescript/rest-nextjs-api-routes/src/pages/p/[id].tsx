@@ -1,10 +1,9 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
 import ReactMarkdown from 'react-markdown'
-import Layout from '../../components/Layout'
 import Router from 'next/router'
-import { PostProps } from '../../components/Post'
-import prisma from '../../lib/prisma'
+import { PostProps } from '@/components/Post'
+import prisma from '@/lib/prisma'
 import styles from '@/styles/Post.module.css'
 
 async function publish(id: number): Promise<void> {
