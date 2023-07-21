@@ -28,21 +28,19 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   return (
-    <Layout>
-      <div>
-        <h2>{title}</h2>
-        <p>By {props?.author?.name || 'Unknown author'}</p>
-        <ReactMarkdown>{props.content}</ReactMarkdown>
-        {!props.published && (
-          <button className={styles.button} onClick={() => publish(props.id)}>
-            Publish
-          </button>
-        )}
-        <button className={styles.button} onClick={() => destroy(props.id)}>
-          Delete
+    <div>
+      <h2>{title}</h2>
+      <p>By {props?.author?.name || 'Unknown author'}</p>
+      <ReactMarkdown>{props.content}</ReactMarkdown>
+      {!props.published && (
+        <button className={styles.button} onClick={() => publish(props.id)}>
+          Publish
         </button>
-      </div>
-    </Layout>
+      )}
+      <button className={styles.button} onClick={() => destroy(props.id)}>
+        Delete
+      </button>
+    </div>
   )
 }
 

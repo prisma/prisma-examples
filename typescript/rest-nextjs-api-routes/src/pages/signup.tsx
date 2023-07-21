@@ -23,30 +23,28 @@ const SignUp: React.FC = () => {
   }
 
   return (
-    <Layout>
-      <div className={styles.page}>
-        <form onSubmit={submitData}>
-          <h1>Signup user</h1>
-          <input
-            autoFocus
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
-            type="text"
-            value={name}
-          />
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email address"
-            type="text"
-            value={email}
-          />
-          <input disabled={!name || !email} type="submit" value="Signup" />
-          <a className={styles.black} href="#" onClick={() => Router.push('/')}>
-            or Cancel
-          </a>
-        </form>
-      </div>
-    </Layout>
+    <div className={styles.page}>
+      <form onSubmit={submitData}>
+        <h1>Signup user</h1>
+        <input
+          autoFocus
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          type="text"
+          value={name}
+        />
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email address"
+          type="text"
+          value={email}
+        />
+        <input disabled={!name || !email} type="submit" value="Signup" />
+        <a className={styles.black} href="#" onClick={() => Router.push('/')}>
+          or Cancel
+        </a>
+      </form>
+    </div>
   )
 }
 

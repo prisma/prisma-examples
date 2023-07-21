@@ -11,18 +11,16 @@ type Props = {
 
 const Drafts: React.FC<Props> = (props) => {
   return (
-    <Layout>
-      <div>
-        <h1>Drafts</h1>
-        <main>
-          {props.drafts.map((post) => (
-            <div key={post.id} className={styles.post}>
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-    </Layout>
+    <div>
+      <h1>Drafts</h1>
+      <main>
+        {props.drafts.map((post) => (
+          <div key={post.id} className={styles.post}>
+            <Post post={post} />
+          </div>
+        ))}
+      </main>
+    </div>
   )
 }
 

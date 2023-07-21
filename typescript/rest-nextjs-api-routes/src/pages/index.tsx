@@ -11,18 +11,16 @@ type Props = {
 
 const Blog: React.FC<Props> = (props) => {
   return (
-    <Layout>
-      <div>
-        <h1>My Blog</h1>
-        <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className={styles.post}>
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-    </Layout>
+    <div>
+      <h1>My Blog</h1>
+      <main>
+        {props.feed.map((post) => (
+          <div key={post.id} className={styles.post}>
+            <Post post={post} />
+          </div>
+        ))}
+      </main>
+    </div>
   )
 }
 
