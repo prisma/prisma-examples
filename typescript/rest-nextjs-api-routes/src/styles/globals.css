@@ -39,6 +39,7 @@ input[type='submit'] {
   background: #ececec;
   border: 0;
   padding: 1rem 2rem;
+  margin: 0.5rem;
 }
 
 nav {

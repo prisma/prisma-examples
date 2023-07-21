@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Router from 'next/router'
-import styles from '@/styles/SignUp.module.css'
+import styles from '@/styles/AddAuthor.module.css'
 
-export default function SignUp() {
+export default function AddAuthor() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -24,7 +24,7 @@ export default function SignUp() {
   return (
     <div className={styles.page}>
       <form onSubmit={submitData}>
-        <h1>Signup user</h1>
+        <h1>Add Author</h1>
         <input
           autoFocus
           onChange={(e) => setName(e.target.value)}
@@ -38,7 +38,7 @@ export default function SignUp() {
           type="text"
           value={email}
         />
-        <input disabled={!name || !email} type="submit" value="Signup" />
+        <input disabled={!name || !email} type="submit" value="Add Author" />
         <a className={styles.black} href="#" onClick={() => Router.push('/')}>
           or Cancel
         </a>

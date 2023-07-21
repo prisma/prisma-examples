@@ -21,8 +21,8 @@ export default function Header() {
         </Link>
       </div>
       <div className={styles.right}>
-        <Link href="/signup" legacyBehavior>
-          <a data-active={isActive('/signup')}>Signup</a>
+        <Link href="/add-author" legacyBehavior>
+          <a data-active={isActive('/add-author')}>Add Author</a>
         </Link>
         <Link href="/create" legacyBehavior>
           <a data-active={isActive('/create')}>+ Create draft</a>
