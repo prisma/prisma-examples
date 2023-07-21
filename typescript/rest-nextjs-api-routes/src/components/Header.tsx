@@ -11,21 +11,19 @@ export default function Header() {
   return (
     <nav>
       <div className={styles.left}>
-        <Link href="/" legacyBehavior>
-          <a className={styles.bold} data-active={isActive('/')}>
-            Blog
-          </a>
+        <Link href="/" className={styles.bold} data-active={isActive('/')}>
+          Blog
         </Link>
-        <Link href="/drafts" legacyBehavior>
-          <a data-active={isActive('/drafts')}>Drafts</a>
+        <Link href="/drafts" data-active={isActive('/drafts')}>
+          Drafts
         </Link>
       </div>
       <div className={styles.right}>
-        <Link href="/add-author" legacyBehavior>
-          <a data-active={isActive('/add-author')}>Add Author</a>
+        <Link href="/add-author" data-active={isActive('/add-author')}>
+          Add Author
         </Link>
-        <Link href="/create" legacyBehavior>
-          <a data-active={isActive('/create')}>+ Create draft</a>
+        <Link href="/create" data-active={isActive('/create')}>
+          + Create draft
         </Link>
       </div>
     </nav>
