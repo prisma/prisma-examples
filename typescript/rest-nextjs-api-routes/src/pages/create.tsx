@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import Router from 'next/router'
 import styles from '@/styles/Draft.module.css'
+import { GetServerSideProps } from 'next'
+import prisma from '@/lib/prisma'
 
-export default function Draft() {
+type Props = {
+  users: { email: string }[]
+}
+
+export default function CreateDraft(props: Props) {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [authorEmail, setAuthorEmail] = useState('')
@@ -33,12 +39,19 @@ export default function Draft() {
           type="text"
           value={title}
         />
-        <input
-          onChange={(e) => setAuthorEmail(e.target.value)}
-          placeholder="Author (email address)"
-          type="text"
-          value={authorEmail}
-        />
+        <label>
+          Author Email:{' '}
+          <select
+            value={authorEmail}
+            onChange={(e) => setAuthorEmail(e.target.value)}
+          >
+            {props.users.map(({ email }, i) => (
+              <option value={email} key={email + i}>
+                {email}
+              </option>
+            ))}
+          </select>
+        </label>
         <textarea
           cols={50}
           onChange={(e) => setContent(e.target.value)}
@@ -57,4 +70,11 @@ export default function Draft() {
       </form>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const users = await prisma.user.findMany()
+  return {
+    props: { users },
+  }
 }
