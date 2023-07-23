@@ -33,5 +33,10 @@
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/.prisma/client/*.node"
+    ]
   }
 }
