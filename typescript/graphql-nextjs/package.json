@@ -12,11 +12,12 @@
   },
   "dependencies": {
     "@apollo/client": "3.7.17",
-    "@pothos/plugin-prisma": "3.53.0",
     "@pothos/core": "3.31.0",
+    "@pothos/plugin-prisma": "3.53.0",
     "@prisma/client": "5.0.0",
     "graphql": "16.7.1",
     "graphql-scalars": "1.22.2",
+    "graphql-tag": "^2.12.6",
     "graphql-yoga": "4.0.3",
     "next": "13.4.12",
     "react": "18.2.0",
