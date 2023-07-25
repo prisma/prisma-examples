@@ -21,7 +21,7 @@
     "@remix-run/dev": "1.19.1",
     "@remix-run/eslint-config": "1.19.1",
     "@types/marked": "5.0.1",
-    "@types/react": "18.2.15",
+    "@types/react": "18.2.16",
     "@types/react-dom": "18.2.7",
     "eslint": "8.45.0",
     "prisma": "5.0.0",
