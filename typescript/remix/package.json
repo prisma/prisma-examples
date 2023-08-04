@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "@prisma/client": "5.1.1",
-    "@remix-run/node": "1.19.1",
-    "@remix-run/react": "1.19.1",
-    "@remix-run/serve": "1.19.1",
+    "@remix-run/node": "1.19.2",
+    "@remix-run/react": "1.19.2",
+    "@remix-run/serve": "1.19.2",
     "isbot": "3.6.13",
     "marked": "6.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "1.19.1",
-    "@remix-run/eslint-config": "1.19.1",
+    "@remix-run/dev": "1.19.2",
+    "@remix-run/eslint-config": "1.19.2",
     "@types/marked": "5.0.1",
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
