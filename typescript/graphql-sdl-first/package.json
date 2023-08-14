@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.1.1",
-    "graphql": "16.7.1",
+    "graphql": "16.8.0",
     "graphql-scalars": "1.22.2",
     "graphql-yoga": "4.0.4"
   },
