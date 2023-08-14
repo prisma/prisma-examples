@@ -17,7 +17,7 @@
     "@hapi/hapi": "21.3.2",
     "@prisma/client": "5.1.1",
     "@types/node": "18.17.5",
-    "graphql": "16.7.1",
+    "graphql": "16.8.0",
     "graphql-scalars": "1.22.2",
     "nexus": "1.3.0"
   },
