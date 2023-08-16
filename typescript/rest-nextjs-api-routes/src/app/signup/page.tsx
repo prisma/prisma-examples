@@ -1,11 +1,13 @@
+'use client'
 import React, { useState } from 'react'
-import Router from 'next/router'
-import Layout from '../components/Layout'
-import styles from '@/styles/SignUp.module.css'
+import { useRouter } from 'next/navigation'
+import styles from '../../styles/SignUp.module.css'
 
 const SignUp: React.FC = () => {
+  const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -16,14 +18,14 @@ const SignUp: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
-      await Router.push('/')
+      router.push('/')
     } catch (error) {
       console.error(error)
     }
   }
 
   return (
-    <Layout>
+    <>
       <div className={styles.page}>
         <form onSubmit={submitData}>
           <h1>Signup user</h1>
@@ -41,12 +43,12 @@ const SignUp: React.FC = () => {
             value={email}
           />
           <input disabled={!name || !email} type="submit" value="Signup" />
-          <a className={styles.black} href="#" onClick={() => Router.push('/')}>
+          <a className={styles.back} href="/">
             or Cancel
           </a>
         </form>
       </div>
-    </Layout>
+    </>
   )
 }
 

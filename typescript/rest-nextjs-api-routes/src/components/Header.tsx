@@ -1,12 +1,13 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import styles from '@/components/Header.module.css'
+import { usePathname } from 'next/navigation'
+import styles from './Header.module.css'
 
 const Header: React.FC = () => {
-  const router = useRouter()
+  const routePathName = usePathname()
   const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname
+    routePathName === pathname
 
   return (
     <nav>

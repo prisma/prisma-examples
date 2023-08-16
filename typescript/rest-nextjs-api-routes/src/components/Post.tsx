@@ -1,29 +1,27 @@
+'use client'
 import React from 'react'
-import Router from 'next/router'
 import ReactMarkdown from 'react-markdown'
-import styles from '@/components/Post.module.css'
+import styles from './Post.module.css'
+import Link from 'next/link'
+import type { Post, User } from '@prisma/client'
 
-export type PostProps = {
-  id: number
-  title: string
-  author: {
-    name: string
-  }
-  content: string
-  published: boolean
+export type PostProps = Post & {
+  author: User | null
 }
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+const Post = ({ post }: { post: PostProps }) => {
+
   const authorName = post.author ? post.author.name : 'Unknown author'
   return (
-    <div
+    <Link
+      href={`/p/${post.id}`}
       className={styles.post}
-      onClick={() => Router.push('/p/[id]', `/p/${post.id}`)}
     >
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
+      {/* @ts-ignore */}
       <ReactMarkdown>{post.content}</ReactMarkdown>
-    </div>
+    </Link>
   )
 }
 
