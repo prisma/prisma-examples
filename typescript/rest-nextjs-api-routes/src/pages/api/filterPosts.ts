@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../lib/prisma'
+import prisma from '@/lib/prisma'
 
 // GET /api/filterPosts?searchString=:searchString
 export default async function handle(

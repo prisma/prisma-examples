@@ -2,15 +2,11 @@ import React, { ReactNode } from 'react'
 import Header from './Header'
 import styles from '@/components/Layout.module.css'
 
-type Props = {
-  children: ReactNode
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <div>
+      <Header />
+      <div className={styles.layout}>{children}</div>
+    </div>
+  )
 }
-
-const Layout: React.FC<Props> = (props) => (
-  <div>
-    <Header />
-    <div className={styles.layout}>{props.children}</div>
-  </div>
-)
-
-export default Layout

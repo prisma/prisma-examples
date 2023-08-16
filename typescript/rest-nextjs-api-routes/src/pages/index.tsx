@@ -1,28 +1,25 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
-import Layout from '../components/Layout'
-import Post, { PostProps } from '../components/Post'
-import prisma from '../lib/prisma'
+import Post, { PostProps } from '@/components/Post'
+import prisma from '@/lib/prisma'
 import styles from '@/styles/Blog.module.css'
 
 type Props = {
   feed: PostProps[]
 }
 
-const Blog: React.FC<Props> = (props) => {
+export default function Blog(props: Props) {
   return (
-    <Layout>
-      <div>
-        <h1>My Blog</h1>
-        <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className={styles.post}>
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-    </Layout>
+    <div>
+      <h1>My Blog</h1>
+      <main>
+        {props.feed.map((post) => (
+          <div key={post.id} className={styles.post}>
+            <Post post={post} />
+          </div>
+        ))}
+      </main>
+    </div>
   )
 }
 
@@ -35,5 +32,3 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: { feed },
   }
 }
-
-export default Blog
