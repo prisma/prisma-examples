@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from '../../styles/SignUp.module.css'
 
-const SignUp: React.FC = () => {
+export default function SignUp() {
   const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -51,5 +51,3 @@ const SignUp: React.FC = () => {
     </>
   )
 }
-
-export default SignUp

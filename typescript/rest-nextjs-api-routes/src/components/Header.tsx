@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import styles from './Header.module.css'
 
-const Header: React.FC = () => {
+export default function Header() {
   const routePathName = usePathname()
   const isActive: (pathname: string) => boolean = (pathname) =>
     routePathName === pathname
@@ -32,5 +32,3 @@ const Header: React.FC = () => {
     </nav>
   )
 }
-
-export default Header

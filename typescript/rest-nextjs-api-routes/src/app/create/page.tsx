@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from '../../styles/Draft.module.css'
 
-const Draft: React.FC = () => {
+export default function Draft() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [authorEmail, setAuthorEmail] = useState('')
@@ -63,5 +63,3 @@ const Draft: React.FC = () => {
     </>
   )
 }
-
-export default Draft

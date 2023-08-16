@@ -9,7 +9,7 @@ export type PostProps = Post & {
   author: User | null
 }
 
-const Post = ({ post }: { post: PostProps }) => {
+export default function Post({ post }: { post: PostProps }) {
 
   const authorName = post.author ? post.author.name : 'Unknown author'
   return (
@@ -24,5 +24,3 @@ const Post = ({ post }: { post: PostProps }) => {
     </Link>
   )
 }
-
-export default Post
