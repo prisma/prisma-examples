@@ -17,9 +17,7 @@
     "supports-color": "^8.1.1"
   },
   "devDependencies": {
-    "@types/node": "20.5.0",
-    "prisma": "^5.1.1",
-    "typescript": "5.1.6"
+    "prisma": "^5.1.1"
   },
   "prisma": {
     "seed": "node ./prisma/seed.js"
