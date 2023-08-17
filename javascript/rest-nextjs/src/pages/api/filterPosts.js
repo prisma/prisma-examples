@@ -1,4 +1,4 @@
-import prisma from "../../src/lib/prisma"
+import prisma from "../../lib/prisma"
 
 // GET /api/filterPosts?searchString=:searchString
 export default async function handle(req, res) {
