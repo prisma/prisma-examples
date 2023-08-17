@@ -30,7 +30,6 @@ export default function PostDetails({ title, author, content, published, id }) {
     <div>
       <h2>{title}</h2>
       <p>By {author?.name || 'Unknown author'}</p>
-      {/* @ts-ignore */}
       <ReactMarkdown>{content}</ReactMarkdown>
       {!published && (
         <button
