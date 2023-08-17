@@ -14,7 +14,6 @@ const Post = ({ post }) => {
     >
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
-      {/* @ts-ignore */}
       <ReactMarkdown>{post.content}</ReactMarkdown>
     </Link>
   )
