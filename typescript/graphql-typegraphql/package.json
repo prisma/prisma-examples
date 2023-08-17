@@ -10,7 +10,7 @@
     "graphql": "16.8.0",
     "graphql-scalars": "1.22.2",
     "reflect-metadata": "0.1.13",
-    "type-graphql": "2.0.0-beta.2"
+    "type-graphql": "2.0.0-beta.3"
   },
   "devDependencies": {
     "@types/node": "20.5.0",
