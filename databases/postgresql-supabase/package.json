@@ -12,7 +12,7 @@
     "prisma": "5.2.0",
     "supabase": "1.88.0",
     "ts-node": "10.9.1",
-    "typescript": "5.1.6"
+    "typescript": "5.2.2"
   },
   "dependencies": {
     "@prisma/client": "5.2.0"
