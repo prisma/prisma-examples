@@ -26,7 +26,7 @@ jobs:
       DATABASE_URL: postgresql://root@127.0.0.1:26257/prisma?sslmode=disable
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Start a single CockroachDB instance with Docker
         env:
           COCKROACHDB_DOCKER_TAG: 'cockroachdb/cockroach:latest-v21.2'
