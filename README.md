@@ -109,6 +109,14 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
 
+## Prisma Data Platform
+
+The projects in the [`prisma-data-platform`](./prisma-data-platform/) directory show what Prisma Data Platform product setups look like for various frameworks. Learn more about [Prisma Data Platform](https://www.prisma.io/docs/data-platform) in the Prisma documentation.
+
+| Product | Demo | Description |
+|--|--|--|
+| [Accelerate](https://www.prisma.io/docs/data-platform/accelerate/what-is-accelerate) | [`accelerate-nextjs-starter`](./prisma-data-platform/accelerate/accelerate-nextjs-starter/)  | [Next.js](https://nextjs.org/) app using an edge function and [Accelerate](https://www.prisma.io/docs/data-platform/accelerate/what-is-accelerate) |
+
 ## Real-world & production-ready example projects with Prisma
 
 - [revert](https://www.revert.dev/): An open source unified API to build B2B product integrations
