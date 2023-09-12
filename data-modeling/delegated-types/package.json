@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.2.0",
-    "uuid": "9.0.0"
+    "uuid": "9.0.1"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
