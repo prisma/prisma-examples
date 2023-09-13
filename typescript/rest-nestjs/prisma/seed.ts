@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from './generated/foo'
+import { PrismaClient, Prisma } from '@foo/bar'
 
 const prisma = new PrismaClient()
 
