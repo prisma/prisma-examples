@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common'
 import { PrismaService } from './prisma.service'
-import { User as UserModel, Post as PostModel, Prisma } from '@prisma/client'
+import { User as UserModel, Post as PostModel, Prisma } from '../prisma/generated/foo'
 
 @Controller()
 export class AppController {
