@@ -111,7 +111,8 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
-- [revert](https://www.revert.dev/): An open source unified API to build B2B product integrations
+- [ghostfolio](https://ghostfol.io/en/start): An open-source dashboard for your personal finances
+- [revert](https://www.revert.dev/): An open-source unified API to build B2B product integrations
 - [Scholarsome](https://scholarsome.com/): An interactive, studying system
 - [Dittofeed](https://www.dittofeed.com): An open-source customer engagement; intuitive marketing tools that scale
 - [Trigger.dev](https://trigger.dev/): Effortless automation built for developers (Zapier alternative)
