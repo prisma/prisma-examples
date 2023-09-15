@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@apollo/server": "4.9.3",
-    "@prisma/client": "5.3.0",
+    "@prisma/client": "5.3.1",
     "class-validator": "0.14.0",
     "graphql": "16.8.0",
     "graphql-scalars": "1.22.2",
@@ -15,7 +15,7 @@
   "devDependencies": {
     "@types/node": "20.6.1",
     "@types/ws": "8.5.5",
-    "prisma": "5.3.0",
+    "prisma": "5.3.1",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
     "typescript": "5.2.2"
