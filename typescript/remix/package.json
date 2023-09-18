@@ -29,7 +29,7 @@
     "typescript": "5.2.2"
   },
   "engines": {
-    "node": "20.6.1"
+    "node": "20.7.0"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
