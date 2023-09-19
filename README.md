@@ -111,6 +111,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+= [Documenso](https://documenso.com/): An open-source alternative to Docusign
 - [ghostfolio](https://ghostfol.io/en/start): An open-source dashboard for your personal finances
 - [revert](https://www.revert.dev/): An open-source unified API to build B2B product integrations
 - [Scholarsome](https://scholarsome.com/): An interactive, studying system
