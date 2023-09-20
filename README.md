@@ -111,6 +111,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [Formbricks](https://github.com/formbricks/formbricks): An open-source survey and experience management tool
 - [OpenformStack](https://github.com/naveennaidu/OpenformStack): An open-source form backend that allows you to collect form submissions without writing any backend code
 - [Documenso](https://documenso.com/): An open-source alternative to Docusign
 - [ghostfolio](https://ghostfol.io/en/start): An open-source dashboard for your personal finances
