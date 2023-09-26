@@ -50,7 +50,7 @@
     "graphql-scalars": "1.22.2",
     "graphql-tools": "9.0.0",
     "reflect-metadata": "0.1.13",
-    "rimraf": "5.0.2",
+    "rimraf": "5.0.4",
     "rxjs": "7.8.1"
   },
   "devDependencies": {
