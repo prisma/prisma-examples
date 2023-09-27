@@ -19,7 +19,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.7",
-    "superjson": "1.13.1",
+    "superjson": "1.13.3",
     "zod": "3.22.2"
   },
   "devDependencies": {
