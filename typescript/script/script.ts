@@ -4,10 +4,13 @@ const prisma = new PrismaClient()
 
 // A `main` function so that we can use async/await
 async function main() {
+  const user1Email = `alice${Date.now()}@prisma.io`
+  const user2Email = `bob${Date.now()}@prisma.io`
+
   // Seed the database with users and posts
   const user1 = await prisma.user.create({
     data: {
-      email: `alice${Date.now()}@prisma.io`,
+      email: user1Email,
       name: 'Alice',
       posts: {
         create: {
@@ -23,7 +26,7 @@ async function main() {
   })
   const user2 = await prisma.user.create({
     data: {
-      email: `alice${Date.now()}@prisma.io`,
+      email: user2Email,
       name: 'Bob',
       posts: {
         create: [
@@ -62,7 +65,7 @@ async function main() {
       published: false,
       author: {
         connect: {
-          email: 'alice@prisma.io',
+          email: user1Email,
         },
       },
     },
@@ -84,7 +87,7 @@ async function main() {
   const postsByUser = await prisma.user
     .findUnique({
       where: {
-        email: 'alice@prisma.io',
+        email: user1Email,
       },
     })
     .posts()
