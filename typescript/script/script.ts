@@ -4,10 +4,13 @@ const prisma = new PrismaClient()
 
 // A `main` function so that we can use async/await
 async function main() {
+  const user1Email = `alice${Date.now()}@prisma.io`
+  const user2Email = `bob${Date.now()}@prisma.io`
+
   // Seed the database with users and posts
   const user1 = await prisma.user.create({
     data: {
-      email: 'alice@prisma.io',
+      email: user1Email,
       name: 'Alice',
       posts: {
         create: {
@@ -23,7 +26,7 @@ async function main() {
   })
   const user2 = await prisma.user.create({
     data: {
-      email: 'bob@prisma.io',
+      email: user2Email,
       name: 'Bob',
       posts: {
         create: [
@@ -52,7 +55,7 @@ async function main() {
   const allPosts = await prisma.post.findMany({
     where: { published: true },
   })
-  console.log(`Retrieved all published posts: ${allPosts}`)
+  console.log(`Retrieved all published posts: ${JSON.stringify(allPosts)}`)
 
   // Create a new post (written by an already existing user with email alice@prisma.io)
   const newPost = await prisma.post.create({
@@ -62,12 +65,12 @@ async function main() {
       published: false,
       author: {
         connect: {
-          email: 'alice@prisma.io',
+          email: user1Email,
         },
       },
     },
   })
-  console.log(`Created a new post: ${newPost}`)
+  console.log(`Created a new post: ${JSON.stringify(newPost)}`)
 
   // Publish the new post
   const updatedPost = await prisma.post.update({
@@ -78,17 +81,17 @@ async function main() {
       published: true,
     },
   })
-  console.log(`Published the newly created post: ${updatedPost}`)
+  console.log(`Published the newly created post: ${JSON.stringify(updatedPost)}`)
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
     .findUnique({
       where: {
-        email: 'alice@prisma.io',
+        email: user1Email,
       },
     })
     .posts()
-  console.log(`Retrieved all posts from a specific user: ${postsByUser}`)
+  console.log(`Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`)
 }
 
 main()
