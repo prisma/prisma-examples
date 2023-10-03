@@ -3,7 +3,7 @@ import Post from '../../components/Post'
 import prisma from '../../lib/prisma'
 import styles from '../../styles/Drafts.module.css'
 
-export async function Drafts() {
+export default async function Drafts() {
   const drafts = await prisma.post.findMany({
     where: { published: false },
     include: { author: true },
