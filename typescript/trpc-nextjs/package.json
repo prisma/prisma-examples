@@ -15,7 +15,7 @@
     "@trpc/next": "10.38.5",
     "@trpc/react-query": "10.38.5",
     "@trpc/server": "10.38.5",
-    "next": "13.5.3",
+    "next": "13.5.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "8.0.7",
