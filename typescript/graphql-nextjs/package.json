@@ -14,7 +14,7 @@
     "@apollo/client": "3.8.4",
     "@pothos/plugin-prisma": "3.60.0",
     "@pothos/core": "3.38.0",
-    "@prisma/client": "5.3.1",
+    "@prisma/client": "5.4.0",
     "graphql": "16.8.1",
     "graphql-scalars": "1.22.2",
     "graphql-yoga": "4.0.5",
@@ -27,7 +27,7 @@
     "@types/graphql": "14.5.0",
     "@types/node": "18.18.3",
     "@types/react": "18.2.24",
-    "prisma": "5.3.1",
+    "prisma": "5.4.0",
     "ts-node": "10.9.1",
     "typescript": "5.2.2"
   },
