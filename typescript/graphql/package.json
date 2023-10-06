@@ -24,7 +24,7 @@
     "graphql-yoga": "4.0.5"
   },
   "devDependencies": {
-    "@types/node": "18.18.3",
+    "@types/node": "18.18.4",
     "prisma": "5.4.1",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
