@@ -16,7 +16,7 @@
     "@pothos/core": "3.38.0",
     "@prisma/client": "5.4.1",
     "graphql": "16.8.1",
-    "graphql-scalars": "1.22.2",
+    "graphql-scalars": "1.22.3",
     "graphql-yoga": "4.0.5",
     "next": "13.5.4",
     "react": "18.2.0",
