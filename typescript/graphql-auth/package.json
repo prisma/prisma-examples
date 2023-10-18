@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.5",
-    "@types/jsonwebtoken": "9.0.3",
+    "@types/jsonwebtoken": "9.0.4",
     "@types/node": "18.18.5",
     "prisma": "5.4.2",
     "ts-node": "10.9.1",
