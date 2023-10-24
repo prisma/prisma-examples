@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "@apollo/server": "4.9.4",
-    "@prisma/client": "5.4.2",
+    "@prisma/client": "5.5.0",
     "graphql": "16.8.1",
     "graphql-scalars": "1.22.4",
     "nexus": "1.3.0"
   },
   "devDependencies": {
     "nodemon": "3.0.1",
-    "prisma": "5.4.2"
+    "prisma": "5.5.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
