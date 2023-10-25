@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "5.5.0",
+    "@prisma/client": "5.5.1",
     "@tanstack/react-query": "4.36.1",
     "@trpc/client": "10.42.0",
     "@trpc/next": "10.42.0",
@@ -26,7 +26,7 @@
     "@types/node": "18.18.6",
     "@types/react": "18.2.32",
     "@types/react-dom": "18.2.14",
-    "prisma": "5.5.0",
+    "prisma": "5.5.1",
     "ts-node": "10.9.1",
     "typescript": "5.2.2"
   },
