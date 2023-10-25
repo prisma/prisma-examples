@@ -9,7 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@prisma/client": "5.5.0",
+    "@prisma/client": "5.5.1",
     "nuxt": "3.8.0"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-prettier": "5.0.1",
     "prettier": "3.0.3",
-    "prisma": "5.5.0"
+    "prisma": "5.5.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
