@@ -4,7 +4,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts"
   },
   "dependencies": {
-    "@apollo/server": "4.9.4",
+    "@apollo/server": "4.9.5",
     "@prisma/client": "5.5.2",
     "class-validator": "0.14.0",
     "graphql": "16.8.1",
