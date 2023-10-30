@@ -15,7 +15,7 @@
     "jest": "29.7.0"
   },
   "devDependencies": {
-    "@types/jest": "29.5.6",
+    "@types/jest": "29.5.7",
     "@types/node": "20.8.9",
     "@types/prettyjson": "0.0.32",
     "prettyjson": "1.2.5",
