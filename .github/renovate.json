@@ -8,6 +8,7 @@
   "rangeStrategy": "pin",
   "baseBranches": ["latest"],
   "reviewers": ["ruheni", "jharrell"],
+  "configMigration": true,
   "packageRules": [
     {
       "baseBranchList": ["latest"],
