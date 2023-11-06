@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":disableRateLimiting", "docker:disable"],
+  "extends": ["config:recommended", ":disableRateLimiting", "docker:disable"],
   "automerge": true,
   "major": {
     "automerge": false
@@ -11,15 +11,15 @@
   "configMigration": true,
   "packageRules": [
     {
-      "baseBranchList": ["latest"],
-      "packageNames": ["nexus-plugin-prisma"],
+      "matchBaseBranches": ["latest"],
+      "matchPackageNames": ["nexus-plugin-prisma"],
       "enabled": true
     },
     {
-      "baseBranchList": ["latest"],
-      "packageNames": ["prisma", "@prisma/client"],
+      "matchBaseBranches": ["latest"],
+      "matchPackageNames": ["prisma", "@prisma/client"],
       "enabled": true,
-      "updateTypes": ["major"]
+      "matchUpdateTypes": ["major"]
     }
   ]
 }
