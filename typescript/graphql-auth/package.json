@@ -27,7 +27,7 @@
     "nexus": "1.3.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "2.4.5",
+    "@types/bcryptjs": "2.4.6",
     "@types/jsonwebtoken": "9.0.4",
     "@types/node": "20.8.10",
     "prisma": "5.5.2",
