@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/next-auth": "3.13.0",
     "@types/node": "20.8.10",
-    "@types/react": "18.2.36",
+    "@types/react": "18.2.37",
     "prisma": "5.5.2",
     "ts-node": "10.9.1",
     "typescript": "5.2.2"
