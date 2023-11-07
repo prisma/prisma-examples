@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/koa": "2.13.11",
-    "@types/koa__router": "12.0.3",
+    "@types/koa__router": "12.0.4",
     "@types/node": "20.8.10",
     "prisma": "5.5.2",
     "ts-node": "10.9.1",
