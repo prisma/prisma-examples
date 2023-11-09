@@ -35,7 +35,7 @@ jobs:
           docker run -d --name roach --hostname roach -p 26257:26257 -p 8080:8080 -v "${{ github.workspace }}:/app" $COCKROACHDB_DOCKER_TAG start-single-node --insecure
           sudo apt update && sudo apt install wait-for-it -y
           wait-for-it -h localhost -p 26257
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '16'
       - run: npm install
