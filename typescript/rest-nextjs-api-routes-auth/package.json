@@ -18,7 +18,7 @@
     "next-auth": "4.24.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "8.0.7",
+    "react-markdown": "9.0.1",
     "superjson": "1.13.3"
   },
   "devDependencies": {
