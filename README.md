@@ -114,6 +114,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Formbricks](https://github.com/formbricks/formbricks): An open-source survey and experience management tool
 - [OpenformStack](https://github.com/naveennaidu/OpenformStack): An open-source form backend that allows you to collect form submissions without writing any backend code
 - [Documenso](https://documenso.com/): An open-source alternative to Docusign
+- [abby](https://github.com/tryabby/abby): An open-source feature flag, remote config and A/B testing platform for developers
 - [ghostfolio](https://ghostfol.io/en/start): An open-source dashboard for your personal finances
 - [revert](https://www.revert.dev/): An open-source unified API to build B2B product integrations
 - [Scholarsome](https://scholarsome.com/): An interactive, studying system
@@ -140,6 +141,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives
 - [Snippy](https://github.com/kingstarfly/snippy): An open-source code-snippet sharing website
 - [Hitori](https://github.com/astridlol/Hitori): An open-source serverless Discord bot
+
 <hr>
 
 ## About this repository
