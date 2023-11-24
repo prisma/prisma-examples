@@ -15,7 +15,7 @@
     "graphql-scalars": "1.22.4"
   },
   "devDependencies": {
-    "@types/node": "20.9.5",
+    "@types/node": "20.10.0",
     "prisma": "5.6.0",
     "ts-node": "10.9.1",
     "typescript": "5.3.2"
