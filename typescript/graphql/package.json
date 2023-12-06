@@ -28,7 +28,7 @@
     "prisma": "5.7.0",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
-    "typescript": "5.3.2"
+    "typescript": "5.3.3"
   },
   "prisma": {
     "seed": "ts-node --transpile-only prisma/seed.ts"
