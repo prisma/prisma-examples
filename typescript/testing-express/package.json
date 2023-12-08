@@ -27,7 +27,7 @@
     "prisma": "5.7.0",
     "supertest": "6.3.3",
     "ts-jest": "29.1.1",
-    "ts-node": "10.9.1",
+    "ts-node": "10.9.2",
     "typescript": "5.3.3"
   },
   "prisma": {
