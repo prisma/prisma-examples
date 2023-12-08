@@ -15,7 +15,7 @@
     "@types/hapi__hapi": "20.0.13",
     "@types/node": "20.10.4",
     "prisma": "5.7.0",
-    "ts-node": "10.9.1",
+    "ts-node": "10.9.2",
     "typescript": "5.3.3"
   },
   "prisma": {

@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "prisma": "5.7.0",
-    "ts-node": "10.9.1",
+    "ts-node": "10.9.2",
     "typescript": "5.3.3"
   }
 }
