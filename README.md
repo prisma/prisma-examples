@@ -133,14 +133,10 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative (based on Next.js, tRPC, and TailwindCSS)
 - [Typebot](https://github.com/baptisteArno/typebot.io): A conversational form builder that you can self-host
 - [Cal.com](https://github.com/calcom/cal.com): An open-source alternative to Calendly (calender-based event scheduling service)
-- [Beam](https://github.com/planetscale/beam): A simple tool that allows members to write posts to share across your organization (based on Next.js)
-- [`ironfish-api`](https://github.com/iron-fish/ironfish-api): Public API for Iron Fish (A novel cryptocurrency focused on privacy and accessibility)
-- [Tottem](https://github.com/poulainv/tottem): Fullstack app for "social library management" (based on Next.js)
+- [Beam](https://github.com/planetscale/beam): A simple tool that allows members to write posts to share across your organization
 - [Dundring](https://github.com/sivertschou/dundring): An in-browser training application created to control and track you training with a smart bike trainer.
 - [Expense.fyi](https://github.com/gokulkrishh/expense.fyi): A tool for tracking and managing expenses
 - [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives
-- [Snippy](https://github.com/kingstarfly/snippy): An open-source code-snippet sharing website
-- [Hitori](https://github.com/astridlol/Hitori): An open-source serverless Discord bot
 
 <hr>
 
