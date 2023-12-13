@@ -16,7 +16,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@pothos/core": "3.40.0",
+    "@pothos/core": "3.40.1",
     "@pothos/plugin-prisma": "3.62.0",
     "@prisma/client": "5.7.0",
     "graphql": "16.8.1",
