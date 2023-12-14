@@ -111,7 +111,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
-- [NextCRM](https://github.com/mfts/papermark/](https://github.com/pdovhomilja/nextcrm-app): An open-source CRM 
+- [NextCRM](https://github.com/pdovhomilja/nextcrm-app): An open-source Customer Relationship Management system (CRM)
 - [Papermark](https://github.com/mfts/papermark/): An open-source DocSend alternative with built-in analytics and custom domains
 - [Hoppscotch](https://github.com/hoppscotch/hoppscotch): An open-source API development ecosystem 
 - [FeastQR](https://github.com/jakubczarnowski/FeastQR): An open-source SaaS online menu system for restaurants
