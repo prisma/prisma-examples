@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@apollo/server": "4.9.5",
-    "@prisma/client": "5.7.0",
+    "@prisma/client": "5.7.1",
     "bcryptjs": "2.4.3",
     "graphql": "16.8.1",
     "graphql-middleware": "6.1.35",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "nodemon": "3.0.2",
-    "prisma": "5.7.0"
+    "prisma": "5.7.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
