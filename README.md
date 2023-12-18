@@ -111,6 +111,16 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
+- [NextCRM](https://github.com/pdovhomilja/nextcrm-app): An open-source Customer Relationship Management system (CRM)
+- [Papermark](https://github.com/mfts/papermark/): An open-source DocSend alternative with built-in analytics and custom domains
+- [Hoppscotch](https://github.com/hoppscotch/hoppscotch): An open-source API development ecosystem 
+- [FeastQR](https://github.com/jakubczarnowski/FeastQR): An open-source SaaS online menu system for restaurants
+- [Formbricks](https://github.com/formbricks/formbricks): An open-source survey and experience management tool
+- [OpenformStack](https://github.com/naveennaidu/OpenformStack): An open-source form backend that allows you to collect form submissions without writing any backend code
+- [Documenso](https://documenso.com/): An open-source alternative to Docusign
+- [abby](https://github.com/tryabby/abby): An open-source feature flag, remote config and A/B testing platform for developers
+- [ghostfolio](https://ghostfol.io/en/start): An open-source dashboard for your personal finances
+- [revert](https://www.revert.dev/): An open-source unified API to build B2B product integrations
 - [Scholarsome](https://scholarsome.com/): An interactive, studying system
 - [Dittofeed](https://www.dittofeed.com): An open-source customer engagement; intuitive marketing tools that scale
 - [Trigger.dev](https://trigger.dev/): Effortless automation built for developers (Zapier alternative)
@@ -122,20 +132,20 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [dub](https://dub.sh/): An open-source link shortener with built-in analytics and free custom domains
 - [Umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
 - [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative (based on Next.js, tRPC, and TailwindCSS)
-- [snoopForms](https://github.com/snoopForms/snoopforms?ref=reactjsexample.com): An open-source alternative to Typeform (easy online surveys)
 - [Typebot](https://github.com/baptisteArno/typebot.io): A conversational form builder that you can self-host
 - [Cal.com](https://github.com/calcom/cal.com): An open-source alternative to Calendly (calender-based event scheduling service)
 - [Beam](https://github.com/planetscale/beam): A simple tool that allows members to write posts to share across your organization (based on Next.js)
-- [`ironfish-api`](https://github.com/iron-fish/ironfish-api): Public API for Iron Fish (A novel cryptocurrency focused on privacy and accessibility)
+- [Dundring](https://github.com/sivertschou/dundring): An in-browser training application created to control and track you training with a smart bike trainer
+- [Expense.fyi](https://github.com/gokulkrishh/expense.fyi): A tool for tracking and managing expenses
+- [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives
+
+<hr>
+
+## Starter kits
+
+- [T3 stack](https://create.t3.gg/): Starter kit based on Next.js, TypeScript, tRPC, Prisma, Tailwind CSS and NextAuth.js
 - [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting
 - [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
-- [Tottem](https://github.com/poulainv/tottem): Fullstack app for "social library management" (based on Next.js)
-- [Dundring](https://github.com/sivertschou/dundring): An in-browser training application created to control and track you training with a smart bike trainer.
-- [Expense.fyi](https://github.com/gokulkrishh/expense.fyi): A tool for tracking and managing expenses.
-- [Letterpad](https://github.com/letterpad/letterpad): A publishing platform for creatives.
-- [Snippy](https://github.com/kingstarfly/snippy): An open-source code-snippet sharing website.
-- [Hitori](https://github.com/astridlol/Hitori): An open-source serverless Discord bot
-<hr>
 
 ## About this repository
 
