@@ -7,7 +7,7 @@
   },
   "rangeStrategy": "pin",
   "baseBranches": ["latest"],
-  "reviewers": ["ruheni", "jharrell"],
+  "reviewers": ["jharrell"],
   "configMigration": true,
   "packageRules": [
     {
