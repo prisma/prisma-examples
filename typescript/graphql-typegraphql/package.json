@@ -9,7 +9,7 @@
     "class-validator": "0.14.1",
     "graphql": "16.8.1",
     "graphql-scalars": "1.22.4",
-    "reflect-metadata": "0.1.14",
+    "reflect-metadata": "0.2.1",
     "type-graphql": "2.0.0-beta.6"
   },
   "devDependencies": {
