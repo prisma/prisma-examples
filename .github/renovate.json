@@ -1,13 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", ":disableRateLimiting", "docker:disable"],
+  "schedule": ["before 8am every weekday", "every weekend"],
+  "rebaseWhen": "conflicted",
+  "prConcurrentLimit": 30,
   "automerge": true,
   "major": {
     "automerge": false
   },
   "rangeStrategy": "pin",
   "baseBranches": ["latest"],
-  "reviewers": ["ruheni", "jharrell"],
+  "reviewers": ["nikolasburk", "jharrell"],
   "configMigration": true,
   "packageRules": [
     {
