@@ -8,10 +8,10 @@
     "start": "node src/index.js"
   },
   "dependencies": {
-    "@prisma/client": "5.7.1",
+    "@prisma/client": "5.9.1",
     "body-parser": "1.20.2",
     "express": "4.18.2",
-    "prisma": "5.7.1"
+    "prisma": "5.9.1"
   },
   "devDependencies": {}
 }
