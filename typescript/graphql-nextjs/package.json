@@ -11,7 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "3.9.4",
+    "@apollo/client": "3.9.5",
     "@pothos/plugin-prisma": "3.63.1",
     "@pothos/core": "3.41.0",
     "@prisma/client": "5.9.1",
