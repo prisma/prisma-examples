@@ -18,14 +18,14 @@
   "dependencies": {
     "@pothos/core": "3.41.0",
     "@pothos/plugin-prisma": "3.64.0",
-    "@prisma/client": "5.10.1",
+    "@prisma/client": "5.10.2",
     "graphql": "16.8.1",
     "graphql-scalars": "1.22.4",
     "graphql-yoga": "5.1.1"
   },
   "devDependencies": {
     "@types/node": "20.11.19",
-    "prisma": "5.10.1",
+    "prisma": "5.10.2",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.3.3"
