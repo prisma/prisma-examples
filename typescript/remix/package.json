@@ -8,7 +8,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@prisma/client": "5.10.1",
+    "@prisma/client": "5.10.2",
     "@remix-run/node": "1.19.3",
     "@remix-run/react": "1.19.3",
     "@remix-run/serve": "1.19.3",
@@ -24,7 +24,7 @@
     "@types/react": "18.2.57",
     "@types/react-dom": "18.2.19",
     "eslint": "8.56.0",
-    "prisma": "5.10.1",
+    "prisma": "5.10.2",
     "ts-node": "10.9.2",
     "typescript": "5.3.3"
   },

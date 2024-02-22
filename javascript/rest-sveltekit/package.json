@@ -9,13 +9,13 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "2.1.1",
     "@sveltejs/kit": "1.30.4",
-    "prisma": "5.10.1",
+    "prisma": "5.10.2",
     "svelte": "4.2.11",
     "vite": "4.5.2"
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "5.10.1"
+    "@prisma/client": "5.10.2"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
