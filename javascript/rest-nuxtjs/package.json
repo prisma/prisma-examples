@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.10.2",
-    "nuxt": "3.10.2"
+    "nuxt": "3.10.3"
   },
   "devDependencies": {
     "prisma": "5.10.2"
