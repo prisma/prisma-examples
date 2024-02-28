@@ -18,7 +18,7 @@
     "react-markdown": "9.0.1"
   },
   "devDependencies": {
-    "@types/node": "20.11.20",
+    "@types/node": "20.11.21",
     "@types/react": "18.2.59",
     "ts-node": "10.9.2",
     "typescript": "5.3.3"
