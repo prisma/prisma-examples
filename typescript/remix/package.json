@@ -13,7 +13,7 @@
     "@remix-run/react": "1.19.3",
     "@remix-run/serve": "1.19.3",
     "isbot": "3.8.0",
-    "marked": "12.0.0",
+    "marked": "12.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
