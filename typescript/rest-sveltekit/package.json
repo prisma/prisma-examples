@@ -22,7 +22,7 @@
     "prettier-plugin-svelte": "3.2.2",
     "prisma": "5.10.2",
     "svelte": "4.2.12",
-    "svelte-check": "3.6.6",
+    "svelte-check": "3.6.7",
     "ts-node": "10.9.2",
     "tslib": "2.6.2",
     "typescript": "5.4.2",
