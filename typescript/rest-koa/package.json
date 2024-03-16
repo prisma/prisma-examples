@@ -8,7 +8,7 @@
   "dependencies": {
     "@koa/router": "12.0.1",
     "@prisma/client": "5.11.0",
-    "koa": "2.15.0",
+    "koa": "2.15.1",
     "koa-body": "6.0.1"
   },
   "devDependencies": {
