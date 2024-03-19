@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "20.11.29",
-    "@types/react": "18.2.66",
+    "@types/react": "18.2.67",
     "@types/react-dom": "18.2.22",
     "prisma": "5.11.0",
     "ts-node": "10.9.2",
