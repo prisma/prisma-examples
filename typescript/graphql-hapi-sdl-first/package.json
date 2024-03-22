@@ -6,7 +6,7 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@apollo/server": "4.10.1",
+    "@apollo/server": "4.10.2",
     "@as-integrations/hapi": "2.0.1",
     "@graphql-tools/schema": "10.0.3",
     "@hapi/hapi": "21.3.6",
