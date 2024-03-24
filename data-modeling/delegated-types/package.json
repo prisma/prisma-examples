@@ -15,7 +15,7 @@
     "prisma": "5.11.0",
     "ts-jest": "29.1.2",
     "ts-node": "10.9.2",
-    "typescript": "5.4.2"
+    "typescript": "5.4.3"
   },
   "dependencies": {
     "@prisma/client": "5.11.0",
