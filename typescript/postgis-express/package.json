@@ -9,7 +9,7 @@
   "dependencies": {
     "@prisma/client": "5.11.0",
     "@types/node": "20.11.30",
-    "express": "4.18.3"
+    "express": "4.19.2"
   },
   "devDependencies": {
     "@types/body-parser": "1.19.5",
