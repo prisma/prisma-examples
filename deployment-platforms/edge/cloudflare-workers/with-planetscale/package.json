@@ -1,0 +1,22 @@
+{
+  "name": "demo-cf-worker-ps",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "env": "dotenv -e .dev.vars"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240222.0",
+    "prisma": "^5.11.0-dev.5",
+    "typescript": "^5.0.4",
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "@planetscale/database": "^1.16.0",
+    "@prisma/adapter-planetscale": "^5.10.2",
+    "@prisma/client": "^5.11.0-dev.5"
+  }
+}

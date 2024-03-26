@@ -495,7 +495,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
