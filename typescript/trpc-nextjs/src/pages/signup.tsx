@@ -8,7 +8,7 @@ function Signup() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
 
-  const signupMutation = api.user.singupUser.useMutation()
+  const signupMutation = api.user.signupUser.useMutation()
 
   return (
     <Layout>
