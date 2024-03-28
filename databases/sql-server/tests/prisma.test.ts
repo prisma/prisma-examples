@@ -214,7 +214,7 @@ describe('example test with Prisma Client', () => {
   test('Create unpublished post with tags and comments for an existing user and then publish', async () => {
     const newPost = await prisma.post.create({
       data: {
-        title: 'Join the Prisma Slack community',
+        title: 'Join the Prisma Discord community',
         content: 'http://slack.prisma.io',
         published: false,
         author: {

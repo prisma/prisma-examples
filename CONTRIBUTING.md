@@ -30,8 +30,8 @@ For each language, there should be one example that shows how to:
 - build a **REST API** with Prisma client
 - build a **CLI** application with Prisma client
 
-The schemas and developed APIs should be consistent across languages. This enables easier testing of the examples. The domain for all applications (except the CLI app) is a simple blogging application. 
-<!-- 
+The schemas and developed APIs should be consistent across languages. This enables easier testing of the examples. The domain for all applications (except the CLI app) is a simple blogging application.
+<!--
 Here's an overview of the used datamodels and APIs:
 
 ### Script
@@ -295,7 +295,7 @@ type Post {
 - `/publish/:id`: Publish a post by its `id`
 
 #### `DELETE`
-  
+
 - `/post/:id`: Delete a post by its `id`
 
 
@@ -326,19 +326,19 @@ The easiest way to contribute is by adding a missing example. Check [this](https
 
 ### Adding a new example
 
-Before submitting a PR for a new example, please first open an issue that explains the idea of the example and specifies what it will look like (e.g. how the Prisma datamodel will be defined or what kind of API will be built). It'll then be discussed in the issue whether your example is going to be added to the collection. To accelerate the process, you can ping @nikolasburk in the public [Prisma Slack](https://slack.prisma.io).
+Before submitting a PR for a new example, please first open an issue that explains the idea of the example and specifies what it will look like (e.g. how the Prisma datamodel will be defined or what kind of API will be built). It'll then be discussed in the issue whether your example is going to be added to the collection. To accelerate the process, you can ping @nikolasburk in the public [Prisma Discord](https://pris.ly/discord).
 
-Once approved, you can add your example to [list of missing examples](https://github.com/prisma/prisma-examples/issues/311) and start implementing it. 
+Once approved, you can add your example to [list of missing examples](https://github.com/prisma/prisma-examples/issues/311) and start implementing it.
 
 ### Improving an existing example
 
-If you find a bug in an example, please feel free to open an issue or submit a PR so the bug gets fixed. If you want to make structural changes to an existing example (e.g. changing the datamodel or the API operations), please open an issue about this first where the changes can be discussed. To accelerate the process, you can ping @nikolasburk in the public [Prisma Slack](https://slack.prisma.io).
+If you find a bug in an example, please feel free to open an issue or submit a PR so the bug gets fixed. If you want to make structural changes to an existing example (e.g. changing the datamodel or the API operations), please open an issue about this first where the changes can be discussed. To accelerate the process, you can ping @nikolasburk in the public [Prisma Discord](https://pris.ly/discord).
 
 Once approved, you can go ahead and implement the changes.
 
 ### Improving a README
 
-The READMEs for all projects are being auto-generated based on the templates located in [`./.github/readmes`](./.github/readmes). If you find a typo or other parts of the README that should be improved, please do not edit the README directly but instead add your changes to the corresponding template. 
+The READMEs for all projects are being auto-generated based on the templates located in [`./.github/readmes`](./.github/readmes). If you find a typo or other parts of the README that should be improved, please do not edit the README directly but instead add your changes to the corresponding template.
 
 For example, if you found an issue in the `typescript/graphql` README, do not edit the [`./typescript/graphql/README.md`](./typescript/graphql/README.md) file but instead add your changes to [.`/.github/readmes/typescript/graphql/README.md`](./.github/readmes/typescript/graphql/README.md). Then build the READMEs using our custom script:
 

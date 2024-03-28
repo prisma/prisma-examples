@@ -99,8 +99,8 @@ You need to be logged in for this query to work, i.e. an authentication token th
 mutation {
   createDraft(
     data: {
-      title: "Join the Prisma Slack"
-      content: "https://slack.prisma.io"
+      title: "Join the Prisma Discord"
+      content: "https://pris.ly/discord"
     }
   ) {
     id
@@ -201,7 +201,7 @@ mutation {
 
 ### Retrieve the drafts of a user
 
-You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground. 
+You need to be logged in for this query to work, i.e. an authentication token that was retrieved through a `signup` or `login` mutation needs to be added to the `Authorization` header in the GraphQL Playground.
 
 ```graphql
 {

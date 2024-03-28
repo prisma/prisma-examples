@@ -179,7 +179,7 @@ async function main() {
   // Create a new post (written by an already existing user with email alice@prisma.io)
   const newPost = await prisma.post.create({
     data: {
-      title: 'Join the Prisma Slack community',
+      title: 'Join the Prisma Discord community',
       content: 'http://slack.prisma.io',
       published: false,
       author: {
