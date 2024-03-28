@@ -33,7 +33,7 @@ npx wrangler d1 create prisma-demo-db
 
 The command outputs the [binding](https://developers.cloudflare.com/workers/configuration/bindings/) configuration for your D1 database.
 
-Take this output and paste it into `wrangler.toml` which then should look similar to this:
+Take this output and paste it into [`wrangler.toml`](./wrangler.toml) which then should look similar to this:
 
 ```diff
 # wrangler.toml
