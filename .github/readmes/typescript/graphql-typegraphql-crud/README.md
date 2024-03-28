@@ -3,7 +3,7 @@
 This example shows how to **implement a GraphQL server with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [apollo-server](https://www.apollographql.com/docs/apollo-server). It is based on a SQLite database - you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 __INLINE(../_setup-0.md)__
-npx try-prisma@latest --template graphql-typegraphql-crud
+npx try-prisma@latest --template typescript/graphql-typegraphql-crud
 __INLINE(../_setup-1.md)__
 cd graphql-typegraphql-crud
 npm install --legacy-peer-deps
