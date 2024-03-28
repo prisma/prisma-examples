@@ -4,7 +4,7 @@ This example shows how to implement a **Fullstack NextJs app with GraphQL** with
 
 This example shows how to implement a **fullstack app in TypeScript with :
 - [**Next.js**](https://nextjs.org/)**: A [React](https://reactjs.org/) framework
-- [**Apollo Client**](https://www.apollographql.com/docs/react/) (frontend), 
+- [**Apollo Client**](https://www.apollographql.com/docs/react/) (frontend),
 - [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): GraphQL server
 - [**Pothos**](https://pothos-graphql.dev/): Code-first GraphQL schema definition library
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
@@ -131,8 +131,8 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    title: "Join the Prisma Slack"
-    content: "https://slack.prisma.io"
+    title: "Join the Prisma Discord"
+    content: "https://pris.ly/discord"
     authorEmail: "alice@prisma.io"
   ) {
     id
@@ -396,6 +396,6 @@ In the application code, you can access the new operations via Apollo Client and
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)
+

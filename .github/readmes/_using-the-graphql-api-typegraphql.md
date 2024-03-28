@@ -53,8 +53,8 @@ mutation {
 mutation {
   createDraft(
     data: {
-      title: "Join the Prisma Slack",
-      content: "https://slack.prisma.io"
+      title: "Join the Prisma Discord",
+      content: "https://pris.ly/discord"
       email: "alice@prisma.io"
     }
   ) {

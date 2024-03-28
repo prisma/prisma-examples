@@ -200,8 +200,8 @@
                   "pm.test('Response body is valid', function () {\r",
                   "   const jsonData = pm.response.json()\r",
                   "    pm.expect(jsonData[0].id).to.eql(1)\r",
-                  "    pm.expect(jsonData[0].title).to.eql(\"Join the Prisma Slack\")\r",
-                  "    pm.expect(jsonData[0].content).to.eql(\"https://slack.prisma.io\")\r",
+                  "    pm.expect(jsonData[0].title).to.eql(\"Join the Prisma Discord\")\r",
+                  "    pm.expect(jsonData[0].content).to.eql(\"https://pris.ly/discord\")\r",
                   "    pm.expect(jsonData[0].published).to.eql(true)\r",
                   "    pm.expect(jsonData[0].viewCount).to.eql(0)\r",
                   "    pm.expect(jsonData[0].authorId).to.eql(1)\r",
@@ -215,7 +215,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:3000/feed?searchString=slack",
+              "raw": "http://localhost:3000/feed?searchString=discord",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -227,7 +227,7 @@
               "query": [
                 {
                   "key": "searchString",
-                  "value": "slack"
+                  "value": "discord"
                 }
               ]
             }

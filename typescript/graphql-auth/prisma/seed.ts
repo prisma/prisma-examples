@@ -10,8 +10,8 @@ const userData: Prisma.UserCreateInput[] = [
     posts: {
       create: [
         {
-          title: 'Join the Prisma Slack',
-          content: 'https://slack.prisma.io',
+          title: 'Join the Prisma Discord',
+          content: 'https://pris.ly/discord',
           published: true,
         },
       ],

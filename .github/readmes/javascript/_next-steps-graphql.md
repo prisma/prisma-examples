@@ -23,8 +23,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -139,5 +139,5 @@ const userWithUpdatedProfile = await prisma.user.update({
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)

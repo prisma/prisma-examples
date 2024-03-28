@@ -61,7 +61,7 @@ Navigate to [http://localhost:4000](http://localhost:4000) in your browser to ex
 
 ## Using the GraphQL API
 
-`typegraphql-prisma` emits the generated TypeGraphQL classes to `node_modules/@generated/typegraphql-prisma` whenever `npx prisma generate` is invoked. 
+`typegraphql-prisma` emits the generated TypeGraphQL classes to `node_modules/@generated/typegraphql-prisma` whenever `npx prisma generate` is invoked.
 
 It also generates a number of model classes, enums as well CRUD and relation resolver based on your `schema.prisma` file. The generated CRUD resolvers match the operations of the [Prisma Client API](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference):
 
@@ -121,8 +121,8 @@ mutation {
 mutation {
   createPost(
     data: {
-      title: "Join the Prisma Slack",
-      content: "https://slack.prisma.io"
+      title: "Join the Prisma Discord",
+      content: "https://pris.ly/discord"
       author: {
         connect: {
           email: "alice@prisma.io"
@@ -232,8 +232,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -353,7 +353,7 @@ Run the following mutation to create a user with a profile:
 ```graphql
 mutation {
   signupUser(data: {
-    email:"katla@prisma.io", 
+    email:"katla@prisma.io",
     profile: { bio: "Sometimes I'm an Icelandic volcano, sometimes I'm a dragon from a book."}
   })
   {
@@ -439,7 +439,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
@@ -512,6 +512,6 @@ datasource db {
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)
+

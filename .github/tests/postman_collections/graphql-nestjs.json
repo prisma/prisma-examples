@@ -99,7 +99,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  createDraft(\r\n    data: { title: \"Join the Prisma Slack\", content: \"https://slack.prisma.io\" }\r\n    authorEmail: \"alice@prisma.io\"\r\n  ) {\r\n    id\r\n    viewCount\r\n    published\r\n    author {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}",
+								"query": "mutation {\r\n  createDraft(\r\n    data: { title: \"Join the Prisma Discord\", content: \"https://pris.ly/discord\" }\r\n    authorEmail: \"alice@prisma.io\"\r\n  ) {\r\n    id\r\n    viewCount\r\n    published\r\n    author {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -138,8 +138,8 @@
 									"        \"feed\": [\r",
 									"        {\r",
 									"            \"id\": 1,\r",
-									"            \"title\": \"Join the Prisma Slack\",\r",
-									"            \"content\": \"https://slack.prisma.io\",\r",
+									"            \"title\": \"Join the Prisma Discord\",\r",
+									"            \"content\": \"https://pris.ly/discord\",\r",
 									"            \"published\": true,\r",
 									"            \"author\": {\r",
 									"            \"id\": 1,\r",
@@ -221,8 +221,8 @@
 									"        \"feed\": [\r",
 									"            {\r",
 									"                \"id\": 1,\r",
-									"                \"title\": \"Join the Prisma Slack\",\r",
-									"                \"content\": \"https://slack.prisma.io\",\r",
+									"                \"title\": \"Join the Prisma Discord\",\r",
+									"                \"content\": \"https://pris.ly/discord\",\r",
 									"                \"published\": true\r",
 									"            },\r",
 									"            {\r",
@@ -289,8 +289,8 @@
 									"        \"feed\": [\r",
 									"            {\r",
 									"                \"id\": 1,\r",
-									"                \"title\": \"Join the Prisma Slack\",\r",
-									"                \"content\": \"https://slack.prisma.io\",\r",
+									"                \"title\": \"Join the Prisma Discord\",\r",
+									"                \"content\": \"https://pris.ly/discord\",\r",
 									"                \"published\": true\r",
 									"            }\r",
 									"        ]\r",
