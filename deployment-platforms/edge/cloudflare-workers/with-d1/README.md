@@ -119,7 +119,7 @@ You can now access the Worker on `https://prisma-d1-example.__USERNAME__.workers
 
 ## Notes about migrations
 
-This project uses an already existing [SQL schema](./prisma/schema.sql) file which you execute via `npx wrangler execute` to keep the demo simple.
+This project uses an already existing [SQL schema](./prisma/schema.sql) file which you execute via `wrangler d1 execute` to keep the demo simple.
 
 If you want to evolve your schema and keep track of the migration history, you can take a look at the recommended [migration workflows](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1#migration-workflows) for D1 in the Prisma docs.
 
