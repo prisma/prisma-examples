@@ -1,6 +1,6 @@
 # Fullstack Example with Next.js (tRPC)
 
-This example shows how to implement a **Fullstack NextJs app with the t3 strack** with the following tools:
+This example shows how to implement a **Fullstack Next.js app with the t3 stack** with the following tools:
 
 This example shows how to implement a **fullstack app in TypeScript with :
 - [**Next.js**](https://nextjs.org/)**: A [React](https://reactjs.org/) framework

@@ -1,6 +1,6 @@
 # Fullstack Example with Next.js (GraphQL API)
 
-This example shows how to implement a **Fullstack NextJs app with GraphQL** with the following stack:
+This example shows how to implement a **Fullstack Next.js app with GraphQL** with the following stack:
 
 This example shows how to implement a **fullstack app in TypeScript with :
 - [**Next.js**](https://nextjs.org/)**: A [React](https://reactjs.org/) framework
