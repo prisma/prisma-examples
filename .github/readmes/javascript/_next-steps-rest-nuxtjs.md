@@ -103,5 +103,5 @@ In the application code, you can access the new endpoint via `fetch` operations 
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`prisma2`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Discord](https://pris.ly/discord/)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)

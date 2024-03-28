@@ -216,7 +216,7 @@ describe('example test with Prisma Client', () => {
     const newPost = await prisma.post.create({
       data: {
         title: 'Join the Prisma Discord community',
-        content: 'http://slack.prisma.io',
+        content: 'https://pris.ly/discord',
         published: false,
         author: {
           connect: {

@@ -215,7 +215,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:3000/feed?searchString=slack",
+              "raw": "http://localhost:3000/feed?searchString=discord",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -227,7 +227,7 @@
               "query": [
                 {
                   "key": "searchString",
-                  "value": "slack"
+                  "value": "discord"
                 }
               ]
             }
