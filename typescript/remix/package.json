@@ -22,7 +22,7 @@
     "@remix-run/eslint-config": "1.19.3",
     "@types/marked": "5.0.2",
     "@types/react": "18.2.73",
-    "@types/react-dom": "18.2.22",
+    "@types/react-dom": "18.2.23",
     "eslint": "8.57.0",
     "prisma": "5.11.0",
     "ts-node": "10.9.2",
