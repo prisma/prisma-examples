@@ -3,7 +3,7 @@
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
 - [**hapi**](https://hapi.dev/): Web framework with a focus on security and scalability
-- [**Apollo Server Integration for Hapi**](https://www.npmjs.com/package/@as-integrations/hapi)
+- [**Apollo Server Integration for Hapi**](https://www.npmjs.com/package/@as-integrations/hapi))
 - [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
@@ -376,8 +376,8 @@ const User = objectType({
 +      type: 'Profile',
 +      resolve: (parent, _, context) => {
 +        return context.prisma.user
-+          .findUnique({
-+            where: { id: parent.id },
++          .findUnique({ 
++            where: { id: parent.id }, 
 +          })
 +          .profile();
 +      },
@@ -428,7 +428,7 @@ const Mutation = objectType({
 +         }),
 +       ),
 +       bio: stringArg()
-+     },
++     }, 
 +     resolve: async (_, args, context) => {
 +       return context.prisma.profile.create({
 +         data: {
@@ -520,7 +520,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
