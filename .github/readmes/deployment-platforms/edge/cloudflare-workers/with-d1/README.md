@@ -2,7 +2,6 @@
 
 This example demonstrates how to deploy a [Cloudflare Worker](https://workers.cloudflare.com/) with a [D1 database](https://developers.cloudflare.com/d1/). It's based on Cloudflare's [`hello-world`](https://github.com/cloudflare/workers-sdk/tree/4fdd8987772d914cf50725e9fa8cb91a82a6870d/packages/create-cloudflare/templates/hello-world) template for Workers.
 
-Note that D1 is currently in public beta and not yet recommended for production workfloads.
 
 ## Getting started
 
