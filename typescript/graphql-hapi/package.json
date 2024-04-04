@@ -14,7 +14,7 @@
   "dependencies": {
     "@apollo/server": "4.10.2",
     "@as-integrations/hapi": "2.0.1",
-    "@hapi/hapi": "21.3.7",
+    "@hapi/hapi": "21.3.8",
     "@prisma/client": "5.12.0",
     "@types/node": "20.12.4",
     "graphql": "16.8.1",
