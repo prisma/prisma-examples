@@ -29,7 +29,7 @@
     "@types/react": "18.2.74",
     "prisma": "5.12.0",
     "ts-node": "10.9.2",
-    "typescript": "5.4.3"
+    "typescript": "5.4.4"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
