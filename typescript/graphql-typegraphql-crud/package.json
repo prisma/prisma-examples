@@ -16,7 +16,7 @@
     "type-graphql": "2.0.0-beta.6"
   },
   "devDependencies": {
-    "@types/node": "20.12.4",
+    "@types/node": "20.12.5",
     "@types/ws": "8.5.10",
     "prisma": "5.12.1",
     "ts-node": "10.9.2",
