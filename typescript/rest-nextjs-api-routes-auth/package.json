@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/next-auth": "3.15.0",
-    "@types/node": "20.12.6",
+    "@types/node": "20.12.7",
     "@types/react": "18.2.75",
     "prisma": "5.12.1",
     "ts-node": "10.9.2",
