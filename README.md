@@ -105,6 +105,18 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 | [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-koa)                           | REST API with [Koa](https://koajs.com/)                                                      |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script)                               | Usage of Prisma Client JS in a Node.js script                                                |
 
+## Prisma Data Platform
+
+The [`prisma-data-platform`](./prisma-data-platform/) folder contains examples of projects using products offered by the Prisma Data Platform.
+
+### Prisma Accelerate
+
+The [`prisma-accelerate`](./prisma-data-platform/accelerate/)  folder contains examples of projects using [Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
+
+### Prisma Pulse
+
+The [`prisma-pulse`](./prisma-data-platform/pulse/) folder contains examples of projects using [Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
+
 ## Deployment platforms
 
 The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
@@ -114,7 +126,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Inbox Zero](https://github.com/pdovhomilja/nextcrm-app): Open source email management tools to reach inbox zero fast
 - [NextCRM](https://github.com/pdovhomilja/nextcrm-app): An open-source Customer Relationship Management system (CRM)
 - [Papermark](https://github.com/mfts/papermark/): An open-source DocSend alternative with built-in analytics and custom domains
-- [Hoppscotch](https://github.com/hoppscotch/hoppscotch): An open-source API development ecosystem 
+- [Hoppscotch](https://github.com/hoppscotch/hoppscotch): An open-source API development ecosystem
 - [FeastQR](https://github.com/jakubczarnowski/FeastQR): An open-source SaaS online menu system for restaurants
 - [Formbricks](https://github.com/formbricks/formbricks): An open-source survey and experience management tool
 - [OpenformStack](https://github.com/naveennaidu/OpenformStack): An open-source form backend that allows you to collect form submissions without writing any backend code
