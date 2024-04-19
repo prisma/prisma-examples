@@ -20,7 +20,7 @@
   "devDependencies": {
     "@remix-run/dev": "1.19.3",
     "@remix-run/eslint-config": "1.19.3",
-    "@types/marked": "5.0.2",
+    "@types/marked": "6.0.0",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.25",
     "eslint": "8.57.0",
