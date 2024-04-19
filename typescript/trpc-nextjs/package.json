@@ -20,7 +20,7 @@
     "react-dom": "18.2.0",
     "react-markdown": "9.0.1",
     "superjson": "1.13.3",
-    "zod": "3.22.4"
+    "zod": "3.22.5"
   },
   "devDependencies": {
     "@types/node": "20.12.7",
