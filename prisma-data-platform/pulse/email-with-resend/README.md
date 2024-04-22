@@ -15,14 +15,15 @@ This repository contains an example app that uses Prisma Pulse to detect when ne
 
 To get started, follow these steps:
 
-1. Clone the repo into your local machine.
-2. Install dependencies:
+1. Clone the repository, navigate into it and install dependencies:
 
-   ```bash
-   npm install
-   ```
+    ```bash
+    git clone git@github.com:prisma/prisma-examples.git --depth=1
+    cd prisma-examples/prisma-data-platform/pulse/email-with-resend
+    npm install
+    ```
 
-3. Create a `.env` file in the root directory and provide your Database URL, Prisma Pulse and Resend API key:
+2. Create a `.env` file in the root directory and provide your Database URL, Prisma Pulse and Resend API key:
 
    ```bash
    DATABASE_URL=""
@@ -32,7 +33,7 @@ To get started, follow these steps:
 
 ## Run the app
 
-1. Start the script:
+1. Start the script using:
 
    ```bash
    npm run dev

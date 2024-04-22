@@ -8,7 +8,7 @@ To successfully run the project, you will need the following:
 
 - The **connection string** of a Pulse-compatible database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
 - A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account
-  
+
 ## Getting started
 
 ### 1. Clone the respository
@@ -16,8 +16,8 @@ To successfully run the project, you will need the following:
 Clone the repository, navigate into it and install dependencies:
 
 ```bash
-git clone https://github.com/prisma/pulse-starter.git
-cd pulse-starter
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+cd prisma-examples/prisma-data-platform/pulse/starter
 npm install
 ```
 
@@ -32,7 +32,7 @@ mv .env.example .env
 Now go into the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables:
 
 ```bash
-DATABASE_URL="postgres://postgres:password@host:PORT/database_name" 
+DATABASE_URL="postgres://postgres:password@host:PORT/database_name"
 PULSE_API_KEY="your_secure_pulse_api_key"
 ```
 
