@@ -107,15 +107,24 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## Prisma Data Platform
 
-The [`prisma-data-platform`](./prisma-data-platform/) folder contains examples of projects using products offered by the Prisma Data Platform.
+The [`prisma-data-platform`](./prisma-data-platform/) folder contains examples of projects using products offered by the [Prisma Data Platform](https://console.prisma.io/).
 
 ### Prisma Accelerate
 
 The [`prisma-accelerate`](./prisma-data-platform/accelerate/)  folder contains examples of projects using [Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
 
+| Demo | Description |
+| - | - |
+| [`nextjs`](./prisma-data-platform/accelerate/nextjs/)  |  A Next.js project using Prisma Accelerate's caching and connection pooling  |
+
 ### Prisma Pulse
 
 The [`prisma-pulse`](./prisma-data-platform/pulse/) folder contains examples of projects using [Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
+
+| Demo | Description |
+| - | - |
+| [`starter`](./prisma-data-platform/pulse/starter/)  |  A Prisma Pulse starter app  |
+| [`email-with-resend`](./prisma-data-platform/pulse/email-with-resend/)  |  An example app to send emails to new users using Prisma Pulse and Resend  |
 
 ## Deployment platforms
 
