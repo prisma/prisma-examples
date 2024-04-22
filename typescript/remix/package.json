@@ -1,6 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
@@ -29,7 +30,7 @@
     "typescript": "5.4.5"
   },
   "engines": {
-    "node": "20.12.2"
+    "node": ">=18.0.0"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
