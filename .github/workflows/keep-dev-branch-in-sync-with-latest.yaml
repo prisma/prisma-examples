@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: report failure to slack
         run: bash .github/scripts/slack-workflow-status.sh "[keep-dev-branches-in-sync-with-latest] check-for-update :x:"
