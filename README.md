@@ -111,7 +111,7 @@ The [`prisma-data-platform`](./prisma-data-platform/) folder contains examples o
 
 ### Prisma Accelerate
 
-The [`prisma-accelerate`](./prisma-data-platform/accelerate/)  folder contains examples of projects using [Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
+The [`accelerate`](./prisma-data-platform/accelerate/) folder located under [`prisma-data-platform`](./prisma-data-platform) contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
 
 | Demo | Description |
 | - | - |
