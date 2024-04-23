@@ -10,8 +10,8 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "2.1.1",
-    "@sveltejs/kit": "1.30.4",
+    "@sveltejs/adapter-auto": "3.2.0",
+    "@sveltejs/kit": "2.5.7",
     "@sveltejs/package": "2.3.1",
     "@typescript-eslint/eslint-plugin": "7.7.0",
     "@typescript-eslint/parser": "7.7.0",
@@ -26,7 +26,7 @@
     "ts-node": "10.9.2",
     "tslib": "2.6.2",
     "typescript": "5.4.5",
-    "vite": "4.5.3"
+    "vite": "5.2.10"
   },
   "type": "module",
   "dependencies": {
