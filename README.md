@@ -119,7 +119,7 @@ The [`prisma-accelerate`](./prisma-data-platform/accelerate/)  folder contains e
 
 ### Prisma Pulse
 
-The [`prisma-pulse`](./prisma-data-platform/pulse/) folder contains examples of projects using [Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
+The [`pulse`](./prisma-data-platform/pulse/) folder located under [`prisma-data-platform`](./prisma-data-platform) contains examples of projects using [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
 
 | Demo | Description |
 | - | - |
