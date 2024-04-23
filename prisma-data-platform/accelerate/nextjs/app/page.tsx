@@ -1,9 +1,10 @@
-import { AddQuote } from "@/components/Quote/AddQuote";
-import { QuotesLoading } from "@/components/Quote/QuotesLoading";
-import { Quotes } from "@/components/Quote/Quotes";
-import { Suspense } from "react";
+import { AddQuote } from '@/components/Quote/AddQuote'
+import { QuotesLoading } from '@/components/Quote/QuotesLoading'
+import { Quotes } from '@/components/Quote/Quotes'
+import { Suspense } from 'react'
 
-export const dynamic = "force-dynamic";
+// Caching is disabled to opt-out of the Next.js Data Cache for a specific route using the "force-dynamic" config option so that up to date data is always returned and no caching happens. Learn more here: https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dynamic.
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   return (
@@ -22,5 +23,5 @@ export default async function Home() {
         <Quotes />
       </Suspense>
     </main>
-  );
+  )
 }

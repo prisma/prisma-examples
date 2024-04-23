@@ -61,14 +61,14 @@ This will run a basic subscription on the `User` table. The code can be found in
 
 ```ts
 async function main() {
-  const subscription = await prisma.user.subscribe();
+  const subscription = await prisma.user.subscribe()
 
   if (subscription instanceof Error) {
-    throw subscription;
+    throw subscription
   }
 
   for await (const event of subscription) {
-    console.log("just received an event:", event);
+    console.log('just received an event:', event)
   }
 }
 ```
@@ -84,16 +84,16 @@ The following instructions uses [Prisma Studio](https://www.prisma.io/studio) to
 3. Return to your terminal where you ran the `npx ts-node index.ts` command.
 4. If everything is set up properly you will see an output that is similar to the following.
 
-    ```json
-    {
-      "action": "create",
-      "created": {
-        "id": 1,
-        "email": "test@prisma.io",
-        "name": "test"
-      }
-    }
-    ```
+   ```json
+   {
+     "action": "create",
+     "created": {
+       "id": 1,
+       "email": "test@prisma.io",
+       "name": "test"
+     }
+   }
+   ```
 
 ## Deployment
 

@@ -1,6 +1,6 @@
 // global.d.ts
 declare namespace NodeJS {
-	export interface ProcessEnv {
-		PULSE_API_KEY?: string;
-	}
+  export interface ProcessEnv {
+    PULSE_API_KEY?: string
+  }
 }
