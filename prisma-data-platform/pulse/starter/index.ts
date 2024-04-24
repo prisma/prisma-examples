@@ -6,8 +6,7 @@ process.on('SIGINT', () => {
   process.exit(0)
 })
 
-const apiKey: string =
-  process.env.PULSE_API_KEY !== undefined ? process.env.PULSE_API_KEY : ''
+const apiKey: string = process.env.PULSE_API_KEY ?? ''
 const prisma = new PrismaClient().$extends(withPulse({ apiKey: apiKey }))
 
 async function main() {
