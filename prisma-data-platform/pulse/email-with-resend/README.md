@@ -4,7 +4,7 @@ This repository contains an example app that uses Prisma Pulse to detect when ne
 
 ---
 
-## Prerequisite
+## Prerequisites
 
 1. A Prisma Pulse-compatible PostgreSQL database.
     > You can learn how to setup a Pulse-ready database by reading our [docs](https://www.prisma.io/docs/pulse/database-setup).
