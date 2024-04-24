@@ -49,5 +49,5 @@ To get started, follow these steps:
 
 ## Next steps
 
-- Checkout the Prisma Pulse [docs](https://www.prisma.io/docs/pulse).
+- Checkout the [Prisma Pulse docs](https://www.prisma.io/docs/pulse).
 - Reach out to us in [Discord](https://pris.ly/discord) if you need help.
