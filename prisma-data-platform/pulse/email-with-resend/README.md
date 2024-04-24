@@ -5,8 +5,7 @@ This repository contains an example app that uses Prisma Pulse to detect when ne
 
 ## Prerequisites
 
-1. A Prisma Pulse-compatible PostgreSQL database.
-    > You can learn how to setup a Pulse-ready database by reading our [docs](https://www.prisma.io/docs/pulse/database-setup).
+1. A Prisma Pulse-compatible PostgreSQL database. If you don't have one yet, you can learn how to set it up in our [docs](https://www.prisma.io/docs/pulse/database-setup).
 2. Visit [Prisma Data Platform](https://pris.ly/pdp) and enable Pulse in your project environment to get a Pulse API key.
 3. Create a [Resend account](https://resend.com/) and get the Resend API Key.
 
