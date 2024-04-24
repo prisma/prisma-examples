@@ -44,7 +44,7 @@ To get started, follow these steps:
    ```
 
 3. Add a new user with a `name` and a *valid* `email`.
-4. You will receive a new email in the insterted email inbox. For example: When a new user with an email of `datta@prisma.io` and a name of `Ankur` is created, the email inbox for `datta@prisma.io` should have a new email:
+4. You will receive a new email in the inbox of the specified email. For example: When a new user with an email of `datta@prisma.io` and a name of `Ankur` is created, the email inbox for `datta@prisma.io` should have received the following email (the copy for this email is hardcoded in [`./script.ts`](./script.ts#L33)):
    ![image.png](./images/email.png)
 
 ## Next steps
