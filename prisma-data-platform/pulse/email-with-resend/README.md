@@ -2,7 +2,6 @@
 
 This repository contains an example app that uses Prisma Pulse to detect when new users are added to the database and sends them an onboarding email using [Resend](https://resend.com/).
 
----
 
 ## Prerequisites
 
