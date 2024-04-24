@@ -20,9 +20,7 @@
 
 <div align="center">
 
-[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=latest)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Alatest)
-[![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-prisma-dependencies-updated)
-[![keep-dev-branches-in-sync-with-latest](https://github.com/prisma/prisma-examples/workflows/keep-dev-branches-in-sync-with-latest/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-dev-branches-in-sync-with-latest)
+[![test](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=latest)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Alatest) [![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-prisma-dependencies-updated) [![keep-dev-branches-in-sync-with-latest](https://github.com/prisma/prisma-examples/workflows/keep-dev-branches-in-sync-with-latest/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-dev-branches-in-sync-with-latest)
 
 [View full CI status](#ci-status)
 
@@ -42,68 +40,69 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ### Fullstack
 
-| Demo                                                                                                                          | Description                                                                                                                                                                                          |
-| :---------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`rest-nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes)           | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction))                                                                     |
-| [`rest-nextjs-api-routes-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes-auth) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) and authentication (using [NextAuth.js](https://next-auth.js.org/)) |
-| [`rest-nextjs-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-express)                 | [Next.js](https://nextjs.org/) app with a REST API (using [Express](https://expressjs.com/))                                                                                                         |
-| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nuxtjs)                                 | [Nuxt.js](https://nuxt.com/) app with a REST API                                                                                                          |
-| [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nextjs)                           | [Next.js](https://nextjs.org/) app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [GraphQL Nexus](https://github.com/graphql-nexus/nexus))            |
-| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app with a REST API             |
-| [`sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/sveltekit)                                     | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions            |                           | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions            |
-| [`trpc-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/trpc-nextjs)           | [Next.js](https://nextjs.org/) app with [tRPC ](https://trpc.io/)
-| [`remix`](https://github.com/prisma/prisma-examples/tree/latest/typescript/remix)           | [Remix](https://remix.run/) app |
+| Demo | Description |
+| :-- | :-- |
+| [`rest-nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes) | Next.js app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) |
+| [`rest-nextjs-api-routes-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes-auth) | Next.js app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) and authentication (using [NextAuth.js](https://next-auth.js.org/)) |
+| [`rest-nextjs-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-express) | Next.js app with a REST API (using [Express](https://expressjs.com/)) |
+| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nuxtjs) | Nuxt.js app with a REST API |
+| [`graphql-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nextjs) | Next.js app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [GraphQL Nexus](https://github.com/graphql-nexus/nexus)) |
+| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-sveltekit) | SvelteKit app with a REST API |
+| [`sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/typescript/sveltekit) | SvelteKit app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions |
+| [`trpc-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/trpc-nextjs) | Next.js app with [tRPC](https://trpc.io/) |
+| [`remix`](https://github.com/prisma/prisma-examples/tree/latest/typescript/remix) | Remix app |
+| [`skeet-graphql`](https://github.com/prisma/prisma-examples/tree/latest/typescript/skeet-graphql) | [Skeet](https://skeet.dev/) full-stack GraphQL app ready to deploy |
 
 ### Backend only
 
-| Demo                                                                                                                      | Description                                                                                                                                                                                       |
-| :------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nexus)                 | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server/) and [Nexus Schema](https://github.com/graphql-nexus/schema)                                          |
-| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-auth)                           | GraphQL server with email-password authentication & permissions                                                                                                                                   |
-| [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-sdl-first)                 | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server)                                                                                                                 |
-| [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/latest/typescript/subscriptions-pubsub)          | GraphQL server with realtime subscriptions based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) and [Nexus Schema](https://github.com/graphql-nexus/schema)              |
-| [`graphql-typegraphql`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-typegraphql)             | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql)                                        |
-| [`graphql-typegraphql-crud`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-typegraphql-crud)   | CRUD GraphQL API based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql)                                      |
-| [`graphql-fastify`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-fastify)                     | GraphQL server based on [Fastify](https://fastify.io/), [Mercurius](https://mercurius.dev/), and the SDL-first approach of [`graphql-tools`](https://www.graphql-tools.com/docs/generate-schema/) |
+| Demo | Description |
+| :-- | :-- |
+| [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nexus) | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server/) and [Nexus Schema](https://github.com/graphql-nexus/schema) |
+| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-auth) | GraphQL server with email-password authentication & permissions |
+| [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-sdl-first) | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) |
+| [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/latest/typescript/subscriptions-pubsub) | GraphQL server with realtime subscriptions based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) and [Nexus Schema](https://github.com/graphql-nexus/schema) |
+| [`graphql-typegraphql`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-typegraphql) | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql) |
+| [`graphql-typegraphql-crud`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-typegraphql-crud) | CRUD GraphQL API based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql) |
+| [`graphql-fastify`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-fastify) | GraphQL server based on [Fastify](https://fastify.io/), [Mercurius](https://mercurius.dev/), and the SDL-first approach of [`graphql-tools`](https://www.graphql-tools.com/docs/generate-schema/) |
 | [`graphql-fastify-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-fastify-sdl-first) | GraphQL server based on [Fastify](https://fastify.io/), [Mercurius](https://mercurius.dev/), and the SDL-first approach of [`graphql-tools`](https://www.graphql-tools.com/docs/generate-schema/) |
-| [`graphql-hapi`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-hapi)                           | GraphQL server based on [Hapi](https://hapi.dev/) and [Nexus Schema](https://github.com/graphql-nexus/schema)                                                                                     |
-| [`graphql-hapi-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-hapi-sdl-first)       | GraphQL server based on [Hapi](https://hapi.dev/) and the SDL-first approach of [Apollo Server Integration for Hapi](https://www.npmjs.com/package/@as-integrations/hapi)        |
-| [`graphql-nestjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nestjs)                       | GraphQL server based on [NestJS](https://nestjs.com/) (code-first)                                                                                                                                |
-| [`graphql-nestjs-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nestjs-sdl-first)   | GraphQL server based on [NestJS](https://nestjs.com/) and the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/)                                          |
-| [`graphql`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql)                                     | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) and [Pothos](https://pothos-graphql.dev/)                                                                       |
-| [`graphql-nexus`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nexus)                         | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [Nexus Schema](https://github.com/graphql-nexus/schema)                                           |
-| [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/typescript/grpc)                                           | gRPC API including runnable client scripts for testing                                                                                                                                            |
-| [`postgis-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/postgis-express)                     | Demo of spatial queries using [Postgis](http://postgis.net/) and [Express](https://expressjs.com/)                                                                                                |
-| [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express)                           | REST API with [Express](https://expressjs.com/)                                                                                                                                                   |
-| [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-fastify)                           | REST API with [Fastify](https://www.fastify.io/)                                                                                                                                                  |
-| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-koa)                                   | REST API with [Koa](https://koajs.com/)                                                                                                                                                           |
-| [`rest-hapi`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-hapi)                                 | REST API with [hapi](https://hapi.dev/)                                                                                                                                                           |
-| [`rest-nestjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nestjs)                             | REST API with [NestJS](https://docs.nestjs.com/)                                                                                                                                                  |
-| [`script`](https://github.com/prisma/prisma-examples/tree/latest/typescript/script)                                       | Usage of Prisma Client JS in a TypeScript script                                                                                                                                                  |
-| [`testing-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/testing-express)                     | Demo of integration tests with [Jest](https://jestjs.io/), [Supertest](https://github.com/visionmedia/supertest) and [Express](https://expressjs.com/)                                            |
+| [`graphql-hapi`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-hapi) | GraphQL server based on [Hapi](https://hapi.dev/) and [Nexus Schema](https://github.com/graphql-nexus/schema) |
+| [`graphql-hapi-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-hapi-sdl-first) | GraphQL server based on [Hapi](https://hapi.dev/) and the SDL-first approach of [Apollo Server Integration for Hapi](https://www.npmjs.com/package/@as-integrations/hapi) |
+| [`graphql-nestjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nestjs) | GraphQL server based on [NestJS](https://nestjs.com/) (code-first) |
+| [`graphql-nestjs-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nestjs-sdl-first) | GraphQL server based on [NestJS](https://nestjs.com/) and the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/) |
+| [`graphql`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql) | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) and [Pothos](https://pothos-graphql.dev/) |
+| [`graphql-nexus`](https://github.com/prisma/prisma-examples/tree/latest/typescript/graphql-nexus) | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [Nexus Schema](https://github.com/graphql-nexus/schema) |
+| [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/typescript/grpc) | gRPC API including runnable client scripts for testing |
+| [`postgis-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/postgis-express) | Demo of spatial queries using [Postgis](http://postgis.net/) and [Express](https://expressjs.com/) |
+| [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-express) | REST API with [Express](https://expressjs.com/) |
+| [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-fastify) | REST API with [Fastify](https://www.fastify.io/) |
+| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-koa) | REST API with [Koa](https://koajs.com/) |
+| [`rest-hapi`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-hapi) | REST API with [hapi](https://hapi.dev/) |
+| [`rest-nestjs`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nestjs) | REST API with [NestJS](https://docs.nestjs.com/) |
+| [`script`](https://github.com/prisma/prisma-examples/tree/latest/typescript/script) | Usage of Prisma Client JS in a TypeScript script |
+| [`testing-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/testing-express) | Demo of integration tests with [Jest](https://jestjs.io/), [Supertest](https://github.com/visionmedia/supertest) and [Express](https://expressjs.com/) |
 
 ## JavaScript (Node.js)
 
 ### Fullstack
 
-| Demo                                                                                          | Description                                                                                                                      |
-| :-------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| Demo | Description |
+| :-- | :-- |
 | [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nextjs) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) |
-| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nuxtjs) | [NuxtJS](https://nuxtjs.org/) app with a REST API
-| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-sveltekit)                           | [SvelteKit](https://kit.svelte.dev/) app with a REST API                                                                                |
+| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nuxtjs) | [NuxtJS](https://nuxtjs.org/) app with a REST API |
+| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-sveltekit) | [SvelteKit](https://kit.svelte.dev/) app with a REST API |
 
 ### Backend only
 
-| Demo                                                                                                              | Description                                                                                  |
-| :---------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| Demo | Description |
+| :-- | :-- |
 | [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-apollo-server) | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server/) |
-| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-auth)                   | GraphQL server with email-password authentication & permissions                              |
-| [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-sdl-first)         | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server)            |
-| [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/javascript/grpc)                                   | gRPC API including runnable client scripts for testing                                       |
-| [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-express)                   | REST API with [Express](https://expressjs.com/)                                              |
-| [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify)                   | REST API with [Fastify](https://www.fastify.io/)                                             |
-| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-koa)                           | REST API with [Koa](https://koajs.com/)                                                      |
-| [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script)                               | Usage of Prisma Client JS in a Node.js script                                                |
+| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-auth) | GraphQL server with email-password authentication & permissions |
+| [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-sdl-first) | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) |
+| [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/javascript/grpc) | gRPC API including runnable client scripts for testing |
+| [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-express) | REST API with [Express](https://expressjs.com/) |
+| [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify) | REST API with [Fastify](https://www.fastify.io/) |
+| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-koa) | REST API with [Koa](https://koajs.com/) |
+| [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script) | Usage of Prisma Client JS in a Node.js script |
 
 ## Deployment platforms
 
@@ -160,13 +159,13 @@ If you have a security issue to report, please contact us at [security@prisma.io
 
 ## CI status
 
-| CI Status                                                                                                                                                                                              | Branch      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| [![test latest](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=latest)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Alatest)            | `latest`    |
-| [![test dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+-branch%3Apatch-dev+branch%3Adev) | `dev`       |
-| [![test patch-dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=patch-dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Apatch-dev)   | `patch-dev` |
+| CI Status | Branch |
+| --- | --- |
+| [![test latest](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=latest)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Alatest) | `latest` |
+| [![test dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+-branch%3Apatch-dev+branch%3Adev) | `dev` |
+| [![test patch-dev](https://github.com/prisma/prisma-examples/workflows/test/badge.svg?branch=patch-dev)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Atest+branch%3Apatch-dev) | `patch-dev` |
 
-| CI Status                                                                                                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-prisma-dependencies-updated)                |
+| CI Status |
+| --- |
+| [![keep-prisma-dependencies-updated](https://github.com/prisma/prisma-examples/workflows/keep-prisma-dependencies-updated/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-prisma-dependencies-updated) |
 | [![keep-dev-branches-in-sync-with-latest](https://github.com/prisma/prisma-examples/workflows/keep-dev-branches-in-sync-with-latest/badge.svg)](https://github.com/prisma/prisma-examples/actions?query=workflow%3Akeep-dev-branches-in-sync-with-latest) |
