@@ -40,7 +40,7 @@ To get started, follow these steps:
 2. Add a new record with a valid email to the `User` table in the database using Prisma Studio (or any other database tool):
 
    ```bash
-   npm prisma studio
+   npx prisma studio
    ```
 
 3. Add a new user with a `name` and a *valid* `email`.
