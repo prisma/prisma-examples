@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "5.10.2",
-    "next": "13.5.6",
+    "@prisma/client": "5.13.0",
+    "next": "14.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "9.0.1",
     "supports-color": "9.4.0"
   },
   "devDependencies": {
-    "@types/node": "20.11.24",
-    "@types/react": "18.2.63",
-    "@types/react-dom": "18.2.20",
-    "prisma": "5.10.2",
+    "@types/node": "20.12.7",
+    "@types/react": "18.2.79",
+    "@types/react-dom": "18.2.25",
+    "prisma": "5.13.0",
     "ts-node": "10.9.2",
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

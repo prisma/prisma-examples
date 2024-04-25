@@ -63,7 +63,7 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    data: { title: "Join the Prisma Slack", content: "https://slack.prisma.io" }
+    data: { title: "Join the Prisma Discord", content: "https://pris.ly/discord" }
     authorEmail: "alice@prisma.io"
   ) {
     id

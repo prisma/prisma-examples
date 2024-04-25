@@ -8,14 +8,14 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/node": "20.11.24",
-    "prisma": "5.10.2",
-    "supabase": "1.148.6",
+    "@types/node": "20.12.7",
+    "prisma": "5.13.0",
+    "supabase": "1.163.2",
     "ts-node": "10.9.2",
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   },
   "dependencies": {
-    "@prisma/client": "5.10.2"
+    "@prisma/client": "5.13.0"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

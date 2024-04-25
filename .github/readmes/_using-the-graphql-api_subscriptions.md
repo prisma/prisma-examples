@@ -31,12 +31,12 @@ As soon as the subscription is [triggered](./src/schema.ts#l117) (via the`create
 
 ### Create a new draft
 
-To properly observe the subscription result, it's best to open two GraphQL Playground windows side-by-side and run the mutation in the second one. However, you _can_ also just run the subscription and mutation in different tabs, only in this case you won't be able to see the subscription data pop up in "realtime" (since you only see it when you navigate back to the tab with the "waiting" subscription). 
+To properly observe the subscription result, it's best to open two GraphQL Playground windows side-by-side and run the mutation in the second one. However, you _can_ also just run the subscription and mutation in different tabs, only in this case you won't be able to see the subscription data pop up in "realtime" (since you only see it when you navigate back to the tab with the "waiting" subscription).
 
 ```graphql
 mutation {
   createDraft(
-    data: { title: "Join the Prisma Slack", content: "https://slack.prisma.io" }
+    data: { title: "Join the Prisma Discord", content: "https://pris.ly/discord" }
     authorEmail: "alice@prisma.io"
   ) {
     id
@@ -95,6 +95,6 @@ mutation {
 }
 ```
 
-The subscription will only be fired if the `published` field is updated from `false` to `true`, but not the other way around. This logic is implemented in the resolver of the `togglePublishPost` mutation [here](./src/schema.ts#l135). 
+The subscription will only be fired if the `published` field is updated from `false` to `true`, but not the other way around. This logic is implemented in the resolver of the `togglePublishPost` mutation [here](./src/schema.ts#l135).
 
 </details>

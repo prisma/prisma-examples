@@ -1,6 +1,6 @@
 ## Using the GraphQL API
 
-`typegraphql-prisma` emits the generated TypeGraphQL classes to `node_modules/@generated/typegraphql-prisma` whenever `npx prisma generate` is invoked. 
+`typegraphql-prisma` emits the generated TypeGraphQL classes to `node_modules/@generated/typegraphql-prisma` whenever `npx prisma generate` is invoked.
 
 It also generates a number of model classes, enums as well CRUD and relation resolver based on your `schema.prisma` file. The generated CRUD resolvers match the operations of the [Prisma Client API](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference):
 
@@ -60,8 +60,8 @@ mutation {
 mutation {
   createPost(
     data: {
-      title: "Join the Prisma Slack",
-      content: "https://slack.prisma.io"
+      title: "Join the Prisma Discord",
+      content: "https://pris.ly/discord"
       author: {
         connect: {
           email: "alice@prisma.io"

@@ -11,8 +11,8 @@ async function main() {
       name: 'Alice',
       posts: {
         create: {
-          title: 'Watch the talks from Prisma Day 2019',
-          content: 'https://www.prisma.io/blog/z11sg6ipb3i1/',
+          title: 'Join the Prisma community on Discord',
+          content: 'https://pris.ly/discord',
           published: true,
         },
       },
@@ -28,8 +28,8 @@ async function main() {
       posts: {
         create: [
           {
-            title: 'Subscribe to GraphQL Weekly for community news',
-            content: 'https://graphqlweekly.com/',
+            title: 'Check out Prisma on YouTube',
+            content: 'https://pris.ly/youtube',
             published: true,
           },
           {
@@ -56,8 +56,8 @@ async function main() {
   // Create a new post (written by an already existing user with email alice@prisma.io)
   const newPost = await prisma.post.create({
     data: {
-      title: 'Join the Prisma Slack community',
-      content: 'http://slack.prisma.io',
+      title: 'Join the Prisma Discord community',
+      content: 'https://pris.ly/discord',
       published: false,
       author: {
         connect: {

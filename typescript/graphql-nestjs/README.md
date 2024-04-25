@@ -3,8 +3,8 @@
 This example shows how to implement an **GraphQL server (code-first) with TypeScript** with the following stack:
 
 - [NestJS](https://docs.nestjs.com/graphql/quick-start): Web framework for building scalable server-side applications
-- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
-- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations               
+- [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
+- [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 The example was bootstrapped using the NestJS CLI command `nest new graphql-nestjs`.
@@ -129,7 +129,7 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    data: { title: "Join the Prisma Slack", content: "https://slack.prisma.io" }
+    data: { title: "Join the Prisma Discord", content: "https://pris.ly/discord" }
     authorEmail: "alice@prisma.io"
   ) {
     id
@@ -294,8 +294,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -366,6 +366,6 @@ const userWithUpdatedProfile = await prisma.user.update({
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback in the [`#product-wishlist`](https://prisma.slack.com/messages/CKQTGR6T0/) channel on the [Prisma Slack](https://slack.prisma.io/)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-- Watch our biweekly "What's new in Prisma" livestreams on [Youtube](https://www.youtube.com/channel/UCptAHlN1gdwD89tFM3ENb6w)
+

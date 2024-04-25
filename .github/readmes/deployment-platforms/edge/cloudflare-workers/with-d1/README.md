@@ -2,8 +2,6 @@
 
 This example demonstrates how to deploy a [Cloudflare Worker](https://workers.cloudflare.com/) with a [D1 database](https://developers.cloudflare.com/d1/). It's based on Cloudflare's [`hello-world`](https://github.com/cloudflare/workers-sdk/tree/4fdd8987772d914cf50725e9fa8cb91a82a6870d/packages/create-cloudflare/templates/hello-world) template for Workers.
 
-Note that D1 is currently in public beta and not yet recommended for production workfloads.
-
 ## Getting started
 
 ### 1. Download example and install dependencies
@@ -11,13 +9,13 @@ Note that D1 is currently in public beta and not yet recommended for production 
 Download this example:
 
 ```
-tbd
+git clone git@github.com:prisma/prisma-examples.git --depth=1
 ```
 
-Install npm dependencies:
+Navigate into the project directory and install npm dependencies:
 
 ```
-cd with-d1
+cd deployment-platforms/edge/cloudflare-workers/with-d1/
 npm install
 ```
 
@@ -33,7 +31,7 @@ npx wrangler d1 create prisma-demo-db
 
 The command outputs the [binding](https://developers.cloudflare.com/workers/configuration/bindings/) configuration for your D1 database.
 
-Take this output and paste it into `wrangler.toml` which then should look similar to this:
+Take this output and paste it into [`wrangler.toml`](./wrangler.toml) which then should look similar to this:
 
 ```diff
 # wrangler.toml
@@ -116,11 +114,8 @@ You can now access the Worker on `https://prisma-d1-example.__USERNAME__.workers
 [{"id":1,"email":"jane@prisma.io","name":"Jane Doe (Remote)"}]
 ```
 
-
 ## Notes about migrations
 
-Since D1 currently doesn't support Prisma Migrate, you can't follow the "default" migration workflows using `prisma migrate dev` or `prisma db push`. Instead, you need to create the tables manually using the `wrangler d1 execute` command as shown above.
+This project uses an already existing [SQL schema](./prisma/schema.sql) file which you execute via `wrangler d1 execute` to keep the demo simple.
 
-The tricky situation with Prisma ORM is that you need a Prisma schema file whose models map to your SQL tables. And, whenever a change is made to the schema in D1 using `wrangler d1 execute`, the Prisma schema needs to mirror that change and `prisma generate` needs to be executed to update the generated `@prisma/client` package in your `node_modules` directory and make it compatible with the new database schema.
-
-While not ideal, you can use the `prisma migrate dev` and/or `prisma migrate diff` commands to generate SQL statements that you can send to D1 using `wrangler d1 execute`.
+If you want to evolve your schema and keep track of the migration history, you can take a look at the recommended [migration workflows](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1#migration-workflows) for D1 in the Prisma docs.

@@ -1,6 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
+  "type": "module",
   "scripts": {
     "build": "remix build",
     "dev": "remix dev",
@@ -8,30 +9,30 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@prisma/client": "5.10.2",
-    "@remix-run/node": "1.19.3",
-    "@remix-run/react": "1.19.3",
-    "@remix-run/serve": "1.19.3",
-    "isbot": "3.8.0",
-    "marked": "12.0.0",
+    "@prisma/client": "5.13.0",
+    "@remix-run/node": "2.9.1",
+    "@remix-run/react": "2.9.1",
+    "@remix-run/serve": "2.9.1",
+    "isbot": "5.1.4",
+    "marked": "12.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "1.19.3",
-    "@remix-run/eslint-config": "1.19.3",
-    "@types/marked": "5.0.2",
-    "@types/react": "18.2.63",
-    "@types/react-dom": "18.2.20",
+    "@remix-run/dev": "2.9.1",
+    "@remix-run/eslint-config": "2.9.1",
+    "@types/marked": "6.0.0",
+    "@types/react": "18.2.79",
+    "@types/react-dom": "18.2.25",
     "eslint": "8.57.0",
-    "prisma": "5.10.2",
+    "prisma": "5.13.0",
     "ts-node": "10.9.2",
-    "typescript": "5.3.3"
+    "typescript": "5.4.5"
   },
   "engines": {
-    "node": "20.11.1"
+    "node": "21.7.3"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "node --loader ts-node/esm prisma/seed.ts"
   }
 }
