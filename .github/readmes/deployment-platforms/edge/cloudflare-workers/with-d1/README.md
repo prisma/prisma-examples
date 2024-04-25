@@ -2,7 +2,6 @@
 
 This example demonstrates how to deploy a [Cloudflare Worker](https://workers.cloudflare.com/) with a [D1 database](https://developers.cloudflare.com/d1/). It's based on Cloudflare's [`hello-world`](https://github.com/cloudflare/workers-sdk/tree/4fdd8987772d914cf50725e9fa8cb91a82a6870d/packages/create-cloudflare/templates/hello-world) template for Workers.
 
-
 ## Getting started
 
 ### 1. Download example and install dependencies
@@ -115,11 +114,8 @@ You can now access the Worker on `https://prisma-d1-example.__USERNAME__.workers
 [{"id":1,"email":"jane@prisma.io","name":"Jane Doe (Remote)"}]
 ```
 
-
 ## Notes about migrations
 
 This project uses an already existing [SQL schema](./prisma/schema.sql) file which you execute via `wrangler d1 execute` to keep the demo simple.
 
 If you want to evolve your schema and keep track of the migration history, you can take a look at the recommended [migration workflows](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1#migration-workflows) for D1 in the Prisma docs.
-
-
