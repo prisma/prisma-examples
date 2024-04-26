@@ -1,4 +1,4 @@
-# Prisma Pulse starter project
+# Prisma Pulse Example: Starter
 
 This repository has been created to help you get started with [Pulse](https://prisma.io/pulse). You will be able to use this project with any Pulse-ready PostgreSQL database. This project comes with a basic [`schema.prisma`](./prisma/schema.prisma) file as well as a Pulse subscription found in the [`index.ts`](./index.ts) file.
 
@@ -6,8 +6,8 @@ This repository has been created to help you get started with [Pulse](https://pr
 
 To successfully run the project, you will need the following:
 
-- The **connection string** of a Pulse-compatible database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
-- A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account
+- The **connection string** of a Pulse-ready database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
+- A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
 
 ## Getting started
 
@@ -15,37 +15,39 @@ To successfully run the project, you will need the following:
 
 Clone the repository, navigate into it and install dependencies:
 
-```bash
+```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
 cd prisma-examples/prisma-data-platform/pulse/starter
 npm install
 ```
 
-### 2. Create and fill out a `.env` file
+### 2. Configure environment variables
 
-Rename the existing `.env.example` to `.env`:
-
-```bash
-mv .env.example .env
-```
-
-Now go into the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables:
+Create a `.env` in the root of the project directory:
 
 ```bash
-DATABASE_URL="postgres://postgres:password@host:PORT/database_name"
-PULSE_API_KEY="your_secure_pulse_api_key"
+touch .env
 ```
 
-- `DATABASE_URL`: The connection string to your database.
-- `PULSE_API_KEY`: Reference the [Environment API Keys](https://www.prisma.io/docs/platform/concepts/environments#api-keys) section in our documentation to learn how get an API key for your Pulse project.
+Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string and your Pulse API key:
 
-### 3. Run the database migration
+```bash
+# .env
+DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+PULSE_API_KEY="__YOUR_PULSE_API_KEY__"
+```
 
-The `prisma/schema.prisma` contains three models based on our [hello-prisma](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/using-prisma-migrate-typescript-postgresql) example project:
+Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are placeholder values that you need to replace with the values of your connection string and your Pulse API key.
+
+### 3. Run a database migration to create the `User` table
+
+The Prisma schema file contains a single `User` model. You can map this model to the database and create the corresponding `User` table using the following command:
 
 ```bash
 npx prisma migrate dev --name init
 ```
+
+You now have an empty `User` table in your database.
 
 ### 4. Start the Pulse subscription
 
@@ -55,9 +57,11 @@ Run the [script](./index.ts) that contains the code to subscribe to database eve
 npx ts-node index.ts
 ```
 
-This will run a basic subscription on the `User` table. The code can be found in the [`index.ts`](./index.ts) file. To learn more about the Pulse API and how to use it, check out our [documentation](https://www.prisma.io/docs/data-platform/pulse/api-reference#subscribe).
+This will run a basic subscription on the `User` table. Whenever a record is created, updated or deleted in that table, an event will fire and the script will execute a `console.log` statement with details of the event it received.
 
-<details><summary>Pulse user table subscription</summary>
+The code can be found in the [`index.ts`](./index.ts) file. To learn more about the Pulse API and how to use it, check out our [documentation](https://www.prisma.io/docs/data-platform/pulse/api-reference#subscribe).
+
+<details><summary>Pulse subscription on the `User` table</summary>
 
 ```ts
 async function main() {
@@ -77,15 +81,15 @@ async function main() {
 
 ### 5. Test the subscription
 
-The following instructions uses [Prisma Studio](https://www.prisma.io/studio) to create a new record in the `User` table. However, you can use any other method to write to the `User` table (e.g. a SQL client like `psql` or [TablePlus](https://tableplus.com/)) in order to trigger a database change event in Pulse.
+The following instructions use [Prisma Studio](https://www.prisma.io/studio) to create a new record in the `User` table. However, you can use any other method to write to the `User` table (e.g. a SQL client like `psql` or [TablePlus](https://tableplus.com/)) in order to trigger a database change event in Pulse.
 
 1. Start Prisma Studio in a new terminal: `npx prisma studio`
-2. Add a new record to the `User` table from Prisma Studio.
+2. Add a new record to the `User` table via Prisma Studio UI.
 3. Return to your terminal where you ran the `npx ts-node index.ts` command.
 4. If everything is set up properly you will see an output that is similar to the following.
 
    ```json
-   {
+   just received an event: {
      "action": "create",
      "created": {
        "id": 1,
@@ -103,6 +107,7 @@ You can also deploy this project on Railway by following the instructions in our
 
 ## Resources
 
-- [Prisma Pulse examples](https://pris.ly/pulse-examples)
+- [Pulse examples](https://pris.ly/pulse-examples)
 - [Pulse documentation](https://pris.ly/pulse-docs)
-- [Pulse GA announcement blog post](https://pris.ly/gh/pulse-ga)
+- [Pulse announcement blog post](https://pris.ly/gh/pulse-ga)
+- [Prisma Discord](https://pris.ly/discord)
