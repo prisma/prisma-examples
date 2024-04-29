@@ -7,7 +7,9 @@ process.on('SIGINT', () => {
 })
 
 const apiKey: string = process.env.PULSE_API_KEY ?? ''
-const prisma = new PrismaClient().$extends(withPulse({ apiKey: apiKey }))
+const prisma = new PrismaClient().$extends(
+  withPulse({ apiKey: apiKey })
+)
 
 async function main() {
   const subscription = await prisma.user.subscribe()

@@ -1,11 +1,12 @@
 {
   "name": "pulse-starter-project",
   "version": "0.0.1",
-  "description": "An example project using Pulse and the pulse-railway-template on railway",
+  "description": "An example project using Prisma Pulse",
   "main": "index.js",
   "scripts": {
     "build": "prisma migrate deploy",
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "dev": "ts-node index.ts"
   },
   "author": "Marc Hess",
   "license": "MIT",

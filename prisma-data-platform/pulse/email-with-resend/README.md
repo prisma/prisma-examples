@@ -1,55 +1,80 @@
-# Prisma Pulse and Resend Integration Example
+# Prisma Pulse Example: Send Onboarding Email with Resend
 
 This repository contains an example app that uses Prisma Pulse to detect when new users are added to the database and sends them an onboarding email using [Resend](https://resend.com/).
 
----
 
-## Prerequisite
+## Prerequisites
 
-1. A Prisma Pulse-compatible PostgreSQL database.
-    > You can learn how to setup a Pulse-ready database by reading our [docs](https://www.prisma.io/docs/pulse/database-setup).
-2. Visit [Prisma Data Platform](https://pris.ly/pdp) and enable Pulse in your project environment to get a Pulse API key.
-3. Create a [Resend account](https://resend.com/) and get the Resend API Key.
+- The **connection string** of a Pulse-ready database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
+- A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
+- A **Resend API Key** which you can get from your [Resend account](https://resend.com/api-keys)
 
 ## Getting Started
 
 To get started, follow these steps:
 
-1. Clone the repository, navigate into it and install dependencies:
+### 1. Clone the respository
 
-    ```bash
-    git clone git@github.com:prisma/prisma-examples.git --depth=1
-    cd prisma-examples/prisma-data-platform/pulse/email-with-resend
-    npm install
-    ```
+Clone the repository, navigate into it and install dependencies:
 
-2. Create a `.env` file in the root directory and provide your Database URL, Prisma Pulse and Resend API key:
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+cd prisma-examples/prisma-data-platform/pulse/email-with-resend
+npm install
+```
 
-   ```bash
-   DATABASE_URL=""
-   PULSE_API_KEY=""
-   RESEND_API_KEY=""
-   ```
+### 2. Configure environment variables
 
-## Run the app
+Create a `.env` in the root of the project directory:
 
-1. Start the script using:
+```bash
+touch .env
+```
 
-   ```bash
-   npm run dev
-   ```
 
-2. Add a new user record with a valid email to the `User` table in the database using Prisma Studio or any other database tool:
+Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string, your Pulse and Resend API keys:
 
-   ```bash
-   npm prisma studio
-   ```
+```bash
+# .env
+DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+PULSE_API_KEY="__YOUR_PULSE_API_KEY__"
+RESEND_API_KEY="__YOUR_RESEND_API_KEY__"
+```
 
-3. Add a new user with a `name` and a *valid* `email`.
-4. You will receive a new email in the insterted email inbox. For example: When a new user with an email of `datta@prisma.io` and a name of `Ankur` is created, the email inbox for `datta@prisma.io` should have a new email:
+Note that `__YOUR_DATABASE_CONNECTION_STRING__`, `__YOUR_PULSE_API_KEY__` and `__YOUR_RESEND_API_KEY__` are placeholder values that you need to replace with the values of your own connection string, your Pulse and Resend API keys.
+
+### 3. Run a database migration to create the `User` table
+
+The [Prisma schema file](./prisma/schema.prisma) in this project contains a single `User` model. You can map this model to the database and create the corresponding `User` table using the following command:
+
+```
+npx prisma migrate dev --name init
+```
+
+You now have an empty `User` table in your database.
+
+### 4. Start the Pulse subscription
+
+Run the [script](./index.ts) that contains the code to subscribe to database events:
+
+```
+npm run dev
+```
+
+This will run a subscription on the `User` table that fires an event whenever a new record is _created_ in that table. When the script receives the event, it'll use the `Resend` client to send an email to the `email` that was specified on the new `User` record.
+
+### 5. Test the subscription
+
+The following instructions use [Prisma Studio](https://www.prisma.io/studio) to create a new record in the `User` table. However, you can use any other method to write to the `User` table (e.g. a SQL client like `psql` or [TablePlus](https://tableplus.com/)) in order to trigger a database change event in Pulse.
+
+1. Start Prisma Studio in a new terminal: `npx prisma studio`
+2. Add a new record to the `User` table via Prisma Studio UI. **This new record needs to have a _valid_ value for the `email` field.**
+3. You will receive a new email in the inbox of the specified `email`. For example: When a new user with an email of `datta@prisma.io` and a name of `Ankur` is created, the email inbox for `datta@prisma.io` should have received the following email (the copy for this email is hardcoded in [`./script.ts`](./script.ts#L33)):
    ![image.png](./images/email.png)
 
-## Next steps
+## Resources
 
-- Checkout the Prisma Pulse [docs](https://www.prisma.io/docs/pulse).
-- Reach out to us in [Discord](https://pris.ly/discord) if you need help.
+- [Pulse examples](https://pris.ly/pulse-examples)
+- [Pulse documentation](https://pris.ly/pulse-docs)
+- [Pulse announcement blog post](https://pris.ly/gh/pulse-ga)
+- [Prisma Discord](https://pris.ly/discord)
