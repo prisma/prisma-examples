@@ -1,53 +1,84 @@
-# Accelerate Next.js Starter Project
+# Prisma Accelerate Example: Next.js Starter
 
 ![Demo](./demo.gif)
 
-Welcome to the Accelerate Next.js Starter Project! This project showcases how to use Prisma ORM with Prisma Accelerate in a Next.js application.
+This project showcases how to use Prisma ORM with Prisma Accelerate in a Next.js application.
 
-It [demonstrates](./app/api/route.ts#L15-46) every available caching strategy in Accelerate, along with a query that only uses connection pooling.
-
-> To learn more about cache strategies in Accelerate, visit our [docs](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
+It [demonstrates](./app/api/route.ts#L15-46) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
 
 ## Prerequisites
 
-Before you begin, ensure you have the following prerequisites:
+To successfully run the project, you will need the following:
 
-- Obtain an Accelerate API key from [Prisma Data Platform](https://pris.ly/pdp).
+- The **connection string** of a publicly accessible database
+- An **Accelerate API key** which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
 
 ## Getting Started
 
 To get started with this project, follow these steps:
 
-1. Clone the repository and navigate into it:
-    ```typescript
-    git clone git@github.com:prisma/prisma-examples.git --depth=1
-    cd prisma-examples/prisma-data-platform/accelerate/nextjs
-    ```
-2. Install project dependencies:
-    ```bash
-    npm install
-    ```
-3. Create a `.env` file in the project root directory with the following content:
-    ```bash
-    # Accelerate connection string
-    DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=ACCELERATE_API_KEY"
+### 1. Clone the repository
 
-    # To run migrations
-    DIRECT_URL="postgresql://username:password@host:5432/database_name"
+Clone the repository, navigate into it and install dependencies:
 
-    NEXT_PUBLIC_URL="http://localhost:3000"
-    ```
-4. Set up Prisma by running migrations and generating a PrismaClient for edge functions:
-    ```bash
-    npx prisma migrate dev
-    npx prisma generate --no-engine
-    ```
-5. Start the application:
-    ```bash
-    npm run dev
-    ```
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+cd prisma-examples/prisma-data-platform/accelerate/nextjs-starter
+npm install
+```
 
-## Next steps
+### 2. Configure environment variables
 
-- Learn more about Accelerate by reading the [docs](https://www.prisma.io/docs/accelerate).
-- Reach out to us in [Discord](https://pris.ly/discord) if you need help.
+Create a `.env` in the root of the project directory:
+
+```bash
+touch .env
+```
+
+Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environment variables with the values of your connection string and your Accelerate connection string:
+
+```bash
+# .env
+
+# Accelerate connection string
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__"
+
+# To run migrations
+DIRECT_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+
+NEXT_PUBLIC_URL="http://localhost:3000"
+```
+
+Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_ACCELERATE_API_KEY__` are placeholder values that you need to replace with the values of your connection string and your Pulse API key.
+
+### 3. Run a database migration to create the `Quotes` table
+
+The Prisma schema file contains a single `Quotes` model. You can map this model to the database and create the corresponding `Quotes` table using the following command:
+
+```
+npx prisma migrate dev --name init
+```
+
+You now have an empty `Quotes` table in your database.
+
+### 4. Generate Prisma Client for Accelerate
+
+When using Accelerate, Prisma Client doesn't need a query engine]. That's why you should generate it as follows:
+
+```
+npx prisma generate --no-engine
+```
+
+### 5. Start the app
+
+You can run the app with the following command:
+
+```
+npm run dev
+```
+
+## Resources
+
+- [Accelerate Speed Test](https://accelerate-speed-test.vercel.app/)
+- [Accelerate documentation](https://www.prisma.io/docs/accelerate).
+- [Prisma Discord](https://pris.ly/discord)
