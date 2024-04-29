@@ -1,15 +1,13 @@
 # Prisma Accelerate Example: Next.js Starter
 
-This project showcases how to use Prisma ORM with Prisma Accelerate in a Next.js application.
-
-It [demonstrates](./app/api/route.ts#L15-46) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
+This project showcases how to use Prisma ORM with Prisma Accelerate in a Next.js application. It [demonstrates](./app/api/route.ts#L15-46) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
 
 ## Prerequisites
 
 To successfully run the project, you will need the following:
 
 - The **connection string** of a publicly accessible database
-- An **Accelerate API key** which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
+- Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
 
 ## Getting Started
 
@@ -38,18 +36,18 @@ Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environmen
 ```bash
 # .env
 
-# Accelerate connection string
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__"
+# Accelerate connection string (used for queries by Prisma Client)
+DATABASE_URL="__YOUR_ACCELERATE_CONNECTION_STRING__"
 
-# To run migrations
+# Database connection string (used for migrations by Prisma Migrate)
 DIRECT_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
 
-Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_ACCELERATE_API_KEY__` are placeholder values that you need to replace with the values of your connection string and your Pulse API key.
+Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_ACCELERATE_CONNECTION_STRING__` are placeholder values that you need to replace with the values of your database and Accelerate connection strings. Notice that the Accelerate connection string has the following structure: `prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__`.
 
-### 3. Run a database migration to create the `Quotes` table
+### 3. Run a migration to create the `Quotes` table and seed the database
 
 The Prisma schema file contains a single `Quotes` model. You can map this model to the database and create the corresponding `Quotes` table using the following command:
 
@@ -57,11 +55,15 @@ The Prisma schema file contains a single `Quotes` model. You can map this model 
 npx prisma migrate dev --name init
 ```
 
-You now have an empty `Quotes` table in your database.
+You now have an empty `Quotes` table in your database. Next, run the [seed script](./prisma/seed.ts) to create some sample records in the table:
+
+```
+npx prisma db seed
+```
 
 ### 4. Generate Prisma Client for Accelerate
 
-When using Accelerate, Prisma Client doesn't need a query engine]. That's why you should generate it as follows:
+When using Accelerate, Prisma Client doesn't need a query engine. That's why you should generate it as follows:
 
 ```
 npx prisma generate --no-engine
@@ -82,5 +84,5 @@ You can see the performancen and other stats (e.g. cache/hit) for the different 
 ## Resources
 
 - [Accelerate Speed Test](https://accelerate-speed-test.vercel.app/)
-- [Accelerate documentation](https://www.prisma.io/docs/accelerate).
+- [Accelerate documentation](https://www.prisma.io/docs/accelerate)
 - [Prisma Discord](https://pris.ly/discord)
