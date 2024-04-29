@@ -88,7 +88,7 @@ The following instructions use [Prisma Studio](https://www.prisma.io/studio) to 
 3. Return to your terminal where you ran the `npx ts-node index.ts` command.
 4. If everything is set up properly you will see an output that is similar to the following.
 
-   ```json
+   ```
    just received an event: {
      "action": "create",
      "created": {
