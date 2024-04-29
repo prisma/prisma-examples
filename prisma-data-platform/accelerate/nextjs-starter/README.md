@@ -1,7 +1,5 @@
 # Prisma Accelerate Example: Next.js Starter
 
-![Demo](./demo.gif)
-
 This project showcases how to use Prisma ORM with Prisma Accelerate in a Next.js application.
 
 It [demonstrates](./app/api/route.ts#L15-46) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
@@ -76,6 +74,10 @@ You can run the app with the following command:
 ```
 npm run dev
 ```
+
+You can see the performancen and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
+
+![Demo](./demo.gif)
 
 ## Resources
 
