@@ -40,11 +40,11 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## Prisma Accelerate
 
-The [`accelerate`](./prisma-acclerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
+The [`accelerate`](./prisma-accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
 
 | Demo                                                                   | Description                                                              |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`nextjs-starter`](./prisma-acclerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
+| [`nextjs-starter`](./prisma-accelerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
 
 ## Prisma Pulse
 
