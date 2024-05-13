@@ -40,27 +40,28 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## Prisma Accelerate
 
-The [`accelerate`](./accelerate/) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
+The [`accelerate`](./prisma-acclerate/) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
 
-| Demo                                             | Description                                                                |
-| ------------------------------------------------ | -------------------------------------------------------------------------- |
-| [`nextjs-starter`](./accelerate/nextjs-starter/) | A Next.js project using Prisma Accelerate's caching and connection pooling |
+| Demo                                                                   | Description                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`nextjs-starter`](./prisma-acclerate/nextjs-starter/) | A Next.js project using Prisma Accelerate's caching and connection pooling |
 
 ## Prisma Pulse
 
-The [`pulse`](./pulse/) folder contains examples of projects using [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
+The [`pulse`](./prisma-pulse/) folder contains examples of projects using [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
 
-| Demo                                              | Description                                                              |
-| ------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`starter`](./pulse/starter/)                     | A Prisma Pulse starter app                                               |
-| [`email-with-resend`](./pulse/email-with-resend/) | An example app to send emails to new users using Prisma Pulse and Resend |
+| Demo                                                                   | Description                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`starter`](./prisma-pulse/starter/)                     | A Prisma Pulse starter app                                               |
+| [`email-with-resend`](./prisma-pulse/email-with-resend/) | An example app to send emails to new users using Prisma Pulse and Resend |
+
 
 ## Prisma ORM (TypeScript)
 
 ### Fullstack
 
-| Demo                                                                                                                          | Description                                                                                                                                                                                          |
-| :---------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Demo                                                                   | Description                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | [`rest-nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes)           | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction))                                                                     |
 | [`rest-nextjs-api-routes-auth`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-api-routes-auth) | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) and authentication (using [NextAuth.js](https://next-auth.js.org/)) |
 | [`rest-nextjs-express`](https://github.com/prisma/prisma-examples/tree/latest/typescript/rest-nextjs-express)                 | [Next.js](https://nextjs.org/) app with a REST API (using [Express](https://expressjs.com/))                                                                                                         |
@@ -121,6 +122,7 @@ The [`pulse`](./pulse/) folder contains examples of projects using [Prisma Pulse
 | [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify)                   | REST API with [Fastify](https://www.fastify.io/)                                              |
 | [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-koa)                           | REST API with [Koa](https://koajs.com/)                                                       |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script)                               | Usage of Prisma Client JS in a Node.js script                                                 |
+
 
 ## Deployment platforms
 
