@@ -9,15 +9,15 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "0.1.19",
-    "@cloudflare/workers-types": "4.20240405.0",
-    "prisma": "5.12.1",
+    "@cloudflare/vitest-pool-workers": "0.2.9",
+    "@cloudflare/workers-types": "4.20240502.0",
+    "prisma": "5.13.0",
     "typescript": "5.4.5",
-    "vitest": "1.5.0",
-    "wrangler": "3.50.0"
+    "vitest": "1.6.0",
+    "wrangler": "3.55.0"
   },
   "dependencies": {
-    "@prisma/adapter-d1": "5.12.1",
-    "@prisma/client": "5.12.1"
+    "@prisma/adapter-d1": "5.13.0",
+    "@prisma/client": "5.13.0"
   }
 }

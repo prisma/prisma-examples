@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const userRouter = createTRPCRouter({
-  singupUser: publicProcedure
+  signupUser: publicProcedure
     .input(z.object({
       name: z.string().nullable(),
       email: z.string().email(),

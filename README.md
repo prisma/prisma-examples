@@ -9,7 +9,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://www.prisma.io/blog">Blog</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://pris.ly/discord/">Slack</a>
+  <a href="https://pris.ly/discord/">Discord</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/prisma">Twitter</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
@@ -149,7 +149,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [reduced.to](https://github.com/origranot/reduced.to): An open-source link shortener
 - [Linen](https://github.com/Linen-dev/linen.dev): An open-source alternative to Slack and Discord with lots of great features
 - [Coolify](https://github.com/coollabsio/coolify): An open-source & self-hostable Heroku / Netlify alternative
-- [dub](https://dub.sh/): An open-source link shortener with built-in analytics and free custom domains
+- [Dub.co](https://dub.co): An open-source link management platform for modern marketing teams
 - [Umami](https://github.com/mikecao/umami): A simple, fast, privacy-focused alternative to Google Analytics
 - [Rallly](https://github.com/lukevella/rallly): A self-hostable doodle poll alternative (based on Next.js, tRPC, and TailwindCSS)
 - [Typebot](https://github.com/baptisteArno/typebot.io): A conversational form builder that you can self-host
