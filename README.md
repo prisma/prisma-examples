@@ -40,20 +40,20 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ## Prisma Accelerate
 
-The [`accelerate`](./prisma-accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
+The [`accelerate`](./accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
 
 | Demo                                                                   | Description                                                              |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`nextjs-starter`](./prisma-accelerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
+| [`nextjs-starter`](./accelerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
 
 ## Prisma Pulse
 
-The [`pulse`](./prisma-pulse) folder contains examples of projects using [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
+The [`pulse`](./pulse) folder contains examples of projects using [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
 
 | Demo                                                                   | Description                                                              |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`starter`](./prisma-pulse/starter)                     | A Prisma Pulse starter app                                               |
-| [`email-with-resend`](./prisma-pulse/email-with-resend) | An example app to send emails to new users using Prisma Pulse and Resend |
+| [`starter`](./pulse/starter)                     | A Prisma Pulse starter app                                               |
+| [`email-with-resend`](./pulse/email-with-resend) | An example app to send emails to new users using Prisma Pulse and Resend |
 
 
 ## Prisma ORM (TypeScript)
