@@ -17,8 +17,8 @@ type UserEmail = {
 config();
 
 // Retrieve API keys from environment variables or provide default values
-const PULSE_API_KEY = process.env.PULSE_API_KEY || " ";
-const RESEND_API_KEY = process.env.RESEND_API || " ";
+const PULSE_API_KEY = process.env.PULSE_API_KEY ?? "";
+const RESEND_API_KEY = process.env.RESEND_API ?? "";
 
 // Initialize Prisma client with Pulse extension
 const prisma = new PrismaClient().$extends(
