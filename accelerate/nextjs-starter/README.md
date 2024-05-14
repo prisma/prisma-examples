@@ -9,9 +9,7 @@ To successfully run the project, you will need the following:
 - The **connection string** of a publicly accessible database
 - Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
 
-## Getting Started
-
-To get started with this project, follow these steps:
+## Getting started
 
 ### 1. Clone the repository
 
@@ -19,7 +17,7 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/prisma-data-platform/accelerate/nextjs-starter
+cd prisma-examples/accelerate/nextjs-starter
 npm install
 ```
 

@@ -5,13 +5,13 @@ This repository contains an example app that uses Prisma Pulse to detect when ne
 
 ## Prerequisites
 
+To successfully run the project, you will need the following:
+
 - The **connection string** of a Pulse-ready database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
 - A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
 - A **Resend API Key** which you can get from your [Resend account](https://resend.com/api-keys)
 
-## Getting Started
-
-To get started, follow these steps:
+## Getting started
 
 ### 1. Clone the respository
 
@@ -19,7 +19,7 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/prisma-data-platform/pulse/email-with-resend
+cd prisma-examples/pulse/email-with-resend
 npm install
 ```
 
@@ -30,7 +30,6 @@ Create a `.env` in the root of the project directory:
 ```bash
 touch .env
 ```
-
 
 Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string, your Pulse and Resend API keys:
 

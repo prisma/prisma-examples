@@ -17,7 +17,7 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/prisma-data-platform/pulse/starter
+cd prisma-examples/pulse/starter
 npm install
 ```
 
