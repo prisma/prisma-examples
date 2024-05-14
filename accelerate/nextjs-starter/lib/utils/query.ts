@@ -1,4 +1,4 @@
-import prisma from "../db";
+import prisma from "@/lib/db";
 import { CacheStrategy } from "../types";
 
 export const getQuotes = async (strategy?: CacheStrategy) => {
