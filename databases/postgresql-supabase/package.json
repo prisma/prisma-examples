@@ -10,7 +10,7 @@
   "devDependencies": {
     "@types/node": "20.12.11",
     "prisma": "5.13.0",
-    "supabase": "1.165.0",
+    "supabase": "1.167.4",
     "ts-node": "10.9.2",
     "typescript": "5.4.5"
   },
