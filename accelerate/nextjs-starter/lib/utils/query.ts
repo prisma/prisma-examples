@@ -6,6 +6,7 @@ export const getQuotes = async (strategy?: CacheStrategy) => {
 
   const result = await prisma.quotes
     .findMany({
+      // You can find the `cacheStrategy` options [here](https://www.prisma.io/docs/accelerate/caching#cache-strategies). The `cacheStrategy` can also be undefined, which would mean only connection pooling is being used.
       cacheStrategy: strategy,
       orderBy: {
         id: "desc",
