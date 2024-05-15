@@ -1,0 +1,22 @@
+{
+  "name": "pulse-starter-project",
+  "version": "0.0.1",
+  "description": "An example project using Prisma Pulse",
+  "main": "index.js",
+  "scripts": {
+    "build": "prisma migrate deploy",
+    "start": "ts-node index.ts",
+    "dev": "ts-node index.ts"
+  },
+  "author": "Marc Hess",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.10.2",
+    "@prisma/extension-pulse": "^1.0.1",
+    "@types/node": "^16.9.1",
+    "dotenv": "^16.3.1",
+    "prisma": "^5.10.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.4.2"
+  }
+}
