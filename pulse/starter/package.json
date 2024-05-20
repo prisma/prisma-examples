@@ -11,12 +11,12 @@
   "author": "Marc Hess",
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "^5.10.2",
-    "@prisma/extension-pulse": "^1.0.1",
-    "@types/node": "^20.0.0",
-    "dotenv": "^16.3.1",
-    "prisma": "^5.10.2",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.0"
+    "@prisma/client": "5.14.0",
+    "@prisma/extension-pulse": "1.0.2",
+    "@types/node": "20.12.12",
+    "dotenv": "16.4.5",
+    "prisma": "5.14.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.5"
   }
 }
