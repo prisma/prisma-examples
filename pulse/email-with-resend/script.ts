@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import { PrismaClient } from "@prisma/client";
 import { withPulse } from "@prisma/extension-pulse";
-import { Resend } from "resend";
+import { Resend, } from "resend";
 
 process.on("SIGINT", () => {
   console.log("Received SIGINT signal. Exiting gracefully...");
@@ -39,7 +39,7 @@ const sendUserCreationEmail = async ({ email, name }: UserEmail) => {
     text: text,
   };
 
-  return await resendClient.sendEmail(emailOptions);
+  return await resendClient.emails.send(emailOptions);
 };
 
 // Subscribe to user creation events and send emails
