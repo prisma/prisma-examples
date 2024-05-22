@@ -59,6 +59,6 @@ async function subscribeToChat(io: Server) {
   // Handle Prisma subscription events
   for await (const event of subscription) {
     console.log(`New event from Pulse: `, event);
-    io.sockets.emit("chat-message", event.after);
+    io.sockets.emit("chat-message", event.created);
   }
 }
