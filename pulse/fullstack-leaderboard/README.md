@@ -58,7 +58,15 @@ The [Prisma schema file](./prisma/schema.prisma) in this project contains a sing
 npx prisma migrate dev --name init
 ```
 
-You now have a table called `Player` in your database. Because this is the initial migration, the Prisma CLI also invoked the [seed script](./prisma/seed.ts) and created three `Player` records in the database.
+You now have a table called `Player` in your database.
+
+Next, run the following command to [seed](./prisma/seed.ts) the database with some dummy data:
+
+```
+npx prisma db seed
+```
+
+The is invoked the [seed script](./prisma/seed.ts) and created three `Player` records in the database.
 
 
 ### 4. Start the server
