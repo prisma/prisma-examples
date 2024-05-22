@@ -6,7 +6,6 @@ This repository contains an example app that uses Prisma Pulse in a fullstack ch
 
 - [Next.js](https://nextjs.org/) as the frontend
 - [Express](https://expressjs.com) as the backend
-- [React Flip Move](https://github.com/joshwcomeau/react-flip-move) for animating React components
 - [socket.io](https://socket.io/) for the websocket connection between client and server
 - [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to get real-time updates from the database
 - [PostgreSQL](https://www.postgresql.org/) as the database
@@ -34,7 +33,7 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env` in the root of the project directory:
+Create a `.env` in the root of the [`server`](./server) directory:
 
 ```bash
 touch .env
