@@ -12,7 +12,7 @@ const prisma = new PrismaClient().$extends(
 )
 
 async function main() {
-  const subscription = await prisma.user.subscribe()
+  const subscription = await prisma.user.stream()
 
   process.on('exit', (code) => {
     subscription.stop()

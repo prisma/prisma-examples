@@ -65,7 +65,7 @@ The code can be found in the [`index.ts`](./index.ts) file. To learn more about 
 
 ```ts
 async function main() {
-  const subscription = await prisma.user.subscribe()
+  const subscription = await prisma.user.stream()
 
   if (subscription instanceof Error) {
     throw subscription

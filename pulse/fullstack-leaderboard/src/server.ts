@@ -35,7 +35,7 @@ httpServer.listen(PORT, async () => {
 });
 
 async function subscribeToPlayerUpdates(io: Server) {
-  const stream = await prisma.player.subscribe();
+  const stream = await prisma.player.stream();
   if (stream instanceof Error) {
     throw stream;
   }
