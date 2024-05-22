@@ -57,7 +57,7 @@ The [Prisma schema file](./prisma/schema.prisma) in this project contains a sing
 npx prisma migrate dev --name init
 ```
 
-You now have a table called `Message` in your database. Because this is the initial migration, the Prisma CLI also invoked the [seed script](./prisma/seed.ts) and created three `Message` records in the database.
+You now have a table called `Message` in your database.
 
 
 ### 4. Start the server
@@ -65,7 +65,7 @@ You now have a table called `Message` in your database. Because this is the init
 Make sure you're inside the [`server`](./server) directory and start the long-running server that streams changes from the database:
 
 ```
-npm run server
+npm run dev
 ```
 
 The server will accept WebSocket connections at `http://localhost:3001`.
