@@ -1,17 +1,15 @@
-# Prisma Pulse Example: Fullstack Leaderboard (Next.js)
+# Prisma Pulse Example: Fullstack Simple Chat (Next.js & Express)
 
-![](./leaderboard.gif)
+![](./tbd.gif)
 
-This repository contains an example app that uses Prisma Pulse in a fullstack application to display and update a real-time leaderboard:
+This repository contains an example app that uses Prisma Pulse in a fullstack chat application:
 
-- [Next.js](https://nextjs.org/) (_frontend_) with a [custom server](https://nextjs.org/docs/pages/building-your-application/configuring/custom-server) (_backend_)
+- [Next.js](https://nextjs.org/) as the frontend
+- [Express](https://expressjs.com) as the backend
 - [React Flip Move](https://github.com/joshwcomeau/react-flip-move) for animating React components
 - [socket.io](https://socket.io/) for the websocket connection between client and server
 - [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to get real-time updates from the database
 - [PostgreSQL](https://www.postgresql.org/) as the database
-
-> **Note**: The custom server is required because Pulse requires a long-running connection to the database. As an alternative to the custom server included in this app, you can also build your own server using a library/framework like Express, Fastify or NestJS.
-
 
 ## Prerequisites
 
@@ -28,7 +26,9 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/pulse/fullstack-leaderboard
+cd prisma-examples/pulse/fullstack-simple-chat/client
+npm install
+cd ../server
 npm install
 ```
 
@@ -50,15 +50,15 @@ PULSE_API_KEY="__YOUR_PULSE_API_KEY__"
 
 Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are placeholder values that you need to replace with the values of your own connection string, your Pulse and Resend API keys.
 
-### 3. Run a database migration to create the `Player` table
+### 3. Run a database migration to create the `Message` table
 
-The [Prisma schema file](./prisma/schema.prisma) in this project contains a single `Player` model. You can map this model to the database and create the corresponding `Player` table using the following command:
+The [Prisma schema file](./prisma/schema.prisma) in this project contains a single `Message` model. You can map this model to the database and create the corresponding `Message` table using the following command:
 
 ```
 npx prisma migrate dev --name init
 ```
 
-You now have a table called `Player` in your database. Because this is the initial migration, the Prisma CLI also invoked the [seed script](./prisma/seed.ts) and created three `Player` records in the database.
+You now have a table called `Message` in your database. Because this is the initial migration, the Prisma CLI also invoked the [seed script](./prisma/seed.ts) and created three `Message` records in the database.
 
 
 ### 4. Start the server
@@ -71,7 +71,7 @@ npm run server
 
 The server will accept WebSocket connections at `http://localhost:3001`.
 
-Next, run the Next.js app:
+Next, open a new terminal tab/window to run the Next.js app from inside the [`client`](./client) directory:
 
 ```
 npm run dev
@@ -83,11 +83,10 @@ Every new tab/window you open in your browser and point to that URL will instant
 
 ### 5. Use the app
 
-Click on the buttons at the bottom to increase the score of a player and see how the leaderboard updates in real-time.
+Write text into the chat box and send it. If you open multiple tabs/windows, new users will appear who can contribute to the chat as well. The text will appear in all tabs/windows at the same time.
 
 ## Deployment
 
-Because the app requires a [custom server](https://nextjs.org/docs/pages/building-your-application/configuring/custom-server) to enable the WebSocket connections, you need to deploy the frontend and the [backend](./src/server.ts) separately.
 
 ### Deploying on Railway
 
