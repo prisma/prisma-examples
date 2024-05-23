@@ -21,7 +21,7 @@ To successfully run the project, you will need the following:
 
 ### 1. Clone the respository
 
-Clone the repository, navigate into it and install dependencies:
+Clone the repository, navigate into it and install dependencies in the [`client`](./client) and [`server`](./server) directories:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
@@ -33,16 +33,17 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env` in the root of the [`server`](./server) directory:
+Create a `.env` file in the [`server`](./server) directory:
 
 ```bash
+# make sure you're inside the `server` directory
 touch .env
 ```
 
-Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string, your Pulse and Resend API keys:
+Now, open the `./server/.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string, your Pulse and Resend API keys:
 
 ```bash
-# .env
+# ./server/.env
 DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 PULSE_API_KEY="__YOUR_PULSE_API_KEY__"
 ```
