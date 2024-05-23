@@ -2,8 +2,8 @@
 
 This repository contains an example app that uses Prisma Pulse to detect when new users are added to the database and sends them an onboarding email:
 
-- [Resend](https://resend.com/) to send emails
 - [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to get real-time updates from the database
+- [Resend](https://resend.com/) to send emails
 - [PostgreSQL](https://www.postgresql.org/) as the database
 
 ## Prerequisites
