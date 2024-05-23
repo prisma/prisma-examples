@@ -31,14 +31,11 @@ const io = new Server(httpServer, {
 const PORT = process.env.PORT || 3001;
 httpServer.listen(PORT, async () => {
   console.log(`socket.io server is running on port ${PORT}`);
-  await subscribeToPlayerUpdates(io);
+  await streamPlayerUpdates(io);
 });
 
-async function subscribeToPlayerUpdates(io: Server) {
+async function streamPlayerUpdates(io: Server) {
   const stream = await prisma.player.stream();
-  if (stream instanceof Error) {
-    throw stream;
-  }
 
   // Handle Prisma stream events
   for await (const event of stream) {
