@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  const users = await prisma.player.createMany({
+  const players = await prisma.player.createMany({
     data: [
       {
         username: "Marc",
@@ -16,7 +16,7 @@ async function main() {
       },
     ],
   });
-  console.log(`Seeded the database with ${users.count} users.`);
+  console.log(`Seeded the database with ${players.count} players.`);
 }
 
 main();
