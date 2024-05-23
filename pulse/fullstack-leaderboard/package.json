@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
-    "@prisma/extension-pulse": "^0.0.0-experimental-0690096",
+    "@prisma/extension-pulse": "dev",
     "@types/socket.io": "^3.0.2",
     "next": "14.2.3",
     "react": "^18",
