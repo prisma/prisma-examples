@@ -9,7 +9,7 @@ To successfully run the project, you will need the following:
 
 - The **connection string** of a Pulse-ready database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
 - A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
-- A **Resend API Key** which you can get from your [Resend account](https://resend.com/api-keys)
+- A **Resend API Key** which you can get from your [Resend account](https://resend.com/api-keys) (note that if you're on the [free plan](https://resend.com/blog/new-free-tier), you'll only be able to send emails to exactly _one_ email address per day)
 
 ## Getting started
 
@@ -70,6 +70,8 @@ The following instructions use [Prisma Studio](https://www.prisma.io/studio) to 
 2. Add a new record to the `User` table via Prisma Studio UI. **This new record needs to have a _valid_ value for the `email` field.**
 3. You will receive a new email in the inbox of the specified `email`. For example: When a new user with an email of `datta@prisma.io` and a name of `Ankur` is created, the email inbox for `datta@prisma.io` should have received the following email (the copy for this email is hardcoded in [`./script.ts`](./script.ts#L33)):
    ![image.png](./images/email.png)
+
+> **Note**: If you can see the event logged to the terminal but didn't receive an email, it may be that you have maxed out the receiver mail addresses on the [free tier](https://resend.com/blog/new-free-tier) for the day.
 
 ## Resources
 
