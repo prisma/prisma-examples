@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.5.2",
-    "@prisma/extension-pulse": "^0.1.8",
+    "@prisma/extension-pulse": "dev",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "socket.io": "^4.7.2"

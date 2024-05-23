@@ -33,7 +33,7 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env` file in the [`server`](./server) directory:
+Create a `.env` file in the [`./server`](./server) directory:
 
 ```bash
 # make sure you're inside the `server` directory
@@ -63,17 +63,19 @@ You now have a table called `Message` in your database.
 
 ### 4. Start the server
 
-Make sure you're inside the [`server`](./server) directory and start the long-running server that streams changes from the database:
+Make sure you're inside the [`./server`](./server) directory and start the long-running server that streams changes from the database:
 
-```
+```bash
+# make sure you're inside the `server` directory
 npm run dev
 ```
 
 The server will accept WebSocket connections at `http://localhost:3001`.
 
-Next, open a new terminal tab/window to run the Next.js app from inside the [`client`](./client) directory:
+Next, open a new terminal tab/window to run the Next.js app from inside the [`./client`](./client) directory:
 
-```
+```bash
+# make sure you're inside the `client` directory
 npm run dev
 ```
 
