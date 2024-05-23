@@ -67,7 +67,6 @@ The code can be found in the [`index.ts`](./index.ts) file. To learn more about 
 async function main() {
   const stream = await prisma.user.stream()
 
-
   for await (const event of stream) {
     console.log('just received an event:', event)
   }
