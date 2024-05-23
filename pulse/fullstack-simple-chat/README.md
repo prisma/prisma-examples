@@ -47,7 +47,7 @@ DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 PULSE_API_KEY="__YOUR_PULSE_API_KEY__"
 ```
 
-Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are placeholder values that you need to replace with the values of your own connection string, your Pulse and Resend API keys.
+Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are **placeholder values that you must replace** with the values of your own connection string and Pulse API key.
 
 ### 3. Run a database migration to create the `Message` table
 
