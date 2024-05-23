@@ -46,18 +46,15 @@ io.on(`connection`, async (socket) => {
 
 server.listen(4000, async () => {
   console.log(`Server running on http://localhost:4000`);
-  await subscribeToChat(io);
+  await streamChatMessages(io);
 });
 
-async function subscribeToChat(io: Server) {
-  console.log(`Subscribe to new messages with Prisma Client ...`);
-  const subscription = await prisma.message.subscribe({ create: {} });
-  if (subscription instanceof Error) {
-    throw subscription;
-  }
+async function streamChatMessages(io: Server) {
+  console.log(`Stream new messages with Prisma Client ...`);
+  const stream = await prisma.message.stream({ create: {} });
 
-  // Handle Prisma subscription events
-  for await (const event of subscription) {
+  // Handle Prisma stream events
+  for await (const event of stream) {
     console.log(`New event from Pulse: `, event);
     io.sockets.emit("chat-message", event.created);
   }

@@ -54,7 +54,7 @@ You now have an empty `User` table in your database.
 
 ### 4. Start the Pulse subscription
 
-Run the [script](./index.ts) that contains the code to subscribe to database events:
+Run the [script](./index.ts) that contains the code to stream database events:
 
 ```
 npm run dev
