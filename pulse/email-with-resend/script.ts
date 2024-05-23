@@ -45,7 +45,8 @@ const sendUserCreationEmail = async ({ email, name }: UserEmail) => {
 // Stream user creation events and send emails
 const emailStream = async () => {
   const stream = await prisma.user.stream({
-    create: {},
+    name: 'all-created-users', // Add `name` so that we never lose events
+    create: {}
   });
 
   process.on("exit", (code) => {
