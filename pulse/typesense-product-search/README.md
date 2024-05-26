@@ -1,0 +1,2 @@
+- (Search only API key)[https://typesense.org/docs/26.0/api/api-keys.html#search-only-api-key]
+-

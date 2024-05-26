@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/server.ts",
+    "deploy": "wrangler deploy --minify src/server.ts",
+    "seed": "node prisma/seeder.js"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.5",
+    "@prisma/client": "^5.14.0",
+    "@prisma/extension-accelerate": "^1.0.0",
+    "@prisma/extension-pulse": "0.0.0-experimental-0690096",
+    "axios": "^1.7.2",
+    "hono": "^4.3.9",
+    "typesense": "^1.8.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240403.0",
+    "prisma": "^5.14.0",
+    "wrangler": "^3.47.0"
+  }
+}

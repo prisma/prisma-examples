@@ -1,0 +1,25 @@
+name = "backend"
+compatibility_date = "2023-12-01"
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNTIwY2Y0ZGYtN2YzYy00ZjNiLTgwZjctMGE1MDE3MzQwNGJlIiwidGVuYW50X2lkIjoiYzJkZmVjMGJiM2JlZDQ2M2UzYTYwMDI4NjdjZmM2N2VlZmUyNzkwZGE5NzEwZmJlMjQ1YTU3MzQyNmYwYjlkOSIsImludGVybmFsX3NlY3JldCI6ImE5MmM1MjFlLTU4ZTUtNGY0Zi1iYzA5LTcxZGFjMjhmYzI4ZSJ9.NEJVDDALQoRPwTRyrBPlP-u1jqMU2oFo7KjhuBPtsAo"
+DIRECT_URL="postgresql://postgres:sDEJzIWdRgeGmKaNLaMixwisNEgwSkfe@monorail.proxy.rlwy.net:52204/railway"
+PULSE_API_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiODk3MDEzYjUtOTkwMC00NTNkLTk5ZTktNTRlY2NlNjZjYmExIiwidGVuYW50X2lkIjoiYzJkZmVjMGJiM2JlZDQ2M2UzYTYwMDI4NjdjZmM2N2VlZmUyNzkwZGE5NzEwZmJlMjQ1YTU3MzQyNmYwYjlkOSIsImludGVybmFsX3NlY3JldCI6ImE5MmM1MjFlLTU4ZTUtNGY0Zi1iYzA5LTcxZGFjMjhmYzI4ZSJ9.phI0xjHV8J53qOYixlsj07cILqeYy8Ut3ycVkbwxa-8"
+TYPESENSE_SEARCH_API_KEY="1bw3euvVNpPT4saMDSJ2mj42TYnIwK92"
+TYPESENSE_ADMIN_API_KEY="6Vt87T8mnU54RQKOFatjxooSuOQBnT4j"
+
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "my-database"
+# database_id = ""
+
+# [ai]
+# binding = "AI"
