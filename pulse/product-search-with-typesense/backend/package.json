@@ -8,7 +8,7 @@
     "@babel/runtime": "^7.24.5",
     "@prisma/adapter-pg": "^5.14.0",
     "@prisma/client": "^5.14.0",
-    "@prisma/extension-pulse": "0.0.0-experimental-0690096",
+    "@prisma/extension-pulse": "^1.1.0",
     "axios": "^1.7.2",
     "dotenv-cli": "^7.4.2",
     "hono": "^4.3.9",

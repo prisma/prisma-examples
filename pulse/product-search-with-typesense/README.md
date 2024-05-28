@@ -1,5 +1,7 @@
 # Prisma Pulse Example: Product Search with Typesense, Cloudflare Workers, and Next.js
 
+![Demo](./demo.gif)
+
 This repository showcases an example application using Prisma Pulse to synchronize products with Typesense, a search server.
 The backend uses a [CRON task](https://hono.dev/getting-started/cloudflare-workers#using-hono-with-other-event-handlers) that runs every five minutes, capturing all events (Create, Update, Delete) related to the `Product` model in the database and updating the Typesense search server accordingly. As Prisma Pulse has **delivery gurantees**, all events are delivered *at-least once*. The frontend allows you to search the products using Typesense.
 
@@ -62,7 +64,7 @@ cd backend
 npm install
 ```
 
-#### 1. Configure environment variables for the backend
+#### 2.1. Configure environment variables for the backend
 
 Create a `.dev.vars` in the root of the project directory:
 
@@ -83,7 +85,7 @@ TYPESENSE_URL=""
 
 > Note that the API keys **must** be filled in for the app to work.
 
-#### 2. Run a database migration to create the `Product` table
+#### 2.2. Run a database migration to create the `Product` table
 
 The [Prisma schema file](./backend/prisma/schema.prisma) in this project contains a single `Product` model. You can map this model to the database and create the corresponding `Product` table using the following command:
 ```bash
@@ -100,7 +102,7 @@ npx prisma db seed
 The is invoked the [seed script](./prisma/seed.js) and created ten `Product` records in the database.
 
 
-#### 3. Start the backend server
+#### 2.3. Start the backend server
 
 Make sure you're inside the [`backend`](./backend/) directory and start the server that periodically syncs data to Typesense:
 
@@ -110,7 +112,7 @@ npm run dev
 
 The server will start up at `http://localhost:8787`.
 
-#### 4. Test the CRON task
+#### 2.4. Test the CRON task
 
 Keep the server is running and open another terminal or CLI tab, then execute the command:
 
@@ -168,7 +170,7 @@ cd ./frontend/
 npm install
 ```
 
-#### 1. Configure environment variables for the frontend
+#### 3.1. Configure environment variables for the frontend
 
 Create a `.env` in the root of the project directory:
 
@@ -189,7 +191,7 @@ NEXT_PUBLIC_BACKEND_URL=
 
 > Note that the API keys **must** be filled in for the app to work.
 
-#### 2. Start the frontend server
+#### 3.2. Start the frontend server
 
 Make sure you're inside the [`frontend`](./frontend/) directory and the backend server is running to make sure the frontend server works as expected. To start the frontend server execute:
 
@@ -199,15 +201,15 @@ npm run dev
 
 The server will start up at `http://localhost:3000`.
 
-If you followed the instructions and made sure the [cron task](#4-test-the-cron-task) works successfully, you should be able to search for the seeded `Product` data.
+If you followed the instructions and made sure the [cron task](#24-test-the-cron-task) works successfully, you should be able to search for the seeded `Product` data.
 
-You can add new products through the frontend and [execute the CRON task](#4-test-the-cron-task) again to search the new products.
+You can add new products through the frontend and [execute the CRON task](#24-test-the-cron-task) again to search the new products.
 
 ## Deployment
 
 As the app as two components a frontend and backend, you have to deploy them separately.
 
-#### Deploying the backend on Cloudflare
+### Deploying the backend on Cloudflare
 
 To deploy the backend in [Cloudflare](https://www.cloudflare.com/). Follow the instuctions [here](https://developers.cloudflare.com/workers/configuration/secrets/#secrets-in-development) to upload the environment variables. Then deploy the project to Cloudflare by running:
 
@@ -215,7 +217,7 @@ To deploy the backend in [Cloudflare](https://www.cloudflare.com/). Follow the i
 npm run deploy
 ```
 
-#### Deploying the frontend
+### Deploying the frontend
 
 You can deploy the Next.js frontend to [all platforms](https://nextjs.org/learn-pages-router/basics/deploying-nextjs-app) that support it.
 
