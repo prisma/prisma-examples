@@ -40,7 +40,7 @@ Create a `.env` in the root of the project directory:
 touch .env
 ```
 
-Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string, your Pulse and Resend API keys:
+Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` environment variables with the values of your connection string and your Pulse API keys:
 
 ```bash
 # .env
