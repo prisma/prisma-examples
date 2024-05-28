@@ -3,6 +3,6 @@ compatibility_date = "2023-12-01"
 node_compat = true
 
 [triggers]
-# Every 5 minutes
-crons = ["*/5 * * * *"]
+# Every 15 minutes
+crons = ["*/15 * * * *"]
 

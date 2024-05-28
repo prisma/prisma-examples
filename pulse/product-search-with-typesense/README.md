@@ -3,10 +3,10 @@
 ![Demo](./demo.gif)
 
 This repository showcases an example application using Prisma Pulse to synchronize products with Typesense, a search server.
-The backend uses a [CRON task](https://hono.dev/getting-started/cloudflare-workers#using-hono-with-other-event-handlers) that runs every five minutes, capturing all events (Create, Update, Delete) related to the `Product` model in the database and updating the Typesense search server accordingly. As Prisma Pulse has **delivery gurantees**, all events are delivered *at-least once*. The frontend allows you to search the products using Typesense.
+The backend uses a [CRON task](https://hono.dev/getting-started/cloudflare-workers#using-hono-with-other-event-handlers) that runs every 15 minutes, capturing all events (Create, Update, Delete) related to the `Product` model in the database and updating the Typesense search server accordingly. As Prisma Pulse has **delivery gurantees**, all events are delivered *at-least once*. The frontend allows you to search the products using Typesense.
 
 - [Next.js](https://nextjs.org/) (_frontend_) enables you to add new products to the PostgreSQL database and search them using [Typesense](https://typesense.org/).
-- [Hono.js](https://hono.dev/) (_backend_) allows you to create new products and runs a CRON task every **five minutes** that utilizes Prisma Pulse to sync events with Typesense.
+- [Hono.js](https://hono.dev/) (_backend_) allows you to create new products and runs a CRON task every **15 minutes** that utilizes Prisma Pulse to sync events with Typesense.
 - [Typesense](https://typesense.org/) is an open-source search server.
 - [Prisma Pulse](https://www.prisma.io/data-platform/pulse) provides real-time updates from the database.
 - [PostgreSQL](https://www.postgresql.org/) serves as the database.

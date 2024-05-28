@@ -9,7 +9,7 @@ export default function Home() {
           Welcome to the Typesense + Prisma Pulse product search exmple app 🔎
         </h1>
         <p className="p-4">
-        This app lets you add products to your database and automatically syncs them with the TypeSense server every five minutes using Prisma Pulse, allowing you to search for the added products easily.
+        This app lets you add products to your database and automatically syncs them with the TypeSense server every 15 minutes using Prisma Pulse, allowing you to search for the added products easily.
         </p>
       </div>
       <ProductDialog />
