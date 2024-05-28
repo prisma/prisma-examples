@@ -42,22 +42,20 @@ const sendUserCreationEmail = async ({ email, name }: UserEmail) => {
   return await resendClient.emails.send(emailOptions);
 };
 
-// Subscribe to user creation events and send emails
-const emailSubscriber = async () => {
-  const subscription = await prisma.user.subscribe({
-    create: {},
+// Stream user creation events and send emails
+const emailStream = async () => {
+  const stream = await prisma.user.stream({
+    name: 'all-created-users', // Add `name` so that we never lose events
+    create: {}
   });
 
   process.on("exit", (code) => {
-    console.log("Closing Prisma Pulse Subscription.");
-    subscription.stop();
+    console.log("Closing Prisma Pulse Stream.");
+    stream.stop();
   });
 
-  if (subscription instanceof Error) {
-    throw subscription;
-  }
 
-  for await (const event of subscription) {
+  for await (const event of stream) {
     console.log("Received event:", event);
     const { email, name } = event.created;
 
@@ -72,7 +70,7 @@ const emailSubscriber = async () => {
 
 // Main function
 async function main() {
-  await emailSubscriber();
+  await emailStream();
 }
 
 // Run the main function

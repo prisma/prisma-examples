@@ -1,6 +1,6 @@
 # Prisma Pulse Example: Starter
 
-This repository has been created to help you get started with [Pulse](https://prisma.io/pulse). You will be able to use this project with any Pulse-ready PostgreSQL database. This project comes with a basic [`schema.prisma`](./prisma/schema.prisma) file as well as a Pulse subscription found in the [`index.ts`](./index.ts) file.
+This repository has been created to help you get started with [Pulse](https://prisma.io/pulse). You will be able to use this project with any Pulse-ready PostgreSQL database. This project comes with a basic [`schema.prisma`](./prisma/schema.prisma) file as well as a Pulse stream found in the [`index.ts`](./index.ts) file.
 
 ## Prerequisites
 
@@ -49,29 +49,25 @@ npx prisma migrate dev --name init
 
 You now have an empty `User` table in your database.
 
-### 4. Start the Pulse subscription
+### 4. Start the Pulse stream
 
-Run the [script](./index.ts) that contains the code to subscribe to database events:
+Run the [script](./index.ts) that contains the code to stream database events:
 
 ```bash
 npx ts-node index.ts
 ```
 
-This will run a basic subscription on the `User` table. Whenever a record is created, updated or deleted in that table, an event will fire and the script will execute a `console.log` statement with details of the event it received.
+This will create a basic stream on the `User` table. Whenever a record is created, updated or deleted in that table, an event will fire and the script will execute a `console.log` statement with details of the event it received.
 
-The code can be found in the [`index.ts`](./index.ts) file. To learn more about the Pulse API and how to use it, check out our [documentation](https://www.prisma.io/docs/data-platform/pulse/api-reference#subscribe).
+The code can be found in the [`index.ts`](./index.ts) file. To learn more about the Pulse API and how to use it, check out our [documentation](https://www.prisma.io/docs/data-platform/pulse/api-reference#stream).
 
-<details><summary>Pulse subscription on the `User` table</summary>
+<details><summary>Pulse stream on the `User` table</summary>
 
 ```ts
 async function main() {
-  const subscription = await prisma.user.subscribe()
+  const stream = await prisma.user.stream()
 
-  if (subscription instanceof Error) {
-    throw subscription
-  }
-
-  for await (const event of subscription) {
+  for await (const event of stream) {
     console.log('just received an event:', event)
   }
 }
@@ -79,7 +75,7 @@ async function main() {
 
 </details>
 
-### 5. Test the subscription
+### 5. Test the stream
 
 The following instructions use [Prisma Studio](https://www.prisma.io/studio) to create a new record in the `User` table. However, you can use any other method to write to the `User` table (e.g. a SQL client like `psql` or [TablePlus](https://tableplus.com/)) in order to trigger a database change event in Pulse.
 
