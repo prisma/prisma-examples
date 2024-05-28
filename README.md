@@ -54,8 +54,9 @@ The [`pulse`](./pulse) folder contains examples of projects using [Prisma Pulse]
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | [`starter`](./pulse/starter)                     | A Prisma Pulse starter app                                               |
 | [`email-with-resend`](./pulse/email-with-resend) | An example app to send emails to new users using Prisma Pulse and Resend |
-| [`fullstack-leaderboard`](./pulse/fullstack-leaderboard) | An example app to send emails to new users using Prisma Pulse and Resend |
-| [`fullstack-simple-chat`](./pulse/fullstack-simple-chat) | An example app to send emails to new users using Prisma Pulse and Resend |
+| [`fullstack-leaderboard`](./pulse/fullstack-leaderboard) | A live leaderboard (built with Next.js)    |
+| [`fullstack-simple-chat`](./pulse/fullstack-simple-chat) | A simple chat app (built with Next.js & Express) |
+| [`product-search-with-typesense`](./pulse/fullstack-simple-chat) | A cron job that syncs data into Typesense (built with Hono.js) |
 
 
 ## Prisma ORM (TypeScript)
