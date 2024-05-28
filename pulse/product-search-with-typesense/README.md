@@ -118,7 +118,11 @@ Keep the server is running and open another terminal or CLI tab, then execute th
 curl "http://localhost:8787/__scheduled?cron=*+*+*+*+*"
 ```
 
-The output should read `Ran scheduled event`.
+The output should read:
+
+```
+Ran scheduled event
+```
 
 Head over to the CLI tab/terminal of the running server and you should see Prisma Pulse syncing the database seed events to Typesense. Example:
 
