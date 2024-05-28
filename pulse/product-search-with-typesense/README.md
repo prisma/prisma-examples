@@ -122,7 +122,7 @@ The output should read `Ran scheduled event`.
 
 Head over to the CLI tab/terminal of the running server and you should see Prisma Pulse syncing the database seed events to Typesense. Example:
 
-```bash
+```
   Pulse create event
   {
     action: 'create',
