@@ -17,7 +17,7 @@ To successfully run the project, you will need the following:
 
 - The **connection string** of a Pulse-ready database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
 - A **Pulse API key** which you can get by enabling Pulse in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
-- A [**Typesense Admin API key**](https://typesense.org/docs/0.20.0/api/api-keys.html#create-an-api-key) that allows you to perform all operations and is used in the backend. Configuration to create the Admin API key
+- A [**Typesense Admin API key**](https://typesense.org/docs/0.20.0/api/api-keys.html#create-an-api-key) that allows you to perform all operations and is used in the backend. Configuration to create the Admin API key:
     ```json
     {
       "description": "Admin key.",
