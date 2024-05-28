@@ -150,7 +150,7 @@ Head over to the CLI tab/terminal of the running server and you should see Prism
 
 If there are no events (Create, Update or Delete operations) to the `Product` model for 5 minutes, the CRON task will end with the message:
 
-```bash
+```
 ✘ [ERROR] Uncaught (async) Error: No events for 5 minutes.
 ```
 
