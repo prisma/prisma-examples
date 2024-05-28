@@ -6,12 +6,10 @@ export default function Home() {
     <div className="flex flex-col items-center">
       <div className="text-center pt-16 pl-16 pr-16">
         <h1 className="text-2xl font-bold">
-          Typesense cloudflare product search 🔎
+          Welcome to Typesense Cloudflare product search 🔎
         </h1>
         <p className="p-4">
-          This app lets you add products to your database and uses Prisma Pulse
-          to automatically sync them to TypeSense every 10 minutes for searching
-          products.
+        This app lets you add products to your database and automatically syncs them with the TypeSense server every five minutes using Prisma Pulse, allowing you to search for the added products easily.
         </p>
       </div>
       <ProductDialog />

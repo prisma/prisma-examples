@@ -174,9 +174,11 @@ const updateTypesense = async (env: Bindings) => {
 
     switch (item.action) {
       case 'create': {
+        console.log('Pulse create event')
         console.log(item)
 
         try {
+          console.log('Creating document in Typesense')
           const result = await addTypeSenseDocument(
             env.TYPESENSE_URL,
             env.TYPESENSE_ADMIN_API_KEY,
@@ -191,9 +193,11 @@ const updateTypesense = async (env: Bindings) => {
         break
       }
       case 'update': {
+        console.log('Pulse update event')
         console.log(item)
 
         try {
+          console.log('Updating document in Typesense')
           const result = await updateTypeSenseDocument(
             env.TYPESENSE_URL,
             env.TYPESENSE_ADMIN_API_KEY,
@@ -208,9 +212,11 @@ const updateTypesense = async (env: Bindings) => {
         break
       }
       case 'delete': {
+        console.log('Pulse delete event')
         console.log(item)
 
         try {
+          console.log('Deleting document in Typesense')
           const result = await deleteTypeSenseDocument(
             env.TYPESENSE_URL,
             env.TYPESENSE_ADMIN_API_KEY,
@@ -227,125 +233,6 @@ const updateTypesense = async (env: Bindings) => {
     }
   }
 }
-
-app.get('/update-typesense', async (c) => {
-  c.executionCtx.waitUntil(
-    (async () => {
-      // create typesense collection if it doesn't exist
-      await createTypeSenseCollection(
-        c.env.TYPESENSE_URL,
-        c.env.TYPESENSE_ADMIN_API_KEY,
-        {
-          name: 'products',
-          fields: [
-            { name: 'id', type: 'int32', facet: false },
-            { name: 'name', type: 'string', facet: false },
-            { name: 'description', type: 'string', facet: false },
-            { name: 'stock', type: 'int32', facet: false },
-          ],
-        },
-      )
-
-      const primsa = addPulseExtension(
-        initPrismaClient(c.env.DATABASE_URL),
-        c.env.PULSE_API_KEY,
-      )
-
-      // Listen to all the changes to products by listening to the "product-changes" group.
-      const productStream = await primsa.product.stream({
-        name: 'product-changes',
-        create: {},
-        update: {},
-        delete: {},
-      })
-
-      const FIVE_MINUTES = 5 * 60 * 1000
-
-      let timeoutId: NodeJS.Timeout
-
-      const resetTimeout = () => {
-        if (timeoutId) {
-          clearTimeout(timeoutId)
-        }
-        timeoutId = setTimeout(() => {
-          console.log('No events for 5 minutes. Terminating stream.')
-
-          productStream.stop()
-
-          throw Error('No events for 5 minutes.') // Or use another method to break the loop in your environment
-        }, FIVE_MINUTES)
-      }
-
-      resetTimeout() // Start the timeout for the first time
-
-      for await (const item of productStream) {
-        try {
-          resetTimeout() // Reset the timeout on each new event
-        } catch (error) {
-          break
-        }
-
-        switch (item.action) {
-          case 'create': {
-            console.log(item)
-
-            try {
-              const result = await addTypeSenseDocument(
-                c.env.TYPESENSE_URL,
-                c.env.TYPESENSE_ADMIN_API_KEY,
-                { ...item.created, id: `${item.created.id}` },
-              )
-
-              console.log(result)
-            } catch (error) {
-              console.log(error)
-            }
-
-            break
-          }
-          case 'update': {
-            console.log(item)
-
-            try {
-              const result = await updateTypeSenseDocument(
-                c.env.TYPESENSE_URL,
-                c.env.TYPESENSE_ADMIN_API_KEY,
-                item.after,
-              )
-
-              console.log({ result })
-            } catch (error) {
-              console.log(error)
-            }
-
-            break
-          }
-          case 'delete': {
-            console.log(item)
-
-            try {
-              const result = await deleteTypeSenseDocument(
-                c.env.TYPESENSE_URL,
-                c.env.TYPESENSE_ADMIN_API_KEY,
-                item.deleted.id,
-              )
-
-              console.log({ result })
-            } catch (error) {
-              console.log(error)
-            }
-
-            break
-          }
-        }
-      }
-    })(),
-  )
-
-  return c.json({
-    status: 'ok',
-  })
-})
 
 app.post('/add-product', async (c) => {
   const data = await c.req.json()
