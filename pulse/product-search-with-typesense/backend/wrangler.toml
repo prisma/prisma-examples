@@ -1,0 +1,8 @@
+name = "typesense-pulse-product-search"
+compatibility_date = "2023-12-01"
+node_compat = true
+
+[triggers]
+# Every 15 minutes
+crons = ["*/15 * * * *"]
+
