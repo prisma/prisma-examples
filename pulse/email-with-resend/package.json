@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.14.0",
-    "@prisma/extension-pulse": "dev",
+    "@prisma/extension-pulse": "^1.1.0",
     "@types/node": "20.12.12",
     "dotenv": "16.4.5",
     "resend": "3.2.0"
