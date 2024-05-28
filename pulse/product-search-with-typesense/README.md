@@ -55,7 +55,7 @@ cd prisma-examples/pulse/typesense-product-search
 
 ### 2. Configure and start the backend
 
-For the example to work, we have to setup and run the backend first. Navigate to the backend folder and install dependencies:
+For the example to work, we have to setup and run the backend first. Navigate to the 	`backend` folder and install dependencies:
 
 ```bash
 cd backend
