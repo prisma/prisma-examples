@@ -153,13 +153,13 @@ The following instructions use [Prisma Studio](https://www.prisma.io/studio) to 
 4. If everything is set up properly you will see an output that is similar to the following.
 
    ```
-  Just received an event: {
-    action: 'create',
-    created: { id: 6, email: 'test@prisma.io', name: 'Test' },
-    id: '01HZ1NZV2GX9YQA4J7GM7HQ78Q',
-    modelName: 'User'
-  }
-  Inserted user with email 'test@prisma.io' into 'pulse_demo.users'
+   Just received an event: {
+     action: 'create',
+     created: { id: 6, email: 'test@prisma.io', name: 'Test' },
+     id: '01HZ1NZV2GX9YQA4J7GM7HQ78Q',
+     modelName: 'User'
+   }
+   Inserted user with email 'test@prisma.io' into 'pulse_demo.users'
    ```
 
 ## Resources
