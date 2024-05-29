@@ -5,22 +5,22 @@
     "migrate": "dotenv -e .dev.vars -- npx prisma migrate dev"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.5",
-    "@prisma/adapter-pg": "^5.14.0",
-    "@prisma/client": "^5.14.0",
-    "@prisma/extension-pulse": "^1.1.0",
-    "axios": "^1.7.2",
-    "dotenv-cli": "^7.4.2",
-    "hono": "^4.3.9",
-    "pg": "^8.11.5",
-    "typesense": "^1.8.2",
-    "zod": "^3.23.8"
+    "@babel/runtime": "7.24.6",
+    "@prisma/adapter-pg": "5.14.0",
+    "@prisma/client": "5.14.0",
+    "@prisma/extension-pulse": "1.1.0",
+    "axios": "1.7.2",
+    "dotenv-cli": "7.4.2",
+    "hono": "4.4.0",
+    "pg": "8.11.5",
+    "typesense": "1.8.2",
+    "zod": "3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240524.0",
-    "@types/pg": "^8.11.6",
-    "prisma": "^5.14.0",
-    "wrangler": "^3.57.1"
+    "@cloudflare/workers-types": "4.20240524.0",
+    "@types/pg": "8.11.6",
+    "prisma": "5.14.0",
+    "wrangler": "3.57.2"
   },
   "prisma": {
     "seed": "dotenv -e .dev.vars -- node prisma/seed.js"
