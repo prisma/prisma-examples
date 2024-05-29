@@ -12,8 +12,6 @@ To successfully run the project, you will need the following:
 
 <details><summary>Expand to see steps for obtaining your service account file</summary>
 
-To obtain your service account key file, follow these steps:
-
 ### 1. Go to the Google Cloud Console
 
 Navigate to the [Google Cloud Console](https://console.cloud.google.com/).
@@ -95,14 +93,14 @@ Now, open the `.env` file and update the `DATABASE_URL` and `PULSE_API_KEY` envi
 # .env
 DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 PULSE_API_KEY="__YOUR_PULSE_API_KEY__"
-GOOGLE_APPLICATION_CREDENTIALS="./service-account.json"
+GOOGLE_APPLICATION_CREDENTIALS="./service-account.json" # make sure this points to your service account file
 ```
 
-Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are placeholder values that you need to replace with the values of your connection string and your Pulse API key.
+Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are placeholder values that you need to replace with the values of your connection string and your Pulse API key. the `GOOGLE_APPLICATION_CREDENTIALS` environment variable already is set to point to the empty [`./service-account.json`](./service-account.json) in this project.
 
 ### 3. Configure your service account file
 
-Paste the contents of your service account file into [./service-account.json](./service-account.json). It will look similar to this:
+Paste the contents of your service account file into [`./service-account.json`](./service-account.json). It will look similar to this:
 
 ```js
 // service-account.json
