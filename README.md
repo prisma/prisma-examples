@@ -42,21 +42,23 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 The [`accelerate`](./accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
 
-| Demo                                                                   | Description                                                              |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Demo                                            | Description                                                                |
+| ----------------------------------------------- | -------------------------------------------------------------------------- |
 | [`nextjs-starter`](./accelerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
 
 ## Prisma Pulse
 
 The [`pulse`](./pulse) folder contains examples of projects using [Prisma Pulse](https://www.prisma.io/data-platform/pulse) to listen to real-time database change events.
 
-| Demo                                                                   | Description                                                              |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`starter`](./pulse/starter)                     | A Prisma Pulse starter app                                               |
-| [`email-with-resend`](./pulse/email-with-resend) | An example app to send emails to new users using Prisma Pulse and Resend |
-| [`fullstack-leaderboard`](./pulse/fullstack-leaderboard) | A live leaderboard (built with Next.js)    |
-| [`fullstack-simple-chat`](./pulse/fullstack-simple-chat) | A simple chat app (built with Next.js & Express) |
-| [`product-search-with-typesense`](./pulse/product-search-with-typesense) | A cron job that syncs data into Typesense (built with Hono.js) |
+| Demo                                                                     | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`starter`](./pulse/starter)                                             | A Prisma Pulse starter app                                               |
+| [`email-with-resend`](./pulse/email-with-resend)                         | An example app to send emails to new users using Prisma Pulse and Resend |
+| [`fullstack-leaderboard`](./pulse/fullstack-leaderboard)                 | A live leaderboard (built with Next.js)                                  |
+| [`fullstack-simple-chat`](./pulse/fullstack-simple-chat)                 | A simple chat app (built with Next.js & Express)                         |
+| [`product-search-with-typesense`](./pulse/product-search-with-typesense) | A cron job that syncs data into Typesense (built with Hono.js)           |
+| [`data-sync-with-bigquery`](./pulse/data-sync-with-bigquery)             | A script that automatically syncs data into Google BigQuery              |
+
 
 
 ## Prisma ORM (TypeScript)
