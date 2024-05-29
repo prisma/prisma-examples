@@ -47,11 +47,19 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="">
-        {messageHistory.map((message, i) => {
-          return <div key={i}>{message.senderSocketId} ({message.createdAt}): {message.text}</div>;
-        })}
+    <main className="flex min-h-screen flex-col items-center justify-between p-6 bg-gray-100">
+      <div className="w-full md:w-2/3 lg:w-1/2 bg-white p-6 rounded-xl shadow-md">
+        <div className="overflow-y-auto max-h-[70vh]">
+          {messageHistory.map((message, i) => (
+            <div key={i} className="mb-4 p-4 border-b border-gray-200">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-sm font-semibold text-gray-700">{message.senderSocketId}</span>
+                <span className="text-xs text-gray-500">{new Date(message.createdAt).toLocaleString()}</span>
+              </div>
+              <p className="text-gray-800">{message.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <form
@@ -59,21 +67,23 @@ export default function Home() {
         className="py-4 px-2 w-full flex items-center justify-center"
         onSubmit={sendMessage}
       >
-        <div className="text-center bg-white w-full md:w-1/3 px-3 py-2 flex gap-3 rounded-xl drop-shadow-2xl">
+        <div className="bg-white w-full md:w-2/3 lg:w-1/2 px-3 py-2 flex gap-3 rounded-xl shadow-lg">
           <input
             name="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             id="message"
-            className="focus:outline-none px-2 flex-1 rounded-xl"
+            className="focus:outline-none px-2 flex-1 rounded-xl border border-gray-300"
             type="text"
             placeholder="What do you want to say?"
+            autoComplete="off"
           />
-          <button type="submit" className="rounded-xl px-3 py-2 bg-gray-600 text-gray-100 text-sm">
+          <button type="submit" className="rounded-xl px-3 py-2 bg-blue-600 text-white text-sm">
             Send
           </button>
         </div>
       </form>
     </main>
   );
+
 }
