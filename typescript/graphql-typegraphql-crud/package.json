@@ -29,8 +29,8 @@
   },
   "overrides": {
     "typegraphql-prisma": {
-      "@prisma/generator-helper": "5.13.0",
-      "@prisma/internals": "5.13.0"
+      "@prisma/generator-helper": "5.14.0",
+      "@prisma/internals": "5.14.0"
     }
   }
 }
