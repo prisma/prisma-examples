@@ -148,9 +148,9 @@ This will run the script at [`index.ts`](./index.ts) and perform the following a
 The following instructions use [Prisma Studio](https://www.prisma.io/studio) to create a new record in the `User` table. However, you can use any other method to write to the `User` table in your PostgreSQL database (e.g. a SQL client like `psql` or [TablePlus](https://tableplus.com/)) in order to trigger a database change event in Pulse.
 
 1. Start Prisma Studio in a new terminal: `npx prisma studio`
-2. Add a new record to the `User` table via Prisma Studio UI.
-3. Return to your terminal where you ran the `npm run dev` command.
-4. If everything is set up properly you will see an output that is similar to the following.
+1. Add a new record to the `User` table via Prisma Studio UI.
+1. Return to your terminal where you ran the `npm run dev` command.
+1. If everything is set up properly you will see an output that is similar to the following.
 
    ```
    Just received an event: {
