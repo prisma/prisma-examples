@@ -1,6 +1,6 @@
 # Prisma Pulse Example: Fullstack Simple Chat (Next.js & Express)
 
-![](./tbd.gif)
+![](./simple-chat.gif)
 
 This repository contains an example app that uses Prisma Pulse in a fullstack chat application:
 
@@ -52,9 +52,10 @@ Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_PULSE_API_KEY__` are
 
 ### 3. Run a database migration to create the `Message` table
 
-The [Prisma schema file](./prisma/schema.prisma) in this project contains a single `Message` model. You can map this model to the database and create the corresponding `Message` table using the following command:
+The [Prisma schema file](./prisma/schema.prisma) in this project contains a single `Message` model. You can map this model to the database and create the corresponding `Message` table using the following command inside the `server` directory:
 
-```
+```bash
+# make sure you're inside the `server` directory
 npx prisma migrate dev --name init
 ```
 
