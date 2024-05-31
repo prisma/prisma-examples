@@ -11,7 +11,7 @@
     "@prisma/extension-pulse": "1.1.0",
     "axios": "1.7.2",
     "dotenv-cli": "7.4.2",
-    "hono": "4.4.0",
+    "hono": "4.4.2",
     "pg": "8.11.5",
     "typesense": "1.8.2",
     "zod": "3.23.8"
