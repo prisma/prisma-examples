@@ -13,7 +13,7 @@
   "dependencies": {
     "@prisma/client": "5.14.0",
     "@prisma/extension-pulse": "1.1.0",
-    "@types/node": "20.12.13",
+    "@types/node": "20.13.0",
     "dotenv": "16.4.5",
     "prisma": "5.14.0",
     "ts-node": "10.9.2",
