@@ -5,7 +5,7 @@
     "migrate": "dotenv -e .dev.vars -- npx prisma migrate dev"
   },
   "dependencies": {
-    "@babel/runtime": "7.24.6",
+    "@babel/runtime": "7.24.7",
     "@prisma/adapter-pg": "5.14.0",
     "@prisma/client": "5.14.0",
     "@prisma/extension-pulse": "1.1.0",
