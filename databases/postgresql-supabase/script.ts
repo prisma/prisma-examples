@@ -4,18 +4,16 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-  const doesUserExist = await prisma.user.findFirst({
-    where: {
-      email: 'alice@prisma.io'
-    }
-  })
+  try {
+    await prisma.user.findFirstOrThrow({ where: { email: 'alice@prisma.io' } })
+  } catch {
+    const consoleMessage = `
+User alice@prisma.io not found. Please run the seed script before running this script.
+You can run the seed script via the following command:
 
-  if(!doesUserExist) {
-    console.log('To run this example, please execute the seed script first.');
-    console.log('This script will add a user with the email alice@prisma.io to the database.');
-    console.log('The user is required for one of the queries.');
-    console.log('You can run the seed script using the following command:');
-    console.log('npx prisma db seed');
+npx prisma db seed
+`;
+    console.error(consoleMessage);
     return
   }
 
