@@ -3,6 +3,22 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 
 async function main() {
+
+  const doesUserExist = await prisma.user.findFirst({
+    where: {
+      email: 'alice@prisma.io'
+    }
+  })
+
+  if(!doesUserExist) {
+    console.log('To run this example, please execute the seed script first.');
+    console.log('This script will add a user with the email alice@prisma.io to the database.');
+    console.log('The user is required for one of the queries.');
+    console.log('You can run the seed script using the following command:');
+    console.log('npx prisma db seed');
+    return
+  }
+
   // Retrieve all published posts
   const allPosts = await prisma.post.findMany({
     where: { published: true },
