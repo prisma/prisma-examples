@@ -3,6 +3,20 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient();
 
 async function main() {
+
+  try {
+    await prisma.user.findFirstOrThrow({ where: { email: 'alice@prisma.io' } })
+  } catch {
+    const consoleMessage = `
+User alice@prisma.io not found. Please run the seed script before running this script.
+You can run the seed script via the following command:
+
+npx prisma db seed
+`;
+    console.error(consoleMessage);
+    return
+  }
+
   // Retrieve all published posts
   const allPosts = await prisma.post.findMany({
     where: { published: true },

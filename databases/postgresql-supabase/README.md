@@ -65,7 +65,7 @@ postgres=> exit
 ```
 
 Next, update, your `.env` file with your `DATABASE_URL` and `SHADOW_DATABASE_URL` variables accordingly. Be sure to update the password (`[YOUR-PASSWORD]`) and project reference (`[YOUR-PROJECT-REF]`):
- 
+
 ```
 # .env
 DATABASE_URL="postgres://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres"
@@ -88,7 +88,13 @@ Your database is now in sync with your schema.
 
 ### 3. Run the script
 
-To run the script `script.ts`, run the following command: 
+For the script to work, you first need to execute the [seed](./prisma/seed.ts) script to seed your database. You can do that using the following command:
+
+```
+npx prisma db seed
+```
+
+Then run the script [`script.ts`](./script.ts), using the following command:
 
 ```bash
 npm run dev
