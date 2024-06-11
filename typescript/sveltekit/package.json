@@ -18,7 +18,7 @@
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-svelte": "2.39.3",
-    "prettier": "3.3.1",
+    "prettier": "3.3.2",
     "prettier-plugin-svelte": "3.2.4",
     "prisma": "5.15.0",
     "svelte": "4.2.18",
