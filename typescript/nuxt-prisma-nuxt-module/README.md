@@ -13,7 +13,7 @@ The app demonstrates:
 
    ```terminal
    git clone git@github.com:prisma/prisma-examples.git --depth=1
-   cd prisma-examples/typescript/nuxtjs-prisma-nuxt-module
+   cd prisma-examples/typescript/nuxt-prisma-nuxt-module
    npm install
    ```
 
