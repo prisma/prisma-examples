@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@google-cloud/bigquery": "7.7.1",
-    "@types/node": "20.14.2",
+    "@types/node": "20.14.5",
     "typescript": "5.4.5",
     "prisma": "5.15.0",
     "ts-node": "10.9.2"
