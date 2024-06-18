@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.15.0",
-    "fastify": "4.27.0"
+    "fastify": "4.28.0"
   },
   "devDependencies": {
     "prisma": "5.15.0"
