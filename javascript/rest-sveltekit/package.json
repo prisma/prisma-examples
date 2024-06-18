@@ -7,7 +7,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "3.2.1",
+    "@sveltejs/adapter-auto": "3.2.2",
     "@sveltejs/kit": "2.5.10",
     "prisma": "5.15.0",
     "svelte": "4.2.18",
