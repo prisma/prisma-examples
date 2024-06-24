@@ -172,6 +172,20 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting
 - [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
 
+## Badges
+
+[![Made with Prisma](http://made-with.prisma.io/dark.svg)](https://prisma.io) [![Made with Prisma](http://made-with.prisma.io/indigo.svg)](https://prisma.io)
+
+Built something awesome with Prisma? 🌟 Show it off with these [badges](https://github.com/prisma/presskit?tab=readme-ov-file#badges), perfect for your readme or website.
+
+```
+[![Made with Prisma](http://made-with.prisma.io/dark.svg)](https://prisma.io)
+```
+
+```
+[![Made with Prisma](http://made-with.prisma.io/indigo.svg)](https://prisma.io)
+```
+
 ## About this repository
 
 The `latest` branch of this repository contains the examples with the latest stable version of Prisma CLI and Prisma Client (`@latest` on npm). These dependencies are kept up to date with a GitHub Action workflow, which updates them every time a new version of Prisma is released.
