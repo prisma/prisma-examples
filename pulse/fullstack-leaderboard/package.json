@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "5.15.0",
+    "@prisma/client": "5.15.1",
     "@prisma/extension-pulse": "1.1.0",
     "@types/socket.io": "3.0.2",
     "next": "14.2.4",
@@ -27,7 +27,7 @@
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.4",
     "postcss": "8.4.38",
-    "prisma": "5.15.0",
+    "prisma": "5.15.1",
     "tailwindcss": "3.4.4",
     "ts-node": "10.9.2",
     "typescript": "5.5.2"
