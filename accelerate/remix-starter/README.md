@@ -1,0 +1,1 @@
+# Remix + Prisma Accelerate Example

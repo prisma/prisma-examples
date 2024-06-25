@@ -1,0 +1,68 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "globals": {
+    "module": true,
+    "require": true,
+    "process": true,
+    "exports": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "formComponents": ["Form"],
+    "linkComponents": [
+      { "name": "Link", "linkAttribute": "to" },
+      { "name": "NavLink", "linkAttribute": "to" }
+    ]
+  },
+  "plugins": [
+    "prettier",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "import",
+    "react",
+    "react-hooks",
+    "lodash"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:react/jsx-runtime",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "@remix-run/eslint-config/node"
+  ],
+  "rules": {
+    "lodash/import-scope": [2, "method"],
+    "prettier/prettier": "error",
+    "import/no-unresolved": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link", "NavLink"],
+        "specialLink": ["to"]
+      }
+    ],
+    "react/boolean-prop-naming": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/button-has-type": "error",
+    "react/jsx-no-target-blank": [
+      "error",
+      {
+        "warnOnSpreadAttributes": true,
+        "links": true,
+        "forms": true
+      }
+    ]
+  }
+}
