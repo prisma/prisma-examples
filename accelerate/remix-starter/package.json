@@ -17,6 +17,9 @@
     "ts-run": "dotenv ts-node",
     "validate-env": "npm run ts-run tasks/validateConfig.ts"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
   },
@@ -77,6 +80,7 @@
     "prisma": "5.15.0",
     "tailwindcss": "^3.4.4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.15.7",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",
     "vite-tsconfig-paths": "^4.3.2",
