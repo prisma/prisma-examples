@@ -74,9 +74,23 @@ You can run the app with the following command:
 npm run dev
 ```
 
-You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
+The application will start on PORT 5173 and you should be able to see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
 
 ![Demo](./Remix-accelerate.gif)
+
+This application queries the most recent Quote with all the different cache strategies available in Accelerate.
+
+Optionally, to add your own quote and see the caching strategies in action, you can add a new quote through Prisma Studio by running the following command:
+
+```
+npx prisma studio
+```
+
+Once the Prisma Studio is running, you can add a new quote by clicking on the `Quotes` table and then the `Add Record` button as shown in the screenshot below.
+
+![Prisma Studio](./Prisma-Studio-Image.png)
+
+After adding a new record, you can refresh the Remix application to see the new quote and the caching strategies in action.
 
 ## Resources
 
