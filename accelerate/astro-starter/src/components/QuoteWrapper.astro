@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  type: string;
+  children: any;
+}
+
+const { title, type, children } = Astro.props;
+---
+
+<div class="quote-wrapper">
+  <div class="header">
+    <h5>{title}</h5>
+    <p class="type">{type}</p>
+  </div>
+  <div class="content">
+    <h2>{children}</h2>
+  </div>
+</div>
+
+<style>
+.quote-wrapper {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.type {
+  font-weight: bold;
+  color: #0070f3;
+}
+</style>

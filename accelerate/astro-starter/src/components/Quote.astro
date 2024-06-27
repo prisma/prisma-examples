@@ -1,0 +1,43 @@
+---
+import QuoteWrapper from './QuoteWrapper.astro';
+
+interface QuoteData {
+  id: number;
+  quote: string;
+  createdAt: string;
+}
+
+interface CacheInfo {
+  cacheStatus: string;
+  region: string;
+  lastModified: string;
+}
+
+interface Props {
+  title: string;
+  type: string;
+  result: {
+    data: QuoteData;
+    info: CacheInfo;
+    time: number;
+  };
+}
+
+const { title, type, result } = Astro.props;
+const { data, info, time } = result;
+---
+
+  <div class="quote">
+    <p>{data.quote}</p>
+    <p>Created At: {new Date(data.createdAt).toLocaleString()}</p>
+    <p>Cache Node Region: {info.region}</p>
+    <p>Cached Modified at: {new Date(info.lastModified).toLocaleString()}</p>
+    <p>Cache status: {info.cacheStatus.toUpperCase()}</p>
+    <p>Time taken: {time}ms</p>
+  </div>
+
+<style>
+.quote {
+  margin-top: 16px;
+}
+</style>

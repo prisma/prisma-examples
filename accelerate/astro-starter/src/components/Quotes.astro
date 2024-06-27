@@ -1,0 +1,41 @@
+---
+import Quote from './Quote.astro';
+
+interface QuoteData {
+  id: number;
+  quote: string;
+  createdAt: string;
+}
+
+interface CacheInfo {
+  cacheStatus: string;
+  region: string;
+  lastModified: string;
+}
+
+interface QuoteResult {
+  data: QuoteData;
+  info: CacheInfo;
+  time: number;
+}
+
+interface Props {
+  cacheStrategies: {
+    ttl: QuoteResult;
+    swr: QuoteResult;
+    both: QuoteResult;
+    none: QuoteResult;
+  };
+}
+
+const { cacheStrategies } = Astro.props;
+console.log({ cacheStrategies });
+---
+
+<div class="quotes">
+  <h2>Quotes</h2>
+  <Quote title="TTL" type="ttl" result={cacheStrategies.ttl} />
+  <Quote title="SWR" type="swr" result={cacheStrategies.swr} />
+  <Quote title="BOTH" type="both" result={cacheStrategies.both} />
+  <Quote title="NONE" type="none" result={cacheStrategies.none} />
+</div>
