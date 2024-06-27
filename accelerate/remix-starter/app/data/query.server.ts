@@ -15,8 +15,6 @@ export const getQuotes = async (strategy?: CacheStrategy) => {
     })
     .withAccelerateInfo();
 
-  console.log(result);
-
   return {
     data: result?.data?.[0],
     info: result.info,
