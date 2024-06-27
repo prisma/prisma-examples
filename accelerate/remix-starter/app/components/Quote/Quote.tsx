@@ -18,7 +18,6 @@ export const Quote: React.FC<{
     <QuoteWrapper title={title} type={type}>
       <div className="flex flex-col">
         <p className="text-lg">
-          {" "}
           <span className="text-green-300">ID {id} </span>⸺ {'"'}
           {quote}
           {'"'}
@@ -35,30 +34,28 @@ export const Quote: React.FC<{
           <br />
           <p>
             Cache Node Region ⸺
-            <span className="font-bold">
-              {" "}
+            <span className="font-bold" style={{ marginLeft: "4px" }}>
               {findIATA(region)?.city ?? region}
             </span>
           </p>
           <br />
           <p>
-            Cached Modified at ⸺{" "}
-            <span className="font-bold">
-              {" "}
+            Cached Modified at ⸺
+            <span className="font-bold" style={{ marginLeft: "4px" }}>
               {new Date(lastModified).toLocaleString("en-US")}
             </span>
           </p>
           <br />
           <p>
-            Cache status ⸺{" "}
+            Cache status ⸺
             <span
               className={`font-bold ${
                 cacheStatus === "swr" || cacheStatus === "ttl"
                   ? "text-green-400"
                   : "text-red-400"
               }`}
+              style={{ marginLeft: "4px" }}
             >
-              {" "}
               {cacheStatus
                 .toUpperCase()
                 .concat(
