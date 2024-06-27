@@ -1,0 +1,4 @@
+{
+  "extends": "../.nuxt/tsconfig.server.json",
+  "exclude": ["../prisma/seed.js"]
+}
