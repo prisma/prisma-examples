@@ -1,5 +1,13 @@
 # Prisma Accelerate Example: Nuxt.js Starter
 
+## Introduction
+The quote generator typically fetches and returns a random quote from a predefined set of quotes. In the context of your Nuxtjs application, the quote generator is a service that provides quotes, potentially with some caching strategy applied to optimize performance and reduce the load on the server.
+
+## General Steps of a Quote Generator:
+- Fetch a Random Quote: It selects a random quote from a collection of quotes.
+- Apply Caching Strategy: Depending on the request, it may apply different caching strategies (e.g., TTL, SWR, or no caching).
+- Return the Quote: The selected quote is returned, possibly along with metadata about the caching status and other relevant information.
+
 This project showcases how to use Prisma ORM with Prisma Accelerate in a Nuxt.js application. It [demonstrates](./server/api/quotes.ts#L11-27) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
 
 ## Prerequisites
