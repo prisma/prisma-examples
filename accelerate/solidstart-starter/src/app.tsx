@@ -18,7 +18,7 @@ const App = () => {
   const [ttl, { loading: ttlLoading, error: ttlError }] = createResource(() => 'TTL', fetchQuotes);
   const [swr, { loading: swrLoading, error: swrError }] = createResource(() => 'SWR', fetchQuotes);
   const [both, { loading: bothLoading, error: bothError }] = createResource(() => 'TTL + SWR', fetchQuotes);
-  const [none, { loading: noneLoading, error: noneError }] = createResource(() => 'No caching', fetchQuotes);
+  const [none, { loading: noneLoading, error: noneError }] = createResource(() => 'NO CACHING', fetchQuotes);
 
   const renderQuote = (title: string, type: string, result: () => QuoteResult | undefined, loading: boolean, error: any) => (
     <Show when={!loading} fallback={<div>Loading...</div>}>
@@ -41,7 +41,7 @@ const App = () => {
         {renderQuote("Cached Quote", "TTL", ttl, ttlLoading, ttlError)}
         {renderQuote("Cached Quote", "SWR", swr, swrLoading, swrError)}
         { renderQuote("Cached Quote", "TTL + SWR", both, bothLoading, bothError)}
-        {renderQuote("Quote", "No caching", none, noneLoading, noneError)} 
+        {renderQuote("Quote", "NO CACHING", none, noneLoading, noneError)} 
       </Suspense>
       </div>
     </main>

@@ -30,4 +30,4 @@ export type QuoteResult = {
   time: number;
 };
 
-export type QuoteCacheType = "SWR" | "TTL" | "No caching" | "TTL + SWR";
+export type QuoteCacheType = "SWR" | "TTL" | "NO CACHING" | "TTL + SWR";
