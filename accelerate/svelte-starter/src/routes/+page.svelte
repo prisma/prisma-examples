@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import type { QuoteResult } from '$lib/types'
+  import type { QuoteResult } from '../lib/types'
   import Quote from '../components/Quote.svelte'
-  import { HOST } from '$lib/utils/helper'
+  import { HOST } from '../lib/utils/helper'
 
   let ttl: QuoteResult | null = null
   let swr: QuoteResult | null = null
@@ -34,8 +34,8 @@
 </script>
 
 <main class="flex min-h-screen flex-col items-center justify-start p-8 md:p-24">
-  <h1 class="text-3xl text-slate-800 dark:text-white">Accelerated Quotes</h1>
-  <p class="text-xl text-slate-800 dark:text-slate-200">
+  <h1 class="text-3xl text-slate-800">Accelerated Quotes</h1>
+  <p class="text-xl text-slate-800">
     Retrieves the most recently added quote with and without caching enabled
   </p>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-9">
