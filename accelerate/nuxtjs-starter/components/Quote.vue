@@ -7,11 +7,11 @@
 				"'
 			</p>
 			<br v-if="result?.data" />
-			<p v-if="result?.data" class="text-slate-200 text-lg font-normal text-black ">
+			<p v-if="result?.data" class="text-lg font-normal text-black ">
 				<span class="mt-3.5">Created At</span> ⸺
 				{{ formatDate(createdAt) }}
 			</p>
-			<div v-if="result?.data" class="my-2 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"></div>
+			<div v-if="result?.data" class="my-2 h-0.5 border-t-0 bg-neutral-100 opacity-100 opacity-50"></div>
 			<div v-if="result?.data">
 				<br />
 				<p>

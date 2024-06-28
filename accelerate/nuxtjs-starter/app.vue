@@ -5,11 +5,11 @@
 <template>
   <div id="app">
     <main class="flex min-h-screen flex-col items-center justify-start p-8 md:p-24">
-      <h1 class="text-3xl text-slate-800 dark:text-white">
+      <h1 class="text-3xl text-slate-800 text-black">
         Accelerated Quotes
       </h1>
       <br />
-      <p class="text-xl text-slate-800 dark:text-slate-200">
+      <p class="text-xl text-slate-800">
         Retrieves the most recently added quote with and without caching enabled
       </p>
       <br />
