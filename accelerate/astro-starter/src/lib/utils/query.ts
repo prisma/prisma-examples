@@ -19,11 +19,3 @@ export const getQuotes = async (strategy?: any) => {
     time: Date.now() - start,
   }
 }
-
-export const addQuote = async (quote: string) => {
-  return await prisma.quotes.create({
-    data: {
-      quote,
-    },
-  })
-}

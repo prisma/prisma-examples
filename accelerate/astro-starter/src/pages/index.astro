@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Quotes from '../components/Quotes.astro';
 import type { QuoteResult } from '../types/quote';
+import { HOST } from '../lib/utils/helper';
 
 let cacheStrategies: {
   ttl: QuoteResult;
@@ -17,7 +18,7 @@ let cacheStrategies: {
 
 try {
   console.log('Fetching quotes...');
-  const response = await fetch(`http://localhost:4321/route`);
+  const response = await fetch(`${HOST}/route`);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
