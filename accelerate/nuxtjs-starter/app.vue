@@ -1,7 +1,3 @@
-<!-- <template>
-  <h1>Accelerated Quote</h1>
-  <NuxtIsland name="Quote"> </NuxtIsland>
-</template> -->
 <template>
   <div id="app">
     <main class="flex min-h-screen flex-col items-center justify-start p-8 md:p-24">
