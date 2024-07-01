@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   modules: ["@prisma/nuxt", "tailwindcss", "@nuxtjs/tailwindcss"],
   prisma:{
-    autoSetupPrisma: true,
+    autoSetupPrisma: false,
   },
-  devtools: { enabled: true }
+  devtools: { enabled: false }
 })
