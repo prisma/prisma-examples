@@ -1,0 +1,27 @@
+{
+  "build": {
+    "env": {
+      "ENABLE_FILE_SYSTEM_API": "1"
+    }
+  },
+  "headers": [
+    {
+      "source": "(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self' 'unsafe-inline' gc.zgo.at; img-src 'self' data:;"
+        },
+        { "key": "X-XSS-Protection", "value": "1" }
+      ]
+    }
+  ]
+}
