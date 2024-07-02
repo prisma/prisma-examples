@@ -4,5 +4,5 @@ export default defineNuxtConfig({
   prisma:{
     autoSetupPrisma: false,
   },
-  devtools: { enabled: false }
+  devtools: { enabled: true }
 })
