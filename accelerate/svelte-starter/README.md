@@ -75,7 +75,7 @@ You can run the app with the following command:
 npm run dev
 ```
 
-You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
+You will now be able to retrieve the most recently added quote with and without caching enabled along with some stats.
 
 ![Screenshot](./demo.gif)
 
