@@ -8,7 +8,7 @@ The quote generator retrieves the most recently added quote with and without cac
 - Apply caching strategy: Depending on the request, it may apply different caching strategies (e.g., TTL, SWR, TTL+SWR or no caching).
 - Return the quote: The selected quote is returned, along with metadata about the caching status and other relevant information.
 
-This project showcases how to use Prisma ORM with Prisma Accelerate in a Sveltekit application. It [demonstrates](./src/routes/api/quotes/+server.ts#L18-33) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
+This project showcases how to use Prisma ORM with Prisma Accelerate in a Sveltekit application. It [demonstrates](./src/routes/api/quotes/+server.ts#L18-33) every available [caching strategy in Accelerate](https://www.prisma.io/docs/accelerate/caching#cache-strategies).
 
 ## Prerequisites
 
