@@ -15,7 +15,8 @@ This project showcases how to use Prisma ORM with Prisma Accelerate in a SolidSt
 To successfully run the project, you will need the following:
 
 - The **connection string** of a publicly accessible database
-- Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
+- Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/about#api-keys))
+
 
 ## Getting started
 
@@ -82,6 +83,10 @@ You can run the app with the following command:
 ```
 npm run dev
 ```
+
+You will now be able to retrieve the most recently added quote with and without caching enabled along with some stats.
+
+![Screenshot](./demo-solid.gif)
 
 You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
 
