@@ -15,7 +15,7 @@ This project showcases how to use Prisma ORM with Prisma Accelerate in a Sveltek
 To successfully run the project, you will need the following:
 
 - The **connection string** of a publicly accessible database
-- Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
+- Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/about#api-keys))
 
 ## Getting started
 
