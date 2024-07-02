@@ -1,5 +1,13 @@
 # Prisma Accelerate Example: Sveltekit Starter
 
+## Introduction
+The quote generator retrieves the most recently added quote with and without caching enabled from a predefined set of quotes. In the context of your Sveltekit application, the quote generator is a service that provides quotes, with some caching strategies applied to optimize performance and reduce the load on the database.
+
+## General Steps of the Quote Generator:
+- Fetch a quote: Retrieves the most recently added quote with and without caching enabled.
+- Apply caching strategy: Depending on the request, it may apply different caching strategies (e.g., TTL, SWR, TTL+SWR or no caching).
+- Return the quote: The selected quote is returned, along with metadata about the caching status and other relevant information.
+
 This project showcases how to use Prisma ORM with Prisma Accelerate in a Sveltekit application. It [demonstrates](./src/routes/api/quotes/+server.ts#L18-33) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
 
 ## Prerequisites
