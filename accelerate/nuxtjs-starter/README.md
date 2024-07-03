@@ -8,7 +8,7 @@ The quote generator retrieves the most recently added quote with and without cac
 - Apply caching strategy: Depending on the request, it may apply different caching strategies (e.g., TTL, SWR, TTL+SWR or no caching).
 - Return the quote: The selected quote is returned, along with metadata about the caching status and other relevant information.
 
-This project showcases how to use Prisma ORM with Prisma Accelerate in a Nuxt.js application. It [demonstrates](./server/api/quotes.ts#L11-27) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
+This project showcases how to use Prisma ORM with Prisma Accelerate in a Nuxt.js application. It [demonstrates](./server/api/quotes.ts#L11-27) every available [caching strategy in Accelerate](https://www.prisma.io/docs/accelerate/caching#cache-strategies).
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Create a `.env` in the root of the project directory:
 touch .env
 ```
 
-Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environment variables with the values of your connection string and your Accelerate connection string:
+Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environment variables with the values of your Postgres connection string and your Accelerate connection string:
 
 ```bash
 # .env
@@ -83,8 +83,14 @@ You can run the app with the following command:
 npm run dev
 ```
 
-You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
+### 6. ? Do you want to view and edit your data by installing Prisma Studio in Nuxt DevTools? › (Y/n)
+Select Y (yes) to install and use Prisma Studio in Nuxt Devtools.
 
+
+### 7. Launch the app in the browser
+Open the browser and navigate to http://localhost:3000
+
+You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
 
 ## Resources
 
