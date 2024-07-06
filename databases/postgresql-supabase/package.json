@@ -8,7 +8,7 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/node": "20.14.9",
+    "@types/node": "20.14.10",
     "prisma": "5.16.1",
     "supabase": "1.178.2",
     "ts-node": "10.9.2",
