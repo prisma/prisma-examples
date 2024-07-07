@@ -7,7 +7,7 @@
   "dependencies": {
     "@babel/runtime": "7.24.7",
     "@prisma/adapter-pg": "5.16.1",
-    "@prisma/client": "5.16.1",
+    "@prisma/client": "5.17.0-dev.18",
     "@prisma/extension-pulse": "1.1.1",
     "axios": "1.7.2",
     "dotenv-cli": "7.4.2",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "4.20240620.0",
     "@types/pg": "8.11.6",
-    "prisma": "5.16.1",
+    "prisma": "5.17.0-dev.18",
     "wrangler": "3.63.1"
   },
   "prisma": {

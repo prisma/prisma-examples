@@ -17,7 +17,7 @@
     "vue-router": "4.4.0"
   },
   "devDependencies": {
-    "@prisma/client": "5.16.1",
-    "prisma": "5.16.1"
+    "@prisma/client": "5.17.0-dev.18",
+    "prisma": "5.17.0-dev.18"
   }
 }
