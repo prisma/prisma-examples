@@ -1,6 +1,6 @@
 # Prisma Accelerate Example: Astro Starter
 
-This project showcases how to use Prisma ORM with Prisma Accelerate in a Astro application. It [demonstrates](./src/pages/route.ts#L13-16) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
+This project showcases how to use Prisma ORM with Prisma Accelerate in a Astro application. It [demonstrates](./src/pages/route.ts#L13-16) every available [caching strategy in Accelerate](https://www.prisma.io/docs/accelerate/caching#cache-strategies).
 
 ## Prerequisites
 
