@@ -95,6 +95,8 @@ Do you want to view and edit your data by installing Prisma Studio in Nuxt DevTo
 ### 6. Launch the app in the browser
 Open the browser and navigate to http://localhost:3000
 
+![Screenshot](./demo.gif)
+
 You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
 
 ## Resources
