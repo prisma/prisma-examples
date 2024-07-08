@@ -1,0 +1,12 @@
+node_modules
+.cache
+.output
+build
+public/build
+api/*
+.env
+test-results/
+playwright-report/
+.eslintcache
+
+!.env.example

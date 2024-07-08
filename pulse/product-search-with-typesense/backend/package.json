@@ -6,12 +6,12 @@
   },
   "dependencies": {
     "@babel/runtime": "7.24.7",
-    "@prisma/adapter-pg": "5.15.1",
-    "@prisma/client": "5.15.1",
+    "@prisma/adapter-pg": "5.16.1",
+    "@prisma/client": "5.16.1",
     "@prisma/extension-pulse": "1.1.1",
     "axios": "1.7.2",
     "dotenv-cli": "7.4.2",
-    "hono": "4.4.8",
+    "hono": "4.4.12",
     "pg": "8.12.0",
     "typesense": "1.8.2",
     "zod": "3.23.8"
@@ -19,8 +19,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "4.20240620.0",
     "@types/pg": "8.11.6",
-    "prisma": "5.15.1",
-    "wrangler": "3.62.0"
+    "prisma": "5.16.1",
+    "wrangler": "3.63.1"
   },
   "prisma": {
     "seed": "dotenv -e .dev.vars -- node prisma/seed.js"

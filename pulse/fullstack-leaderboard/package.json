@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "5.15.1",
+    "@prisma/client": "5.16.1",
     "@prisma/extension-pulse": "1.1.1",
     "@types/socket.io": "3.0.2",
     "next": "14.2.4",
@@ -21,16 +21,16 @@
     "socket.io-client": "4.7.5"
   },
   "devDependencies": {
-    "@types/node": "20.14.9",
+    "@types/node": "20.14.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.4",
-    "postcss": "8.4.38",
-    "prisma": "5.15.1",
+    "postcss": "8.4.39",
+    "prisma": "5.16.1",
     "tailwindcss": "3.4.4",
     "ts-node": "10.9.2",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "prisma": {
     "seed": "ts-node --project tsconfig.server.json prisma/seed.ts"
