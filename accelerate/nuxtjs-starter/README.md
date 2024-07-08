@@ -84,8 +84,7 @@ npm run dev
 ```
 
 Starting the development server will skip the prompt to install the Prisma CLI and create a
-Prisma Schema as they already exist. It will also skip the prompt to  migrate the schema changes to the database, as the migrations folder already exists from step 3. You would then
-need to agree to the prompt to install and access Prisma Studio from the Nuxt Devtools.
+Prisma Schema as they already exist. It will also skip the prompt to  migrate the schema changes to the database, as the migrations folder already exists from step 3. You would then need to agree to the prompt to install and access Prisma Studio from the Nuxt Devtools:
 
 ```
 Do you want to view and edit your data by installing Prisma Studio in Nuxt DevTools? › (Y/n)
