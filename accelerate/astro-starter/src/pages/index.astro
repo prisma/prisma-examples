@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Quotes from '../components/Quotes.astro';
+import type { QuoteResult } from '../types/quote';
+import { HOST } from '../lib/utils/helper';
+
+let cacheStrategies: {
+  ttl: QuoteResult;
+  swr: QuoteResult;
+  both: QuoteResult;
+  none: QuoteResult;
+} = {
+  ttl: { data: { id: 0, text: '', createdAt: '' }, info: { cacheStatus: '', region: '', lastModified: '' }, time: 0 },
+  swr: { data: { id: 0, text: '', createdAt: '' }, info: { cacheStatus: '', region: '', lastModified: '' }, time: 0 },
+  both: { data: { id: 0, text: '', createdAt: '' }, info: { cacheStatus: '', region: '', lastModified: '' }, time: 0 },
+  none: { data: { id: 0, text: '', createdAt: '' }, info: { cacheStatus: '', region: '', lastModified: '' }, time: 0 }
+};
+
+try {
+  console.log('Fetching quotes...');
+  const response = await fetch(`${HOST}/route`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  cacheStrategies = data.cacheStrategies;
+} catch (error) {
+  console.error('Error fetching quotes:', error);
+}
+---
+
+<Layout title="Prisma Accelerate + Astro">
+  <main class="flex min-h-screen flex-col items-center justify-start p-8 md:p-24">
+    <h1 class="text-3xl text-slate-800 dark:text-white">
+      Accelerated Quotes
+    </h1>
+    <br />
+    <p class="text-xl text-slate-800 dark:text-slate-200">
+      Retrieves the most recently added quote with and without caching enabled
+    </p>
+    <br />
+    <button id="refresh-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Refresh
+    </button>
+    <br />
+    <Quotes cacheStrategies={cacheStrategies} />
+  </main>
+</Layout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+	  const refreshButton = document.getElementById('refresh-button');
+	  if (refreshButton !== null) {
+		refreshButton.addEventListener('click', () => {
+		  window.location.reload();
+		});
+	  }
+	});
+  </script>

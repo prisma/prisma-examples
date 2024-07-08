@@ -1,0 +1,99 @@
+---
+import type { QuoteResult } from '../types/quote';
+
+interface Props {
+  title: string;
+  type: string;
+  result: QuoteResult;
+}
+
+const { title, type, result } = Astro.props;
+const { data, info, time } = result;
+---
+
+<div class="quote-wrapper w-full h-full bg-white border border-gray-200 rounded-lg shadow p-4 dark:bg-gray-800 dark:border-gray-700">
+  <div class="header flex items-center justify-between">
+    <h5 class="title text-xl font-bold leading-none text-gray-900 dark:text-white">
+      {title}
+    </h5>
+    <div class="spacer w-16"></div>
+    <p class="type text-xl font-medium text-blue-600 dark:text-blue-500">
+      {type}
+    </p>
+  </div>
+  <div class="content flex flex-col">
+    <p class="quote text-lg">
+      <span class="text-green-300">ID {data.id} </span>⸺ {'"'}
+      {data.text}
+      {'"'}
+    </p>
+    <br />
+    <p class="created-at text-slate-200 text-lg">
+      <span class="font-bold mt-3.5">Created At</span> ⸺
+      {new Date(data.createdAt).toLocaleString("en-US")}
+    </p>
+
+    <div class="divider my-2 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50"></div>
+
+    <div class="details">
+      <br />
+      <p class="region">
+        Cache Node Region ⸺
+        <span class="font-bold">
+          {info.region}
+        </span>
+      </p>
+      <br />
+      <p class="last-modified">
+        Cached Modified at ⸺
+        <span class="font-bold">
+          {new Date(info.lastModified).toLocaleString("en-US")}
+        </span>
+      </p>
+      <br />
+      <p class="cache-status">
+        Cache status ⸺
+        <span class={`font-bold ${info.cacheStatus === "swr" || info.cacheStatus === "ttl" ? "text-green-400" : "text-red-400"}`}>
+          {info.cacheStatus.toUpperCase().concat(info.cacheStatus === "swr" || info.cacheStatus === "ttl" ? " CACHE HIT" : "")}
+        </span>
+      </p>
+      <br />
+      <p class="time-taken">
+        Time taken: <span class="font-bold"> {time}ms</span>
+      </p>
+      <br />
+    </div>
+  </div>
+</div>
+
+<style>
+.quote-wrapper {
+  background-color: #1a202c; /* Match the dark background */
+  border-color: #2d3748; /* Match the border color */
+}
+.header {
+  color: #e2e8f0; /* Light text color */
+}
+.title {
+  color: #a0aec0; /* Adjust title color */
+}
+.type {
+  color: #63b3ed; /* Adjust type color */
+}
+.content {
+  color: #e2e8f0; /* Light text color */
+}
+.quote {
+  color: #f7fafc; /* Light quote color */
+}
+.created-at,
+.region,
+.last-modified,
+.cache-status,
+.time-taken {
+  color: #cbd5e0; /* Adjust detail text colors */
+}
+.divider {
+  background-color: #4a5568; /* Adjust divider color */
+}
+</style>
