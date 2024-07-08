@@ -83,11 +83,16 @@ You can run the app with the following command:
 npm run dev
 ```
 
-### 6. ? Do you want to view and edit your data by installing Prisma Studio in Nuxt DevTools? › (Y/n)
-Select Y (yes) to install and use Prisma Studio in Nuxt Devtools.
+Starting the development server will skip the prompt to install the Prisma CLI and create a
+Prisma Schema as they already exist. It will also skip the prompt to  migrate the schema changes to the database, as the migrations folder already exists from step 3. You would then
+need to agree to the prompt to install and access Prisma Studio from the Nuxt Devtools.
 
+```
+Do you want to view and edit your data by installing Prisma Studio in Nuxt DevTools? › (Y/n)
+  Select Y (yes) to install and use Prisma Studio in Nuxt Devtools.
+```
 
-### 7. Launch the app in the browser
+### 6. Launch the app in the browser
 Open the browser and navigate to http://localhost:3000
 
 You can see the performance and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
