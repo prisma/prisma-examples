@@ -3,7 +3,7 @@ import prisma from '../../pages/db.ts'
 export const getQuotes = async (strategy?: any) => {
   const start = Date.now()
 
-  const result = await prisma.quotes
+  const result = await prisma.quote
     .findMany({
       cacheStrategy: strategy,
       orderBy: {

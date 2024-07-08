@@ -1,6 +1,6 @@
 # Prisma Accelerate Example: Astro Starter
 
-This project showcases how to use Prisma ORM with Prisma Accelerate in a Astro application. It [demonstrates](././src/pages/route.ts#L13-16) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
+This project showcases how to use Prisma ORM with Prisma Accelerate in a Astro application. It [demonstrates](./src/pages/route.ts#L13-16) every available [caching strategy in Accelerate](https://www.prisma.io/docs/data-platform/accelerate/concepts#cache-strategies).
 
 ## Prerequisites
 
@@ -38,21 +38,21 @@ Now, open the `.env` file and set the `DIRECT_URL` and `DATABASE_URL` environmen
 DATABASE_URL="__YOUR_ACCELERATE_CONNECTION_STRING__"
 
 # Database connection string (used for migrations by Prisma Migrate)
-DIRECT_DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+DIRECT_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 
 ```
 
 Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_ACCELERATE_CONNECTION_STRING__` are placeholder values that you need to replace with the values of your database and Accelerate connection strings. Notice that the Accelerate connection string has the following structure: `prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__`.
 
-### 3. Run a migration to create the `Quotes` table and seed the database
+### 3. Run a migration to create the `Quote` table and seed the database
 
-The Prisma schema file contains a single `Quotes` model. You can map this model to the database and create the corresponding `Quotes` table using the following command:
+The Prisma schema file contains a single `Quote` model. You can map this model to the database and create the corresponding `Quote` table using the following command:
 
 ```
 npx prisma migrate dev --name init
 ```
 
-You now have an empty `Quotes` table in your database. Next, run the [seed script](./prisma/seed.ts) to create some sample records in the table:
+You now have an empty `Quote` table in your database. Next, run the [seed script](./prisma/seed.ts) to create some sample records in the table:
 
 ```
 npx prisma db seed
@@ -86,7 +86,7 @@ Optionally, to add your own quote and see the caching strategies in action, you 
 npx prisma studio
 ```
 
-Once the Prisma Studio is running, you can add a new quote by clicking on the `Quotes` table and then the `Add Record` button as shown in the screenshot below.
+Once the Prisma Studio is running, you can add a new quote by clicking on the `Quote` table and then the `Add Record` button as shown in the screenshot below.
 
 ![Prisma Studio](./Prisma-Studio-Image.png)
 

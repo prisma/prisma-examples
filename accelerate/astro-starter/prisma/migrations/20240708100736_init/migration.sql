@@ -1,8 +1,8 @@
 -- CreateTable
-CREATE TABLE "Quotes" (
+CREATE TABLE "Quote" (
     "id" SERIAL NOT NULL,
-    "quote" TEXT NOT NULL,
+    "text" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "Quotes_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Quote_pkey" PRIMARY KEY ("id")
 );

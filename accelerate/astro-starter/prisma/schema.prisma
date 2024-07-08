@@ -11,8 +11,8 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Quotes {
+model Quote {
   id        Int      @id @default(autoincrement())
-  quote     String
+  text      String
   createdAt DateTime @default(now())
 }

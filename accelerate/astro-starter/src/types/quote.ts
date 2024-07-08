@@ -1,6 +1,7 @@
 export interface QuoteData {
+  [x: string]: unknown
   id: number
-  quote: string
+  text: string
   createdAt: string
 }
 
