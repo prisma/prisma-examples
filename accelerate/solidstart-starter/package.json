@@ -13,7 +13,7 @@
     "@solidjs/start": "1.0.4",
     "solid-js": "1.8.18",
     "tsx": "4.16.2",
-    "vinxi": "0.3.14",
+    "vinxi": "0.4.0",
     "zod": "3.23.8"
   },
   "engines": {
