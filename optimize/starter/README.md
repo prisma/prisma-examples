@@ -1,228 +1,93 @@
 # Simple TypeScript Script Example
 
-This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **simple TypeScript script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This repository demonstrates how to setup and use [Prisma Optimize](https://pris.ly/optimize).
+
+## Prerequisites
+
+To successfully run the project, you will need the following:
+
+1. The **database connection string** that is supported by Prisma Optimize.
+2. An active [Prisma Data Platform](https://pris.ly/pdp) account.
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Clone the respository
 
-Download this example:
+Clone the repository, navigate into it and install dependencies:
 
-```
-npx try-prisma@latest --template typescript/script
-```
-
-Install npm dependencies:
-
-```
-cd script
-npm install
-```
-
-<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
-
-Clone this repository:
-
-```
+```terminal
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-```
-
-Install npm dependencies:
-
-```
-cd prisma-examples/typescript/script
+cd prisma-examples/optimize/starter
 npm install
 ```
 
-</details>
+### 2. Configure environment variables
 
-### 2. Create the database
+Create a `.env` in the root of the project directory:
 
-Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
-
-```
-npx prisma migrate dev --name init
+```terminal
+touch .env
 ```
 
-### 3. Run the script
+Now, open the `.env` file and update the `DATABASE_URL` environment variable with the value of your connection string:
 
-Execute the script with this command:
-
-```
-npm run dev
-```
-
-## Evolving the app
-
-Evolving the application typically requires two steps:
-
-1. Migrate your database using Prisma Migrate
-1. Update your application code
-
-For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
-
-### 1. Migrate your database using Prisma Migrate
-
-The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
-
-```diff
-// schema.prisma
-
-model Post {
-  id        Int     @default(autoincrement()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
-
-model User {
-  id      Int      @default(autoincrement()) @id
-  name    String?
-  email   String   @unique
-  posts   Post[]
-+ profile Profile?
-}
-
-+model Profile {
-+  id     Int     @default(autoincrement()) @id
-+  bio    String?
-+  userId Int     @unique
-+  user   User    @relation(fields: [userId], references: [id])
-+}
+```env
+# .env
+DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+# Note that __YOUR_DATABASE_CONNECTION_STRING__  is a placeholder value that you need to replace with the values of your connection string.
 ```
 
-Once you've updated your data model, you can execute the changes against your database with the following command:
+## 3. Setup the project
 
-```
-npx prisma migrate dev
-```
+You have to migrate the database for the project to work:
 
-### 2. Update your application code
-
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
-
-#### Create a new profile for an existing user
-
-```ts
-const profile = await prisma.profile.create({
-  data: {
-    bio: "Hello World",
-    user: {
-      connect: { email: "alice@prisma.io" },
-    },
-  },
-});
+```terminal
+npx prisma migrate dev --init
 ```
 
-#### Create a new user with a new profile
+Then, you have to seed the database so that you have placeholder variables using:
 
-```ts
-const user = await prisma.user.create({
-  data: {
-    email: "john@prisma.io",
-    name: "John",
-    profile: {
-      create: {
-        bio: "Hello World",
-      },
-    },
-  },
-});
+```terminal
+npx prisma db seed
 ```
 
-#### Update the profile of an existing user
+## 4. Open the Optimize dashboard
 
-```ts
-const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: "alice@prisma.io" },
-  data: {
-    profile: {
-      update: {
-        bio: "Hello Friends",
-      },
-    },
-  },
-});
-```
+You'll be able to create [recordings](https://pris.ly/optimize-recordings) and see the details of your queries along with optimization [recommendations](https://pris.ly/optimize-recommendations) to improve the queries in the Optimize dashboard. To access the dashboard:
 
+1. Login to Prisma Data Platform by navigating to [this link](pris.ly/pdp).
+2. Navigate to the [Optimize dashboard](https://optimize-dev-dev.prisma.workers.dev/).
 
-## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
+## 5. Run the scripts
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+Let's first run the [script with unoptimized Prisma queries](./script.ts):
 
-Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
+1. Navigate to the Optimize dashboard.
+2. Click on the **Start new recording** button.
+3. In the project terminal, run the project with:
+    ```terminal
+    npm run dev
+    ```
+4. After the script completes, click the **Stop recording** button.
+5. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab.
+6. Rename the recording by clicking on the recording chip in the top right corner and typing "Unoptimized queries".
+    ![Rename recording](./images/edit-recording-name-chip.png)
 
-<details><summary>Expand for an overview of example configurations with different databases</summary>
+Next, let's run [the script with optimized Prisma queries](./optimized-script.ts):
 
-### PostgreSQL
+1. Click the **Start new recording** button to begin a new recording.
+2. In the project terminal, run the project with:
+    ```terminal
+    npm run dev-optimized
+    ```
+3. After the script completes, click the **Stop recording** button.
+4. Observe the reduced query latencies highlighted in green.
+5. Rename the recording by clicking on the recording chip in the top right corner and typing "Optimized queries".
 
-For PostgreSQL, the connection URL has the following structure:
-
-```prisma
-datasource db {
-  provider = "postgresql"
-  url      = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
-}
-```
-
-Here is an example connection string with a local PostgreSQL database:
-
-```prisma
-datasource db {
-  provider = "postgresql"
-  url      = "postgresql://janedoe:mypassword@localhost:5432/notesapi?schema=public"
-}
-```
-
-### MySQL
-
-For MySQL, the connection URL has the following structure:
-
-```prisma
-datasource db {
-  provider = "mysql"
-  url      = "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
-}
-```
-
-Here is an example connection string with a local MySQL database:
-
-```prisma
-datasource db {
-  provider = "mysql"
-  url      = "mysql://janedoe:mypassword@localhost:3306/notesapi"
-}
-```
-
-### Microsoft SQL Server
-
-Here is an example connection string with a local Microsoft SQL Server database:
-
-```prisma
-datasource db {
-  provider = "sqlserver"
-  url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
-}
-```
-
-### MongoDB
-
-Here is an example connection string with a local MongoDB database:
-
-```prisma
-datasource db {
-  provider = "mongodb"
-  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
-}
-```
-
-</details>
+You can now compare the performance differences by observing the query latencies in the "Optimized queries" and "Unoptimized queries" recordings tabs.
 
 ## Next steps
 
-- Check out the [Prisma docs](https://www.prisma.io/docs)
+- Check out the [Optimize docs](https://pris.ly/d/optimize)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-

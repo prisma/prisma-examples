@@ -8,6 +8,19 @@ const main = async () => {
   await prisma.post.deleteMany({})
   await prisma.user.deleteMany({})
 
+  await prisma.user.create({
+    data: {
+        name: "Nikolas Burk",
+        email: "niko@gmail.com",
+        posts: {
+            create: {
+                title: "The great gatsby",
+                content: "The story had a nice ending."
+            }
+        }
+    }
+  })
+
   for (let index = 0; index < TOTAL; index++) {
     await prisma.user.create({
       data: {

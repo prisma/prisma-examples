@@ -5,8 +5,10 @@ async function main() {
   // A simple query to create the database connection as the database connection usually takes a lot of time
   await prisma.user.findFirst()
 
-  // Query 1: A findMany operation
-  await prisma.user.findMany();
+  // Query 1: An optimized findMany operation with pagination
+  await prisma.user.findMany({
+    take: 10
+  });
 }
 
 main()
