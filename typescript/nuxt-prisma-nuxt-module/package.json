@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@prisma/nuxt": "0.0.30",
-    "nuxt": "3.12.3",
+    "nuxt": "3.12.4",
     "vue": "3.4.32",
     "vue-router": "4.4.0"
   },
