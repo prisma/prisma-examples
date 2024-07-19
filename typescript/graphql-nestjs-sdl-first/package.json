@@ -70,7 +70,7 @@
     "prettier": "3.3.3",
     "prisma": "5.16.1",
     "supertest": "7.0.0",
-    "ts-jest": "29.2.2",
+    "ts-jest": "29.2.3",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",

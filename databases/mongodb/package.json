@@ -25,7 +25,7 @@
     "@types/node": "20.14.11",
     "jest": "29.7.0",
     "prisma": "5.16.1",
-    "ts-jest": "29.2.2",
+    "ts-jest": "29.2.3",
     "ts-node": "10.9.2",
     "typescript": "5.5.3"
   }
