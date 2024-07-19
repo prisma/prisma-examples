@@ -17,7 +17,7 @@
     "@prisma/client": "5.16.1",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
-    "graphql-yoga": "5.6.0",
+    "graphql-yoga": "5.6.1",
     "next": "14.2.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
