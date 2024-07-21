@@ -1,4 +1,4 @@
-# Simple TypeScript Script Example
+# Prisma Optimize example
 
 This repository demonstrates how to setup and use [Prisma Optimize](https://pris.ly/optimize).
 
@@ -39,13 +39,13 @@ DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 
 ## 3. Setup the project
 
-You have to migrate the database for the project to work:
+Perform a database migration for the project to work:
 
 ```terminal
-npx prisma migrate dev --init
+npx prisma migrate dev --name init
 ```
 
-Then, you have to seed the database so that you have placeholder variables using:
+Then, fill your database with some values by running the [seed script](./prisma/seed.ts):
 
 ```terminal
 npx prisma db seed
@@ -56,35 +56,108 @@ npx prisma db seed
 You'll be able to create [recordings](https://pris.ly/optimize-recordings) and see the details of your queries along with optimization [recommendations](https://pris.ly/optimize-recommendations) to improve the queries in the Optimize dashboard. To access the dashboard:
 
 1. Login to Prisma Data Platform by navigating to [this link](https://pris.ly/pdp).
-2. Navigate to the [Optimize dashboard](https://optimize-dev-dev.prisma.workers.dev/).
+2. Navigate to the [Optimize dashboard](https://optimize.prisma.io/).
 
-## 5. Run the scripts
+## 5. Run the script
 
 Let's first run the [script with unoptimized Prisma queries](./script.ts):
 
 1. Navigate to the Optimize dashboard.
 2. Click on the **Start new recording** button.
 3. In the project terminal, run the project with:
-    ```terminal
-    npm run dev
-    ```
+
+   ```terminal
+   npm run dev
+   ```
+
 4. After the script completes, click the **Stop recording** button.
-5. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab.
-6. Rename the recording by clicking on the recording chip in the top right corner and typing "Unoptimized queries".
-    ![Rename recording](./images/edit-recording-name-chip.png)
+5. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see three recommendations:
+   1. **Excessive number of rows returned**
+   2. **Query filtering on an unindexed column**
+   3. **Full table scans caused by LIKE operations**
+6. Rename the recording to _Unoptimized queries_ by clicking on the recording chip in the top left corner and typing "Unoptimized queries", so that you have a reference to it for comparison with other recordings.
+   ![Rename recording](./images/edit-recording-name-chip.png)
 
-Next, let's run [the script with optimized Prisma queries](./optimized-script.ts):
+### Using the recommendations to improve query performance
 
-1. Click the **Start new recording** button to begin a new recording.
-2. In the project terminal, run the project with:
-    ```terminal
-    npm run dev-optimized
-    ```
-3. After the script completes, click the **Stop recording** button.
-4. Observe the reduced query latencies highlighted in green.
-5. Rename the recording by clicking on the recording chip in the top right corner and typing "Optimized queries".
+Next, let's follow the recommendations provided by Optimize to improve the performance of the queries:
 
-You can now compare the performance differences by observing the query latencies in the "Optimized queries" and "Unoptimized queries" recordings tabs.
+1. To improve the performance of [**Query 1**](./script.ts) and apply the recommendation of [**Excessive number of rows returned**](https://pris.ly/optimize/r/execessive-rows), add a `take` option to the query:
+
+   ```typescript
+   await prisma.user.findMany({
+     take: 10,
+   })
+   ```
+
+2. To improve the performance of [**Query 2**](./script.ts) to [**Query 4**](./script.ts) and apply the recommendation of [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column), create an `index` on the `name` column (as the `name` column is commonly used in the queries) in the `User` model in the [`schema.prisma`](./prisma/schema.prisma) file:
+
+   ```typescript
+   model User {
+      id    Int     @id @default(autoincrement())
+      email String  @unique
+      name  String?
+      posts Post[]
+      @@index(name)
+    }
+   ```
+
+   Then migrate the changes to your database using:
+
+   ```terminal
+   npx prisma migrate dev --name create-name-index-on-user-model
+   ```
+
+3. To improve the performance of [**Query 5**](./script.ts) and apply the recommendation of [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/unindexed-column), create a new optional column `contentSuffix` in the Post model and index it in the [schema.prisma](./prisma/schema.prisma) file:
+
+   ```diff
+   model Post {
+     id        Int      @id @default(autoincrement())
+     title     String
+     content   String?
+   +  contentEndsWith String?
+     published Boolean  @default(false)
+     author    User?    @relation(fields: [authorId], references: [id])
+     authorId  Int?
+   +  @@index(contentEndsWith)
+   }
+   ```
+
+   Then migrate the changes to your database using:
+
+   ```terminal
+   npx prisma migrate dev --name add-indexed-suffix-column-on-post-model
+   ```
+
+   Then run the [copySuffixes script](./copySuffixes.ts) to copy suffixes from the existing content to the `contentEndsWith` column:
+
+   ```terminal
+   npm run copy-suffixes
+   ```
+
+   Then refactor the code in the [script.ts](./script.ts) file:
+
+   ```diff
+   // Query 5
+    await prisma.post.findFirst({
+     where: {
+   -    content: {
+   -      endsWith: 'ending.',
+   -    },
+   +    contentEndsWith: 'ending.',
+     },
+   })
+   ```
+
+4. Click the **Start new recording** button to begin a new recording.
+5. In the project terminal, run the project with:
+   ```terminal
+   npm run dev
+   ```
+6. After the script completes, click the **Stop recording** button.
+7. Rename the recording to _Optimized queries_, by clicking on the recording chip in the top left corner and typing "Optimized queries".
+
+You can now compare the performance improvements, by navigating and observing the query latency differences in the "Optimized queries" and "Unoptimized queries" recordings tabs.
 
 ## Next steps
 

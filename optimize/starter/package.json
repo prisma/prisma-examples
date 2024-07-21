@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node ./script.ts",
-    "dev-optimized": "ts-node ./optimized-script.ts"
+    "copy-suffixes": "ts-node ./copySuffixes.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
