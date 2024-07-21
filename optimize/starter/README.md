@@ -55,7 +55,7 @@ npx prisma db seed
 
 You'll be able to create [recordings](https://pris.ly/optimize-recordings) and see the details of your queries along with optimization [recommendations](https://pris.ly/optimize-recommendations) to improve the queries in the Optimize dashboard. To access the dashboard:
 
-1. Login to Prisma Data Platform by navigating to [this link](pris.ly/pdp).
+1. Login to Prisma Data Platform by navigating to [this link](https://pris.ly/pdp).
 2. Navigate to the [Optimize dashboard](https://optimize-dev-dev.prisma.workers.dev/).
 
 ## 5. Run the scripts
