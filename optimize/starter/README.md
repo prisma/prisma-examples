@@ -72,9 +72,9 @@ Let's first run the [script with unoptimized Prisma queries](./script.ts):
 
 4. After the script completes, click the **Stop recording** button.
 5. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see three recommendations:
-   1. **Excessive number of rows returned**
-   2. **Query filtering on an unindexed column**
-   3. **Full table scans caused by LIKE operations**
+   - **Excessive number of rows returned**
+   - **Query filtering on an unindexed column**
+   - **Full table scans caused by LIKE operations**
 6. Rename the recording to _Unoptimized queries_ by clicking on the recording chip in the top left corner and typing "Unoptimized queries", so that you have a reference to it for comparison with other recordings.
    ![Rename recording](./images/edit-recording-name-chip.png)
 
