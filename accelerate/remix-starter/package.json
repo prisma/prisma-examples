@@ -52,7 +52,7 @@
     "@remix-run/dev": "2.10.3",
     "@remix-run/eslint-config": "2.10.3",
     "@remix-run/testing": "2.10.3",
-    "@testing-library/jest-dom": "6.4.6",
+    "@testing-library/jest-dom": "6.4.7",
     "@testing-library/react": "16.0.0",
     "@types/accept-language-parser": "1.5.6",
     "@types/lodash": "4.17.7",
