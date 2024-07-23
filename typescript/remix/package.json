@@ -27,7 +27,7 @@
     "eslint": "8.57.0",
     "prisma": "5.16.1",
     "ts-node": "10.9.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "engines": {
     "node": "21.7.3"

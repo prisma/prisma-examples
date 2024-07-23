@@ -25,7 +25,7 @@
     "react-dom": "18.3.1",
     "react-hot-toast": "2.4.1",
     "tailwindcss": "3.4.6",
-    "typescript": "5.5.3",
+    "typescript": "5.5.4",
     "zod": "3.23.8"
   },
   "devDependencies": {
