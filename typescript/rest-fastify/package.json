@@ -10,7 +10,7 @@
     "fastify": "4.28.1"
   },
   "devDependencies": {
-    "@types/node": "20.14.11",
+    "@types/node": "20.14.12",
     "prisma": "5.16.1",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"
