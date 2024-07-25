@@ -92,13 +92,13 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
 
 2. To improve the performance of [**Query 2**](./script.ts) to [**Query 4**](./script.ts) and apply the recommendation of [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column), create an `index` on the `name` column (as the `name` column is commonly used in the queries) in the `User` model in the [`schema.prisma`](./prisma/schema.prisma) file:
 
-   ```typescript
+   ```diff
    model User {
       id    Int     @id @default(autoincrement())
       email String  @unique
       name  String?
       posts Post[]
-      @@index(name)
+   +  @@index(name)
     }
    ```
 
@@ -108,28 +108,27 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
    npx prisma migrate dev --name create-name-index-on-user-model
    ```
 
-3. To improve the performance of [**Query 5**](./script.ts) and apply the recommendation of [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/unindexed-column), create a new optional column `contentSuffix` in the Post model and index it in the [schema.prisma](./prisma/schema.prisma) file:
+3. To improve the performance of [**Query 5**](./script.ts) and apply the recommendation of [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/full-table-scan), create a new optional column `emailDomain` in the User model and index it in the [schema.prisma](./prisma/schema.prisma) file:
 
    ```diff
-   model Post {
-     id        Int      @id @default(autoincrement())
-     title     String
-     content   String?
-   +  contentEndsWith String?
-     published Boolean  @default(false)
-     author    User?    @relation(fields: [authorId], references: [id])
-     authorId  Int?
-   +  @@index(contentEndsWith)
+   model User {
+      id    Int     @id @default(autoincrement())
+      email String  @unique
+   +  emailDomain String?
+      name  String?
+      posts Post[]
+      @@index(name)
+   +  @@index(emailDomain)
    }
    ```
 
    Then migrate the changes to your database using:
 
    ```terminal
-   npx prisma migrate dev --name add-indexed-suffix-column-on-post-model
+   npx prisma migrate dev --name add-indexed-email-domain-column-on-user-model
    ```
 
-   Then run the [copySuffixes script](./copySuffixes.ts) to copy suffixes from the existing content to the `contentEndsWith` column:
+   Then run the [copySuffixes script](./copySuffixes.ts) to copy the domains of the emails from the existing content to the new `emailDomain` column:
 
    ```terminal
    npm run copy-suffixes
@@ -139,12 +138,12 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
 
    ```diff
    // Query 5
-    await prisma.post.findFirst({
+    await prisma.user.findFirst({
      where: {
-   -    content: {
-   -      endsWith: 'ending.',
+   -    email: {
+   -      endsWith: 'gmail.com',
    -    },
-   +    contentEndsWith: 'ending.',
+   +    emailDomain: 'gmail.com',
      },
    })
    ```

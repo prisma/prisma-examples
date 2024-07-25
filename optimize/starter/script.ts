@@ -34,10 +34,10 @@ async function main() {
   })
 
   // Query 5
-  await prisma.post.findFirst({
+  await prisma.user.findFirst({
     where: {
-      content: {
-        endsWith: 'ending.',
+      email: {
+        endsWith: 'gmail.com',
       },
     },
   })

@@ -3,28 +3,23 @@ import { PrismaClient } from '@prisma/client'
 const main = async () => {
   const prisma = new PrismaClient()
 
-  const posts = await prisma.post.findMany({
+  const users = await prisma.user.findMany({
     where: {
-      content: {
-        not: null,
-      },
-      contentEndsWith: null,
+      emailDomain: null,
     },
   })
 
-  for (let post of posts) {
-    const contentArr = post.content?.split(' ')
+  for (let user of users) {
+    const arr = user.email?.split('@')
 
-    const lastContent = contentArr?.[contentArr?.length - 1]
+    const provider = arr?.[arr?.length - 1]
 
-    console.log(lastContent)
-
-    await prisma.post.update({
+    await prisma.user.update({
       where: {
-        id: post.id,
+        id: user.id,
       },
       data: {
-        contentEndsWith: lastContent,
+        emailDomain: provider,
       },
     })
   }
@@ -32,6 +27,6 @@ const main = async () => {
 
 main()
   .then(() => {
-    console.log('Suffixes moved.')
+    console.log('Email providers copied.')
   })
   .catch(console.log)

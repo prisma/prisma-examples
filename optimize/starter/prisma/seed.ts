@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker'
 
 const prisma = new PrismaClient()
-const TOTAL = 100
+const TOTAL = 5000
 
 const main = async () => {
   await prisma.post.deleteMany({})
@@ -11,7 +11,7 @@ const main = async () => {
   for (let index = 0; index < TOTAL - 1; index++) {
     await prisma.user.create({
       data: {
-        email: faker.internet.email(),
+        email: `${Math.round(Math.random() * 1000)}${faker.internet.email()}`,
         name: faker.internet.displayName(),
         posts: {
           create: {
@@ -23,7 +23,7 @@ const main = async () => {
       },
     })
 
-    console.log(`Inserted ${index}/${TOTAL} item.`)
+    console.log(`Inserted ${index + 1}/${TOTAL} item.`)
   }
 
   await prisma.user.create({
@@ -39,7 +39,7 @@ const main = async () => {
     },
   })
 
-  console.log(`Inserted ${100}/${TOTAL} item.`)
+  console.log(`Inserted ${5000}/${TOTAL} item.`)
 }
 
 main().then(() => console.log('🌿 Seeding completed.'))
