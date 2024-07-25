@@ -64,7 +64,13 @@ The [`pulse`](./pulse) folder contains examples of projects using [Prisma Pulse]
 | [`product-search-with-typesense`](./pulse/product-search-with-typesense) | A cron job that syncs data into Typesense (built with Hono.js)           |
 | [`data-sync-with-bigquery`](./pulse/data-sync-with-bigquery)             | A script that automatically syncs data into Google BigQuery              |
 
+## Prisma Optimize
 
+The [`optimize`](./optimize) folder contains examples of projects using [Prisma Optimize](https://www.prisma.io/data-platform/optimize) to analyze and improve query performance.
+
+| Demo                                                                     | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`starter`](./optimize/starter)                                             | A Prisma Optimize starter app                                               |
 
 ## Prisma ORM (TypeScript)
 
