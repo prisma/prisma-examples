@@ -32,7 +32,7 @@
     "@types/cors": "2.8.17",
     "@types/express": "4.17.21",
     "@types/node": "20.14.13",
-    "@types/ws": "8.5.11",
+    "@types/ws": "8.5.12",
     "prisma": "5.16.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
