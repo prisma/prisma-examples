@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "basic-typedsql",
+  "description": "A simple TypedSQL example",
+  "main": "index.ts",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "scripts": {
+    "dbpush": "prisma db push --skip-generate",
+    "generate": "prisma generate",
+    "test": "tsx index.ts",
+    "debug": "tsx index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "5.18.0-integration-feat-typed-sql.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.18.9",
+    "prisma": "5.18.0-integration-feat-typed-sql.1",
+    "tsx": "4.16.5"
+  }
+}
