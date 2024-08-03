@@ -13,7 +13,7 @@
     "@cloudflare/workers-types": "4.20240729.0",
     "prisma": "5.16.1",
     "typescript": "5.5.4",
-    "vitest": "1.6.0",
+    "vitest": "2.0.5",
     "wrangler": "3.68.0"
   },
   "dependencies": {
