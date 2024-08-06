@@ -26,7 +26,7 @@
     "@types/react-dom": "18.3.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
-    "postcss": "8.4.40",
+    "postcss": "8.4.41",
     "prisma": "5.17.0",
     "tailwindcss": "3.4.7",
     "ts-node": "10.9.2",
