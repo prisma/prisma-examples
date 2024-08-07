@@ -14,7 +14,7 @@
     "@prisma/nuxt": "0.0.35",
     "nuxt": "3.12.4",
     "vue": "3.4.36",
-    "vue-router": "4.4.2"
+    "vue-router": "4.4.3"
   },
   "devDependencies": {
     "@prisma/client": "5.17.0",
