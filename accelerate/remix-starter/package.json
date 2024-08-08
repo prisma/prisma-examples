@@ -82,7 +82,7 @@
     "ts-node": "10.9.2",
     "tsx": "4.16.5",
     "typescript": "5.5.4",
-    "vite": "5.3.5",
+    "vite": "5.4.0",
     "vite-tsconfig-paths": "4.3.2",
     "vitest": "2.0.5"
   },
