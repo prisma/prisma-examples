@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "3.2.4",
-    "@sveltejs/kit": "2.5.21",
+    "@sveltejs/kit": "2.5.22",
     "prisma": "5.18.0",
     "svelte": "4.2.18",
     "vite": "5.4.0"
