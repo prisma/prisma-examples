@@ -45,11 +45,6 @@ Perform a database migration for the project to work:
 npx prisma migrate dev --name init
 ```
 
-Then, fill your database with some values by running the [seed script](./prisma/seed.ts):
-
-```terminal
-npx prisma db seed
-```
 
 ## 4. Open the Optimize dashboard
 
