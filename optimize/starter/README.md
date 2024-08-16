@@ -7,7 +7,7 @@ This repository demonstrates how to setup and use [Prisma Optimize](https://pris
 To successfully run the project, you will need the following:
 
 1. The **database connection string** that is supported by Prisma Optimize.
-2. An active [Prisma Data Platform](https://pris.ly/pdp) account.
+2. An Optimize API key which you can get from your [Prisma Data Platform](https://pris.ly/pdp) account.
 
 ## Getting started
 
@@ -26,16 +26,20 @@ npm install
 Create a `.env` in the root of the project directory:
 
 ```terminal
-touch .env
+cp .env.example .env
 ```
 
-Now, open the `.env` file and update the `DATABASE_URL` environment variable with the value of your connection string:
+Now, open the `.env` file and update the `DATABASE_URL` and `OPTIMIZE_API_KEY` environment variable with the value of your connection string:
 
 ```env
 # .env
 DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 # Note that __YOUR_DATABASE_CONNECTION_STRING__  is a placeholder value that you need to replace with the values of your connection string.
+OPTIMIZE_API_KEY="your_secure_optimize_api_key"
 ```
+
+- `DATABASE_URL`: The connection string to your database.
+- `OPTIMIZE_API_KEY`: Reference the [Environment API Keys](https://www.prisma.io/docs/platform/about#environment) section in our documentation to learn how get an API key for your project using Optimize.
 
 ## 3. Setup the project
 
@@ -44,7 +48,6 @@ Perform a database migration for the project to work:
 ```terminal
 npx prisma migrate dev --name init
 ```
-
 
 ## 4. Open the Optimize dashboard
 
@@ -70,6 +73,7 @@ Let's first run the [script with unoptimized Prisma queries](./script.ts):
    - **Excessive number of rows returned**
    - **Query filtering on an unindexed column**
    - **Full table scans caused by LIKE operations**
+     > For more insights on a specific recommendation, click the **Ask AI** button and interact with the AI Explainer chatbot
 6. Rename the recording to _Unoptimized queries_ by clicking on the recording chip in the top left corner and typing "Unoptimized queries", so that you have a reference to it for comparison with other recordings.
    ![Rename recording](./images/edit-recording-name-chip.png)
 
