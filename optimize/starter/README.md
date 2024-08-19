@@ -22,4 +22,4 @@ To get started, follow these steps:
 1. Run `npm start` from project root.
 1. Open the demo app @ http://localhost:5174 in the browser. Perform a bunch of actions - add a Todo, mark a Todo as complete, delete a Todo, etc.
 1. Go back to the Optimize dashboard and click the "Stop recording" button.
-1. Enjoy some sweet queries, groups, and most importantly recommendations with our friendly _Ask Justin_ AI chat.
+1. Enjoy some sweet queries, groups, and most importantly recommendations with our friendly AI chat.
