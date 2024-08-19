@@ -10,15 +10,37 @@ To successfully run the project, you will need the following:
 
 ## Getting started
 
-### 1. Clone the respository
+### 1. Download example and install dependencies
 
-Clone the repository, navigate into it and install dependencies:
+Download this example:
+
+```
+npx try-prisma@latest --template typescript/starter
+```
+
+Install npm dependencies:
+
+```
+cd starter
+npm install
+```
+
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
+
+Clone this repository:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
+```
+
+Install npm dependencies:
+
+```
 cd prisma-examples/typescript/starter
 npm install
 ```
+
+</details>
 
 ### 2. Configure environment variables
 
@@ -49,10 +71,10 @@ You now have an empty `User` table in your database.
 
 ### 4. Run a Prisma operation
 
-Run the [script](./index.ts) that contains the code:
+Run the [main script](./index.ts) 
 
 ```bash
-npx ts-node index.ts
+npx tsx index.ts
 ```
 
 This will add a new user to the `User` table, and then run a simple query to fetch all users.
