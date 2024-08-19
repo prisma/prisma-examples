@@ -1,9 +1,6 @@
 # Prisma Pulse-Inngest Router
 
-This package enables event-driven support for your existing Inngest workflows,
-using Prisma Pulse. Trigger workflows instantly whenever a database table
-changes, so you can create timely workflows that run instantly -- not only
-batch workflows.
+This package enables event-driven support for your existing Inngest workflows, using Prisma Pulse. Trigger workflows instantly whenever a database table changes, so you can create timely workflows that run instantly -- not only batch workflows.
 
 ## Pre-requisites
 
@@ -17,14 +14,15 @@ batch workflows.
 
 ### Fork or clone this repo
 
-You should operate with your own version of this service in a GitHub repository
-that you own. This allows you to track changes, and deploy to cloud platforms
-easily.
+```bash
+npx try-prisma@latest --template pulse/inngest-router
+```
+
+You should operate with your own version of this service in a GitHub repository that you own. This allows you to track changes, and deploy to cloud platforms easily.
 
 ### Set up your API keys
 
-Make a copy of the `.env.example` file and update it with your own keys and
-database connection string:
+Make a copy of the `.env.example` file, rename it to `.env`, and update it with your own keys and database connection string:
 
 ```bash
 cp .env.example .env
@@ -32,16 +30,13 @@ cp .env.example .env
 
 ### Add your Prisma schema
 
-Add your existing Prisma schema file to the `/prisma` directory, overwriting
-the existing example schema.
+Add your existing Prisma schema file to the `/prisma` directory, overwriting the existing example schema.
 
 ### Define the Prisma models to subscribe to
 
-Add all Prisma models that you wish to stream events from to the array. The
-service will ignore any models that don't exist.
+Add all Prisma models that you wish to stream events from to the array. The service will ignore any models that don't exist.
 
-Note that the naming convention should follow the standard naming convention for
-Prisma ORM, eg. `MyModel` becomes `myModel`.
+Note that the naming convention should follow the standard naming convention for Prisma ORM, eg. `MyModel` becomes `myModel`.
 
 ```typescript
 // Here configure each prisma model to stream changes from
@@ -95,16 +90,13 @@ docker run \
 
 ## Create Inngest functions
 
-When database changes occur, there will automatically be events submitted to 
-your Inngest project. The event names will be formatted like this: `db/<action>.<model>`
+When database changes occur, there will automatically be events submitted to  your Inngest project. The event names will be formatted like this: `db/<action>.<model>`
 
-eg. If your model is `notification`, and a new row is added, the event submitted
-to Inngest will be `db/create.notification`
+eg. If your model is `notification`, and a new row is added, the event submitted to Inngest will be `db/create.notification`
 
 The possible actions are `create`, `update`, and `delete`.
 
-To handle these events, create an Inngest function with the appropriate name.
-See the below example, and the [Inngest docs](https://www.inngest.com/docs/learn/inngest-functions) for more detail:
+To handle these events, create an Inngest function with the appropriate name. See the below example, and the [Inngest docs](https://www.inngest.com/docs/learn/inngest-functions) for more detail:
 
 ```typescript
 export default inngest.createFunction(
