@@ -110,7 +110,7 @@ export default inngest.createFunction(
 );
 ```
 
-Note that the full [Pulse Change Event](https://www.prisma.io/docs/pulse/database-events) is available in `event.data`;
+Note that the full [Pulse Change Event](https://www.prisma.io/docs/pulse/database-events) is available in `event.data`.
 
 ## Helpful documentation
 1. [Get started with Prisma ORM](https://www.prisma.io/docs/getting-started)
@@ -118,5 +118,5 @@ Note that the full [Pulse Change Event](https://www.prisma.io/docs/pulse/databas
 
 ## Get help
 
-[Join our Discord community](https://discord.gg/KQyTW2H5ca) to get help with
+[Join our Discord community](https://pris.ly/discord) to get help with
 Prisma products and discuss Prisma related topics.
