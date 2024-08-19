@@ -19,7 +19,7 @@
     "protobufjs": "7.3.2"
   },
   "devDependencies": {
-    "@types/node": "20.14.15",
+    "@types/node": "20.16.1",
     "prisma": "5.18.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"
