@@ -15,13 +15,13 @@ datasource db {
 }
 
 model Notification {
-  id      String @id @default(autoincrement())
+  id      Int @id @default(autoincrement())
   title   String
   message String
 }
 
 model User {
-  id    String @id @default(autoincrement())
+  id    Int @id @default(autoincrement())
   name  String
   email String
 }
