@@ -4,6 +4,7 @@ This package enables event-driven support for your existing Inngest workflows, u
 
 ## Pre-requisites
 
+- An existing project with [Inngest](https://www.inngest.com/docs) and [Prisma Client](https://www.prisma.io/docs/getting-started) configured
 - A **Pulse API key** which you can get by enabling Pulse in a project in your
   [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the
   [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
@@ -31,6 +32,8 @@ cp .env.example .env
 ### Add your Prisma schema
 
 Add your existing Prisma schema file to the `/prisma` directory, overwriting the existing example schema.
+
+If you don't already have a project using Inngest and Prisma Client, you may choose to try another [Prisma example](https://github.com/prisma/prisma-examples) instead.
 
 ### Define the Prisma models to subscribe to
 
