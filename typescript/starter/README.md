@@ -1,12 +1,12 @@
 # Prisma Example: TypeScript Starter
 
-This repository has been created to help you get started with [Prisma ORM](https://prisma.io). This project comes with a basic [`schema.prisma`](./prisma/schema.prisma) configured with PostgreSQL, and an example operation found in the [`index.ts`](./index.ts) file.
+This repository has been created to help you get started with [Prisma ORM](https://prisma.io). This project comes with a basic [`schema.prisma`](./prisma/schema.prisma) configured with PostgreSQL and an example operation found in the [`index.ts`](./index.ts) file.
 
 ## Prerequisites
 
 To successfully run the project, you will need the following:
 
-- The **connection string** of a PostgreSQL database (if you don't have one yet, you can configure your database following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
+- The **connection string** of a PostgreSQL database (if you don't have one yet, you can configure your database following the [instructions in our docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
 
 ## Getting started
 
@@ -74,7 +74,7 @@ You now have an empty `User` table in your database.
 Run the [main script](./index.ts) 
 
 ```bash
-npx tsx index.ts
+npm run start
 ```
 
 This will add a new user to the `User` table, and then run a simple query to fetch all users.

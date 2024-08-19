@@ -5,14 +5,14 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "tsx index.ts",
     "dev": "tsc --watch"
   },
   "devDependencies": {
     "@types/node": "22.3.0",
     "nodemon": "3.1.4",
     "prisma": "5.18.0",
-    "ts-node": "10.9.2",
+    "tsx": "4.17.0",
     "typescript": "5.5.4"
   },
   "dependencies": {
