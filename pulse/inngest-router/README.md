@@ -90,7 +90,7 @@ docker run \
 
 ## Create Inngest functions
 
-When database changes occur, there will automatically be events submitted to  your Inngest project. The event names will be formatted like this: `db/<action>.<model>`
+When database changes occur, there will be events automatically submitted to your Inngest project. The event names will be formatted like this: `db/<action>.<model>`
 
 eg. If your model is `notification`, and a new row is added, the event submitted to Inngest will be `db/create.notification`
 
