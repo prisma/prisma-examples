@@ -23,11 +23,11 @@ easily.
 
 ### Set up your API keys
 
-Make a copy of the `.env.sample` file and update it with your own keys and
+Make a copy of the `.env.example` file and update it with your own keys and
 database connection string:
 
 ```bash
-cp .env.sample .env
+cp .env.example .env
 ```
 
 ### Add your Prisma schema
