@@ -57,15 +57,6 @@ npx ts-node index.ts
 
 This will add a new user to the `User` table, and then run a simple query to fetch all users.
 
-## Deployment
-
-You can also deploy this project on Railway by following the instructions in our [docs](https://www.prisma.io/docs/pulse/database-setup/railway#setup-with-template-prisma-pulse-db--app).
-
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/pulse-starter?referralCode=VQ09uv)
-
 ## Resources
 
-- [Pulse examples](https://pris.ly/pulse-examples)
-- [Pulse documentation](https://pris.ly/pulse-docs)
-- [Pulse announcement blog post](https://pris.ly/gh/pulse-ga)
 - [Prisma Discord](https://pris.ly/discord)
