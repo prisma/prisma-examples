@@ -1,0 +1,17 @@
+{
+  "name": "optimize-starter-project",
+  "version": "0.0.1",
+  "private": true,
+  "description": "An example project showing how to use Prisma Optimize",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run push --workspace=server",
+    "start": "npm start --workspace=server & npm start --workspace=client"
+  },
+  "author": "Igal Klebanov",
+  "license": "ISC",
+  "workspaces": [
+    "./packages/client",
+    "./packages/server"
+  ]
+}
