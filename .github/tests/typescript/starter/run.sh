@@ -3,5 +3,4 @@
 set -eu
 
 npm install
-npx prisma validate
-npm run dev
+npm run build
