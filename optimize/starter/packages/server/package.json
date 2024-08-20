@@ -21,7 +21,7 @@
   "dependencies": {
     "@prisma/client": "5.18.0",
     "@trpc/server": "10.10.0",
-    "@types/cors": "2.8.13",
+    "@types/cors": "2.8.17",
     "cors": "2.8.5",
     "express": "4.19.2",
     "zod": "3.22.3"
