@@ -10,23 +10,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "0.8.1",
-    "@astrojs/react": "3.6.0",
+    "@astrojs/check": "0.9.3",
+    "@astrojs/react": "3.6.2",
     "@astrojs/tailwind": "5.1.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "astro": "4.11.5",
-    "prisma": "5.16.0",
+    "astro": "4.14.2",
+    "prisma": "5.18.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "tailwindcss": "3.4.5",
-    "typescript": "5.5.3",
-    "@prisma/client": "5.15.1",
+    "tailwindcss": "3.4.10",
+    "typescript": "5.5.4",
+    "@prisma/client": "5.18.0",
     "@prisma/extension-accelerate": "1.1.0"
   },
   "devDependencies": {
-    "prisma": "5.15.1",
-    "tsx": "4.16.2"
+    "prisma": "5.18.0",
+    "tsx": "4.17.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

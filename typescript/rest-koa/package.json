@@ -6,18 +6,18 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@koa/router": "12.0.1",
-    "@prisma/client": "5.16.1",
+    "@koa/router": "13.0.0",
+    "@prisma/client": "5.18.0",
     "koa": "2.15.3",
     "koa-body": "6.0.1"
   },
   "devDependencies": {
     "@types/koa": "2.15.0",
     "@types/koa__router": "12.0.4",
-    "@types/node": "20.14.10",
-    "prisma": "5.16.1",
+    "@types/node": "20.16.1",
+    "prisma": "5.18.0",
     "ts-node": "10.9.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

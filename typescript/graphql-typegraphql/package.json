@@ -4,21 +4,21 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts"
   },
   "dependencies": {
-    "@apollo/server": "4.10.4",
-    "@prisma/client": "5.16.1",
+    "@apollo/server": "4.11.0",
+    "@prisma/client": "5.18.0",
     "class-validator": "0.14.1",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
     "reflect-metadata": "0.2.2",
-    "type-graphql": "2.0.0-rc.1"
+    "type-graphql": "2.0.0-rc.2"
   },
   "devDependencies": {
-    "@types/node": "20.14.10",
-    "@types/ws": "8.5.11",
-    "prisma": "5.16.1",
+    "@types/node": "20.16.1",
+    "@types/ws": "8.5.12",
+    "prisma": "5.18.0",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

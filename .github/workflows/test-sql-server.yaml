@@ -33,7 +33,7 @@ jobs:
         # Maps tcp port 1433 on service container to the host
         ports:
           - '1433:1433'
-        options: --health-cmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P ${SA_PASSWORD} -Q 'SELECT 1' || exit 1"  --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd="/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U SA -P ${SA_PASSWORD} -Q 'SELECT 1' || exit 1"  --health-interval 10s --health-timeout 5s --health-retries 5
 
     env:
       DATABASE_URL: sqlserver://localhost:1433;database=prisma-demo;user=SA;password=Pr1sm4_Pr1sm4;trustServerCertificate=true;encrypt=true
