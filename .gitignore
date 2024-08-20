@@ -24,4 +24,3 @@ experimental/**/*.db
 .nuxt
 dev.db
 *.env*
-!.env.example
