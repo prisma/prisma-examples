@@ -1,4 +1,4 @@
-# Prisma Optimize example
+# Prisma Optimize Setup and Usage Example
 
 This repository demonstrates how to setup and use [Prisma Optimize](https://pris.ly/optimize).
 
@@ -23,13 +23,13 @@ npm install
 
 ### 2. Configure environment variables
 
-Create a `.env` in the root of the project directory:
+Create a `.env` file in the root of the project directory:
 
 ```terminal
 cp .env.example .env
 ```
 
-Now, open the `.env` file and update the `DATABASE_URL` and `OPTIMIZE_API_KEY` environment variable with the value of your connection string:
+Next, open the `.env` file and update the `DATABASE_URL` with your database connection string and the `OPTIMIZE_API_KEY` with your Optimize API key:
 
 ```env
 # .env
@@ -53,28 +53,29 @@ npx prisma migrate dev --name init
 
 You'll be able to create [recordings](https://pris.ly/optimize-recordings) and see the details of your queries along with optimization [recommendations](https://pris.ly/optimize-recommendations) to improve the queries in the Optimize dashboard. To access the dashboard:
 
-1. Login to Prisma Data Platform by navigating to [this link](https://pris.ly/pdp).
-2. Navigate to the [Optimize dashboard](https://optimize.prisma.io/).
+1. Log in to your [Prisma Data Platform](https://pris.ly/pdp) account.
+2. In your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard.
+   1. If Optimize hasn't been launched yet, click the **Launch Optimize** button.
 
 ## 5. Run the script
 
-Let's first run the [script with unoptimized Prisma queries](./script.ts):
+Let's run the [script with unoptimized Prisma queries](./script.ts):
 
-1. Navigate to the Optimize dashboard.
-2. Click on the **Start new recording** button.
-3. In the project terminal, run the project with:
+1. In the Optimize dashboard click the **Start new recording** button.
+2. In the project terminal, run the project with:
 
    ```terminal
    npm run dev
    ```
 
-4. After the script completes, click the **Stop recording** button.
-5. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see three recommendations:
+3. After the script completes with a log message of "Done", click the **Stop recording** button.
+4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see three distinct recommendations:
    - **Excessive number of rows returned**
    - **Query filtering on an unindexed column**
    - **Full table scans caused by LIKE operations**
-     > For more insights on a specific recommendation, click the **Ask AI** button and interact with the AI Explainer chatbot
-6. Rename the recording to _Unoptimized queries_ by clicking on the recording chip in the top left corner and typing "Unoptimized queries", so that you have a reference to it for comparison with other recordings.
+     > For more insights on a specific recommendation, click the **Ask AI** button and interact with the [AI Explainer](https://pris.ly/optimize-ai-chatbot) chatbot
+5. To create a reference for comparing with other recordings, rename the recording to _Unoptimized queries_ by clicking on the green recording label chip in the top left corner and typing "Unoptimized queries".
+
    ![Rename recording](./images/edit-recording-name-chip.png)
 
 ### Using the recommendations to improve query performance
@@ -89,7 +90,7 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
    })
    ```
 
-2. To improve the performance of [**Query 2**](./script.ts) to [**Query 4**](./script.ts) and apply the recommendation of [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column), create an `index` on the `name` column (as the `name` column is commonly used in the queries) in the `User` model in the [`schema.prisma`](./prisma/schema.prisma) file:
+2. To enhance the performance of [**Query 2**](./script.ts) through [**Query 4**](./script.ts) by following the recommendation for [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column), add an `index` to the `name` column (commonly used in the queries) in the `User` model within the [`schema.prisma`](./prisma/schema.prisma) file:
 
    ```diff
    model User {
@@ -101,13 +102,13 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
     }
    ```
 
-   Then migrate the changes to your database using:
+   After making these changes, migrate them to your database using:
 
    ```terminal
    npx prisma migrate dev --name create-name-index-on-user-model
    ```
 
-3. To improve the performance of [**Query 5**](./script.ts) and apply the recommendation of [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/full-table-scan), create a new optional column `emailDomain` in the User model and index it in the [schema.prisma](./prisma/schema.prisma) file:
+3. To enhance the performance of [**Query 5**](./script.ts) by following the recommendation for [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/full-table-scan), create a new optional `emailDomain` column in the `User` model and index it in the [`schema.prisma`](./prisma/schema.prisma) file:
 
    ```diff
    model User {
@@ -121,19 +122,19 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
    }
    ```
 
-   Then migrate the changes to your database using:
+   Next, migrate these changes to your database using:
 
    ```terminal
    npx prisma migrate dev --name add-indexed-email-domain-column-on-user-model
    ```
 
-   Then run the [copySuffixes script](./copySuffixes.ts) to copy the domains of the emails from the existing content to the new `emailDomain` column:
+   After migration, run the [copySuffixes script](./copySuffixes.ts) to copy email domains from existing entries into the new `emailDomain` column:
 
    ```terminal
    npm run copy-suffixes
    ```
 
-   Then refactor the code in the [script.ts](./script.ts) file:
+   Finally, refactor the code in the [script.ts](./script.ts) file to update Query 5:
 
    ```diff
    // Query 5
@@ -147,15 +148,15 @@ Next, let's follow the recommendations provided by Optimize to improve the perfo
    })
    ```
 
-4. Click the **Start new recording** button to begin a new recording.
+4. Click the **Start new recording** button to begin a new recording and check for any performance improvements.
 5. In the project terminal, run the project with:
    ```terminal
    npm run dev
    ```
 6. After the script completes, click the **Stop recording** button.
-7. Rename the recording to _Optimized queries_, by clicking on the recording chip in the top left corner and typing "Optimized queries".
+7. Rename the recording to _Optimized queries_ by clicking on the recording chip in the top left corner and typing "Optimized queries".
 
-You can now compare the performance improvements, by navigating and observing the query latency differences in the "Optimized queries" and "Unoptimized queries" recordings tabs.
+You can now compare performance improvements by navigating to the "Optimized queries" and "Unoptimized queries" recording tabs and observing the query latency differences.
 
 ## Next steps
 
