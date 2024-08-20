@@ -1,6 +1,6 @@
 # Prisma Pulse-Inngest Router
 
-This package enables event-driven support for your existing Inngest workflows, using Prisma Pulse. Trigger workflows instantly whenever a database table changes, so you can create timely workflows that run instantly -- not only batch workflows.
+This package enables event-driven support for your existing Inngest workflows, using Prisma Pulse. Trigger workflows whenever a database table changes, so you can create timely workflows that run instantly -- not only batch workflows.
 
 ## Pre-requisites
 
@@ -31,13 +31,13 @@ cp .env.example .env
 
 ### Add your Prisma schema
 
-Add your existing Prisma schema file to the `/prisma` directory, overwriting the existing example schema.
+Add an existing Prisma schema file to the `/prisma` directory, overwriting the existing example schema.
 
-If you don't already have a project using Inngest and Prisma Client, you may choose to try another [Prisma example](https://github.com/prisma/prisma-examples) instead.
+If you don't already have a project using Inngest and Prisma Client, you can choose another [Prisma example](https://github.com/prisma/prisma-examples) to start with instead.
 
 ### Define the Prisma models to subscribe to
 
-Add all Prisma models that you wish to stream events from to the array. The service will ignore any models that don't exist.
+Add all Prisma models you wish to stream events from into the array. The service will ignore any models that don't exist.
 
 Note that the naming convention should follow the standard naming convention for Prisma ORM, eg. `MyModel` becomes `myModel`.
 
@@ -53,8 +53,8 @@ Run the service locally:
 1. `npm run build`
 1. `npm run start`
 
-**Hint:** you can trigger changes in your database by running
-`npx prisma studio` and modifying some data or adding a new row.
+> [!TIP]
+> you can trigger changes in your database by running `npx prisma studio` and modifying some data or adding a new row.
 
 ### Commit your changes
 
@@ -75,9 +75,9 @@ your dashboard
 1. Authorize your GitHub account, and choose the GitHub repository you used in
 previous steps
 1. Add the respective environment variables:
-    1. DATABASE_URL
-    1. PULSE_API_KEY
-    1. INNGEST_EVENT_KEY
+   * DATABASE_URL
+   * PULSE_API_KEY
+   * INNGEST_EVENT_KEY
 
 ### Run manually with Docker
 
