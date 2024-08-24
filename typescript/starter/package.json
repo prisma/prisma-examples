@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "tsx index.ts",
+    "start": "tsx src/index.ts",
     "dev": "tsc --watch"
   },
   "devDependencies": {
