@@ -11,13 +11,13 @@
     "test": ""
   },
   "dependencies": {
-    "@prisma/nuxt": "0.0.34",
-    "nuxt": "3.12.4",
-    "vue": "3.4.35",
-    "vue-router": "4.4.2"
+    "@prisma/nuxt": "0.0.35",
+    "nuxt": "3.13.0",
+    "vue": "3.4.38",
+    "vue-router": "4.4.3"
   },
   "devDependencies": {
-    "@prisma/client": "5.16.1",
-    "prisma": "5.16.1"
+    "@prisma/client": "5.18.0",
+    "prisma": "5.18.0"
   }
 }

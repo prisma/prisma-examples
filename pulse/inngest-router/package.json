@@ -1,0 +1,36 @@
+{
+  "name": "pulse-inngest-router",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20240821.1",
+    "nodemon": "3.1.4",
+    "prisma": "5.18.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "@prisma/client": "5.18.0",
+    "@prisma/extension-pulse": "1.2.0",
+    "@types/node": "22.5.0",
+    "dotenv": "16.4.5",
+    "inngest": "3.22.5"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "jsxBracketSameLine": false,
+    "bracketSpacing": true,
+    "arrowParens": "always"
+  }
+}
