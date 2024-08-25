@@ -62,6 +62,20 @@ npm run dev
 
 This command will run [`index.ts`](./index.ts), which will execute the SQL query defined in [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql) and print the results to the console.
 
+## Project Structure
+
+This example project is structured similarly to the [starter example](https://github.com/prisma/prisma-examples/tree/latest/typescript/starter) with a key difference:
+
+- [`prisma/sql/`](./prisma/sql/): Contains SQL query files that are type-checked by Prisma and then included in the generated Prisma Client.
+  - [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql): Example SQL query used in the project.
+
+Key areas to look at:
+1. Database schema: [`prisma/schema.prisma`](./prisma/schema.prisma)
+2. Example SQL query: [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql)
+3. Query execution: [`src/index.ts`](./src/index.ts)
+4. Data seeding: [`prisma/seed.ts`](./prisma/seed.ts)
+5. Build and run scripts: [`package.json`](./package.json)
+
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)

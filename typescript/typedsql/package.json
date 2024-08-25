@@ -2,17 +2,17 @@
   "private": true,
   "name": "basic-typedsql",
   "description": "A simple TypedSQL example",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
     "dbpush": "prisma db push --skip-generate",
     "generate": "prisma generate --sql",
-    "start": "tsx index.ts",
-    "dev": "tsx index.ts --watch",
-    "test": "tsx index.ts",
-    "debug": "tsx index.ts"
+    "start": "tsx src/index.ts",
+    "dev": "tsx src/index.ts --watch",
+    "test": "tsx src/index.ts",
+    "debug": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
