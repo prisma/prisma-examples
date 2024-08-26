@@ -3,6 +3,6 @@
 set -eu
 
 npm install
-npm run dbpush
-npm run generate
+npx prisma db push --skip-generate
+npx prisma generate --sql
 npm run dev
