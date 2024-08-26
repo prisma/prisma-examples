@@ -7,8 +7,6 @@
     "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
-    "dbpush": "prisma db push --skip-generate",
-    "generate": "prisma generate --sql",
     "start": "tsx src/index.ts",
     "dev": "tsx src/index.ts --watch",
     "test": "tsx src/index.ts",

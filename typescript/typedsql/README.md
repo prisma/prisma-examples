@@ -49,10 +49,13 @@ When `npx prisma migrate dev` is executed against a newly created database, seed
 ### 3. Generate Prisma Client with SQL
 
 ```
-npm run generate
+npx prisma generate --sql
 ```
 
 This command runs `prisma generate --sql`, which will generate the Prisma Client and also check any SQL files in the `prisma/sql` directory. After type-checking the SQL files, they are compiled into JavaScript and added to the Prisma Client.
+
+> [!TIP]
+> This also works with the `--watch` flag! If you want to automatically generate and watch for changes, you can use `npx prisma generate --sql --watch`.
 
 ### 4. Run the example
 
