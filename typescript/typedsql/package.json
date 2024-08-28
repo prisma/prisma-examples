@@ -21,6 +21,6 @@
   "devDependencies": {
     "@types/node": "22.5.1",
     "prisma": "5.19.0",
-    "tsx": "4.18.0"
+    "tsx": "4.19.0"
   }
 }
