@@ -1,6 +1,6 @@
-# Prisma Optimize Setup and Usage Example
+# Prisma Optimize Example: Applying the "Full Table Scans Caused by LIKE Operations" Recommendation
 
-This repository demonstrates how to set up and use [Prisma Optimize](https://pris.ly/optimize).
+This repository demonstrates how to set up and use [Prisma Optimize](https://pris.ly/optimize) and focuses on applying the [**Full Table Scans Caused by LIKE Operations**](https://pris.ly/optimize/r/full-table-scan) recommendation.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ To successfully run the project, you will need the following:
 1. A **database connection string** supported by Prisma Optimize.
 2. An Optimize API key, which you can obtain from your [Prisma Data Platform](https://pris.ly/pdp) account.
 
-## Getting Started
+## Getting started
 
 ### 1. Clone the repository
 
@@ -69,46 +69,18 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
    ```
 
 3. After the script completes, you'll see a log saying "Done." Then, in the Optimize dashboard, click the **Stop recording** button.
-4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see three distinct recommendations:
-   - **Excessive number of rows returned**
-   - **Query filtering on an unindexed column**
+4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see the recommendation:
    - **Full table scans caused by LIKE operations**
-     > For more insights on a specific recommendation, click the **Ask AI** button and interact with the [AI Explainer](https://pris.ly/optimize-ai-chatbot) chatbot.
+     > For more insights on this recommendation, click the **Ask AI** button and interact with the [AI Explainer](https://pris.ly/optimize-ai-chatbot) chatbot.
 5. To create a reference for comparison with other recordings, rename the recording to _Unoptimized queries_ by clicking the green recording label chip in the top left corner and typing "Unoptimized queries".
 
    ![Rename recording](./images/edit-recording-name-chip.png)
 
-### Using the recommendations to improve query performance
+### Optimize example: Applying the "Full Table Scans Caused by LIKE Operations" recommendation
 
-Next, let’s follow the recommendations provided by Optimize to improve the performance of the queries:
+Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 
-1. To improve the performance of [**Query 1**](./script.ts) by addressing the [**Excessive number of rows returned**](https://pris.ly/optimize/r/excessive-rows) recommendation, add a `take` option to the query:
-
-   ```typescript
-   await prisma.user.findMany({
-     take: 10,
-   })
-   ```
-
-2. To enhance the performance of [**Query 2**](./script.ts) through [**Query 4**](./script.ts) by addressing the [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column) recommendation, add an `index` to the `name` column (commonly used in the queries) in the `User` model within the [`schema.prisma`](./prisma/schema.prisma) file:
-
-   ```diff
-   model User {
-      id    Int     @id @default(autoincrement())
-      email String  @unique
-      name  String?
-      posts Post[]
-   +  @@index(name)
-    }
-   ```
-
-   After making these changes, migrate them to your database using:
-
-   ```bash
-   npx prisma migrate dev --name create-name-index-on-user-model
-   ```
-
-3. To enhance the performance of [**Query 5**](./script.ts) by addressing the [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/full-table-scan) recommendation, create a new optional `emailDomain` column in the `User` model and index it in the [`schema.prisma`](./prisma/schema.prisma) file:
+1. To enhance the performance of [**Query 5**](./script.ts) by addressing the [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/full-table-scan) recommendation, create a new optional `emailDomain` column in the `User` model and index it in the [`schema.prisma`](./prisma/schema.prisma) file:
 
    ```diff
    model User {
@@ -122,19 +94,19 @@ Next, let’s follow the recommendations provided by Optimize to improve the per
    }
    ```
 
-   Next, migrate these changes to your database using:
+2. Next, migrate these changes to your database using:
 
    ```bash
    npx prisma migrate dev --name add-indexed-email-domain-column-on-user-model
    ```
 
-   After migration, run the [copySuffixes script](./copySuffixes.ts) to copy email domains from existing entries into the new `emailDomain` column:
+3. After migration, run the [copySuffixes script](./copySuffixes.ts) to copy email domains from existing entries into the new `emailDomain` column:
 
    ```bash
    npm run copy-suffixes
    ```
 
-   Finally, refactor the code in the [script.ts](./script.ts) file to update Query 5:
+4. Finally, refactor the code in the [script.ts](./script.ts) file to update Query 5:
 
    ```diff
    // Query 5
@@ -148,19 +120,19 @@ Next, let’s follow the recommendations provided by Optimize to improve the per
    });
    ```
 
-4. Click the **Start new recording** button to begin a new recording and check for any performance improvements.
-5. In the project terminal, run the project with:
+5. Click the **Start new recording** button to begin a new recording and check for any performance improvements.
+6. In the project terminal, run the project with:
    ```bash
    npm run dev
    ```
-6. After the script completes, click the **Stop recording** button.
-7. Rename the recording to _Optimized queries_ by clicking the recording chip in the top left corner and typing "Optimized queries."
+7. After the script completes, click the **Stop recording** button.
+8. Rename the recording to _Optimized queries_ by clicking the recording chip in the top left corner and typing "Optimized queries."
 
 You can now compare performance improvements by navigating to the "Optimized queries" and "Unoptimized queries" recording tabs and observing the query latency differences.
 
 ---
 
-## Next Steps
+## Next steps
 
 - Check out the [Optimize docs](https://pris.ly/d/optimize).
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/).
