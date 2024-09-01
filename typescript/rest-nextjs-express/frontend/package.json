@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "20.16.2",
-    "@types/react": "18.3.4",
+    "@types/react": "18.3.5",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"
   }
