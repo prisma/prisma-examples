@@ -37,7 +37,7 @@
     "@types/react-instantsearch-dom": "6.12.8",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.7",
-    "postcss": "8.4.42",
+    "postcss": "8.4.43",
     "tailwindcss": "3.4.10",
     "typescript": "5.5.4"
   }
