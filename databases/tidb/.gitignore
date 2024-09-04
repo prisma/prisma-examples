@@ -1,0 +1,7 @@
+node_modules/
+tidb-data/
+dist/
+*.env*
+!.env.example
+data/
+logs/
