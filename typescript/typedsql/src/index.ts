@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client'
-import { conversionByVariant, countEvents } from '@prisma/client/sql'
+import { conversionByVariant } from '@prisma/client/sql'
 
 async function main() {
   const prisma = new PrismaClient()
 
-  const result = await prisma.$queryRawTyped(countEvents('user133@example.com'))
+  const stats = await prisma.$queryRawTyped(conversionByVariant())
 
-  console.log(result)
+  console.log(stats)
 }
 
-main();
+main()
