@@ -7,8 +7,6 @@ export const createContext = ({
 }: trpcExpress.CreateExpressContextOptions) => ({}); // no context
 type Context = Awaited<ReturnType<typeof createContext>>;
 
-// You can use any variable name you like.
-// We use t to keep things simple.
 const t = initTRPC.context<Context>().create();
 
 export const router = t.router;
