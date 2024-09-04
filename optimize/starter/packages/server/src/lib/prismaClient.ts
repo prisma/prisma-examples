@@ -7,6 +7,8 @@ export const prisma =
   globalForPrisma.prisma ||
   new PrismaClient().$extends(
     withOptimize({
+      dashboardUrl: "https://optimize-dev-pr402.datacdn.workers.dev",
+      ingestionUrl: "https://optimize-ingestion-dev-pr402.datacdn.workers.dev",
       token: process.env.PRISMA_OPTIMIZE_TOKEN!,
     })
   );

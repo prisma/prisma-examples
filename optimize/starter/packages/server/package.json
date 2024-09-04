@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.19.1",
-    "@trpc/server": "10.45.2",
+    "@trpc/server": "next",
     "@types/cors": "2.8.17",
     "cors": "2.8.5",
     "express": "4.19.2",

@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 import { prisma } from "../lib/prismaClient";
-import { trpc } from "../lib/trpc";
+import { publicProcedure, router } from "../lib/trpc";
 
-export const todoRouter = trpc.router({
-  list: trpc.procedure.query(() => {
+export const todoRouter = router({
+  list: publicProcedure.query(() => {
     return prisma.todo.findMany({
       where: {
         isDeleted: false,
@@ -14,7 +14,7 @@ export const todoRouter = trpc.router({
       },
     });
   }),
-  create: trpc.procedure
+  create: publicProcedure
     .input(z.object({ title: z.string() }))
     .mutation(({ input }) => {
       const { title } = input;
@@ -29,7 +29,7 @@ export const todoRouter = trpc.router({
         },
       });
     }),
-  delete: trpc.procedure
+  delete: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(({ input }) => {
       return prisma.todo.update({
@@ -41,7 +41,7 @@ export const todoRouter = trpc.router({
         },
       });
     }),
-  update: trpc.procedure
+  update: publicProcedure
     .input(z.object({ id: z.string(), isCompleted: z.boolean() }))
     .mutation(({ input }) => {
       return prisma.todo.update({

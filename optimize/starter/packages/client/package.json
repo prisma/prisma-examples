@@ -13,9 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@tanstack/react-query": "5.53.3",
-    "@trpc/client": "10.45.2",
-    "@trpc/react-query": "10.45.2",
-    "@trpc/server": "10.45.2",
+    "@trpc/client": "next",
+    "@trpc/react-query": "next",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "server": "0.0.1"
