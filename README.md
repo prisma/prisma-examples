@@ -173,9 +173,13 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Starter kits
 
-- [T3 stack](https://create.t3.gg/): Starter kit based on Next.js, TypeScript, tRPC, Prisma, Tailwind CSS and NextAuth.js
-- [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting
-- [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
+- [T3 Stack](https://create.t3.gg/): Starter kit based on Next.js, TypeScript, tRPC, Prisma, Tailwind CSS, and NextAuth.js.
+- [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, and formatting.
+- [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, and formatting.
+- [NestJS Prisma Starter](https://github.com/notiz-dev/nestjs-prisma-starter): NestJS, Prisma, and authentication starter template.
+- [Supastarter](https://supastarter.dev/): Full-stack SaaS starter kit using Next.js/Nuxt.js/SvelteKit and Prisma with authentication, emails, payment, testing, linting, and formatting.
+- [Saas Kit Prisma](https://github.com/Saas-Starter-Kit/Saas-Kit-prisma): Full-stack SaaS starter kit using React.js, Next.js, TypeScript, Tailwind, Shadcn, Stripe, NextAuth, Prisma, Postgres, and Playwright.
+- [Saas Kit Prisma by BoxyHQ](https://github.com/boxyhq/saas-starter-kit): An open-source enterprise SaaS starter kit using Prisma ORM.
 
 ## Badges
 
