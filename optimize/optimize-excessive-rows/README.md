@@ -1,4 +1,4 @@
-# Prisma Optimize Usage Example: Applying the "Excessive Number of Rows Returned" Recommendation
+# Prisma Optimize Usage Example: Applying the "Excessive number of rows returned" Recommendation
 
 This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the "Excessive number of rows returned" recommendation.
 

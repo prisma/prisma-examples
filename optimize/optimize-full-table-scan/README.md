@@ -1,6 +1,6 @@
-# Prisma Optimize Example: Applying the "Full Table Scans Caused by LIKE Operations" Recommendation
+# Prisma Optimize Example: Applying the "Full table scans caused by `LIKE` operations" Recommendation
 
-This repository demonstrates how to set up and use [Prisma Optimize](https://pris.ly/optimize) and focuses on applying the [**Full Table Scans Caused by LIKE Operations**](https://pris.ly/optimize/r/full-table-scan) recommendation.
+This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the "Full table scans caused by `LIKE` operations" recommendation.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Clone the repository, navigate into it, and install the dependencies:
 
 ```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/optimize/starter
+cd prisma-examples/optimize/optimize-full-table-scan
 npm install
 ```
 
@@ -53,9 +53,9 @@ npx prisma migrate dev --name init
 
 You can create [recordings](https://pris.ly/optimize-recordings) and view detailed insights into your queries, along with optimization [recommendations](https://pris.ly/optimize-recommendations), in the Optimize dashboard. To access the dashboard:
 
-1. Log in to your [Prisma Data Platform](https://pris.ly/pdp) account.
-2. In your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard.
-   - If Optimize hasn't been launched yet, click the **Launch Optimize** button.
+1. Log in to your [Prisma Data Platform](https://console.prisma.io/optimize) account. If you haven't already, complete the onboarding process for Optimize by clicking the **Get Started** button.
+2. If Optimize hasn't been launched yet, click the **Launch Optimize** button.
+3. If you want to use a different workspace, navigate to your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard. Then, if Optimize is not yet launched, click the **Launch Optimize** button.
 
 ### 5. Run the script
 
@@ -70,7 +70,7 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
 3. After the script completes, you'll see a log saying "Done." Then, in the Optimize dashboard, click the **Stop recording** button.
 4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see the recommendation:
-   - **Full table scans caused by LIKE operations**
+   - **Full table scans caused by `LIKE` operations**
      > For more insights on this recommendation, click the **Ask AI** button and interact with the [AI Explainer](https://pris.ly/optimize-ai-chatbot) chatbot.
 5. To create a reference for comparison with other recordings, rename the recording to _Unoptimized queries_ by clicking the green recording label chip in the top left corner and typing "Unoptimized queries".
 
@@ -80,7 +80,7 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
 Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 
-1. To enhance the performance of [**Query 5**](./script.ts) by addressing the [**Full table scans caused by LIKE operations**](https://pris.ly/optimize/r/full-table-scan) recommendation, create a new optional `emailDomain` column in the `User` model and index it in the [`schema.prisma`](./prisma/schema.prisma) file:
+1. To enhance the performance of [**Query 1**](./script.ts) by addressing the [**Full table scans caused by `LIKE` operations**](https://pris.ly/optimize/r/full-table-scan) recommendation, create a new optional `emailDomain` column in the `User` model and index it in the [`schema.prisma`](./prisma/schema.prisma) file:
 
    ```diff
    model User {
@@ -106,10 +106,10 @@ Next, let’s follow the recommendation provided by Optimize to improve the perf
    npm run copy-suffixes
    ```
 
-4. Finally, refactor the code in the [script.ts](./script.ts) file to update Query 5:
+4. Finally, refactor the code in the [script.ts](./script.ts) file to update Query 1:
 
    ```diff
-   // Query 5
+   // Query 1
     await prisma.user.findFirst({
      where: {
    -    email: {
