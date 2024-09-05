@@ -6,16 +6,13 @@ async function main() {
   await prisma.user.findFirst()
 
   // Query 1
-  await prisma.user.findMany()
-
-  // Query 2
   await prisma.user.findFirst({
     where: {
       name: 'Nikolas Burk',
     },
   })
 
-  // Query 3
+  // Query 2
   await prisma.user.findMany({
     where: {
       name: 'Nikolas Burk',
@@ -23,7 +20,7 @@ async function main() {
     take: 10,
   })
 
-  // Query 4
+  // Query 3
   await prisma.post.findMany({
     where: {
       author: {
@@ -31,15 +28,6 @@ async function main() {
       },
     },
     take: 10,
-  })
-
-  // Query 5
-  await prisma.user.findFirst({
-    where: {
-      email: {
-        endsWith: 'gmail.com',
-      },
-    },
   })
 }
 

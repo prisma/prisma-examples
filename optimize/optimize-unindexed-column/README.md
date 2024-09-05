@@ -1,6 +1,6 @@
-# Prisma Optimize Example: Applying the "Query Filtering on an Unindexed Column" Recommendation
+# Prisma Optimize Example: Applying the "Query filtering on an unindexed column" Recommendation
 
-This repository demonstrates how to set up and use [Prisma Optimize](https://pris.ly/optimize) and focuses on applying the [**Query Filtering on an Unindexed Column**](https://pris.ly/optimize/r/unindexed-column) recommendation.
+This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the "Query filtering on an unindexed column" recommendation.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Clone the repository, navigate into it, and install the dependencies:
 
 ```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/optimize/starter
+cd prisma-examples/optimize/optimize-unindexed-column
 npm install
 ```
 
@@ -53,9 +53,9 @@ npx prisma migrate dev --name init
 
 You can create [recordings](https://pris.ly/optimize-recordings) and view detailed insights into your queries, along with optimization [recommendations](https://pris.ly/optimize-recommendations), in the Optimize dashboard. To access the dashboard:
 
-1. Log in to your [Prisma Data Platform](https://pris.ly/pdp) account.
-2. In your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard.
-   - If Optimize hasn't been launched yet, click the **Launch Optimize** button.
+1. Log in to your [Prisma Data Platform](https://console.prisma.io/optimize) account. If you haven't already, complete the onboarding process for Optimize by clicking the **Get Started** button.
+2. If Optimize hasn't been launched yet, click the **Launch Optimize** button.
+3. If you want to use a different workspace, navigate to your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard. Then, if Optimize is not yet launched, click the **Launch Optimize** button.
 
 ### 5. Run the script
 
@@ -76,11 +76,11 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
    ![Rename recording](./images/edit-recording-name-chip.png)
 
-### Optimize example: Applying the "Query Filtering on an Unindexed Column" recommendation
+### Optimize example: Applying the "Query filtering on an unindexed column" recommendation
 
 Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 
-1. To enhance the performance of [**Query 2**](./script.ts) through [**Query 4**](./script.ts) by addressing the [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column) recommendation, add an `index` to the `name` column (commonly used in the queries) in the `User` model within the [`schema.prisma`](./prisma/schema.prisma) file:
+1. To enhance the performance of [**Query 1**](./script.ts) through [**Query 3**](./script.ts) by addressing the [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column) recommendation, add an `index` to the `name` column (commonly used in the queries) in the `User` model within the [`schema.prisma`](./prisma/schema.prisma) file:
 
    ```diff
    model User {
