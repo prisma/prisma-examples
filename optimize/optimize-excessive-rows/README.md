@@ -1,6 +1,6 @@
-# Prisma Optimize Setup and Usage Example: Applying the "Excessive Number of Rows Returned" Recommendation
+# Prisma Optimize Usage Example: Applying the "Excessive Number of Rows Returned" Recommendation
 
-This repository demonstrates how to set up and use [Prisma Optimize](https://pris.ly/optimize) and focuses on applying the "Excessive Number of Rows Returned" recommendation.
+This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the "Excessive number of rows returned" recommendation.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Clone the repository, navigate into it, and install the dependencies:
 
 ```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/optimize/starter
+cd prisma-examples/optimize/optimize-excessive-rows
 npm install
 ```
 
@@ -53,9 +53,9 @@ npx prisma migrate dev --name init
 
 You can create [recordings](https://pris.ly/optimize-recordings) and view detailed insights into your queries, along with optimization [recommendations](https://pris.ly/optimize-recommendations), in the Optimize dashboard. To access the dashboard:
 
-1. Log in to your [Prisma Data Platform](https://pris.ly/pdp) account.
-2. In your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard.
-   - If Optimize hasn't been launched yet, click the **Launch Optimize** button.
+1. Log in to your [Prisma Data Platform](https://console.prisma.io/optimize) account. If you haven't already, complete the onboarding process for Optimize by clicking the **Get Started** button.
+2. If Optimize hasn't been launched yet, click the **Launch Optimize** button.
+3. If you want to use a different workspace, navigate to your desired [Workspace](https://www.prisma.io/docs/platform/about#workspace), click the **Optimize** tab on the left sidebar to open the Optimize dashboard. Then, if Optimize is not yet launched, click the **Launch Optimize** button.
 
 ### 5. Run the script
 
@@ -76,7 +76,7 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
    ![Rename recording](./images/edit-recording-name-chip.png)
 
-### Optimize example: applying the "Excessive Number of Rows Returned" recommendation
+### Optimize example: applying the "Excessive number of rows returned" recommendation
 
 Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 

@@ -8,7 +8,7 @@ const main = async () => {
   await prisma.post.deleteMany({})
   await prisma.user.deleteMany({})
 
-  for (let index = 0; index < TOTAL - 1; index++) {
+  for (let index = 0; index < TOTAL; index++) {
     await prisma.user.create({
       data: {
         email: `${Math.round(Math.random() * 1000)}${faker.internet.email()}`,
@@ -25,19 +25,6 @@ const main = async () => {
 
     console.log(`Inserted ${index + 1}/${TOTAL} item.`)
   }
-
-  await prisma.user.create({
-    data: {
-      name: 'Nikolas Burk',
-      email: 'niko@gmail.com',
-      posts: {
-        create: {
-          title: 'The great gatsby',
-          content: 'The story had a nice ending.',
-        },
-      },
-    },
-  })
 
   console.log(`Inserted ${5000}/${TOTAL} item.`)
 }
