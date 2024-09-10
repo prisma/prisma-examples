@@ -7,7 +7,7 @@ export const prisma =
   globalForPrisma.prisma ||
   new PrismaClient().$extends(
     withOptimize({
-      token: process.env.PRISMA_OPTIMIZE_TOKEN!,
+      apiKey: process.env.PRISMA_OPTIMIZE_TOKEN!,
     })
   );
 
