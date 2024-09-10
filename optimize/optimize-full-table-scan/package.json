@@ -1,0 +1,22 @@
+{
+  "name": "script",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node ./script.ts",
+    "copy-suffixes": "ts-node ./copySuffixes.ts"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@prisma/client": "5.17.0",
+    "@prisma/extension-optimize": "^1.0.0",
+    "@types/node": "20.14.9"
+  },
+  "devDependencies": {
+    "prisma": "5.17.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.3"
+  },
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
+  }
+}

@@ -64,7 +64,16 @@ The [`pulse`](./pulse) folder contains examples of projects using [Prisma Pulse]
 | [`product-search-with-typesense`](./pulse/product-search-with-typesense) | A cron job that syncs data into Typesense (built with Hono.js)           |
 | [`data-sync-with-bigquery`](./pulse/data-sync-with-bigquery)             | A script that automatically syncs data into Google BigQuery              |
 
+## Prisma Optimize
 
+The [`optimize`](./optimize) folder contains examples of projects using [Prisma Optimize](https://www.prisma.io/data-platform/optimize) to identify and improve the performance of slow queries.
+
+| Demo                                                                     | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`starter`](./optimize/starter)                                             | A Prisma Optimize starter app                                               |
+| [`optimize-excessive-rows`](./optimize/optimize-excessive-rows)                         | An example app demonstrating the "Excessive number of rows returned" recommendation provided by Optimize. |
+| [`optimize-full-table-scan`](./optimize/optimize-full-table-scan)                 | An example app demonstrating the "Full table scans caused by `LIKE` operations" recommendation provided by Optimize.                                |
+| [`optimize-unindexed-column`](./optimize/optimize-unindexed-column)                 | An example app demonstrating the "Query filtering on an unindexed column" recommendation provided by Optimize.                     |
 
 ## Prisma ORM (TypeScript)
 
