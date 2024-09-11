@@ -30,7 +30,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/remix
+cd prisma-examples/optimize/optimize_starter
 npm install
 ```
 
@@ -42,7 +42,7 @@ Run `npm run build` from project root to create your SQLite database.
 
 ### 3. Log in to Optimize
 
-Login and create an API key (also called a token) [in the Optimize dashboard](https://optimize.prisma.io).
+Login and create an API key (also called a token) [in the Optimize dashboard](https://console.prisma.io/optimize).
 
 Navigate to `packages/server` and add a `.env` file that matches the `.env.example` file.
 
@@ -61,7 +61,7 @@ PRISMA_OPTIMIZE_TOKEN="<your_token_here>"
 
 1. Got to recordings [in the Optimize dashboard](https://console.prisma.io/optimize) and click the "Start recording" button.
 1. Run `npm start` from the project root.
-1. Open the demo app @ http://localhost:5174 in the browser. Perform a bunch of actions - add a Todo, mark a Todo as complete, delete a Todo, etc.
+1. Open the demo app @ http://localhost:5173 in the browser. Perform a bunch of actions - add a Todo, mark a Todo as complete, delete a Todo, etc.
 1. Go back to the Optimize dashboard and click the "Stop recording" button.
 1. Enjoy some sweet queries, groups, and most importantly recommendations with our friendly AI chat.
 
