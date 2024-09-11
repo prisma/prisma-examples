@@ -24,6 +24,9 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: install deps
         run: cd .github/scripts && pnpm install
@@ -70,6 +73,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
 
       - name: test
         run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
