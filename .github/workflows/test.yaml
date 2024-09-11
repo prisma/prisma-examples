@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: install deps
-        run: cd .github/scripts && yarn install
+        run: cd .github/scripts && pnpm install
 
       - name: get list of projects as json array
         id: set-matrix
