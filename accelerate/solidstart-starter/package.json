@@ -7,7 +7,7 @@
     "start": "vinxi start"
   },
   "dependencies": {
-    "@prisma/client": "5.19.0",
+    "@prisma/client": "5.19.1",
     "@prisma/extension-accelerate": "1.1.0",
     "@solidjs/router": "0.14.3",
     "@solidjs/start": "1.0.6",
@@ -17,12 +17,12 @@
     "zod": "3.23.8"
   },
   "engines": {
-    "node": "22.7.0"
+    "node": "22.8.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.20",
-    "postcss": "8.4.44",
-    "prisma": "5.19.0",
+    "postcss": "8.4.45",
+    "prisma": "5.19.1",
     "tailwindcss": "3.4.10"
   },
   "prisma": {

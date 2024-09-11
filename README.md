@@ -64,7 +64,16 @@ The [`pulse`](./pulse) folder contains examples of projects using [Prisma Pulse]
 | [`product-search-with-typesense`](./pulse/product-search-with-typesense) | A cron job that syncs data into Typesense (built with Hono.js)           |
 | [`data-sync-with-bigquery`](./pulse/data-sync-with-bigquery)             | A script that automatically syncs data into Google BigQuery              |
 
+## Prisma Optimize
 
+The [`optimize`](./optimize) folder contains examples of projects using [Prisma Optimize](https://www.prisma.io/data-platform/optimize) to identify and improve the performance of slow queries.
+
+| Demo                                                                     | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`starter`](./optimize/starter)                                             | A Prisma Optimize starter app                                               |
+| [`optimize-excessive-rows`](./optimize/optimize-excessive-rows)                         | An example app demonstrating the "Excessive number of rows returned" recommendation provided by Optimize. |
+| [`optimize-full-table-scan`](./optimize/optimize-full-table-scan)                 | An example app demonstrating the "Full table scans caused by `LIKE` operations" recommendation provided by Optimize.                                |
+| [`optimize-unindexed-column`](./optimize/optimize-unindexed-column)                 | An example app demonstrating the "Query filtering on an unindexed column" recommendation provided by Optimize.                     |
 
 ## Prisma ORM (TypeScript)
 
@@ -173,9 +182,13 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Starter kits
 
-- [T3 stack](https://create.t3.gg/): Starter kit based on Next.js, TypeScript, tRPC, Prisma, Tailwind CSS and NextAuth.js
-- [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, formatting
-- [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, formatting
+- [T3 Stack](https://create.t3.gg/): Starter kit based on Next.js, TypeScript, tRPC, Prisma, Tailwind CSS, and NextAuth.js.
+- [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, and formatting.
+- [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, and formatting.
+- [NestJS Prisma Starter](https://github.com/notiz-dev/nestjs-prisma-starter): NestJS, Prisma, and authentication starter template.
+- [Supastarter](https://supastarter.dev/): Full-stack SaaS starter kit using Next.js/Nuxt.js/SvelteKit and Prisma with authentication, emails, payment, testing, linting, and formatting.
+- [Saas Kit Prisma](https://github.com/Saas-Starter-Kit/Saas-Kit-prisma): Full-stack SaaS starter kit using React.js, Next.js, TypeScript, Tailwind, Shadcn, Stripe, NextAuth, Prisma, Postgres, and Playwright.
+- [Saas Kit Prisma by BoxyHQ](https://github.com/boxyhq/saas-starter-kit): An open-source enterprise SaaS starter kit using Prisma ORM.
 
 ## Badges
 

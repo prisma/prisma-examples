@@ -9,14 +9,14 @@
     "dev": "tsc --watch"
   },
   "devDependencies": {
-    "@types/node": "22.5.2",
+    "@types/node": "22.5.4",
     "nodemon": "3.1.4",
-    "prisma": "5.19.0",
+    "prisma": "5.19.1",
     "tsx": "4.19.0",
-    "typescript": "5.5.4"
+    "typescript": "5.6.2"
   },
   "dependencies": {
-    "@prisma/client": "5.19.0"
+    "@prisma/client": "5.19.1"
   },
   "prettier": {
     "trailingComma": "all",

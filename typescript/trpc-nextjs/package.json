@@ -9,13 +9,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "5.19.0",
-    "@tanstack/react-query": "5.53.3",
+    "@prisma/client": "5.19.1",
+    "@tanstack/react-query": "5.55.4",
     "@trpc/client": "next",
     "@trpc/next": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
-    "next": "14.2.7",
+    "next": "14.2.9",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-markdown": "9.0.1",
@@ -23,12 +23,12 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@types/node": "20.16.3",
+    "@types/node": "20.16.5",
     "@types/react": "18.3.5",
     "@types/react-dom": "18.3.0",
-    "prisma": "5.19.0",
+    "prisma": "5.19.1",
     "ts-node": "10.9.2",
-    "typescript": "5.5.4"
+    "typescript": "5.6.2"
   },
   "ct3aMetadata": {
     "initVersion": "7.3.2"
