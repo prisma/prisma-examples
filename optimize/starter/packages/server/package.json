@@ -23,7 +23,7 @@
     "@trpc/server": "next",
     "@types/cors": "2.8.17",
     "cors": "2.8.5",
-    "express": "4.19.2",
+    "express": "4.20.0",
     "zod": "3.23.8"
   }
 }
