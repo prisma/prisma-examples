@@ -36,7 +36,7 @@ npm install
 
 </details>
 
-### 2. Create and seed the database
+### 2. Create the database
 
 Run `npm run build` from project root to create your SQLite database.
 
