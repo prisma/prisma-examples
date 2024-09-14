@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20240909.0",
-    "@types/pg": "8.11.9",
+    "@types/pg": "8.11.10",
     "prisma": "5.19.1",
     "wrangler": "3.77.0"
   },
