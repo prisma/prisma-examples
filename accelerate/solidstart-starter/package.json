@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
     "prisma": "5.19.1",
-    "tailwindcss": "3.4.11"
+    "tailwindcss": "3.4.12"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
