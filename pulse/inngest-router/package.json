@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20240909.0",
-    "nodemon": "3.1.5",
+    "nodemon": "3.1.6",
     "prisma": "5.19.1",
     "ts-node": "10.9.2",
     "typescript": "5.6.2"
