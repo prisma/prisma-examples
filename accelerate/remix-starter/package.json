@@ -74,7 +74,7 @@
     "eslint-plugin-react": "7.36.1",
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-testing-library": "6.3.0",
-    "jsdom": "25.0.0",
+    "jsdom": "25.0.1",
     "lint-staged": "15.2.10",
     "prettier": "3.3.3",
     "prisma": "5.19.1",
