@@ -41,7 +41,7 @@ if [ -f "$run_file" ]; then
     echo "$(dirname "$item") failed"
 
     if [ "$GITHUB_REF" = "refs/heads/latest" ] || [ "$GITHUB_REF" = "refs/heads/dev" ] || [ "$GITHUB_REF" = "refs/heads/patch-dev" ]; then
-      (cd .github/slack/ && yarn install --silent)
+      (cd .github/slack/ && pnpm install --reporter=silent)
 
       export webhook="$SLACK_WEBHOOK_URL_FAILING"
 

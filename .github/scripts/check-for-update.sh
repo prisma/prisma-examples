@@ -70,14 +70,14 @@ while [ $i -le $count ]; do
     if [ "$vCLI" != "" ]; then
       if [ "$v" != "$vCLI" ]; then
         echo "$item: prisma expected $v, actual $vCLI"
-        yarn add --ignore-engines "prisma@$v" --dev
+        pnpm add "prisma@$v" --dev
       fi
 
       vPrismaClient="$(node -e "console.log(require('./package.json').dependencies['@prisma/client'])")"
 
       if [ "$v" != "$vPrismaClient" ]; then
         echo "$item: @prisma/client expected $v, actual $vPrismaClient"
-        yarn add --ignore-engines "@prisma/client@$v"
+        pnpm add "@prisma/client@$v"
       fi
     fi
 
@@ -115,7 +115,7 @@ while [ $i -le $count ]; do
     export version="$v"
 
     export webhook="$SLACK_WEBHOOK_URL_FAILING"
-    (cd .github/slack/ && yarn install)
+    (cd .github/slack/ && pnpm install)
     node .github/slack/notify.js --branch-name $branch "Prisma version $v released via the action https://github.com/prisma/prisma-examples/actions/runs/$GITHUB_RUN_ID?check_suite_focus=true"
   fi
 

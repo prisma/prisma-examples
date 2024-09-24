@@ -2,7 +2,7 @@
 
 set -eu
 
-(cd .github/slack/ && yarn install --silent)
+(cd .github/slack/ && pnpm install --silent)
 
 emoji="$1"
 
