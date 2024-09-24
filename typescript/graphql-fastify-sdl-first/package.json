@@ -15,7 +15,7 @@
     "fastify": "5.0.0",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
-    "mercurius": "14.1.0"
+    "mercurius": "15.0.0"
   },
   "devDependencies": {
     "@types/node": "20.16.5",
