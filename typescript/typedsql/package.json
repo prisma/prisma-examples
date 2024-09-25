@@ -16,11 +16,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "5.19.1"
+    "@prisma/client": "5.20.0"
   },
   "devDependencies": {
     "@types/node": "22.7.0",
-    "prisma": "5.19.1",
+    "prisma": "5.20.0",
     "tsx": "4.19.1"
   }
 }

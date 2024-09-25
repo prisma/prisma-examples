@@ -5,14 +5,14 @@
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/client": "5.19.1",
+    "@prisma/client": "5.20.0",
     "@prisma/extension-pulse": "1.2.0",
     "@types/node": "20.16.7",
     "dotenv": "16.4.5",
     "resend": "4.0.0"
   },
   "devDependencies": {
-    "prisma": "5.19.1",
+    "prisma": "5.20.0",
     "ts-node": "10.9.2",
     "typescript": "5.6.2"
   }
