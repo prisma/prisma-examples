@@ -6,7 +6,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
   },
   "dependencies": {
-    "@prisma/client": "5.19.1",
+    "@prisma/client": "5.20.0",
     "fastify": "4.28.1",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/node": "20.16.7",
-    "prisma": "5.19.1",
+    "prisma": "5.20.0",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.6.2"

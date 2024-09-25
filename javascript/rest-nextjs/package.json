@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "5.19.1",
+    "@prisma/client": "5.20.0",
     "next": "14.2.13",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -17,7 +17,7 @@
     "supports-color": "9.4.0"
   },
   "devDependencies": {
-    "prisma": "5.19.1"
+    "prisma": "5.20.0"
   },
   "prisma": {
     "seed": "node ./prisma/seed.js"
