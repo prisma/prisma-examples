@@ -17,7 +17,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20240919.0",
+    "@cloudflare/workers-types": "4.20240924.0",
     "@types/pg": "8.11.10",
     "prisma": "5.19.1",
     "wrangler": "3.78.8"
