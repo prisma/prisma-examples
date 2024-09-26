@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prisma Accelerate Hacker News Clone
 
-## Getting Started
+This project showcases how to use Prisma ORM with Prisma Accelerate, leveraging caching and on-demand cache invalidation, in a Next.js application to build a minimal Hacker News clone.
 
-First, run the development server:
+This app retrieves and caches the [top 20 latest posts](/app/page.tsx#L8) with a long Time-to-Live ([TTL](https://www.prisma.io/docs/accelerate/caching#time-to-live-ttl)). The cache is invalidated on-demand whenever a post is [upvoted](/app/actions/addVotes.ts) or a [new post is added](/app/submit/actions/addPost.ts).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![GIF of interaction](demo.gif)
+
+## Prerequisites
+
+To successfully run the project, you will need the following:
+
+- The **connection string** of a PostgreSQL database
+- Your **Accelerate connection string** (containing your **Accelerate API key**) which you can get by enabling Accelerate in a project in your [Prisma Data Platform](https://pris.ly/pdp) account (learn more in the [docs](https://www.prisma.io/docs/platform/concepts/environments#api-keys))
+
+## Getting started
+
+### 1. Clone the repository
+
+Clone the repository, navigate into it and install dependencies:
+
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+cd prisma-examples/accelerate/accelerate-hacker-news
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configure environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env` in the root of the project directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.example .env
+```
 
-## Learn More
+Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environment variables with the values of your connection string and your Accelerate connection string:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# .env
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Accelerate connection string (used for queries by Prisma Client)
+DATABASE_URL="__YOUR_ACCELERATE_CONNECTION_STRING__"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Database connection string (used for migrations by Prisma Migrate)
+DIRECT_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+```
 
-## Deploy on Vercel
+Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_ACCELERATE_CONNECTION_STRING__` are placeholder values that you need to replace with the values of your database and Accelerate connection strings. Notice that the Accelerate connection string has the following structure: `prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Run a migration to create the `Post` table
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The Prisma schema file contains a single `Post` model. You can map this model to the database and create the corresponding `Post` table using the following command:
+
+```
+npx prisma migrate dev --name init
+```
+
+### 4. Generate Prisma Client for Accelerate
+
+When using Accelerate, Prisma Client doesn't need a query engine. That's why you should generate it as follows:
+
+```
+npx prisma generate --no-engine
+```
+
+### 5. Start the app
+
+You can run the app with the following command:
+
+```
+npm run dev
+```
+
+You should now be able to:
+
+- See the most recent post at http://localhost:3000 and upvote it by clicking the ▲ button.
+- Submit a new post by navigating to http://localhost:3000/submit.
+
+When you make changes, it might take a few seconds to invalidate the cache and display the latest changes.
+
+## Resources
+
+- [Accelerate Speed Test](https://accelerate-speed-test.vercel.app/)
+- [Accelerate documentation](https://www.prisma.io/docs/accelerate)
+- [Prisma Discord](https://pris.ly/discord)

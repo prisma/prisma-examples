@@ -3,9 +3,9 @@
 import prisma from '@/lib/db'
 
 export async function addVotes(id: number) {
-  console.log({
-    updating: id,
-  })
+  // console.log({
+  //   updating: id,
+  // })
 
   await prisma.post.update({
     where: {

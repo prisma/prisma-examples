@@ -4,10 +4,12 @@ import { faker } from '@faker-js/faker'
 const prisma = new PrismaClient()
 
 const main = async () => {
+  await prisma.post.deleteMany()
+
   for (let index = 0; index < 25; index++) {
     const post = await prisma.post.create({
       data: {
-        title: faker.lorem.text(),
+        title: `${faker.animal.dog()} ${faker.airline.airplane().name}`,
         content: faker.lorem.paragraph(),
         url: faker.internet.url(),
         vote: faker.number.int({

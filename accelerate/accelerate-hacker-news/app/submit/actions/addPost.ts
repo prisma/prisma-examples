@@ -20,5 +20,6 @@ export async function createPost(formData: FormData) {
     tags: ['posts'],
   })
 
-  console.log({ newPost }, 'has been created.')
+  // console.log({ newPost }, 'has been created.')
+  return newPost
 }
