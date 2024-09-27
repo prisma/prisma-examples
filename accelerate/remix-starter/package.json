@@ -48,7 +48,7 @@
     "zod-form-data": "2.0.2"
   },
   "devDependencies": {
-    "@faker-js/faker": "9.0.2",
+    "@faker-js/faker": "9.0.3",
     "@remix-run/dev": "2.12.1",
     "@remix-run/eslint-config": "2.12.1",
     "@remix-run/testing": "2.12.1",
