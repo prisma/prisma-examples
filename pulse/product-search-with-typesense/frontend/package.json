@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.0",
-    "@radix-ui/react-dialog": "1.1.1",
+    "@radix-ui/react-dialog": "1.1.2",
     "@radix-ui/react-icons": "1.3.0",
     "@radix-ui/react-label": "2.1.0",
     "@radix-ui/react-slot": "1.1.0",
-    "@radix-ui/react-toast": "1.2.1",
+    "@radix-ui/react-toast": "1.2.2",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
     "instantsearch.css": "8.5.1",
