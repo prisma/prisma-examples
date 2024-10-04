@@ -67,7 +67,7 @@
     "dotenv-cli": "7.4.2",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.30.0",
+    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.0",
     "eslint-plugin-lodash": "8.0.0",
     "eslint-plugin-prettier": "5.2.1",
