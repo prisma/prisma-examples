@@ -149,7 +149,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 
 ## Real-world & production-ready example projects with Prisma
 
-- [Inbox Zero](https://github.com/pdovhomilja/nextcrm-app): Open source email management tools to reach inbox zero fast
+- [Inbox Zero](https://github.com/elie222/inbox-zero): Open source email management tools to reach inbox zero fast
 - [NextCRM](https://github.com/pdovhomilja/nextcrm-app): An open-source Customer Relationship Management system (CRM)
 - [Papermark](https://github.com/mfts/papermark/): An open-source DocSend alternative with built-in analytics and custom domains
 - [Hoppscotch](https://github.com/hoppscotch/hoppscotch): An open-source API development ecosystem
