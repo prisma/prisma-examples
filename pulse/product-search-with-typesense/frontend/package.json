@@ -25,7 +25,7 @@
     "react-instantsearch": "7.13.2",
     "react-instantsearch-dom": "6.40.4",
     "react-instantsearch-router-nextjs": "7.13.2",
-    "tailwind-merge": "2.5.2",
+    "tailwind-merge": "2.5.3",
     "tailwindcss-animate": "1.0.7",
     "typesense-instantsearch-adapter": "2.8.0",
     "zod": "3.23.8"
