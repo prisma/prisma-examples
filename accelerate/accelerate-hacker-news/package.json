@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.20.0",
-    "@prisma/extension-accelerate": "1.2.0",
+    "@prisma/extension-accelerate": "1.2.1",
     "next": "14.2.14",
     "react": "18.3.1",
     "react-dom": "18.3.1"

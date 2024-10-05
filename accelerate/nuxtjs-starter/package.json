@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "6.12.1",
-    "@prisma/extension-accelerate": "1.2.0",
+    "@prisma/extension-accelerate": "1.2.1",
     "@prisma/nuxt": "0.0.35",
     "nuxt": "3.13.2",
     "openflights-cached": "1.3.15",
