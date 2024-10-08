@@ -18,7 +18,7 @@
   "devDependencies": {
     "prisma": "5.20.0",
     "@faker-js/faker": "9.0.3",
-    "@types/node": "20.16.10",
+    "@types/node": "20.16.11",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.0",
     "eslint": "8.57.1",

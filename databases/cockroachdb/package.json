@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/jest": "29.5.13",
-    "@types/node": "20.16.10",
+    "@types/node": "20.16.11",
     "@types/prettyjson": "0.0.33",
     "prettyjson": "1.2.5",
     "prisma": "5.20.0",
