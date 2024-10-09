@@ -16,7 +16,7 @@
     "@types/node": "20.16.11",
     "prisma": "5.20.0",
     "ts-node": "10.9.2",
-    "typescript": "5.6.2"
+    "typescript": "5.6.3"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
