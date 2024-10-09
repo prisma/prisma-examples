@@ -18,7 +18,7 @@
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
     "graphql-yoga": "5.7.0",
-    "next": "14.2.14",
+    "next": "14.2.15",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-markdown": "9.0.1"
