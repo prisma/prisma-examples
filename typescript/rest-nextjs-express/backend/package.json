@@ -9,7 +9,7 @@
     "@prisma/client": "5.20.0",
     "@types/node": "20.16.11",
     "cors": "2.8.5",
-    "express": "4.21.0"
+    "express": "4.21.1"
   },
   "devDependencies": {
     "@types/cors": "2.8.17",
