@@ -76,7 +76,7 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
    ![Rename recording](./images/edit-recording-name-chip.png)
 
-### Optimize example: Applying the "Query filtering on an unindexed column" recommendation
+### Optimize example: Applying the `SELECT/RETURNING *` recommendation
 
 Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 
