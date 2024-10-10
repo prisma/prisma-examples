@@ -1,6 +1,6 @@
-# Prisma Optimize Example: Applying the "Query filtering on an unindexed column" Recommendation
+# Prisma Optimize Example: Applying the `SELECT/RETURNING *` Recommendation
 
-This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the "Query filtering on an unindexed column" recommendation.
+This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the `SELECT/RETURNING *` recommendation and avoiding over-fetching of data.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Clone the repository, navigate into it, and install the dependencies:
 
 ```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/optimize/optimize-unindexed-column
+cd prisma-examples/optimize/optimize-select-returning-all
 npm install
 ```
 
@@ -70,7 +70,7 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
 3. After the script completes, you'll see a log saying "Done." Then, in the Optimize dashboard, click the **Stop recording** button.
 4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see the recommendation:
-   - **Query filtering on an unindexed column**
+   - **`SELECT/RETURNING *`**
      > For more insights on this recommendation, click the **Ask AI** button and interact with the [AI Explainer](https://pris.ly/optimize-ai-chatbot) chatbot.
 5. To create a reference for comparison with other recordings, rename the recording to _Unoptimized queries_ by clicking the green recording label chip in the top left corner and typing "Unoptimized queries".
 
@@ -80,31 +80,37 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
 
 Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 
-1. To enhance the performance of [**Query 1**](./script.ts) through [**Query 3**](./script.ts) by addressing the [**Query filtering on an unindexed column**](https://pris.ly/optimize/r/unindexed-column) recommendation, add an `index` to the `name` column (commonly used in the queries) in the `User` model within the [`schema.prisma`](./prisma/schema.prisma) file:
-
-   ```diff
-   model User {
-      id    Int     @id @default(autoincrement())
-      email String  @unique
-      name  String?
-      posts Post[]
-   +  @@index(name)
-    }
-   ```
-
-2. After making these changes, migrate them to your database using:
-
-   ```bash
-   npx prisma migrate dev --name create-name-index-on-user-model
-   ```
-
-3. Click the **Start new recording** button to begin a new recording and check for any performance improvements.
-4. In the project terminal, run the project with:
+1. To enhance the performance of [**Query 1**](./script.ts) by addressing the `SELECT/RETURNING *` recommendation:
+    ```diff
+    // Query 1
+    const result = await prisma.user.findFirst({
+      where: {
+        name: 'Nikolas Burk',
+      },
+    -  include: {
+    -    posts: {
+    -      take: 10,
+    -    },
+    -  },
+    +  select: {
+    +    name: true,
+    +    email: true,
+    +    posts: {
+    +      select: {
+    +        id: true,
+    +      },
+    +      take: 10,
+    +    },
+    +  },
+    })
+    ```
+2. Click the **Start new recording** button to begin a new recording and check for any performance improvements.
+3. In the project terminal, run the project with:
    ```bash
    npm run dev
    ```
-5. After the script completes, click the **Stop recording** button.
-6. Rename the recording to _Optimized queries_ by clicking the recording chip in the top left corner and typing "Optimized queries."
+4. After the script completes, click the **Stop recording** button.
+5. Rename the recording to _Optimized queries_ by clicking the recording chip in the top left corner and typing "Optimized queries."
 
 You can now compare performance improvements by navigating to the "Optimized queries" and "Unoptimized queries" recording tabs and observing the query latency differences.
 
