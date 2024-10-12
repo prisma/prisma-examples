@@ -9,7 +9,7 @@
     "dev": "tsc --watch"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20241004.0",
+    "@cloudflare/workers-types": "4.20241011.0",
     "nodemon": "3.1.7",
     "prisma": "5.20.0",
     "ts-node": "10.9.2",
