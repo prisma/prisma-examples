@@ -22,7 +22,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "0.5.9",
     "@types/react": "18.3.11",
-    "@types/react-dom": "18.3.0",
+    "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.2",
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
