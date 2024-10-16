@@ -9,14 +9,14 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "5.20.0",
+    "@prisma/client": "5.21.0",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
     "graphql-yoga": "5.7.0"
   },
   "devDependencies": {
     "@types/node": "20.16.11",
-    "prisma": "5.20.0",
+    "prisma": "5.21.0",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.6.3"
