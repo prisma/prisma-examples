@@ -47,7 +47,7 @@
     "@prisma/client": "5.20.0",
     "class-validator": "0.14.1",
     "graphql": "16.9.0",
-    "graphql-tools": "9.0.1",
+    "graphql-tools": "9.0.2",
     "reflect-metadata": "0.2.2",
     "rimraf": "6.0.1",
     "rxjs": "7.8.1"
