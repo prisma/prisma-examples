@@ -7,12 +7,12 @@
   },
   "dependencies": {
     "@koa/router": "13.1.0",
-    "@prisma/client": "5.20.0",
+    "@prisma/client": "5.21.0",
     "koa": "2.15.3",
     "koa-body": "6.0.1"
   },
   "devDependencies": {
-    "prisma": "5.20.0"
+    "prisma": "5.21.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
