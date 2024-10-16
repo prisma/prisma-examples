@@ -13,6 +13,7 @@ model User {
   email String  @unique
   name  String?
   posts Post[]
+  @@index([name])
 }
 
 model Post {

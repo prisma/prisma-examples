@@ -26,29 +26,6 @@ async function main() {
     email: result?.email,
     postIds: [...(result?.posts?.map((post) => post.id) ?? [])],
   })
-
-    // Query 1
-    const result2 = await prisma.user.findFirst({
-      where: {
-        name: 'Nikolas Burk',
-      },
-      select: {
-        name: true,
-        email: true,
-        posts: {
-          select: {
-            id: true,
-          },
-          take: 10,
-        },
-      },
-    })
-
-    console.log({
-      name: result?.name,
-      email: result?.email,
-      postIds: [...(result?.posts?.map((post) => post.id) ?? [])],
-    })
 }
 
 main()
