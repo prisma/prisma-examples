@@ -17,7 +17,7 @@
     "zod": "3.23.8"
   },
   "engines": {
-    "node": "22.9.0"
+    "node": "22.10.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.20",
