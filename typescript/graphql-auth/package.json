@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.6",
     "@types/jsonwebtoken": "9.0.7",
-    "@types/node": "20.16.11",
+    "@types/node": "20.16.12",
     "prisma": "5.21.0",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
