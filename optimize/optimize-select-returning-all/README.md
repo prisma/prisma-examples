@@ -1,4 +1,4 @@
-# Prisma Optimize Example: Applying the `SELECT/RETURNING *` Recommendation
+# Prisma Optimize Example: Applying the recommendation to avoid over-fetching
 
 This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the `SELECT/RETURNING *` recommendation and avoiding over-fetching of data.
 
