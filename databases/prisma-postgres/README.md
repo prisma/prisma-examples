@@ -59,7 +59,7 @@ This will map the `User` and `Post` models that are defined in your [Prisma sche
 
 ### 4. Execute queries with Prisma ORM
 
-The `src/queries.ts` script contains a number of CRUD queries that will write and read data in your database. You can execute it by running the following command in your terminal:
+The [`src/queries.ts`](./src/queries.ts) script contains a number of CRUD queries that will write and read data in your database. You can execute it by running the following command in your terminal:
 
 ```
 npm run queries
@@ -73,7 +73,7 @@ npx prisma studio
 
 ### 5. Explore caching with Prisma Accelerate
 
-The `src/caching.ts` script contains a sample query that uses [Stale-While-Revalidate](https://www.prisma.io/docs/accelerate/caching#stale-while-revalidate-swr) (SWR) and [Time-To-Live](https://www.prisma.io/docs/accelerate/caching#time-to-live-ttl) (TTL) to cache a database query using Prisma Accelerate. You can execute it as follows:
+The [`src/caching.ts`](./src/caching.ts) script contains a sample query that uses [Stale-While-Revalidate](https://www.prisma.io/docs/accelerate/caching#stale-while-revalidate-swr) (SWR) and [Time-To-Live](https://www.prisma.io/docs/accelerate/caching#time-to-live-ttl) (TTL) to cache a database query using Prisma Accelerate. You can execute it as follows:
 
 ```
 npm run caching
@@ -99,7 +99,7 @@ The query took 300.5655280000001ms.
 
 ### 6. Observe real-time events in your database
 
-The  `src/realtime.ts` script contains a demo for receiving real-time change [events](https://www.prisma.io/docs/pulse/database-events) from your database. You can start the script as follows:
+The  [`src/realtime.ts`](./src/realtime.ts) script contains a demo for receiving real-time change [events](https://www.prisma.io/docs/pulse/database-events) from your database. You can start the script as follows:
 
 ```
 npm run realtime
