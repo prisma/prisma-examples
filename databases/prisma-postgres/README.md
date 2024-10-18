@@ -21,7 +21,7 @@ Follow these steps to create your Prisma Postgres database:
 1. In the **Region** dropdown, select the region that's closest to your current location, e.g. **US East (N. Virginia)**.
 1. Click the **Create project** button.
 
-At this point, you'll be redirected to the **Dashboard** where you will need to wait a few seconds while the status of your database changes from **PROVISIONING**, to **ACTIVATING** to **CONNECTED**.
+At this point, you'll be redirected to the **Dashboard** where you will need to wait a few seconds while the status of your database changes from **`PROVISIONING`**, to **`ACTIVATING`** to **`CONNECTED`**.
 
 ### 2. Download example and install dependencies
 
