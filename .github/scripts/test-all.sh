@@ -39,24 +39,6 @@ if [ -f "$run_file" ]; then
 
   if [ $code -ne 0 ]; then
     echo "$(dirname "$item") failed"
-
-    if [ "$GITHUB_REF" = "refs/heads/latest" ] || [ "$GITHUB_REF" = "refs/heads/dev" ] || [ "$GITHUB_REF" = "refs/heads/patch-dev" ]; then
-      (cd .github/slack/ && yarn install --silent)
-
-      export webhook="$SLACK_WEBHOOK_URL_FAILING"
-
-      version="$(cat .github/prisma-version.txt)"
-      branch="$(git rev-parse --abbrev-ref HEAD)"
-      sha="$(git rev-parse HEAD)"
-      short_sha="$(echo "$sha" | cut -c -7)"
-      message="$(git log -1 --pretty=%B)"
-
-      commit_link="\`<https://github.com/prisma/prisma-examples/commit/$sha|$branch@$short_sha>\`"
-      workflow_link="<https://github.com/prisma/prisma-examples/actions/runs/$GITHUB_RUN_ID|$message>"
-
-      node .github/slack/notify.js "prisma@$version: $(dirname "$item") :x: $workflow_link (via $commit_link)"
-    fi
-
     exit $code
   fi
 else
