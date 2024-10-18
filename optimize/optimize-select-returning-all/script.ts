@@ -21,6 +21,8 @@ async function main() {
     },
   })
 
+  console.log("We should query only the retrieved values:");
+
   console.log({
     name: result?.name,
     email: result?.email,
