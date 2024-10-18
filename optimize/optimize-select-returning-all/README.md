@@ -1,6 +1,6 @@
-# Prisma Optimize Usage Example: Applying the "Excessive number of rows returned" Recommendation
+# Prisma Optimize Example: Applying the recommendation to avoid over-fetching
 
-This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the "Excessive number of rows returned" recommendation.
+This repository demonstrates how to use [Prisma Optimize](https://pris.ly/optimize) to improve query performance using the `SELECT/RETURNING *` recommendation and avoiding over-fetching of data.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Clone the repository, navigate into it, and install the dependencies:
 
 ```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/optimize/optimize-excessive-rows
+cd prisma-examples/optimize/optimize-select-returning-all
 npm install
 ```
 
@@ -55,6 +55,12 @@ If the database isn't seeded, run the following command to seed it:
 npx prisma db seed
 ```
 
+If the database isn't seeded, run the following command to seed it:
+
+```bash
+npx prisma db seed
+```
+
 ### 4. Open the Optimize dashboard
 
 You can create [recordings](https://pris.ly/optimize-recordings) and view detailed insights into your queries, along with optimization [recommendations](https://pris.ly/optimize-recommendations), in the Optimize dashboard. To access the dashboard:
@@ -75,25 +81,40 @@ Let's run the [script with unoptimized Prisma queries](./script.ts):
    ```
 
 3. After the script completes, you'll see a log saying "Done." Then, in the Optimize dashboard, click the **Stop recording** button.
-4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see the recommendation:
-   - **Excessive number of rows returned**
+4. Observe the queries with high latencies highlighted in red, and review the recommendations in the **Recommendations** tab. You should see the recommendation **`SELECT/RETURNING *`** and click on it.
      > For more insights on this recommendation, click the **Ask AI** button and interact with the [AI Explainer](https://pris.ly/optimize-ai-chatbot) chatbot.
 5. To create a reference for comparison with other recordings, rename the recording to _Unoptimized queries_ by clicking the green recording label chip in the top left corner and typing "Unoptimized queries".
 
    ![Rename recording](./images/edit-recording-name-chip.png)
 
-### Optimize example: applying the "Excessive number of rows returned" recommendation
+### Optimize example: Applying the `SELECT/RETURNING *` recommendation
 
 Next, let’s follow the recommendation provided by Optimize to improve the performance of the queries:
 
-1. To improve the performance of [**Query 1**](./script.ts) by addressing the [**Excessive number of rows returned**](https://pris.ly/optimize/r/excessive-rows) recommendation, add a `take` option to the query:
-
-   ```typescript
-   await prisma.user.findMany({
-     take: 10,
-   })
-   ```
-
+1. To enhance the performance of [**Query 1**](./script.ts) by addressing the `SELECT/RETURNING *` recommendation:
+    ```diff
+    // Query 1
+    const result = await prisma.user.findFirst({
+      where: {
+        name: 'Nikolas Burk',
+      },
+    -  include: {
+    -    posts: {
+    -      take: 10,
+    -    },
+    -  },
+    +  select: {
+    +    name: true,
+    +    email: true,
+    +    posts: {
+    +      select: {
+    +        id: true,
+    +      },
+    +      take: 10,
+    +    },
+    +  },
+    })
+    ```
 2. Click the **Start new recording** button to begin a new recording and check for any performance improvements.
 3. In the project terminal, run the project with:
    ```bash
