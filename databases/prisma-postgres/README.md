@@ -1,4 +1,4 @@
-# Prisma Postgres Example: Migrations, Queries, Real-time Events & Caching
+# Prisma Postgres Example: Queries, Real-Time Events & Caching
 
 This project contains a sample application demonstrating various capabilities and workflows of [Prisma Postgres](https://prisma.io/data-platform/postgres):
 
@@ -123,3 +123,4 @@ Received an event: {
   modelName: 'User'
 }
 ```
+
