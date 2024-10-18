@@ -35,14 +35,6 @@ jobs:
         id: set-matrix
         run: node .github/scripts/get-packages.js
 
-  debug-projects-matrix:
-    needs: projects-matrix
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "${{needs.projects-matrix.outputs.matrix}}"
-          echo "${{fromJson(needs.projects-matrix.outputs.matrix)}}"
-
   test:
     needs: projects-matrix
     if: github.repository_owner == 'prisma'
@@ -76,7 +68,3 @@ jobs:
 
       - name: test
         run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
-
-      - name: notify-slack
-        if: failure() && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/patch-dev' || github.ref == 'refs/heads/latest')
-        run: bash .github/scripts/slack-workflow-status.sh ":x:"
