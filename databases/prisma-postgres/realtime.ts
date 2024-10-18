@@ -6,7 +6,10 @@ process.on('SIGINT', () => {
 });
 
 const apiKey: string = process.env.PULSE_API_KEY ?? '';
-console.log(`api key: `, apiKey);
+if (!apiKey || apiKey === "") {
+  console.log(`Please set the \`PULSE_API_KEY\` environment variable in the \`.env\` file.`);
+  process.exit(1);
+}
 
 const prisma = new PrismaClient().$extends(
   withPulse({ apiKey: apiKey })
@@ -19,9 +22,9 @@ async function main() {
     stream.stop();
   });
 
-  console.log(`waiting for an event ... `);
+  console.log(`Waiting for an event on the \`User\` table ... `);
   for await (const event of stream) {
-    console.log('just received an event:', event);
+    console.log('Received an event:', event);
   }
 }
 

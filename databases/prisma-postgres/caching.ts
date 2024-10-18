@@ -6,23 +6,28 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  // Learn more about caching: 
+  const startTime = performance.now();
+
+  // Learn more about caching strategies:
   // https://www.prisma.io/docs/accelerate/caching
   const cachedUsersWithPosts = await prisma.user.findMany({
     where: {
-      email: {
-        contains: "alice"
-      }
+      email: { contains: "alice" }
     },
-    include: {
-      posts: true
-    },
+    include: { posts: true },
     cacheStrategy: {
       swr: 30, // 30 seconds
       ttl: 60  // 60 seconds
     }
-  })
-  console.log(cachedUsersWithPosts)
+  });
+
+  const endTime = performance.now();
+
+  // Calculate the elapsed time
+  const elapsedTime = endTime - startTime;
+
+  console.log(`The query took ${elapsedTime}ms.`);
+  console.log(`It returned the following data: \n`, cachedUsersWithPosts);
 
 }
 
