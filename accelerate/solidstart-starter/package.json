@@ -10,7 +10,7 @@
     "@prisma/client": "5.21.1",
     "@prisma/extension-accelerate": "1.2.1",
     "@solidjs/router": "0.14.10",
-    "@solidjs/start": "1.0.8",
+    "@solidjs/start": "1.0.9",
     "solid-js": "1.9.2",
     "tsx": "4.19.1",
     "vinxi": "0.4.3",
