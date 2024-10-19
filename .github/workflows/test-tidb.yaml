@@ -1,0 +1,43 @@
+name: test-tidb
+on:
+  push:
+    paths:
+      - databases/tidb/**
+    branches:
+      - latest
+      - dev
+      - patch-dev
+  pull_request:
+    paths:
+      - databases/tidb/**
+
+env:
+  CI: 1
+  PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test-tidb.yaml'
+
+jobs:
+  test:
+    defaults:
+      run:
+        working-directory: databases/tidb
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: mysql://root@127.0.0.1:4000/prisma?sslmode=disable
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start a single TiDB instance with Docker
+        env:
+          TIDB_DOCKER_TAG: 'pingcap/tidb:v7.1.0'
+        run: |
+          docker pull $TIDB_DOCKER_TAG
+          docker run -d --name tidb --hostname tidb -p 4000:4000 -p 8080:8080 -v "${{ github.workspace }}:/app" $TIDB_DOCKER_TAG
+          sudo apt update && sudo apt install wait-for-it -y
+          wait-for-it -h localhost -p 4000
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install
+      - run: npx prisma migrate dev --name "init"
+      - run: npm run test
