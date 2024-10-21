@@ -6,8 +6,8 @@
     "dev": "node src/index.js"
   },
   "dependencies": {
-    "fastify": "5.0.0"
     "@prisma/client": "5.21.1",
+    "fastify": "5.0.0"
   },
   "devDependencies": {
     "prisma": "5.21.1"
