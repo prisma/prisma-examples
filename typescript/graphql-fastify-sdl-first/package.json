@@ -10,12 +10,12 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "fastify": "5.0.0",
     "@graphql-tools/schema": "10.0.7",
     "@prisma/client": "5.21.1",
-    "fastify": "4.28.1",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
-    "mercurius": "14.1.0"
+    "mercurius": "15.0.0"
   },
   "devDependencies": {
     "@types/node": "20.16.13",
