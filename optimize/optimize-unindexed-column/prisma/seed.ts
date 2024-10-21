@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker'
 
 const prisma = new PrismaClient()
-const TOTAL = 5000
+const TOTAL = 30
 
 const main = async () => {
   await prisma.post.deleteMany({})

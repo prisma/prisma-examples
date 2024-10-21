@@ -49,6 +49,12 @@ Perform a database migration to prepare the project:
 npx prisma migrate dev --name init
 ```
 
+If the database isn't seeded, run the following command to seed it:
+
+```bash
+npx prisma db seed
+```
+
 ### 4. Open the Optimize dashboard
 
 You can create [recordings](https://pris.ly/optimize-recordings) and view detailed insights into your queries, along with optimization [recommendations](https://pris.ly/optimize-recommendations), in the Optimize dashboard. To access the dashboard:

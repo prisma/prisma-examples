@@ -10,19 +10,19 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@graphql-tools/schema": "10.0.6",
-    "@prisma/client": "5.19.1",
     "fastify": "5.0.0",
+    "@graphql-tools/schema": "10.0.7",
+    "@prisma/client": "5.21.1",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
     "mercurius": "15.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.16.5",
-    "prisma": "5.19.1",
+    "@types/node": "20.16.13",
+    "prisma": "5.21.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
-    "typescript": "5.6.2"
+    "typescript": "5.6.3"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
