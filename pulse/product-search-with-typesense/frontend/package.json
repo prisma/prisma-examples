@@ -21,7 +21,7 @@
     "next": "14.2.15",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-hook-form": "7.53.0",
+    "react-hook-form": "7.53.1",
     "react-instantsearch": "7.13.4",
     "react-instantsearch-dom": "6.40.4",
     "react-instantsearch-router-nextjs": "7.13.4",
@@ -31,7 +31,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@types/node": "20.16.12",
+    "@types/node": "20.16.13",
     "@types/react": "18.3.11",
     "@types/react-dom": "18.3.1",
     "@types/react-instantsearch-dom": "6.12.8",
