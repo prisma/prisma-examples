@@ -2,8 +2,13 @@
   import Post from '$lib/components/Post.svelte'
   import type { PageData } from './$types'
   
-  // data returned from +page.server.js
-  export let data: PageData
+  
+  interface Props {
+    // data returned from +page.server.js
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 
 </script>
 

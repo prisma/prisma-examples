@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { ActionData } from "./$types";
 
-  export let form: ActionData;
+  interface Props {
+    form: ActionData;
+  }
+
+  let { form }: Props = $props();
 </script>
 
 <div class="page">
@@ -26,7 +30,7 @@
       placeholder="Content"
       rows="8"
       value={form?.content ?? ""}
-    />
+></textarea>
     <button type="submit">Create</button>
     <a class="back" href="/"> or Cancel </a>
   </form>

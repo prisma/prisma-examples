@@ -2,14 +2,18 @@
   import { goto } from "$app/navigation";
   import type { Post } from "@prisma/client";
 
-  export let post: Post & {
+  interface Props {
+    post: Post & {
     author?: {
       name: string;
     } | null;
   };
+  }
+
+  let { post }: Props = $props();
 </script>
 
-<div class="post" on:click={() => goto(`/p/${post.id}`)}>
+<div class="post" onclick={() => goto(`/p/${post.id}`)}>
   <h2>{post.title}</h2>
   <small
     >{post.author?.name ? `By ${post.author.name}` : "Unknown author"}</small
