@@ -1,7 +1,11 @@
 <script lang="ts">
   import type { Post } from '@prisma/client'
 
-  export let data: { post: Post & { author?: { name: string } } }
+  interface Props {
+    data: { post: Post & { author?: { name: string } } };
+  }
+
+  let { data }: Props = $props();
 
   const { post } = data
 </script>
