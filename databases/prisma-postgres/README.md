@@ -42,7 +42,7 @@ Your connection string that should replace the `__YOUR_DATABASE_CONNECTION_STRIN
 Navigate into the project directory and install dependencies:
 
 ```
-cd hello-prisma-postgres
+cd hello-prisma
 npm install
 ```
 
