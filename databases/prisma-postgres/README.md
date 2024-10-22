@@ -6,7 +6,7 @@ This project contains a sample application demonstrating various capabilities an
 - Connection pooling and caching (via [Prisma Accelerate](https://prisma.io/data-platform/accelerate))
 - Real-time database change events (via [Prisma Pulse](https://prisma.io/data-platform/pulse))
 
-> **Note**: Prisma Postgres is currently in Early Access and not yet recommended for production usage. There are no automated backups and a risk of total data loss. [Learn more](https://www.prisma.io/docs/orm/databases/prisma-postgres).
+> **Note**: Prisma Postgres is currently in Early Access and not yet recommended for production usage. There are no automated backups and a risk of total data loss. 
 
 ## Getting started
 
