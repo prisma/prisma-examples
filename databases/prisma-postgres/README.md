@@ -25,7 +25,7 @@ At this point, you'll be redirected to the **Dashboard** where you will need to 
 
 ### 2. Download example and install dependencies
 
-Copy the `try-prisma` command that's hown in the Console, paste it into your terminal and execute it.
+Copy the `try-prisma` command that's shown in the Console, paste it into your terminal, and execute it.
 
 For reference, this is what the command looks like (note that the `__YOUR_DATABASE_CONNECTION_STRING__` placeholder must be replaced with _your_ actual database connection string):
 
