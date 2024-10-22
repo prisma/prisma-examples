@@ -33,7 +33,7 @@ For reference, this is what the command looks like (note that the `__YOUR_DATABA
 npx try-prisma@latest
   --template databases/prisma-postgres
   --connection-string __YOUR_DATABASE_CONNECTION_STRING__
-  --name hello-prisma-postgres
+  --name hello-prisma
   --install npm
 ```
 
