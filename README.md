@@ -42,6 +42,7 @@ The [`accelerate`](./accelerate) folder contains examples of projects using [Pri
 
 | Demo                                            | Description                                                                |
 | ----------------------------------------------- | -------------------------------------------------------------------------- |
+| [`starter`](./accelerate/starter) | A simple starter project using Prisma Accelerate's caching and connection pooling |
 | [`nextjs-starter`](./accelerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
 | [`svelte-starter`](./accelerate/svelte-starter/) | A SvelteKit project using Prisma Accelerate's caching and connection pooling |
 | [`solidstart-starter`](./accelerate/solidstart-starter/) | A Solidstart project using Prisma Accelerate's caching and connection pooling |

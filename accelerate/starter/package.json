@@ -1,0 +1,33 @@
+{
+  "name": "prisma-typescript-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "22.5.0",
+    "nodemon": "3.1.4",
+    "prisma": "5.18.0",
+    "tsx": "4.17.0",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "@prisma/client": "5.18.0",
+    "@prisma/extension-accelerate": "^1.1.0"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "jsxBracketSameLine": false,
+    "bracketSpacing": true,
+    "arrowParens": "always"
+  }
+}
