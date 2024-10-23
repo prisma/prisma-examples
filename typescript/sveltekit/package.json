@@ -23,7 +23,7 @@
     "prisma": "5.21.1",
     "svelte": "5.0.5",
     "svelte-check": "4.0.5",
-    "svelte-preprocess": "^6.0.3",
+    "svelte-preprocess": "6.0.3",
     "tslib": "2.8.0",
     "tsx": "4.19.1",
     "typescript": "5.6.3",
