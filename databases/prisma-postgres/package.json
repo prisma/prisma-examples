@@ -10,7 +10,7 @@
     "@prisma/client": "5.21.0",
     "@prisma/extension-accelerate": "1.2.1",
     "@prisma/extension-pulse": "1.2.0",
-    "@types/node": "20.16.11"
+    "@types/node": "20.16.15"
   },
   "devDependencies": {
     "prisma": "5.21.0",
