@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - javascript/**
-      - typescript/**
+      - orm/**
     branches:
       - latest
       - dev

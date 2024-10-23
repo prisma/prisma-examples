@@ -15,7 +15,7 @@ package-lock.json
 flow-typed
 yarn.lock
 javascript/**/migrations/
-typescript/**/migrations/
+orm/**/migrations/
 misc/**/migrations/
 databases/**/migrations/
 experimental/**/*.db
