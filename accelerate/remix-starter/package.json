@@ -57,7 +57,7 @@
     "@types/accept-language-parser": "1.5.6",
     "@types/lodash": "4.17.12",
     "@types/node": "20.16.15",
-    "@types/react": "18.3.11",
+    "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@typescript-eslint/eslint-plugin": "8.11.0",
     "@typescript-eslint/parser": "8.11.0",
