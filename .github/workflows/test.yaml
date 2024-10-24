@@ -2,7 +2,7 @@ name: test
 on:
   push:
     paths:
-      - typescript/**
+      - orm/**
     branches:
       - latest
   pull_request:
