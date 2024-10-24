@@ -12,7 +12,7 @@
   "author": "Igal Klebanov",
   "license": "ISC",
   "dependencies": {
-    "@tanstack/react-query": "5.59.15",
+    "@tanstack/react-query": "5.59.16",
     "@trpc/client": "next",
     "@trpc/react-query": "next",
     "react": "18.3.1",
@@ -21,13 +21,13 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "0.5.9",
-    "@types/react": "18.3.11",
+    "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "4.3.3",
     "autoprefixer": "10.4.20",
     "postcss": "8.4.47",
     "tailwindcss": "3.4.14",
     "typescript": "5.6.3",
-    "vite": "5.4.9"
+    "vite": "5.4.10"
   }
 }

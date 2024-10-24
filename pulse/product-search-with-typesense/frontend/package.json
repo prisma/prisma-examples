@@ -31,8 +31,8 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@types/node": "20.16.15",
-    "@types/react": "18.3.11",
+    "@types/node": "20.17.0",
+    "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@types/react-instantsearch-dom": "6.12.8",
     "eslint": "8.57.1",

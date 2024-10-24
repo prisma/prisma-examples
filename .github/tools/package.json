@@ -7,8 +7,8 @@
     "test": "yarn prettier-check && yarn build-readmes",
     "build-readmes": "inline-markdown --input ../readmes --output ../../",
     "dev": "watch 'yarn run build-readmes' ../readmes",
-    "prettier-check": "prettier-check --config .prettierrc \"../../{javascript,orm}/*/{src,test,prisma}/**/*.{ts,js}\"",
-    "prettier-fix": "prettier --config .prettierrc --write \"../../{javascript,orm}/*/{src,test,prisma}/**/*.{ts,js}\""
+    "prettier-check": "prettier-check --config .prettierrc \"../../orm/*/{src,test,prisma}/**/*.{ts,tsx}\"",
+    "prettier-fix": "prettier --config .prettierrc --write \"../../orm/*/{src,test,prisma}/**/*.{ts,tsx}\""
   },
   "devDependencies": {
     "inline-markdown": "0.1.6",

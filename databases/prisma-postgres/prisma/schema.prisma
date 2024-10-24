@@ -12,7 +12,6 @@ model User {
   email   String   @unique
   name    String?
   posts   Post[]
-  profile Profile?
 }
 
 model Post {
@@ -22,11 +21,4 @@ model Post {
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  Int?
-}
-
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  userId Int     @unique
-  user   User    @relation(fields: [userId], references: [id])
 }

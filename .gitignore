@@ -14,7 +14,6 @@ tmp-resolvers
 package-lock.json
 flow-typed
 yarn.lock
-javascript/**/migrations/
 orm/**/migrations/
 misc/**/migrations/
 databases/**/migrations/

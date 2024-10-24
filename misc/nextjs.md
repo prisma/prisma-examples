@@ -10,4 +10,3 @@ Here is a list of example fullstack apps that are based on Next.js and use Prism
 | TypeScript  | API Routes              | No                                                 | [URL](https://pris.ly/e/ts/rest-nextjs-api-routes)      |
 | TypeScript  | Express.js              | No                                                 | [URL](https://pris.ly/e/ts/rest-nextjs-express)         |
 | TypeScript  | Apollo Server (GraphQL) | No                                                 | [URL](https://pris.ly/e/ts/graphql-nextjs)              |
-| JavaScript  | API Routes              | No                                                 | [URL](https://pris.ly/e/js/rest-nextjs-api-routes)      |

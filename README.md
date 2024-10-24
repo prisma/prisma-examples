@@ -73,7 +73,7 @@ The [`optimize`](./optimize) folder contains examples of projects using [Prisma 
 | [`optimize-full-table-scan`](./optimize/optimize-full-table-scan)                 | An example app demonstrating the "Full table scans caused by `LIKE` operations" recommendation provided by Optimize.                                |
 | [`optimize-unindexed-column`](./optimize/optimize-unindexed-column)                 | An example app demonstrating the "Query filtering on an unindexed column" recommendation provided by Optimize.                     |
 
-## Prisma ORM (TypeScript)
+## Prisma ORM
 
 ### Fullstack
 
@@ -115,31 +115,7 @@ The [`optimize`](./optimize) folder contains examples of projects using [Prisma 
 | [`rest-hapi`](https://github.com/prisma/prisma-examples/tree/latest/orm/rest-hapi)                                 | REST API with [hapi](https://hapi.dev/)                                                                                                                                                           |
 | [`rest-nestjs`](https://github.com/prisma/prisma-examples/tree/latest/orm/rest-nestjs)                             | REST API with [NestJS](https://docs.nestjs.com/)                                                                                                                                                  |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/orm/script)                                       | Usage of Prisma Client JS in a TypeScript script                                                                                                                                                  |
-| [`testing-express`](https://github.com/prisma/prisma-examples/tree/latest/orm/testing-express)                     | Demo of integration tests with [Jest](https://jestjs.io/), [Supertest](https://github.com/visionmedia/supertest) and [Express](https://expressjs.com/)                                            |
-
-## Prisma ORM (JavaScript / Node.js)
-
-### Fullstack
-
-| Demo                                                                                                | Description                                                                                                                      |
-| :-------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| [`rest-nextjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nextjs)       | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction)) |
-| [`rest-nuxtjs`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-nuxtjs)       | [NuxtJS](https://nuxtjs.org/) app with a REST API                                                                                |
-| [`rest-sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-sveltekit) | [SvelteKit](https://kit.svelte.dev/) app with a REST API                                                                         |
-
-### Backend only
-
-| Demo                                                                                                              | Description                                                                                   |
-| :---------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| [`graphql-apollo-server`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-apollo-server) | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server/) |
-| [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-auth)                   | GraphQL server with email-password authentication & permissions                               |
-| [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/javascript/graphql-sdl-first)         | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server)             |
-| [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/javascript/grpc)                                   | gRPC API including runnable client scripts for testing                                        |
-| [`rest-express`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-express)                   | REST API with [Express](https://expressjs.com/)                                               |
-| [`rest-fastify`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-fastify)                   | REST API with [Fastify](https://www.fastify.io/)                                              |
-| [`rest-koa`](https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-koa)                           | REST API with [Koa](https://koajs.com/)                                                       |
-| [`script`](https://github.com/prisma/prisma-examples/tree/latest/javascript/script)                               | Usage of Prisma Client JS in a Node.js script                                                 |
-
+| [`testing-express`](https://github.com/prisma/prisma-examples/tree/latest/orm/testing-express)                     | Demo of integration tests with [Jest](https://jestjs.io/), [Supertest](https://github.com/visionmedia/supertest) and [Express](https://expressjs.com/)                                            |                                              |
 
 ## Deployment platforms
 
