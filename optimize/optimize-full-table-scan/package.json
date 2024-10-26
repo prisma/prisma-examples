@@ -6,7 +6,7 @@
     "copy-suffixes": "ts-node ./copySuffixes.ts"
   },
   "dependencies": {
-    "@faker-js/faker": "9.0.3",
+    "@faker-js/faker": "9.1.0",
     "@prisma/client": "5.21.1",
     "@prisma/extension-optimize": "1.0.1",
     "@types/node": "20.17.1"
