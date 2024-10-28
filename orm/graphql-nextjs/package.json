@@ -13,7 +13,7 @@
   "dependencies": {
     "@apollo/client": "3.11.8",
     "@pothos/core": "4.3.0",
-    "@pothos/plugin-prisma": "4.2.2",
+    "@pothos/plugin-prisma": "4.3.0",
     "@prisma/client": "5.21.1",
     "graphql": "16.9.0",
     "graphql-scalars": "1.23.0",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
-    "@types/node": "20.17.0",
+    "@types/node": "20.17.1",
     "@types/react": "18.3.12",
     "prisma": "5.21.1",
     "ts-node": "10.9.2",
