@@ -23,7 +23,7 @@ async function main() {
     })
     .filter((file) => {
       const folder = getBaseFolder(file)
-      const allowList = ['typescript', 'databases', 'data-modeling']
+      const allowList = ['orm', 'databases', 'data-modeling']
       return allowList.includes(folder)
     })
     .map((file) => {
