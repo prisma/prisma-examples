@@ -21,13 +21,22 @@ Follow these steps to create your Prisma Postgres database:
 1. In the **Region** dropdown, select the region that's closest to your current location, e.g. **US East (N. Virginia)**.
 1. Click the **Create project** button.
 
-At this point, you'll be redirected to the **Dashboard** where you will need to wait a few seconds while the status of your database changes from **`PROVISIONING`**, to **`ACTIVATING`** to **`CONNECTED`**.
+At this point, you'll be redirected to the **Database** page where you will need to wait a few seconds while the status of your database changes from **`PROVISIONING`**, to **`ACTIVATING`** to **`CONNECTED`**.
+
+Once that setup process has finished, move to the next step.
 
 ### 2. Download example and install dependencies
 
-Copy the `try-prisma` command that's shown in the Console, paste it into your terminal, and execute it.
+Copy the `try-prisma` command that', paste it into your terminal, and execute it:
 
-For reference, this is what the command looks like (note that the `__YOUR_DATABASE_CONNECTION_STRING__` placeholder must be replaced with _your_ actual database connection string):
+```
+npx try-prisma@latest \
+  --template databases/prisma-postgres \
+  --name hello-prisma \
+  --install npm
+```
+
+<!-- For reference, this is what the command looks like (note that the `__YOUR_DATABASE_CONNECTION_STRING__` placeholder must be replaced with _your_ actual database connection string):
 
 ```
 npx try-prisma@latest
@@ -38,15 +47,37 @@ npx try-prisma@latest
 ```
 
 Your connection string that should replace the `__YOUR_DATABASE_CONNECTION_STRING__` placeholder looks similar to this: `prisma+postgres://accelerate.prisma-data.net/?api_key=ey...`
+-->
 
-Navigate into the project directory and install dependencies:
+Navigate into the project directory and (if you haven't done so via the CLI wizard) install dependencies:
 
 ```
 cd hello-prisma
 npm install
 ```
 
-### 3. Create database tables (with a schema migration)
+### 3. Set database connection and Pulse API key
+
+The connection to your database and the Pulse API key are configured via environment variables in a `.env` file.
+
+First, rename the existing `.env.example` file to just `.env`:
+
+```
+mv .env.example .env
+```
+
+Next, navigate back into the Console and click the **Generate API key** button.
+
+Then, copy the resulting `DATABASE_URL` and `PULSE_API_KEY` environment variables and pase it into the `.env` file.
+
+For reference, the file should now look similar to this:
+
+```bash
+DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
+PULSE_API_KEY="ey...."
+```
+
+### 4. Create database tables (with a schema migration)
 
 Next, you need to create the tables in your database. You can do this by creating and executing a schema migration with the following command of the Prisma CLI:
 
@@ -56,7 +87,7 @@ npx prisma migrate dev --name init
 
 This will map the `User` and `Post` models that are defined in your [Prisma schema](./prisma/schema.prisma) to your database. You can also review the SQL migration that was executed and created the tables in the newly created `prisma/migrations` directory.
 
-### 4. Execute queries with Prisma ORM
+### 5. Execute queries with Prisma ORM
 
 The [`src/queries.ts`](./src/queries.ts) script contains a number of CRUD queries that will write and read data in your database. You can execute it by running the following command in your terminal:
 
@@ -64,13 +95,13 @@ The [`src/queries.ts`](./src/queries.ts) script contains a number of CRUD querie
 npm run queries
 ```
 
-Once the script has terminated, you can inspect the logs in your terminal or use Prisma Studio to explore what records have been created in the database:
+Once the script has completed, you can inspect the logs in your terminal or use Prisma Studio to explore what records have been created in the database:
 
 ```
 npx prisma studio
 ```
 
-### 5. Explore caching with Prisma Accelerate
+### 6. Explore caching with Prisma Accelerate
 
 The [`src/caching.ts`](./src/caching.ts) script contains a sample query that uses [Stale-While-Revalidate](https://www.prisma.io/docs/accelerate/caching#stale-while-revalidate-swr) (SWR) and [Time-To-Live](https://www.prisma.io/docs/accelerate/caching#time-to-live-ttl) (TTL) to cache a database query using Prisma Accelerate. You can execute it as follows:
 
