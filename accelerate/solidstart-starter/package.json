@@ -9,7 +9,7 @@
   "dependencies": {
     "@prisma/client": "5.21.1",
     "@prisma/extension-accelerate": "1.2.1",
-    "@solidjs/router": "0.15.0",
+    "@solidjs/router": "0.15.1",
     "@solidjs/start": "1.0.10",
     "solid-js": "1.9.3",
     "tsx": "4.19.2",
