@@ -268,6 +268,7 @@ mutation {
 
 </details>
 
+
 ## Evolving the app
 
 Evolving the application typically requires two steps:
@@ -294,8 +295,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id
-  name    String?
+  id      Int      @default(autoincrement()) @id 
+  name    String? 
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -368,4 +369,5 @@ const userWithUpdatedProfile = await prisma.user.update({
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+
 

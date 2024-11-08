@@ -3,7 +3,7 @@
 This example shows how to implement a **Fullstack Next.js app with the t3 stack** with the following tools:
 
 This example shows how to implement a **fullstack app in TypeScript with :
-- [**Next.js**](https://nextjs.org/): A [React](https://reactjs.org/) framework
+- [**Next.js**](https://nextjs.org/)**: A [React](https://reactjs.org/) framework
 - [**tRPC**](https://trpc.io/)
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
@@ -141,8 +141,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id
-  name    String?
+  id      Int      @default(autoincrement()) @id 
+  name    String? 
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -220,7 +220,7 @@ In the application code, you can access the new endpoint via `fetch` operations 
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
@@ -295,4 +295,5 @@ datasource db {
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+
 

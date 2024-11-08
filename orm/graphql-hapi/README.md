@@ -276,6 +276,7 @@ mutation {
 
 </details>
 
+
 ## Evolving the app
 
 Evolving the application typically requires two steps:
@@ -376,8 +377,8 @@ const User = objectType({
 +      type: 'Profile',
 +      resolve: (parent, _, context) => {
 +        return context.prisma.user
-+          .findUnique({
-+            where: { id: parent.id },
++          .findUnique({ 
++            where: { id: parent.id }, 
 +          })
 +          .profile();
 +      },
@@ -428,7 +429,7 @@ const Mutation = objectType({
 +         }),
 +       ),
 +       bio: stringArg()
-+     },
++     }, 
 +     resolve: async (_, args, context) => {
 +       return context.prisma.profile.create({
 +         data: {
@@ -520,7 +521,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
@@ -595,4 +596,5 @@ datasource db {
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+
 
