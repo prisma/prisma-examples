@@ -10,7 +10,7 @@ __INLINE(../_setup-2.md)__
 cd prisma-examples/orm/testing-express
 __INLINE(../_setup-3.md)__
 
-### 2. Start the REST API server
+### 3. Start the REST API server
 
 Rename the `.env.example` to `.env` and execute this command to start the server:
 
@@ -20,7 +20,7 @@ npm run dev
 
 The server is now running on `http://localhost:3000`. You can send the API requests implemented in `index.js`, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
-### 3. Testing the endpoints
+### 4. Testing the endpoints
 
 The tests are located in the `tests` folder. In these you will find tests handled for cases if a same user is added twice and also to check if the users added are obtained correctly.
 
