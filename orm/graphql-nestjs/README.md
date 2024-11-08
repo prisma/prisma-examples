@@ -43,7 +43,7 @@ npm install
 
 </details>
 
-### [Optional] Switch database to Prisma Postgres
+##### [Optional] Switch database to Prisma Postgres
 
 This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
 
@@ -56,7 +56,7 @@ This example uses a local SQLite database by default. If you want to use to [Pri
     }
     ```
 
-    > **Note**: In production environments, we recommend that you set your connection string via environment variables, e.g. using `.env` files.
+    > **Note**: In production environments, we recommend that you set your connection string via [environment variables](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using `.env` files.
 3. Install the Prisma Accelerate extension:
     ```
     npm install @prisma/extension-accelerate
