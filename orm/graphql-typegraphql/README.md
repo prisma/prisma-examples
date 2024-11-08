@@ -36,7 +36,7 @@ npm install
 
 </details>
 
-##### [Optional] Switch database to Prisma Postgres
+#### [Optional] Switch database to Prisma Postgres
 
 This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
 
