@@ -43,7 +43,7 @@ npm install
 This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
 
 1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
-2. Update the `datasource` blockto use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
+2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
     ```prisma
     datasource db {
       provider = "postgresql"
