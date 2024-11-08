@@ -86,7 +86,7 @@ npx prisma migrate dev --name init
 
 When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
-If you switched to Prisma Postgres in the previous step, you need to run seeding manually (because Prisma Postgres already created an empty database instance for you, so seeding isn't triggered):
+**If you switched to Prisma Postgres in the previous step**, you need to trigger seeding manually (because Prisma Postgres already created an empty database instance for you, so seeding isn't triggered):
 
 ```
 npm run seed
