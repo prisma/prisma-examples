@@ -2,7 +2,7 @@
 
 This example shows how to implement a **Fullstack Next.js app with the t3 stack** with the following tools:
 
-This example shows how to implement a **fullstack app in TypeScript with :
+This example shows how to implement a **fullstack app in TypeScript** with :
 - [**Next.js**](https://nextjs.org/): A [React](https://reactjs.org/) framework
 - [**tRPC**](https://trpc.io/)
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
