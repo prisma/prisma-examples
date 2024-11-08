@@ -49,7 +49,7 @@ This example uses a local SQLite database by default. If you want to use to [Pri
     }
     ```
 
-    > **Note**: In production environments, we recommend that you set your connection string via [environment variables](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using `.env` files.
+    > **Note**: In production environments, we recommend that you set your connection URL via an [environment variable](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using a `.env` file.
 3. Install the Prisma Accelerate extension:
     ```
     npm install @prisma/extension-accelerate
