@@ -53,6 +53,8 @@ This example uses a local SQLite database by default. If you want to use to [Pri
       url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
     }
     ```
+
+    > **Note**: In production environments, we recommend that you set your connection string via environment variables, e.g. using `.env` files.
 3. Install the Prisma Accelerate extension:
     ```
     npm install @prisma/extension-accelerate
