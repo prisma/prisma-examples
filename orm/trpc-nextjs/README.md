@@ -83,7 +83,7 @@ When `npx prisma migrate dev` is executed against a newly created database, seed
 **If you switched to Prisma Postgres in the previous step**, you need to trigger seeding manually (because Prisma Postgres already created an empty database instance for you, so seeding isn't triggered):
 
 ```
-npm run seed
+npx prisma db seed
 ```
 
 
