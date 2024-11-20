@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "5.22.0",
-    "nuxt": "3.14.159"
+    "nuxt": "3.14.1592"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "12.0.0",
