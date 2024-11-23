@@ -9,7 +9,7 @@
     "@faker-js/faker": "9.2.0",
     "@prisma/client": "5.22.0",
     "@prisma/extension-optimize": "1.0.3",
-    "@types/node": "22.9.1"
+    "@types/node": "22.9.3"
   },
   "devDependencies": {
     "prisma": "5.22.0",
