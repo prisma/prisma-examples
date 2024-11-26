@@ -66,9 +66,7 @@ First, rename the existing `.env.example` file to just `.env`:
 mv .env.example .env
 ```
 
-Next, navigate back into the Console and click the **Generate API key** button.
-
-Then, copy the resulting `DATABASE_URL` and `PULSE_API_KEY` environment variables and pase it into the `.env` file.
+Then, find your database credentials in the **Set up database access** section, copy the `DATABASE_URL` and `PULSE_API_KEY` environment variables and paste them into the `.env` file.
 
 For reference, the file should now look similar to this:
 
