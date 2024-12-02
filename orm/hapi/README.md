@@ -1,6 +1,6 @@
-# Fullstack Example with SvelteKit (REST API)
+# REST API Example
 
-This example shows how to implement a **fullstack app in TypeScript with [SvelteKit](https://kit.svelte.dev/)** using [Svelte](https://svelte.dev/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **REST API** using [hapi](https://hapi.dev/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). The example uses an SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
 
@@ -9,13 +9,13 @@ This example shows how to implement a **fullstack app in TypeScript with [Svelte
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/rest-sveltekit
+npx try-prisma@latest --template orm/hapi
 ```
 
 Install npm dependencies:
 
 ```
-cd rest-sveltekit
+cd hapi
 npm install
 ```
 
@@ -30,7 +30,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/orm/rest-sveltekit
+cd prisma-examples/orm/hapi
 npm install
 ```
 
@@ -80,68 +80,58 @@ npx prisma db seed
 ```
 
 
-### 3. Start the app
+### 3. Start the REST API server
 
 ```
 npm run dev
 ```
 
-The app is now running, navigate to [`http://localhost:5173/`](http://localhost:5173/) in your browser to explore its UI.
+The server is now running on `http://localhost:3000`. You can now run the API requests, e.g. [`http://localhost:3000/feed`](http://localhost:3000/feed).
 
-<details><summary>Expand for a tour through the UI of the app</summary>
+## Using the REST API
 
-<br />
+You can access the REST API of the server using the following endpoints:
 
-**Blog** (located in [`./src/routes/+page.svelte`](./src/routes/+page.svelte))
+### `GET`
 
-![](https://imgur.com/eepbOUO.png)
+- `/post/:id`: Fetch a single post by its `id`
+- `/feed?searchString={searchString}&take={take}&skip={skip}&orderBy={orderBy}`: Fetch all _published_ posts
+  - Query Parameters
+    - `searchString` (optional): This filters posts by `title` or `content`
+    - `take` (optional): This specifies how many objects should be returned in the list
+    - `skip` (optional): This specifies how many of the returned objects in the list should be skipped
+    - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
+- `/user/:id/drafts`: Fetch user's drafts by their `id`
+- `/users`: Fetch all users
+### `POST`
 
-**Signup** (located in [`./src/routes/signup/+page.svelte`](./src/routes/signup/+page.svelte))
-
-![](https://imgur.com/iE6OaBI.png)
-
-**Create post (draft)** (located in [`./src/routes/create/+page.svelte`](./src/routes/create/+page.svelte))
-
-![](https://imgur.com/olCWRNv.png)
-
-**Drafts** (located in [`./src/routes/drafts/+page.svelte`](./src/routes/drafts/+page.svelte))
-
-![](https://imgur.com/PSMzhcd.png)
-
-**View post** (located in [`./src/routes/p/[id]/+page.svelte`](./src/routes/p/[id]/+page.svelte)) (delete or publish here)
-
-![](https://imgur.com/zS1B11O.png)
-
-</details>
-
-The `load` functions interact with the server to get data into your pages while the `actions` function mutates your data. Both these funcitons are defined in the `+page.server.ts` in the respective route folders.
-
-### `LOAD`
-- `/`: Fetch all *published* posts
-- `/drafts`: Fetch all *drafted* posts
-- `/p/:id`: Fetch a *single* post by its `id`
-
-### `ACTIONS`
-- `/create`: Create a new post
-    - `default` action body:
-        - `title: String` (required): The title of the post
-        - `content: String` (required): The content of the post
-        - `authorEmail: String` (required): The email of the user that creates the post
-- `/p/:id`:
-    - `publishPost` action: Publish a post by its `id`
-    - `deletePost` action: Delete a post by its `id`
+- `/post`: Create a new post
+  - Body:
+    - `title: String` (required): The title of the post
+    - `content: String` (optional): The content of the post
+    - `authorEmail: String` (required): The email of the user that creates the post
 - `/signup`: Create a new user
-    - `default` action body:
-        - `email: String` (required): The email address of the user
-        - `name: String` (required): The name of the user
+  - Body:
+    - `email: String` (required): The email address of the user
+    - `name: String` (optional): The name of the user
+    - `postData: PostCreateInput[]` (optional): The posts of the user
+
+### `PUT`
+
+- `/publish/:id`: Toggle the publish value of a post by its `id`
+- `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
+
+### `DELETE`
+
+- `/post/:id`: Delete a post by its `id`
+
 
 ## Evolving the app
 
-Evolving the application typically requires three steps:
+Evolving the application typically requires two steps:
 
 1. Migrate your database using Prisma Migrate
-1. Update your server-side application code
-1. Build new UI features in Svelte
+1. Update your application code
 
 For the following example scenario, assume you want to add a "profile" feature to the app where users can create a profile and write a short bio about themselves.
 
@@ -150,98 +140,158 @@ For the following example scenario, assume you want to add a "profile" feature t
 The first step is to add a new table, e.g. called `Profile`, to the database. You can do this by adding a new model to your [Prisma schema file](./prisma/schema.prisma) file and then running a migration afterwards:
 
 ```diff
-// schema.prisma
-
-model Post {
-  id        Int     @default(autoincrement()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int
-}
+// ./prisma/schema.prisma
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
 }
 
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  viewCount Int      @default(0)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+
 +model Profile {
 +  id     Int     @default(autoincrement()) @id
 +  bio    String?
-+  userId Int     @unique
 +  user   User    @relation(fields: [userId], references: [id])
++  userId Int     @unique
 +}
 ```
 
 Once you've updated your data model, you can execute the changes against your database with the following command:
 
 ```
-npx prisma migrate dev
+npx prisma migrate dev --name add-profile
 ```
+
+This adds another migration to the `prisma/migrations` directory and creates the new `Profile` table in the database.
 
 ### 2. Update your application code
 
-You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Here are some examples:
+You can now use your `PrismaClient` instance to perform operations against the new `Profile` table. Those operations can be used to implement API endpoints in the REST API.
 
-#### Create a new profile for an existing user
+#### 2.1 Add the API endpoint to your app
+
+Update your `users.ts` file by adding a new endpoint to your API:
+
+```diff
+const usersPlugin ={
+  // name and dependencies here
+  register: async function (server: Hapi.Server){
+    // other routes here
++    server.route([
++      {
++        method: 'POST',
++        path: '/user/{userId}/profile',
++        handler: createUserProfile
++      }
++    ])
+  }
+}
+// other API hander functions here
+
++async function createUserProfile(request: Hapi.Request, h: Hapi.ResponseToolkit) {
++  const { prisma } = request.server.app
++
++  const userId = Number(request.params.userId)
++  const { bio } = request.payload as any
++
++  try {
++    const profile = await prisma.profile.create({
++      data: {
++        bio,
++        user: {
++          connect: {
++            id: Number(userId)
++          }
++        }
++      }
++    })
++
++    return h.response(profile).code(200)
++  } catch (err) {
++    console.log(err);
++  }
++}
+```
+
+
+#### 2.2 Testing out your new endpoint
+
+Restart your application server and test out your new endpoint.
+
+##### `POST`
+
+- `/user/:id/profile`: Create a new profile based on the user id
+  - Body:
+    - `bio: String` : The bio of the user
+
+
+<details><summary>Expand to view more sample Prisma Client queries on <code>Profile</code></summary>
+
+Here are some more sample Prisma Client queries on the new <code>Profile</code> model:
+
+##### Create a new profile for an existing user
 
 ```ts
 const profile = await prisma.profile.create({
   data: {
-    bio: "Hello World",
+    bio: 'Hello World',
     user: {
-      connect: { email: "alice@prisma.io" },
+      connect: { email: 'alice@prisma.io' },
     },
   },
-});
+})
 ```
 
-#### Create a new user with a new profile
+##### Create a new user with a new profile
 
 ```ts
 const user = await prisma.user.create({
   data: {
-    email: "john@prisma.io",
-    name: "John",
+    email: 'john@prisma.io',
+    name: 'John',
     profile: {
       create: {
-        bio: "Hello World",
+        bio: 'Hello World',
       },
     },
   },
-});
+})
 ```
 
-#### Update the profile of an existing user
+##### Update the profile of an existing user
 
 ```ts
 const userWithUpdatedProfile = await prisma.user.update({
-  where: { email: "alice@prisma.io" },
+  where: { email: 'alice@prisma.io' },
   data: {
     profile: {
       update: {
-        bio: "Hello Friends",
+        bio: 'Hello Friends',
       },
     },
   },
-});
+})
 ```
 
-
-### 3. Build new UI features in Svelte
-
-Once you have added a new route to your app (e.g. `/profile/+page.server.ts` with respective load and action operations), you can start building a new UI component in Svelte. It could e.g. be called `/profile/+page.svelte` and would be located in the `src/routes` directory.
-
-In the application code, you can manipulate data using `actions` and populate the UI with the data you receive from the `load` function.
-
+</details>
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
