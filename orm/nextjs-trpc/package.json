@@ -15,7 +15,7 @@
     "@trpc/next": "10.45.2",
     "@trpc/react-query": "10.45.2",
     "@trpc/server": "10.45.2",
-    "next": "14.2.18",
+    "next": "14.2.20",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-markdown": "9.0.1",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "22.10.1",
-    "@types/react": "18.3.12",
+    "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "prisma": "5.22.0",
     "ts-node": "10.9.2",
