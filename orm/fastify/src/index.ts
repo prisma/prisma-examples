@@ -186,5 +186,5 @@ app.listen({ port: 3000 }, (err) => {
   }
   console.log(`
   🚀 Server ready at: http://localhost:3000
-  ⭐️ See sample requests: http://pris.ly/e/ts/rest-fastify#3-using-the-rest-api`)
+  ⭐️ See sample requests: https://github.com/prisma/prisma-examples/blob/latest/orm/fastify/README.md#using-the-rest-api`)
 })

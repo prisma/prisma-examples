@@ -24,7 +24,7 @@ start()
   .then((server) => {
     console.log(`
 🚀 Server ready at: ${server.info.uri}
-⭐️ See sample requests: http://pris.ly/e/ts/rest-hapi#3-using-the-rest-api
+⭐️ See sample requests: https://github.com/prisma/prisma-examples/blob/latest/orm/hapi/README.md#using-the-rest-api
 `)
   })
   .catch((err) => {
