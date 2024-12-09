@@ -335,14 +335,3 @@ Once approved, you can add your example to [list of missing examples](https://gi
 If you find a bug in an example, please feel free to open an issue or submit a PR so the bug gets fixed. If you want to make structural changes to an existing example (e.g. changing the datamodel or the API operations), please open an issue about this first where the changes can be discussed. To accelerate the process, you can ping @nikolasburk in the public [Prisma Discord](https://pris.ly/discord).
 
 Once approved, you can go ahead and implement the changes.
-
-### Improving a README
-
-The READMEs for all projects are being auto-generated based on the templates located in [`./.github/readmes`](./.github/readmes). If you find a typo or other parts of the README that should be improved, please do not edit the README directly but instead add your changes to the corresponding template.
-
-For example, if you found an issue in the `orm/graphql` README, do not edit the [`./orm/graphql/README.md`](./orm/graphql/README.md) file but instead add your changes to [.`/.github/readmes/orm/graphql/README.md`](./.github/readmes/orm/graphql/README.md). Then build the READMEs using our custom script:
-
-```
-cd .github/tools
-yarn build-readmes
-```

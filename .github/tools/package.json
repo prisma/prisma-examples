@@ -4,9 +4,7 @@
   "repository": "git@github.com:prisma/prisma-client-js.git",
   "license": "MIT",
   "scripts": {
-    "test": "yarn prettier-check && yarn build-readmes",
-    "build-readmes": "inline-markdown --input ../readmes --output ../../",
-    "dev": "watch 'yarn run build-readmes' ../readmes",
+    "test": "yarn prettier-check",
     "prettier-check": "prettier-check --config .prettierrc \"../../orm/*/{src,test,prisma}/**/*.{ts,tsx}\"",
     "prettier-fix": "prettier --config .prettierrc --write \"../../orm/*/{src,test,prisma}/**/*.{ts,tsx}\""
   },

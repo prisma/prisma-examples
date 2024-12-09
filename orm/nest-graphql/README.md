@@ -7,7 +7,7 @@ This example shows how to implement an **GraphQL server (code-first) with TypeSc
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
-The example was bootstrapped using the NestJS CLI command `nest new graphql-nestjs`.
+The example was bootstrapped using the NestJS CLI command `nest new nest-graphql`.
 
 ## Getting started
 
@@ -16,13 +16,13 @@ The example was bootstrapped using the NestJS CLI command `nest new graphql-nest
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/graphql-nestjs
+npx try-prisma@latest --template orm/nest-graphql
 ```
 
 Install npm dependencies:
 
 ```
-cd graphql-nestjs
+cd nest-graphql
 npm install
 ```
 
@@ -37,7 +37,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/orm/graphql-nestjs
+cd prisma-examples/orm/nest-graphql
 npm install
 ```
 
@@ -329,8 +329,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?

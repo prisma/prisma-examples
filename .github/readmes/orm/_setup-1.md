@@ -1,5 +1,0 @@
-```
-
-Install npm dependencies:
-
-```

@@ -9,13 +9,13 @@ This example shows how to implement a **fullstack app with [Nuxt](https://nuxtjs
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/rest-nuxtjs
+npx try-prisma@latest --template orm/nuxtjs
 ```
 
 Install npm dependencies:
 
 ```
-cd rest-nuxtjs
+cd nuxtjs
 npm install
 ```
 
@@ -30,7 +30,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/orm/rest-nuxtjs
+cd prisma-examples/orm/nuxtjs
 npm install
 ```
 
@@ -141,12 +141,12 @@ You can also access the REST API of the API server directly. It is running on th
 - `/api/publish/:id`: Publish a post by its `id`
 
 ### `DELETE`
-  
+
 - `/api/post/:id`: Delete a post by its `id`
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
