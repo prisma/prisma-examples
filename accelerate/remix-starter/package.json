@@ -58,7 +58,7 @@
     "@types/lodash": "4.17.13",
     "@types/node": "22.10.1",
     "@types/react": "18.3.14",
-    "@types/react-dom": "18.3.2",
+    "@types/react-dom": "18.3.3",
     "@typescript-eslint/eslint-plugin": "8.17.0",
     "@typescript-eslint/parser": "8.17.0",
     "@vitest/ui": "2.1.8",
