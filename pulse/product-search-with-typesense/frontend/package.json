@@ -28,7 +28,7 @@
     "tailwind-merge": "2.5.5",
     "tailwindcss-animate": "1.0.7",
     "typesense-instantsearch-adapter": "2.8.0",
-    "zod": "3.23.8"
+    "zod": "3.24.1"
   },
   "devDependencies": {
     "@types/node": "22.10.1",
