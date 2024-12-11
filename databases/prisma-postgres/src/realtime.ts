@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import { withPulse } from '@prisma/extension-pulse';
+import dotenv from "dotenv"
 
 process.on('SIGINT', () => {
   process.exit(0);
 });
 
+dotenv.config();
 const apiKey: string = process.env.PULSE_API_KEY ?? '';
 if (!apiKey || apiKey === "") {
   console.log(`Please set the \`PULSE_API_KEY\` environment variable in the \`.env\` file.`);
