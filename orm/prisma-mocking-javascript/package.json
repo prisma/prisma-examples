@@ -1,0 +1,16 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "dev": "node ./script.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.1.0"
+  },
+  "devDependencies": {
+    "jest-mock-extended": "^2.0.4",
+    "prisma": "^6.1.0"
+  }
+}
