@@ -16,7 +16,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@apollo/server": "4.11.2",
+    "@apollo/server": "4.11.3",
     "@prisma/client": "5.22.0",
     "graphql": "16.10.0",
     "graphql-scalars": "1.24.0",
