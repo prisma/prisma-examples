@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "fastify": "5.2.0",
-    "@graphql-tools/schema": "10.0.14",
+    "@graphql-tools/schema": "10.0.15",
     "@prisma/client": "5.22.0",
     "graphql": "16.10.0",
     "graphql-scalars": "1.24.0",
