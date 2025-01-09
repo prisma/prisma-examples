@@ -30,7 +30,7 @@
     "prisma": "5.22.0",
     "tailwindcss": "3.4.17",
     "ts-node": "10.9.2",
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   },
   "prisma": {
     "seed": "ts-node --project tsconfig.server.json prisma/seed.ts"

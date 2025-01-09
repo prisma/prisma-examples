@@ -20,7 +20,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwindcss": "3.4.17",
-    "typescript": "5.7.2",
+    "typescript": "5.7.3",
     "@prisma/client": "5.22.0",
     "@prisma/extension-accelerate": "1.2.1"
   },
