@@ -9,27 +9,31 @@ The app demonstrates:
 
 ## Getting started
 
-1. Clone the repository, navigate into it and install dependencies:
+1. Download example and install dependencies:
 
    ```terminal
-   git clone git@github.com:prisma/prisma-examples.git --depth=1
-   cd prisma-examples/orm/nuxt-prisma-nuxt-module
-   npm install
+   npx try-prisma@latest --template orm/nuxt-prisma-module
    ```
 
-2. Create a `.env` file:
+2. Navigate into the project directory:
+
+   ```terminal
+   cd nuxt-prisma-module
+   ```
+
+3. Create a `.env` file:
 
    ```terminal
    DATABASE_URL="file:./dev.db"
    ```
 
-3. Start the development server:
+4. Start the development server:
 
    ```terminal
    npm run dev
    ```
 
-4. Follow the instructions in the terminal to launch Prisma Studio integrated in the Nuxt devtools within your browser.
+5. Follow the instructions in the terminal to launch Prisma Studio integrated in the Nuxt devtools within your browser.
 
 ## Resources
 
