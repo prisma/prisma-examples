@@ -18,7 +18,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -26,11 +26,10 @@ Download this example:
 npx try-prisma@latest --template orm/graphql
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd graphql
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -505,7 +504,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 

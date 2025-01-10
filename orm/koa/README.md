@@ -4,7 +4,7 @@ This example shows how to implement a **REST API with TypeScript** using [Koa](h
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -12,11 +12,10 @@ Download this example:
 npx try-prisma@latest --template orm/koa
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd koa
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>

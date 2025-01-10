@@ -4,7 +4,7 @@ This example shows how to use [Prisma Client](https://www.prisma.io/docs/referen
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -12,11 +12,10 @@ Download this example:
 npx try-prisma@latest --template orm/script
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd script
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -36,7 +35,7 @@ npm install
 
 </details>
 
-### 2. Create the database
+### 2. Create and seed the database
 
 Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
@@ -78,8 +77,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -150,7 +149,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 

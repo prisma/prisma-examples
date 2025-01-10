@@ -4,7 +4,7 @@ This example shows how to implement **Geolocation in PostgreSQL** using [Express
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -12,11 +12,10 @@ Download this example:
 npx try-prisma@latest --template orm/postgis-express
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd postgis-express
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -30,7 +29,6 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-
 cd prisma-examples/orm/postgis-express
 npm install
 ```

@@ -4,19 +4,18 @@ This example shows how to implement a **fullstack app with [Nuxt](https://nuxtjs
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
-Download this example:
+Use the `try-prisma` CLI to download this example:
 
-```
+```terminal
 npx try-prisma@latest --template orm/nuxt
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
-```
-cd nuxtjs
-npm install
+```terminal
+cd nuxt
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>

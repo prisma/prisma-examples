@@ -18,7 +18,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -26,11 +26,10 @@ Download this example:
 npx try-prisma@latest --template orm/graphql-nexus
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd graphql-nexus
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -44,7 +43,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/orm/graphql
+cd prisma-examples/orm/graphql-nexus
 npm install
 ```
 

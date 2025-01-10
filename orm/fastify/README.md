@@ -4,7 +4,7 @@ This example shows how to implement a **REST API with TypeScript** using [Fastif
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example, install dependencies, and navigate into the project directory
 
 Download this example:
 
@@ -12,11 +12,10 @@ Download this example:
 npx try-prisma@latest --template orm/fastify
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd fastify
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>

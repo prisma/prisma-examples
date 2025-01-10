@@ -10,7 +10,7 @@ To successfully run the project, you will need the following:
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -18,11 +18,10 @@ Download this example:
 npx try-prisma@latest --template orm/starter
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd starter
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>

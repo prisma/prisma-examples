@@ -4,7 +4,7 @@ This example shows how to use the TypedSQL feature of [Prisma ORM](https://www.p
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -12,11 +12,10 @@ Download this example:
 npx try-prisma@latest --template orm/typedsql
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd typedsql
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>

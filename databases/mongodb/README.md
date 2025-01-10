@@ -9,7 +9,21 @@ The example consists of two parts:
 
 ## How to use
 
-### 1. Download example & install dependencies
+### 1. Download example and navigate into the project directory
+
+Download this example:
+
+```
+npx try-prisma@latest --template databases/mongodb
+```
+
+Then, navigate into the project directory:
+
+```
+cd mongodb
+```
+
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
 Clone this repository:
 
@@ -23,6 +37,8 @@ Install npm dependencies:
 cd prisma-examples/databases/mongodb
 npm install
 ```
+
+</details>
 
 ### 2. Start MongoDB with Docker Compose
 

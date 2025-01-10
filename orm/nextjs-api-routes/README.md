@@ -4,7 +4,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Next.j
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -12,11 +12,10 @@ Download this example:
 npx try-prisma@latest --template orm/nextjs-api-routes
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd nextjs-api-routes
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>

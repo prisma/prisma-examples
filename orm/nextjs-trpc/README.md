@@ -11,7 +11,7 @@ This example shows how to implement a **fullstack app in TypeScript** with :
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -19,11 +19,10 @@ Download this example:
 npx try-prisma@latest --template orm/nextjs-trpc
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
-cd trpc-nextjs
-npm install
+cd nextjs-trpc
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -172,8 +171,8 @@ model Post {
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id 
-  name    String? 
+  id      Int      @default(autoincrement()) @id
+  name    String?
   email   String   @unique
   posts   Post[]
 + profile Profile?
@@ -251,7 +250,7 @@ In the application code, you can access the new endpoint via `fetch` operations 
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 

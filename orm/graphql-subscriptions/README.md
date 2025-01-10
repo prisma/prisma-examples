@@ -19,7 +19,7 @@ Note that **Apollo Server** includes the `PubSub` realtime component from the [`
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Download example and navigate into the project directory
 
 Download this example:
 
@@ -27,11 +27,10 @@ Download this example:
 npx try-prisma@latest --template orm/graphql-subscriptions
 ```
 
-Install npm dependencies:
+Then, navigate into the project directory:
 
 ```
 cd graphql-subscriptions
-npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -209,7 +208,7 @@ The subscription will only be fired if the `published` field is updated from `fa
 
 ## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block. 
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
