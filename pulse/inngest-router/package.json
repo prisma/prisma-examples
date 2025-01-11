@@ -20,7 +20,7 @@
     "@prisma/extension-pulse": "1.2.0",
     "@types/node": "22.10.5",
     "dotenv": "16.4.7",
-    "inngest": "3.29.2"
+    "inngest": "3.29.3"
   },
   "prettier": {
     "trailingComma": "all",
