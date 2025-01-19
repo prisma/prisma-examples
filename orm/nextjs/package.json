@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.2.0",
-    "@types/node": "20.17.14",
+    "@types/node": "22.10.7",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "eslint": "9.18.0",
