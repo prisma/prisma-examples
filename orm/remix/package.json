@@ -30,7 +30,7 @@
     "typescript": "5.7.3"
   },
   "engines": {
-    "node": "22.13.0"
+    "node": "22.13.1"
   },
   "prisma": {
     "seed": "node --loader ts-node/esm prisma/seed.ts"
