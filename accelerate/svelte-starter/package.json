@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "4.0.0",
-		"@sveltejs/kit": "2.16.0",
+		"@sveltejs/kit": "2.16.1",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
 		"@tailwindcss/typography": "0.5.16",
 		"autoprefixer": "10.4.20",
