@@ -21,7 +21,7 @@
     "prettier": "3.4.2",
     "prettier-plugin-svelte": "3.3.3",
     "prisma": "5.22.0",
-    "svelte": "5.19.2",
+    "svelte": "5.19.3",
     "svelte-check": "4.1.4",
     "svelte-preprocess": "6.0.3",
     "tslib": "2.8.1",
