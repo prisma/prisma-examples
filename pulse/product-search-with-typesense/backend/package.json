@@ -20,7 +20,7 @@
     "@cloudflare/workers-types": "4.20250121.0",
     "@types/pg": "8.11.11",
     "prisma": "5.22.0",
-    "wrangler": "3.105.0"
+    "wrangler": "3.105.1"
   },
   "prisma": {
     "seed": "dotenv -e .dev.vars -- node prisma/seed.js"
