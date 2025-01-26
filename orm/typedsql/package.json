@@ -19,7 +19,7 @@
     "@prisma/client": "5.22.0"
   },
   "devDependencies": {
-    "@types/node": "22.10.7",
+    "@types/node": "22.10.10",
     "prisma": "5.22.0",
     "tsx": "4.19.2"
   }
