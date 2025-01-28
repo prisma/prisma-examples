@@ -14,12 +14,12 @@
     "@prisma/extension-optimize": "1.1.4",
     "@types/express": "5.0.0",
     "@types/node": "22.10.10",
-    "prisma": "5.22.0",
+    "prisma": "6.3.0",
     "tsx": "4.19.2",
     "typescript": "5.7.3"
   },
   "dependencies": {
-    "@prisma/client": "5.22.0",
+    "@prisma/client": "6.3.0",
     "@trpc/server": "next",
     "@types/cors": "2.8.17",
     "cors": "2.8.5",
