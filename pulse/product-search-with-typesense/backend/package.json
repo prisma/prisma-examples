@@ -11,13 +11,13 @@
     "@prisma/extension-pulse": "1.2.0",
     "axios": "1.7.9",
     "dotenv-cli": "8.0.0",
-    "hono": "4.6.18",
+    "hono": "4.6.19",
     "pg": "8.13.1",
     "typesense": "1.8.2",
     "zod": "3.24.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250121.0",
+    "@cloudflare/workers-types": "4.20250124.3",
     "@types/pg": "8.11.11",
     "prisma": "5.22.0",
     "wrangler": "3.105.1"
