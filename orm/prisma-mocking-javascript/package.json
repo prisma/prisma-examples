@@ -7,10 +7,10 @@
     "dev": "node ./script.js"
   },
   "dependencies": {
-    "@prisma/client": "6.2.1"
+    "@prisma/client": "6.3.0"
   },
   "devDependencies": {
     "jest-mock-extended": "3.0.7",
-    "prisma": "6.2.1"
+    "prisma": "6.3.0"
   }
 }
