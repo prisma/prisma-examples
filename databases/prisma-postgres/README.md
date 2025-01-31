@@ -23,13 +23,31 @@ Follow these steps to create your Prisma Postgres database:
 
 At this point, you'll be redirected to the **Database** page where you will need to wait a few seconds while the status of your database changes from **`PROVISIONING`**, to **`ACTIVATING`** to **`CONNECTED`**.
 
+Once the green **`CONNECTED`** label appears, your database is ready to use!
+
+You also need to enable the real-time capabilities of Prisma Postgres in the Console:
+
+1. Select the **Pulse** tab in the sidenav.
+2. Find and click the **Enable Pulse** button.
+3. In the section **Add Pulse to your application**, click the **Generate API key** button.
+4. Store the `PULSE_API_KEY` environment variable securely as it's required for this guide.
+
+Then, find your database credentials in the **Set up database access** section, copy the `DATABASE_URL` environment variable and store it securely along with the `PULSE_API_KEY`.
+
+```bash no-copy
+DATABASE_URL=<your-database-url>
+PULSE_API_KEY=<your-pulse-api-key>
+```
+
+> These environment variables will be required in the next steps.
+
 Once that setup process has finished, move to the next step.
 
 ### 2. Download example and install dependencies
 
 Copy the `try-prisma` command that', paste it into your terminal, and execute it:
 
-```
+```terminal
 npx try-prisma@latest \
   --template databases/prisma-postgres \
   --name hello-prisma \
@@ -51,7 +69,7 @@ Your connection string that should replace the `__YOUR_DATABASE_CONNECTION_STRIN
 
 Navigate into the project directory and (if you haven't done so via the CLI wizard) install dependencies:
 
-```
+```terminal
 cd hello-prisma
 npm install
 ```
@@ -62,7 +80,7 @@ The connection to your database and the Pulse API key are configured via environ
 
 First, rename the existing `.env.example` file to just `.env`:
 
-```
+```terminal
 mv .env.example .env
 ```
 
@@ -79,7 +97,7 @@ PULSE_API_KEY="ey...."
 
 Next, you need to create the tables in your database. You can do this by creating and executing a schema migration with the following command of the Prisma CLI:
 
-```
+```terminal
 npx prisma migrate dev --name init
 ```
 
@@ -89,13 +107,13 @@ This will map the `User` and `Post` models that are defined in your [Prisma sche
 
 The [`src/queries.ts`](./src/queries.ts) script contains a number of CRUD queries that will write and read data in your database. You can execute it by running the following command in your terminal:
 
-```
+```terminal
 npm run queries
 ```
 
 Once the script has completed, you can inspect the logs in your terminal or use Prisma Studio to explore what records have been created in the database:
 
-```
+```terminal
 npx prisma studio
 ```
 
@@ -103,33 +121,33 @@ npx prisma studio
 
 The [`src/caching.ts`](./src/caching.ts) script contains a sample query that uses [Stale-While-Revalidate](https://www.prisma.io/docs/accelerate/caching#stale-while-revalidate-swr) (SWR) and [Time-To-Live](https://www.prisma.io/docs/accelerate/caching#time-to-live-ttl) (TTL) to cache a database query using Prisma Accelerate. You can execute it as follows:
 
-```
+```terminal
 npm run caching
 ```
 
 Take note of the time that it took to execute the query, e.g.:
 
-```
+```terminal
 The query took 2009.2467149999998ms.
 ```
 
 Now, run the script again:
 
-```
+```terminal
 npm run caching
 ```
 
 You'll notice that the time the query took will be a lot shorter this time, e.g.:
 
-```
+```terminal
 The query took 300.5655280000001ms.
 ```
 
 ### 6. Observe real-time events in your database
 
-The  [`src/realtime.ts`](./src/realtime.ts) script contains a demo for receiving real-time change [events](https://www.prisma.io/docs/pulse/database-events) from your database. You can start the script as follows:
+The [`src/realtime.ts`](./src/realtime.ts) script contains a demo for receiving real-time change [events](https://www.prisma.io/docs/pulse/database-events) from your database. You can start the script as follows:
 
-```
+```terminal
 npm run realtime
 ```
 
@@ -137,13 +155,13 @@ The script now created a [stream](https://www.prisma.io/docs/pulse/api-reference
 
 To test the stream, you can open Prisma Studio:
 
-```
+```terminal
 npx prisma studio
 ```
 
 ... and make a change to the `User` table, e.g. create a new record. Once you've saved the change, you should see an output in the terminal that looks similar to this:
 
-```
+```terminal
 Received an event: {
   action: 'create',
   created: { id: 3, email: 'burk@prisma.io', name: 'Nikolas' },
@@ -157,4 +175,3 @@ Received an event: {
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
