@@ -12,7 +12,7 @@
     "@hapi/hapi": "21.3.12",
     "@prisma/client": "6.3.0",
     "graphql": "16.10.0",
-    "graphql-scalars": "1.24.0"
+    "graphql-scalars": "1.24.1"
   },
   "devDependencies": {
     "@types/node": "22.10.10",
