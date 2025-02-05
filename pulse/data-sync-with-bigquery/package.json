@@ -7,7 +7,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@prisma/client": "6.3.0",
+    "@prisma/client": "6.3.1",
     "@prisma/extension-pulse": "1.2.0",
     "dotenv": "16.4.7"
   },
@@ -15,7 +15,7 @@
     "@google-cloud/bigquery": "7.9.1",
     "@types/node": "22.13.1",
     "typescript": "5.7.3",
-    "prisma": "6.3.0",
+    "prisma": "6.3.1",
     "ts-node": "10.9.2"
   }
 }

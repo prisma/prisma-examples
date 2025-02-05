@@ -11,12 +11,12 @@
   "devDependencies": {
     "@types/node": "22.13.1",
     "nodemon": "3.1.9",
-    "prisma": "6.3.0",
+    "prisma": "6.3.1",
     "tsx": "4.19.2",
     "typescript": "5.7.3"
   },
   "dependencies": {
-    "@prisma/client": "6.3.0"
+    "@prisma/client": "6.3.1"
   },
   "prettier": {
     "trailingComma": "all",
