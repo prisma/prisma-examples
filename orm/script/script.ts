@@ -63,11 +63,6 @@ async function main() {
       title: 'Join the Prisma Discord community',
       content: 'https://pris.ly/discord',
       published: false,
-      author: {
-        connect: {
-          email: user1Email,
-        },
-      },
     },
   })
   console.log(`Created a new post: ${JSON.stringify(newPost)}`)
@@ -81,7 +76,9 @@ async function main() {
       published: true,
     },
   })
-  console.log(`Published the newly created post: ${JSON.stringify(updatedPost)}`)
+  console.log(
+    `Published the newly created post: ${JSON.stringify(updatedPost)}`,
+  )
 
   // Retrieve all posts by user with email alice@prisma.io
   const postsByUser = await prisma.user
@@ -91,7 +88,9 @@ async function main() {
       },
     })
     .posts()
-  console.log(`Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`)
+  console.log(
+    `Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`,
+  )
 }
 
 main()

@@ -1,0 +1,12 @@
+LOAD DATABASE
+     FROM mysql://crimson_crooked_annabel:puRfhAPHA1@mysql-db-provision.cm0mkpwj8arx.eu-central-1.rds.amazonaws.com:3306/lime_kiwi
+     INTO postgresql://user:password@127.0.0.1:6969/postgres
+
+     WITH quote identifiers,           -- preserve table/column name case by quoting them
+          include drop,
+          create tables,
+          create indexes,
+          reset sequences
+
+     -- Optionally, if you want to rename the MySQL schema to PostgreSQL's "public":
+     ALTER SCHEMA 'lime_kiwi' RENAME TO 'public';

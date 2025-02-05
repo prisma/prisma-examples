@@ -3,22 +3,22 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+  id    Int  @id @default(autoincrement())
+  email String  @unique @db.VarChar(191)
   name  String?
   posts Post[]
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
+  id        Int  @id @default(autoincrement())
+  title     String  @db.VarChar(191)
+  content   String? @db.VarChar(191)
+  published Boolean @default(false)
   authorId  Int?
+  user      User?   @relation(fields: [authorId], references: [id])
 }
