@@ -9,13 +9,13 @@ This example demonstrates how to use [Prisma ORM](https://www.prisma.io/) with [
 Download this example:
 
 ```
-npx try-prisma@latest --template databases/turso-prisma-example
+npx try-prisma@latest --template databases/turso
 ```
 
 Then, navigate into the project directory:
 
 ```
-cd turso-prisma-example
+cd turso
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -29,7 +29,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 ### 2. Install npm dependencies:
 
 ```
-cd prisma-examples/databases/turso-prisma-example
+cd prisma-examples/databases/turso
 npm install
 ```
 
