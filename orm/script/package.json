@@ -9,7 +9,7 @@
     "@types/node": "22.13.1"
   },
   "devDependencies": {
-    "prisma": "^6.3.1",
+    "prisma": "6.3.1",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
   }
