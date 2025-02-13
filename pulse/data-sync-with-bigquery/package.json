@@ -12,7 +12,7 @@
     "dotenv": "16.4.7"
   },
   "devDependencies": {
-    "@google-cloud/bigquery": "7.9.1",
+    "@google-cloud/bigquery": "7.9.2",
     "@types/node": "22.13.1",
     "typescript": "5.7.3",
     "prisma": "6.3.1",
