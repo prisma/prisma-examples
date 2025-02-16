@@ -22,7 +22,7 @@
     "tailwindcss": "3.4.17",
     "typescript": "5.7.3",
     "@prisma/client": "6.3.1",
-    "@prisma/extension-accelerate": "1.2.1"
+    "@prisma/extension-accelerate": "1.2.2"
   },
   "devDependencies": {
     "prisma": "6.3.1",
