@@ -397,10 +397,109 @@ const userWithUpdatedProfile = await prisma.user.update({
 });
 ```
 
+## Switch to another database (e.g. SQLite, MySQL, SQL Server, MongoDB)
+
+If you want to try this example with another database than Postgres, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+
+Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
+
+<details><summary>Expand for an overview of example configurations with different databases</summary>
+
+### Remove the Prisma Client extension
+
+Before you proceed to use your own database, you should remove the Prisma client extension required for Prisma Postgres:
+
+```terminal
+npm uninstall @prisma/extension-accelerate
+```
+
+Remove the client extension from your `PrismaClient` in [`src/index.ts`](./src/index.ts):
+
+```diff
+- const prisma = new PrismaClient().$extends(withAccelerate())
++ const prisma = new PrismaClient()
+```
+
+### Your own PostgreSQL database
+
+To use your own PostgreSQL database remove the `@prisma/extension-accelerate` package and remove the Prisma client extension.
+
+### SQLite
+
+Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+
+```prisma
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+```
+
+Create an `.env` file and add the SQLite database connection string in it. For example:
+
+```terminal
+DATABASE_URL="file:./dev.db""
+```
+
+### MySQL
+
+Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+```
+
+Create an `.env` file and add a MySQL database connection string in it. For example:
+
+```terminal
+## This is a placeholder url
+DATABASE_URL="mysql://janedoe:mypassword@localhost:3306/notesapi"
+```
+
+### Microsoft SQL Server
+
+Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+
+```prisma
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+```
+
+Create an `.env` file and add a Microsoft SQL Server database connection string in it. For example:
+
+```terminal
+## This is a placeholder url
+DATABASE_URL="sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
+```
+
+### MongoDB
+
+Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+
+```prisma
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+```
+
+Create an `.env` file and add a local MongoDB database connection string in it. For example:
+
+```terminal
+## This is a placeholder url
+DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
+```
+
+</details>
+
+
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
-

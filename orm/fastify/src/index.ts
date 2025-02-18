@@ -1,7 +1,10 @@
 import { Prisma, PrismaClient } from '@prisma/client'
+import { withAccelerate } from ''
+
 import fastify from 'fastify'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient().$extends(withAccelerate())
+
 const app = fastify({ logger: true })
 
 app.post<{
@@ -134,11 +137,11 @@ app.get<{
 
   const or: Prisma.PostWhereInput = searchString
     ? {
-      OR: [
-        { title: { contains: searchString as string } },
-        { content: { contains: searchString as string } },
-      ],
-    }
+        OR: [
+          { title: { contains: searchString as string } },
+          { content: { contains: searchString as string } },
+        ],
+      }
     : {}
 
   const posts = await prisma.post.findMany({
