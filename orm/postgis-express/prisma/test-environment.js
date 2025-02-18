@@ -19,7 +19,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     this.databaseUrl = 'postgres://postgres:password@localhost:5432/testing'
     process.env.DB_URL = this.databaseUrl
     this.global.process.env.DB_URL = this.databaseUrl
-    this.client = new PrismaClient()
+    this.client = new PrismaClient().$extends(withAccelerate())
   }
 
   async setup() {

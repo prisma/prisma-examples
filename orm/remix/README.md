@@ -256,7 +256,6 @@ Once you have added the loaders and actions, you can start building a new UI com
 
 In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
 
-
 ## Switch to another database (e.g. SQLite, MySQL, SQL Server, MongoDB)
 
 If you want to try this example with another database than Postgres, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
