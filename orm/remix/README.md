@@ -1,6 +1,6 @@
 # Fullstack Example with Remix
 
-This example shows how to implement a **fullstack app in TypeScript with [Remix](https://remix.run/)** using [React](https://reactjs.org/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [Remix](https://remix.run/)** using [React](https://reactjs.org/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 
@@ -255,6 +255,7 @@ const userWithUpdatedProfile = await prisma.user.update({
 Once you have added the loaders and actions, you can start building a new UI component in React. It could e.g. be called `profile.tsx` and would be located in the `pages` directory.
 
 In the application code, you can access the new endpoint via `fetch` operations and populate the UI with the data you receive from the API calls.
+
 
 ## Switch to another database (e.g. SQLite, MySQL, SQL Server, MongoDB)
 

@@ -1,6 +1,6 @@
 # Simple TypeScript Script Example
 
-This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **simple TypeScript script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **simple TypeScript script** to read and write data in a [Prisma Postgres](https://www.prisma.io/postgres) database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
 

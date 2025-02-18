@@ -1,6 +1,6 @@
 # GraphQL Server Example
 
-This example shows how to **implement a GraphQL server with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [apollo-server](https://www.apollographql.com/docs/apollo-server). The example uses an [Prisma Postgres](https://www.prisma.io/postgres) database.
+This example shows how to **implement a GraphQL server with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [apollo-server](https://www.apollographql.com/docs/apollo-server). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 

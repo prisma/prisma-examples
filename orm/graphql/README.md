@@ -6,7 +6,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 - [**Pothos**](https://pothos-graphql.dev/): Code-first GraphQL schema definition library
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
-- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
+- [**Prisma Postgres**](https://www.prisma.io/postgres): A serverless PostgreSQL database built on unikernels.
 
 ## Contents
 

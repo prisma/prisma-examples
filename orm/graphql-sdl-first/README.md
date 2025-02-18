@@ -5,7 +5,7 @@ This example shows how to implement an **GraphQL server (SDL-first) with TypeScr
 - [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): HTTP server for GraphQL APIs
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
-- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
+- [**Prisma Postgres**](https://www.prisma.io/postgres): A serverless PostgreSQL database built on unikernels.
 
 ## Getting started
 

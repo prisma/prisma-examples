@@ -1,6 +1,6 @@
 # Fullstack Example with SvelteKit Actions and Load Functions
 
-This example shows how to implement a **fullstack app in TypeScript with [SvelteKit](https://kit.svelte.dev/)** using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). It uses a SQLite database file with some initial dummy data which you can find at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to implement a **fullstack app in TypeScript with [SvelteKit](https://kit.svelte.dev/)** using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 

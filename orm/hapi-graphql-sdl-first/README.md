@@ -6,7 +6,7 @@ This example shows how to implement an **GraphQL Server Example with Hapi (SDL f
 - [**Apollo Server Integration for Hapi**](https://www.npmjs.com/package/@as-integrations/hapi)
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
-- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
+- [**Prisma Postgres**](https://www.prisma.io/postgres): A serverless PostgreSQL database built on unikernels.
 
 ## Getting started
 
