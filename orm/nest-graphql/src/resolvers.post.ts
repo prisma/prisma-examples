@@ -1,4 +1,4 @@
-import 'reflect-metadata'
+import 'reflect-metadata';
 import {
   Resolver,
   Query,
@@ -11,25 +11,25 @@ import {
   InputType,
   Field,
   registerEnumType,
-} from '@nestjs/graphql'
-import { Inject } from '@nestjs/common'
-import { Post } from './post'
-import { User } from './user'
-import { PrismaService } from './prisma.service'
+} from '@nestjs/graphql';
+import { Inject } from '@nestjs/common';
+import { Post } from './post';
+import { User } from './user';
+import { PrismaService } from './prisma.service';
 
 @InputType()
 export class PostCreateInput {
   @Field()
-  title: string
+  title: string;
 
   @Field({ nullable: true })
-  content: string
+  content: string;
 }
 
 @InputType()
 class PostOrderByUpdatedAtInput {
   @Field((type) => SortOrder)
-  updatedAt: SortOrder
+  updatedAt: SortOrder;
 }
 
 enum SortOrder {
@@ -39,27 +39,28 @@ enum SortOrder {
 
 registerEnumType(SortOrder, {
   name: 'SortOrder',
-})
+});
 @Resolver(Post)
 export class PostResolver {
   constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
   @ResolveField()
-  author(@Root() post: Post): Promise<User | null> {
-    return this.prismaService.post
-      .findUnique({
-        where: {
-          id: post.id,
-        },
-      })
-      .author()
+  async author(@Root() post: Post): Promise<User | null> {
+    const result = await this.prismaService.post.findUnique({
+      where: { id: post.id || undefined },
+      include: {
+        author: true,
+      },
+    });
+
+    return result.author;
   }
 
   @Query((returns) => Post, { nullable: true })
   postById(@Args('id') id: number) {
     return this.prismaService.post.findUnique({
       where: { id },
-    })
+    });
   }
 
   @Query((returns) => [Post])
@@ -77,7 +78,7 @@ export class PostResolver {
             { content: { contains: searchString } },
           ],
         }
-      : {}
+      : {};
 
     return this.prismaService.post.findMany({
       where: {
@@ -87,7 +88,7 @@ export class PostResolver {
       take: take || undefined,
       skip: skip || undefined,
       orderBy: orderBy || undefined,
-    })
+    });
   }
 
   @Mutation((returns) => Post)
@@ -104,7 +105,7 @@ export class PostResolver {
           connect: { email: authorEmail },
         },
       },
-    })
+    });
   }
 
   @Mutation((returns) => Post)
@@ -116,7 +117,7 @@ export class PostResolver {
           increment: 1,
         },
       },
-    })
+    });
   }
 
   @Mutation((returns) => Post, { nullable: true })
@@ -126,12 +127,12 @@ export class PostResolver {
       select: {
         published: true,
       },
-    })
+    });
 
     return this.prismaService.post.update({
       where: { id: id || undefined },
       data: { published: !post?.published },
-    })
+    });
   }
 
   @Mutation((returns) => Post, { nullable: true })
@@ -143,6 +144,6 @@ export class PostResolver {
       where: {
         id: id,
       },
-    })
+    });
   }
 }

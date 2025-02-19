@@ -122,15 +122,12 @@ router.get('/users', async (ctx) => {
 router.get('/user/:id/drafts', async (ctx) => {
   const id = Number(ctx.params.id)
 
-  const drafts = await prisma.user
-    .findUnique({
-      where: {
-        id,
-      },
-    })
-    .posts({
-      where: { published: false },
-    })
+  const drafts = await prisma.post.findMany({
+    where: {
+      authorId: id,
+      published: false,
+    },
+  })
 
   ctx.body = drafts
 })

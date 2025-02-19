@@ -199,16 +199,17 @@ const resolvers = {
   },
   DateTime: DateTimeResolver,
   Post: {
-    author: (parent: { id: any }, _args: any, context: Context) => {
-      return context.prisma.user.findFirst({
+    author: async (parent: { id: any }, _args: any, context: Context) => {
+      const post = await context.prisma.post.findUnique({
         where: {
-          posts: {
-            every: {
-              id: parent?.id,
-            },
-          },
+          id: parent.id || undefined,
+        },
+        include: {
+          author: true,
         },
       })
+
+      return post!.author
     },
   },
   User: {

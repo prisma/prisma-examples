@@ -97,13 +97,9 @@ builder.queryFields((t) => ({
         ...query,
         where: {
           published: false,
-        },
-        include: {
           author: {
-            where: {
-              id: args.userUniqueInput.id ?? undefined,
-              email: args.userUniqueInput.email ?? undefined,
-            },
+            id: args.userUniqueInput.id ?? undefined,
+            email: args.userUniqueInput.email ?? undefined,
           },
         },
       })

@@ -229,16 +229,17 @@ const Post = objectType({
     t.nonNull.int('viewCount')
     t.field('author', {
       type: 'User',
-      resolve: (parent, _, context) => {
-        return context.prisma.user.findFirst({
+      resolve: async (parent, _, context) => {
+        const post = await context.prisma.post.findUnique({
           where: {
-            posts: {
-              every: {
-                id: parent.id || undefined,
-              },
-            },
+            id: parent.id || undefined,
+          },
+          include: {
+            author: true,
           },
         })
+
+        return post!.author
       },
     })
   },

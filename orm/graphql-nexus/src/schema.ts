@@ -78,16 +78,12 @@ const Query = objectType({
         ),
       },
       resolve: (_parent, args, context: Context) => {
-        return context.prisma.user.findUnique({
+        return context.prisma.post.findMany({
           where: {
-            id: args.userUniqueInput.id || undefined,
-            email: args.userUniqueInput.email || undefined,
-          },
-          include: {
-            posts: {
-              where: {
-                published: false,
-              },
+            published: false,
+            author: {
+              id: args.userUniqueInput.id || undefined,
+              email: args.userUniqueInput.email || undefined,
             },
           },
         })

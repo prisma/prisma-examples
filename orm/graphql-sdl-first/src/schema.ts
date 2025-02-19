@@ -113,16 +113,12 @@ export const resolvers = {
       args: { userUniqueInput: UserUniqueInput },
       context: Context,
     ) => {
-      return context.prisma.user.findUnique({
+      return context.prisma.post.findMany({
         where: {
-          id: args.userUniqueInput.id || undefined,
-          email: args.userUniqueInput.email || undefined,
-        },
-        include: {
-          posts: {
-            where: {
-              published: false,
-            },
+          published: false,
+          author: {
+            id: args.userUniqueInput.id || undefined,
+            email: args.userUniqueInput.email || undefined,
           },
         },
       })
@@ -209,19 +205,20 @@ export const resolvers = {
   DateTime: DateTimeResolver,
   Post: {
     author: (parent, _args, context: Context) => {
-      return context.prisma.post.findUnique({
-        where: { id: parent?.id },
-        include: {
-          author: true,
-        },
+      return context.prisma.post.findMany({
+        where: { authorId: parent?.id },
       })
     },
   },
   User: {
     posts: (parent, _args, context: Context) => {
-      return context.prisma.user.findUnique({
-        where: { id: parent?.id },
-        include: { posts: true },
+      return context.prisma.post.findMany({
+        where: {
+          author: parent.id || undefined,
+        },
+        include: {
+          author: true,
+        },
       })
     },
   },
