@@ -8,12 +8,12 @@
   "dependencies": {
     "@hapi/hapi": "21.3.12",
     "@prisma/client": "6.3.1",
-    "@types/node": "22.13.1"
+    "@types/node": "22.13.4"
   },
   "devDependencies": {
     "@types/express": "5.0.0",
     "@types/hapi__hapi": "21.0.0",
-    "@types/node": "22.13.1",
+    "@types/node": "22.13.4",
     "prisma": "6.3.1",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
