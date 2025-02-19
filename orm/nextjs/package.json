@@ -25,7 +25,7 @@
     "postcss": "8.5.2",
     "prisma": "6.3.1",
     "tailwindcss": "3.4.17",
-    "tsx": "4.19.2",
+    "tsx": "4.19.3",
     "typescript": "5.7.3"
   },
   "prisma": {
