@@ -46,19 +46,21 @@ export class PostResolver {
 
   @ResolveField()
   async author(@Root() post: Post): Promise<User | null> {
-    const result = await this.prismaService.post.findUnique({
-      where: { id: post.id || undefined },
-      include: {
-        author: true,
-      },
-    });
+    const result = await this.prismaService
+      .extendedPrismaClient()
+      .post.findUnique({
+        where: { id: post.id || undefined },
+        include: {
+          author: true,
+        },
+      });
 
     return result.author;
   }
 
   @Query((returns) => Post, { nullable: true })
   postById(@Args('id') id: number) {
-    return this.prismaService.post.findUnique({
+    return this.prismaService.extendedPrismaClient().post.findUnique({
       where: { id },
     });
   }
@@ -80,7 +82,7 @@ export class PostResolver {
         }
       : {};
 
-    return this.prismaService.post.findMany({
+    return this.prismaService.extendedPrismaClient().post.findMany({
       where: {
         published: true,
         ...or,
@@ -97,7 +99,7 @@ export class PostResolver {
     @Args('authorEmail') authorEmail: string,
     @Context() ctx,
   ): Promise<Post> {
-    return this.prismaService.post.create({
+    return this.prismaService.extendedPrismaClient().post.create({
       data: {
         title: data.title,
         content: data.content,
@@ -110,7 +112,7 @@ export class PostResolver {
 
   @Mutation((returns) => Post)
   incrementPostViewCount(@Args('id') id: number): Promise<Post> {
-    return this.prismaService.post.update({
+    return this.prismaService.extendedPrismaClient().post.update({
       where: { id },
       data: {
         viewCount: {
@@ -122,14 +124,16 @@ export class PostResolver {
 
   @Mutation((returns) => Post, { nullable: true })
   async togglePublishPost(@Args('id') id: number): Promise<Post | null> {
-    const post = await this.prismaService.post.findUnique({
-      where: { id: id || undefined },
-      select: {
-        published: true,
-      },
-    });
+    const post = await this.prismaService
+      .extendedPrismaClient()
+      .post.findUnique({
+        where: { id: id || undefined },
+        select: {
+          published: true,
+        },
+      });
 
-    return this.prismaService.post.update({
+    return this.prismaService.extendedPrismaClient().post.update({
       where: { id: id || undefined },
       data: { published: !post?.published },
     });
@@ -140,7 +144,7 @@ export class PostResolver {
     @Args('id') id: number,
     @Context() ctx,
   ): Promise<Post | null> {
-    return this.prismaService.post.delete({
+    return this.prismaService.extendedPrismaClient().post.delete({
       where: {
         id: id,
       },

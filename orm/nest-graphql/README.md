@@ -453,11 +453,32 @@ Before you proceed to use your own database, you should remove the Prisma client
 npm uninstall @prisma/extension-accelerate
 ```
 
-Remove the client extension from your `PrismaClient` instance:
+Before you proceed to use your own database, you should remove the Prisma client extension required for Prisma Postgres:
+
+```terminal
+npm uninstall @prisma/extension-accelerate
+```
+
+Remove the client extension from your `PrismaClient` instance from the [seeder file](./prisma/seed.ts):
 
 ```diff
 - const prisma = new PrismaClient().$extends(withAccelerate())
 + const prisma = new PrismaClient()
+```
+
+In your `PrismaService` class, remove the method that extends the Prisma Client. For example, remove the following method:
+
+```diff
+- extendedPrismaClient() {
+-    return this.$extends(withAccelerate());
+- }
+```
+
+Lastly, update the application code wherever `extendedPrismaClient()` is used. For example, change:
+
+```diff
+- this.prismaService.extendedPrismaClient().user.findMany();
++ this.prismaService.user.findMany();
 ```
 
 ### Your own PostgreSQL database

@@ -43,13 +43,11 @@ export class UserResolver {
 
   @ResolveField()
   async posts(@Root() user: User, @Context() ctx): Promise<Post[]> {
-    return this.prismaService.user
-      .findUnique({
-        where: {
-          id: user.id,
-        },
-      })
-      .posts();
+    return this.prismaService.extendedPrismaClient().post.findMany({
+      where: {
+        authorId: user.id,
+      },
+    });
   }
 
   @Mutation((returns) => User)
@@ -61,7 +59,7 @@ export class UserResolver {
       return { title: post.title, content: post.content || undefined };
     });
 
-    return this.prismaService.user.create({
+    return this.prismaService.extendedPrismaClient().user.create({
       data: {
         email: data.email,
         name: data.name,
@@ -74,14 +72,14 @@ export class UserResolver {
 
   @Query((returns) => [User], { nullable: true })
   async allUsers(@Context() ctx) {
-    return this.prismaService.user.findMany();
+    return this.prismaService.extendedPrismaClient().user.findMany();
   }
 
   @Query((returns) => [Post], { nullable: true })
   async draftsByUser(
     @Args('userUniqueInput') userUniqueInput: UserUniqueInput,
   ): Promise<Post[]> {
-    return this.prismaService.post.findMany({
+    return this.prismaService.extendedPrismaClient().post.findMany({
       where: {
         author: {
           id: userUniqueInput.id || undefined,

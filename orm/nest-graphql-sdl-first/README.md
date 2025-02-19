@@ -1,6 +1,7 @@
 # GraphQL Server Example with NestJS (SDL-first)
 
 This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** with the following stack:
+
 - [**NestJS**](https://docs.nestjs.com/graphql/quick-start): Web framework for building scalable server-side applications
 - [**graphql-tools**](https://www.apollographql.com/docs/graphql-tools/): A tool for combining resolvers and type-definitions into an executable schema
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
@@ -136,8 +137,6 @@ npm run dev
 
 Navigate to [http://localhost:3000/graphql](http://localhost:3000/graphql) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
 
-
-
 ## Using the GraphQL API
 
 The schema that specifies the API operations of your GraphQL server is defined in [`./schema.graphql`](./schema.graphql). Below are a number of operations that you can send to the API using the GraphQL Playground.
@@ -168,11 +167,7 @@ query {
 
 ```graphql
 {
-  draftsByUser(
-    userUniqueInput: {
-      email: "mahmoud@prisma.io"
-    }
-  ) {
+  draftsByUser(userUniqueInput: { email: "mahmoud@prisma.io" }) {
     id
     title
     content
@@ -185,7 +180,6 @@ query {
   }
 }
 ```
-
 
 ### Create a new user
 
@@ -202,7 +196,10 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    data: { title: "Join the Prisma Discord", content: "https://pris.ly/discord" }
+    data: {
+      title: "Join the Prisma Discord"
+      content: "https://pris.ly/discord"
+    }
     authorEmail: "alice@prisma.io"
   ) {
     id
@@ -264,9 +261,7 @@ mutation {
 
 ```graphql
 {
-  feed(
-    searchString: "prisma"
-  ) {
+  feed(searchString: "prisma") {
     id
     title
     content
@@ -279,11 +274,7 @@ mutation {
 
 ```graphql
 {
-  feed(
-    skip: 2
-    take: 2
-    orderBy: { updatedAt: desc }
-  ) {
+  feed(skip: 2, take: 2, orderBy: { updatedAt: desc }) {
     id
     updatedAt
     title
@@ -297,7 +288,7 @@ mutation {
 
 ```graphql
 {
-  postById(id: __POST_ID__ ) {
+  postById(id: __POST_ID__) {
     id
     title
     content
@@ -310,7 +301,7 @@ Note that you need to replace the `__POST_ID__` placeholder with an actual `id` 
 
 ```graphql
 {
-  postById(id: 5 ) {
+  postById(id: 5) {
     id
     title
     content
@@ -340,7 +331,6 @@ mutation {
 ```
 
 </details>
-
 
 ## Evolving the app
 
@@ -437,16 +427,18 @@ const resolvers ={
       }).posts()
     },
 +    profile: (parent, _args, context: Context) => {
-+      return context.prisma.user.findUnique({
-+        where: { id: parent?.id }
-+      }).profile()
++      return context.prisma.profile.findUnique({
++        where: { userId: parent?.id }
++      })
 +    }
   },
 +  Profile: {
 +    user: (parent, _args, context: Context) => {
-+      return context.prisma.profile.findUnique({
-+        where: { id: parent?.id }
-+      }).user()
++      const profile = await context.prisma.profile.findUnique({
++        where: { id: parent?.id },
++         include: { user: true }
++        })
++       return profile.user
 +    }
 +  }
 }
@@ -496,15 +488,12 @@ const resolvers ={
 }
 ```
 
-
 Finally, you can test the new mutation like this:
 
 ```graphql
 mutation {
   addProfileForUser(
-    userUniqueInput: {
-      email: "mahmoud@prisma.io"
-    }
+    userUniqueInput: { email: "mahmoud@prisma.io" }
     bio: "I like turtles"
   ) {
     id
@@ -531,7 +520,7 @@ const profile = await prisma.profile.create({
       connect: { email: 'alice@prisma.io' },
     },
   },
-})
+});
 ```
 
 ##### Create a new user with a new profile
@@ -547,7 +536,7 @@ const user = await prisma.user.create({
       },
     },
   },
-})
+});
 ```
 
 ##### Update the profile of an existing user
@@ -562,7 +551,7 @@ const userWithUpdatedProfile = await prisma.user.update({
       },
     },
   },
-})
+});
 ```
 
 </details>
@@ -583,7 +572,7 @@ Before you proceed to use your own database, you should remove the Prisma client
 npm uninstall @prisma/extension-accelerate
 ```
 
-Remove the client extension from your `PrismaClient` instance:
+Remove the client extension from your `PrismaClient` instances:
 
 ```diff
 - const prisma = new PrismaClient().$extends(withAccelerate())
@@ -672,5 +661,3 @@ DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWr
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
-

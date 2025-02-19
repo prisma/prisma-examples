@@ -436,16 +436,18 @@ const resolvers ={
       }).posts()
     },
 +    profile: (parent, _args, context: Context) => {
-+      return context.prisma.user.findUnique({
-+        where: { id: parent?.id }
-+      }).profile()
++      return context.prisma.profile.findUnique({
++        where: { userId: parent?.id }
++      })
 +    }
   },
 +  Profile: {
-+    user: (parent, _args, context: Context) => {
-+      return context.prisma.profile.findUnique({
-+        where: { id: parent?.id }
-+      }).user()
++    user: async (parent, _args, context: Context) => {
++      const profile = context.prisma.profile.findUnique({
++        where: { id: parent?.id },
++         include: { user: true }
++      })
++       return profile.user
 +    }
 +  }
 }

@@ -207,11 +207,9 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
+        return context.prisma.post.findMany({
+          where: { authorId: parent.id || undefined },
+        })
       },
     })
   },

@@ -216,11 +216,9 @@ export const resolvers = {
   },
   User: {
     posts: (parent, _args, context: Context) => {
-      return context.prisma.user
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .posts()
+      return context.prisma.post.findMany({
+        where: { authorId: parent?.id },
+      })
     },
   },
 }

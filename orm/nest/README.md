@@ -142,6 +142,7 @@ You can access the REST API of the server using the following endpoints:
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
 - `/user/:id/drafts`: Fetch user's drafts by their `id`
 - `/users`: Fetch all users
+
 ### `POST`
 
 - `/post`: Create a new post
@@ -163,7 +164,6 @@ You can access the REST API of the server using the following endpoints:
 ### `DELETE`
 
 - `/post/:id`: Delete a post by its `id`
-
 
 ## Evolving the app
 
@@ -247,7 +247,12 @@ async createUserProfile(
 At the top of `app.controller.ts`, update your imports to include `Profile` from `@prisma/client` as follows:
 
 ```ts
-import { User as UserModel, Post as PostModel, Prisma, Profile } from '@prisma/client'
+import {
+  User as UserModel,
+  Post as PostModel,
+  Prisma,
+  Profile,
+} from '@prisma/client';
 ```
 
 #### 2.2 Testing out your new endpoint
@@ -259,7 +264,6 @@ Restart your application server and test out your new endpoint.
 - `/user/:id/profile`: Create a new profile based on the user id
   - Body:
     - `bio: String` : The bio of the user
-
 
 <details><summary>Expand to view more sample Prisma Client queries on <code>Profile</code></summary>
 
@@ -275,7 +279,7 @@ const profile = await prisma.profile.create({
       connect: { email: 'alice@prisma.io' },
     },
   },
-})
+});
 ```
 
 ##### Create a new user with a new profile
@@ -291,7 +295,7 @@ const user = await prisma.user.create({
       },
     },
   },
-})
+});
 ```
 
 ##### Update the profile of an existing user
@@ -306,7 +310,7 @@ const userWithUpdatedProfile = await prisma.user.update({
       },
     },
   },
-})
+});
 ```
 
 </details>
@@ -327,11 +331,26 @@ Before you proceed to use your own database, you should remove the Prisma client
 npm uninstall @prisma/extension-accelerate
 ```
 
-Remove the client extension from your `PrismaClient` instance:
+Remove the client extension from your `PrismaClient` instance from the [seeder file](/prisma/seed.ts.):
 
 ```diff
 - const prisma = new PrismaClient().$extends(withAccelerate())
 + const prisma = new PrismaClient()
+```
+
+In your `PrismaService` class, remove the method that extends the Prisma Client. For example, remove the following method:
+
+```diff
+- extendedPrismaClient() {
+-    return this.$extends(withAccelerate());
+- }
+```
+
+Lastly, update the application code wherever `extendedPrismaClient()` is used. For example, change:
+
+```diff
+- this.prismaService.extendedPrismaClient().user.findMany();
++ this.prismaService.user.findMany();
 ```
 
 ### Your own PostgreSQL database
@@ -416,5 +435,3 @@ DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWr
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
-

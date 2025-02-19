@@ -420,11 +420,11 @@ First, add a new GraphQL type via Nexus' `objectType` function:
 +    t.field('user', {
 +      type: 'User',
 +      resolve: (parent, _, context) => {
-+        return context.prisma.profile
-+          .findUnique({
-+            where: { id: parent.id || undefined },
-+          })
-+          .user()
++      const profile = await context.prisma.profile.findUnique({
++        where: { id: parent?.id },
++         include: { user: true }
++        })
++       return profile.user
 +      },
 +    })
 +  },
@@ -448,11 +448,9 @@ const User = objectType({
 +    t.field('profile', {
 +      type: 'Profile',
 +      resolve: (parent, _, context) => {
-+        return context.prisma.user
-+          .findUnique({
-+            where: { id: parent.id },
-+          })
-+          .profile();
++      return context.prisma.profile.findUnique({
++        where: { userId: parent?.id }
++      })
 +      },
 +    });
   },
