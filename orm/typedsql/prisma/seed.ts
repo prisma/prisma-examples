@@ -1,3 +1,4 @@
+import { withAccelerate } from '@prisma/extension-accelerate'
 import { PrismaClient, Prisma, User } from '../node_modules/.prisma/client'
 
 const NUM_USERS = 1000

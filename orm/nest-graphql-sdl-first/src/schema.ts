@@ -77,10 +77,10 @@ const resolvers = {
     feed: (
       _parent,
       args: {
-        searchString: string
-        skip: number
-        take: number
-        orderBy: PostOrderByUpdatedAtInput
+        searchString: string;
+        skip: number;
+        take: number;
+        orderBy: PostOrderByUpdatedAtInput;
       },
       context: Context,
     ) => {

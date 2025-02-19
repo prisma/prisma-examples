@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { readdir, stat } from 'fs/promises'
 import { join } from 'path'
 import { spawn } from 'child_process'
@@ -42,46 +43,53 @@ async function main() {
   // Set the root directory as provided.
 =======
 import { readdir, readFile, writeFile, stat } from 'fs/promises'
+=======
+import { readdir, stat } from 'fs/promises'
+>>>>>>> 7691d28b9 (chore: add more code fixes)
 import { join } from 'path'
+import { spawn } from 'child_process'
 
-// Regular expression to match the SQLite datasource configuration,
-// ignoring spacing differences.
-const oldDatasourcePattern =
-  /datasource\s+db\s*{[^}]*provider\s*=\s*"sqlite"[^}]*url\s*=\s*"file:\.\/dev\.db"[^}]*}/gm
+/**
+ * Runs `npm install` in the given directory.
+ */
+async function runNpmInstall(subDirPath: string) {
+  return new Promise<void>((resolve, reject) => {
+    console.log(`Running npm install in ${subDirPath}...`)
+    const child = spawn('npm', ['install'], {
+      cwd: subDirPath,
+      stdio: 'inherit',
+    })
 
-const newDatasource = `datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}`
+    child.on('close', (code) => {
+      if (code === 0) {
+        resolve()
+      } else {
+        reject(
+          new Error(
+            `npm install failed in ${subDirPath} with exit code ${code}`,
+          ),
+        )
+      }
+    })
 
-async function processSubdirectory(subDirPath: string) {
-  // Assume the prisma schema file is located at `<subDir>/prisma/schema.prisma`
-  const prismaSchemaPath = join(subDirPath, 'prisma', 'schema.prisma')
-
-  try {
-    const schemaContent = await readFile(prismaSchemaPath, 'utf8')
-
-    if (oldDatasourcePattern.test(schemaContent)) {
-      console.log(`Updating schema in ${prismaSchemaPath}...`)
-      const newContent = schemaContent.replace(
-        oldDatasourcePattern,
-        newDatasource,
+    child.on('error', (error: any) => {
+      reject(
+        new Error(
+          `Failed to run npm install in ${subDirPath}: ${error.message}`,
+        ),
       )
-      await writeFile(prismaSchemaPath, newContent, 'utf8')
-    } else {
-      console.log(`No matching datasource block found in ${prismaSchemaPath}.`)
-    }
-  } catch (error: any) {
-    // If the file doesn't exist or another error occurs, skip this directory.
-    console.error(`Skipping ${subDirPath}: ${error.message}`)
-    return
-  }
+    })
+  })
 }
 
 async function main() {
+<<<<<<< HEAD
   // The root directory is provided as a command-line argument,
   // or defaults to the current working directory.
 >>>>>>> 92bebb198 (resolve: merge conflicts)
+=======
+  // Set the root directory as provided.
+>>>>>>> 7691d28b9 (chore: add more code fixes)
   const rootDir = '/Users/ankur/Work/constants/prisma-examples/orm'
 
   let entries
@@ -92,6 +100,7 @@ async function main() {
     process.exit(1)
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   // Gather npm install tasks from subdirectories that have a package.json
   const tasks: Promise<void>[] = []
@@ -130,10 +139,36 @@ async function main() {
         console.log(`Skipping ${subDirPath} (no package.json found)`)
         continue
       }
+=======
+  // Gather npm install tasks from subdirectories that have a package.json
+  const tasks: Promise<void>[] = []
+>>>>>>> 7691d28b9 (chore: add more code fixes)
 
-      await processSubdirectory(subDirPath)
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue
+
+    const subDirPath = join(rootDir, entry.name)
+    try {
+      await stat(join(subDirPath, 'package.json'))
+    } catch {
+      console.log(`Skipping ${subDirPath} (no package.json found)`)
+      continue
     }
+<<<<<<< HEAD
 >>>>>>> 92bebb198 (resolve: merge conflicts)
+=======
+
+    tasks.push(runNpmInstall(subDirPath))
+  }
+
+  // Run all npm install tasks in parallel
+  try {
+    await Promise.all(tasks)
+    console.log('All npm install tasks completed successfully.')
+  } catch (error: any) {
+    console.error(error.message)
+    process.exit(1)
+>>>>>>> 7691d28b9 (chore: add more code fixes)
   }
 }
 
