@@ -4,11 +4,12 @@ import Router from '@koa/router'
 import { Prisma, PrismaClient } from '@prisma/client'
 
 import { koaBody } from 'koa-body'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
 const app = new Koa()
 const router = new Router()
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient().$extends(withAccelerate())
 
 app.use(koaBody())
 
@@ -17,8 +18,8 @@ router.post('/signup', async (ctx) => {
 
   const postData = posts
     ? posts.map((post: Prisma.PostCreateInput) => {
-      return { title: post.title, content: post.content || undefined }
-    })
+        return { title: post.title, content: post.content || undefined }
+      })
     : []
 
   const newUser = await prisma.user.create({
@@ -150,11 +151,11 @@ router.get('/feed', async (ctx) => {
 
   const or = searchString
     ? {
-      OR: [
-        { title: { contains: searchString as string } },
-        { content: { contains: searchString as string } },
-      ],
-    }
+        OR: [
+          { title: { contains: searchString as string } },
+          { content: { contains: searchString as string } },
+        ],
+      }
     : {}
 
   const posts = await prisma.post.findMany({

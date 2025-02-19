@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
+const prisma = new PrismaClient().$extends(withAccelerate())
 export interface Context {
-  prisma: PrismaClient
+  prisma: typeof prisma
 }
-
-const prisma = new PrismaClient()
 
 export const createContext = async () => ({
   prisma: prisma,

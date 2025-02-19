@@ -1,6 +1,7 @@
 import { PrismaClient, Prisma } from '@prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient().$extends(withAccelerate())
 
 const userData: Prisma.UserCreateInput[] = [
   {
@@ -32,7 +33,7 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
-  }
+  },
 ]
 
 export async function main() {

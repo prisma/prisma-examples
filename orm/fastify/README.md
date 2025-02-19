@@ -322,7 +322,7 @@ Before you proceed to use your own database, you should remove the Prisma client
 npm uninstall @prisma/extension-accelerate
 ```
 
-Remove the client extension from your `PrismaClient` in [`src/index.ts`](./src/index.ts):
+Remove the client extension from your `PrismaClient` instance:
 
 ```diff
 - const prisma = new PrismaClient().$extends(withAccelerate())

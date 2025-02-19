@@ -119,8 +119,6 @@ Execute the seed file in [`prisma/seed.ts`](./prisma/seed.ts) to populate your d
 npx prisma db seed
 ```
 
-When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
-
 ### 3. Generate Prisma Client with SQL
 
 ```

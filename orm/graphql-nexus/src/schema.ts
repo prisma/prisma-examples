@@ -78,18 +78,19 @@ const Query = objectType({
         ),
       },
       resolve: (_parent, args, context: Context) => {
-        return context.prisma.user
-          .findUnique({
-            where: {
-              id: args.userUniqueInput.id || undefined,
-              email: args.userUniqueInput.email || undefined,
+        return context.prisma.user.findUnique({
+          where: {
+            id: args.userUniqueInput.id || undefined,
+            email: args.userUniqueInput.email || undefined,
+          },
+          include: {
+            posts: {
+              where: {
+                published: false,
+              },
             },
-          })
-          .posts({
-            where: {
-              published: false,
-            },
-          })
+          },
+        })
       },
     })
   },
@@ -108,7 +109,7 @@ const Mutation = objectType({
         ),
       },
       resolve: (_, args, context: Context) => {
-        const postData = args.data.posts?.map((post) => {
+        const postData = args.data.posts?.map((post: any) => {
           return { title: post.title, content: post.content || undefined }
         })
         return context.prisma.user.create({
@@ -211,11 +212,12 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context: Context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
+        return context.prisma.user.findUnique({
+          where: { id: parent.id || undefined },
+          include: {
+            posts: true,
+          },
+        })
       },
     })
   },
@@ -234,11 +236,12 @@ const Post = objectType({
     t.field('author', {
       type: 'User',
       resolve: (parent, _, context: Context) => {
-        return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .author()
+        return context.prisma.post.findUnique({
+          where: { id: parent.id || undefined },
+          include: {
+            author: true,
+          },
+        })
       },
     })
   },

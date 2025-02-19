@@ -31,7 +31,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "6.3.1"
+    "@prisma/client": "6.3.1",
+    "@prisma/extension-accelerate": "^1.2.2"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

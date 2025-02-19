@@ -113,12 +113,6 @@ Run the following command to create tables in your database. This creates the `U
 npx prisma migrate dev --name init
 ```
 
-Execute the seed file in [`prisma/seed.ts`](./prisma/seed.ts) to populate your database with some sample data, by running:
-
-```terminal
-npx prisma db seed
-```
-
 ### 3. Run the script
 
 Execute the script with this command:
@@ -238,7 +232,7 @@ Before you proceed to use your own database, you should remove the Prisma client
 npm uninstall @prisma/extension-accelerate
 ```
 
-Remove the client extension from your `PrismaClient` in [`src/index.ts`](./src/index.ts):
+Remove the client extension from your `PrismaClient` instance:
 
 ```diff
 - const prisma = new PrismaClient().$extends(withAccelerate())
@@ -327,5 +321,3 @@ DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWr
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
-

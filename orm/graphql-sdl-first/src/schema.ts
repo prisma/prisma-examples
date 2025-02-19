@@ -113,18 +113,19 @@ export const resolvers = {
       args: { userUniqueInput: UserUniqueInput },
       context: Context,
     ) => {
-      return context.prisma.user
-        .findUnique({
-          where: {
-            id: args.userUniqueInput.id || undefined,
-            email: args.userUniqueInput.email || undefined,
+      return context.prisma.user.findUnique({
+        where: {
+          id: args.userUniqueInput.id || undefined,
+          email: args.userUniqueInput.email || undefined,
+        },
+        include: {
+          posts: {
+            where: {
+              published: false,
+            },
           },
-        })
-        .posts({
-          where: {
-            published: false,
-          },
-        })
+        },
+      })
     },
   },
   Mutation: {
@@ -208,20 +209,20 @@ export const resolvers = {
   DateTime: DateTimeResolver,
   Post: {
     author: (parent, _args, context: Context) => {
-      return context.prisma.post
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .author()
+      return context.prisma.post.findUnique({
+        where: { id: parent?.id },
+        include: {
+          author: true,
+        },
+      })
     },
   },
   User: {
     posts: (parent, _args, context: Context) => {
-      return context.prisma.user
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .posts()
+      return context.prisma.user.findUnique({
+        where: { id: parent?.id },
+        include: { posts: true },
+      })
     },
   },
 }

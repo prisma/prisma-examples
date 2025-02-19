@@ -481,7 +481,7 @@ Before you proceed to use your own database, you should remove the Prisma client
 npm uninstall @prisma/extension-accelerate
 ```
 
-Remove the client extension from your `PrismaClient` in [`src/index.ts`](./src/index.ts):
+Remove the client extension from your `PrismaClient`:
 
 ```diff
 - const prisma = new PrismaClient().$extends(withAccelerate())
@@ -570,5 +570,3 @@ DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWr
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
-
-

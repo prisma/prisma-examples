@@ -79,18 +79,15 @@ const Query = objectType({
         ),
       },
       resolve: (_parent, args, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: {
+        return context.prisma.post.findMany({
+          where: {
+            published: false,
+            author: {
               id: args.userUniqueInput.id || undefined,
               email: args.userUniqueInput.email || undefined,
             },
-          })
-          .posts({
-            where: {
-              published: false,
-            },
-          })
+          },
+        })
       },
     })
   },
@@ -109,7 +106,7 @@ const Mutation = objectType({
         ),
       },
       resolve: (_, args, context) => {
-        const postData = args.data.posts?.map((post: Post) => {
+        const postData = args.data.posts?.map((post: any) => {
           return { title: post.title, content: post.content || undefined }
         })
         return context.prisma.user.create({
@@ -212,11 +209,9 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
+        return context.prisma.post.findMany({
+          where: { authorId: parent.id || undefined },
+        })
       },
     })
   },
@@ -235,11 +230,15 @@ const Post = objectType({
     t.field('author', {
       type: 'User',
       resolve: (parent, _, context) => {
-        return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .author()
+        return context.prisma.user.findFirst({
+          where: {
+            posts: {
+              every: {
+                id: parent.id || undefined,
+              },
+            },
+          },
+        })
       },
     })
   },
