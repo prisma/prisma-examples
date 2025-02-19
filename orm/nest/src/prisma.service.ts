@@ -12,4 +12,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   extendedPrismaClient() {
     return this.$extends(withAccelerate());
   }
+
+  
 }
