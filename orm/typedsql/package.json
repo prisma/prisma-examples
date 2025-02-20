@@ -16,8 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "6.3.1",
-    "@prisma/extension-accelerate": "^1.2.2"
+    "@prisma/client": "6.3.1"
   },
   "devDependencies": {
     "@types/node": "22.13.4",
