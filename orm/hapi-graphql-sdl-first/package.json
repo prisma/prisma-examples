@@ -10,13 +10,13 @@
     "@as-integrations/hapi": "2.0.1",
     "@graphql-tools/schema": "10.0.18",
     "@hapi/hapi": "21.3.12",
-    "@prisma/client": "6.3.1",
+    "@prisma/client": "6.4.0",
     "graphql": "16.10.0",
     "graphql-scalars": "1.24.1"
   },
   "devDependencies": {
     "@types/node": "22.13.4",
-    "prisma": "6.3.1",
+    "prisma": "6.4.0",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
   },

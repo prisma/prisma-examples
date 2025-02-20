@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@apollo/server": "4.11.3",
-    "@prisma/client": "6.3.1",
+    "@prisma/client": "6.4.0",
     "body-parser": "1.20.3",
     "cors": "2.8.5",
     "express": "4.21.2",
@@ -33,7 +33,7 @@
     "@types/express": "5.0.0",
     "@types/node": "22.13.4",
     "@types/ws": "8.5.14",
-    "prisma": "6.3.1",
+    "prisma": "6.4.0",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.7.3"

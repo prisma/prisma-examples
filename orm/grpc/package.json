@@ -13,14 +13,14 @@
   },
   "dependencies": {
     "@grpc/proto-loader": "0.7.13",
-    "@prisma/client": "6.3.1",
+    "@prisma/client": "6.4.0",
     "chalk": "4.1.2",
     "grpc": "1.24.11",
     "protobufjs": "7.4.0"
   },
   "devDependencies": {
     "@types/node": "22.13.4",
-    "prisma": "6.3.1",
+    "prisma": "6.4.0",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
   },
