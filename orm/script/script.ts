@@ -82,13 +82,14 @@ async function main() {
   )
 
   // Retrieve all posts by user with email alice@prisma.io
-  const postsByUser = await prisma.user
-    .findUnique({
-      where: {
+  const postsByUser = await prisma.post.findMany({
+    where: {
+      author: {
         email: user1Email,
       },
-    })
-    .posts()
+    },
+  })
+
   console.log(
     `Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`,
   )

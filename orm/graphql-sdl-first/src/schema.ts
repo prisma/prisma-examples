@@ -204,10 +204,14 @@ export const resolvers = {
   },
   DateTime: DateTimeResolver,
   Post: {
-    author: (parent, _args, context: Context) => {
-      return context.prisma.post.findMany({
-        where: { authorId: parent?.id },
+    author: async (parent, _args, context: Context) => {
+      const post = await context.prisma.post.findUnique({
+        where: { id: parent?.id },
+        include: {
+          author: true,
+        },
       })
+      return post?.author
     },
   },
   User: {
