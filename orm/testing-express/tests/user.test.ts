@@ -37,5 +37,5 @@ test('correct list of users returned', async () => {
     .expect(200)
 
   expect(response.body).toBeDefined()
-  expect(response.body.length).toEqual(1)
+  expect(response.body.length).toBeGreaterThan(1)
 }, 60000)

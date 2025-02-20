@@ -48,9 +48,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -102,9 +100,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -187,9 +183,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -246,15 +240,13 @@
             "body": {
               "mode": "graphql",
               "graphql": {
-                "query": "{\r\n    feed(\r\n    searchString: \"prisma\"\r\n  ) {\r\n    id\r\n    title\r\n    content\r\n    published\r\n  }\r\n}",
+                "query": "{\r\n    feed(\r\n    searchString: \"Prisma\"\r\n  ) {\r\n    id\r\n    title\r\n    content\r\n    published\r\n  }\r\n}",
                 "variables": ""
               }
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -305,9 +297,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -356,9 +346,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -414,9 +402,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -463,9 +449,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -512,9 +496,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },
@@ -560,9 +542,7 @@
             },
             "url": {
               "raw": "localhost:4000",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "4000"
             }
           },

@@ -11,7 +11,7 @@ npx prisma db seed
 npm run dev &
 pid=$!
 
-sleep 30
+sleep 20
 
 npx newman run ../../.github/tests/postman_collections/graphql-nestjs.json --bail
 

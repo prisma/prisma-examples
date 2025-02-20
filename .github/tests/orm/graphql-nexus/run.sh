@@ -13,6 +13,6 @@ pid=$!
 
 sleep 20
 
-npx newman run ../../.github/tests/postman_collections/graphql.json --bail
+npx newman run ../../.github/tests/postman_collections/graphql.json --bail --verbose
 
 kill "$pid"

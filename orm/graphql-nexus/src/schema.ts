@@ -208,11 +208,8 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context: Context) => {
-        return context.prisma.user.findUnique({
-          where: { id: parent.id || undefined },
-          include: {
-            posts: true,
-          },
+        return context.prisma.post.findMany({
+          where: { authorId: parent.id || undefined },
         })
       },
     })
@@ -231,13 +228,14 @@ const Post = objectType({
     t.nonNull.int('viewCount')
     t.field('author', {
       type: 'User',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.post.findUnique({
+      resolve: async (parent, _, context: Context) => {
+        const post = await context.prisma.post.findFirst({
           where: { id: parent.id || undefined },
           include: {
             author: true,
           },
         })
+        return post?.author!
       },
     })
   },
