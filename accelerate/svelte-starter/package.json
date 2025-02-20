@@ -15,7 +15,7 @@
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
 		"@tailwindcss/typography": "0.5.16",
 		"autoprefixer": "10.4.20",
-		"postcss": "8.5.2",
+		"postcss": "8.5.3",
 		"prisma": "6.3.1",
 		"svelte": "5.19.10",
 		"svelte-check": "4.1.4",
