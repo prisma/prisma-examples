@@ -41,7 +41,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{fromJson(needs.projects-matrix.outputs.matrix)}}
-
+      max-parallel: 1
     services:
       postgres:
         image: postgis/postgis:14-3.1-alpine
