@@ -1,4 +1,3 @@
-import { withAccelerate } from '@prisma/extension-accelerate'
 import { PrismaClient, Prisma, User } from '../node_modules/.prisma/client'
 
 const NUM_USERS = 1000
@@ -17,7 +16,7 @@ enum EventType {
   CheckedOut = 'CheckedOut',
 }
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const prisma = new PrismaClient()
 
 async function main() {
   const usersInput: Prisma.UserCreateInput[] = []
