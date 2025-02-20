@@ -18,15 +18,15 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.2.0",
-    "@types/node": "22.13.1",
-    "@types/react": "19.0.9",
-    "@types/react-dom": "19.0.3",
+    "@types/node": "22.13.4",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
     "eslint": "9.20.1",
     "eslint-config-next": "15.1.7",
     "postcss": "8.5.2",
     "prisma": "6.3.1",
     "tailwindcss": "3.4.17",
-    "tsx": "4.19.2",
+    "tsx": "4.19.3",
     "typescript": "5.7.3"
   },
   "prisma": {

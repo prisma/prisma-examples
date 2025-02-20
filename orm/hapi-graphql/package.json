@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/hapi__hapi": "21.0.0",
-    "@types/node": "22.13.1",
+    "@types/node": "22.13.4",
     "prisma": "6.3.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",

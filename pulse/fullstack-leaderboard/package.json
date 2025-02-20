@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.3.1",
-    "@prisma/extension-pulse": "1.2.0",
+    "@prisma/extension-pulse": "1.2.2",
     "@types/socket.io": "3.0.2",
     "next": "15.1.7",
     "react": "18.3.1",
@@ -21,7 +21,7 @@
     "socket.io-client": "4.8.1"
   },
   "devDependencies": {
-    "@types/node": "22.13.1",
+    "@types/node": "22.13.4",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "eslint": "8.57.1",

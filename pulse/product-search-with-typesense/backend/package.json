@@ -5,13 +5,13 @@
     "migrate": "dotenv -e .dev.vars -- npx prisma migrate dev"
   },
   "dependencies": {
-    "@babel/runtime": "7.26.7",
+    "@babel/runtime": "7.26.9",
     "@prisma/adapter-pg": "6.3.1",
     "@prisma/client": "6.3.1",
-    "@prisma/extension-pulse": "1.2.0",
+    "@prisma/extension-pulse": "1.2.2",
     "axios": "1.7.9",
     "dotenv-cli": "8.0.0",
-    "hono": "4.7.0",
+    "hono": "4.7.2",
     "pg": "8.13.3",
     "typesense": "1.8.2",
     "zod": "3.24.2"
