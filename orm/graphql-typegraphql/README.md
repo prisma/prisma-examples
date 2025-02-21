@@ -9,7 +9,7 @@ This example shows how to **implement a GraphQL server with TypeScript** with Pr
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/graphql-typegraphql
+npx try-prisma@latest --template orm/graphql-typegraphql --install npm --name graphql-typegraphql
 ```
 
 Then, navigate into the project directory:

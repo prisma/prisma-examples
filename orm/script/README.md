@@ -1,6 +1,6 @@
 # Simple TypeScript CRUD Example with Prisma Postgres
 
-This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **simple TypeScript script** to read and write data in a [Prisma Postgres](https://www.prisma.io/postgres) database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
+This example shows how to use Prisma ORM in a **simple TypeScript script** to read and write data in a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 
@@ -9,7 +9,7 @@ This example shows how to use [Prisma Client](https://www.prisma.io/docs/referen
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/script
+npx try-prisma@latest --template orm/script --install npm --name script
 ```
 
 Then, navigate into the project directory:

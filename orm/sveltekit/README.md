@@ -9,7 +9,7 @@ This example shows how to implement a **fullstack app in TypeScript with [Svelte
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/sveltekit
+npx try-prisma@latest --template orm/sveltekit  --install npm --name sveltekit
 ```
 
 Then, navigate into the project directory:

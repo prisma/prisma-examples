@@ -9,7 +9,7 @@ This example shows how to implement a **REST API with TypeScript** using [Koa](h
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/koa
+npx try-prisma@latest --template orm/koa --install npm --name koa
 ```
 
 Then, navigate into the project directory:

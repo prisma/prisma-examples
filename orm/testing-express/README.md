@@ -9,7 +9,7 @@ This example shows how to implement integration tests using [Express](https://ex
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/testing-express
+npx try-prisma@latest --template orm/testing-express --install npm --name testing-express
 ```
 
 Then, navigate into the project directory:

@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [NestJS](https://docs.n
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/nest
+npx try-prisma@latest --template orm/nest --install npm --name nest
 ```
 
 Then, navigate into the project directory:

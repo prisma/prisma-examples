@@ -17,7 +17,7 @@ Note that **Apollo Server** includes the `PubSub` realtime component from the [`
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/graphql-subscriptions
+npx try-prisma@latest --template orm/graphql-subscriptions --install npm --name graphql-subscriptions
 ```
 
 Then, navigate into the project directory:

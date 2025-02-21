@@ -17,7 +17,7 @@ The example was bootstrapped using the NestJS CLI command `nest new nest-graphql
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/nest-graphql-sdl-first
+npx try-prisma@latest --template orm/nest-graphql-sdl-first --install npm --name nest-graphql-sdl-first
 ```
 
 Then, navigate into the project directory:

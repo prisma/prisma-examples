@@ -9,7 +9,7 @@ This example shows how to implement a **gRPC API with TypeScript** and [Prisma C
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/grpc
+npx try-prisma@latest --template orm/grpc --install npm --name grpc
 ```
 
 Then, navigate into the project directory:

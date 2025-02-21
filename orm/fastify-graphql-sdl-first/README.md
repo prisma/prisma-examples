@@ -16,7 +16,7 @@ This example shows how to implement a **GraphQL server (SDL-first) with TypeScri
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/fastify-graphql-sdl-first
+npx try-prisma@latest --template orm/fastify-graphql-sdl-first --install npm --name fastify-graphql-sdl-first
 ```
 
 Then, navigate into the project directory:

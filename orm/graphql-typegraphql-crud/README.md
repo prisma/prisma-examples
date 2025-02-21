@@ -9,7 +9,7 @@ This example shows how to **implement a GraphQL server with TypeScript** using P
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/graphql-typegraphql-crud
+npx try-prisma@latest --template orm/graphql-typegraphql-crud --install npm --name graphql-typegraphql-crud
 ```
 
 Then, navigate into the project directory:

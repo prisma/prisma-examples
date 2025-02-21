@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [Fastify](https://fasti
 Download this example:
 
 ```terminal
-npx try-prisma@latest --template orm/fastify --install npm
+npx try-prisma@latest --template orm/fastify --install npm --name fastify
 ```
 
 Then, navigate into the project directory:

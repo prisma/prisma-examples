@@ -16,7 +16,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/fastify-graphql
+npx try-prisma@latest --template orm/fastify-graphql --install npm --name fastify-graphql
 ```
 
 Then, navigate into the project directory:

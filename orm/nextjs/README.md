@@ -9,7 +9,7 @@ This example shows how to implement a simple web app using [Next.js](https://nex
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/nextjs
+npx try-prisma@latest --template orm/nextjs --install npm --name nextjs
 ```
 
 Then, navigate into the project directory:

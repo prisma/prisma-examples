@@ -9,7 +9,7 @@ This example shows how to implement a **REST API** using [hapi](https://hapi.dev
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/hapi
+npx try-prisma@latest --template orm/hapi --install npm --name hapi
 ```
 
 Then, navigate into the project directory:
