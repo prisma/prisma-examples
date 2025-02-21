@@ -109,7 +109,7 @@ Locate and copy the database URL provided in the CLI output. Then, create a `.en
 
 ```bash
 # .env file
-DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=...
+DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
 ```
 
 Run the following command to create tables in your database. This creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
