@@ -260,7 +260,6 @@ curl -X DELETE http://localhost:3000/post/1
 </details>
 
 
-
 ## Evolving the app
 
 Evolving the application typically requires two steps:
