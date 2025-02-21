@@ -24,7 +24,7 @@
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
-    "@prisma/client": "6.4.0",
+    "@prisma/client": "6.4.1",
     "@prisma/extension-accelerate": "1.2.2",
     "@remix-run/node": "2.15.3",
     "@remix-run/react": "2.15.3",
@@ -77,7 +77,7 @@
     "jsdom": "26.0.0",
     "lint-staged": "15.4.3",
     "prettier": "3.5.1",
-    "prisma": "6.4.0",
+    "prisma": "6.4.1",
     "tailwindcss": "3.4.17",
     "ts-node": "10.9.2",
     "tsx": "4.19.3",
