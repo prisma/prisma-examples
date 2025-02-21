@@ -8,14 +8,6 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**Prisma Postgres**](https://www.prisma.io/postgres): A serverless PostgreSQL database built on unikernels.
 
-## Contents
-
-- [Getting Started](#getting-started)
-- [Using the GraphQL API](#using-the-graphql-api)
-- [Evolving the app](#evolving-the-app)
-- [Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)](#switch-to-another-database-eg-postgresql-mysql-sql-server)
-- [Next steps](#next-steps)
-
 ## Getting started
 
 ### 1. Download example and navigate into the project directory

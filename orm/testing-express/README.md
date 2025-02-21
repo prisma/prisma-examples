@@ -1,6 +1,6 @@
 # Testing Express
 
-This example shows how to implement integration tests using [Express](https://expressjs.com/), [Supertest](https://github.com/visionmedia/supertest) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
+This example shows how to implement integration tests using [Express](https://expressjs.com/), [Supertest](https://github.com/visionmedia/supertest) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 

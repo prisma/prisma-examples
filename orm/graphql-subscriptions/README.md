@@ -10,13 +10,6 @@ This example shows how to implement **GraphQL subscriptions in TypeScript** with
 
 Note that **Apollo Server** includes the `PubSub` realtime component from the [`graphql-subscriptions`](https://github.com/apollographql/graphql-subscriptions) package that's needed to implement GraphQL subscriptions.
 
-## Contents
-
-- [Getting Started](#getting-started)
-- [Using the GraphQL API](#using-the-graphql-api)
-- [Switch to another database (e.g. PostgreSQL, MySQL, SQL Server)](#switch-to-another-database-eg-postgresql-mysql-sql-server)
-- [Next steps](#next-steps)
-
 ## Getting started
 
 ### 1. Download example and navigate into the project directory
