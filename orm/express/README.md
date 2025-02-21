@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API with TypeScript** using [Express](https://expressjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
+This example shows how to implement a **REST API with TypeScript** using [Express](https://expressjs.com/) and a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 
@@ -9,7 +9,7 @@ This example shows how to implement a **REST API with TypeScript** using [Expres
 Download this example:
 
 ```terminal
-npx try-prisma@latest --template orm/express
+npx try-prisma@latest --template orm/express --install npm
 ```
 
 Then, navigate into the project directory:
@@ -40,12 +40,14 @@ npm install
 Create a new [Prisma Postgres](https://www.prisma.io/docs/postgres/overview) database by executing:
 
 ```terminal
-npx prisma@latest init --db
+npx prisma init --db
 ```
 
 If you don't have a [Prisma Data Platform](https://console.prisma.io/) account yet, or if you are not logged in, the command will prompt you to log in using one of the available authentication providers. A browser window will open so you can log in or create an account. Return to the CLI after you have completed this step.
 
-Once logged in (or if you were already logged in), the CLI will prompt you to select a project name and a database region.
+Once logged in (or if you were already logged in), the CLI will prompt you to:
+- Select a **region** (e.g. `us-east-1`)
+- Enter a **project name**
 
 After successful creation, you will see output similar to the following:
 
@@ -65,7 +67,7 @@ We found an existing schema.prisma file in your current project directory.
 
 Connect Prisma ORM to your Prisma Postgres database with this URL:
 
-prisma+postgres://accelerate.prisma-data.net/?api_key=...
+prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
 
 --- Next steps ---
 
@@ -100,11 +102,17 @@ For more info, visit the Prisma Postgres docs: https://pris.ly/ppg-docs
 
 </details>
 
-Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root and paste the URL into it. For example:
+Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root:
 
 ```bash
-# .env file
-DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=...
+touch .env
+```
+
+Now, paste the URL into it as a value for the `DATABASE_URL` environment variable. For example:
+
+```bash
+# .env
+DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
 ```
 
 Run the following command to create tables in your database. This creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
@@ -131,7 +139,96 @@ The server is now running on `http://localhost:3000`. You can now run the API re
 
 ## Using the REST API
 
-You can access the REST API of the server using the following endpoints:
+### Testing with `curl`
+
+You can run these `curl` commands to test all API endpoints:
+
+#### `GET`
+
+##### Fetch a single post by its ID
+```sh
+curl -X GET http://localhost:3000/post/1
+```
+
+
+##### Fetch all published posts (with optional query parameters)
+
+```sh
+curl -X GET "http://localhost:3000/feed?searchString=prisma&take=2&orderBy=desc"
+```
+
+##### Fetch a user's drafts by their ID
+
+```sh
+curl -X GET http://localhost:3000/user/3/drafts
+```
+
+
+##### Fetch all users
+
+```sh
+curl -X GET http://localhost:3000/users
+```
+
+
+#### `POST`
+
+##### Create a new post
+```sh
+curl -X POST http://localhost:3000/post \
+     -H "Content-Type: application/json" \
+     -d '{
+           "title": "My New Post",
+           "content": "This is an example post.",
+           "authorEmail": "mahmoud@@prisma.io"
+         }'
+```
+
+
+##### Create a new user
+```sh
+curl -X POST http://localhost:3000/signup \
+     -H "Content-Type: application/json" \
+     -d '{
+           "email": "ankur@prisma.io",
+           "name": "Ankur Datta",
+           "postData": [
+             {
+               "title": "Hello World",
+               "content": "This is the content of the post"
+             }
+           ]
+         }'
+```
+
+
+#### `PUT`
+
+##### Toggle the publish status of a post
+
+```sh
+curl -X PUT http://localhost:3000/publish/4
+```
+
+
+##### Increase the view count of a post
+
+```sh
+curl -X PUT http://localhost:3000/post/2/views
+```
+
+
+#### `DELETE`
+
+##### Delete a post by its ID
+
+```sh
+curl -X DELETE http://localhost:3000/post/1
+```
+
+### API endpoints
+
+<details><summary>Expand to see all API endpoints</summary>
 
 ### `GET`
 
@@ -144,6 +241,7 @@ You can access the REST API of the server using the following endpoints:
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
 - `/user/:id/drafts`: Fetch user's drafts by their `id`
 - `/users`: Fetch all users
+
 ### `POST`
 
 - `/post`: Create a new post
@@ -166,6 +264,7 @@ You can access the REST API of the server using the following endpoints:
 
 - `/post/:id`: Delete a post by its `id`
 
+</details>
 
 ## Evolving the app
 
@@ -333,7 +432,7 @@ Remove the client extension from your `PrismaClient` instance:
 
 ### Your own PostgreSQL database
 
-To use your own PostgreSQL database remove the `@prisma/extension-accelerate` package and remove the Prisma client extension.
+To use your own PostgreSQL database remove the `@prisma/extension-accelerate` package and remove the Prisma Client extension.
 
 ### SQLite
 
