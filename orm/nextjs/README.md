@@ -1,6 +1,6 @@
 # Fullstack Next.js Example with Prisma Postgres
 
-This example shows how to implement a simple web app using [Next.js](https://nextjs.org/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
+This example shows how to implement a fullstack app using [Next.js 15](https://nextjs.org/) with App Router, Prisma ORM and a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 
