@@ -1,6 +1,6 @@
 # REST API Example
 
-This example shows how to implement a **REST API with TypeScript** using [Express](https://expressjs.com/) and a [Prisma Postgres](https://www.prisma.io/postgres) database.
+This example shows how to implement a **REST API with TypeScript** using [Express](https://expressjs.com/), Prisma ORM and a [Prisma Postgres](https://www.prisma.io/postgres) database.
 
 ## Getting started
 
@@ -146,10 +146,10 @@ You can run these `curl` commands to test all API endpoints:
 #### `GET`
 
 ##### Fetch a single post by its ID
+
 ```sh
 curl -X GET http://localhost:3000/post/1
 ```
-
 
 ##### Fetch all published posts (with optional query parameters)
 
@@ -163,13 +163,11 @@ curl -X GET "http://localhost:3000/feed?searchString=prisma&take=2&orderBy=desc"
 curl -X GET http://localhost:3000/user/3/drafts
 ```
 
-
 ##### Fetch all users
 
 ```sh
 curl -X GET http://localhost:3000/users
 ```
-
 
 #### `POST`
 
@@ -184,8 +182,8 @@ curl -X POST http://localhost:3000/post \
          }'
 ```
 
-
 ##### Create a new user
+
 ```sh
 curl -X POST http://localhost:3000/signup \
      -H "Content-Type: application/json" \
@@ -201,7 +199,6 @@ curl -X POST http://localhost:3000/signup \
          }'
 ```
 
-
 #### `PUT`
 
 ##### Toggle the publish status of a post
@@ -210,13 +207,11 @@ curl -X POST http://localhost:3000/signup \
 curl -X PUT http://localhost:3000/publish/4
 ```
 
-
 ##### Increase the view count of a post
 
 ```sh
 curl -X PUT http://localhost:3000/post/2/views
 ```
-
 
 #### `DELETE`
 
