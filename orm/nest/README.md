@@ -170,13 +170,14 @@ curl -X GET http://localhost:3000/users
 #### `POST`
 
 ##### Create a new post
+
 ```sh
 curl -X POST http://localhost:3000/post \
      -H "Content-Type: application/json" \
      -d '{
            "title": "My New Post",
            "content": "This is an example post.",
-           "authorEmail": "mahmoud@@prisma.io"
+           "authorEmail": "mahmoud@prisma.io"
          }'
 ```
 

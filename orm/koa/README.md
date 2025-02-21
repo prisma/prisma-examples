@@ -176,7 +176,7 @@ curl -X POST http://localhost:3000/post \
      -d '{
            "title": "My New Post",
            "content": "This is an example post.",
-           "authorEmail": "mahmoud@@prisma.io"
+           "authorEmail": "mahmoud@prisma.io"
          }'
 ```
 

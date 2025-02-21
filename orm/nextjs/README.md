@@ -133,7 +133,12 @@ npx prisma db seed
 npm run dev
 ```
 
-The server is now running on `http://localhost:3000`. You can now view pages, e.g. [`http://localhost:3000/posts`](http://localhost:3000/posts).
+The server is now running on `http://localhost:3000`. You can now view all different pages:
+
+- Home: [`http://localhost:3000/`](http://localhost:3000/)
+- All posts: [`http://localhost:3000/posts`](http://localhost:3000/posts)
+- New post: [`http://localhost:3000/posts/new`](http://localhost:3000/posts/new)
+- Post details: [`http://localhost:3000/posts/1`](http://localhost:3000/posts/1)
 
 ## Evolving the app
 

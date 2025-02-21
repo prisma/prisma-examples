@@ -18,7 +18,7 @@ Then, navigate into the project directory:
 cd fastify
 ```
 
-<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
+<details><summary><strong>Alternative:</strong> Clonnpx prisma init --dbe the entire repo</summary>
 
 Clone this repository:
 
@@ -176,7 +176,7 @@ curl -X POST http://localhost:3000/post \
      -d '{
            "title": "My New Post",
            "content": "This is an example post.",
-           "authorEmail": "mahmoud@@prisma.io"
+           "authorEmail": "mahmoud@prisma.io"
          }'
 ```
 
