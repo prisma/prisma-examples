@@ -110,10 +110,16 @@ For more info, visit the Prisma Postgres docs: https://pris.ly/ppg-docs
 
 </details>
 
-Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root and paste the URL into it. For example:
+Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root:
 
 ```bash
-# .env file
+touch .env
+```
+
+Now, paste the URL into it as a value for the `DATABASE_URL` environment variable. For example:
+
+```bash
+# .env
 DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
 ```
 

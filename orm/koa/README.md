@@ -102,10 +102,16 @@ For more info, visit the Prisma Postgres docs: https://pris.ly/ppg-docs
 
 </details>
 
-Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root and paste the URL into it. For example:
+Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root:
 
 ```bash
-# .env file
+touch .env
+```
+
+Now, paste the URL into it as a value for the `DATABASE_URL` environment variable. For example:
+
+```bash
+# .env
 DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
 ```
 
@@ -131,7 +137,91 @@ The server is now running on `http://localhost:3000`. You can now the API reques
 
 ## Using the REST API
 
-You can access the REST API of the server using the following endpoints:
+### Testing with `curl`
+
+You can run these `curl` commands to test all API endpoints:
+
+#### `GET`
+
+##### Fetch a single post by its ID
+
+```sh
+curl -X GET http://localhost:3000/post/1
+```
+
+##### Fetch all published posts (with optional query parameters)
+
+```sh
+curl -X GET "http://localhost:3000/feed?searchString=prisma&take=2&orderBy=desc"
+```
+
+##### Fetch a user's drafts by their ID
+
+```sh
+curl -X GET http://localhost:3000/user/3/drafts
+```
+
+##### Fetch all users
+
+```sh
+curl -X GET http://localhost:3000/users
+```
+
+#### `POST`
+
+##### Create a new post
+```sh
+curl -X POST http://localhost:3000/post \
+     -H "Content-Type: application/json" \
+     -d '{
+           "title": "My New Post",
+           "content": "This is an example post.",
+           "authorEmail": "mahmoud@@prisma.io"
+         }'
+```
+
+##### Create a new user
+
+```sh
+curl -X POST http://localhost:3000/signup \
+     -H "Content-Type: application/json" \
+     -d '{
+           "email": "ankur@prisma.io",
+           "name": "Ankur Datta",
+           "postData": [
+             {
+               "title": "Hello World",
+               "content": "This is the content of the post"
+             }
+           ]
+         }'
+```
+
+#### `PUT`
+
+##### Toggle the publish status of a post
+
+```sh
+curl -X PUT http://localhost:3000/publish/4
+```
+
+##### Increase the view count of a post
+
+```sh
+curl -X PUT http://localhost:3000/post/2/views
+```
+
+#### `DELETE`
+
+##### Delete a post by its ID
+
+```sh
+curl -X DELETE http://localhost:3000/post/1
+```
+
+### API endpoints
+
+<details><summary>Expand to see all API endpoints</summary>
 
 ### `GET`
 
@@ -144,6 +234,7 @@ You can access the REST API of the server using the following endpoints:
     - `orderBy` (optional): The sort order for posts in either ascending or descending order. The value can either `asc` or `desc`
 - `/user/:id/drafts`: Fetch user's drafts by their `id`
 - `/users`: Fetch all users
+
 ### `POST`
 
 - `/post`: Create a new post
@@ -165,6 +256,9 @@ You can access the REST API of the server using the following endpoints:
 ### `DELETE`
 
 - `/post/:id`: Delete a post by its `id`
+
+</details>
+
 
 
 ## Evolving the app
