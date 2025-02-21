@@ -45,7 +45,7 @@ npm install
 Create a new [Prisma Postgres](https://www.prisma.io/docs/postgres/overview) database by executing:
 
 ```terminal
-npx prisma@latest init --db
+npx prisma init --db
 ```
 
 If you don't have a [Prisma Data Platform](https://console.prisma.io/) account yet, or if you are not logged in, the command will prompt you to log in using one of the available authentication providers. A browser window will open so you can log in or create an account. Return to the CLI after you have completed this step.
