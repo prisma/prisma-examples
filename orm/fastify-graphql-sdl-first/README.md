@@ -1,4 +1,4 @@
-# GraphQL Server Example with `fastify-graphql` (SDL-first)
+# GraphQL Server Example with `fastify-graphql` & Prisma Postgres (SDL-first)
 
 This example shows how to implement a **GraphQL server (SDL-first) with TypeScript** with the following stack:
 

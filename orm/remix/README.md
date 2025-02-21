@@ -1,4 +1,4 @@
-# Fullstack Example with Remix
+# Fullstack Example with Remix & Prisma Postgres
 
 This example shows how to implement a **fullstack app in TypeScript with [Remix](https://remix.run/)** using [React](https://reactjs.org/) and [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
 

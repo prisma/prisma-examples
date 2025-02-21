@@ -1,4 +1,4 @@
-# Subscriptions Apollo Server + Nexus
+# Real-time GraphQL Subscriptions Example with Apollo Server & Prisma Postgres
 
 This example shows how to implement **GraphQL subscriptions in TypeScript** with the following stack:
 

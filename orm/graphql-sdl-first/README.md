@@ -1,4 +1,4 @@
-# GraphQL Server Example (SDL-first)
+# GraphQL Server Example with GraphQL Yoga & Prisma Postgres (SDL-first)
 
 This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** with the following stack:
 

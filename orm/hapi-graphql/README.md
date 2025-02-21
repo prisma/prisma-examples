@@ -1,4 +1,4 @@
-# GraphQL Server Example with Hapi (Code-First)
+# GraphQL Server Example with hapi & Prisma Postgres (Code-First)
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 

@@ -1,4 +1,4 @@
-# Fastify & Prisma Postgres REST API Example
+# REST API Example with Fastify & Prisma Postgres
 
 This example shows how to implement a **REST API** using [Fastify](https://fastify.io/), Prisma ORM and a [Prisma Postgres](https://www.prisma.io/postgres) database.
 

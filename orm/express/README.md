@@ -1,4 +1,4 @@
-# Express & Prisma Postgres REST API Example
+# REST API Example with Express & Prisma Postgres
 
 This example shows how to implement a **REST API with TypeScript** using [Express](https://expressjs.com/), Prisma ORM and a [Prisma Postgres](https://www.prisma.io/postgres) database.
 

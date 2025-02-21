@@ -1,4 +1,4 @@
-# Fullstack Example with Next.js (GraphQL API)
+# Fullstack Example with Next.js (GraphQL API) & Prisma Postgres
 
 This example shows how to implement a **Fullstack Next.js app with GraphQL** with the following stack:
 

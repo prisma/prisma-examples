@@ -1,4 +1,4 @@
-# GraphQL Server Example with NestJS (SDL-first)
+# GraphQL Server Example with NestJS (SDL-first) & Prisma Postgres
 
 This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** with the following stack:
 

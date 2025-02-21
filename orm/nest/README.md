@@ -1,4 +1,4 @@
-# REST API Example
+# REST API Example with NestJS & Prisma Postgres
 
 This example shows how to implement a **REST API** using [NestJS](https://docs.nestjs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database and was bootstrapped using the NestJS CLI command `nest new nest`.
 

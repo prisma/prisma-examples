@@ -1,4 +1,4 @@
-# GraphQL Server with Authentication & Permissions
+# GraphQL Server with Authentication & Permissions using Apollo Server & Prisma Postgres
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 

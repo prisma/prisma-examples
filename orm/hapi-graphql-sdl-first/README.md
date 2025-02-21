@@ -1,4 +1,4 @@
-# GraphQL Server Example with Hapi (SDL first)
+# GraphQL Server (SDL first) Example with hapi & Prisma Postgres
 
 This example shows how to implement an **GraphQL Server Example with Hapi (SDL first)** with the following stack:
 

@@ -1,4 +1,4 @@
-# REST API Example
+# REST API Example with Koa & Prisma Postgres
 
 This example shows how to implement a **REST API with TypeScript** using [Koa](https://koajs.com/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). The example uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
 

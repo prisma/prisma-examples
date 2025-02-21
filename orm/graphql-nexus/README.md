@@ -1,4 +1,4 @@
-# GraphQL Server Example
+# GraphQL Server Example with Apollo Server & Prisma Postgres
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 

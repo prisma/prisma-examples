@@ -1,4 +1,4 @@
-# GraphQL Server Example with `fastify-graphql`
+# GraphQL Server Example with `fastify-graphql` & Prisma Postgres
 
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
