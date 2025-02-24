@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/cors": "2.8.17",
     "@types/express": "5.0.0",
-    "@types/node": "22.13.4",
+    "@types/node": "22.13.5",
     "prisma": "6.4.1",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
