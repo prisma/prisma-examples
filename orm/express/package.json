@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2",
     "express": "4.21.2"
   },
   "devDependencies": {

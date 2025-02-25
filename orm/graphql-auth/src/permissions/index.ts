@@ -9,17 +9,14 @@ const rules = {
   }),
   isPostOwner: rule()(async (_parent, args, context) => {
     const userId = getUserId(context)
-
-    const post = await context.prisma.post.findUnique({
-      where: {
-        id: Number(args.id),
-      },
-      include: {
-        author: true,
-      },
-    })
-
-    return userId === post.author.id
+    const author = await context.prisma.post
+      .findUnique({
+        where: {
+          id: Number(args.id),
+        },
+      })
+      .author()
+    return userId === author.id
   }),
 }
 

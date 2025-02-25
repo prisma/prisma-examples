@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const prisma = new PrismaClient()
 
 export interface Context {
-  prisma: typeof prisma
+  prisma: PrismaClient
   req: any // HTTP request carrying the `Authorization` header
 }
 

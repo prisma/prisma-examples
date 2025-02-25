@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2",
     "fastify": "5.2.1"
   },
   "devDependencies": {

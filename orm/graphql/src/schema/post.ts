@@ -93,16 +93,19 @@ builder.queryFields((t) => ({
       }),
     },
     resolve: (query, parent, args) => {
-      return prisma.post.findMany({
-        ...query,
-        where: {
-          published: false,
-          author: {
+      return prisma.user
+        .findUnique({
+          where: {
             id: args.userUniqueInput.id ?? undefined,
             email: args.userUniqueInput.email ?? undefined,
           },
-        },
-      })
+        })
+        .posts({
+          ...query,
+          where: {
+            published: false,
+          },
+        })
     },
   }),
 }))
@@ -141,8 +144,8 @@ builder.mutationFields((t) => ({
     resolve: async (query, parent, args) => {
       // Toggling become simpler once this bug is resolved: https://github.com/prisma/prisma/issues/16715
       const postPublished = await prisma.post.findUnique({
-        where: { id: args.id },
-        select: { published: true },
+        where: { id: args.id},
+        select: { published: true }
       })
       console.log(postPublished)
       return prisma.post.update({

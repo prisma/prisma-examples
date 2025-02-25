@@ -3,4 +3,3 @@ dist/
 *.env*
 !.env.example
 !migrations/
-prisma/migrations

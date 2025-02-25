@@ -9,7 +9,7 @@ This example shows how to implement **Geolocation in PostgreSQL** using [Express
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/postgis-express --install npm --name postgis-express
+npx try-prisma@latest --template orm/postgis-express
 ```
 
 Then, navigate into the project directory:

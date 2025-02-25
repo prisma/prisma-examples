@@ -17,11 +17,6 @@ yarn.lock
 orm/**/migrations/
 misc/**/migrations/
 databases/**/migrations/
-orm/**/package-lock.json
-misc/**/package-lock.json
-experimental/**/package-lock.json
-
-databases/**/package-lock.json
 experimental/**/*.db
 .next
 .vscode/

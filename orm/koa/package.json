@@ -8,7 +8,6 @@
   "dependencies": {
     "@koa/router": "13.1.0",
     "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2",
     "koa": "2.15.4",
     "koa-body": "6.0.1"
   },

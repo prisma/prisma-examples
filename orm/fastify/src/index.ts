@@ -1,10 +1,7 @@
 import { Prisma, PrismaClient } from '@prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
-
 import fastify from 'fastify'
 
-const prisma = new PrismaClient().$extends(withAccelerate())
-
+const prisma = new PrismaClient()
 const app = fastify({ logger: true })
 
 app.post<{
@@ -108,9 +105,13 @@ app.get<{
 }>('/user/:id/drafts', async (req, res) => {
   const { id } = req.params
 
-  const drafts = await prisma.post.findMany({
-    where: { authorId: Number(id), published: false },
-  })
+  const drafts = await prisma.user
+    .findUnique({
+      where: { id: Number(id) },
+    })
+    .posts({
+      where: { published: false },
+    })
 
   return drafts
 })
@@ -133,11 +134,11 @@ app.get<{
 
   const or: Prisma.PostWhereInput = searchString
     ? {
-        OR: [
-          { title: { contains: searchString as string } },
-          { content: { contains: searchString as string } },
-        ],
-      }
+      OR: [
+        { title: { contains: searchString as string } },
+        { content: { contains: searchString as string } },
+      ],
+    }
     : {}
 
   const posts = await prisma.post.findMany({
