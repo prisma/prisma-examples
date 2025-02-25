@@ -15,7 +15,7 @@
     "@prisma/client": "6.4.1",
     "graphql": "16.10.0",
     "graphql-scalars": "1.24.1",
-    "mercurius": "16.0.1"
+    "mercurius": "16.1.0"
   },
   "devDependencies": {
     "@types/node": "22.13.5",
