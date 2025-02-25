@@ -32,7 +32,7 @@
   "type": "module",
   "dependencies": {
     "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2"
+    "@prisma/extension-accelerate": "1.2.2"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
