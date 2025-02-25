@@ -1,4 +1,4 @@
-import 'reflect-metadata'
+import 'reflect-metadata';
 import {
   Resolver,
   Query,
@@ -9,32 +9,32 @@ import {
   Root,
   InputType,
   Field,
-} from '@nestjs/graphql'
-import { Inject } from '@nestjs/common'
-import { Post } from './post'
-import { User } from './user'
-import { PrismaService } from './prisma.service'
-import { PostCreateInput } from './resolvers.post'
+} from '@nestjs/graphql';
+import { Inject } from '@nestjs/common';
+import { Post } from './post';
+import { User } from './user';
+import { PrismaService } from './prisma.service';
+import { PostCreateInput } from './resolvers.post';
 
 @InputType()
 class UserUniqueInput {
   @Field({ nullable: true })
-  id: number
+  id: number;
 
   @Field({ nullable: true })
-  email: string
+  email: string;
 }
 
 @InputType()
 class UserCreateInput {
   @Field()
-  email: string
+  email: string;
 
   @Field({ nullable: true })
-  name: string
+  name: string;
 
   @Field((type) => [PostCreateInput], { nullable: true })
-  posts: [PostCreateInput]
+  posts: [PostCreateInput];
 }
 
 @Resolver(User)
@@ -43,13 +43,11 @@ export class UserResolver {
 
   @ResolveField()
   async posts(@Root() user: User, @Context() ctx): Promise<Post[]> {
-    return this.prismaService.user
-      .findUnique({
-        where: {
-          id: user.id,
-        },
-      })
-      .posts()
+    return this.prismaService.extendedPrismaClient().post.findMany({
+      where: {
+        authorId: user.id,
+      },
+    });
   }
 
   @Mutation((returns) => User)
@@ -58,10 +56,10 @@ export class UserResolver {
     @Context() ctx,
   ): Promise<User> {
     const postData = data.posts?.map((post) => {
-      return { title: post.title, content: post.content || undefined }
-    })
+      return { title: post.title, content: post.content || undefined };
+    });
 
-    return this.prismaService.user.create({
+    return this.prismaService.extendedPrismaClient().user.create({
       data: {
         email: data.email,
         name: data.name,
@@ -69,29 +67,26 @@ export class UserResolver {
           create: postData,
         },
       },
-    })
+    });
   }
 
   @Query((returns) => [User], { nullable: true })
   async allUsers(@Context() ctx) {
-    return this.prismaService.user.findMany()
+    return this.prismaService.extendedPrismaClient().user.findMany();
   }
 
   @Query((returns) => [Post], { nullable: true })
   async draftsByUser(
     @Args('userUniqueInput') userUniqueInput: UserUniqueInput,
   ): Promise<Post[]> {
-    return this.prismaService.user
-      .findUnique({
-        where: {
+    return this.prismaService.extendedPrismaClient().post.findMany({
+      where: {
+        author: {
           id: userUniqueInput.id || undefined,
           email: userUniqueInput.email || undefined,
         },
-      })
-      .posts({
-        where: {
-          published: false,
-        },
-      })
+        published: false,
+      },
+    });
   }
 }

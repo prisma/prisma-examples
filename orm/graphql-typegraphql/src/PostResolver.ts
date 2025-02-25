@@ -37,14 +37,17 @@ export enum SortOrder {
 @Resolver(Post)
 export class PostResolver {
   @FieldResolver()
-  author(@Root() post: Post, @Ctx() ctx: Context): Promise<User | null> {
-    return ctx.prisma.post
-      .findUnique({
-        where: {
-          id: post.id,
-        },
-      })
-      .author()
+  async author(@Root() post: Post, @Ctx() ctx: Context): Promise<User | null> {
+    const post2 = await ctx.prisma.post.findUnique({
+      where: {
+        id: post.id,
+      },
+      include: {
+        author: true,
+      },
+    })
+
+    return post2!.author
   }
 
   @Query((returns) => Post, { nullable: true })

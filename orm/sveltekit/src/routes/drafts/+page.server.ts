@@ -1,4 +1,4 @@
-import prisma from '$lib/prisma';
+import prisma from '$lib/prisma'
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async () => {
@@ -7,5 +7,5 @@ export const load = async () => {
     include: { author: true },
   })
 
-  return { drafts: response };
-};
+  return { drafts: response }
+}

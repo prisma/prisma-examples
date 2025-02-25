@@ -84,13 +84,14 @@ async function getDraftsByUserHandler(
 
   const userId = Number(request.params.userId)
   try {
-    const drafts = await prisma.user
-      .findUnique({
-        where: { id: userId },
-      })
-      .posts({
-        where: { published: false },
-      })
+    const drafts = await prisma.post.findMany({
+      where: {
+        published: false,
+        author: {
+          id: userId,
+        },
+      },
+    })
 
     return h.response(drafts || undefined).code(200)
   } catch (err) {

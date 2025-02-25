@@ -4,19 +4,20 @@ const NUM_USERS = 1000
 const COUNT_BLUE = 300
 
 enum ExperimentVariant {
-  BlueBuyButton = "BlueBuyButton",
-  GreenBuyButton = "GreenBuyButton",
+  BlueBuyButton = 'BlueBuyButton',
+  GreenBuyButton = 'GreenBuyButton',
 }
 
 enum EventType {
-  PageOpened = "PageOpened",
-  ProductPutInShoppingCart = "ProductPutInShoppingCart",
-  AddressFilled = "AddressFilled",
-  PaymentInfoFilled = "PaymentInfoFilled",
-  CheckedOut = "CheckedOut",
+  PageOpened = 'PageOpened',
+  ProductPutInShoppingCart = 'ProductPutInShoppingCart',
+  AddressFilled = 'AddressFilled',
+  PaymentInfoFilled = 'PaymentInfoFilled',
+  CheckedOut = 'CheckedOut',
 }
 
 const prisma = new PrismaClient()
+
 async function main() {
   const usersInput: Prisma.UserCreateInput[] = []
   for (let i = 0; i < NUM_USERS; i++) {
@@ -25,7 +26,10 @@ async function main() {
     })
   }
   const users = await prisma.user.createManyAndReturn({ data: usersInput })
-  await createFunnel(users.slice(0, COUNT_BLUE), ExperimentVariant.BlueBuyButton)
+  await createFunnel(
+    users.slice(0, COUNT_BLUE),
+    ExperimentVariant.BlueBuyButton,
+  )
   await createFunnel(users.slice(COUNT_BLUE), ExperimentVariant.GreenBuyButton)
 }
 
@@ -50,20 +54,24 @@ function pickRandomSubset(users: User[]): User[] {
     const user = users[idx]
     if (!result.includes(user)) {
       result.push(user)
-      amount--;
+      amount--
     }
   }
   return result
 }
 
-async function createEvents(users: User[], variant: ExperimentVariant, event: EventType) {
+async function createEvents(
+  users: User[],
+  variant: ExperimentVariant,
+  event: EventType,
+) {
   const eventsData = users.map(
     (user) =>
-    ({
-      variant,
-      type: event,
-      userId: user.id,
-    } satisfies Prisma.TrackingEventCreateManyInput),
+      ({
+        variant,
+        type: event,
+        userId: user.id,
+      } satisfies Prisma.TrackingEventCreateManyInput),
   )
   await prisma.trackingEvent.createMany({ data: eventsData })
 }

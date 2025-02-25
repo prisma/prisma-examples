@@ -5,13 +5,13 @@
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@faker-js/faker": "9.4.0",
-    "@prisma/client": "6.3.1",
-    "@prisma/extension-optimize": "1.1.4",
-    "@types/node": "22.13.4"
+    "@faker-js/faker": "9.5.0",
+    "@prisma/client": "6.4.1",
+    "@prisma/extension-optimize": "1.1.6",
+    "@types/node": "22.13.5"
   },
   "devDependencies": {
-    "prisma": "6.3.1",
+    "prisma": "6.4.1",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
   },

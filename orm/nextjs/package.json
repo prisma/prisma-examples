@@ -10,20 +10,21 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "6.3.1",
+    "@prisma/client": "6.4.1",
+    "@prisma/extension-accelerate": "^1.2.2",
     "next": "15.1.7",
     "react": "19.0.0",
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.2.0",
-    "@types/node": "22.13.4",
+    "@eslint/eslintrc": "3.3.0",
+    "@types/node": "22.13.5",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
-    "eslint": "9.20.1",
+    "eslint": "9.21.0",
     "eslint-config-next": "15.1.7",
-    "postcss": "8.5.2",
-    "prisma": "6.3.1",
+    "postcss": "8.5.3",
+    "prisma": "6.4.1",
     "tailwindcss": "3.4.17",
     "tsx": "4.19.3",
     "typescript": "5.7.3"
