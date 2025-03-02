@@ -11,7 +11,7 @@
   "author": "Igal Klebanov",
   "license": "ISC",
   "devDependencies": {
-    "@prisma/extension-optimize": "1.1.6",
+    "@prisma/extension-optimize": "1.1.8",
     "@types/express": "5.0.0",
     "@types/node": "22.13.5",
     "prisma": "6.4.1",
