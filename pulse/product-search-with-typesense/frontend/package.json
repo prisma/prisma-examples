@@ -18,7 +18,7 @@
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "instantsearch.css": "8.5.1",
-    "next": "15.1.7",
+    "next": "15.2.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-hook-form": "7.54.2",
@@ -36,7 +36,7 @@
     "@types/react-dom": "18.3.5",
     "@types/react-instantsearch-dom": "6.12.8",
     "eslint": "8.57.1",
-    "eslint-config-next": "15.1.7",
+    "eslint-config-next": "15.2.0",
     "postcss": "8.5.3",
     "tailwindcss": "3.4.17",
     "typescript": "5.7.3"
