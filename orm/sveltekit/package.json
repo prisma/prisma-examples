@@ -16,7 +16,7 @@
     "@typescript-eslint/eslint-plugin": "8.25.0",
     "@typescript-eslint/parser": "8.25.0",
     "eslint": "8.57.1",
-    "eslint-config-prettier": "10.0.1",
+    "eslint-config-prettier": "10.0.2",
     "eslint-plugin-svelte": "3.0.0",
     "prettier": "3.5.2",
     "prettier-plugin-svelte": "3.3.3",
