@@ -3,6 +3,6 @@
 set -eu
 
 npm install
-npx prisma migrate dev --name init
+npx prisma db push --skip-generate
 npx prisma generate --sql
-npm run test
+npm run dev

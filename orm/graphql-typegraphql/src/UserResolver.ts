@@ -79,14 +79,17 @@ export class UserResolver {
     @Arg('userUniqueInput') userUniqueInput: UserUniqueInput,
     @Ctx() ctx: Context,
   ) {
-    return ctx.prisma.post.findMany({
-      where: {
-        published: false,
-        author: {
+    return ctx.prisma.user
+      .findUnique({
+        where: {
           id: userUniqueInput.id || undefined,
           email: userUniqueInput.email || undefined,
         },
-      },
-    })
+      })
+      .posts({
+        where: {
+          published: false,
+        },
+      })
   }
 }

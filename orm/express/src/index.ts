@@ -1,9 +1,7 @@
 import { Prisma, PrismaClient } from '@prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
 import express from 'express'
 
-const prisma = new PrismaClient().$extends(withAccelerate())
-
+const prisma = new PrismaClient()
 const app = express()
 
 app.use(express.json())
@@ -97,12 +95,15 @@ app.get('/users', async (req, res) => {
 app.get('/user/:id/drafts', async (req, res) => {
   const { id } = req.params
 
-  const drafts = await prisma.post.findMany({
-    where: {
-      authorId: Number(id),
-      published: false,
-    },
-  })
+  const drafts = await prisma.user
+    .findUnique({
+      where: {
+        id: Number(id),
+      },
+    })
+    .posts({
+      where: { published: false },
+    })
 
   res.json(drafts)
 })

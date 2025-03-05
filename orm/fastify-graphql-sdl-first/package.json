@@ -11,16 +11,14 @@
   },
   "dependencies": {
     "fastify": "5.2.1",
-    "@graphql-tools/schema": "10.0.19",
+    "@graphql-tools/schema": "10.0.20",
     "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2",
-    "fastify": "5.2.1",
     "graphql": "16.10.0",
     "graphql-scalars": "1.24.1",
-    "mercurius": "16.0.1"
+    "mercurius": "16.1.0"
   },
   "devDependencies": {
-    "@types/node": "22.13.5",
+    "@types/node": "22.13.8",
     "prisma": "6.4.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",

@@ -9,18 +9,18 @@
     "@prisma/adapter-pg": "6.4.1",
     "@prisma/client": "6.4.1",
     "@prisma/extension-pulse": "1.2.2",
-    "axios": "1.7.9",
+    "axios": "1.8.1",
     "dotenv-cli": "8.0.0",
     "hono": "4.7.2",
     "pg": "8.13.3",
-    "typesense": "2.0.2",
+    "typesense": "2.0.3",
     "zod": "3.24.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250214.0",
+    "@cloudflare/workers-types": "4.20250224.0",
     "@types/pg": "8.11.11",
     "prisma": "6.4.1",
-    "wrangler": "3.109.2"
+    "wrangler": "3.111.0"
   },
   "prisma": {
     "seed": "dotenv -e .dev.vars -- node prisma/seed.js"

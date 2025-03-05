@@ -1,8 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
 import express from 'express'
 
-export const prisma = new PrismaClient().$extends(withAccelerate())
+export const prisma = new PrismaClient()
 export const app = express()
 
 app.use(express.json())

@@ -1,12 +1,11 @@
-# GraphQL Server Example with NestJS (SDL-first) & Prisma Postgres
+# GraphQL Server Example with NestJS (SDL-first)
 
 This example shows how to implement an **GraphQL server (SDL-first) with TypeScript** with the following stack:
-
 - [**NestJS**](https://docs.nestjs.com/graphql/quick-start): Web framework for building scalable server-side applications
 - [**graphql-tools**](https://www.apollographql.com/docs/graphql-tools/): A tool for combining resolvers and type-definitions into an executable schema
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
-- [**Prisma Postgres**](https://www.prisma.io/postgres): A serverless PostgreSQL database built on unikernels.
+- [**SQLite**](https://www.sqlite.org/index.html): Local, file-based SQL database
 
 The example was bootstrapped using the NestJS CLI command `nest new nest-graphql-sdl-first`.
 
@@ -17,7 +16,7 @@ The example was bootstrapped using the NestJS CLI command `nest new nest-graphql
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/nest-graphql-sdl-first --install npm --name nest-graphql-sdl-first
+npx try-prisma@latest --template orm/nest-graphql-sdl-first
 ```
 
 Then, navigate into the project directory:
@@ -43,97 +42,49 @@ npm install
 
 </details>
 
+#### [Optional] Switch database to Prisma Postgres
+
+This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
+
+1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
+2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
+    ```prisma
+    datasource db {
+      provider = "postgresql"
+      url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
+    }
+    ```
+
+    > **Note**: In production environments, we recommend that you set your connection URL via an [environment variable](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using a `.env` file.
+3. Install the Prisma Accelerate extension:
+    ```
+    npm install @prisma/extension-accelerate
+    ```
+4. Add the Accelerate extension to the `PrismaClient` instance:
+    ```diff
+    + import { withAccelerate } from "@prisma/extension-accelerate"
+
+    + const prisma = new PrismaClient().$extends(withAccelerate())
+    ```
+
+That's it, your project is now configured to use Prisma Postgres!
+
 ### 2. Create and seed the database
 
-Create a new [Prisma Postgres](https://www.prisma.io/docs/postgres/overview) database by executing:
+Run the following command to create your database. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
-```terminal
-npx prisma init --db
 ```
-
-If you don't have a [Prisma Data Platform](https://console.prisma.io/) account yet, or if you are not logged in, the command will prompt you to log in using one of the available authentication providers. A browser window will open so you can log in or create an account. Return to the CLI after you have completed this step.
-
-Once logged in (or if you were already logged in), the CLI will prompt you to:
-1. Select a **region** (e.g. `us-east-1`)
-1. Enter a **project name**
-
-After successful creation, you will see output similar to the following:
-
-<details>
-
-<summary>CLI output</summary>
-
-```terminal
-Let's set up your Prisma Postgres database!
-? Select your region: ap-northeast-1 - Asia Pacific (Tokyo)
-? Enter a project name: testing-migration
-✔ Success! Your Prisma Postgres database is ready ✅
-
-We found an existing schema.prisma file in your current project directory.
-
---- Database URL ---
-
-Connect Prisma ORM to your Prisma Postgres database with this URL:
-
-prisma+postgres://accelerate.prisma-data.net/?api_key=...
-
---- Next steps ---
-
-Go to https://pris.ly/ppg-init for detailed instructions.
-
-1. Install and use the Prisma Accelerate extension
-Prisma Postgres requires the Prisma Accelerate extension for querying. If you haven't already installed it, install it in your project:
-npm install @prisma/extension-accelerate
-
-...and add it to your Prisma Client instance:
-import { withAccelerate } from "@prisma/extension-accelerate"
-
-const prisma = new PrismaClient().$extends(withAccelerate())
-
-2. Apply migrations
-Run the following command to create and apply a migration:
-npx prisma migrate dev
-
-3. Manage your data
-View and edit your data locally by running this command:
-npx prisma studio
-
-...or online in Console:
-https://console.prisma.io/{workspaceId}/{projectId}/studio
-
-4. Send queries from your app
-If you already have an existing app with Prisma ORM, you can now run it and it will send queries against your newly created Prisma Postgres instance.
-
-5. Learn more
-For more info, visit the Prisma Postgres docs: https://pris.ly/ppg-docs
-```
-
-</details>
-
-Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root:
-
-```bash
-touch .env
-```
-
-Now, paste the URL into it as a value for the `DATABASE_URL` environment variable. For example:
-
-```bash
-# .env
-DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
-```
-
-Run the following command to create tables in your database. This creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
-
-```terminal
 npx prisma migrate dev --name init
 ```
 
-Execute the seed file in [`prisma/seed.ts`](./prisma/seed.ts) to populate your database with some sample data, by running:
+When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
-```terminal
+**If you switched to Prisma Postgres in the previous step**, you need to trigger seeding manually (because Prisma Postgres already created an empty database instance for you, so seeding isn't triggered):
+
+```
 npx prisma db seed
 ```
+
 
 ### 3. Start the GraphQL server
 
@@ -144,6 +95,8 @@ npm run dev
 ```
 
 Navigate to [http://localhost:3000/graphql](http://localhost:3000/graphql) in your browser to explore the API of your GraphQL server in a [GraphQL Playground](https://github.com/prisma/graphql-playground).
+
+
 
 ## Using the GraphQL API
 
@@ -175,7 +128,11 @@ query {
 
 ```graphql
 {
-  draftsByUser(userUniqueInput: { email: "mahmoud@prisma.io" }) {
+  draftsByUser(
+    userUniqueInput: {
+      email: "mahmoud@prisma.io"
+    }
+  ) {
     id
     title
     content
@@ -188,6 +145,7 @@ query {
   }
 }
 ```
+
 
 ### Create a new user
 
@@ -204,10 +162,7 @@ mutation {
 ```graphql
 mutation {
   createDraft(
-    data: {
-      title: "Join the Prisma Discord"
-      content: "https://pris.ly/discord"
-    }
+    data: { title: "Join the Prisma Discord", content: "https://pris.ly/discord" }
     authorEmail: "alice@prisma.io"
   ) {
     id
@@ -269,7 +224,9 @@ mutation {
 
 ```graphql
 {
-  feed(searchString: "prisma") {
+  feed(
+    searchString: "prisma"
+  ) {
     id
     title
     content
@@ -282,7 +239,11 @@ mutation {
 
 ```graphql
 {
-  feed(skip: 2, take: 2, orderBy: { updatedAt: desc }) {
+  feed(
+    skip: 2
+    take: 2
+    orderBy: { updatedAt: desc }
+  ) {
     id
     updatedAt
     title
@@ -296,7 +257,7 @@ mutation {
 
 ```graphql
 {
-  postById(id: __POST_ID__) {
+  postById(id: __POST_ID__ ) {
     id
     title
     content
@@ -309,7 +270,7 @@ Note that you need to replace the `__POST_ID__` placeholder with an actual `id` 
 
 ```graphql
 {
-  postById(id: 5) {
+  postById(id: 5 ) {
     id
     title
     content
@@ -339,6 +300,7 @@ mutation {
 ```
 
 </details>
+
 
 ## Evolving the app
 
@@ -435,18 +397,16 @@ const resolvers ={
       }).posts()
     },
 +    profile: (parent, _args, context: Context) => {
-+      return context.prisma.profile.findUnique({
-+        where: { userId: parent?.id }
-+      })
++      return context.prisma.user.findUnique({
++        where: { id: parent?.id }
++      }).profile()
 +    }
   },
 +  Profile: {
 +    user: (parent, _args, context: Context) => {
-+      const profile = await context.prisma.profile.findUnique({
-+        where: { id: parent?.id },
-+         include: { user: true }
-+        })
-+       return profile.user
++      return context.prisma.profile.findUnique({
++        where: { id: parent?.id }
++      }).user()
 +    }
 +  }
 }
@@ -496,12 +456,15 @@ const resolvers ={
 }
 ```
 
+
 Finally, you can test the new mutation like this:
 
 ```graphql
 mutation {
   addProfileForUser(
-    userUniqueInput: { email: "mahmoud@prisma.io" }
+    userUniqueInput: {
+      email: "mahmoud@prisma.io"
+    }
     bio: "I like turtles"
   ) {
     id
@@ -528,7 +491,7 @@ const profile = await prisma.profile.create({
       connect: { email: 'alice@prisma.io' },
     },
   },
-});
+})
 ```
 
 ##### Create a new user with a new profile
@@ -544,7 +507,7 @@ const user = await prisma.user.create({
       },
     },
   },
-});
+})
 ```
 
 ##### Update the profile of an existing user
@@ -559,107 +522,80 @@ const userWithUpdatedProfile = await prisma.user.update({
       },
     },
   },
-});
+})
 ```
 
 </details>
 
-## Switch to another database (e.g. SQLite, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than Postgres, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+## Switch to another database (e.g. PostgreSQL, MySQL, SQL Server, MongoDB)
+
+If you want to try this example with another database than SQLite, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
 <details><summary>Expand for an overview of example configurations with different databases</summary>
 
-### Remove the Prisma Client extension
+### PostgreSQL
 
-Before you proceed to use your own database, you should remove the Prisma client extension required for Prisma Postgres:
-
-```terminal
-npm uninstall @prisma/extension-accelerate
-```
-
-Remove the client extension from your `PrismaClient` instances:
-
-```diff
-- const prisma = new PrismaClient().$extends(withAccelerate())
-+ const prisma = new PrismaClient()
-```
-
-### Your own PostgreSQL database
-
-To use your own PostgreSQL database remove the `@prisma/extension-accelerate` package and remove the Prisma client extension.
-
-### SQLite
-
-Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+For PostgreSQL, the connection URL has the following structure:
 
 ```prisma
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
 }
 ```
 
-Create an `.env` file and add the SQLite database connection string in it. For example:
+Here is an example connection string with a local PostgreSQL database:
 
-```terminal
-DATABASE_URL="file:./dev.db""
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://janedoe:mypassword@localhost:5432/notesapi?schema=public"
+}
 ```
 
 ### MySQL
 
-Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+For MySQL, the connection URL has the following structure:
 
 ```prisma
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://USER:PASSWORD@HOST:PORT/DATABASE"
 }
 ```
 
-Create an `.env` file and add a MySQL database connection string in it. For example:
+Here is an example connection string with a local MySQL database:
 
-```terminal
-## This is a placeholder url
-DATABASE_URL="mysql://janedoe:mypassword@localhost:3306/notesapi"
+```prisma
+datasource db {
+  provider = "mysql"
+  url      = "mysql://janedoe:mypassword@localhost:3306/notesapi"
+}
 ```
 
 ### Microsoft SQL Server
 
-Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+Here is an example connection string with a local Microsoft SQL Server database:
 
 ```prisma
 datasource db {
   provider = "sqlserver"
-  url      = env("DATABASE_URL")
+  url      = "sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
 }
-```
-
-Create an `.env` file and add a Microsoft SQL Server database connection string in it. For example:
-
-```terminal
-## This is a placeholder url
-DATABASE_URL="sqlserver://localhost:1433;initial catalog=sample;user=sa;password=mypassword;"
 ```
 
 ### MongoDB
 
-Modify the `provider` value in the `datasource` block in the [`prisma.schema`](./prisma/schema.prisma) file:
+Here is an example connection string with a local MongoDB database:
 
 ```prisma
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = "mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 }
-```
-
-Create an `.env` file and add a local MongoDB database connection string in it. For example:
-
-```terminal
-## This is a placeholder url
-DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWrites=true&w=majority"
 ```
 
 </details>
@@ -669,3 +605,5 @@ DATABASE_URL="mongodb://USERNAME:PASSWORD@HOST/DATABASE?authSource=admin&retryWr
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+
+

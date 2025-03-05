@@ -11,28 +11,27 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "4.0.0",
-    "@sveltejs/kit": "2.17.2",
+    "@sveltejs/kit": "2.17.3",
     "@sveltejs/package": "2.3.10",
-    "@typescript-eslint/eslint-plugin": "8.24.1",
-    "@typescript-eslint/parser": "8.24.1",
+    "@typescript-eslint/eslint-plugin": "8.25.0",
+    "@typescript-eslint/parser": "8.25.0",
     "eslint": "8.57.1",
-    "eslint-config-prettier": "10.0.1",
-    "eslint-plugin-svelte": "2.46.1",
-    "prettier": "3.5.2",
+    "eslint-config-prettier": "10.0.2",
+    "eslint-plugin-svelte": "3.0.2",
+    "prettier": "3.5.3",
     "prettier-plugin-svelte": "3.3.3",
     "prisma": "6.4.1",
-    "svelte": "5.20.2",
+    "svelte": "5.20.5",
     "svelte-check": "4.1.4",
     "svelte-preprocess": "6.0.3",
     "tslib": "2.8.1",
     "tsx": "4.19.3",
     "typescript": "5.7.3",
-    "vite": "6.1.1"
+    "vite": "6.2.0"
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2"
+    "@prisma/client": "6.4.1"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

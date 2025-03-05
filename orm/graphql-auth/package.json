@@ -16,10 +16,9 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@apollo/server": "4.11.3",
     "@prisma/client": "6.4.1",
-    "@prisma/extension-accelerate": "^1.2.2",
-    "bcryptjs": "2.4.3",
+    "@apollo/server": "4.11.3",
+    "bcryptjs": "3.0.2",
     "graphql": "16.10.0",
     "graphql-middleware": "6.1.35",
     "graphql-scalars": "1.24.1",
@@ -30,7 +29,7 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.6",
     "@types/jsonwebtoken": "9.0.9",
-    "@types/node": "22.13.5",
+    "@types/node": "22.13.8",
     "prisma": "6.4.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",

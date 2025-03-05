@@ -79,15 +79,18 @@ const Query = objectType({
         ),
       },
       resolve: (_parent, args, context) => {
-        return context.prisma.post.findMany({
-          where: {
-            published: false,
-            author: {
+        return context.prisma.user
+          .findUnique({
+            where: {
               id: args.userUniqueInput.id || undefined,
               email: args.userUniqueInput.email || undefined,
             },
-          },
-        })
+          })
+          .posts({
+            where: {
+              published: false,
+            },
+          })
       },
     })
   },
@@ -106,7 +109,7 @@ const Mutation = objectType({
         ),
       },
       resolve: (_, args, context) => {
-        const postData = args.data.posts?.map((post: any) => {
+        const postData = args.data.posts?.map((post: Post) => {
           return { title: post.title, content: post.content || undefined }
         })
         return context.prisma.user.create({
@@ -209,9 +212,11 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context) => {
-        return context.prisma.post.findMany({
-          where: { authorId: parent.id || undefined },
-        })
+        return context.prisma.user
+          .findUnique({
+            where: { id: parent.id || undefined },
+          })
+          .posts()
       },
     })
   },
@@ -229,17 +234,12 @@ const Post = objectType({
     t.nonNull.int('viewCount')
     t.field('author', {
       type: 'User',
-      resolve: async (parent, _, context) => {
-        const post = await context.prisma.post.findUnique({
-          where: {
-            id: parent.id || undefined,
-          },
-          include: {
-            author: true,
-          },
-        })
-
-        return post!.author
+      resolve: (parent, _, context) => {
+        return context.prisma.post
+          .findUnique({
+            where: { id: parent.id || undefined },
+          })
+          .author()
       },
     })
   },

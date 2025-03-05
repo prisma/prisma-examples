@@ -9,7 +9,7 @@ This example shows how to use the TypedSQL feature of [Prisma ORM](https://www.p
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/typedsql --install npm --name typedsql
+npx try-prisma@latest --template orm/typedsql
 ```
 
 Then, navigate into the project directory:
