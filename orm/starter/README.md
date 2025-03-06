@@ -6,7 +6,7 @@ This repository has been created to help you get started with [Prisma ORM](https
 
 To successfully run the project, you will need the following:
 
-- The **connection string** of a PostgreSQL database (if you don't have one yet, you can configure your database following the [instructions in our docs](https://www.prisma.io/docs/pulse/database-setup) or [use a Railway template](https://railway.app/template/pulse-pg?referralCode=VQ09uv))
+- The **connection string** of a PostgreSQL database (if you don't have one yet, you can use Prisma Postgres)
 
 ## Getting started
 

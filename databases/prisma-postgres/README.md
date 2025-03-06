@@ -1,10 +1,9 @@
-# Prisma Postgres Example: Queries, Real-Time Events & Caching
+# Prisma Postgres Example: Queries, Connection Pooling & Caching
 
 This project contains a sample application demonstrating various capabilities and workflows of [Prisma Postgres](https://prisma.io/data-platform/postgres):
 
 - Schema migrations and queries (via [Prisma ORM](https://www.prisma.io/orm))
 - Connection pooling and caching (via [Prisma Accelerate](https://prisma.io/data-platform/accelerate))
-- Real-time database change events (via [Prisma Pulse](https://prisma.io/data-platform/pulse))
 
 ## Getting started
 
@@ -23,21 +22,13 @@ At this point, you'll be redirected to the **Database** page where you will need
 
 Once the green **`CONNECTED`** label appears, your database is ready to use!
 
-You also need to enable the real-time capabilities of Prisma Postgres in the Console:
-
-1. Select the **Pulse** tab in the sidenav.
-2. Find and click the **Enable Pulse** button.
-3. In the section **Add Pulse to your application**, click the **Generate API key** button.
-4. Store the `PULSE_API_KEY` environment variable securely as it's required for this guide.
-
-Then, find your database credentials in the **Set up database access** section, copy the `DATABASE_URL` environment variable and store it securely along with the `PULSE_API_KEY`.
+Then, find your database credentials in the **Set up database access** section, copy the `DATABASE_URL` environment variable and store it securely.
 
 ```bash no-copy
 DATABASE_URL=<your-database-url>
-PULSE_API_KEY=<your-pulse-api-key>
 ```
 
-> These environment variables will be required in the next steps.
+> These `DATABASE_URL` environment variable will be required in the next steps.
 
 Once that setup process has finished, move to the next step.
 
@@ -72,9 +63,9 @@ cd hello-prisma
 npm install
 ```
 
-### 3. Set database connection and Pulse API key
+### 3. Set database connection
 
-The connection to your database and the Pulse API key are configured via environment variables in a `.env` file.
+The connection to your database is configured via environment variables in a `.env` file.
 
 First, rename the existing `.env.example` file to just `.env`:
 
@@ -82,13 +73,12 @@ First, rename the existing `.env.example` file to just `.env`:
 mv .env.example .env
 ```
 
-Then, find your database credentials in the **Set up database access** section, copy the `DATABASE_URL` and `PULSE_API_KEY` environment variables and paste them into the `.env` file.
+Then, find your database credentials in the **Set up database access** section, copy the `DATABASE_URL` environment variable and paste them into the `.env` file.
 
 For reference, the file should now look similar to this:
 
 ```bash
 DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
-PULSE_API_KEY="ey...."
 ```
 
 ### 4. Create database tables (with a schema migration)
@@ -139,33 +129,6 @@ You'll notice that the time the query took will be a lot shorter this time, e.g.
 
 ```terminal
 The query took 300.5655280000001ms.
-```
-
-### 6. Observe real-time events in your database
-
-The [`src/realtime.ts`](./src/realtime.ts) script contains a demo for receiving real-time change [events](https://www.prisma.io/docs/pulse/database-events) from your database. You can start the script as follows:
-
-```terminal
-npm run realtime
-```
-
-The script now created a [stream](https://www.prisma.io/docs/pulse/api-reference#stream) that will receive database events and print them to the console whenever a write-operation (i.e. _create_, _update_ or _delete_) happens on the `User` table.
-
-To test the stream, you can open Prisma Studio:
-
-```terminal
-npx prisma studio
-```
-
-... and make a change to the `User` table, e.g. create a new record. Once you've saved the change, you should see an output in the terminal that looks similar to this:
-
-```terminal
-Received an event: {
-  action: 'create',
-  created: { id: 3, email: 'burk@prisma.io', name: 'Nikolas' },
-  id: '01JAFNSZHQRDTW773BCAA9G7FJ',
-  modelName: 'User'
-}
 ```
 
 ## Next steps
