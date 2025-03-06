@@ -9,7 +9,7 @@
     "dev": "tsc --watch"
   },
   "devDependencies": {
-    "@types/node": "22.13.8",
+    "@types/node": "22.13.9",
     "nodemon": "3.1.9",
     "prisma": "6.4.1",
     "tsx": "4.19.3",
