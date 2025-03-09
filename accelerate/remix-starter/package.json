@@ -62,7 +62,7 @@
     "@typescript-eslint/eslint-plugin": "8.26.0",
     "@typescript-eslint/parser": "8.26.0",
     "@vitest/ui": "3.0.8",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "dotenv": "16.4.7",
     "dotenv-cli": "8.0.0",
     "eslint": "8.57.1",

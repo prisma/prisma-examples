@@ -14,7 +14,7 @@
     "@types/node": "22.13.10",
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
     "eslint-config-next": "15.2.1",
     "next": "15.2.1",
