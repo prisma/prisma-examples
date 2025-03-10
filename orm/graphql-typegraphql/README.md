@@ -1,5 +1,10 @@
 # GraphQL Server Example
 
+> [!CAUTION]
+> This example was removed on 2025-03-10. If you would like an updated example, please open an issue requesting such.
+
+<details><summary>Previous content</summary>
+
 This example shows how to **implement a GraphQL server with TypeScript** based on [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client), [apollo-server](https://www.apollographql.com/docs/apollo-server). It is based on a SQLite database - you can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
 ## Getting started
@@ -531,3 +536,4 @@ datasource db {
 - Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
 
 
+</details>
