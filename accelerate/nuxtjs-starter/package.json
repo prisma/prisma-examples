@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/tailwindcss": "6.13.1",
+    "@nuxtjs/tailwindcss": "6.13.2",
     "@prisma/extension-accelerate": "1.2.2",
     "@prisma/nuxt": "0.3.0",
     "nuxt": "3.16.0",
