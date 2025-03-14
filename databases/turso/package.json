@@ -11,14 +11,14 @@
   "description": "",
   "devDependencies": {
     "@types/node": "22.13.10",
-    "prisma": "6.4.1",
+    "prisma": "6.5.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.2"
   },
   "dependencies": {
     "@libsql/client": "0.14.0",
-    "@prisma/adapter-libsql": "6.4.1",
-    "@prisma/client": "6.4.1",
+    "@prisma/adapter-libsql": "6.5.0",
+    "@prisma/client": "6.5.0",
     "dotenv": "16.4.7"
   }
 }
