@@ -8,3 +8,4 @@
 .mise*
 
 prisma/dev.db*
+prisma/migrations/

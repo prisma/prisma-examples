@@ -1,38 +1,27 @@
-import { prisma } from '~/lib/db'
 import { Form } from 'react-router'
 import type { Route } from './+types/home'
+import { prisma } from '~/lib/prisma'
 import { TodoItem } from '~/components/Todo'
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData()
-  const intent = formData.get('intent')?.toString()
 
-  switch (intent) {
-    case 'create': {
-      const title = formData.get('text')?.toString()
-      if (!title) return null
-      return await prisma.todo.create({ data: { title } })
-    }
+  const id = String(formData.get('id'))
+  const title = String(formData.get('text'))
+  const complete = formData.get('complete') === 'on'
 
-    case 'update': {
-      const id = formData.get('id')?.toString()
-      const complete = formData.get('complete') === 'true'
-      if (!id) return null
-      return await prisma.todo.update({
-        where: { id },
-        data: { complete },
-      })
-    }
-
-    case 'delete': {
-      const id = formData.get('id')?.toString()
-      if (!id) return null
-      return await prisma.todo.delete({ where: { id } })
-    }
-
-    default:
-      return null
+  if (request.method === 'POST') {
+    if (!title) return null
+    await prisma.todo.create({ data: { title } })
+  } else if (request.method === 'PATCH') {
+    if (!id) return null
+    await prisma.todo.update({ where: { id }, data: { complete } })
+  } else if (request.method === 'DELETE') {
+    if (!id) return null
+    await prisma.todo.delete({ where: { id } })
   }
+
+  return null
 }
 
 export async function loader() {
@@ -50,7 +39,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
         Todo List
       </h1>
 
-      <Form method="post" className="mb-8">
+      <Form method="POST" className="mb-8">
         <div className="flex gap-4">
           <input
             name="text"
@@ -58,7 +47,6 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             placeholder="What needs to be done?"
             className="flex-1 p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
           />
-          <input type="hidden" name="intent" value="create" />
           <button
             type="submit"
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"

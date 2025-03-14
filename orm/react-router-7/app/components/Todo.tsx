@@ -6,23 +6,23 @@ type TodoProps = {
 }
 
 export function TodoItem({ todo }: TodoProps) {
-  const fetcher = useFetcher()
+  const updateFetcher = useFetcher()
+  const deleteFetcher = useFetcher()
 
   return (
     <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-      <fetcher.Form method="post" className="flex items-center gap-4 flex-1">
-        <input type="hidden" name="intent" value="update" />
+      <updateFetcher.Form
+        method="PATCH"
+        className="flex items-center gap-4 flex-1"
+        onChange={(e) =>
+          updateFetcher.submit(e.currentTarget, { method: 'PATCH' })
+        }
+      >
         <input type="hidden" name="id" value={todo.id} />
         <input
           type="checkbox"
           name="complete"
-          checked={todo.complete}
-          onChange={(e) => {
-            if (!e.currentTarget.form) return
-            const formData = new FormData(e.currentTarget.form)
-            formData.set('complete', (!todo.complete).toString())
-            fetcher.submit(formData, { method: 'post' })
-          }}
+          defaultChecked={todo.complete}
           className="w-5 h-5"
         />
         <span
@@ -32,10 +32,9 @@ export function TodoItem({ todo }: TodoProps) {
         >
           {todo.title}
         </span>
-      </fetcher.Form>
+      </updateFetcher.Form>
 
-      <fetcher.Form method="post">
-        <input type="hidden" name="intent" value="delete" />
+      <deleteFetcher.Form method="DELETE">
         <input type="hidden" name="id" value={todo.id} />
         <button
           type="submit"
@@ -43,7 +42,7 @@ export function TodoItem({ todo }: TodoProps) {
         >
           Delete
         </button>
-      </fetcher.Form>
+      </deleteFetcher.Form>
     </div>
   )
 }
