@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.19.0'
+          node-version: '22.14.0'
 
       - name: install deps
         run: cd .github/scripts && yarn install
@@ -61,7 +61,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '18.20.7'
+          node-version: '22.14.0'
 
       - name: test
         run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
