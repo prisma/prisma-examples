@@ -39,3 +39,11 @@ npm test
 - Transactional queries for posts and post count.
 
 - Fetching posts by a specific user.
+
+## Resources
+
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- [Join our community on Discord](https://pris.ly/discord?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) to share feedback and interact with other users.
+- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) for live demos and video tutorials.
+- [Follow us on X](https://pris.ly/x?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) for the latest updates.
+- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section).

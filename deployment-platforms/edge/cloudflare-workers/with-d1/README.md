@@ -122,4 +122,11 @@ This project uses an already existing [SQL schema](./prisma/schema.sql) file whi
 
 If you want to evolve your schema and keep track of the migration history, you can take a look at the recommended [migration workflows](https://www.prisma.io/docs/orm/overview/databases/cloudflare-d1#migration-workflows) for D1 in the Prisma docs.
 
+## Resources
+
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- [Join our community on Discord](https://pris.ly/discord?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) to share feedback and interact with other users.
+- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) for live demos and video tutorials.
+- [Follow us on X](https://pris.ly/x?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) for the latest updates.
+- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section).
 

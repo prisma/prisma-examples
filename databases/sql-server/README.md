@@ -1,6 +1,6 @@
 # Microsoft SQL Server example
 
-This example shows how to connect Prisma to an SQL Server database, create the database schema with [Prisma Migrate](https://www.prisma.io/migrate) and use [Prisma Client](https://www.prisma.io/client) in a **Node.js script** to read and write data in an SQL Server database. 
+This example shows how to connect Prisma to an SQL Server database, create the database schema with [Prisma Migrate](https://www.prisma.io/migrate) and use [Prisma Client](https://www.prisma.io/client) in a **Node.js script** to read and write data in an SQL Server database.
 
 You can find the Prisma schema in [`./prisma/schema.prisma`](./prisma/schema.prisma) from which the SQL for the database schema is generated.
 
@@ -88,3 +88,11 @@ npm run start
 
 
 As a next step, explore the `script.js` file to see how to use Prisma Client to read and write data in the database.
+
+## Resources
+
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- [Join our community on Discord](https://pris.ly/discord?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) to share feedback and interact with other users.
+- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) for live demos and video tutorials.
+- [Follow us on X](https://pris.ly/x?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section) for the latest updates.
+- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=prisma-examples&utm_campaign=tracking-cta&utm_medium=next-steps-section).
