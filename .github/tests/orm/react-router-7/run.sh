@@ -2,7 +2,7 @@
 
 set -eu
 
-npm install 
+npm install
 npx prisma migrate dev --name init
 npm run dev &
 pid=$!
@@ -10,6 +10,6 @@ pid=$!
 sleep 15
 
 # check frontend
-curl --fail 'http://localhost:3000/'
+curl --fail 'http://localhost:5173'
 
 kill "$pid"
