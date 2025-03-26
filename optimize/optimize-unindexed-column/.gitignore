@@ -3,3 +3,5 @@ dist/
 *.env
 package-lock.json
 prisma/migrations
+
+generated/

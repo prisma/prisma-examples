@@ -1,7 +1,6 @@
 generator client {
-  provider        = "prisma-client-js"
-  output          = "../src/generated/prisma"
-  previewFeatures = ["tracing"]
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
