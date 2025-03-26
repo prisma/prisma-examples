@@ -1,6 +1,6 @@
 import './app.css'
 import { createResource, For, Show } from 'solid-js'
-import { User, Post } from '@prisma/client'
+import { User, Post } from './generated/prisma'
 import Socials from './components/socials'
 
 type UserWithPosts = User & {

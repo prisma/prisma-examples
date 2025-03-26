@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient, Prisma } from '../lib/generated/prisma'
 
 const prisma = new PrismaClient()
 
@@ -32,7 +32,7 @@ const userData: Prisma.UserCreateInput[] = [
         },
       ],
     },
-  }
+  },
 ]
 
 export async function main() {
