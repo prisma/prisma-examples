@@ -1,11 +1,13 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
+
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
@@ -24,4 +26,3 @@ model Post {
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
-

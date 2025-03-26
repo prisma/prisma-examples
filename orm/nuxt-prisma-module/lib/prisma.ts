@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from './generated/prisma'
 
 const prismaClientSingleton = () => {
   // Custom extended Prisma ORM instance with client extensions, adding a method to verify the existence of a database entry.

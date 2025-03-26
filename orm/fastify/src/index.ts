@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from './generated/prisma'
 import fastify from 'fastify'
 
 const prisma = new PrismaClient()
@@ -134,11 +134,11 @@ app.get<{
 
   const or: Prisma.PostWhereInput = searchString
     ? {
-      OR: [
-        { title: { contains: searchString as string } },
-        { content: { contains: searchString as string } },
-      ],
-    }
+        OR: [
+          { title: { contains: searchString as string } },
+          { content: { contains: searchString as string } },
+        ],
+      }
     : {}
 
   const posts = await prisma.post.findMany({

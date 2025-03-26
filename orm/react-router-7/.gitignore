@@ -7,5 +7,4 @@
 
 .mise*
 
-prisma/dev.db*
-prisma/migrations/
+app/generated/

@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../generated/prisma'
 import Hapi from '@hapi/hapi'
 
 declare module '@hapi/hapi' {

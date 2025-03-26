@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  output          = "../src/generated/prisma"
   previewFeatures = ["tracing"]
 }
 
@@ -13,15 +14,15 @@ model User {
   email String  @unique
   name  String?
   posts Post[]
+
   @@index([name])
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   title     String
   content   String?
-  published Boolean  @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
   authorId  Int?
 }
-

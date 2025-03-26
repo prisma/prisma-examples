@@ -10,8 +10,7 @@ import {
   enumType,
 } from 'nexus'
 import { DateTimeResolver } from 'graphql-scalars'
-import { Context } from './context'
-import { Post } from '.prisma/client'
+import { Post } from './generated/prisma'
 
 export const DateTime = asNexusMethod(DateTimeResolver, 'date')
 
