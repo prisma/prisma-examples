@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 !.env.example
+
+src/generated/prisma

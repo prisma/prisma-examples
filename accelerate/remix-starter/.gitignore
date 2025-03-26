@@ -10,3 +10,5 @@ playwright-report/
 .eslintcache
 
 !.env.example
+
+app/generated/prisma

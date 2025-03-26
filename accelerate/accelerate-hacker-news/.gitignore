@@ -37,3 +37,5 @@ next-env.d.ts
 
 prisma/migrations
 package-lock.json
+
+lib/generated/prisma

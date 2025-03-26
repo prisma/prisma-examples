@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from './generated/prisma'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
 const prismaClientSingleton = () => {
@@ -6,8 +6,8 @@ const prismaClientSingleton = () => {
 }
 
 declare const globalThis: {
-  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
-} & typeof global;
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>
+} & typeof global
 
 const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
