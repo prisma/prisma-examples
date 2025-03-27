@@ -1,5 +1,5 @@
 import { useFetcher } from 'react-router'
-import type { Todo } from '../generated/prisma'
+import type { Todo } from '@prisma/client'
 
 type TodoProps = {
   todo: Todo
