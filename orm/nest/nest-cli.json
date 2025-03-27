@@ -1,13 +1,4 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
-  "compilerOptions": {
-    "assets": [
-      {
-        "include": "generated",
-        "outDir": "dist/src"
-      }
-    ],
-    "watchAssets": true
-  }
+  "sourceRoot": "src"
 }
