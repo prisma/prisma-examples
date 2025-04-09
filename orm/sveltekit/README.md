@@ -1,38 +1,92 @@
-# sv
+# SvelteKit Example
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This example shows how to implement a simple web app using [SvelteKit](https://svelte.dev/docs/kit) and [Prisma ORM](https://www.prisma.io/docs).
 
-## Creating a project
+## Getting started
 
-If you're seeing this, you've probably already done this step. Congrats!
+### 1. Download the example and navigate to the project directory
 
-```bash
-# create a new project in the current directory
-npx sv create
+Download this example:
 
-# create a new project in my-app
-npx sv create my-app
+```
+npx try-prisma@latest --template orm/sveltekit
 ```
 
-## Developing
+Then navigate to the project directory
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```
+cd sveltekit
+```
 
-```bash
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
+
+Clone this repository:
+
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+```
+
+Install npm dependencies:
+
+```
+cd prisma-examples/orm/sveltekit
+npm install
+```
+
+</details>
+
+#### [Optional] Switch database to Prisma Postgres
+
+This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
+
+1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
+2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
+
+   ```prisma
+   datasource db {
+     provider = "postgresql"
+     url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
+   }
+   ```
+
+   > **Note**: In production environments, we recommend that you set your connection URL via an [environment variable](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using a `.env` file.
+
+3. Install the Prisma Accelerate extension:
+   ```
+   npm install @prisma/extension-accelerate
+   ```
+4. Add the Accelerate extension to the `PrismaClient` instance:
+
+   ```diff
+   + import { withAccelerate } from "@prisma/extension-accelerate"
+
+   + const prisma = new PrismaClient().$extends(withAccelerate())
+   ```
+
+That's it, your project is now configured to use Prisma Postgres!
+
+### 2. Generate Prisma Client
+
+Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
+
+```
+npx prisma generate
+```
+
+### 3. Start the SvelteKit server
+
+```
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+The server is now running at http://localhost:5173
 
-To create a production version of your app:
+## Switch to another database
 
-```bash
-npm run build
-```
+If you want to try this example with another database than SQLite, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation
 
-You can preview the production build with `npm run preview`.
+## Next steps
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
+- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
