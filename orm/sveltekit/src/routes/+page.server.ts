@@ -1,11 +1,13 @@
 import prisma from '$lib/prisma';
 
-/** @type {import('./$types').PageServerLoad} */
-export const load = async () => {
-  const response = await prisma.post.findMany({
-    where: { published: true },
-    include: { author: true },
-  })
-  
-  return { feed: response };
-};
+export async function load() {
+	const users = await prisma.user.findMany({
+		include: {
+			posts: true
+		}
+	});
+
+	return {
+		users
+	};
+}

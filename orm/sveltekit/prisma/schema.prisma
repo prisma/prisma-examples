@@ -1,5 +1,12 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -15,13 +22,10 @@ model User {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int     @id @default(autoincrement())
   title     String
   content   String?
-  published Boolean  @default(false)
-  viewCount Int      @default(0)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  published Boolean @default(false)
+  authorId  Int
+  author    User    @relation(fields: [authorId], references: [id])
 }

@@ -1,24 +1,14 @@
 <script lang="ts">
-  import Post from '$lib/components/Post.svelte'
-  import type { PageData } from './$types'
-  
-  
-  interface Props {
-    // data returned from +page.server.js
-    data: PageData;
-  }
-
-  let { data }: Props = $props();
-
+	let { data } = $props();
 </script>
 
-<div>
-  <h1>My Blog</h1>
-  <main>
-    <div>
-      {#each data.feed as post (post.id)}
-        <Post {post} />
-      {/each}
-    </div>
-  </main>
-</div>
+<h1>SvelteKit + Prisma</h1>
+
+{#each data.users as user}
+  <h2>{user.name}</h2>
+  {#each user.posts as post}
+    <ul>
+      <li><a href={post.content}>{post.title}</a></li>
+    </ul>
+  {/each}
+{/each}
