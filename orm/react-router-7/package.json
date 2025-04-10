@@ -12,7 +12,7 @@
     "@prisma/client": "6.5.0",
     "@react-router/node": "7.4.0",
     "@react-router/serve": "7.4.0",
-    "isbot": "5.1.25",
+    "isbot": "5.1.26",
     "prisma": "6.5.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
