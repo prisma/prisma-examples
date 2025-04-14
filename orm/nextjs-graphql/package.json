@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
-    "@types/node": "22.13.10",
+    "@types/node": "22.14.1",
     "@types/react": "18.3.20",
     "prisma": "6.5.0",
     "ts-node": "10.9.2",
