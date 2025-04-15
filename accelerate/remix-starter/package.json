@@ -61,7 +61,7 @@
     "@types/react-dom": "18.3.6",
     "@typescript-eslint/eslint-plugin": "8.28.0",
     "@typescript-eslint/parser": "8.28.0",
-    "@vitest/ui": "3.0.9",
+    "@vitest/ui": "3.1.1",
     "autoprefixer": "10.4.21",
     "dotenv": "16.4.7",
     "dotenv-cli": "8.0.0",
@@ -84,7 +84,7 @@
     "typescript": "5.8.2",
     "vite": "6.2.2",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.0.9"
+    "vitest": "3.1.1"
   },
   "engines": {
     "node": "22.14.0"
