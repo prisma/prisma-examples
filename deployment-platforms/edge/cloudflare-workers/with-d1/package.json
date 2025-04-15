@@ -12,7 +12,7 @@
     "@cloudflare/vitest-pool-workers": "0.8.15",
     "@cloudflare/workers-types": "4.20250321.0",
     "prisma": "6.5.0",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "vitest": "3.0.9",
     "wrangler": "4.6.0"
   },
