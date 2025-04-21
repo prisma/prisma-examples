@@ -4,6 +4,7 @@
 # projects-specific .gitignore).
 
 node_modules/
+generated/prisma/
 yarn-error.log/
 vendor/
 tmp/
