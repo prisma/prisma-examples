@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clerk + Prisma example
 
-## Getting Started
+This example shows how to implement **authentication** using [Clerk](https://clerk.com/), [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io).
 
-First, run the development server:
+## Getting started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 1. Download example and navigate into the project directory
+
+Download this example:
+
+```
+npx try-prisma@latest --template orm/clerk-nextjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, navigate into the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd clerk-nextjs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
-## Learn More
+Clone this repository:
 
-To learn more about Next.js, take a look at the following resources:
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Install npm dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+cd prisma-examples/orm/clerk-nextjs
+npm install
+```
 
-## Deploy on Vercel
+</details>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Rename the `.env.example` file to `.env`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Set up Prisma
+
+#### 2.1. Create a new Prisma Postgres instance
+
+Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
+
+Paste the URL after `DATABASE_URL` in the `.env` file.
+
+#### 2.2. Generate Prisma Client
+
+Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
+
+```
+npx prisma generate
+```
+
+### 3. Set up Clerk
+
+#### 3.1. Create a new Clerk app
+
+Create a new app at [dashboard.clerk.com/apps/new](https://dashboard.clerk.com/apps/new). Provide a name and select whichever sign-in options you would like.
+
+Skip to Step 2 and copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and the `CLERK_SECRET_KEY`. Paste those into their respective positions in `.env`
+
+#### 3.2. Expose your server via [ngrok](https://ngrok.com)
+
+Install ngrok and expose it your local app:
+
+```
+npm install --global ngrok
+ngrok http 3000
+```
+
+Copy the ngrok `Forwarding URL`. This will be used to set the webhook URL in Clerk.
+
+Navigate to the ***Webhooks*** section of your Clerk application located near the bottom of the ***Configure*** tab under ***Developers***.
+
+Click ***Add Endpoint*** and paste the ngrok URL into the ***Endpoint URL*** field and add `/api/webhooks/clerk` to the end of the URL. It should look similar to this:
+
+```
+https://a60b-99-42-62-240.ngrok-free.app/api/webhooks/clerk
+```
+
+Copy the ***Signing Secret*** and add it to your `.env` file:
+
+### 4. Start the development server
+
+```
+npm run dev
+```
+
+The server is now running at http://localhost:3000
+
+## Next steps
+
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- [Join our community on Discord](https://pris.ly/discord?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) to share feedback and interact with other users.
+- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for live demos and video tutorials.
+- [Follow us on X](https://pris.ly/x?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for the latest updates.
+- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section).
