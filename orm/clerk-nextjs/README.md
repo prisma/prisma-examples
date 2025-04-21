@@ -37,31 +37,47 @@ npm install
 
 Rename the `.env.example` file to `.env`
 
-### 2. Set up Prisma
+#### [Optional] Switch database to Prisma Postgres
 
-#### 2.1. Create a new Prisma Postgres instance
+This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
 
-Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
+### 1. Set up Prisma
 
-Paste the URL after `DATABASE_URL` in the `.env` file.
+1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
+2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
 
-#### 2.2. Generate Prisma Client
+   ```prisma
+   datasource db {
+     provider = "postgresql"
+     url      = env("DATABASE_URL")
+   }
+   ```
 
-Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
+3. Add your database url to the `.env`
 
-```
-npx prisma generate
-```
+4. Install the Prisma Accelerate extension:
+   ```
+   npm install @prisma/extension-accelerate
+   ```
+5. Add the Accelerate extension to the `PrismaClient` instance:
 
-### 3. Set up Clerk
+   ```diff
+   + import { withAccelerate } from "@prisma/extension-accelerate"
 
-#### 3.1. Create a new Clerk app
+   + const prisma = new PrismaClient().$extends(withAccelerate())
+   ```
+
+That's it, your project is now configured to use Prisma Postgres!
+
+### 2. Set up Clerk
+
+#### 2.1. Create a new Clerk app
 
 Create a new app at [dashboard.clerk.com/apps/new](https://dashboard.clerk.com/apps/new). Provide a name and select whichever sign-in options you would like.
 
 Skip to Step 2 and copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and the `CLERK_SECRET_KEY`. Paste those into their respective positions in `.env`
 
-#### 3.2. Expose your server via [ngrok](https://ngrok.com)
+#### 2.2. Expose your server via [ngrok](https://ngrok.com)
 
 Install ngrok and expose it your local app:
 
@@ -72,17 +88,17 @@ ngrok http 3000
 
 Copy the ngrok `Forwarding URL`. This will be used to set the webhook URL in Clerk.
 
-Navigate to the ***Webhooks*** section of your Clerk application located near the bottom of the ***Configure*** tab under ***Developers***.
+Navigate to the **_Webhooks_** section of your Clerk application located near the bottom of the **_Configure_** tab under **_Developers_**.
 
-Click ***Add Endpoint*** and paste the ngrok URL into the ***Endpoint URL*** field and add `/api/webhooks/clerk` to the end of the URL. It should look similar to this:
+Click **_Add Endpoint_** and paste the ngrok URL into the **_Endpoint URL_** field and add `/api/webhooks/clerk` to the end of the URL. It should look similar to this:
 
 ```
 https://a60b-99-42-62-240.ngrok-free.app/api/webhooks/clerk
 ```
 
-Copy the ***Signing Secret*** and add it to your `.env` file:
+Copy the **_Signing Secret_** and add it to your `.env` file:
 
-### 4. Start the development server
+### 3. Start the development server
 
 ```
 npm run dev
