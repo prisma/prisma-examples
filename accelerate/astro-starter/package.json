@@ -14,7 +14,7 @@
     "@astrojs/react": "4.2.6",
     "@astrojs/tailwind": "6.0.2",
     "@types/react": "18.3.20",
-    "@types/react-dom": "18.3.6",
+    "@types/react-dom": "18.3.7",
     "astro": "5.7.9",
     "prisma": "6.6.0",
     "react": "18.3.1",
