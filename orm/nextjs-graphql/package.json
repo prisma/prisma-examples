@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@apollo/client": "3.13.8",
-    "@pothos/core": "4.6.1",
-    "@pothos/plugin-prisma": "4.7.0",
+    "@pothos/core": "4.6.2",
+    "@pothos/plugin-prisma": "4.8.1",
     "@prisma/client": "6.7.0",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
