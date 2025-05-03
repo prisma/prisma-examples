@@ -30,7 +30,7 @@
 		"prettier-plugin-svelte": "3.3.3",
 		"prisma": "6.7.0",
 		"svelte": "5.28.2",
-		"svelte-check": "4.1.6",
+		"svelte-check": "4.1.7",
 		"tsx": "4.19.4",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.31.1",
