@@ -1,11 +1,8 @@
 ---
-import prisma from "../lib/prisma";
-
-const users = await prisma.user.findMany({
-  include: {
-    posts: true,
-  },
-});
+import type { User, Post } from "../generated/prisma";
+type UserWithPosts = User & { posts: Post[] };
+const response = await fetch("http://localhost:4321/api/users");
+const users: UserWithPosts[] = await response.json();
 ---
 
 <html lang="en">
@@ -19,11 +16,11 @@ const users = await prisma.user.findMany({
 	<body>
 		<h1>Astro + Prisma</h1>
 		<ul>
-			{users.map((user) => (
+			{users.map((user: UserWithPosts) => (
 				<li>
 					<h2>{user.name}</h2>
 					<ul>
-						{user.posts.map((post) => (
+						{user.posts.map((post: Post) => (
 							<li>{post.title}</li>
 						))}
 					</ul>
