@@ -1,0 +1,34 @@
+---
+import prisma from "../lib/prisma";
+
+const users = await prisma.user.findMany({
+  include: {
+    posts: true,
+  },
+});
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Astro + Prisma</h1>
+		<ul>
+			{users.map((user) => (
+				<li>
+					<h2>{user.name}</h2>
+					<ul>
+						{user.posts.map((post) => (
+							<li>{post.title}</li>
+						))}
+					</ul>
+				</li>
+			))}
+		</ul>
+	</body>
+</html>
