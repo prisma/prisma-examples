@@ -43,7 +43,7 @@
     "remix": "2.16.5",
     "tailwind-merge": "3.2.0",
     "tailwindcss-animate": "1.0.7",
-    "zod": "3.24.3",
+    "zod": "3.24.4",
     "zod-error": "1.5.0",
     "zod-form-data": "2.0.7"
   },
