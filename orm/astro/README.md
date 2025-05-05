@@ -1,47 +1,99 @@
-# Astro Starter Kit: Minimal
+# Astro Example
 
-```sh
-npm create astro@latest -- --template minimal
+This example shows how to implement a simple web app using [Astro](https://astro.build/) and [Prisma ORM](https://www.prisma.io/docs).
+
+## Getting started
+
+### 1. Download the example and navigate to the project directory
+
+Download this example:
+
+```
+npx try-prisma@latest --template orm/astro
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Then navigate to the project directory
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+cd astro
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Clone this repository:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+```
 
-## 🧞 Commands
+Install npm dependencies:
 
-All commands are run from the root of the project, from a terminal:
+```
+cd prisma-examples/orm/astro
+npm install
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+</details>
 
-## 👀 Want to learn more?
+#### [Optional] Switch database to Prisma Postgres
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
+
+1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
+2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
+
+   ```prisma
+   datasource db {
+     provider = "postgresql"
+     url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
+   }
+   ```
+
+   > **Note**: In production environments, we recommend that you set your connection URL via an [environment variable](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using a `.env` file.
+
+3. Install the Prisma Accelerate extension:
+   ```
+   npm install @prisma/extension-accelerate
+   ```
+4. Add the Accelerate extension to the `PrismaClient` instance:
+
+   ```diff
+   + import { withAccelerate } from "@prisma/extension-accelerate"
+
+   + const prisma = new PrismaClient().$extends(withAccelerate())
+   ```
+
+5. Pass the `.env` var `DATABASE_URL` into the `PrismaClient()`
+  ```diff
+  + const prisma = new PrismaClient({
+  +   datasourceUrl: import.meta.env.DATABASE_URL,
+  + }).$extends(withAccelerate())
+  ```
+
+That's it, your project is now configured to use Prisma Postgres!
+
+### 2. Generate Prisma Client
+
+Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
+
+```
+npx prisma generate
+```
+
+### 3. Start the Astro server
+
+```
+npm run dev
+```
+
+The server is now running at http://localhost:4321
+
+## Switch to another database
+
+If you want to try this example with another database than SQLite, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation
+
+## Next steps
+
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
+- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
