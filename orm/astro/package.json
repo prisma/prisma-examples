@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.7.0",
-    "astro": "5.7.11"
+    "astro": "5.7.12"
   },
   "devDependencies": {
     "prisma": "6.7.0",
