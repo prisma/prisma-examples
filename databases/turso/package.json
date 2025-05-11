@@ -16,7 +16,7 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
-    "@libsql/client": "0.15.4",
+    "@libsql/client": "0.15.5",
     "@prisma/adapter-libsql": "6.7.0",
     "@prisma/client": "6.7.0",
     "dotenv": "16.5.0"
