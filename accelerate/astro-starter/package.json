@@ -16,16 +16,16 @@
     "@types/react": "18.3.21",
     "@types/react-dom": "18.3.7",
     "astro": "5.7.13",
-    "prisma": "6.7.0",
+    "prisma": "6.8.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwindcss": "3.4.17",
     "typescript": "5.8.2",
-    "@prisma/client": "6.7.0",
+    "@prisma/client": "6.8.2",
     "@prisma/extension-accelerate": "1.3.0"
   },
   "devDependencies": {
-    "prisma": "6.7.0",
+    "prisma": "6.8.2",
     "tsx": "4.19.4"
   },
   "prisma": {
