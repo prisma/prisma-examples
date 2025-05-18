@@ -10,7 +10,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "4.0.0",
+		"@sveltejs/adapter-auto": "6.0.1",
 		"@sveltejs/kit": "2.21.1",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
 		"@tailwindcss/typography": "0.5.16",
