@@ -20,7 +20,7 @@
 		"@eslint/compat": "1.2.9",
 		"@eslint/js": "9.27.0",
 		"@sveltejs/adapter-auto": "4.0.0",
-		"@sveltejs/kit": "2.21.0",
+		"@sveltejs/kit": "2.21.1",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
 		"eslint": "9.27.0",
 		"eslint-config-prettier": "10.1.5",
