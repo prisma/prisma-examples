@@ -24,7 +24,7 @@
     "@types/node": "20.17.48",
     "@types/react": "19.1.4",
     "@types/react-dom": "19.1.5",
-    "react-router-devtools": "1.1.10",
+    "react-router-devtools": "5.0.6",
     "tailwindcss": "4.1.7",
     "typescript": "5.8.2",
     "vite": "6.3.5",
