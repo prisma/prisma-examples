@@ -22,7 +22,7 @@
     "@react-router/dev": "7.6.0",
     "@tailwindcss/vite": "4.1.7",
     "@types/node": "20.17.48",
-    "@types/react": "19.1.4",
+    "@types/react": "19.1.5",
     "@types/react-dom": "19.1.5",
     "react-router-devtools": "1.1.10",
     "tailwindcss": "4.1.7",
