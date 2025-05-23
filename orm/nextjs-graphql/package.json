@@ -19,14 +19,14 @@
     "graphql-scalars": "1.24.2",
     "graphql-yoga": "5.13.4",
     "next": "15.3.2",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "react-markdown": "10.1.0"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
     "@types/node": "22.15.21",
-    "@types/react": "18.3.22",
+    "@types/react": "19.1.5",
     "prisma": "6.8.2",
     "ts-node": "10.9.2",
     "typescript": "5.8.2"
