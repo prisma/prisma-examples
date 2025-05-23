@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
-    "@astrojs/react": "4.2.7",
+    "@astrojs/react": "4.3.0",
     "@astrojs/tailwind": "6.0.2",
     "@types/react": "18.3.22",
     "@types/react-dom": "18.3.7",
-    "astro": "5.7.14",
+    "astro": "5.8.0",
     "prisma": "6.8.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
