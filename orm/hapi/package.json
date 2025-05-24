@@ -11,7 +11,7 @@
     "@types/node": "22.15.21"
   },
   "devDependencies": {
-    "@types/express": "5.0.1",
+    "@types/express": "5.0.2",
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.15.21",
     "prisma": "6.8.2",

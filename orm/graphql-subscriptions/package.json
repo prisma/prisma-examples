@@ -20,7 +20,7 @@
     "@prisma/client": "6.8.2",
     "body-parser": "2.2.0",
     "cors": "2.8.5",
-    "express": "4.21.2",
+    "express": "5.1.0",
     "graphql": "16.11.0",
     "graphql-subscriptions": "3.0.0",
     "graphql-ws": "5.16.2",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/body-parser": "1.19.5",
     "@types/cors": "2.8.18",
-    "@types/express": "5.0.1",
+    "@types/express": "5.0.2",
     "@types/node": "22.15.21",
     "@types/ws": "8.18.1",
     "prisma": "6.8.2",

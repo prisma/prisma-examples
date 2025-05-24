@@ -7,10 +7,10 @@
   },
   "dependencies": {
     "@prisma/client": "6.8.2",
-    "express": "4.21.2"
+    "express": "5.1.0"
   },
   "devDependencies": {
-    "@types/express": "5.0.1",
+    "@types/express": "5.0.2",
     "@types/node": "22.15.21",
     "prisma": "6.8.2",
     "ts-node": "10.9.2",
