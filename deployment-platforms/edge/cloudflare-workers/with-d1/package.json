@@ -9,7 +9,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "0.8.32",
+    "@cloudflare/vitest-pool-workers": "0.8.33",
     "@cloudflare/workers-types": "4.20250525.0",
     "prisma": "6.8.2",
     "typescript": "5.8.2",
