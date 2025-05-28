@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/node": "22.15.21",
+    "@types/node": "22.15.23",
     "prisma": "6.8.2",
     "ts-node": "10.9.2",
     "typescript": "5.8.2"
