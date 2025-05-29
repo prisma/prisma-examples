@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.8.2",
-    "@prisma/extension-accelerate": "2.0.0"
+    "@prisma/extension-accelerate": "2.0.1"
   },
   "prettier": {
     "trailingComma": "all",
