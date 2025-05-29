@@ -18,14 +18,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
-    "@tailwindcss/postcss": "4.1.7",
+    "@tailwindcss/postcss": "4.1.8",
     "@types/node": "22.15.23",
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.5",
     "eslint": "9.27.0",
     "eslint-config-next": "15.3.2",
     "prisma": "6.8.2",
-    "tailwindcss": "4.1.7",
+    "tailwindcss": "4.1.8",
     "tsx": "4.19.4",
     "typescript": "5.8.3"
   }
