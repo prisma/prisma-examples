@@ -31,7 +31,7 @@
     "@types/body-parser": "1.19.5",
     "@types/cors": "2.8.18",
     "@types/express": "5.0.2",
-    "@types/node": "22.15.23",
+    "@types/node": "22.15.24",
     "@types/ws": "8.18.1",
     "prisma": "6.8.2",
     "ts-node": "10.9.2",
