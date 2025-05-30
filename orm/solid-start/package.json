@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.8",
-    "postcss": "8.5.3",
+    "postcss": "8.5.4",
     "prisma": "6.8.2",
     "tailwindcss": "4.1.8",
     "tsx": "4.19.4"
