@@ -142,6 +142,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 ## Starter kits
 
 - [T3 Stack](https://create.t3.gg/): Starter kit based on Next.js, TypeScript, tRPC, Prisma, Tailwind CSS, and NextAuth.js.
+- [Better Auth Starter](https://github.com/Kinfe123/better-auth-nextjs): Better Auth Starter with Next.js and Prisma
 - [Indie Stack](https://github.com/remix-run/indie-stack): Remix Stack for deploying to Fly with SQLite, authentication, testing, linting, and formatting.
 - [Blues Stack](https://github.com/remix-run/blues-stack): Remix Stack for deploying to Fly with PostgreSQL, authentication, testing, linting, and formatting.
 - [NestJS Prisma Starter](https://github.com/notiz-dev/nestjs-prisma-starter): NestJS, Prisma, and authentication starter template.
