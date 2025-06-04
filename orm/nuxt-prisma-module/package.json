@@ -17,8 +17,8 @@
     "vue-router": "4.5.1"
   },
   "devDependencies": {
-    "@prisma/client": "6.8.2",
-    "prisma": "6.8.2"
+    "@prisma/client": "6.9.0",
+    "prisma": "6.9.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

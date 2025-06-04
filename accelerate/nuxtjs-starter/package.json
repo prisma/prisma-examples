@@ -19,8 +19,8 @@
     "zod": "3.25.51"
   },
   "devDependencies": {
-    "@prisma/client": "6.8.2",
-    "prisma": "6.8.2"
+    "@prisma/client": "6.9.0",
+    "prisma": "6.9.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

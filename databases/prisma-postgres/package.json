@@ -6,13 +6,13 @@
     "caching": "ts-node ./src/caching.ts"
   },
   "dependencies": {
-    "@prisma/client": "6.8.2",
+    "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.1",
     "@types/node": "22.15.29",
     "dotenv": "16.5.0"
   },
   "devDependencies": {
-    "prisma": "6.8.2",
+    "prisma": "6.9.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.2"
   }

@@ -10,7 +10,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "6.8.2",
+    "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.1",
     "@solidjs/start": "1.1.4",
     "solid-js": "1.9.7",
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.8",
     "postcss": "8.5.4",
-    "prisma": "6.8.2",
+    "prisma": "6.9.0",
     "tailwindcss": "4.1.8",
     "tsx": "4.19.4"
   }

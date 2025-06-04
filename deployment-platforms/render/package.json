@@ -12,12 +12,12 @@
   "author": "@jess-render",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "6.8.2",
+    "@prisma/client": "6.9.0",
     "body-parser": "2.2.0",
     "express": "5.1.0"
   },
   "devDependencies": {
-    "prisma": "6.8.2"
+    "prisma": "6.9.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

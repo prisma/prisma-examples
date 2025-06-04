@@ -6,10 +6,10 @@
     "dev": "func start"
   },
   "dependencies": {
-    "@prisma/client": "6.8.2"
+    "@prisma/client": "6.9.0"
   },
   "devDependencies": {
     "azure-functions-core-tools": "4.0.7317",
-    "prisma": "6.8.2"
+    "prisma": "6.9.0"
   }
 }

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "6.20.2",
-    "@prisma/client": "6.8.2",
+    "@prisma/client": "6.9.0",
     "next": "15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -24,7 +24,7 @@
     "@types/react-dom": "19.1.5",
     "eslint": "9.28.0",
     "eslint-config-next": "15.3.3",
-    "prisma": "6.8.2",
+    "prisma": "6.9.0",
     "tailwindcss": "4.1.8",
     "tsx": "4.19.4",
     "typescript": "5.8.3"

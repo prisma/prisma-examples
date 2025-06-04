@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "6.8.2",
+    "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.1",
     "next": "15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "prisma": "6.8.2",
+    "prisma": "6.9.0",
     "@faker-js/faker": "9.8.0",
     "@types/node": "22.15.29",
     "@types/react": "19.1.6",
