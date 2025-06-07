@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@prisma/extension-optimize": "1.1.8",
-    "@types/express": "5.0.2",
+    "@types/express": "5.0.3",
     "@types/node": "22.15.29",
     "prisma": "6.9.0",
     "tsx": "4.19.4",
