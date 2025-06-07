@@ -28,7 +28,7 @@
     "ws": "8.18.2"
   },
   "devDependencies": {
-    "@types/body-parser": "1.19.5",
+    "@types/body-parser": "1.19.6",
     "@types/cors": "2.8.18",
     "@types/express": "5.0.2",
     "@types/node": "22.15.29",
