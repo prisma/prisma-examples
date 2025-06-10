@@ -14,7 +14,7 @@
     "@prisma/extension-accelerate": "2.0.1",
     "@solidjs/start": "1.1.4",
     "solid-js": "1.9.7",
-    "vinxi": "0.5.6"
+    "vinxi": "0.5.7"
   },
   "engines": {
     "node": "23.11.1"
