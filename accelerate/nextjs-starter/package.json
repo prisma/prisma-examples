@@ -26,7 +26,7 @@
     "react-hot-toast": "2.5.2",
     "tailwindcss": "3.4.17",
     "typescript": "5.8.2",
-    "zod": "3.25.56"
+    "zod": "3.25.61"
   },
   "devDependencies": {
     "prisma": "6.9.0",
