@@ -20,10 +20,10 @@
     "node": "23.11.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.1.8",
+    "@tailwindcss/postcss": "4.1.10",
     "postcss": "8.5.4",
     "prisma": "6.9.0",
-    "tailwindcss": "4.1.8",
+    "tailwindcss": "4.1.10",
     "tsx": "4.19.4"
   }
 }
