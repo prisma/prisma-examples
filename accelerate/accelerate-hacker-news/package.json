@@ -19,7 +19,7 @@
     "prisma": "6.9.0",
     "@faker-js/faker": "9.8.0",
     "@types/node": "22.15.31",
-    "@types/react": "19.1.7",
+    "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.3",
