@@ -12,7 +12,7 @@
     "@solidjs/router": "0.15.3",
     "@solidjs/start": "1.1.4",
     "solid-js": "1.9.7",
-    "tsx": "4.19.4",
+    "tsx": "4.20.3",
     "vinxi": "0.5.7",
     "zod": "3.25.67"
   },
