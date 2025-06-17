@@ -11,7 +11,7 @@
   "dependencies": {
     "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.1",
-    "@types/node": "22.15.31",
+    "@types/node": "22.15.32",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "autoprefixer": "10.4.21",
