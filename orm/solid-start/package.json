@@ -12,7 +12,7 @@
   "dependencies": {
     "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.1",
-    "@solidjs/start": "1.1.4",
+    "@solidjs/start": "1.1.5",
     "solid-js": "1.9.7",
     "vinxi": "0.5.7"
   },
