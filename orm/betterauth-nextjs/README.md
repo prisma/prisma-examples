@@ -59,7 +59,7 @@ This example uses a local SQLite database by default. If you want to use to [Pri
    ```
    npm install @prisma/extension-accelerate
    ```
-5. Add the Accelerate extension to the `PrismaClient` instance:
+5. Add the Accelerate extension to the `PrismaClient` instance in `src/lib/prisma.ts`:
 
    ```diff
    + import { withAccelerate } from "@prisma/extension-accelerate"
@@ -78,6 +78,7 @@ npx prisma generate
 ```
 
 2. Migrate the DB
+
 ```
 npx prisma migrate dev --name init
 ```
@@ -94,15 +95,29 @@ npx @better-auth/cli@latest secret
 
 3. If using Postgres, change the database provider in `auth.ts`
 
-```
+```diff
 # change
   database: prismaAdapter(prisma, {
-    provider: 'sqlite',
+-    provider: 'sqlite',
   }),
 # to
   database: prismaAdapter(prisma, {
-    provider: 'postgresql',
++    provider: 'postgresql',
   }),
+```
+
+4. (Optional) If running on a port other than 3000, add that url to the `trustedOrigins` field in `auth-client.ts`
+
+```diff
+export const auth = betterAuth({
+  database: prismaAdapter(prisma, {
+    provider: 'sqlite',
+  }),
+  emailAndPassword: {
+    enabled: true,
+  },
++ trustedOrigins: ['http://localhost:3001'],
+})
 ```
 
 ### 4. Start the development server
