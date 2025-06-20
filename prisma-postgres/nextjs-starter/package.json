@@ -11,6 +11,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "6.11.0-dev.8",
     "@prisma/client": "6.11.0-dev.8",
+    "@t3-oss/env-core": "^0.13.8",
     "@types/node": "22.15.32",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
