@@ -1,5 +1,5 @@
 {
-  "name": "accelerate-starter",
+  "name": "prisma-postgres-nextjs-starter",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "6.9.0",
-    "@prisma/extension-accelerate": "2.0.1",
+    "@prisma/adapter-pg": "6.11.0-dev.8",
+    "@prisma/client": "6.11.0-dev.8",
     "@types/node": "22.15.32",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
@@ -29,11 +29,12 @@
     "zod": "3.25.67"
   },
   "devDependencies": {
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2"
+    "prisma": "6.11.0-dev.8",
+    "tsx": "^4.20.3"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
 }
