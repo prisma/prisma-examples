@@ -1,8 +1,6 @@
 import { PrismaPg } from '@prisma/adapter-pg'
-import { PrismaClient } from './.generated/prisma/client';
+import { PrismaClient } from './.generated/prisma/client'
 import { env } from './env/server'
-
-export { QuoteKind } from './.generated/prisma/enums'
 
 export type GetDbParams = {
   connectionString: string
@@ -15,5 +13,5 @@ export function getDb({ connectionString }: GetDbParams) {
   return prisma
 }
 
-const prisma = getDb({ connectionString: env.DATABASE_URL })
+const prisma = getDb({ connectionString: env.DIRECT_URL })
 export default prisma

@@ -1,31 +1,24 @@
-import prisma from "@/lib/db";
-import { CacheStrategy } from "@/lib/types";
+import prisma from '@/lib/db'
 
-export const getQuotes = async (strategy?: CacheStrategy) => {
-  const start = Date.now();
+export const getQuotes = async () => {
+  const start = Date.now()
 
-  const result = await prisma.quotes
-    .findMany({
-      // You can find the `cacheStrategy` options [here](https://www.prisma.io/docs/accelerate/caching#cache-strategies). The `cacheStrategy` can also be undefined, which would mean only connection pooling is being used.
-      cacheStrategy: strategy,
-      orderBy: {
-        id: "desc",
-      },
-      take: 1,
-    })
-    .withAccelerateInfo();
+  const result = await prisma.quotes.findMany({
+    orderBy: {
+      id: 'desc',
+    },
+    take: 1,
+  })
 
   return {
-    data: result?.data?.[0],
-    info: result.info,
-    time: Date.now() - start,
-  };
-};
+    data: result,
+  }
+}
 
 export const addQuote = async (quote: string) => {
   return await prisma.quotes.create({
     data: {
       quote,
     },
-  });
-};
+  })
+}

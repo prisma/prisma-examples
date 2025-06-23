@@ -77,7 +77,6 @@ npm run dev
 
 > If you encounter issues making `POST` requests to the database, particularly failures when adding a new quote—try setting the environment variable to bypass TLS certificate validation. In your development environment, run `export NODE_TLS_REJECT_UNAUTHORIZED='0'`.
 
-
 You can see the performancen and other stats (e.g. cache/hit) for the different Accelerate cache strategies at the bottom of the UI:
 
 ![Demo](./demo.gif)
