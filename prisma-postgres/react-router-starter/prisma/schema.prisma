@@ -3,8 +3,9 @@
 
 // See: https://www.prisma.io/docs/orm/prisma-schema/overview/generators#field-reference-1
 generator client {
-  provider = "prisma-client-js"
-  // output = "../app/.generated/prisma"
+  provider = "prisma-client"
+  output = "../app/.generated/prisma"
+  runtime = "workerd"
   previewFeatures = ["driverAdapters", "queryCompiler"]
 }
 

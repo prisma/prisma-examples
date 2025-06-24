@@ -1,8 +1,15 @@
 {
-	"name": "react-router-starter",
-	"private": true,
-	"type": "module",
+  "name": "prisma-postgres-react-router-starter",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prisma/prisma-examples.git",
+    "directory": "prisma-postgres/react-router-starter"
+  },
 	"scripts": {
+		"prebuild": "prisma generate",
 		"build": "react-router build",
 		"cf-typegen": "wrangler types",
 		"deploy": "pnpm run build && wrangler deploy",
