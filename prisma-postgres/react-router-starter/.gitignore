@@ -9,5 +9,7 @@
 # Cloudflare
 .mf
 .wrangler
-.dev.vars*
+.dev.vars
 
+# Prisma
+app/.generated/

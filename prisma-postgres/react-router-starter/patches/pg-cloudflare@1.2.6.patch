@@ -1,0 +1,15 @@
+diff --git a/package.json b/package.json
+index f0d277340fb57ea7caab3c9dd6408d92ca03361f..59839662842c57d944885de56bb05104c922b51a 100644
+--- a/package.json
++++ b/package.json
+@@ -15,6 +15,10 @@
+         "import": "./esm/index.mjs",
+         "require": "./dist/index.js"
+       },
++      "workerd": {
++        "import": "./esm/index.mjs",
++        "require": "./dist/index.js"
++      },
+       "default": "./dist/empty.js"
+     }
+   },

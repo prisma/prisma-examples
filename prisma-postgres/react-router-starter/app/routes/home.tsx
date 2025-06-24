@@ -1,5 +1,10 @@
+import { Await } from 'react-router'
+import { Suspense } from 'react'
+import { Quotes } from '~/components/quotes'
+import { QuotesLoading } from '~/components/quotes-loading'
+import { DisplayPrismaEnums } from '~/components/display-prisma-enums'
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { getDb } from '~/db'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,10 +13,41 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export function loader({ context }: Route.LoaderArgs) {
-  return { message: context.cloudflare.env.VALUE_FROM_CLOUDFLARE };
+export async function loader({ context }: Route.LoaderArgs) {
+  const prisma = getDb({
+    connectionString: context.cloudflare.env.DIRECT_URL,
+  })
+
+  const quotes = await prisma.quotes.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  })
+
+  return { quotes }
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  return <Welcome message={loaderData.message} />;
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-start p-8 md:p-24 bg-white dark:bg-slate-900">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">
+          Quotes from Prisma Postgres
+        </h1>
+
+        <p className="text-xl text-slate-600 dark:text-slate-300">
+          A collection of inspiring opinions and fascinating facts
+        </p>
+      </div>
+      <div className="text-center mb-12">
+        <DisplayPrismaEnums />
+      </div>
+
+      <Suspense fallback={<QuotesLoading />}>
+        <Await resolve={loaderData.quotes}>
+          {(quotes) => <Quotes quotes={quotes} />}
+        </Await>
+      </Suspense>
+    </main>
+  )
 }
