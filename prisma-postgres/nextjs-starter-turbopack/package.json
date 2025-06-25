@@ -19,14 +19,13 @@
   "author": "Alberto Schiabel <schiabel@prisma.io>",
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "prisma generate",
-    "build": "next build --turbopack",
+    "build": "prisma generate && next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.11.0-dev.8",
-    "@prisma/client": "6.11.0-dev.8",
+    "@prisma/adapter-pg": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+    "@prisma/client": "6.11.0-integration-fix-generator-ts-pre-preview.1",
     "@t3-oss/env-core": "^0.13.8",
     "next": "15.3.3",
     "pg": "^8.16.2",
@@ -45,11 +44,11 @@
     "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.3",
-    "prisma": "6.11.0-dev.8",
+    "prisma": "6.11.0-integration-fix-generator-ts-pre-preview.1",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
-  "__prisma": {
+  "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "license": "MIT",
