@@ -1,0 +1,60 @@
+{
+  "name": "@nextjs-starter-webpack-monorepo/prisma",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prisma/prisma-examples.git",
+    "directory": "prisma-postgres/nextjs-starter-webpack-monorepo/packages/db"
+  },
+  "keywords": [
+    "prisma",
+    "postgres",
+    "nextjs",
+    "esm",
+    "prisma-client",
+    "typescript"
+  ],
+  "author": "Alberto Schiabel <schiabel@prisma.io>",
+  "exports": {
+    ".": {
+      "import": {
+        "@prisma/source": "./src/index.ts",
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js",
+        "default": "./dist/index.js"
+      }
+    },
+    "./enums": {
+      "import": {
+        "types": "./dist/enums.d.ts",
+        "import": "./dist/enums.js",
+        "default": "./dist/enums.js"
+      }
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf ./src/.generated",
+    "generate": "prisma generate",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+    "@prisma/client": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+    "pg": "^8.16.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.32",
+    "@types/pg": "^8.15.4",
+    "prisma": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+    "typescript": "^5.8.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
+}

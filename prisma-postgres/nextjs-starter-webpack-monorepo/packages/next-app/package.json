@@ -1,0 +1,52 @@
+{
+  "name": "@nextjs-starter-webpack-monorepo/next-app",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prisma/prisma-examples.git",
+    "directory": "prisma-postgres/nextjs-starter-webpack-monorepo/packages/next-app"
+  },
+  "keywords": [
+    "prisma",
+    "postgres",
+    "nextjs",
+    "esm",
+    "prisma-client",
+    "typescript"
+  ],
+  "author": "Alberto Schiabel <schiabel@prisma.io>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@nextjs-starter-webpack-monorepo/prisma": "workspace:*",
+    "@t3-oss/env-core": "^0.13.8",
+    "next": "15.3.3",
+    "postcss": "8.5.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hot-toast": "2.5.2",
+    "tailwindcss": "3.4.17",
+    "zod": "3.25.67"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.32",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "autoprefixer": "10.4.21",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.3.3",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
+}
