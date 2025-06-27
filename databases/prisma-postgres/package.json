@@ -9,7 +9,7 @@
     "@prisma/client": "6.9.0",
     "@prisma/extension-accelerate": "2.0.1",
     "@types/node": "22.15.32",
-    "dotenv": "16.5.0"
+    "dotenv": "16.6.0"
   },
   "devDependencies": {
     "prisma": "6.9.0",
