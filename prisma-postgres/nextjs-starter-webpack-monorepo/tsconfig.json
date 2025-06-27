@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "module": "ESNext",
+    "target": "ES2022",
+    "moduleResolution": "Bundler",
+
+    // Use custom import conditions to resolve paths to the source directory.
+    // Useful to prevent "Go to definition" from navigating to the `build` folder of an imported package from this monorepo.
+    // Reference: Chapter 5 of https://colinhacks.com/essays/live-types-typescript-monorepo
+    "customConditions": [
+      "@prisma/source"
+    ],
+    // Enable all strict type checking options.
+    "strict": true,
+    // Enables project references and informs the TypeScript program where to find referenced outputs.
+    "composite": true,
+    // Project references rely on the compiled declarations (.d.ts) of external projects.
+    // If declarations do not exist, TypeScript will generate them on demand.
+    "declaration": true,
+    // Generate sourcemaps for declarations, so that language server integrations in editors like "Go to" resolve correctly.
+    "declarationMap": true,
+    // If the typechecker fails, avoid generating invalid or partial declarations.
+    "noEmitOnError": true,
+    // Avoids eager loading and analyzing all declarations, improving performance.
+    "skipLibCheck": true,
+    // Allow 'import x from y' when a module doesn't have a default export.
+    "allowSyntheticDefaultImports": true,
+    // Emit additional JavaScript to ease support for importing CommonJS modules.
+    "esModuleInterop": true,
+    // Ensure that each file can be safely transpiled without relying on other imports.
+    "isolatedModules": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowJs": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+  },
+}
