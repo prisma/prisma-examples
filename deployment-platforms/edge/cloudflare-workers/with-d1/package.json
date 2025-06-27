@@ -14,7 +14,7 @@
     "prisma": "6.9.0",
     "typescript": "5.8.2",
     "vitest": "3.2.4",
-    "wrangler": "4.21.2"
+    "wrangler": "4.22.0"
   },
   "dependencies": {
     "@prisma/adapter-d1": "6.9.0",
