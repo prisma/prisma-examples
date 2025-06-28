@@ -19,6 +19,6 @@
     "@libsql/client": "0.15.9",
     "@prisma/adapter-libsql": "6.9.0",
     "@prisma/client": "6.9.0",
-    "dotenv": "16.6.0"
+    "dotenv": "16.6.1"
   }
 }
