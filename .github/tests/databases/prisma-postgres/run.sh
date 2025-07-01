@@ -1,65 +1,45 @@
 #!/bin/bash
 set -euo pipefail
 
-# Cleanup function
+cd ../../../..
+cd databases/prisma-postgres
+
+echo "📦 Installing deps..."
+npm install
+
+echo "🚀 Starting Prisma Dev in background..."
+node ../../.github/get-ppg-dev/index.js &
+DEV_PID=$!
+
+# Ensure it's cleaned up on exit
 cleanup() {
-  echo "🧹 Cleaning up Prisma Dev (PID $PRISMA_PID)..."
-  kill "$PRISMA_PID" || true
-  wait "$PRISMA_PID" || true
+  echo "🧹 Cleaning up Prisma Dev (PID $DEV_PID)..."
+  kill "$DEV_PID" || true
+  wait "$DEV_PID" || true
 }
 trap cleanup EXIT
 
-echo "📦 Installing dependencies..."
-cd ../../../..
-cd databases/prisma-postgres
-npm install
-
-# ---------------------------------------------
-# Step 1: Start prisma dev and log output
-# ---------------------------------------------
-echo "🚀 Starting Prisma Dev in the background..."
-TMP_LOG="./prisma-dev.log"
-rm -f "$TMP_LOG"
-touch "$TMP_LOG"
-
-stdbuf -oL -eL npx prisma dev --debug >"$TMP_LOG" 2>&1 &
-
-PRISMA_PID=$!
-echo "⏳ Waiting for Prisma Dev to emit success signal..."
-
-MAX_WAIT=180
-WAITED=0
-until grep -q 'Great Success' "$TMP_LOG"; do
-  sleep 1
-  WAITED=$((WAITED + 1))
-  if [ "$WAITED" -ge "$MAX_WAIT" ]; then
-    echo "❌ Timeout waiting for Prisma Dev to start"
-    cat "$TMP_LOG"
-    exit 1
+# Wait for env file
+ENV_FILE="/tmp/prisma-dev-env.json"
+echo "⏳ Waiting for DATABASE_URL to be written..."
+for i in {1..60}; do
+  if [ -f "$ENV_FILE" ]; then
+    break
   fi
+  sleep 1
 done
 
-# ---------------------------------------------
-# Step 2: Extract DATABASE_URL
-# ---------------------------------------------
-DB_URL=$(grep -o 'postgres://[^"]*' "$TMP_LOG" | tail -1 || true)
-if [ -z "$DB_URL" ]; then
-  echo "❌ Could not extract DATABASE_URL"
-  cat "$TMP_LOG"
+if [ ! -f "$ENV_FILE" ]; then
+  echo "❌ Timed out waiting for DATABASE_URL file"
   exit 1
 fi
 
-echo "✅ Extracted DATABASE_URL: $DB_URL"
-export DATABASE_URL="$DB_URL"
+# Export DATABASE_URL into shell
+export DATABASE_URL=$(jq -r '.DATABASE_URL' "$ENV_FILE")
+echo "✅ DATABASE_URL: $DATABASE_URL"
 
-# ---------------------------------------------
-# Step 3: Migrate
-# ---------------------------------------------
-echo "📐 Running prisma migrate dev"
+echo "📐 Running prisma migrate dev..."
 npx prisma migrate dev --name init --skip-seed
 
-# ---------------------------------------------
-# Step 4: Run test queries
-# ---------------------------------------------
 echo "🧪 Running queries..."
 npm run queries || echo "ℹ️ No queries script defined."
