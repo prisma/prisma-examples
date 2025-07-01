@@ -38,10 +38,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Make run.sh executable
-        run: chmod +x tests/databases/prisma-postgres/run.sh
+        run: chmod +x .github/tests/databases/prisma-postgres/run.sh
 
       - name: Run prisma-postgres test
-        run: tests/databases/prisma-postgres/run.sh
+        run: .github/tests/databases/prisma-postgres/run.sh
   test:
     needs: projects-matrix
     if: github.repository_owner == 'prisma'
