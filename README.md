@@ -79,11 +79,13 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 ### New `prisma-client` generator
 
-The following examples are fullstack examples using the new `prisma-client` generator:
-- [`nextjs-starter-webpack`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/nextjs-starter-webpack)
-- [`nextjs-starter-turbopack`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/nextjs-starter-turbopack)
-- [`neextjs-starter-webpack-monorepo`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/neextjs-starter-webpack-monorepo)
-- [`nextjs-starter-webpack-with-middleware`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/nextjs-starter-webpack-with-middleware)
+The following examples are fullstack examples using the new [`prisma-client`](https://www.prisma.io/docs/orm/prisma-schema/overview/generators#prisma-client-early-access) generator:
+| Demo                                                                                                                                                             | Description                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`nextjs-starter-webpack`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nextjs-starter-webpack)                                 | A Next.js 15 starter that uses Webpack 5 as the bundler and runs on Node.js.                                 |
+| [`nextjs-starter-turbopack`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nextjs-starter-turbopack)                             | A Next.js 15 starter powered by Turbopack (alpha) for bundling, running on Node.js.                          |
+| [`neextjs-starter-webpack-monorepo`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/neextjs-starter-webpack-monorepo)             | A monorepo-based Next.js 15 starter using Webpack 5 and Node.js, managed with `pnpm`.                        |
+| [`nextjs-starter-webpack-with-middleware`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nextjs-starter-webpack-with-middleware) | A Next.js 15 starter with Webpack 5, running on Node.js for main pages and Vercel Edge Light for middleware. |
 
 
 ## Prisma Accelerate
