@@ -2,6 +2,11 @@
 
 set -eu
 
+# Move to the project root you actually want to test
+cd ../../../..   # gets back to repo root from .github/tests/databases/prisma-postgres
+
+cd databases/prisma-postgres
+
 npm install
 
 echo "🚀 Starting Prisma Dev in the background..."
