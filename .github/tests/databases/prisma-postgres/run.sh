@@ -1,45 +1,47 @@
 #!/bin/bash
 set -euo pipefail
 
+# 📁 Go to your test project directory
 cd ../../../..
 cd databases/prisma-postgres
 
-echo "📦 Installing deps..."
+echo "📦 Installing dependencies..."
 npm install
 
-echo "🚀 Starting Prisma Dev in background..."
-node ../../.github/get-ppg-dev/index.js &
-DEV_PID=$!
+# 🚀 Start Prisma Dev via Node script
+NODE_SCRIPT="../../.github/get-ppg-dev/index.js"
+LOG_FILE="./ppg-dev-url.log"
 
-# Ensure it's cleaned up on exit
-cleanup() {
-  echo "🧹 Cleaning up Prisma Dev (PID $DEV_PID)..."
-  kill "$DEV_PID" || true
-  wait "$DEV_PID" || true
-}
-trap cleanup EXIT
+rm -f "$LOG_FILE"
+node "$NODE_SCRIPT" >"$LOG_FILE" &
+NODE_PID=$!
 
-# Wait for env file
-ENV_FILE="/tmp/prisma-dev-env.json"
-echo "⏳ Waiting for DATABASE_URL to be written..."
-for i in {1..60}; do
-  if [ -f "$ENV_FILE" ]; then
+# ⏳ Wait for DATABASE_URL to be printed
+echo "🔎 Waiting for Prisma Dev to emit DATABASE_URL..."
+for i in {1..30}; do
+  if grep -q '^prisma+postgres://' "$LOG_FILE"; then
     break
   fi
   sleep 1
 done
 
-if [ ! -f "$ENV_FILE" ]; then
-  echo "❌ Timed out waiting for DATABASE_URL file"
+if ! grep -q '^prisma+postgres://' "$LOG_FILE"; then
+  echo "❌ Timed out waiting for DATABASE_URL"
+  cat "$LOG_FILE"
+  kill "$NODE_PID" || true
   exit 1
 fi
 
-# Export DATABASE_URL into shell
-export DATABASE_URL=$(jq -r '.DATABASE_URL' "$ENV_FILE")
+export DATABASE_URL=$(grep '^prisma+postgres://' "$LOG_FILE" | tail -1)
 echo "✅ DATABASE_URL: $DATABASE_URL"
 
-echo "📐 Running prisma migrate dev..."
-npx prisma migrate dev --name init --skip-seed
+# 🧱 Run migrations and queries
+npx prisma migrate dev --name init
 
 echo "🧪 Running queries..."
 npm run queries || echo "ℹ️ No queries script defined."
+
+# 🛑 Clean up Prisma Dev
+echo "👋 Shutting down Prisma Dev (PID $NODE_PID)..."
+kill "$NODE_PID"
+wait "$NODE_PID" || true

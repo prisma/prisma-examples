@@ -1,20 +1,26 @@
-// .github/get-ppg-dev/index.js
 import { unstable_startServer } from '@prisma/dev'
-import fs from 'fs'
 
-const ENV_PATH = '/tmp/prisma-dev-env.json'
+async function main() {
+  const server = await unstable_startServer({
+    persistenceMode: 'stateless',
+  })
 
-const server = await unstable_startServer({ persistenceMode: 'stateless' })
-const dbUrl = server.ppg.url
+  // Emit only the Prisma-compatible URL for CI shell script to capture
+  console.log(server.ppg.url)
 
-fs.writeFileSync(ENV_PATH, JSON.stringify({ DATABASE_URL: dbUrl }, null, 2))
+  // Wait for shutdown signal
+  process.once('SIGTERM', async () => {
+    await server.close()
+    process.exit(0)
+  })
 
-console.log(`✅ DATABASE_URL exported to ${ENV_PATH}`)
-process.stdin.resume()
+  process.once('SIGINT', async () => {
+    await server.close()
+    process.exit(0)
+  })
+}
 
-process.on('SIGINT', async () => {
-  await server.close()
-  fs.unlinkSync(ENV_PATH)
-  console.log('🧹 Cleaned up dev server')
-  process.exit(0)
+main().catch((err) => {
+  console.error('❌ Failed to start dev server:', err)
+  process.exit(1)
 })
