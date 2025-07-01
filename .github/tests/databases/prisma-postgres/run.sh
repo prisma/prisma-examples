@@ -6,7 +6,7 @@ set -eux
 cd ../../../..
 cd databases/prisma-postgres
 
-# Step 2: Install deps
+# Step 2: Install dependencies
 echo "📦 Installing dependencies..."
 npm install
 
@@ -16,9 +16,11 @@ TMP_LOG="./prisma-dev.log"
 rm -f "$TMP_LOG"
 touch "$TMP_LOG"
 
+# Force flushing of stdout using stdbuf
 stdbuf -oL -eL npx prisma dev --debug > "$TMP_LOG" 2>&1 &
 PRISMA_PID=$!
 
+# Clean up on exit
 cleanup() {
   echo "🧹 Cleaning up Prisma Dev (PID $PRISMA_PID)..."
   kill "$PRISMA_PID" 2>/dev/null || true
@@ -26,11 +28,22 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Step 4: Wait for Prisma Dev to fully boot and emit logs
-echo "⏳ Giving Prisma Dev time to emit logs..."
-sleep 20  # Give enough time to start and emit all logs
+# Step 4: Wait for "Great Success!" log which confirms everything is ready
+echo "⏳ Waiting for Prisma Dev to emit success signal..."
+MAX_WAIT=180
+WAITED=0
 
-# Step 5: Extract DATABASE_URL from full log output
+until grep -q 'Great Success' "$TMP_LOG"; do
+  sleep 1
+  WAITED=$((WAITED + 1))
+  if [ "$WAITED" -ge "$MAX_WAIT" ]; then
+    echo "❌ Timed out after $MAX_WAIT seconds waiting for Prisma Dev"
+    cat "$TMP_LOG"
+    exit 1
+  fi
+done
+
+# Step 5: Extract DATABASE_URL (prisma+postgres or postgres)
 DB_URL=$(grep -o 'prisma+postgres://[^"]*' "$TMP_LOG" | tail -1 || true)
 if [ -z "$DB_URL" ]; then
   DB_URL=$(grep -o 'postgres://[^"]*' "$TMP_LOG" | tail -1 || true)
@@ -45,7 +58,7 @@ fi
 export DATABASE_URL="$DB_URL"
 echo "✅ DATABASE_URL: $DATABASE_URL"
 
-# Step 6: Run migration + test
+# Step 6: Migrate and run tests
 echo "📐 Running prisma migrate dev..."
 npx prisma migrate dev --name init --skip-seed
 
