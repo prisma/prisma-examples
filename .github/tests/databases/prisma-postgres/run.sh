@@ -1,23 +1,34 @@
 #!/bin/sh
 
-set -eux
+set -eux  # exit on errors, undefined vars, print commands
 
+# ---------------------------------------------
+# Step 1: Navigate to Prisma project
+# ---------------------------------------------
 cd ../../../..
 cd databases/prisma-postgres
 
+# ---------------------------------------------
+# Step 2: Install dependencies
+# ---------------------------------------------
 echo "📦 Installing dependencies..."
 npm install
 
+# ---------------------------------------------
+# Step 3: Start Prisma Dev in background
+# ---------------------------------------------
 echo "🚀 Starting Prisma Dev in the background..."
+
 TMP_LOG="./prisma-dev.log"
 rm -f "$TMP_LOG"
 touch "$TMP_LOG"
 
-# Start prisma dev in background and keep it running
 npx prisma dev --debug > "$TMP_LOG" 2>&1 &
 PRISMA_PID=$!
 
-# Cleanup when script exits
+# ---------------------------------------------
+# Step 4: Clean up Prisma Dev on exit
+# ---------------------------------------------
 cleanup() {
   echo "🧹 Cleaning up Prisma Dev (PID $PRISMA_PID)..."
   kill "$PRISMA_PID" 2>/dev/null || true
@@ -25,7 +36,9 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Wait for DATABASE_URL output
+# ---------------------------------------------
+# Step 5: Wait up to 2 minutes for DATABASE_URL
+# ---------------------------------------------
 echo "⏳ Waiting for Prisma Dev to provide DATABASE_URL..."
 MAX_WAIT=120
 WAITED=0
@@ -39,14 +52,22 @@ until grep -q 'DATABASE_URL="prisma+postgres://' "$TMP_LOG"; do
   fi
 done
 
-echo "✅ DATABASE_URL found"
+# ---------------------------------------------
+# Step 6: Extract DATABASE_URL and export it
+# ---------------------------------------------
 DB_URL=$(grep 'DATABASE_URL="prisma+postgres://' "$TMP_LOG" | tail -1 | sed -E 's/.*DATABASE_URL="([^"]+)".*/\1/')
 export DATABASE_URL="$DB_URL"
-echo "📋 DATABASE_URL: $DATABASE_URL"
 
-# Prisma Dev is still running — now run migrate and queries
+echo "✅ DATABASE_URL found: $DATABASE_URL"
+
+# ---------------------------------------------
+# Step 7: Run migration (schema setup)
+# ---------------------------------------------
 echo "📐 Running prisma migrate dev..."
 npx prisma migrate dev --name init --skip-seed
 
+# ---------------------------------------------
+# Step 8: Run test suite (queries or app logic)
+# ---------------------------------------------
 echo "🧪 Running queries..."
 npm run queries || echo "ℹ️ No queries script defined."
