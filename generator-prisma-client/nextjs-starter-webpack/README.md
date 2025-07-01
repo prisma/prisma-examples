@@ -40,7 +40,7 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/prisma-postgres/nextjs-starter-webpack
+cd prisma-examples/generator-prisma-client/nextjs-starter-webpack
 npm install
 ```
 
