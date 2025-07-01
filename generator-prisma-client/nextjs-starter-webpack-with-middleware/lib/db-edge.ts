@@ -1,5 +1,5 @@
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { PrismaClient } from './.generated/prisma-edge/client'
+import { PrismaClient } from './generated/prisma-edge/client'
 import { env } from './env/server'
 
 export type GetDbParams = {

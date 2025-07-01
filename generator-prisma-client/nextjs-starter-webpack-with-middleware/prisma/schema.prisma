@@ -4,13 +4,13 @@
 // See: https://www.prisma.io/docs/orm/prisma-schema/overview/generators#field-reference-1
 generator client {
   provider = "prisma-client"
-  output = "../lib/.generated/prisma"
+  output = "../lib/generated/prisma"
   previewFeatures = ["driverAdapters", "queryCompiler"]
 }
 
 generator edge {
   provider = "prisma-client"
-  output = "../lib/.generated/prisma-edge"
+  output = "../lib/generated/prisma-edge"
   runtime = "edge-light"
 }
 

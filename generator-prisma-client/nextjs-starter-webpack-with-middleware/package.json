@@ -1,12 +1,12 @@
 {
-  "name": "prisma-postgres-nextjs-starter-webpack-nodejs-with-edge",
+  "name": "generator-prisma-client-nextjs-starter-webpack-nodejs-with-edge",
   "type": "module",
   "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/prisma/prisma-examples.git",
-    "directory": "prisma-postgres/nextjs-starter-webpack-nodejs-with-edge"
+    "directory": "generator-prisma-client/nextjs-starter-webpack-nodejs-with-edge"
   },
   "keywords": [
     "prisma",
