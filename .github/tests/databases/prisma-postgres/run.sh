@@ -1,82 +1,52 @@
 #!/bin/sh
 
-set -eu
+set -eux
 
-# ---------------------------------------------
-# Step 1: Navigate to actual project directory
-# ---------------------------------------------
 cd ../../../..
 cd databases/prisma-postgres
 
-# ---------------------------------------------
-# Step 2: Install dependencies
-# ---------------------------------------------
 echo "📦 Installing dependencies..."
 npm install
 
-# ---------------------------------------------
-# Step 3: Start Prisma Dev in background (non-blocking)
-# ---------------------------------------------
 echo "🚀 Starting Prisma Dev in the background..."
-
 TMP_LOG="./prisma-dev.log"
 rm -f "$TMP_LOG"
 touch "$TMP_LOG"
 
+# Start prisma dev in background and keep it running
 npx prisma dev --debug > "$TMP_LOG" 2>&1 &
 PRISMA_PID=$!
 
-# ---------------------------------------------
-# Step 4: Clean up prisma dev on exit
-# ---------------------------------------------
+# Cleanup when script exits
 cleanup() {
   echo "🧹 Cleaning up Prisma Dev (PID $PRISMA_PID)..."
-  kill $PRISMA_PID 2>/dev/null || true
-  wait $PRISMA_PID 2>/dev/null || true
+  kill "$PRISMA_PID" 2>/dev/null || true
+  wait "$PRISMA_PID" 2>/dev/null || true
 }
 trap cleanup EXIT
 
-# ---------------------------------------------
-# Step 5: Wait for DATABASE_URL (2-minute timeout)
-# ---------------------------------------------
-echo "⏳ Waiting for Prisma Dev to provide DATABASE_URL (timeout: 2 minutes)..."
-
-MAX_WAIT=120  # seconds
+# Wait for DATABASE_URL output
+echo "⏳ Waiting for Prisma Dev to provide DATABASE_URL..."
+MAX_WAIT=120
 WAITED=0
 until grep -q 'DATABASE_URL="prisma+postgres://' "$TMP_LOG"; do
   sleep 1
   WAITED=$((WAITED + 1))
   if [ "$WAITED" -ge "$MAX_WAIT" ]; then
-    echo "❌ Timed out after $MAX_WAIT seconds waiting for Prisma Dev to provide DATABASE_URL"
-    echo "📄 Log output:"
+    echo "❌ Timed out after $MAX_WAIT seconds waiting for DATABASE_URL"
     cat "$TMP_LOG"
     exit 1
   fi
 done
 
-# ---------------------------------------------
-# Step 6: Extract and use DATABASE_URL
-# ---------------------------------------------
+echo "✅ DATABASE_URL found"
 DB_URL=$(grep 'DATABASE_URL="prisma+postgres://' "$TMP_LOG" | tail -1 | sed -E 's/.*DATABASE_URL="([^"]+)".*/\1/')
-
-if [[ "${OSTYPE:-}" == "darwin"* ]]; then
-  echo "$DB_URL" | pbcopy
-  echo "✅ Copied DATABASE_URL to clipboard."
-else
-  echo "📋 DATABASE_URL:"
-  echo "$DB_URL"
-fi
-
 export DATABASE_URL="$DB_URL"
+echo "📋 DATABASE_URL: $DATABASE_URL"
 
-# ---------------------------------------------
-# Step 7: Apply schema using migrate (optional)
-# ---------------------------------------------
-echo "📐 Running prisma migrate dev"
+# Prisma Dev is still running — now run migrate and queries
+echo "📐 Running prisma migrate dev..."
 npx prisma migrate dev --name init --skip-seed
 
-# ---------------------------------------------
-# Step 8: Run queries/test suite
-# ---------------------------------------------
 echo "🧪 Running queries..."
 npm run queries || echo "ℹ️ No queries script defined."
