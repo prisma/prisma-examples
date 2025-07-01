@@ -3258,13 +3258,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-<<<<<<< HEAD
-  /prisma@6.11.0-dev.8(typescript@5.8.3):
-    resolution: {integrity: sha512-Ye7+y2lioF5ectW5AT1O4Jpmd7r/4BUuDIIaFvPWqvm98fP0PiQ0g6XjEdC8e3WZYxhV4y42y2vILhpbT0+ZOA==}
-=======
   /prisma@6.11.0-integration-fix-generator-ts-pre-preview.1(typescript@5.8.3):
     resolution: {integrity: sha512-/b/UsWg2kJ9kJpeNt+e4qDrFt7tKHeQdC55FSI0Iu2cB/Zy62dBg7ogAAYVvXRJwj19pdHlPJJf/TMFbvRLYwA==}
->>>>>>> c5ee47483745c80a2bdfc28e8200374f3da1cf1c
     engines: {node: '>=18.18'}
     hasBin: true
     requiresBuild: true

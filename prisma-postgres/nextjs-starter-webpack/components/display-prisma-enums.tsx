@@ -1,6 +1,6 @@
 'use client'
 
-import { QuoteKind } from '@/lib/.generated/prisma/enums'
+import { QuoteKind } from '@/lib/generated/prisma/enums'
 import { useState, useEffect } from 'react'
 
 export function DisplayPrismaEnums() {
