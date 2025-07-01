@@ -41,7 +41,7 @@ Clone the repository, navigate into it and install dependencies:
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
 cd prisma-examples/generator-prisma-client/nextjs-starter-turbopack
-npm install
+pnpm install
 ```
 
 ### 2. Configure environment variables
@@ -75,13 +75,13 @@ Note that `__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__` is a placeholder v
 The [Prisma schema file](./prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
 
 ```
-npx prisma migrate dev --name init
+pnpm prisma migrate dev --name init
 ```
 
 You now have an empty `Quotes` table in your database. Next, run the [seed script](./prisma/seed.ts) to create some sample records in the table:
 
 ```
-npx prisma db seed
+pnpm prisma db seed
 ```
 
 ### 4. Generate Prisma Client
@@ -89,7 +89,7 @@ npx prisma db seed
 Run:
 
 ```
-npx prisma generate
+pnpm prisma generate
 ```
 
 ### 5. Start the app
@@ -97,7 +97,7 @@ npx prisma generate
 You can run the app with the following command:
 
 ```
-npm run dev
+pnpm dev
 ```
 
 ## Resources
