@@ -26,7 +26,7 @@ To successfully run the project, you will need the following:
   ```prisma
   generator client {
     provider = "prisma-client"
-    output = "../lib/.generated/prisma"
+    output = "../lib/generated/prisma"
     previewFeatures = ["driverAdapters", "queryCompiler"]
     runtime = "nodejs"
   }
