@@ -54,7 +54,7 @@ To successfully run the project, you will need the following:
   ```prisma
   generator client {
     provider = "prisma-client"
-    output = "../lib/.generated/prisma"
+    output = "../lib/generated/prisma"
     previewFeatures = ["driverAdapters", "queryCompiler"]
     runtime = "nodejs"
   }
@@ -68,7 +68,7 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/prisma-postgres/nextjs-starter-webpack-monorepo
+cd prisma-examples/generator-prisma-client/nextjs-starter-webpack-monorepo
 pnpm install
 ```
 
@@ -86,15 +86,15 @@ Now, open the `.envrc` file and set the `DATABASE_URL` environment variables wit
 # .envrc
 
 # Prisma Postgres connection string (used for migrations)
-export MIGRATE_DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
+export DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
 
 # Postgres connection string (used for queries by Prisma Client)
-export DIRECT_DATABASE_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
+export DATABASE_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
 
-Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres + Accelerate connection string. Notice that the Accelerate connection string has the following structure: `postgres://<username>:<password>@<host>:<port>/<database>?sslmode=require`.
+Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres + Accelerate connection string. Notice that the Accelerate connection string has the following structure: `prisma+postgres://accelerate.prisma-data.net/?api_key=<api_key_value>`.
 
 Note that `__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres direct TCP connection string. The direct connection string has the following structure: `postgres://<username>:<password>@<host>:<port>/<database>`.
 
