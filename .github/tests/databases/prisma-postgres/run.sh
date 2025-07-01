@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eux  # Exit on errors, undefined vars, and print each command
+set -eux  # Exit on error, undefined vars, and show commands
 
 # ---------------------------------------------
 # Step 1: Navigate to Prisma project
@@ -47,7 +47,6 @@ until grep -q 'DATABASE_URL="prisma+postgres://' "$TMP_LOG"; do
   WAITED=$((WAITED + 1))
   if [ "$WAITED" -ge "$MAX_WAIT" ]; then
     echo "❌ Timed out after $MAX_WAIT seconds waiting for DATABASE_URL"
-    echo "📄 Logs so far:"
     cat "$TMP_LOG"
     exit 1
   fi
@@ -65,16 +64,12 @@ echo "✅ DATABASE_URL found: $DATABASE_URL"
 # Step 7: Run migration (schema setup)
 # ---------------------------------------------
 echo "📐 Running prisma migrate dev..."
-if ! npx prisma migrate dev --name init --skip-seed; then
-  echo "⚠️ Migrate may have already been applied or failed — continuing"
-fi
+npx prisma migrate dev --name init --skip-seed
 
 # ---------------------------------------------
 # Step 8: Run test suite (queries or app logic)
 # ---------------------------------------------
 echo "🧪 Running queries..."
-if npm run queries; then
-  echo "✅ Queries ran successfully"
-else
-  echo "ℹ️ No queries script defined or failed — skipping"
-fi
+npm run queries || echo "ℹ️ No queries script defined or failed — continuing"
+
+# prisma dev will be cleaned up by the trap on exit
