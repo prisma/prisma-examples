@@ -1,24 +1,24 @@
 #!/bin/bash
 set -euo pipefail
 
-# Move to test directory
+# Move to Prisma project
 cd ../../../..
 cd databases/prisma-postgres
 
 echo "📦 Installing test deps..."
 npm install
 
-# Start PPG dev server from its own directory
-echo "🚀 Starting Prisma Dev in background..."
-DEV_SCRIPT_DIR="../../.github/get-ppg-dev"
-cd "$DEV_SCRIPT_DIR"
+# Go to Node script dir and install its deps
+NODE_SCRIPT_DIR="../../.github/get-ppg-dev"
+pushd "$NODE_SCRIPT_DIR" > /dev/null
 npm install
 
+# Start Prisma Dev server
 LOG_FILE="./ppg-dev-url.log"
 rm -f "$LOG_FILE"
 touch "$LOG_FILE"
 
-# Start node script from THIS directory, where @prisma/dev is installed
+echo "🚀 Starting Prisma Dev in background..."
 node index.js >"$LOG_FILE" &
 NODE_PID=$!
 
@@ -41,16 +41,17 @@ DB_URL=$(grep '^prisma+postgres://' "$LOG_FILE" | tail -1)
 export DATABASE_URL="$DB_URL"
 echo "✅ DATABASE_URL: $DATABASE_URL"
 
-# Move back to project directory
-cd ../../../databases/prisma-postgres
+popd > /dev/null  # Go back to databases/prisma-postgres
 
+# Run migration
 echo "📐 Running prisma migrate dev..."
 npx prisma migrate dev --name init --skip-seed
 
+# Run queries (if any)
 echo "🧪 Running queries..."
 npm run queries || echo "ℹ️ No queries script defined."
 
-# Clean up
+# Cleanup
 echo "🛑 Shutting down Prisma Dev (PID $NODE_PID)..."
 kill "$NODE_PID"
 wait "$NODE_PID" || true
