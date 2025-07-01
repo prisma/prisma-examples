@@ -36,71 +36,79 @@ Are you missing an example? Please feel free to [open an issue](https://github.c
 
 <!-- Please keep the absolute URLs so it's easier to copy&paste to prisma/prisma/README.md  -->
 
-## Prisma Accelerate
-
-The [`accelerate`](./accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
-
-| Demo                                            | Description                                                                |
-| ----------------------------------------------- | -------------------------------------------------------------------------- |
-| [`starter`](./accelerate/starter) | A simple starter project using Prisma Accelerate's caching and connection pooling |
-| [`nextjs-starter`](./accelerate/nextjs-starter) | A Next.js project using Prisma Accelerate's caching and connection pooling |
-| [`svelte-starter`](./accelerate/svelte-starter/) | A SvelteKit project using Prisma Accelerate's caching and connection pooling |
-| [`solidstart-starter`](./accelerate/solidstart-starter/) | A Solidstart project using Prisma Accelerate's caching and connection pooling |
-| [`remix-starter`](./accelerate/remix-starter/) | A Remix project using Prisma Accelerate's caching and connection pooling |
-| [`nuxt-starter`](./accelerate/nuxtjs-starter/) | A Nuxt.js project using Prisma Accelerate's caching and connection pooling |
-| [`astro-starter`](./accelerate/astro-starter/) | An Astro project using Prisma Accelerate's caching and connection pooling |
-
-## Prisma Optimize
-
-The [`optimize`](./optimize) folder contains examples of projects using [Prisma Optimize](https://www.prisma.io/data-platform/optimize) to identify and improve the performance of slow queries.
-
-| Demo                                                                     | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| [`starter`](./optimize/starter)                                             | A Prisma Optimize starter app                                               |
-| [`optimize-excessive-rows`](./optimize/optimize-excessive-rows)                         | An example app demonstrating the "Excessive number of rows returned" recommendation provided by Optimize. |
-| [`optimize-full-table-scan`](./optimize/optimize-full-table-scan)                 | An example app demonstrating the "Full table scans caused by `LIKE` operations" recommendation provided by Optimize.                                |
-| [`optimize-unindexed-column`](./optimize/optimize-unindexed-column)                 | An example app demonstrating the "Query filtering on an unindexed column" recommendation provided by Optimize.                     |
-
 ## Prisma ORM
 
 ### Fullstack
 
-| Demo                                                                   | Description                                                              |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/orm/nextjs-api-routes)           | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction))                                                                     |
-| [`nextjs-graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/nextjs-graphql)                           | [Next.js](https://nextjs.org/) app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [GraphQL Nexus](https://github.com/graphql-nexus/nexus))            |                                                                                                                                       |
-| [`nextjs-trpc`](https://github.com/prisma/prisma-examples/tree/latest/orm/nextjs-trpc)                                 | [Next.js](https://nextjs.org/) app with [tRPC ](https://trpc.io/)                                                                                                                                    |
-| [`nuxt`](https://github.com/prisma/prisma-examples/tree/latest/orm/nuxt)                                 | [Nuxt.js](https://nuxt.com/) app with a REST API                                                                                                                                                     |
-| [`sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/orm/sveltekit)                                     | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions           |     | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions |
-| [`remix`](https://github.com/prisma/prisma-examples/tree/latest/orm/remix)                                             | [Remix](https://remix.run/) app                                                                                                                                                                      |
-| [`nuxt-prisma-module`](https://github.com/prisma/prisma-examples/tree/latest/orm/nuxt-prisma-module)                                             | A nuxt example app using the [Prisma Nuxt module](https://github.com/prisma/nuxt-prisma)                                                                                                                                                                     |
+| Demo                                                                                                 | Description                                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`nextjs-api-routes`](https://github.com/prisma/prisma-examples/tree/latest/orm/nextjs-api-routes)   | [Next.js](https://nextjs.org/) app with a REST API (using [Next.js API routes](https://nextjs.org/docs/api-routes/introduction))                                                           |
+| [`nextjs-graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/nextjs-graphql)         | [Next.js](https://nextjs.org/) app with a GraphQL API (using [Apollo Server](https://github.com/apollographql/apollo-server) and [GraphQL Nexus](https://github.com/graphql-nexus/nexus))  |
+| [`nextjs-trpc`](https://github.com/prisma/prisma-examples/tree/latest/orm/nextjs-trpc)               | [Next.js](https://nextjs.org/) app with [tRPC ](https://trpc.io/)                                                                                                                          |
+| [`nuxt`](https://github.com/prisma/prisma-examples/tree/latest/orm/nuxt)                             | [Nuxt.js](https://nuxt.com/) app with a REST API                                                                                                                                           |
+| [`sveltekit`](https://github.com/prisma/prisma-examples/tree/latest/orm/sveltekit)                   | [SvelteKit](https://kit.svelte.dev/) app using SvelteKit's [actions](https://kit.svelte.dev/docs/form-actions) and [load](https://kit.svelte.dev/docs/form-actions#loading-data) functions |
+| [`remix`](https://github.com/prisma/prisma-examples/tree/latest/orm/remix)                           | [Remix](https://remix.run/) app                                                                                                                                                            |
+| [`nuxt-prisma-module`](https://github.com/prisma/prisma-examples/tree/latest/orm/nuxt-prisma-module) | A nuxt example app using the [Prisma Nuxt module](https://github.com/prisma/nuxt-prisma)                                                                                                   |
 
 ### Backend only
 
-| Demo                                                                                                                      | Description                                                                                                                                                                                       |
-| :------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Demo                                                                                                               | Description                                                                                                                                                                                       |
+| :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [`graphql-auth`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-auth)                           | GraphQL server with email-password authentication & permissions                                                                                                                                   |
 | [`graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-sdl-first)                 | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server)                                                                                                                 |
-| [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-subscriptions)          | GraphQL server with realtime subscriptions based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) and [Nexus Schema](https://github.com/graphql-nexus/schema)              |
+| [`graphql-subscriptions`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-subscriptions)         | GraphQL server with realtime subscriptions based on [`apollo-server`](https://www.apollographql.com/docs/apollo-server/) and [Nexus Schema](https://github.com/graphql-nexus/schema)              |
 | [`graphql-typegraphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-typegraphql)             | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql)                                       |
 | [`graphql-typegraphql-crud`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-typegraphql-crud)   | CRUD GraphQL API based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [TypeGraphQL](https://github.com/MichalLytek/type-graphql)                                     |
 | [`fastify-graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/fastify-graphql)                     | GraphQL server based on [Fastify](https://fastify.io/), [Mercurius](https://mercurius.dev/), and the SDL-first approach of [`graphql-tools`](https://www.graphql-tools.com/docs/generate-schema/) |
 | [`fastify-graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/orm/fastify-graphql-sdl-first) | GraphQL server based on [Fastify](https://fastify.io/), [Mercurius](https://mercurius.dev/), and the SDL-first approach of [`graphql-tools`](https://www.graphql-tools.com/docs/generate-schema/) |
 | [`hapi-graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/hapi-graphql)                           | GraphQL server based on [Hapi](https://hapi.dev/) and [Nexus Schema](https://github.com/graphql-nexus/schema)                                                                                     |
 | [`hapi-graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/orm/hapi-graphql-sdl-first)       | GraphQL server based on [Hapi](https://hapi.dev/) and the SDL-first approach of [Apollo Server Integration for Hapi](https://www.npmjs.com/package/@as-integrations/hapi)                         |
-| [`nest-graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/nest-graphql)                       | GraphQL server based on [NestJS](https://nestjs.com/) (code-first)                                                                                                                                |
-| [`nest-graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/orm/nest-graphql-sdl-first)   | GraphQL server based on [NestJS](https://nestjs.com/) and the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/)                                          |
+| [`nest-graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/nest-graphql)                           | GraphQL server based on [NestJS](https://nestjs.com/) (code-first)                                                                                                                                |
+| [`nest-graphql-sdl-first`](https://github.com/prisma/prisma-examples/tree/latest/orm/nest-graphql-sdl-first)       | GraphQL server based on [NestJS](https://nestjs.com/) and the SDL-first approach of [`graphql-tools`](https://www.apollographql.com/docs/graphql-tools/)                                          |
 | [`graphql`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql)                                     | GraphQL server based on [GraphQL Yoga](https://the-guild.dev/graphql/yoga-server) and [Pothos](https://pothos-graphql.dev/)                                                                       |
 | [`graphql-nexus`](https://github.com/prisma/prisma-examples/tree/latest/orm/graphql-nexus)                         | GraphQL server based on [`@apollo/server`](https://www.apollographql.com/docs/apollo-server) and [Nexus Schema](https://github.com/graphql-nexus/schema)                                          |
 | [`grpc`](https://github.com/prisma/prisma-examples/tree/latest/orm/grpc)                                           | gRPC API including runnable client scripts for testing                                                                                                                                            |
 | [`postgis-express`](https://github.com/prisma/prisma-examples/tree/latest/orm/postgis-express)                     | Demo of spatial queries using [Postgis](http://postgis.net/) and [Express](https://expressjs.com/)                                                                                                |
-| [`express`](https://github.com/prisma/prisma-examples/tree/latest/orm/express)                           | REST API with [Express](https://expressjs.com/)                                                                                                                                                   |
-| [`fastify`](https://github.com/prisma/prisma-examples/tree/latest/orm/fastify)                           | REST API with [Fastify](https://www.fastify.io/)                                                                                                                                                  |
-| [`koa`](https://github.com/prisma/prisma-examples/tree/latest/orm/koa)                                   | REST API with [Koa](https://koajs.com/)                                                                                                                                                           |
-| [`hapi`](https://github.com/prisma/prisma-examples/tree/latest/orm/hapi)                                 | REST API with [hapi](https://hapi.dev/)                                                                                                                                                           |
-| [`nest`](https://github.com/prisma/prisma-examples/tree/latest/orm/nest)     | REST API with [NestJS](https://docs.nestjs.com/)                                                                                                                                                  |
+| [`express`](https://github.com/prisma/prisma-examples/tree/latest/orm/express)                                     | REST API with [Express](https://expressjs.com/)                                                                                                                                                   |
+| [`fastify`](https://github.com/prisma/prisma-examples/tree/latest/orm/fastify)                                     | REST API with [Fastify](https://www.fastify.io/)                                                                                                                                                  |
+| [`koa`](https://github.com/prisma/prisma-examples/tree/latest/orm/koa)                                             | REST API with [Koa](https://koajs.com/)                                                                                                                                                           |
+| [`hapi`](https://github.com/prisma/prisma-examples/tree/latest/orm/hapi)                                           | REST API with [hapi](https://hapi.dev/)                                                                                                                                                           |
+| [`nest`](https://github.com/prisma/prisma-examples/tree/latest/orm/nest)                                           | REST API with [NestJS](https://docs.nestjs.com/)                                                                                                                                                  |
 | [`script`](https://github.com/prisma/prisma-examples/tree/latest/orm/script)                                       | Usage of Prisma Client JS in a TypeScript script                                                                                                                                                  |
-| [`testing-express`](https://github.com/prisma/prisma-examples/tree/latest/orm/testing-express)                     | Demo of integration tests with [Jest](https://jestjs.io/), [Supertest](https://github.com/visionmedia/supertest) and [Express](https://expressjs.com/)                                            |                                              |
+| [`testing-express`](https://github.com/prisma/prisma-examples/tree/latest/orm/testing-express)                     | Demo of integration tests with [Jest](https://jestjs.io/), [Supertest](https://github.com/visionmedia/supertest) and [Express](https://expressjs.com/)                                            |
+
+### New `prisma-client` generator
+
+The following examples are fullstack examples using the new `prisma-client` generator:
+- [`nextjs-starter-webpack`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/nextjs-starter-webpack)
+- [`nextjs-starter-turbopack`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/nextjs-starter-turbopack)
+- [`neextjs-starter-webpack-monorepo`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/neextjs-starter-webpack-monorepo)
+- [`nextjs-starter-webpack-with-middleware`](https://github.com/prisma/prisma-examples/tree/latest/prisma-client-generator/nextjs-starter-webpack-with-middleware)
+
+
+## Prisma Accelerate
+
+The [`accelerate`](./accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
+
+| Demo                                                     | Description                                                                       |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [`starter`](./accelerate/starter)                        | A simple starter project using Prisma Accelerate's caching and connection pooling |
+| [`nextjs-starter`](./accelerate/nextjs-starter)          | A Next.js project using Prisma Accelerate's caching and connection pooling        |
+| [`svelte-starter`](./accelerate/svelte-starter/)         | A SvelteKit project using Prisma Accelerate's caching and connection pooling      |
+| [`solidstart-starter`](./accelerate/solidstart-starter/) | A Solidstart project using Prisma Accelerate's caching and connection pooling     |
+| [`remix-starter`](./accelerate/remix-starter/)           | A Remix project using Prisma Accelerate's caching and connection pooling          |
+| [`nuxt-starter`](./accelerate/nuxtjs-starter/)           | A Nuxt.js project using Prisma Accelerate's caching and connection pooling        |
+| [`astro-starter`](./accelerate/astro-starter/)           | An Astro project using Prisma Accelerate's caching and connection pooling         |
+
+## Prisma Optimize
+
+The [`optimize`](./optimize) folder contains examples of projects using [Prisma Optimize](https://www.prisma.io/data-platform/optimize) to identify and improve the performance of slow queries.
+| Demo                                                                | Description                                                                                                          |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [`starter`](./optimize/starter)                                     | A Prisma Optimize starter app                                                                                        |
+| [`optimize-excessive-rows`](./optimize/optimize-excessive-rows)     | An example app demonstrating the "Excessive number of rows returned" recommendation provided by Optimize.            |
+| [`optimize-full-table-scan`](./optimize/optimize-full-table-scan)   | An example app demonstrating the "Full table scans caused by `LIKE` operations" recommendation provided by Optimize. |
+| [`optimize-unindexed-column`](./optimize/optimize-unindexed-column) | An example app demonstrating the "Query filtering on an unindexed column" recommendation provided by Optimize.       |
 
 ## Deployment platforms
 
