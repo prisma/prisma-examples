@@ -4,7 +4,7 @@ set -eu
 
 # Move to repo root and setup test database
 cd ../../../..
-cd databases/prisma-postgres
+cd orm/express
 
 echo "📦 Installing test deps..."
 npm install
