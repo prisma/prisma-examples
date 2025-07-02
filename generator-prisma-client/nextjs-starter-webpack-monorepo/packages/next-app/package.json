@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@nextjs-starter-webpack-monorepo/prisma": "workspace:*",
-    "@t3-oss/env-core": "^0.13.8",
+    "@t3-oss/env-core": "0.13.8",
     "next": "15.3.3",
     "postcss": "8.5.6",
     "react": "19.1.0",
@@ -41,8 +41,8 @@
     "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.3",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "tsx": "4.20.3",
+    "typescript": "5.8.3"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

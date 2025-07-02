@@ -12,10 +12,10 @@ dependencies:
     specifier: 6.11.0-integration-fix-generator-ts-pre-preview.1
     version: 6.11.0-integration-fix-generator-ts-pre-preview.1(prisma@6.11.0-integration-fix-generator-ts-pre-preview.1)(typescript@5.8.3)
   '@prisma/extension-accelerate':
-    specifier: ^2.0.1
+    specifier: 2.0.1
     version: 2.0.1(@prisma/client@6.11.0-integration-fix-generator-ts-pre-preview.1)
   '@t3-oss/env-core':
-    specifier: ^0.13.8
+    specifier: 0.13.8
     version: 0.13.8(typescript@5.8.3)(zod@3.25.67)
   next:
     specifier: 15.3.3
@@ -62,10 +62,10 @@ devDependencies:
     specifier: 6.11.0-integration-fix-generator-ts-pre-preview.1
     version: 6.11.0-integration-fix-generator-ts-pre-preview.1(typescript@5.8.3)
   tsx:
-    specifier: ^4.20.3
+    specifier: 4.20.3
     version: 4.20.3
   typescript:
-    specifier: ^5.8.3
+    specifier: 5.8.3
     version: 5.8.3
 
 packages:
@@ -1507,6 +1507,7 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    requiresBuild: true
 
   /color-string@1.9.1:
     resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}

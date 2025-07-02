@@ -12,7 +12,7 @@ dependencies:
     specifier: 6.11.0-integration-fix-generator-ts-pre-preview.1
     version: 6.11.0-integration-fix-generator-ts-pre-preview.1(prisma@6.11.0-integration-fix-generator-ts-pre-preview.1)(typescript@5.8.3)
   '@t3-oss/env-core':
-    specifier: ^0.13.8
+    specifier: 0.13.8
     version: 0.13.8(typescript@5.8.3)(zod@3.25.67)
   next:
     specifier: 15.3.3
@@ -59,10 +59,10 @@ devDependencies:
     specifier: 6.11.0-integration-fix-generator-ts-pre-preview.1
     version: 6.11.0-integration-fix-generator-ts-pre-preview.1(typescript@5.8.3)
   tsx:
-    specifier: ^4.20.3
+    specifier: 4.20.3
     version: 4.20.3
   typescript:
-    specifier: ^5.8.3
+    specifier: 5.8.3
     version: 5.8.3
 
 packages:
