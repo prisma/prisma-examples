@@ -63,7 +63,8 @@ pid=$!
 sleep 20
 
 # Run Postman tests (relative to where the script was originally called)
-npx newman run .github/tests/postman_collections/rest.json --bail
+npx newman run "$REPO_ROOT/.github/tests/postman_collections/rest.json" --bail
+
 
 kill "$pid"
 echo "🛑 App stopped (PID $pid)"
