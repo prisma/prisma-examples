@@ -2,17 +2,63 @@
 
 set -eu
 
-export DATABASE_URL="${PPG_TEST_DATABASE_URL}"
+# Move to repo root and setup test database
+cd ../../../..
+cd databases/prisma-postgres
 
+echo "📦 Installing test deps..."
 npm install
+
+# Go to Node script dir and install its deps
+NODE_SCRIPT_DIR="../../.github/get-ppg-dev"
+pushd "$NODE_SCRIPT_DIR" > /dev/null
+npm install
+
+# Start Prisma Dev server
+LOG_FILE="./ppg-dev-url.log"
+rm -f "$LOG_FILE"
+touch "$LOG_FILE"
+
+echo "🚀 Starting Prisma Dev in background..."
+node index.js >"$LOG_FILE" &
+NODE_PID=$!
+
+# Wait for DATABASE_URL
+echo "🔎 Waiting for Prisma Dev to emit DATABASE_URL..."
+MAX_WAIT=60
+WAITED=0
+until grep -q '^prisma+postgres://' "$LOG_FILE"; do
+  sleep 1
+  WAITED=$((WAITED + 1))
+  if [ "$WAITED" -ge "$MAX_WAIT" ]; then
+    echo "❌ Timeout waiting for DATABASE_URL"
+    cat "$LOG_FILE"
+    kill "$NODE_PID" || true
+    exit 1
+  fi
+done
+
+DB_URL=$(grep '^prisma+postgres://' "$LOG_FILE" | tail -1)
+export DATABASE_URL="$DB_URL"
+echo "✅ DATABASE_URL: $DATABASE_URL"
+
+popd > /dev/null  # Back to databases/prisma-postgres
+
+# Run migrations + seed
 npx prisma migrate reset --force --skip-seed
 npx prisma migrate dev --name init
 npx prisma db seed
+
+# Start the app
 npm run dev &
 pid=$!
 
 sleep 20
 
-npx newman run ../../.github/tests/postman_collections/rest.json --bail
+# Run Postman tests (relative to where the script was originally called)
+npx newman run .github/tests/postman_collections/rest.json --bail
 
 kill "$pid"
+echo "🛑 App stopped (PID $pid)"
+kill "$NODE_PID"
+wait "$NODE_PID" || true
