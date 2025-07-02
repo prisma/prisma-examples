@@ -3,8 +3,7 @@
 set -eu
 
 # Move to repo root and setup test database
-cd ../../../..
-cd ./orm/express
+cd orm/express
 
 echo "📦 Installing test deps..."
 npm install
