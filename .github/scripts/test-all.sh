@@ -31,7 +31,7 @@ run_file="$dir/.github/tests/$(dirname "$item")/run.sh"
 
 if [ -f "$run_file" ]; then
   set +e
-  sh "$run_file"
+  bash "$run_file"
   code=$?
   set -e
 
