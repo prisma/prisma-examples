@@ -21,11 +21,9 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context: Context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
+        return context.prisma.post.findMany({
+          where: { authorId: parent.id || undefined },
+        })
       },
     })
   },
@@ -40,12 +38,17 @@ const Post = objectType({
     t.nonNull.boolean('published')
     t.field('author', {
       type: 'User',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .author()
+      resolve: async (parent, _, context: Context) => {
+        const post = await context.prisma.post.findUnique({
+          where: {
+            id: parent.id || undefined,
+          },
+          include: {
+            author: true,
+          },
+        })
+
+        return post.author
       },
     })
   },

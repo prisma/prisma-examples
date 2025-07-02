@@ -4,22 +4,22 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Mutation {
-  createDraft(authorEmail: String!, data: PostCreateInput!): Post!
-  deletePost(id: Int!): Post!
-  incrementPostViewCount(id: Int!): Post!
-  signupUser(data: UserCreateInput!): User!
-  togglePublishPost(id: Int!): Post!
+  createDraft(authorEmail: String!, data: PostCreateInput!): Post
+  deletePost(id: Int!): Post
+  incrementPostViewCount(id: Int!): Post
+  signupUser(data: UserCreateInput!): User
+  togglePublishPost(id: Int!): Post
 }
 
 type Post {
-  author: User!
+  author: User
   content: String
-  createdAt: DateTime!
-  id: Int!
-  published: Boolean!
-  title: String!
-  updatedAt: DateTime!
-  viewCount: Int!
+  createdAt: DateTime
+  id: Int
+  published: Boolean
+  title: String
+  updatedAt: DateTime
+  viewCount: Int
 }
 
 input PostCreateInput {
@@ -32,9 +32,9 @@ input PostOrderByUpdatedAtInput {
 }
 
 type Query {
-  allUsers: [User!]!
+  allUsers: [User!]
   draftsByUser(userUniqueInput: UserUniqueInput!): [Post!]
-  feed(orderBy: PostOrderByUpdatedAtInput, searchString: String, skip: Int, take: Int): [Post!]!
+  feed(orderBy: PostOrderByUpdatedAtInput, searchString: String, skip: Int, take: Int): [Post!]
   postById(id: Int!): Post
 }
 
@@ -44,10 +44,10 @@ enum SortOrder {
 }
 
 type User {
-  email: String!
-  id: Int!
+  email: String
+  id: Int
   name: String
-  posts: [Post!]!
+  posts: [Post!]
 }
 
 input UserCreateInput {

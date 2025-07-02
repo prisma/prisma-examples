@@ -78,18 +78,15 @@ const Query = objectType({
         ),
       },
       resolve: (_parent, args, context: Context) => {
-        return context.prisma.user
-          .findUnique({
-            where: {
+        return context.prisma.post.findMany({
+          where: {
+            published: false,
+            author: {
               id: args.userUniqueInput.id || undefined,
               email: args.userUniqueInput.email || undefined,
             },
-          })
-          .posts({
-            where: {
-              published: false,
-            },
-          })
+          },
+        })
       },
     })
   },
@@ -108,7 +105,7 @@ const Mutation = objectType({
         ),
       },
       resolve: (_, args, context: Context) => {
-        const postData = args.data.posts?.map((post) => {
+        const postData = args.data.posts?.map((post: any) => {
           return { title: post.title, content: post.content || undefined }
         })
         return context.prisma.user.create({
@@ -211,11 +208,9 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context: Context) => {
-        return context.prisma.user
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .posts()
+        return context.prisma.post.findMany({
+          where: { authorId: parent.id || undefined },
+        })
       },
     })
   },
@@ -233,12 +228,14 @@ const Post = objectType({
     t.nonNull.int('viewCount')
     t.field('author', {
       type: 'User',
-      resolve: (parent, _, context: Context) => {
-        return context.prisma.post
-          .findUnique({
-            where: { id: parent.id || undefined },
-          })
-          .author()
+      resolve: async (parent, _, context: Context) => {
+        const post = await context.prisma.post.findFirst({
+          where: { id: parent.id || undefined },
+          include: {
+            author: true,
+          },
+        })
+        return post?.author!
       },
     })
   },

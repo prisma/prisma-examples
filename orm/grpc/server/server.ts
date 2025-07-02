@@ -2,10 +2,11 @@ import chalk from 'chalk'
 const PROTO_PATH = __dirname + '/../service.proto'
 
 import { PrismaClient } from '@prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 import * as protoLoader from '@grpc/proto-loader'
 import * as grpc from 'grpc'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient().$extends(withAccelerate())
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,

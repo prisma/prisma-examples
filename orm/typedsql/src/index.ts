@@ -9,15 +9,16 @@ async function main() {
   const stats = await prisma.$queryRawTyped(conversionByVariant())
   console.log(stats)
 
-  const rows = await prisma.$queryRawTyped(filterTrackingEvents(
-    JSON.stringify(['PageOpened', 'ButtonClicked']),
-    JSON.stringify(['BlueBuyButton', 'RedBuyButton'])
-  ))
+  const rows = await prisma.$queryRawTyped(
+    filterTrackingEvents(
+      JSON.stringify(['PageOpened', 'ButtonClicked']),
+      JSON.stringify(['BlueBuyButton', 'RedBuyButton']),
+    ),
+  )
   console.log(rows)
 
   const result = await prisma.$queryRawTyped(getTrackingEvents(5))
   console.log(result)
- 
 }
 
 main()

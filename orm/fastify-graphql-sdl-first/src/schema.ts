@@ -66,16 +66,16 @@ scalar DateTime
 
 const resolvers = {
   Query: {
-    allUsers: (_parent, _args, context: Context) => {
+    allUsers: (_parent: any, _args: any, context: Context) => {
       return context.prisma.user.findMany()
     },
-    postById: (_parent, args: { id: number }, context: Context) => {
+    postById: (_parent: any, args: { id: number }, context: Context) => {
       return context.prisma.post.findUnique({
         where: { id: args.id || undefined },
       })
     },
     feed: (
-      _parent,
+      _parent: any,
       args: {
         searchString: string
         skip: number
@@ -104,27 +104,24 @@ const resolvers = {
       })
     },
     draftsByUser: (
-      _parent,
+      _parent: any,
       args: { userUniqueInput: UserUniqueInput },
       context: Context,
     ) => {
-      return context.prisma.user
-        .findUnique({
-          where: {
+      return context.prisma.post.findMany({
+        where: {
+          published: false,
+          author: {
             id: args.userUniqueInput.id || undefined,
             email: args.userUniqueInput.email || undefined,
           },
-        })
-        .posts({
-          where: {
-            published: false,
-          },
-        })
+        },
+      })
     },
   },
   Mutation: {
     signupUser: (
-      _parent,
+      _parent: any,
       args: { data: UserCreateInput },
       context: Context,
     ) => {
@@ -143,7 +140,7 @@ const resolvers = {
       })
     },
     createDraft: (
-      _parent,
+      _parent: any,
       args: { data: PostCreateInput; authorEmail: string },
       context: Context,
     ) => {
@@ -158,7 +155,7 @@ const resolvers = {
       })
     },
     togglePublishPost: async (
-      _parent,
+      _parent: any,
       args: { id: number },
       context: Context,
     ) => {
@@ -181,7 +178,7 @@ const resolvers = {
       }
     },
     incrementPostViewCount: (
-      _parent,
+      _parent: any,
       args: { id: number },
       context: Context,
     ) => {
@@ -194,7 +191,7 @@ const resolvers = {
         },
       })
     },
-    deletePost: (_parent, args: { id: number }, context: Context) => {
+    deletePost: (_parent: any, args: { id: number }, context: Context) => {
       return context.prisma.post.delete({
         where: { id: args.id },
       })
@@ -202,21 +199,24 @@ const resolvers = {
   },
   DateTime: DateTimeResolver,
   Post: {
-    author: (parent, _args, context: Context) => {
-      return context.prisma.post
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .author()
+    author: async (parent: { id: any }, _args: any, context: Context) => {
+      const post = await context.prisma.post.findUnique({
+        where: {
+          id: parent.id || undefined,
+        },
+        include: {
+          author: true,
+        },
+      })
+
+      return post!.author
     },
   },
   User: {
-    posts: (parent, _args, context: Context) => {
-      return context.prisma.user
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .posts()
+    posts: (parent: { id: any }, _args: any, context: Context) => {
+      return context.prisma.post.findMany({
+        where: { authorId: parent?.id },
+      })
     },
   },
 }

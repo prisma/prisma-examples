@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient().$extends(withAccelerate())
 
 // A `main` function so that we can use async/await
 async function main() {
@@ -81,13 +82,14 @@ async function main() {
   )
 
   // Retrieve all posts by user with email alice@prisma.io
-  const postsByUser = await prisma.user
-    .findUnique({
-      where: {
+  const postsByUser = await prisma.post.findMany({
+    where: {
+      author: {
         email: user1Email,
       },
-    })
-    .posts()
+    },
+  })
+
   console.log(
     `Retrieved all posts from a specific user: ${JSON.stringify(postsByUser)}`,
   )

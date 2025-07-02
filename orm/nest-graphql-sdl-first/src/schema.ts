@@ -1,6 +1,6 @@
-import { makeExecutableSchema } from '@graphql-tools/schema'
-import { DateTimeResolver } from 'graphql-scalars'
-import { Context } from './context'
+import { makeExecutableSchema } from '@graphql-tools/schema';
+import { DateTimeResolver } from 'graphql-scalars';
+import { Context } from './context';
 
 const typeDefs = `
 type Mutation {
@@ -62,17 +62,17 @@ input UserUniqueInput {
 }
 
 scalar DateTime
-`
+`;
 
 const resolvers = {
   Query: {
     allUsers: (_parent, _args, context: Context) => {
-      return context.prisma.user.findMany()
+      return context.prisma.user.findMany();
     },
     postById: (_parent, args: { id: number }, context: Context) => {
       return context.prisma.post.findUnique({
         where: { id: args.id || undefined },
-      })
+      });
     },
     feed: (
       _parent,
@@ -91,7 +91,7 @@ const resolvers = {
               { content: { contains: args.searchString } },
             ],
           }
-        : {}
+        : {};
 
       return context.prisma.post.findMany({
         where: {
@@ -101,25 +101,22 @@ const resolvers = {
         take: args?.take,
         skip: args?.skip,
         orderBy: args?.orderBy,
-      })
+      });
     },
     draftsByUser: (
       _parent,
       args: { userUniqueInput: UserUniqueInput },
       context: Context,
     ) => {
-      return context.prisma.user
-        .findUnique({
-          where: {
+      return context.prisma.post.findMany({
+        where: {
+          published: false,
+          author: {
             id: args.userUniqueInput.id || undefined,
             email: args.userUniqueInput.email || undefined,
           },
-        })
-        .posts({
-          where: {
-            published: false,
-          },
-        })
+        },
+      });
     },
   },
   Mutation: {
@@ -129,8 +126,8 @@ const resolvers = {
       context: Context,
     ) => {
       const postData = args.data.posts?.map((post) => {
-        return { title: post.title, content: post.content || undefined }
-      })
+        return { title: post.title, content: post.content || undefined };
+      });
 
       return context.prisma.user.create({
         data: {
@@ -140,7 +137,7 @@ const resolvers = {
             create: postData,
           },
         },
-      })
+      });
     },
     createDraft: (
       _parent,
@@ -155,7 +152,7 @@ const resolvers = {
             connect: { email: args.authorEmail },
           },
         },
-      })
+      });
     },
     togglePublishPost: async (
       _parent,
@@ -168,16 +165,16 @@ const resolvers = {
           select: {
             published: true,
           },
-        })
+        });
 
         return context.prisma.post.update({
           where: { id: args.id || undefined },
           data: { published: !post?.published },
-        })
+        });
       } catch (error) {
         throw new Error(
           `Post with ID ${args.id} does not exist in the database.`,
-        )
+        );
       }
     },
     incrementPostViewCount: (
@@ -192,34 +189,34 @@ const resolvers = {
             increment: 1,
           },
         },
-      })
+      });
     },
     deletePost: (_parent, args: { id: number }, context: Context) => {
       return context.prisma.post.delete({
         where: { id: args.id },
-      })
+      });
     },
   },
   DateTime: DateTimeResolver,
   Post: {
-    author: (parent, _args, context: Context) => {
-      return context.prisma.post
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .author()
+    author: async (parent, _args, context: Context) => {
+      const post = await context.prisma.post.findUnique({
+        where: { id: parent.id || undefined },
+        include: {
+          author: true,
+        },
+      });
+      return post.author;
     },
   },
   User: {
     posts: (parent, _args, context: Context) => {
-      return context.prisma.user
-        .findUnique({
-          where: { id: parent?.id },
-        })
-        .posts()
+      return context.prisma.post.findMany({
+        where: { authorId: parent?.id },
+      });
     },
   },
-}
+};
 
 enum SortOrder {
   asc = 'asc',
@@ -227,26 +224,26 @@ enum SortOrder {
 }
 
 interface PostOrderByUpdatedAtInput {
-  updatedAt: SortOrder
+  updatedAt: SortOrder;
 }
 
 interface UserUniqueInput {
-  id?: number
-  email?: string
+  id?: number;
+  email?: string;
 }
 
 interface PostCreateInput {
-  title: string
-  content?: string
+  title: string;
+  content?: string;
 }
 
 interface UserCreateInput {
-  email: string
-  name?: string
-  posts?: PostCreateInput[]
+  email: string;
+  name?: string;
+  posts?: PostCreateInput[];
 }
 
 export const schema = makeExecutableSchema({
   resolvers,
   typeDefs,
-})
+});

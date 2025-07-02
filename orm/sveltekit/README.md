@@ -9,7 +9,7 @@ This example shows how to implement a simple web app using [SvelteKit](https://s
 Download this example:
 
 ```
-npx try-prisma@latest --template orm/sveltekit
+npx try-prisma@latest --template orm/sveltekit  --install npm --name sveltekit
 ```
 
 Then navigate to the project directory
@@ -69,6 +69,8 @@ That's it, your project is now configured to use Prisma Postgres!
 
 Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
 
+```terminal
+npx prisma init --db
 ```
 npx prisma generate
 ```

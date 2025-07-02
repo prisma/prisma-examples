@@ -1,9 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 import Hapi from '@hapi/hapi'
+import { withAccelerate } from '@prisma/extension-accelerate'
+
+const prismaClientSingleton = () =>
+  new PrismaClient().$extends(withAccelerate())
 
 declare module '@hapi/hapi' {
   interface ServerApplicationState {
-    prisma: PrismaClient
+    prisma: ReturnType<typeof prismaClientSingleton>
   }
 }
 
@@ -11,7 +15,7 @@ declare module '@hapi/hapi' {
 const prismaPlugin: Hapi.Plugin<null> = {
   name: 'prisma',
   register: async function (server: Hapi.Server) {
-    const prisma = new PrismaClient()
+    const prisma = prismaClientSingleton()
 
     server.app.prisma = prisma
 

@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "prettier": {
     "semi": false,
