@@ -72,4 +72,4 @@ jobs:
           node-version: '22.16.0'
 
       - name: test
-        run: sh .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
+        run: bash .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
