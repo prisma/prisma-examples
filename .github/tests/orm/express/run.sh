@@ -2,8 +2,17 @@
 
 set -eu
 
-# Move to repo root and setup test database
-cd orm/express
+echo "🔍 Starting test setup..."
+
+echo "📂 Current working directory before REPO_ROOT: $(pwd)"
+echo "📁 Listing contents:"
+ls -la
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+echo "📌 Detected repo root: $REPO_ROOT"
+
+cd "$REPO_ROOT/orm/express"
+echo "📂 Changed directory to: $(pwd)"
 
 echo "📦 Installing test deps..."
 npm install
