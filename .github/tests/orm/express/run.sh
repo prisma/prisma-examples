@@ -45,7 +45,6 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 popd > /dev/null  # Back to databases/prisma-postgres
 
 # Run migrations + seed
-npx prisma migrate reset --force --skip-seed
 npx prisma migrate dev --name init
 npx prisma db seed
 
