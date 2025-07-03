@@ -21,7 +21,7 @@
     "@types/node": "20.19.4",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
-    "eslint": "9.30.0",
+    "eslint": "9.30.1",
     "eslint-config-next": "15.3.4",
     "prisma": "6.10.1",
     "tailwindcss": "4.1.11",
