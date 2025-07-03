@@ -17,7 +17,7 @@
 		"autoprefixer": "10.4.21",
 		"postcss": "8.5.6",
 		"prisma": "6.9.0",
-		"svelte": "5.34.9",
+		"svelte": "5.35.1",
 		"svelte-check": "4.2.2",
 		"tailwindcss": "3.4.17",
 		"tslib": "2.8.1",
