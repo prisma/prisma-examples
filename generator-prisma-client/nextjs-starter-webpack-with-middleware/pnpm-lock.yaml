@@ -16,7 +16,7 @@ dependencies:
     version: 2.0.1(@prisma/client@6.11.0-integration-fix-generator-ts-pre-preview.1)
   '@t3-oss/env-core':
     specifier: 0.13.8
-    version: 0.13.8(typescript@5.8.3)(zod@3.25.67)
+    version: 0.13.8(typescript@5.8.3)(zod@3.25.71)
   next:
     specifier: 15.3.3
     version: 15.3.3(react-dom@19.1.0)(react@19.1.0)
@@ -36,8 +36,8 @@ dependencies:
     specifier: 3.4.17
     version: 3.4.17
   zod:
-    specifier: 3.25.67
-    version: 3.25.67
+    specifier: 3.25.71
+    version: 3.25.71
 
 devDependencies:
   '@types/node':
@@ -836,7 +836,7 @@ packages:
       tslib: 2.8.1
     dev: false
 
-  /@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.67):
+  /@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.71):
     resolution: {integrity: sha512-L1inmpzLQyYu4+Q1DyrXsGJYCXbtXjC4cICw1uAKv0ppYPQv656lhZPU91Qd1VS6SO/bou1/q5ufVzBGbNsUpw==}
     peerDependencies:
       arktype: ^2.1.0
@@ -854,7 +854,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.8.3
-      zod: 3.25.67
+      zod: 3.25.71
     dev: false
 
   /@tybys/wasm-util@0.9.0:
@@ -4086,6 +4086,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod@3.25.67:
-    resolution: {integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==}
+  /zod@3.25.71:
+    resolution: {integrity: sha512-BsBc/NPk7h8WsUWYWYL+BajcJPY8YhjelaWu2NMLuzgraKAz4Lb4/6K11g9jpuDetjMiqhZ6YaexFLOC0Ogi3Q==}
     dev: false
