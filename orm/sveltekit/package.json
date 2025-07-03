@@ -37,6 +37,7 @@
 		"vite": "6.3.5"
 	},
 	"dependencies": {
-		"@prisma/client": "6.9.0"
+		"@prisma/client": "6.9.0",
+		"@prisma/extension-accelerate": "^2.0.1"
 	}
 }

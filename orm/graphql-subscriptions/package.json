@@ -25,7 +25,8 @@
     "graphql-subscriptions": "3.0.0",
     "graphql-ws": "5.16.2",
     "nexus": "1.3.0",
-    "ws": "8.18.3"
+    "ws": "8.18.3",
+    "@prisma/extension-accelerate": "^2.0.1"
   },
   "devDependencies": {
     "@types/body-parser": "1.19.6",
