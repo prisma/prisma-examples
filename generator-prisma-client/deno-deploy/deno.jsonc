@@ -1,0 +1,17 @@
+{
+  "name": "generator-prisma-client-deno-deploy",
+  "tasks": {
+    "dev": "deno serve --allow-env --allow-sys --allow-read --allow-net --env-file=.env ./src/main.ts",
+    "prisma": "prisma",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@std/http": "jsr:@std/http@1",
+    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@6.11.0",
+    "@prisma/client": "npm:@prisma/client@6.11.0",
+    "prisma": "npm:prisma@6.11.0"
+  },
+  "nodeModulesDir": "auto"
+}
