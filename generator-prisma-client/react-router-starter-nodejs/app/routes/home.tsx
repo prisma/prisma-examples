@@ -4,7 +4,7 @@ import { Quotes } from '~/components/quotes'
 import { QuotesLoading } from '~/components/quotes-loading'
 import { DisplayPrismaEnums } from '~/components/display-prisma-enums'
 import type { Route } from "./+types/home";
-import { getDb } from '~/db'
+import prisma from '~/db'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,10 +14,6 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({}: Route.LoaderArgs) {
-  const prisma = getDb({
-    connectionString: process.env.DIRECT_URL!,
-  })
-
   const quotes = await prisma.quotes.findMany({
     orderBy: {
       createdAt: 'desc',
