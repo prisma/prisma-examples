@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  output = "../app/generated/prisma"
+  previewFeatures = ["driverAdapters", "queryCompiler"]
+  runtime = "workerd"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum QuoteKind {
+  Fact
+  Opinion
+}
+
+model Quotes {
+  id        Int      @id @default(autoincrement())
+  quote     String
+  kind      QuoteKind @default(Opinion)
+  createdAt DateTime @default(now())
+}
