@@ -37,47 +37,24 @@ npm install
 
 Rename the `.env.example` file to `.env`
 
-#### [Optional] Switch database to Prisma Postgres
+### 2. Create a Prisma Postgres instance
 
-This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
+This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to setup a Prisma Postgres connection string:
 
-### 1. Set up Prisma
-
-1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
-2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
-
-   ```prisma
-   datasource db {
-     provider = "postgresql"
-     url      = env("DATABASE_URL")
-   }
-   ```
-
-3. Add your database url to the `.env`
-
-4. Install the Prisma Accelerate extension:
-   ```
-   npm install @prisma/extension-accelerate
-   ```
-5. Add the Accelerate extension to the `PrismaClient` instance:
-
-   ```diff
-   + import { withAccelerate } from "@prisma/extension-accelerate"
-
-   + const prisma = new PrismaClient().$extends(withAccelerate())
-   ```
+1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
+2. Add your database url to the `.env`
 
 That's it, your project is now configured to use Prisma Postgres!
 
-### 2. Set up Clerk
+### 3. Set up Clerk
 
-#### 2.1. Create a new Clerk app
+#### 3.1. Create a new Clerk app
 
 Create a new app at [dashboard.clerk.com/apps/new](https://dashboard.clerk.com/apps/new). Provide a name and select whichever sign-in options you would like.
 
 Skip to Step 2 and copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and the `CLERK_SECRET_KEY`. Paste those into their respective positions in `.env`
 
-#### 2.2. Expose your server via [ngrok](https://ngrok.com)
+#### 3.2. Expose your server via [ngrok](https://ngrok.com)
 
 Install ngrok and expose it your local app:
 
@@ -98,13 +75,17 @@ https://a60b-99-42-62-240.ngrok-free.app/api/webhooks/clerk
 
 Copy the **_Signing Secret_** and add it to your `.env` file:
 
-### 3. Start the development server
+### 4. Start the development server
 
 ```
 npm run dev
 ```
 
 The server is now running at http://localhost:3000
+
+## Switch to another database
+
+If you want to try this example with another database rather than Prisma Postgres, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation.
 
 ## Next steps
 

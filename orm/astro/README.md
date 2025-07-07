@@ -35,44 +35,21 @@ npm install
 
 </details>
 
-#### [Optional] Switch database to Prisma Postgres
+### 2. Add a Prisma Postgres instance connection string
 
-This example uses a local SQLite database by default. If you want to use to [Prisma Postgres](https://prisma.io/postgres), follow these instructions (otherwise, skip to the next step):
+This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to setup a Prisma Postgres connection string:
 
-1. Set up a new Prisma Postgres instance in the Prisma Data Platform [Console](https://console.prisma.io) and copy the database connection URL.
-2. Update the `datasource` block to use `postgresql` as the `provider` and paste the database connection URL as the value for `url`:
+### 2. Create a Prisma Postgres instance
 
-   ```prisma
-   datasource db {
-     provider = "postgresql"
-     url      = "prisma+postgres://accelerate.prisma-data.net/?api_key=ey...."
-   }
-   ```
+This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to setup a Prisma Postgres connection string:
 
-   > **Note**: In production environments, we recommend that you set your connection URL via an [environment variable](https://www.prisma.io/docs/orm/more/development-environment/environment-variables/managing-env-files-and-setting-variables), e.g. using a `.env` file.
+1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
 
-3. Install the Prisma Accelerate extension:
-   ```
-   npm install @prisma/extension-accelerate
-   ```
-4. Add the Accelerate extension to the `PrismaClient` instance:
-
-   ```diff
-   + import { withAccelerate } from "@prisma/extension-accelerate"
-
-   + const prisma = new PrismaClient().$extends(withAccelerate())
-   ```
-
-5. Pass the `.env` var `DATABASE_URL` into the `PrismaClient()`
-  ```diff
-  + const prisma = new PrismaClient({
-  +   datasourceUrl: import.meta.env.DATABASE_URL,
-  + }).$extends(withAccelerate())
-  ```
+2. Add your database url to the `.env`
 
 That's it, your project is now configured to use Prisma Postgres!
 
-### 2. Generate Prisma Client
+### 3. Generate Prisma Client
 
 Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
 
@@ -80,7 +57,7 @@ Run the following command to generate the Prisma Client. This is what you will b
 npx prisma generate
 ```
 
-### 3. Start the Astro server
+### 4. Start the Astro server
 
 ```
 npm run dev
@@ -90,7 +67,7 @@ The server is now running at http://localhost:4321
 
 ## Switch to another database
 
-If you want to try this example with another database than SQLite, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation
+If you want to try this example with another database rather than Prisma Postgres, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation
 
 ## Next steps
 
