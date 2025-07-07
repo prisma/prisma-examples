@@ -46,6 +46,12 @@ until grep -q '^prisma+postgres://' "$LOG_FILE"; do
   fi
 done
 
+DB_URL=$(grep '^prisma+postgres://' "$LOG_FILE" | tail -1)
+export DATABASE_URL="$DB_URL"
+echo "✅ DATABASE_URL: $DATABASE_URL"
+
+popd > /dev/null
+
 npm install
 npx prisma migrate dev --name init --schema prisma/schema.prisma
 npx prisma db seed
