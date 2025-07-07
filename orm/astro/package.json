@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
+    "@prisma/extension-accelerate": "^2.0.1",
     "astro": "5.10.2"
   },
   "devDependencies": {

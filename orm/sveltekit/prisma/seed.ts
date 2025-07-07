@@ -1,6 +1,7 @@
 import { PrismaClient, Prisma } from '../src/generated/prisma';
+import { withAccelerate } from '@prisma/extension-accelerate';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient().$extends(withAccelerate());
 
 const userData: Prisma.UserCreateInput[] = [
 	{

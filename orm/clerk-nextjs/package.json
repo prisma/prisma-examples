@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "6.23.2",
     "@prisma/client": "6.9.0",
+    "@prisma/extension-accelerate": "^2.0.1",
     "next": "15.3.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
