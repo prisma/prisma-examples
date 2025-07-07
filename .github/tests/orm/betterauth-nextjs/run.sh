@@ -46,9 +46,8 @@ until grep -q '^prisma+postgres://' "$LOG_FILE"; do
   fi
 done
 
-
 npm install
-npx prisma migrate dev --name init
+npx prisma migrate dev --name init --schema prisma/schema.prisma
 npx prisma db seed
 npm run dev &
 pid=$!
