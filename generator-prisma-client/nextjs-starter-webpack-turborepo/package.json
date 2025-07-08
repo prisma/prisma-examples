@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "prisma": {
     "schema": "packages/database/prisma/schema.prisma",
     "seed": "tsx packages/database/src/seed.ts"

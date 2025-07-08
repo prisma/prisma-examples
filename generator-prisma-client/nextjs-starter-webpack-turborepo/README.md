@@ -1,199 +1,150 @@
-# Turborepo + Prisma ORM starter
+# Prisma Postgres Example: Next.js 15 Starter (Turborepo, Webpack, Node.js, ESM)
 
-This is a example designed to help you quickly set up a Turborepo monorepo with a Next.js app and Prisma ORM. This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+This project showcases how to use the Prisma ORM with Prisma Postgres in an ESM monorepo, containing a Next.js application and Prisma package definition, and powered by Turborepo.
 
-## What's inside?
+It also demonstrates that [@prisma/nextjs-monorepo-workaround-plugin](https://www.npmjs.com/package/@prisma/nextjs-monorepo-workaround-plugin) is no longer needed, as the `prisma-client` generator supports ESM and monorepos out of the box.
 
-This turborepo includes the following packages/apps:
+## Project Structure
 
-### Apps and packages
+```
+.
+├── apps                                   # Web application packages
+│   └── next-app                           # Next.js application
+│       ├── app
+│       ├── components
+│       ├── lib
+│       │   ├── db.ts                      # Prisma Client instance
+│       │   ├── ...
+│       ├── next.config.mjs
+│       ├── package.json
+│       └── tsconfig.json
+├── package.json                           # Root package.json for the monorepo
+├── packages                               # Internal libraries
+│   ├── config-typescript
+│   └── database
+│       ├── package.json
+│       ├── prisma
+│       │   └── schema.prisma              # Prisma schema file 
+│       ├── src
+│       │   ├── enums.ts
+│       │   ├── index.ts
+│       │   └── seed.ts
+│       └── tsconfig.json
+├── pnpm-workspace.yaml                    # Pnpm workspace configuration file
+└── turbo.json                             # Turborepo configuration file
+```
 
-- `web`: a [Next.js](https://nextjs.org/) app
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/database`: [Prisma ORM](https://prisma.io/) to manage & access your database
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Prerequisites
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+To successfully run the project, you will need the following:
 
-### Utilities
+- Two **Prisma Postgres** connection strings:
+  - Your **Prisma Postgres + Accelerate connection string** (containing your **Prisma API key**) which you can get by enabling Postgres in a project in your [Prisma Data Platform](https://pris.ly/pdp) account. You will use this connection string to run Prisma migrations.
+  - Your **Prisma Postgres direct TCP connection string** which you will use with Prisma Client.
+    Learn more in the [docs](https://www.prisma.io/docs/postgres/database/direct-connections).
+- [`pnpm`](https://pnpm.io/) installed globally to manage the monorepo workspace.
 
-This turborepo has some additional tools already setup for you:
+## Tech Stack
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-- [Prisma ORM](https://prisma.io/) for accessing the database
-- [Docker Compose](https://docs.docker.com/compose/) for a local MySQL database
+- Turborepo 2
+- Next.js 15
+  - Runtime: Node.js 20.19.0
+  - Bundler: Webpack 5
+- ESM
+  - `package.json` contains `{ "type": "module" }`
+  - `next.config.js` -> `next.config.mjs`
+  - `postcss.config.js` -> `postcss.config.mjs`
+- Prisma Client with the `prisma-client` generator
+  See the [Prisma schema file](./packages/prisma/prisma/schema.prisma) for details.
+  
+  ```prisma
+  generator client {
+    provider = "prisma-client"
+    output = "../lib/generated/prisma"
+    previewFeatures = ["driverAdapters", "queryCompiler"]
+    runtime = "nodejs"
+  }
+  ```
 
 ## Getting started
 
-Follow these steps to set up and run your Turborepo project with Prisma ORM:
+### 1. Clone the repository
 
-### 1. Create a Turborepo project
+Clone the repository, navigate into it and install dependencies:
 
-Start by creating a new Turborepo project using the following command:
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+cd prisma-examples/generator-prisma-client/nextjs-starter-webpack-turborepo
+pnpm install
+```
+
+### 2. Configure environment variables
+
+Create a `.envrc` in the root of the project directory:
+
+```bash
+touch .envrc
+```
+
+Now, open the `.envrc` file and set the `DATABASE_URL` environment variables with the values of your connection string and your Prisma Postgres connection string:
+
+```bash
+# .envrc
+
+# Prisma Postgres connection string (used for migrations)
+export DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
+
+# Postgres connection string (used for queries by Prisma Client)
+export DATABASE_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
+
+NEXT_PUBLIC_URL="http://localhost:3000"
+```
+
+Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres + Accelerate connection string. Notice that the Accelerate connection string has the following structure: `prisma+postgres://accelerate.prisma-data.net/?api_key=<api_key_value>`.
+
+Note that `__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres direct TCP connection string. The direct connection string has the following structure: `postgres://<username>:<password>@<host>:<port>/<database>`.
+
+Expose the environment variables to your project by running the following command:
+
+```bash
+source .envrc
+```
+
+### 3. Run a migration to create the database structure and seed the database
+
+The [Prisma schema file](./packages/prisma/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
 
 ```sh
-npx create-turbo@latest -e with-prisma
+pnpm db:migrate:dev --name init
 ```
 
-Choose your desired package manager when prompted and a name for the app (e.g., `my-turborepo`). This will scaffold a new Turborepo project with Prisma ORM included and dependencies installed.
-
-Navigate to your project directory:
-
-```bash
-cd ./my-turborepo
-```
-
-### 2. Setup a local database with Docker Compose
-
-We use [Prisma ORM](https://prisma.io/) to manage and access our database. As such you will need a database for this project, either locally or hosted in the cloud.
-
-To make this process easier, a [`docker-compose.yml` file](./docker-compose.yml) is included to setup a MySQL server locally with a new database named `turborepo`:
-
-Start the MySQL database using Docker Compose:
+You now have an empty `Quotes` table in your database. Next, run the [seed script](./packages/prisma/prisma/seed.ts) to create some sample records in the table:
 
 ```sh
-docker-compose up -d
+pnpm db:seed
 ```
 
-To change the default database name, update the `MYSQL_DATABASE` environment variable in the [`docker-compose.yml` file](/docker-compose.yml).
+### 4. Build the Prisma Client and the Next.js app
 
-### 3. Setup environment variables
+Run:
 
-Once the database is ready, copy the `.env.example` file to the [`/packages/database`](./packages/database/) and [`/apps/web`](./apps/web/) directories as `.env`:
-
-```bash
-cp .env.example ./packages/database/.env
-cp .env.example ./apps/web/.env
+```
+pnpm build
 ```
 
-This ensures Prisma has access to the `DATABASE_URL` environment variable, which is required to connect to your database.
+### 7. Start the Next.js app
 
-If you added a custom database name, or use a cloud based database, you will need to update the `DATABASE_URL` in your `.env` accordingly.
+You can run the app with the following command:
 
-### 4. Migrate your database
-
-Once your database is running, you’ll need to create and apply migrations to set up the necessary tables. Run the database migration command:
-
-```bash
-# Using npm
-npm run db:migrate:dev
+```
+pnpm dev
 ```
 
-<details>
+## Resources
 
-<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
-
-```bash
-# Using yarn
-yarn run db:migrate:dev
-
-# Using pnpm
-pnpm run db:migrate:dev
-
-# Using bun
-bun run db:migrate:dev
-```
-
-</details>
-
-You’ll be prompted to name the migration. Once you provide a name, Prisma will create and apply the migration to your database.
-
-> Note: The `db:migrate:dev` script (located in [packages/database/package.json](/packages/database/package.json)) uses [Prisma Migrate](https://www.prisma.io/migrate) under the hood.
-
-For production environments, always push schema changes to your database using the [`prisma migrate deploy` command](https://www.prisma.io/docs/orm/prisma-client/deployment/deploy-database-changes-with-prisma-migrate). You can find an example `db:migrate:deploy` script in the [`package.json` file](/packages/database/package.json) of the `database` package.
-
-### 5. Seed your database
-
-To populate your database with initial or fake data, use [Prisma's seeding functionality](https://www.prisma.io/docs/guides/database/seed-database).
-
-Update the seed script located at [`packages/database/src/seed.ts`](/packages/database/src/seed.ts) to include any additional data that you want to seed. Once edited, run the seed command:
-
-```bash
-# Using npm
-npm run db:seed
-```
-
-<details>
-
-<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
-
-```bash
-# Using yarn
-yarn run db:seed
-
-# Using pnpm
-pnpm run db:seed
-
-# Using bun
-bun run db:seed
-```
-
-</details>
-
-### 6. Build your application
-
-To build all apps and packages in the monorepo, run:
-
-```bash
-# Using npm
-npm run build
-```
-
-<details>
-
-<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
-
-```bash
-# Using yarn
-yarn run build
-
-# Using pnpm
-pnpm run build
-
-# Using bun
-bun run build
-```
-
-</details>
-
-### 7. Start the application
-
-Finally, start your application with:
-
-```bash
-yarn run dev
-```
-
-<details>
-
-<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
-
-```bash
-# Using yarn
-yarn run dev
-
-# Using pnpm
-pnpm run dev
-
-# Using bun
-bun run dev
-```
-
-</details>
-
-Your app will be running at `http://localhost:3000`. Open it in your browser to see it in action!
-
-You can also read the official [detailed step-by-step guide from Prisma ORM](https://pris.ly/guide/turborepo?utm_campaign=turborepo-example) to build a project from scratch using Turborepo and Prisma ORM.
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- [Prisma Postgres documentation](https://www.prisma.io/docs/postgres)
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- [Join our community on Discord](https://pris.ly/discord?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) to share feedback and interact with other users.
+- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for live demos and video tutorials.
+- [Follow us on X](https://pris.ly/x?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for the latest updates.
+- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section).
