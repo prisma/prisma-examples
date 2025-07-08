@@ -31,3 +31,4 @@ yarn-error.log*
 
 # turbo
 .turbo
+!.envrc.example
