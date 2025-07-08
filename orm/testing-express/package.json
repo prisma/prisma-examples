@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
-    "@prisma/extension-accelerate": "^2.0.1",
+    "@prisma/extension-accelerate": "2.0.2",
     "@types/node": "22.15.32",
     "express": "5.1.0",
     "jest-config": "29.7.0"

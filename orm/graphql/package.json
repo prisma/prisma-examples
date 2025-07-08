@@ -21,7 +21,7 @@
     "@prisma/client": "6.9.0",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
-    "@prisma/extension-accelerate": "^2.0.1",
+    "@prisma/extension-accelerate": "2.0.2",
     "graphql-yoga": "5.14.0"
   },
   "devDependencies": {

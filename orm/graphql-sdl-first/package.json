@@ -13,7 +13,7 @@
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "graphql-yoga": "5.14.0",
-    "@prisma/extension-accelerate": "^2.0.1"
+    "@prisma/extension-accelerate": "2.0.2"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
