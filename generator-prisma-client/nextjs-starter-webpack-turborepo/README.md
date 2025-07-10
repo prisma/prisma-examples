@@ -95,7 +95,7 @@ Now, open the `.envrc` file and set the `DATABASE_URL` environment variables wit
 export DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
 
 # Postgres connection string (used for queries by Prisma Client)
-export DATABASE_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
+export DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
