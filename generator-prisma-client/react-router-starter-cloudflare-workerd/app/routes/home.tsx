@@ -15,7 +15,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({ context }: Route.LoaderArgs) {
   const prisma = getDb({
-    connectionString: context.cloudflare.env.DIRECT_URL,
+    connectionString: context.cloudflare.env.DIRECT_URL!,
   })
 
   const quotes = await prisma.quotes.findMany({

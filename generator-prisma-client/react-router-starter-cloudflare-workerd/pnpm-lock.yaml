@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@prisma/adapter-pg':
-    specifier: 6.12.0-integration-push-nqqtxovowlmm.1
-    version: 6.12.0-integration-push-nqqtxovowlmm.1
+    specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+    version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
   '@prisma/client':
-    specifier: 6.12.0-integration-push-nqqtxovowlmm.1
-    version: 6.12.0-integration-push-nqqtxovowlmm.1(prisma@6.12.0-integration-push-nqqtxovowlmm.1)(typescript@5.8.3)
+    specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+    version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1)(typescript@5.8.3)
   isbot:
     specifier: ^5.1.27
     version: 5.1.28
@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^19.1.2
     version: 19.1.6(@types/react@19.1.8)
   prisma:
-    specifier: 6.12.0-integration-push-nqqtxovowlmm.1
-    version: 6.12.0-integration-push-nqqtxovowlmm.1(typescript@5.8.3)
+    specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+    version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3)
   tailwindcss:
     specifier: ^4.1.4
     version: 4.1.11
@@ -1211,18 +1211,18 @@ packages:
     dev: true
     optional: true
 
-  /@prisma/adapter-pg@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-L2a0LO28ZnFO8qZhSc3YqOThCiNfWmy15CpZMga5rgKTdiw2JTeGKDs9J8qHmuNmN8GlKut8ZekTvYp2R01sTg==}
+  /@prisma/adapter-pg@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-vFqmUV+/FpduYYfOhZaqKhfcW32SGHz6jXkMtHqlwnzgbrF4P9UrJ5dQ8uLteiX0hox3VkZn5NtKA46OxWiV3Q==}
     dependencies:
-      '@prisma/driver-adapter-utils': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/driver-adapter-utils': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
       pg: 8.16.3
       postgres-array: 3.0.4
     transitivePeerDependencies:
       - pg-native
     dev: false
 
-  /@prisma/client@6.12.0-integration-push-nqqtxovowlmm.1(prisma@6.12.0-integration-push-nqqtxovowlmm.1)(typescript@5.8.3):
-    resolution: {integrity: sha512-bmhMmvx6SFCf5lX/LR+6SkeI11ZQmTBv8GEp9dUCuWLJN8mjGvUVHuh8zy0a8fwn5l1RWuPBimPrUMKPmpqj5g==}
+  /@prisma/client@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1)(typescript@5.8.3):
+    resolution: {integrity: sha512-pCAHriR0+K3DiW6djyUTIGkZh4NJxyCkf2Wz68GfJlVKOhrHXuFnRaUSfSzZpx6twSr3KxkOk6iiOgHYrx6MCg==}
     engines: {node: '>=18.18'}
     requiresBuild: true
     peerDependencies:
@@ -1234,47 +1234,47 @@ packages:
       typescript:
         optional: true
     dependencies:
-      prisma: 6.12.0-integration-push-nqqtxovowlmm.1(typescript@5.8.3)
+      prisma: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3)
       typescript: 5.8.3
     dev: false
 
-  /@prisma/config@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-wXm/6mV4OLz4Rmc/w6cBEgMBHq/e2/XGvvZhQaFmVSS6qLvcAbUInHGCEXBTizv5x4aCZmoGs4ts5qsGSLPkOA==}
+  /@prisma/config@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-pz/utGCgFTn6QlpCiJsSjUqqRRA7yde9NAQufe46PES8iW9Qcoxw+P6KC8qQvBiVy+EijzrtElaHz7jZSOZM5w==}
     dependencies:
       jiti: 2.4.2
 
-  /@prisma/debug@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-hQVP6Jpgx61E4mkUhbLcjEJSRTV0IUtTh6QRfj6MCKS2p9M9K7+nkn0lFcy3m+wksg7RgSC4X4+Pxt2UMKVluA==}
+  /@prisma/debug@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-wQAI3THhOp3RUYxUH8tWiZF3GdOIDDKuox+Hk9UaGrbvPrhyBxPQTaZUgVJY9a8d8pULaEhf65HO35cRqKZxLQ==}
 
-  /@prisma/driver-adapter-utils@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-sGEPTIv+5d5P0cWMlNfSqxqpsMaDpSzr6tlkiHvcB5Vdwu7ai+F4D9ZbAR8Dp3OweaEmvPcKPvrX3K9HI2dfZw==}
+  /@prisma/driver-adapter-utils@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-X0bZS0LVv8kHVmNWcyHF35suW6pnpX0nlnEYbFKsTEn7t3HTzx51ZF9pHoncAvo9etf+BTvrWxqfEUk2gJLR6Q==}
     dependencies:
-      '@prisma/debug': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
     dev: false
 
   /@prisma/engines-version@6.12.0-13.c4261e444b23ae1c84edf7bd1b551230d4c692db:
     resolution: {integrity: sha512-2PsBM2ZEu4xo1+wz3BAc89k/UFT1RgJ9N2ErwVmdkKWlZyHZ0bnRTran1vQR4U5W43TSAukRYC3hUCu3GBvahw==}
 
-  /@prisma/engines@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-nr2XAGngDJGWtcHFIaFr1G0ab81CK20D5VBwaGwdbg1uz7dZM6OyNEHn1N+p1DnU9gP5Jv/TkPcmKgyoNLeX9w==}
+  /@prisma/engines@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-2ZiUL4hGFecIOyr3IIPmB9qB1YjaRFCLDSPrl20g6O03pxLjbffE8tNDDMEorLTQ878yJjHQcCvdPZtj+3jBxQ==}
     requiresBuild: true
     dependencies:
-      '@prisma/debug': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
       '@prisma/engines-version': 6.12.0-13.c4261e444b23ae1c84edf7bd1b551230d4c692db
-      '@prisma/fetch-engine': 6.12.0-integration-push-nqqtxovowlmm.1
-      '@prisma/get-platform': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/fetch-engine': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/get-platform': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
 
-  /@prisma/fetch-engine@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-ormx460EzhunWiwfjPPNh7YvrAX8dIILJlIcPzCUE9l5R2k5+veSGlYfSxJMS0cY23BTRTwEQMd6rUXXCo+CXQ==}
+  /@prisma/fetch-engine@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-NCLA11A/y0zxy/axmo68YWVLDpSboVtB06EPbFBPtbJNrcb77qEVYRGQPPRPZRAq0bhkyKc8vBYLNkfvqVyD7w==}
     dependencies:
-      '@prisma/debug': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
       '@prisma/engines-version': 6.12.0-13.c4261e444b23ae1c84edf7bd1b551230d4c692db
-      '@prisma/get-platform': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/get-platform': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
 
-  /@prisma/get-platform@6.12.0-integration-push-nqqtxovowlmm.1:
-    resolution: {integrity: sha512-oY8bXMTkwTLotWaHs1YuXlfz8tVLMl8VcHDQ3hBWALe4bwQn6SuPAiqhnVW0t/L8hHRnqMTjk2VLTDKKODeOdQ==}
+  /@prisma/get-platform@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
+    resolution: {integrity: sha512-kGEj2BzDCHM5w18Q8m9NVCZ85CQJOAavjnGsAwVFwDnGvPcD2LhUolaqbw5UXv/UR8Y2bbVYL1dxBsNYhUB2fw==}
     dependencies:
-      '@prisma/debug': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
 
   /@react-router/dev@7.6.3(@types/node@20.19.2)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5)(wrangler@4.22.0):
     resolution: {integrity: sha512-nnJQMVeE+LDViFTQDxeQV5FcfJ48a6aCScrFHwPHWgViQmiJxUBtDU1Pl7XZKEoTus5KDg/W3Vz2spiY6wXg3Q==}
@@ -2581,8 +2581,8 @@ packages:
     resolution: {integrity: sha512-dKp+C4iXWK4vVYZmYSd0KBH5F/h1HoZRsbJ82AVKRO3PEo8L4lBS/vLwhVtpwwuYcoIsVY+1JYKR268yn480uQ==}
     dev: true
 
-  /prisma@6.12.0-integration-push-nqqtxovowlmm.1(typescript@5.8.3):
-    resolution: {integrity: sha512-S0GNjReo4sd/rOq6LwHREklrK5+5XejJ247Z3NOykxAuB5irYdb9ZDglzLzT0MwRuoU7pnLzNlpRct0drr/nfQ==}
+  /prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3):
+    resolution: {integrity: sha512-JiMQJRjGED4FlLTp6S7qoFN6Bo38BVawtwMRCgM2fCaID/E9QhVbE8ovm9UnQIVtQUuKlkOC5IagQSG473agow==}
     engines: {node: '>=18.18'}
     hasBin: true
     requiresBuild: true
@@ -2592,8 +2592,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@prisma/config': 6.12.0-integration-push-nqqtxovowlmm.1
-      '@prisma/engines': 6.12.0-integration-push-nqqtxovowlmm.1
+      '@prisma/config': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/engines': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
       typescript: 5.8.3
 
   /proc-log@3.0.0:
