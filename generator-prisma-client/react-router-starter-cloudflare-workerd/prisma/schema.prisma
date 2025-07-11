@@ -8,8 +8,6 @@ generator client {
 generator seed {
   provider = "prisma-client"
   output = "./generated/prisma-seed"
-  previewFeatures = ["driverAdapters", "queryCompiler"]
-  runtime = "nodejs"
 }
 
 datasource db {
