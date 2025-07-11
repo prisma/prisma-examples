@@ -1,5 +1,6 @@
 {
   "name": "generator-prisma-client-deno-deploy",
+  "exports": "./src/main.ts",
   "tasks": {
     "dev": "deno serve --allow-env --allow-sys --allow-read --allow-net --env-file=.env ./src/main.ts",
     "prisma": "prisma",
