@@ -20,7 +20,7 @@
       <main class="flex min-h-screen flex-col items-center justify-start p-8 md:p-24 bg-white dark:bg-slate-900">
         <div class="text-center mb-12">
           <h1 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">
-            Stack: Nuxt, Vue, Node.js<pre class="inline-block">prisma-client</pre>
+            Stack: Nuxt 3, ESM, Node.js, <pre class="inline-block">prisma-client</pre>
           </h1>
           <p class="text-xl text-slate-600 dark:text-slate-300">
             A collection of inspiring opinions and fascinating facts
