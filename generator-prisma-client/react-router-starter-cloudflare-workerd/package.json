@@ -32,6 +32,7 @@
 		"@types/node": "^20.19.2",
 		"@types/react": "^19.1.2",
 		"@types/react-dom": "^19.1.2",
+		"dotenv": "^17.2.0",
 		"prisma": "6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1",
 		"tailwindcss": "^4.1.4",
 		"tsx": "^4.20.3",
@@ -41,7 +42,7 @@
 		"wrangler": "^4.22.0"
 	},
 	"prisma": {
-		"seed": "tsx prisma/seed.ts"
+		"seed": "tsx --tsconfig ./tsconfig.node.json prisma/seed.ts"
 	},
 	"packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
 }

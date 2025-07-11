@@ -1,6 +1,18 @@
 import process from 'node:process'
-import { getDb } from '../app/db'
-import { QuoteKind } from '../app/prisma-enums'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from './generated/prisma-seed/client'
+import { QuoteKind } from './generated/prisma-seed/enums'
+
+export type GetDbParams = {
+  connectionString: string
+}
+
+export function getDb({ connectionString }: GetDbParams) {
+  const pool = new PrismaPg({ connectionString })
+  const prisma = new PrismaClient({ adapter: pool })
+
+  return prisma
+}
 
 const main = async () => {
   console.log('Seeding database...')

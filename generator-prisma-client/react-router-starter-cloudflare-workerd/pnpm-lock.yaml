@@ -46,6 +46,9 @@ devDependencies:
   '@types/react-dom':
     specifier: ^19.1.2
     version: 19.1.6(@types/react@19.1.8)
+  dotenv:
+    specifier: ^17.2.0
+    version: 17.2.0
   prisma:
     specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
     version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3)
@@ -1911,6 +1914,11 @@ packages:
   /detect-libc@2.0.4:
     resolution: {integrity: sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA==}
     engines: {node: '>=8'}
+    dev: true
+
+  /dotenv@17.2.0:
+    resolution: {integrity: sha512-Q4sgBT60gzd0BB0lSyYD3xM4YxrXA9y4uBDof1JNYGzOXrQdQ6yX+7XIAqoFOGQFOTK1D3Hts5OllpxMDZFONQ==}
+    engines: {node: '>=12'}
     dev: true
 
   /eastasianwidth@0.2.0:

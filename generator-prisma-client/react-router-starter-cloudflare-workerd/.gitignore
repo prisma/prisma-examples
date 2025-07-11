@@ -16,3 +16,4 @@
 .env
 .vscode/
 app/generated/
+prisma/generated/
