@@ -27,7 +27,7 @@
     "tailwindcss": "3.4.17",
     "tsx": "4.20.3",
     "typescript": "5.8.2",
-    "@prisma/extension-accelerate": "^2.0.1"
+    "@prisma/extension-accelerate": "2.0.2"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
