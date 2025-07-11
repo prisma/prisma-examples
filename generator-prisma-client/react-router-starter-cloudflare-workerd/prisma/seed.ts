@@ -1,5 +1,6 @@
-import { getDb } from '~/db'
-import { QuoteKind } from '~/prisma-enums'
+import process from 'node:process'
+import { getDb } from '../app/db'
+import { QuoteKind } from '../app/prisma-enums'
 
 const main = async () => {
   console.log('Seeding database...')

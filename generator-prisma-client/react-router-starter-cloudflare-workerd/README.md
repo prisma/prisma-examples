@@ -57,6 +57,7 @@ Now, open the `.env` file and set the `DATABASE_URL` environment variables with 
 
 # Prisma Postgres connection string (used for migrations)
 DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
+DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 ```
 
 Create a `.dev.vars` file in the root of the project directory:

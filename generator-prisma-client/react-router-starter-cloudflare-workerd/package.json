@@ -17,8 +17,8 @@
 		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
 	},
 	"dependencies": {
-		"@prisma/adapter-pg": "6.11.0",
-		"@prisma/client": "6.11.0",
+		"@prisma/adapter-pg": "6.11.1",
+		"@prisma/client": "6.11.1",
 		"isbot": "^5.1.27",
 		"pg": "^8.16.3",
 		"react": "^19.1.0",
@@ -29,10 +29,10 @@
 		"@cloudflare/vite-plugin": "^1.0.12",
 		"@react-router/dev": "^7.5.3",
 		"@tailwindcss/vite": "^4.1.4",
-		"@types/node": "^20",
+		"@types/node": "^20.19.2",
 		"@types/react": "^19.1.2",
 		"@types/react-dom": "^19.1.2",
-		"prisma": "6.11.0",
+		"prisma": "6.11.1",
 		"tailwindcss": "^4.1.4",
 		"tsx": "^4.20.3",
 		"typescript": "^5.8.3",
