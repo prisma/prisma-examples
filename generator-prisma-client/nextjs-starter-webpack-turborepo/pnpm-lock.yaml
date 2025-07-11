@@ -7,20 +7,10 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@prisma/client':
-        specifier: latest
-        version: 6.11.1(prisma@6.11.1)(typescript@5.5.4)
     devDependencies:
       prettier:
         specifier: ^3.2.5
         version: 3.6.2
-      prisma:
-        specifier: latest
-        version: 6.11.1(typescript@5.5.4)
-      tsx:
-        specifier: 4.19.1
-        version: 4.19.1
       turbo:
         specifier: ^2.5.4
         version: 2.5.4

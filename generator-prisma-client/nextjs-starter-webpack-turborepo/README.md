@@ -115,7 +115,7 @@ source .envrc
 The [Prisma schema file](./packages/prisma/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
 
 ```sh
-pnpm db:migrate:dev --name init
+pnpm db:migrate:dev -- --name init
 ```
 
 You now have an empty `Quotes` table in your database. Next, run the [seed script](./packages/prisma/prisma/seed.ts) to create some sample records in the table:
