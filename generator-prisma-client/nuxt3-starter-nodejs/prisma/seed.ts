@@ -1,10 +1,10 @@
-import { getDb } from '~/db'
-import { QuoteKind } from '~/prisma-enums'
+import { getDb } from '../lib/db'
+import { QuoteKind } from '../lib/prisma-enums'
 
 const main = async () => {
   console.log('Seeding database...')
   
-  const prisma = getDb({ connectionString: process.env.DIRECT_URL })
+  const prisma = getDb({ connectionString: process.env.DIRECT_URL! })
 
   console.time('Seeding complete 🌱')
 
