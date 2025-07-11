@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@prisma/adapter-pg": "6.11.0",
-		"@prisma/client": "6.11.0",
+    "@prisma/client": "6.11.0",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
     "isbot": "^5.1.27",
@@ -26,9 +26,13 @@
     "@types/react-dom": "^19.1.2",
     "prisma": "6.11.0",
     "tailwindcss": "^4.1.4",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
     "vite-tsconfig-paths": "^5.1.4"
+  },
+  "prisma": {
+    "seed": "tsx ./prisma/seed.ts"
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
 }
