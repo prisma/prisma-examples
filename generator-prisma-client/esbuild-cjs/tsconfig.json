@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "node18",
+    "target": "es2022",
+    "moduleResolution": "node16",
+    "sourceMap": true,
+    "outDir": "dist",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true
+  }
+}
