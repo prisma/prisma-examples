@@ -12,8 +12,8 @@ dependencies:
     specifier: 6.11.0-integration-fix-generator-ts-pre-preview.1
     version: 6.11.0-integration-fix-generator-ts-pre-preview.1(prisma@6.11.0-integration-fix-generator-ts-pre-preview.1)(typescript@5.8.3)
   '@prisma/extension-accelerate':
-    specifier: 2.0.1
-    version: 2.0.1(@prisma/client@6.11.0-integration-fix-generator-ts-pre-preview.1)
+    specifier: 2.0.2
+    version: 2.0.2(@prisma/client@6.11.0-integration-fix-generator-ts-pre-preview.1)
   '@t3-oss/env-core':
     specifier: 0.13.8
     version: 0.13.8(typescript@5.8.3)(zod@3.25.71)
@@ -797,8 +797,8 @@ packages:
       '@prisma/fetch-engine': 6.11.0-integration-fix-generator-ts-pre-preview.1
       '@prisma/get-platform': 6.11.0-integration-fix-generator-ts-pre-preview.1
 
-  /@prisma/extension-accelerate@2.0.1(@prisma/client@6.11.0-integration-fix-generator-ts-pre-preview.1):
-    resolution: {integrity: sha512-KSQlLC5F1qxFQCqSP8SnCwhkv9SE40v8WR+UjHdRce0R7Fv/K3IfJJNANGFx5MNoOypK1VN6wfvRr6CNA/l+BQ==}
+  /@prisma/extension-accelerate@2.0.2(@prisma/client@6.11.0-integration-fix-generator-ts-pre-preview.1):
+    resolution: {integrity: sha512-yZK6/k7uOEFpEsKoZezQS1CKDboPtBCQ0NyI70e1Un8tDiRgg80iWGyjsJmRpps2ZIut3MroHP+dyR3wVKh8lA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@prisma/client': '>=4.16.1'

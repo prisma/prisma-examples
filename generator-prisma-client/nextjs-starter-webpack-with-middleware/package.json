@@ -26,7 +26,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "6.11.0-integration-fix-generator-ts-pre-preview.1",
     "@prisma/client": "6.11.0-integration-fix-generator-ts-pre-preview.1",
-    "@prisma/extension-accelerate": "2.0.1",
+    "@prisma/extension-accelerate": "2.0.2",
     "@t3-oss/env-core": "0.13.8",
     "next": "15.3.5",
     "postcss": "8.5.6",
