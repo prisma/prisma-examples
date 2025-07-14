@@ -21,7 +21,7 @@
   "devDependencies": {
     "@react-router/dev": "7.6.3",
     "@tailwindcss/vite": "4.1.11",
-    "@types/node": "20.19.4",
+    "@types/node": "20.19.7",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "prisma": "6.11.0",
