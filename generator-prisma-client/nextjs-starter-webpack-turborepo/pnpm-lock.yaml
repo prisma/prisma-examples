@@ -9,10 +9,10 @@ importers:
   .:
     devDependencies:
       prettier:
-        specifier: ^3.2.5
+        specifier: 3.6.2
         version: 3.6.2
       turbo:
-        specifier: ^2.5.4
+        specifier: 2.5.4
         version: 2.5.4
 
   apps/web:
@@ -88,19 +88,19 @@ importers:
         specifier: workspace:*
         version: link:../config-typescript
       '@types/node':
-        specifier: ^20.11.24
+        specifier: 20.19.4
         version: 20.19.4
       eslint:
-        specifier: ^8.57.0
+        specifier: 8.57.1
         version: 8.57.1
       prisma:
         specifier: 6.11.1
         version: 6.11.1(typescript@5.5.4)
       rimraf:
-        specifier: ^5.0.5
+        specifier: 5.0.10
         version: 5.0.10
       tsup:
-        specifier: ^8.0.2
+        specifier: 8.5.0
         version: 8.5.0(tsx@4.19.1)(typescript@5.5.4)
       tsx:
         specifier: 4.19.1

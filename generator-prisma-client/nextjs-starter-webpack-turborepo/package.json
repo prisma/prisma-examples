@@ -13,11 +13,11 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.5.4"
+    "prettier": "3.6.2",
+    "turbo": "2.5.4"
   },
   "engines": {
-    "node": ">=18"
+    "node": "24.4.0"
   },
   "name": "with-prisma",
   "packageManager": "pnpm@8.15.9"

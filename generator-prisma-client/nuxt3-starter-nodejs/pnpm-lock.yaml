@@ -12,13 +12,13 @@ dependencies:
     specifier: 6.11.0
     version: 6.11.0(prisma@6.11.0)(typescript@5.8.3)
   nuxt:
-    specifier: ^3.17.6
+    specifier: 3.17.6
     version: 3.17.6(@vue/compiler-sfc@3.5.17)(tsx@4.20.3)(typescript@5.8.3)(vite@7.0.2)
   vue:
-    specifier: ^3.5.17
+    specifier: 3.5.17
     version: 3.5.17(typescript@5.8.3)
   vue-router:
-    specifier: ^4.5.1
+    specifier: 4.5.1
     version: 4.5.1(vue@3.5.17)
 
 devDependencies:
@@ -29,10 +29,10 @@ devDependencies:
     specifier: 6.11.0
     version: 6.11.0(typescript@5.8.3)
   tailwindcss:
-    specifier: ^3.4.0
+    specifier: 3.4.17
     version: 3.4.17
   tsx:
-    specifier: ^4.20.3
+    specifier: 4.20.3
     version: 4.20.3
 
 packages:
@@ -864,7 +864,7 @@ packages:
     dependencies:
       '@nuxt/kit': 3.17.6(magicast@0.3.5)
       execa: 8.0.1
-      vite: 7.0.2(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
     transitivePeerDependencies:
       - magicast
     dev: false
@@ -917,7 +917,7 @@ packages:
       sirv: 3.0.1
       structured-clone-es: 1.0.0
       tinyglobby: 0.2.14
-      vite: 7.0.2(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
       vite-plugin-inspect: 11.3.0(@nuxt/kit@3.17.6)(vite@7.0.2)
       vite-plugin-vue-tracer: 1.0.0(vite@7.0.2)(vue@3.5.17)
       which: 5.0.0
@@ -6822,7 +6822,7 @@ packages:
       vite: ^2.9.0 || ^3.0.0-0 || ^4.0.0-0 || ^5.0.0-0 || ^6.0.1 || ^7.0.0-0
     dependencies:
       birpc: 2.4.0
-      vite: 7.0.2(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
       vite-hot-client: 2.1.0(vite@7.0.2)
     dev: false
 
@@ -6831,7 +6831,7 @@ packages:
     peerDependencies:
       vite: ^2.6.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-0 || ^6.0.0-0 || ^7.0.0-0
     dependencies:
-      vite: 7.0.2(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
     dev: false
 
   /vite-node@3.2.4(jiti@2.4.2)(tsx@4.20.3):
@@ -6843,7 +6843,7 @@ packages:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.5(jiti@2.4.2)(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -6925,7 +6925,7 @@ packages:
       perfect-debounce: 1.0.0
       sirv: 3.0.1
       unplugin-utils: 0.2.4
-      vite: 7.0.2(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
       vite-dev-rpc: 1.1.0(vite@7.0.2)
     transitivePeerDependencies:
       - supports-color
@@ -6942,7 +6942,7 @@ packages:
       magic-string: 0.30.17
       pathe: 2.0.3
       source-map-js: 1.2.1
-      vite: 7.0.2(tsx@4.20.3)
+      vite: 7.0.2(jiti@2.4.2)(tsx@4.20.3)
       vue: 3.5.17(typescript@5.8.3)
     dev: false
 
@@ -6998,7 +6998,7 @@ packages:
       fsevents: 2.3.3
     dev: false
 
-  /vite@7.0.2(tsx@4.20.3):
+  /vite@7.0.2(jiti@2.4.2)(tsx@4.20.3):
     resolution: {integrity: sha512-hxdyZDY1CM6SNpKI4w4lcUc3Mtkd9ej4ECWVHSMrOdSinVc2zYOAppHeGc/hzmRo3pxM5blMzkuWHOJA/3NiFw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -7040,6 +7040,7 @@ packages:
     dependencies:
       esbuild: 0.25.5
       fdir: 6.4.6(picomatch@4.0.2)
+      jiti: 2.4.2
       picomatch: 4.0.2
       postcss: 8.5.6
       rollup: 4.44.1

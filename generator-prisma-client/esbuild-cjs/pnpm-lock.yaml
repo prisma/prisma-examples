@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@hono/node-server':
-    specifier: ^1.15.0
+    specifier: 1.15.0
     version: 1.15.0(hono@4.8.4)
   '@prisma/adapter-pg':
     specifier: 6.12.0-dev.19
@@ -15,30 +15,30 @@ dependencies:
     specifier: 6.12.0-dev.19
     version: 6.12.0-dev.19(prisma@6.12.0-dev.19)(typescript@5.8.3)
   hono:
-    specifier: ^4.8.4
+    specifier: 4.8.4
     version: 4.8.4
 
 devDependencies:
   '@types/node':
-    specifier: ^18.19.117
+    specifier: 18.19.117
     version: 18.19.117
   dotenv:
-    specifier: ^17.1.0
+    specifier: 17.1.0
     version: 17.1.0
   esbuild:
-    specifier: ^0.25.6
+    specifier: 0.25.6
     version: 0.25.6
   prisma:
     specifier: 6.12.0-dev.19
     version: 6.12.0-dev.19(typescript@5.8.3)
   rimraf:
-    specifier: ^6.0.1
+    specifier: 6.0.1
     version: 6.0.1
   tsx:
-    specifier: ^4.20.3
+    specifier: 4.20.3
     version: 4.20.3
   typescript:
-    specifier: ^5.8.3
+    specifier: 5.8.3
     version: 5.8.3
 
 packages:

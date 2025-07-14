@@ -11,25 +11,25 @@
   "dependencies": {
     "@prisma/adapter-pg": "6.11.0",
     "@prisma/client": "6.11.0",
-    "@react-router/node": "^7.5.3",
-    "@react-router/serve": "^7.5.3",
-    "isbot": "^5.1.27",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router": "^7.5.3"
+    "@react-router/node": "7.6.3",
+    "@react-router/serve": "7.6.3",
+    "isbot": "5.1.28",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-router": "7.6.3"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.5.3",
-    "@tailwindcss/vite": "^4.1.4",
-    "@types/node": "^20",
+    "@react-router/dev": "7.6.3",
+    "@tailwindcss/vite": "4.1.11",
+    "@types/node": "20.19.4",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "prisma": "6.11.0",
-    "tailwindcss": "^4.1.4",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.3",
-    "vite-tsconfig-paths": "^5.1.4"
+    "tailwindcss": "4.1.11",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3",
+    "vite": "6.3.5",
+    "vite-tsconfig-paths": "5.1.4"
   },
   "prisma": {
     "seed": "tsx ./prisma/seed.ts"

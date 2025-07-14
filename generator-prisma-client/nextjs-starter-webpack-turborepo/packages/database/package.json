@@ -24,11 +24,11 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20.11.24",
-    "eslint": "^8.57.0",
+    "@types/node": "20.19.4",
+    "eslint": "8.57.1",
     "prisma": "6.11.1",
-    "rimraf": "^5.0.5",
-    "tsup": "^8.0.2",
+    "rimraf": "5.0.10",
+    "tsup": "8.5.0",
     "tsx": "4.19.1",
     "typescript": "5.5.4"
   },
