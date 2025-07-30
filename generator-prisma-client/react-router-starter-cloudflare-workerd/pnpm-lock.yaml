@@ -12,33 +12,33 @@ dependencies:
     specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
     version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1)(typescript@5.8.3)
   isbot:
-    specifier: ^5.1.27
+    specifier: 5.1.28
     version: 5.1.28
   pg:
-    specifier: ^8.16.3
+    specifier: 8.16.3
     version: 8.16.3
   react:
-    specifier: ^19.1.0
+    specifier: 19.1.0
     version: 19.1.0
   react-dom:
-    specifier: ^19.1.0
+    specifier: 19.1.0
     version: 19.1.0(react@19.1.0)
   react-router:
-    specifier: ^7.5.3
+    specifier: 7.6.3
     version: 7.6.3(react-dom@19.1.0)(react@19.1.0)
 
 devDependencies:
   '@cloudflare/vite-plugin':
-    specifier: ^1.0.12
+    specifier: 1.8.0
     version: 1.8.0(vite@6.3.5)(wrangler@4.22.0)
   '@react-router/dev':
-    specifier: ^7.5.3
+    specifier: 7.6.3
     version: 7.6.3(@types/node@20.19.2)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5)(wrangler@4.22.0)
   '@tailwindcss/vite':
-    specifier: ^4.1.4
+    specifier: 4.1.11
     version: 4.1.11(vite@6.3.5)
   '@types/node':
-    specifier: ^20.19.2
+    specifier: 20.19.2
     version: 20.19.2
   '@types/react':
     specifier: ^19.1.2
@@ -47,28 +47,28 @@ devDependencies:
     specifier: ^19.1.2
     version: 19.1.6(@types/react@19.1.8)
   dotenv:
-    specifier: ^17.2.0
+    specifier: 17.2.0
     version: 17.2.0
   prisma:
     specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
     version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3)
   tailwindcss:
-    specifier: ^4.1.4
+    specifier: 4.1.11
     version: 4.1.11
   tsx:
-    specifier: ^4.20.3
+    specifier: 4.20.3
     version: 4.20.3
   typescript:
-    specifier: ^5.8.3
+    specifier: 5.8.3
     version: 5.8.3
   vite:
-    specifier: ^6.3.3
+    specifier: 6.3.5
     version: 6.3.5(@types/node@20.19.2)(tsx@4.20.3)
   vite-tsconfig-paths:
-    specifier: ^5.1.4
+    specifier: 5.1.4
     version: 5.1.4(typescript@5.8.3)(vite@6.3.5)
   wrangler:
-    specifier: ^4.22.0
+    specifier: 4.22.0
     version: 4.22.0
 
 packages:
