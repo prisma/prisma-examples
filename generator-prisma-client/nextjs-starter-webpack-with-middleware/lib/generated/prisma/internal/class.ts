@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/jkomyno/work/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma",
+      "value": "/Users/jkomyno/work/prisma/prisma-examples-ama/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -39,12 +39,12 @@ const config: runtime.GetPrismaClientConfig = {
       "driverAdapters",
       "queryCompiler"
     ],
-    "sourceFilePath": "/Users/jkomyno/work/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
+    "sourceFilePath": "/Users/jkomyno/work/prisma/prisma-examples-ama/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
-  "clientVersion": "6.11.0-integration-fix-generator-ts-pre-preview.1",
-  "engineVersion": "9fb012f2651f737d6adc016054d30c6e075b4b86",
+  "clientVersion": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+  "engineVersion": "b2e5a6c3a6936784f3aefb57ce847e4e7d28986a",
   "datasourceNames": [
     "db"
   ],
@@ -71,24 +71,20 @@ const config: runtime.GetPrismaClientConfig = {
 
 config.runtimeDataModel = JSON.parse("{\"models\":{\"Quotes\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quote\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kind\",\"kind\":\"enum\",\"type\":\"QuoteKind\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.engineWasm = undefined
+
+async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
+  const { Buffer } = await import('node:buffer')
+  const base64Data = wasmBase64.replace('data:application/wasm;base64,', '')
+  const wasmArray = new Uint8Array(Buffer.from(base64Data, 'base64'))
+  return new WebAssembly.Module(wasmArray)
+}
+    
 config.compilerWasm = {
   getRuntime: async () => await import("@prisma/client/runtime/query_compiler_bg.postgresql.mjs"),
 
   getQueryCompilerWasmModule: async () => {
-    const dynamicRequireFn = async <const T extends string>(name: T) =>
-      typeof __non_webpack_require__ === 'function'
-        ? Promise.resolve(__non_webpack_require__(name))
-        : await import(/* webpackIgnore: true */ name)
-  
-    // Note: we must use dynamic imports here to avoid bundling errors like `Module parse failed: Unexpected character '' (1:0)`.
-    const { readFile } = await dynamicRequireFn('node:fs/promises')
-    const { createRequire } = await dynamicRequireFn('node:module')
-    const _require = createRequire(import.meta.url)
-
-    const wasmModulePath = _require.resolve("@prisma/client/runtime/query_compiler_bg.postgresql.wasm")
-    const wasmModuleBytes = await readFile(wasmModulePath)
-
-    return new globalThis.WebAssembly.Module(wasmModuleBytes)
+    const { wasm } = await import("@prisma/client/runtime/query_compiler_bg.postgresql.wasm-base64.mjs")
+    return await decodeBase64AsWasm(wasm)
   }
 }
 
@@ -115,7 +111,7 @@ export interface PrismaClientConstructor {
 
   new <
     ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-    U = LogOptions<ClientOptions>,
+    const U = LogOptions<ClientOptions>,
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
   >(options?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>): PrismaClient<ClientOptions, U, ExtArgs>
 }

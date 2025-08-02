@@ -74,7 +74,7 @@ deno task prisma migrate dev --name init
 You now have an empty `Quotes` table in your database. Next, run the [seed script](./prisma/seed.ts) to create some sample records in the table:
 
 ```
-deno run --allow-all --env-file=.env ./prisma/seed.ts
+deno task prisma db seed
 ```
 
 ### 4. Generate Prisma Client

@@ -195,7 +195,7 @@ type GetQuotesGroupByPayload<T extends QuotesGroupByArgs> = Prisma.PrismaPromise
           : Prisma.GetScalarType<T[P], QuotesGroupByOutputType[P]>
       }
     >
-  > 
+  >
 
 
 

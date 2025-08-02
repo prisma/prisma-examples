@@ -42,18 +42,15 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.11.0-integration-fix-generator-ts-pre-preview.1",
-    "@prisma/client": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+    "@prisma/adapter-pg": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "@prisma/client": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
     "pg": "8.16.3"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
     "@types/pg": "8.15.4",
-    "prisma": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+    "prisma": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
     "typescript": "5.8.3"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   },
   "license": "MIT",
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"

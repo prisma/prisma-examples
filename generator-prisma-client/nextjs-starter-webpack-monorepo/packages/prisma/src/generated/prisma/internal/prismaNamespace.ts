@@ -4,13 +4,13 @@
 // @ts-nocheck 
 /**
  * WARNING: This is an internal file that is subject to change!
- * 
+ *
  * 🛑 Under no circumstances should you import this file directly! 🛑
- * 
+ *
  * All exports from this file are wrapped under a `Prisma` namespace object in the client.ts file.
  * While this enables partial backward compatibility, it is not part of the stable public API.
- * 
- * If you are looking for your Models, Enums, and Input Types, please import them from the respective 
+ *
+ * If you are looking for your Models, Enums, and Input Types, please import them from the respective
  * model files in the `model` directory!
  */
 
@@ -92,12 +92,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 6.11.0-integration-fix-generator-ts-pre-preview.1
- * Query Engine version: 9fb012f2651f737d6adc016054d30c6e075b4b86
+ * Prisma Client JS version: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+ * Query Engine version: b2e5a6c3a6936784f3aefb57ce847e4e7d28986a
  */
 export const prismaVersion: PrismaVersion = {
-  client: "6.11.0-integration-fix-generator-ts-pre-preview.1",
-  engine: "9fb012f2651f737d6adc016054d30c6e075b4b86"
+  client: "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+  engine: "b2e5a6c3a6936784f3aefb57ce847e4e7d28986a"
 }
 
 /**
@@ -555,7 +555,7 @@ export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 /**
- * Field references 
+ * Field references
  */
 
 
@@ -662,16 +662,24 @@ export interface PrismaClientOptions {
   /**
    * @example
    * ```
-   * // Defaults to stdout
+   * // Shorthand for `emit: 'stdout'`
    * log: ['query', 'info', 'warn', 'error']
    * 
-   * // Emit as events
+   * // Emit as events only
    * log: [
-   *   { emit: 'stdout', level: 'query' },
-   *   { emit: 'stdout', level: 'info' },
-   *   { emit: 'stdout', level: 'warn' }
-   *   { emit: 'stdout', level: 'error' }
+   *   { emit: 'event', level: 'query' },
+   *   { emit: 'event', level: 'info' },
+   *   { emit: 'event', level: 'warn' }
+   *   { emit: 'event', level: 'error' }
    * ]
+   * 
+   * / Emit as events and log to stdout
+   * og: [
+   *  { emit: 'stdout', level: 'query' },
+   *  { emit: 'stdout', level: 'info' },
+   *  { emit: 'stdout', level: 'warn' }
+   *  { emit: 'stdout', level: 'error' }
+   * 
    * ```
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
    */
@@ -717,10 +725,15 @@ export type LogDefinition = {
   emit: 'stdout' | 'event'
 }
 
-export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-  GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-  : never
+export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+export type GetLogType<T> = CheckIsLogLevel<
+  T extends LogDefinition ? T['level'] : T
+>;
+
+export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+  ? GetLogType<T[number]>
+  : never;
 
 export type QueryEvent = {
   timestamp: Date
@@ -758,7 +771,7 @@ export type PrismaAction =
   | 'aggregate'
   | 'count'
   | 'runCommandRaw'
-  | 'findRaw' 
+  | 'findRaw'
   | 'groupBy'
 
 /**

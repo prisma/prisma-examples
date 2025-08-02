@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/jkomyno/work/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma-edge",
+      "value": "/Users/jkomyno/work/prisma/prisma-examples-ama/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma-edge",
       "fromEnvVar": null
     },
     "config": {
@@ -37,12 +37,12 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/jkomyno/work/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
+    "sourceFilePath": "/Users/jkomyno/work/prisma/prisma-examples-ama/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
-  "clientVersion": "6.11.0-integration-fix-generator-ts-pre-preview.1",
-  "engineVersion": "9fb012f2651f737d6adc016054d30c6e075b4b86",
+  "clientVersion": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+  "engineVersion": "b2e5a6c3a6936784f3aefb57ce847e4e7d28986a",
   "datasourceNames": [
     "db"
   ],
@@ -102,7 +102,7 @@ export interface PrismaClientConstructor {
 
   new <
     ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-    U = LogOptions<ClientOptions>,
+    const U = LogOptions<ClientOptions>,
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
   >(options?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>): PrismaClient<ClientOptions, U, ExtArgs>
 }

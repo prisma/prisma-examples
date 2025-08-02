@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@prisma/adapter-pg':
-    specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-    version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+    specifier: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+    version: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
   '@prisma/client':
-    specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-    version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1)(typescript@5.8.3)
+    specifier: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+    version: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6(prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6)(typescript@5.8.3)
   isbot:
     specifier: 5.1.28
     version: 5.1.28
@@ -50,8 +50,8 @@ devDependencies:
     specifier: 17.2.0
     version: 17.2.0
   prisma:
-    specifier: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-    version: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3)
+    specifier: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+    version: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6(typescript@5.8.3)
   tailwindcss:
     specifier: 4.1.11
     version: 4.1.11
@@ -88,7 +88,6 @@ packages:
       '@babel/helper-validator-identifier': 7.27.1
       js-tokens: 4.0.0
       picocolors: 1.1.1
-    dev: true
 
   /@babel/compat-data@7.27.7:
     resolution: {integrity: sha512-xgu/ySj2mTiUFmdE9yCMfBxLp4DHd5DwmbbD05YAuICfodYT3VvRxbrh81LGQ/8UpSdtMdfKMn3KouYDX59DGQ==}
@@ -243,7 +242,6 @@ packages:
   /@babel/helper-validator-identifier@7.27.1:
     resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
-    dev: true
 
   /@babel/helper-validator-option@7.27.1:
     resolution: {integrity: sha512-YvjJow9FxbhFFKDSuFnVCe2WxXk1zWc22fFePVNEaWJEu8IrZVlda6N0uHwzZrUM1il7NC9Mlp4MaJYbYd9JSg==}
@@ -469,8 +467,8 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@emnapi/runtime@1.4.3:
-    resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
+  /@emnapi/runtime@1.4.5:
+    resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
@@ -1090,7 +1088,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@emnapi/runtime': 1.4.3
+      '@emnapi/runtime': 1.4.5
     dev: true
     optional: true
 
@@ -1214,18 +1212,18 @@ packages:
     dev: true
     optional: true
 
-  /@prisma/adapter-pg@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-vFqmUV+/FpduYYfOhZaqKhfcW32SGHz6jXkMtHqlwnzgbrF4P9UrJ5dQ8uLteiX0hox3VkZn5NtKA46OxWiV3Q==}
+  /@prisma/adapter-pg@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-Q3cBQ+IWCxvLIlfVK6drM01bZEU2i8px49ZFrcyUvm1dfSUmw6FsiGcwt9Md811wEIF4wVoYJzE94pfrCmqElg==}
     dependencies:
-      '@prisma/driver-adapter-utils': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/driver-adapter-utils': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
       pg: 8.16.3
       postgres-array: 3.0.4
     transitivePeerDependencies:
       - pg-native
     dev: false
 
-  /@prisma/client@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1)(typescript@5.8.3):
-    resolution: {integrity: sha512-pCAHriR0+K3DiW6djyUTIGkZh4NJxyCkf2Wz68GfJlVKOhrHXuFnRaUSfSzZpx6twSr3KxkOk6iiOgHYrx6MCg==}
+  /@prisma/client@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6(prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6)(typescript@5.8.3):
+    resolution: {integrity: sha512-j0c1LDyMbV1Pu0qKh1JPr6lACm5Mer9QGQqb4c0HJgsqXHzkGZyJTE8HZ4ivZV3VBKuCHJiB9VFyB9Bn02vm8Q==}
     engines: {node: '>=18.18'}
     requiresBuild: true
     peerDependencies:
@@ -1237,47 +1235,52 @@ packages:
       typescript:
         optional: true
     dependencies:
-      prisma: 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3)
+      prisma: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6(typescript@5.8.3)
       typescript: 5.8.3
     dev: false
 
-  /@prisma/config@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-pz/utGCgFTn6QlpCiJsSjUqqRRA7yde9NAQufe46PES8iW9Qcoxw+P6KC8qQvBiVy+EijzrtElaHz7jZSOZM5w==}
+  /@prisma/config@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-keJqLhGRAh93U/7hKrwq5MZzqzIxcFyxEnXDEptABTqSjM4DaxFBpNBQCFrElj2xGuTFAAObLYkCWOqhgSYYBQ==}
     dependencies:
-      jiti: 2.4.2
+      c12: 3.1.0
+      deepmerge-ts: 7.1.5
+      effect: 3.16.12
+      read-package-up: 11.0.0
+    transitivePeerDependencies:
+      - magicast
 
-  /@prisma/debug@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-wQAI3THhOp3RUYxUH8tWiZF3GdOIDDKuox+Hk9UaGrbvPrhyBxPQTaZUgVJY9a8d8pULaEhf65HO35cRqKZxLQ==}
+  /@prisma/debug@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-OfLkcA0nrdWWdP5K3KGoJM4iLCree2S6bZCgxLpNBza5wvqWUcHncF9lDngtiyKQLcV7IscrUbW1eYrgvVWnBw==}
 
-  /@prisma/driver-adapter-utils@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-X0bZS0LVv8kHVmNWcyHF35suW6pnpX0nlnEYbFKsTEn7t3HTzx51ZF9pHoncAvo9etf+BTvrWxqfEUk2gJLR6Q==}
+  /@prisma/driver-adapter-utils@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-me+1UW0onqNgYfFucqc8qoXClggzszYYJL0fB6Dd2r69wNAlNAGO9BwJrP/u0sz4SmLOvUwrdIikIZ6qVUx1dA==}
     dependencies:
-      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/debug': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
     dev: false
 
-  /@prisma/engines-version@6.12.0-13.c4261e444b23ae1c84edf7bd1b551230d4c692db:
-    resolution: {integrity: sha512-2PsBM2ZEu4xo1+wz3BAc89k/UFT1RgJ9N2ErwVmdkKWlZyHZ0bnRTran1vQR4U5W43TSAukRYC3hUCu3GBvahw==}
+  /@prisma/engines-version@6.14.0-1.b2e5a6c3a6936784f3aefb57ce847e4e7d28986a:
+    resolution: {integrity: sha512-kocha47ZGsnLi6io4o2JLR2kU9bX5RttNb/wuxYaZswaY3ZS9M8/9NeXnC9r3HKmpPkxsDkVqg7Nm9RfJGkcSg==}
 
-  /@prisma/engines@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-2ZiUL4hGFecIOyr3IIPmB9qB1YjaRFCLDSPrl20g6O03pxLjbffE8tNDDMEorLTQ878yJjHQcCvdPZtj+3jBxQ==}
+  /@prisma/engines@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-QQL4a3liBMJ4Z8Y+NHBUOpoiKuB6RV3IX9lojRSw7CYLfWRjZCduGO4UJWmig9KH6tHW6+0tIjojz6jJvrpeJw==}
     requiresBuild: true
     dependencies:
-      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-      '@prisma/engines-version': 6.12.0-13.c4261e444b23ae1c84edf7bd1b551230d4c692db
-      '@prisma/fetch-engine': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-      '@prisma/get-platform': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/debug': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+      '@prisma/engines-version': 6.14.0-1.b2e5a6c3a6936784f3aefb57ce847e4e7d28986a
+      '@prisma/fetch-engine': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+      '@prisma/get-platform': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
 
-  /@prisma/fetch-engine@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-NCLA11A/y0zxy/axmo68YWVLDpSboVtB06EPbFBPtbJNrcb77qEVYRGQPPRPZRAq0bhkyKc8vBYLNkfvqVyD7w==}
+  /@prisma/fetch-engine@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-1XjiyxGOut57x7aduC4p18cky7qhXCBdJaiN1Y+yeLHAHvdWB9ZSo2EQvVInZuHtRNfKX/z6J1dtyveM70z4UQ==}
     dependencies:
-      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-      '@prisma/engines-version': 6.12.0-13.c4261e444b23ae1c84edf7bd1b551230d4c692db
-      '@prisma/get-platform': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/debug': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+      '@prisma/engines-version': 6.14.0-1.b2e5a6c3a6936784f3aefb57ce847e4e7d28986a
+      '@prisma/get-platform': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
 
-  /@prisma/get-platform@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1:
-    resolution: {integrity: sha512-kGEj2BzDCHM5w18Q8m9NVCZ85CQJOAavjnGsAwVFwDnGvPcD2LhUolaqbw5UXv/UR8Y2bbVYL1dxBsNYhUB2fw==}
+  /@prisma/get-platform@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6:
+    resolution: {integrity: sha512-sPuipMJAhEMcbS23LlCxkQUAfYR/JBUrV1it4hTlzUl2k2BOyO5YoeNW8pe4YDGll+K86qQZMXpVAnS5ie9MqA==}
     dependencies:
-      '@prisma/debug': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/debug': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
 
   /@react-router/dev@7.6.3(@types/node@20.19.2)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5)(wrangler@4.22.0):
     resolution: {integrity: sha512-nnJQMVeE+LDViFTQDxeQV5FcfJ48a6aCScrFHwPHWgViQmiJxUBtDU1Pl7XZKEoTus5KDg/W3Vz2spiY6wXg3Q==}
@@ -1547,6 +1550,9 @@ packages:
     dev: true
     optional: true
 
+  /@standard-schema/spec@1.0.0:
+    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
   /@tailwindcss/node@4.1.11:
     resolution: {integrity: sha512-yzhzuGRmv5QyU9qLNg4GTlYI6STedBWRE7NjxP45CsFYYq9taI0zJXZBMqIC/c8fViNLhmrbpSFS57EoxUmD6Q==}
     dependencies:
@@ -1716,6 +1722,9 @@ packages:
       undici-types: 6.21.0
     dev: true
 
+  /@types/normalize-package-data@2.4.4:
+    resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
+
   /@types/react-dom@19.1.6(@types/react@19.1.8):
     resolution: {integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==}
     peerDependencies:
@@ -1809,6 +1818,27 @@ packages:
       update-browserslist-db: 1.1.3(browserslist@4.25.1)
     dev: true
 
+  /c12@3.1.0:
+    resolution: {integrity: sha512-uWoS8OU1MEIsOv8p/5a82c3H31LsWVR5qiyXVfBNOzfffjUWtPnhAb4BYI2uG2HfGmZmFjCtui5XNWaps+iFuw==}
+    peerDependencies:
+      magicast: ^0.3.5
+    peerDependenciesMeta:
+      magicast:
+        optional: true
+    dependencies:
+      chokidar: 4.0.3
+      confbox: 0.2.2
+      defu: 6.1.4
+      dotenv: 16.6.1
+      exsolve: 1.0.7
+      giget: 2.0.0
+      jiti: 2.5.1
+      ohash: 2.0.11
+      pathe: 2.0.3
+      perfect-debounce: 1.0.0
+      pkg-types: 2.2.0
+      rc9: 2.1.2
+
   /cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
@@ -1823,12 +1853,16 @@ packages:
     engines: {node: '>= 14.16.0'}
     dependencies:
       readdirp: 4.1.2
-    dev: true
 
   /chownr@3.0.0:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
     dev: true
+
+  /citty@0.1.6:
+    resolution: {integrity: sha512-tskPPKEs8D2KPafUypv2gxwJP8h/OaJmC82QQGGDQcHvXX43xF2VDACcJVmZ0EuSxkpO9Kc4MlrA3q0+FG58AQ==}
+    dependencies:
+      consola: 3.4.2
 
   /color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -1855,6 +1889,13 @@ packages:
       color-convert: 2.0.1
       color-string: 1.9.1
     dev: true
+
+  /confbox@0.2.2:
+    resolution: {integrity: sha512-1NB+BKqhtNipMsov4xI/NnhCKp9XG9NamYp5PVm9klAT0fsrNPjaFICsCFhNhwZJKNh7zB/3q8qXz0E9oaMNtQ==}
+
+  /consola@3.4.2:
+    resolution: {integrity: sha512-5IKcdX0nnYavi6G7TtOhwkYzyjfJlatbjMjuLSfE2kYT5pMDOilZ4OvMhi637CcDICTmz3wARPoyhqyX1Y+XvA==}
+    engines: {node: ^14.18.0 || >=16.10.0}
 
   /convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
@@ -1907,14 +1948,24 @@ packages:
         optional: true
     dev: true
 
+  /deepmerge-ts@7.1.5:
+    resolution: {integrity: sha512-HOJkrhaYsweh+W+e74Yn7YStZOilkoPb6fycpwNLKzSPtruFs48nYis0zy5yJz1+ktUhHxoRDJ27RQAWLIJVJw==}
+    engines: {node: '>=16.0.0'}
+
   /defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
-    dev: true
+
+  /destr@2.0.5:
+    resolution: {integrity: sha512-ugFTXCtDZunbzasqBxrK93Ik/DRYsO6S/fedkWEMKqt04xZ4csmnmwGDBAb07QWNaGMAmnTIemsYZCksjATwsA==}
 
   /detect-libc@2.0.4:
     resolution: {integrity: sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA==}
     engines: {node: '>=8'}
     dev: true
+
+  /dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
 
   /dotenv@17.2.0:
     resolution: {integrity: sha512-Q4sgBT60gzd0BB0lSyYD3xM4YxrXA9y4uBDof1JNYGzOXrQdQ6yX+7XIAqoFOGQFOTK1D3Hts5OllpxMDZFONQ==}
@@ -1924,6 +1975,12 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
+
+  /effect@3.16.12:
+    resolution: {integrity: sha512-N39iBk0K71F9nb442TLbTkjl24FLUzuvx2i1I2RsEAQsdAdUTuUoW0vlfUXgkMTUOnYqKnWcFfqw4hK4Pw27hg==}
+    dependencies:
+      '@standard-schema/spec': 1.0.0
+      fast-check: 3.23.2
 
   /electron-to-chromium@1.5.178:
     resolution: {integrity: sha512-wObbz/ar3Bc6e4X5vf0iO8xTN8YAjN/tgiAOJLr7yjYFtP9wAjq8Mb5h0yn6kResir+VYx2DXBj9NNobs0ETSA==}
@@ -2035,7 +2092,12 @@ packages:
 
   /exsolve@1.0.7:
     resolution: {integrity: sha512-VO5fQUzZtI6C+vx4w/4BWJpg3s/5l+6pRQEHzFRM8WFi4XffSP1Z+4qi7GbjWbvRQEbdIco5mIMq+zX4rPuLrw==}
-    dev: true
+
+  /fast-check@3.23.2:
+    resolution: {integrity: sha512-h5+1OzzfCC3Ef7VbtKdcv7zsstUQwUDlYpUTvjeUsJAssPgLn7QzbboPtL5ro04Mq0rPOsMzl7q5hIbRs2wD1A==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      pure-rand: 6.1.0
 
   /fdir@6.4.6(picomatch@4.0.2):
     resolution: {integrity: sha512-hiFoqpyZcfNm1yc4u8oWCf9A2c4D3QjCrks3zmoVKVxpQRzmPNar1hUJcBG2RQHvEVGDN+Jm81ZheVLAQMK6+w==}
@@ -2047,6 +2109,10 @@ packages:
     dependencies:
       picomatch: 4.0.2
     dev: true
+
+  /find-up-simple@1.0.1:
+    resolution: {integrity: sha512-afd4O7zpqHeRyg4PfDQsXmlDe2PfdHtJt6Akt8jOWaApLOZk5JXs6VMR29lz03pRe9mpykrRCYIYxaJYcfpncQ==}
+    engines: {node: '>=18'}
 
   /foreground-child@3.3.1:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
@@ -2091,6 +2157,17 @@ packages:
       resolve-pkg-maps: 1.0.0
     dev: true
 
+  /giget@2.0.0:
+    resolution: {integrity: sha512-L5bGsVkxJbJgdnwyuheIunkGatUF/zssUoxxjACCseZYAVbaqdh9Tsmmlkl8vYan09H7sbvKt4pS8GqKLBrEzA==}
+    hasBin: true
+    dependencies:
+      citty: 0.1.6
+      consola: 3.4.2
+      defu: 6.1.4
+      node-fetch-native: 1.6.7
+      nypm: 0.6.1
+      pathe: 2.0.3
+
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
     dev: true
@@ -2134,6 +2211,16 @@ packages:
       lru-cache: 7.18.3
     dev: true
 
+  /hosted-git-info@7.0.2:
+    resolution: {integrity: sha512-puUZAUKT5m8Zzvs72XWy3HtvVbTWljRE66cP60bxJzAqf2DgICo7lYTY2IHUmLnNpjYvw5bvmoHvPc0QO2a62w==}
+    engines: {node: ^16.14.0 || >=18.0.0}
+    dependencies:
+      lru-cache: 10.4.3
+
+  /index-to-position@1.1.0:
+    resolution: {integrity: sha512-XPdx9Dq4t9Qk1mTMbWONJqU7boCoumEH7fRET37HX5+khDUl3J2W6PdALxhILYlIYx2amlwYcRPp28p0tSiojg==}
+    engines: {node: '>=18'}
+
   /is-arrayish@0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
     dev: true
@@ -2170,10 +2257,14 @@ packages:
   /jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
+    dev: true
+
+  /jiti@2.5.1:
+    resolution: {integrity: sha512-twQoecYPiVA5K/h6SxtORw/Bs3ar+mLUtoPSc7iMXzQzK8d7eJ/R09wmTwAjiamETn1cXYPGfNnu7DMoHgu12w==}
+    hasBin: true
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: true
 
   /jsesc@3.0.2:
     resolution: {integrity: sha512-xKqzzWXDttJuOcawBt4KnKHHIf5oQ/Cxax+0PWFG+DFDgHNAdi+TXECADI+RYiFUMmx8792xsMbbgXj4CwnP4g==}
@@ -2306,7 +2397,6 @@ packages:
 
   /lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-    dev: true
 
   /lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -2393,6 +2483,9 @@ packages:
     hasBin: true
     dev: true
 
+  /node-fetch-native@1.6.7:
+    resolution: {integrity: sha512-g9yhqoedzIUm0nTnTqAQvueMPVOuIY16bqgAJJC8XOOubYFNwz6IER9qs0Gq2Xd0+CecCKFjtdDTMA4u4xG06Q==}
+
   /node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
     dev: true
@@ -2406,6 +2499,14 @@ packages:
       semver: 7.7.2
       validate-npm-package-license: 3.0.4
     dev: true
+
+  /normalize-package-data@6.0.2:
+    resolution: {integrity: sha512-V6gygoYb/5EmNI+MEGrWkC+e6+Rr7mTmfHrxDbLzxQogBkgzo76rkok0Am6thgSF7Mv2nLOajAJj5vDJZEFn7g==}
+    engines: {node: ^16.14.0 || >=18.0.0}
+    dependencies:
+      hosted-git-info: 7.0.2
+      semver: 7.7.2
+      validate-npm-package-license: 3.0.4
 
   /npm-install-checks@6.3.0:
     resolution: {integrity: sha512-W29RiK/xtpCGqn6f3ixfRYGk+zRyr+Ew9F2E20BfXxT5/euLdA/Nm7fO7OeTGuAmTs30cpgInyJ0cYe708YTZw==}
@@ -2439,13 +2540,31 @@ packages:
       semver: 7.7.2
     dev: true
 
+  /nypm@0.6.1:
+    resolution: {integrity: sha512-hlacBiRiv1k9hZFiphPUkfSQ/ZfQzZDzC+8z0wL3lvDAOUu/2NnChkKuMoMjNur/9OpKuz2QsIeiPVN0xM5Q0w==}
+    engines: {node: ^14.16.0 || >=16.10.0}
+    hasBin: true
+    dependencies:
+      citty: 0.1.6
+      consola: 3.4.2
+      pathe: 2.0.3
+      pkg-types: 2.2.0
+      tinyexec: 1.0.1
+
   /ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
-    dev: true
 
   /package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
     dev: true
+
+  /parse-json@8.3.0:
+    resolution: {integrity: sha512-ybiGyvspI+fAoRQbIPRddCcSTV9/LsJbf0e/S85VLowVGzRmokfneg2kwVW/KU5rOXrPSbF1qAKPMgNTqqROQQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@babel/code-frame': 7.27.1
+      index-to-position: 1.1.0
+      type-fest: 4.41.0
 
   /path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
@@ -2470,7 +2589,9 @@ packages:
 
   /pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
-    dev: true
+
+  /perfect-debounce@1.0.0:
+    resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
 
   /pg-cloudflare@1.2.7:
     resolution: {integrity: sha512-YgCtzMH0ptvZJslLM1ffsY4EuGaU0cx4XSdXLRFae8bPP4dS5xL1tNB3k2o/N64cHJpwU7dxKli/nZ2lUa5fLg==}
@@ -2536,12 +2657,18 @@ packages:
 
   /picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
-    dev: true
 
   /picomatch@4.0.2:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
     dev: true
+
+  /pkg-types@2.2.0:
+    resolution: {integrity: sha512-2SM/GZGAEkPp3KWORxQZns4M+WSeXbC2HEvmOIJe3Cmiv6ieAJvdVhDldtHqM5J1Y7MrR1XhkBT/rMlhh9FdqQ==}
+    dependencies:
+      confbox: 0.2.2
+      exsolve: 1.0.7
+      pathe: 2.0.3
 
   /postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
@@ -2589,8 +2716,8 @@ packages:
     resolution: {integrity: sha512-dKp+C4iXWK4vVYZmYSd0KBH5F/h1HoZRsbJ82AVKRO3PEo8L4lBS/vLwhVtpwwuYcoIsVY+1JYKR268yn480uQ==}
     dev: true
 
-  /prisma@6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1(typescript@5.8.3):
-    resolution: {integrity: sha512-JiMQJRjGED4FlLTp6S7qoFN6Bo38BVawtwMRCgM2fCaID/E9QhVbE8ovm9UnQIVtQUuKlkOC5IagQSG473agow==}
+  /prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6(typescript@5.8.3):
+    resolution: {integrity: sha512-v9bcVDHNTvFvFQ5wtsmk8m6EPRAZCeGoa1Hy89eyWufJ3TTj/Z3xowzJcxIJZRP1XazSEJvb3ljZIZ3/Iw3EmA==}
     engines: {node: '>=18.18'}
     hasBin: true
     requiresBuild: true
@@ -2600,9 +2727,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@prisma/config': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
-      '@prisma/engines': 6.12.0-integration-fix-support-adapter-type-in-prisma-client-constructor-with-edge-runtimes.1
+      '@prisma/config': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
+      '@prisma/engines': 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
       typescript: 5.8.3
+    transitivePeerDependencies:
+      - magicast
 
   /proc-log@3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
@@ -2625,6 +2754,15 @@ packages:
       err-code: 2.0.3
       retry: 0.12.0
     dev: true
+
+  /pure-rand@6.1.0:
+    resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
+
+  /rc9@2.1.2:
+    resolution: {integrity: sha512-btXCnMmRIBINM2LDZoEmOogIZU7Qe7zn4BpomSKZ/ykbLObuBdvG+mFq11DL6fjH1DRwHhrlgtYWG96bJiC7Cg==}
+    dependencies:
+      defu: 6.1.4
+      destr: 2.0.5
 
   /react-dom@19.1.0(react@19.1.0):
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
@@ -2658,10 +2796,27 @@ packages:
     resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
     engines: {node: '>=0.10.0'}
 
+  /read-package-up@11.0.0:
+    resolution: {integrity: sha512-MbgfoNPANMdb4oRBNg5eqLbB2t2r+o5Ua1pNt8BqGp4I0FJZhuVSOj3PaBPni4azWuSzEdNn2evevzVmEk1ohQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      find-up-simple: 1.0.1
+      read-pkg: 9.0.1
+      type-fest: 4.41.0
+
+  /read-pkg@9.0.1:
+    resolution: {integrity: sha512-9viLL4/n1BJUCT1NXVTdS1jtm80yDEgR5T4yCelII49Mbj0v1rZdKqj7zCiYdbB0CuCgdrvHcNogAKTFPBocFA==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@types/normalize-package-data': 2.4.4
+      normalize-package-data: 6.0.2
+      parse-json: 8.3.0
+      type-fest: 4.41.0
+      unicorn-magic: 0.1.0
+
   /readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
-    dev: true
 
   /resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
@@ -2714,7 +2869,6 @@ packages:
     resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
     hasBin: true
-    dev: true
 
   /set-cookie-parser@2.7.1:
     resolution: {integrity: sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==}
@@ -2787,22 +2941,18 @@ packages:
     dependencies:
       spdx-expression-parse: 3.0.1
       spdx-license-ids: 3.0.21
-    dev: true
 
   /spdx-exceptions@2.5.0:
     resolution: {integrity: sha512-PiU42r+xO4UbUS1buo3LPJkjlO7430Xn5SVAhdpzzsPHsjbYVflnnFdATgabnLude+Cqu25p6N+g2lw/PFsa4w==}
-    dev: true
 
   /spdx-expression-parse@3.0.1:
     resolution: {integrity: sha512-cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==}
     dependencies:
       spdx-exceptions: 2.5.0
       spdx-license-ids: 3.0.21
-    dev: true
 
   /spdx-license-ids@3.0.21:
     resolution: {integrity: sha512-Bvg/8F5XephndSK3JffaRqdT+gyhfqIPwDHpX80tJrF8QQRYMo8sNMeaZ2Dp5+jhwKnUmIOyFFQfHRkjJm5nXg==}
-    dev: true
 
   /split2@4.2.0:
     resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
@@ -2874,6 +3024,9 @@ packages:
       yallist: 5.0.0
     dev: true
 
+  /tinyexec@1.0.1:
+    resolution: {integrity: sha512-5uC6DDlmeqiOwCPmK9jMSdOuZTh8bU39Ys6yidB+UTt5hfZUPGAypSgFRiEp+jbi9qH40BLDvy85jIU88wKSqw==}
+
   /tinyglobby@0.2.14:
     resolution: {integrity: sha512-tX5e7OM1HnYr2+a2C/4V0htOcSQcoSTH9KgJnVvNm5zm/cyEWKJ7j7YutsH9CxMdtOkkLFy2AHrMci9IM8IPZQ==}
     engines: {node: '>=12.0.0'}
@@ -2912,6 +3065,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /type-fest@4.41.0:
+    resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
+    engines: {node: '>=16'}
+
   /typescript@5.8.3:
     resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
     engines: {node: '>=14.17'}
@@ -2942,6 +3099,10 @@ packages:
       ufo: 1.6.1
     dev: true
 
+  /unicorn-magic@0.1.0:
+    resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
+    engines: {node: '>=18'}
+
   /update-browserslist-db@1.1.3(browserslist@4.25.1):
     resolution: {integrity: sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==}
     hasBin: true
@@ -2969,7 +3130,6 @@ packages:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
-    dev: true
 
   /validate-npm-package-name@5.0.1:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
