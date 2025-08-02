@@ -33,13 +33,13 @@ dependencies:
 devDependencies:
   '@react-router/dev':
     specifier: 7.6.3
-    version: 7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.7)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5)
+    version: 7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.9)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5)
   '@tailwindcss/vite':
     specifier: 4.1.11
     version: 4.1.11(vite@6.3.5)
   '@types/node':
-    specifier: 20.19.7
-    version: 20.19.7
+    specifier: 20.19.9
+    version: 20.19.9
   '@types/react':
     specifier: ^19.1.2
     version: 19.1.8
@@ -60,7 +60,7 @@ devDependencies:
     version: 5.8.3
   vite:
     specifier: 6.3.5
-    version: 6.3.5(@types/node@20.19.7)(tsx@4.20.3)
+    version: 6.3.5(@types/node@20.19.9)(tsx@4.20.3)
   vite-tsconfig-paths:
     specifier: 5.1.4
     version: 5.1.4(typescript@5.8.3)(vite@6.3.5)
@@ -752,7 +752,7 @@ packages:
     dependencies:
       '@prisma/debug': 6.11.0
 
-  /@react-router/dev@7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.7)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5):
+  /@react-router/dev@7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.9)(react-router@7.6.3)(tsx@4.20.3)(typescript@5.8.3)(vite@6.3.5):
     resolution: {integrity: sha512-nnJQMVeE+LDViFTQDxeQV5FcfJ48a6aCScrFHwPHWgViQmiJxUBtDU1Pl7XZKEoTus5KDg/W3Vz2spiY6wXg3Q==}
     engines: {node: '>=20.0.0'}
     hasBin: true
@@ -799,8 +799,8 @@ packages:
       tinyglobby: 0.2.14
       typescript: 5.8.3
       valibot: 0.41.0(typescript@5.8.3)
-      vite: 6.3.5(@types/node@20.19.7)(tsx@4.20.3)
-      vite-node: 3.2.4(@types/node@20.19.7)(tsx@4.20.3)
+      vite: 6.3.5(@types/node@20.19.9)(tsx@4.20.3)
+      vite-node: 3.2.4(@types/node@20.19.9)(tsx@4.20.3)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -1183,15 +1183,15 @@ packages:
       '@tailwindcss/node': 4.1.11
       '@tailwindcss/oxide': 4.1.11
       tailwindcss: 4.1.11
-      vite: 6.3.5(@types/node@20.19.7)(tsx@4.20.3)
+      vite: 6.3.5(@types/node@20.19.9)(tsx@4.20.3)
     dev: true
 
   /@types/estree@1.0.8:
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
     dev: true
 
-  /@types/node@20.19.7:
-    resolution: {integrity: sha512-1GM9z6BJOv86qkPvzh2i6VW5+VVrXxCLknfmTkWEqz+6DqosiY28XUWCTmBcJ0ACzKqx/iwdIREfo1fwExIlkA==}
+  /@types/node@20.19.9:
+    resolution: {integrity: sha512-cuVNgarYWZqxRJDQHEB58GEONhOK79QVR/qYx4S7kcUObQvUwvFnYxJuuHUKm2aieN9X3yZB4LZsuYNU1Qphsw==}
     dependencies:
       undici-types: 6.21.0
     dev: true
@@ -2702,7 +2702,7 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  /vite-node@3.2.4(@types/node@20.19.7)(tsx@4.20.3):
+  /vite-node@3.2.4(@types/node@20.19.9)(tsx@4.20.3):
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -2711,7 +2711,7 @@ packages:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.5(@types/node@20.19.7)(tsx@4.20.3)
+      vite: 6.3.5(@types/node@20.19.9)(tsx@4.20.3)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -2738,13 +2738,13 @@ packages:
       debug: 4.4.1
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.8.3)
-      vite: 6.3.5(@types/node@20.19.7)(tsx@4.20.3)
+      vite: 6.3.5(@types/node@20.19.9)(tsx@4.20.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite@6.3.5(@types/node@20.19.7)(tsx@4.20.3):
+  /vite@6.3.5(@types/node@20.19.9)(tsx@4.20.3):
     resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -2784,7 +2784,7 @@ packages:
       yaml:
         optional: true
     dependencies:
-      '@types/node': 20.19.7
+      '@types/node': 20.19.9
       esbuild: 0.25.5
       fdir: 6.4.6(picomatch@4.0.2)
       picomatch: 4.0.2
