@@ -39,7 +39,7 @@
 		"typescript": "5.8.3",
 		"vite": "6.3.5",
 		"vite-tsconfig-paths": "5.1.4",
-		"wrangler": "4.22.0"
+		"wrangler": "4.28.0"
 	},
 	"prisma": {
 		"seed": "tsx --tsconfig ./tsconfig.node.json prisma/seed.ts"
