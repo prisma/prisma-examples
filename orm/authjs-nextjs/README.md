@@ -51,7 +51,7 @@ This example uses a [Prisma Postgres](https://prisma.io/postgres) database by de
 
 1. Run `npx create-db@latest` in your terminal.
 
-2. Copy the string labeled **"Use this for everything else"** and add it to the `.env` under `DATABASE_URL`
+2. Copy the string labeled **"Use this connection string optimized for Prisma ORM"** and add it to the `.env` under `DATABASE_URL`
 
 That's it, your project is now configured to use Prisma Postgres!
 
