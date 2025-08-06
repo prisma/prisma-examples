@@ -48,9 +48,14 @@
   },
   "devDependencies": {
     "@types/node": "22.15.32",
+<<<<<<< HEAD
     "@types/pg": "8.15.4",
     "prisma": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
     "tsx": "4.20.3",
+=======
+    "@types/pg": "8.15.5",
+    "prisma": "6.11.0-integration-fix-generator-ts-pre-preview.1",
+>>>>>>> latest
     "typescript": "5.8.3"
   },
   "license": "MIT",

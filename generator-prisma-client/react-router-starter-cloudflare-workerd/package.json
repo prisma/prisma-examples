@@ -29,7 +29,7 @@
 		"@cloudflare/vite-plugin": "1.8.0",
 		"@react-router/dev": "7.6.3",
 		"@tailwindcss/vite": "4.1.11",
-		"@types/node": "20.19.2",
+		"@types/node": "20.19.9",
 		"@types/react": "^19.1.2",
 		"@types/react-dom": "^19.1.2",
 		"dotenv": "17.2.0",
@@ -39,7 +39,7 @@
 		"typescript": "5.8.3",
 		"vite": "6.3.5",
 		"vite-tsconfig-paths": "5.1.4",
-		"wrangler": "4.22.0"
+		"wrangler": "4.28.0"
 	},
 	"packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
 }

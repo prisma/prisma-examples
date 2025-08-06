@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "basic-typedsql",
+  "description": "A simple TypedSQL example using `prisma-client`.",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx src/index.ts --watch",
+    "test": "tsx src/index.ts",
+    "debug": "tsx src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "6.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.32",
+    "prisma": "6.13.0",
+    "tsx": "4.20.3"
+  },
+  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
+}
