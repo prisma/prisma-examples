@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Auth.js + Prisma example
 
-## Getting Started
+This example shows how to implement **authentication** using [Auth.js](https://authjs.dev/), [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io).
 
-First, run the development server:
+## Getting started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 1. Download example and navigate into the project directory
+
+Download this example:
+
+```
+npx try-prisma@latest --template orm/authjs-nextjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, navigate into the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd authjs-nextjs
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
 
-## Learn More
+Clone this repository:
 
-To learn more about Next.js, take a look at the following resources:
+```
+git clone git@github.com:prisma/prisma-examples.git --depth=1
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Install npm dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+cd prisma-examples/orm/authjs-nextjs
+npm install
+```
 
-## Deploy on Vercel
+</details>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Remove `.example` from both `env.example` and `.env.local.example`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 2. Create a Prisma Postgres instance
+
+This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to setup a Prisma Postgres connection string:
+
+#### Option 1. Use the Prisma Data Platform Console
+
+1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
+
+2. Add your database url to the `.env`
+
+#### Option 2. Use `npx create-db`
+
+1. Run `npx create-db@latest` in your terminal.
+
+2. Copy the string labeled **"Use this for everything else"** and add it to the `.env` under `DATABASE_URL`
+
+That's it, your project is now configured to use Prisma Postgres!
+
+### 3. Generate and migrate Prisma client
+
+1. Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
+
+```
+npx prisma generate
+```
+
+2. Migrate the DB
+
+```
+npx prisma migrate dev --name init
+```
+
+### 4. Set up Auth.js
+
+1. Generate a Auth.js secret
+
+```
+npx auth secret
+```
+
+2. Add the secret to the `.env`.
+
+### 5. Set up Github OAuth
+
+There are many options for OAuth providers (See list here). For this example we've gone with Github.
+
+1. Navigate to [Github's Developer Settings](https://github.com/settings/developers) and hit **New OAuth app**
+
+2. Fill out the required details and hit **Register application**
+
+- Applciation name: "Auth.js + Prisma Example"
+- Homepage URL: "http://localhost:3000/"
+- Authorization callback URL: "http://localhost:3000/api/auth/callback/github"
+
+4. Hit **Generate a new client secret** to create a new Client Secret
+
+5. Paste the Client ID and Client Secret in `.env.local` next to their respective variables
+
+### 6. Start the development server
+
+```
+npm run dev
+```
+
+The server is now running at http://localhost:3000
+
+## Switch to another database
+
+If you want to try this example with another database rather than Prisma Postgres, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation.
+
+## Next steps
+
+- Check out the [Prisma docs](https://www.prisma.io/docs)
+- [Join our community on Discord](https://pris.ly/discord?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) to share feedback and interact with other users.
+- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for live demos and video tutorials.
+- [Follow us on X](https://pris.ly/x?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for the latest updates.
+- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section).
