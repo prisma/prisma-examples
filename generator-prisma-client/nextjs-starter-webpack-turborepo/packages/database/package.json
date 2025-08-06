@@ -10,7 +10,7 @@
     "db:migrate:deploy": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "db:push": "prisma db push",
-    "db:seed": "tsx src/seed.ts",
+    "db:seed": "prisma db seed",
     "dev": "tsup src/* --format esm --watch",
     "format": "prisma format",
     "generate": "prisma generate",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "20.19.7",
+    "dotenv": "^17.2.1",
     "eslint": "8.57.1",
     "prisma": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
     "rimraf": "5.0.10",

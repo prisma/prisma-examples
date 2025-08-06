@@ -1,5 +1,8 @@
 {
   "$schema": "https://turborepo.com/schema.json",
+  "globalDependencies": [
+    ".env"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -8,21 +11,32 @@
       "env": ["DIRECT_URL"]
     },
     "db:migrate:dev": {
-      "cache": false,
       "env": ["DATABASE_URL", "DIRECT_URL"],
+      "inputs": [
+        "packages/database"
+      ],
       "persistent": true
     },
     "db:migrate:deploy": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"]
+      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "inputs": [
+        "packages/database"
+      ]
     },
     "db:push": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"]
+      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "inputs": [
+        "packages/database"
+      ]
     },
     "db:seed": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"]
+      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "inputs": [
+        "packages/database"
+      ]
     },
     "dev": {
       "cache": false,

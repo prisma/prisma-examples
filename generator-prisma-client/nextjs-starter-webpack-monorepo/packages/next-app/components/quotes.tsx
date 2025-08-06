@@ -1,3 +1,4 @@
+import { connection } from 'next/server'
 import prisma from '@/lib/db'
 import { QuoteKind } from '@nextjs-starter-webpack-monorepo/prisma/enums'
 
@@ -6,6 +7,7 @@ import { QuoteKind } from '@nextjs-starter-webpack-monorepo/prisma/enums'
 export const dynamic = 'force-dynamic'
 
 export async function Quotes() {
+  await connection()
   const quotes = await prisma.quotes.findMany({
     orderBy: {
       createdAt: 'desc',
