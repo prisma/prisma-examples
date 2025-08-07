@@ -86,15 +86,15 @@ There are many options for OAuth providers (See list here). For this example we'
 
 1. Navigate to [Github's Developer Settings](https://github.com/settings/developers) and hit **New OAuth app**
 
-2. Fill out the required details and hit **Register application**
+2. Fill out the required details
 
 - Applciation name: "Auth.js + Prisma Example"
 - Homepage URL: "http://localhost:3000/"
 - Authorization callback URL: "http://localhost:3000/api/auth/callback/github"
 
-4. Hit **Generate a new client secret** to create a new Client Secret
+4. Hit **Register application**, then **Generate a new client secret** to create a new Client Secret
 
-5. Paste the Client ID and Client Secret in `.env` next to their respective variables
+5. Copy and paste the Client ID and Client Secret in `.env` next to their respective variables
 
 ### 6. Start the development server
 
