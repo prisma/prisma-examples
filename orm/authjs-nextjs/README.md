@@ -12,10 +12,11 @@ Download this example:
 npx try-prisma@latest --template orm/authjs-nextjs
 ```
 
-Then, navigate into the project directory:
+Then, navigate into the project directory and install the dependencies:
 
 ```
 cd authjs-nextjs
+npm install
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -35,7 +36,7 @@ npm install
 
 </details>
 
-Remove `.example` from both `env.example` and `.env.local.example`
+Rename `.env.example` to `.env`
 
 ### 2. Create a Prisma Postgres instance
 
@@ -71,10 +72,10 @@ npx prisma migrate dev --name init
 
 ### 4. Set up Auth.js
 
-1. Generate a Auth.js secret
+1. Generate a Auth.js secret.
 
 ```
-npx auth secret
+npx auth secret --copy
 ```
 
 2. Add the secret to the `.env`.
@@ -93,7 +94,7 @@ There are many options for OAuth providers (See list here). For this example we'
 
 4. Hit **Generate a new client secret** to create a new Client Secret
 
-5. Paste the Client ID and Client Secret in `.env.local` next to their respective variables
+5. Paste the Client ID and Client Secret in `.env` next to their respective variables
 
 ### 6. Start the development server
 
