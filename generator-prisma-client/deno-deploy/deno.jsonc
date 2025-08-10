@@ -12,6 +12,7 @@
     "@std/http": "jsr:@std/http@1",
     "@prisma/adapter-pg": "npm:@prisma/adapter-pg@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
     "@prisma/client": "npm:@prisma/client@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "dotenv": "npm:dotenv@^17.2.1",
     "prisma": "npm:prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6"
   },
   "nodeModulesDir": "auto"

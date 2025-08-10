@@ -16,6 +16,7 @@
     "jsr:@std/streams@^1.0.10": "1.0.10",
     "npm:@prisma/adapter-pg@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
     "npm:@prisma/client@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6_prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "npm:dotenv@^17.2.1": "17.2.1",
     "npm:prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6"
   },
   "jsr": {
@@ -160,7 +161,7 @@
         "chokidar",
         "confbox",
         "defu",
-        "dotenv",
+        "dotenv@16.6.1",
         "exsolve",
         "giget",
         "jiti",
@@ -200,6 +201,9 @@
     },
     "dotenv@16.6.1": {
       "integrity": "sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow=="
+    },
+    "dotenv@17.2.1": {
+      "integrity": "sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ=="
     },
     "effect@3.16.12": {
       "integrity": "sha512-N39iBk0K71F9nb442TLbTkjl24FLUzuvx2i1I2RsEAQsdAdUTuUoW0vlfUXgkMTUOnYqKnWcFfqw4hK4Pw27hg==",
@@ -459,6 +463,7 @@
       "jsr:@std/http@1",
       "npm:@prisma/adapter-pg@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
       "npm:@prisma/client@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+      "npm:dotenv@^17.2.1",
       "npm:prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6"
     ]
   }
