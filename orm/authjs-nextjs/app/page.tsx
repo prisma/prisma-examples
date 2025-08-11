@@ -1,8 +1,15 @@
 import { SignIn, SignOut } from "@/components/auth-components";
 import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
 const Page = async () => {
   const session = await auth();
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session?.user?.id,
+    },
+  });
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
@@ -26,7 +33,7 @@ const Page = async () => {
 
             <div className="bg-neutral-900 rounded p-3">
               <pre className="text-xs text-gray-300">
-                {JSON.stringify(session, null, 2)}
+                {JSON.stringify(user, null, 2)}
               </pre>
             </div>
 
