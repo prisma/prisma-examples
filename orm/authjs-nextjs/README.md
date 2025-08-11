@@ -98,6 +98,21 @@ There are many options for OAuth providers (See list here). For this example we'
 
 ### 6. Start the development server
 
+> **Warning**
+> 
+> Before starting the development server, note that if you are using Next.js v15.2.0 or v15.2.1, do not use Turbopack as there is a known [issue](https://github.com/vercel/next.js/issues/76497). Remove Turbopack from your dev script by updating your `package.json`
+> 
+> ```json
+> {
+>   "scripts": {
+>     - "dev": "next dev --turbopack"
+>     + "dev": "next dev"
+>   }
+> }
+> ```
+> 
+> This change is not needed on any versions before or after.
+
 ```
 npm run dev
 ```
