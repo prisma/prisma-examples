@@ -28,7 +28,6 @@ To successfully run the project, you will need the following:
     provider = "prisma-client"
     output = "../lib/generated/prisma"
     previewFeatures = ["driverAdapters", "queryCompiler"]
-    runtime = "nodejs"
   }
   ```
 
