@@ -39,7 +39,7 @@ Rename the `.env.example` file to `.env`
 
 ### 2. Create a Prisma Postgres instance
 
-This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to setup a Prisma Postgres connection string:
+This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to set up a Prisma Postgres connection string:
 
 1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
 
