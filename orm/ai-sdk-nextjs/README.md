@@ -1,6 +1,6 @@
 # Vercel AI SDK V5 + Prisma example
 
-This example shows how to store AI chat messages using [Verce's AI SDK V5](https://better-auth.com/), [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io).
+This example shows how to store AI chat messages using [Verce's AI SDK V5](https://ai-sdk.dev/docs/introduction), [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io).
 
 ## Getting started
 
@@ -15,7 +15,7 @@ npx try-prisma@latest --template orm/ai-sdk-nextjs
 Then, navigate into the project directory:
 
 ```
-cd betterauth-nextjs
+cd ai-sdk-nextjs
 ```
 
 <details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
@@ -29,7 +29,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/orm/betterauth-nextjs
+cd prisma-examples/orm/ai-sdk-nextjs
 npm install
 ```
 
@@ -42,6 +42,10 @@ Rename the `.env.example` file to `.env`
 This example uses a [Prisma Postgres](https://prisma.io/postgres) database by default. To get started with the project, you will need to setup a Prisma Postgres connection string:
 
 1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
+
+> You can also start a new Prisma Postgres using [create-db](create-db.prisma.io).
+>
+> Run `npx create-db@latest` and copy the DATABASE_URL that is _"optimized for Prisma ORM"_.
 
 2. Add your database url to the `.env`
 
@@ -61,29 +65,13 @@ npx prisma generate
 npx prisma migrate dev --name init
 ```
 
-### 4. Set up Better-Auth
+### 4. Set up Open AI
 
-1. Generate a Better-Auth secret
+1. Navigate to https://platform.openai.com/api-keys
 
-```
-npx @better-auth/cli@latest secret
-```
+2. Create a new API key and give it full access
 
-2. Add the secret to the `.env`.
-
-3. (Optional) If running on a port other than 3000, add that url to the `trustedOrigins` field in `auth-client.ts`
-
-```diff
-export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
-    provider: 'sqlite',
-  }),
-  emailAndPassword: {
-    enabled: true,
-  },
-+ trustedOrigins: ['http://localhost:3001'],
-})
-```
+3. Add the API key to the `.env`.
 
 ### 5. Start the development server
 
