@@ -88,7 +88,7 @@ There are many options for OAuth providers (See list here). For this example we'
 
 2. Fill out the required details
 
-- Applciation name: "Auth.js + Prisma Example"
+- Application name: "Auth.js + Prisma Example"
 - Homepage URL: "http://localhost:3000/"
 - Authorization callback URL: "http://localhost:3000/api/auth/callback/github"
 

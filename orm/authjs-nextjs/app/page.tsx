@@ -5,11 +5,13 @@ import { prisma } from "@/lib/prisma";
 const Page = async () => {
   const session = await auth();
 
-  const user = await prisma.user.findUnique({
-    where: {
-      id: session?.user?.id,
-    },
-  });
+  const user = session?.user?.id 
+    ? await prisma.user.findUnique({
+        where: {
+          id: session.user.id,
+        },
+      })
+    : null;
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
