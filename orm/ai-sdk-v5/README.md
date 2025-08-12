@@ -1,1 +1,0 @@
-# Vercel AI SDK V5 + Prisma
