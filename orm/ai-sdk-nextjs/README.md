@@ -1,6 +1,6 @@
 # Vercel AI SDK V5 + Prisma example
 
-This example shows how to store AI chat messages using [Verce's AI SDK V5](https://ai-sdk.dev/docs/introduction), [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io).
+This example shows how to store AI chat messages using [Vercel's AI SDK V5](https://ai-sdk.dev/docs/introduction), [Next.js](https://nextjs.org/) and [Prisma](https://www.prisma.io).
 
 ## Getting started
 
@@ -8,13 +8,13 @@ This example shows how to store AI chat messages using [Verce's AI SDK V5](https
 
 Download this example:
 
-```
+```bash
 npx try-prisma@latest --template orm/ai-sdk-nextjs
 ```
 
 Then, navigate into the project directory:
 
-```
+```bash
 cd ai-sdk-nextjs
 ```
 
@@ -22,13 +22,13 @@ cd ai-sdk-nextjs
 
 Clone this repository:
 
-```
+```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
 ```
 
 Install npm dependencies:
 
-```
+```bash
 cd prisma-examples/orm/ai-sdk-nextjs
 npm install
 ```
@@ -43,11 +43,11 @@ This example uses a [Prisma Postgres](https://prisma.io/postgres) database by de
 
 1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
 
-> You can also start a new Prisma Postgres using [create-db](create-db.prisma.io).
+> You can also start a new Prisma Postgres using [create-db](https://create-db.prisma.io).
 >
 > Run `npx create-db@latest` and copy the DATABASE_URL that is _"optimized for Prisma ORM"_.
 
-2. Add your database url to the `.env`
+2. Add your database URL to the `.env`
 
 That's it, your project is now configured to use Prisma Postgres!
 
@@ -55,19 +55,19 @@ That's it, your project is now configured to use Prisma Postgres!
 
 1. Run the following command to generate the Prisma Client. This is what you will be using to interact with your database.
 
-```
+```bash
 npx prisma generate
 ```
 
 2. Migrate the DB
 
-```
+```bash
 npx prisma migrate dev --name init
 ```
 
-### 4. Set up Open AI
+### 4. Set up OpenAI
 
-1. Navigate to https://platform.openai.com/api-keys
+1. Navigate to [OpenAI API keys](https://platform.openai.com/api-keys)
 
 2. Create a new API key and give it full access
 
@@ -75,11 +75,11 @@ npx prisma migrate dev --name init
 
 ### 5. Start the development server
 
-```
+```bash
 npm run dev
 ```
 
-The server is now running at http://localhost:3000
+The server is now running at [http://localhost:3000](http://localhost:3000)
 
 ## Switch to another database
 
