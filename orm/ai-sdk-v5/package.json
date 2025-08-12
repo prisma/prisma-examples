@@ -1,0 +1,32 @@
+{
+  "name": "ai-sdk-v5",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.6",
+    "@ai-sdk/react": "^2.0.8",
+    "@prisma/client": "^6.13.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "ai": "^5.0.8",
+    "next": "15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "zod": "^4.0.15"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "prisma": "^6.13.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.20.3",
+    "typescript": "^5"
+  }
+}

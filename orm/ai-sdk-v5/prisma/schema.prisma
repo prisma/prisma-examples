@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id        String    @id
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  Message[]
+}
+
+model Message {
+  id        String      @id @default(cuid())
+  role      MessageRole
+  content   String
+  createdAt DateTime    @default(now())
+  sessionId String
+  session   Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+}
