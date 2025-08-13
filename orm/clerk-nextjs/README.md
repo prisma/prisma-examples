@@ -43,6 +43,7 @@ This example uses a [Prisma Postgres](https://prisma.io/postgres) database by de
 
 1. Set up a new Prisma Postgres instance in the [Prisma Data Platform Console](https://console.prisma.io) and copy the database connection URL.
 2. Add your database url to the `.env`
+3. Run `npx prisma migrate dev --name init`
 
 That's it, your project is now configured to use Prisma Postgres!
 

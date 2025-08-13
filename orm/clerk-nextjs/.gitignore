@@ -21,10 +21,8 @@
 /build
 
 # misc
-**/generated/prisma
 .DS_Store
 *.pem
-prisma/dev.db*
 
 # debug
 npm-debug.log*
@@ -43,5 +41,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# clerk configuration (can include secrets)
-/.clerk/
+/app/generated/prisma
