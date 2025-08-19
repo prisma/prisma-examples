@@ -60,7 +60,24 @@ npx prisma db seed
 echo "🧪 Starting Nuxt app..."
 npm run dev &
 pid=$!
+sleep 15
 
+# Check frontend
+echo "🔎 Checking http://localhost:3000/"
+curl --fail 'http://localhost:3000/'
+
+# Cleanup
+echo "🛑 Shutting down Nuxt app (PID $pid)"
+kill "$pid"
+
+# Build the app
+echo "🔨 Building Nuxt app..."
+npm run build
+
+# Start the production build
+echo "🚀 Starting production build..."
+npm run start
+pid=$!
 sleep 15
 
 # Check frontend
