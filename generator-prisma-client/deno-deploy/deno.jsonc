@@ -10,10 +10,10 @@
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@std/http": "jsr:@std/http@1",
-    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-    "@prisma/client": "npm:@prisma/client@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@6.15.0-integration-push-pprzzpqvmyuv.1",
+    "@prisma/client": "npm:@prisma/client@6.15.0-integration-push-pprzzpqvmyuv.1",
     "dotenv": "npm:dotenv@^17.2.1",
-    "prisma": "npm:prisma@6.14.0-integration-feat-client-wasm-base64-on-nodejs.6"
+    "prisma": "npm:prisma@6.15.0-integration-push-pprzzpqvmyuv.1"
   },
   "nodeModulesDir": "auto"
 }

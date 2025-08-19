@@ -10,24 +10,23 @@
  * Please import the `PrismaClient` class from the `client.ts` file instead.
  */
 
-import * as runtime from "@prisma/client/runtime/edge"
+import * as runtime from "@prisma/client/runtime/client"
 import type * as Prisma from "./prismaNamespace"
 
 
 const config: runtime.GetPrismaClientConfig = {
   "generator": {
-    "name": "edge",
+    "name": "client",
     "provider": {
       "fromEnvVar": null,
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/aqrln/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma-edge",
+      "value": "/Users/aqrln/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-monorepo/packages/prisma/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
-      "runtime": "edge-light",
-      "engineType": "library"
+      "engineType": "client"
     },
     "binaryTargets": [
       {
@@ -36,13 +35,16 @@ const config: runtime.GetPrismaClientConfig = {
         "native": true
       }
     ],
-    "previewFeatures": [],
-    "sourceFilePath": "/Users/aqrln/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
+    "previewFeatures": [
+      "driverAdapters",
+      "queryCompiler"
+    ],
+    "sourceFilePath": "/Users/aqrln/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-monorepo/packages/prisma/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
-  "clientVersion": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-  "engineVersion": "b2e5a6c3a6936784f3aefb57ce847e4e7d28986a",
+  "clientVersion": "6.15.0-integration-push-pprzzpqvmyuv.1",
+  "engineVersion": "4d84597d45f23a11ea7673dd0d603d8aaa4a86b7",
   "datasourceNames": [
     "db"
   ],
@@ -56,8 +58,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// See: https://www.prisma.io/docs/orm/prisma-schema/overview/generators#field-reference-1\ngenerator client {\n  provider        = \"prisma-client\"\n  output          = \"../lib/generated/prisma\"\n  previewFeatures = [\"driverAdapters\", \"queryCompiler\"]\n}\n\ngenerator edge {\n  provider = \"prisma-client\"\n  output   = \"../lib/generated/prisma-edge\"\n  runtime  = \"edge-light\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nenum QuoteKind {\n  Fact\n  Opinion\n}\n\nmodel Quotes {\n  id        Int       @id @default(autoincrement())\n  quote     String\n  kind      QuoteKind @default(Opinion)\n  createdAt DateTime  @default(now())\n}\n",
-  "inlineSchemaHash": "c40d7cb1f38387b81f84e0b0244f07f0aa046b218cd209d60555844603bde4c4",
+  "inlineSchema": "// See: https://www.prisma.io/docs/orm/prisma-schema/overview/generators#field-reference-1\ngenerator client {\n  provider        = \"prisma-client\"\n  output          = \"../src/generated/prisma\"\n  previewFeatures = [\"driverAdapters\", \"queryCompiler\"]\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nenum QuoteKind {\n  Fact\n  Opinion\n}\n\nmodel Quotes {\n  id        Int       @id @default(autoincrement())\n  quote     String\n  kind      QuoteKind @default(Opinion)\n  createdAt DateTime  @default(now())\n}\n",
+  "inlineSchemaHash": "c67f1cf202cf39f21a793b89b5241a3f931d01957c8e48fe65e06eccb6f6b4aa",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
@@ -67,18 +69,24 @@ const config: runtime.GetPrismaClientConfig = {
   "dirname": ""
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Quotes\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":{\"name\":\"autoincrement\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quote\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"kind\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"QuoteKind\",\"nativeType\":null,\"default\":\"Opinion\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{\"QuoteKind\":{\"values\":[{\"name\":\"Fact\",\"dbName\":null},{\"name\":\"Opinion\",\"dbName\":null}],\"dbName\":null}},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Quotes\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"quote\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"kind\",\"kind\":\"enum\",\"type\":\"QuoteKind\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.engineWasm = undefined
-config.compilerWasm = undefined
 
-config.injectableEdgeEnv = () => ({
-  parsed: {
-    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
-  }
-})
-if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined) {
-  runtime.Debug.enable(typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined)
+async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
+  const { Buffer } = await import('node:buffer')
+  const wasmArray = Buffer.from(wasmBase64, 'base64')
+  return new WebAssembly.Module(wasmArray)
 }
+
+config.compilerWasm = {
+  getRuntime: async () => await import("@prisma/client/runtime/query_compiler_bg.postgresql.mjs"),
+
+  getQueryCompilerWasmModule: async () => {
+    const { wasm } = await import("@prisma/client/runtime/query_compiler_bg.postgresql.wasm-base64.mjs")
+    return await decodeBase64AsWasm(wasm)
+  }
+}
+
 
 
 
@@ -101,10 +109,11 @@ export interface PrismaClientConstructor {
    */
 
   new <
-    ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-    const U = LogOptions<ClientOptions>,
+    Options extends Prisma.PrismaClientOptions,
+    LogOpts extends LogOptions<Options>,
+    OmitOpts extends Prisma.PrismaClientOptions['omit'] = Options extends { omit: infer U } ? U : Prisma.PrismaClientOptions['omit'],
     ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
-  >(options?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>): PrismaClient<ClientOptions, U, ExtArgs>
+  >(options?: Prisma.Subset<Options, Prisma.PrismaClientOptions> ): PrismaClient<LogOpts, OmitOpts, ExtArgs>
 }
 
 /**
@@ -122,13 +131,13 @@ export interface PrismaClientConstructor {
  */
 
 export interface PrismaClient<
-  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = LogOptions<ClientOptions>,
-  ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
+  in LogOpts extends Prisma.LogLevel = never,
+  in out OmitOpts extends Prisma.PrismaClientOptions['omit'] = Prisma.PrismaClientOptions['omit'],
+  in out ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
-  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+  $on<V extends LogOpts>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
 
   /**
    * Connect with the database
@@ -139,13 +148,6 @@ export interface PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): runtime.Types.Utils.JsPromise<void>;
-
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -212,7 +214,7 @@ export interface PrismaClient<
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => runtime.Types.Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): runtime.Types.Utils.JsPromise<R>
 
 
-  $extends: runtime.Types.Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, runtime.Types.Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+  $extends: runtime.Types.Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<OmitOpts>, ExtArgs, runtime.Types.Utils.Call<Prisma.TypeMapCb<OmitOpts>, {
     extArgs: ExtArgs
   }>>
 
@@ -224,7 +226,7 @@ export interface PrismaClient<
     * const quotes = await prisma.quotes.findMany()
     * ```
     */
-  get quotes(): Prisma.QuotesDelegate<ExtArgs, ClientOptions>;
+  get quotes(): Prisma.QuotesDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(dirname: string): PrismaClientConstructor {

@@ -42,20 +42,15 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-    "@prisma/client": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "@prisma/adapter-pg": "6.15.0-integration-push-pprzzpqvmyuv.1",
+    "@prisma/client": "6.15.0-integration-push-pprzzpqvmyuv.1",
     "pg": "8.16.3"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
-<<<<<<< HEAD
-    "@types/pg": "8.15.4",
-    "prisma": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-    "tsx": "4.20.3",
-=======
     "@types/pg": "8.15.5",
-    "prisma": "6.11.0-integration-fix-generator-ts-pre-preview.1",
->>>>>>> latest
+    "prisma": "6.15.0-integration-push-pprzzpqvmyuv.1",
+    "tsx": "4.20.3",
     "typescript": "5.8.3"
   },
   "license": "MIT",

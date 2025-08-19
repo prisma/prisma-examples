@@ -22,7 +22,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/jkomyno/work/prisma/prisma-examples-ama/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma",
+      "value": "/Users/aqrln/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/lib/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -39,7 +39,7 @@ const config: runtime.GetPrismaClientConfig = {
       "driverAdapters",
       "queryCompiler"
     ],
-    "sourceFilePath": "/Users/jkomyno/work/prisma/prisma-examples-ama/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
+    "sourceFilePath": "/Users/aqrln/prisma/prisma-examples/generator-prisma-client/nextjs-starter-webpack-with-middleware/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
