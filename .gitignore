@@ -27,6 +27,7 @@ experimental/**/*.db
 .next
 .vscode/
 .nuxt
+.output
 dev.db
 *.env*
 !.env.example

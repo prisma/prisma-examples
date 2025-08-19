@@ -86,6 +86,7 @@ The following examples are fullstack examples using the new [`prisma-client`](ht
 | [`nextjs-starter-turbopack`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nextjs-starter-turbopack)                             | A Next.js 15 starter powered by Turbopack (alpha) for bundling, running on Node.js.                          |
 | [`neextjs-starter-webpack-monorepo`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/neextjs-starter-webpack-monorepo)             | A monorepo-based Next.js 15 starter using Webpack 5 and Node.js, managed with `pnpm`.                        |
 | [`nextjs-starter-webpack-with-middleware`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nextjs-starter-webpack-with-middleware) | A Next.js 15 starter with Webpack 5, running on Node.js for main pages and Vercel Edge Light for middleware. |
+| [`nuxt3-starter-nodejs`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nuxt3-starter-nodejs)                                 | A Nuxt 3 starter that runs on Node.js.                             |
 
 
 ## Prisma Accelerate
