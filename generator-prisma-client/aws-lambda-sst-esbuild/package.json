@@ -1,0 +1,25 @@
+{
+  "name": "prisma-client-aws-lambda-sst",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild --bundle --outfile=./dist/index.js --format=esm --platform=node --target=node20 ./src/index.ts",
+    "deploy": "run-s build zip update",
+    "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name prisma-client-aws-lambda-sst",
+    "zip": "zip -j lambda.zip dist/index.js"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.152",
+    "dotenv": "^17.2.1",
+    "dotenv-cli": "^10.0.0",
+    "esbuild": "^0.21.4",
+    "npm-run-all2": "^6.2.0",
+    "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
+    "sst": "^3.17.10"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
+    "@prisma/client": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
+    "sst": "3.17.10"
+  },
+  "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
+}
