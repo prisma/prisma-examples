@@ -14,7 +14,7 @@
  * model files in the `model` directory!
  */
 
-import * as runtime from "@prisma/client/runtime/edge"
+import * as runtime from "@prisma/client/runtime/client"
 import type * as Prisma from "../models"
 import { type PrismaClient } from "./class"
 
@@ -92,12 +92,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 6.14.0-integration-feat-client-wasm-base64-on-nodejs.6
- * Query Engine version: b2e5a6c3a6936784f3aefb57ce847e4e7d28986a
+ * Prisma Client JS version: 6.14.0
+ * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
  */
 export const prismaVersion: PrismaVersion = {
-  client: "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-  engine: "b2e5a6c3a6936784f3aefb57ce847e4e7d28986a"
+  client: "6.14.0",
+  engine: "717184b7b35ea05dfa71a3236b7af656013e1e49"
 }
 
 /**
@@ -401,8 +401,8 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
 
 
 
-export interface TypeMapCb<ClientOptions = {}> extends runtime.Types.Utils.Fn<{extArgs: runtime.Types.Extensions.InternalArgs }, runtime.Types.Utils.Record<string, any>> {
-  returns: TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{extArgs: runtime.Types.Extensions.InternalArgs }, runtime.Types.Utils.Record<string, any>> {
+  returns: TypeMap<this['params']['extArgs'], GlobalOmitOptions>
 }
 
 export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
@@ -695,6 +695,10 @@ export interface PrismaClientOptions {
     isolationLevel?: TransactionIsolationLevel
   }
   /**
+   * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
+   */
+  adapter?: runtime.SqlDriverAdapterFactory | null
+  /**
    * Global configuration for omitting model fields by default.
    * 
    * @example
@@ -769,25 +773,6 @@ export type PrismaAction =
   | 'runCommandRaw'
   | 'findRaw'
   | 'groupBy'
-
-/**
- * These options are being passed into the middleware as "params"
- */
-export type MiddlewareParams = {
-  model?: ModelName
-  action: PrismaAction
-  args: any
-  dataPath: string[]
-  runInTransaction: boolean
-}
-
-/**
- * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
- */
-export type Middleware<T = any> = (
-  params: MiddlewareParams,
-  next: (params: MiddlewareParams) => runtime.Types.Utils.JsPromise<T>,
-) => runtime.Types.Utils.JsPromise<T>
 
 /**
  * `PrismaClient` proxy available in interactive transactions.

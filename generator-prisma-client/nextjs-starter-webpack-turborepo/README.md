@@ -92,10 +92,10 @@ Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environmen
 # packages/database/.env
 
 # Prisma Postgres connection string (used for migrations)
-export DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
+DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
 
 # Postgres connection string (used for queries by Prisma Client)
-export DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
+DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
@@ -112,7 +112,7 @@ Now, open the `.env` file and set the `DIRECT_URL` environment variable with the
 # apps/web/.env
 
 # Postgres connection string (used for queries by Prisma Client)
-export DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
+DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
@@ -121,26 +121,26 @@ Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value th
 
 Note that `__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres direct TCP connection string. The direct connection string has the following structure: `postgres://<username>:<password>@<host>:<port>/<database>`.
 
-### 3. Run a migration to create the database structure and seed the database
-
-The [Prisma schema file](./packages/prisma/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
-
-```sh
-pnpm db:migrate:dev -- --name init;
-```
-
-You now have an empty `Quotes` table in your database. Next, run the [seed script](./packages/prisma/prisma/seed.ts) to create some sample records in the table:
-
-```sh
-pnpm db:seed;
-```
-
-### 4. Build the Prisma Client and the Next.js app
+### 3. Build the Prisma Client and the Next.js app
 
 Run:
 
 ```
 pnpm build
+```
+
+### 4. Run a migration to create the database structure and seed the database
+
+The [Prisma schema file](./packages/prisma/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
+
+```sh
+pnpm db:migrate:dev -- --name init
+```
+
+You now have an empty `Quotes` table in your database. Next, run the [seed script](./packages/prisma/prisma/seed.ts) to create some sample records in the table:
+
+```sh
+pnpm db:seed
 ```
 
 ### 7. Start the Next.js app

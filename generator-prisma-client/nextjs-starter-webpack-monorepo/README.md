@@ -104,7 +104,15 @@ Expose the environment variables to your project by running the following comman
 source .envrc
 ```
 
-### 3. Run a migration to create the database structure and seed the database
+### 3. Generate Prisma Client
+
+Run:
+
+```
+pnpm --filter @nextjs-starter-webpack-monorepo/prisma exec prisma generate
+```
+
+### 4. Run a migration to create the database structure and seed the database
 
 The [Prisma schema file](./packages/prisma/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
 
@@ -116,14 +124,6 @@ You now have an empty `Quotes` table in your database. Next, run the [seed scrip
 
 ```sh
 pnpm --filter @nextjs-starter-webpack-monorepo/prisma exec prisma db seed
-```
-
-### 4. Generate Prisma Client
-
-Run:
-
-```
-pnpm --filter @nextjs-starter-webpack-monorepo/prisma exec prisma generate
 ```
 
 ### 5. Build the Prisma package

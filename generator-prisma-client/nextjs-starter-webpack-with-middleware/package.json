@@ -24,8 +24,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-    "@prisma/client": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "@prisma/adapter-pg": "6.14.0",
+    "@prisma/client": "6.14.0",
     "@prisma/extension-accelerate": "2.0.2",
     "@t3-oss/env-core": "0.13.8",
     "next": "15.3.5",
@@ -41,9 +41,10 @@
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "autoprefixer": "10.4.21",
+    "dotenv": "^17.2.1",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.5",
-    "prisma": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "prisma": "6.14.0",
     "tsx": "4.20.3",
     "typescript": "5.8.3"
   },

@@ -19,15 +19,15 @@
     "studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
-    "@prisma/client": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6"
+    "@prisma/adapter-pg": "6.14.0",
+    "@prisma/client": "6.14.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "20.19.9",
     "dotenv": "^17.2.1",
     "eslint": "8.57.1",
-    "prisma": "6.14.0-integration-feat-client-wasm-base64-on-nodejs.6",
+    "prisma": "6.14.0",
     "rimraf": "5.0.10",
     "tsup": "8.5.0",
     "tsx": "4.19.1",

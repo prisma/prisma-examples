@@ -59,7 +59,7 @@ This command runs `prisma generate --sql`, which will generate the Prisma Client
 ### 4. Run the example
 
 ```
-npm run dev
+pnpm dev
 ```
 
 This command will run [`index.ts`](./index.ts), which will execute the SQL query defined in [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql) and print the results to the console.
