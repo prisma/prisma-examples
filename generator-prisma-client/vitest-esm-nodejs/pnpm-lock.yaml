@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@hono/node-server':
-    specifier: 1.15.0
-    version: 1.15.0(hono@4.8.4)
   '@prisma/adapter-better-sqlite3':
     specifier: 6.14.0
     version: 6.14.0
@@ -28,15 +25,12 @@ devDependencies:
   rimraf:
     specifier: 6.0.1
     version: 6.0.1
-  tsx:
-    specifier: 4.20.3
-    version: 4.20.3
   typescript:
     specifier: 5.8.3
     version: 5.8.3
   vitest:
     specifier: ^3.2.4
-    version: 3.2.4(@types/node@18.19.117)(tsx@4.20.3)
+    version: 3.2.4(@types/node@18.19.117)
 
 packages:
 
@@ -273,15 +267,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@hono/node-server@1.15.0(hono@4.8.4):
-    resolution: {integrity: sha512-MjmK4l5N4dQpZ9OSWN0tCj7ejuc7WvuWMzSKtc89bnknJykAeHxzRigXBTYZk85H6Awrii6RM59iUiUluApu2A==}
-    engines: {node: '>=18.14.1'}
-    peerDependencies:
-      hono: ^4
-    dependencies:
-      hono: 4.8.4
-    dev: false
 
   /@isaacs/balanced-match@4.0.1:
     resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
@@ -594,7 +579,7 @@ packages:
       '@vitest/spy': 3.2.4
       estree-walker: 3.0.3
       magic-string: 0.30.18
-      vite: 7.1.3(@types/node@18.19.117)(tsx@4.20.3)
+      vite: 7.1.3(@types/node@18.19.117)
     dev: true
 
   /@vitest/pretty-format@3.2.4:
@@ -985,12 +970,6 @@ packages:
       is-stream: 4.0.1
     dev: true
 
-  /get-tsconfig@4.10.1:
-    resolution: {integrity: sha512-auHyJ4AgMz7vgS8Hp3N6HXSmlMdUyhSUrfBF16w153rxtLIEOE+HGqaBppczZvnHLqQJfiHotCYpNhl0lUROFQ==}
-    dependencies:
-      resolve-pkg-maps: 1.0.0
-    dev: true
-
   /giget@2.0.0:
     resolution: {integrity: sha512-L5bGsVkxJbJgdnwyuheIunkGatUF/zssUoxxjACCseZYAVbaqdh9Tsmmlkl8vYan09H7sbvKt4pS8GqKLBrEzA==}
     hasBin: true
@@ -1018,11 +997,6 @@ packages:
       package-json-from-dist: 1.0.1
       path-scurry: 2.0.0
     dev: true
-
-  /hono@4.8.4:
-    resolution: {integrity: sha512-KOIBp1+iUs0HrKztM4EHiB2UtzZDTBihDtOF5K6+WaJjCPeaW4Q92R8j63jOhvJI5+tZSMuKD9REVEXXY9illg==}
-    engines: {node: '>=16.9.0'}
-    dev: false
 
   /human-signals@8.0.1:
     resolution: {integrity: sha512-eKCa6bwnJhvxj14kZk5NCPc6Hb6BdsU9DZcOnmQKSnO1VKrfV0zCvtttPZUsBvjmNDn8rpcJfpwSYnHBjc95MQ==}
@@ -1317,10 +1291,6 @@ packages:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
 
-  /resolve-pkg-maps@1.0.0:
-    resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
-    dev: true
-
   /rimraf@6.0.1:
     resolution: {integrity: sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==}
     engines: {node: 20 || >=22}
@@ -1524,17 +1494,6 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: true
 
-  /tsx@4.20.3:
-    resolution: {integrity: sha512-qjbnuR9Tr+FJOMBqJCW5ehvIo/buZq7vH7qD7JziU98h6l3qGy0a/yPFjwO+y0/T7GFpNgNAvEcPPVfyT8rrPQ==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-    dependencies:
-      esbuild: 0.25.6
-      get-tsconfig: 4.10.1
-    optionalDependencies:
-      fsevents: 2.3.3
-    dev: true
-
   /tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
     dependencies:
@@ -1559,7 +1518,7 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: false
 
-  /vite-node@3.2.4(@types/node@18.19.117)(tsx@4.20.3):
+  /vite-node@3.2.4(@types/node@18.19.117):
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -1568,7 +1527,7 @@ packages:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 7.1.3(@types/node@18.19.117)(tsx@4.20.3)
+      vite: 7.1.3(@types/node@18.19.117)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -1584,7 +1543,7 @@ packages:
       - yaml
     dev: true
 
-  /vite@7.1.3(@types/node@18.19.117)(tsx@4.20.3):
+  /vite@7.1.3(@types/node@18.19.117):
     resolution: {integrity: sha512-OOUi5zjkDxYrKhTV3V7iKsoS37VUM7v40+HuwEmcrsf11Cdx9y3DIr2Px6liIcZFwt3XSRpQvFpL3WVy7ApkGw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
@@ -1631,12 +1590,11 @@ packages:
       postcss: 8.5.6
       rollup: 4.47.1
       tinyglobby: 0.2.14
-      tsx: 4.20.3
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@3.2.4(@types/node@18.19.117)(tsx@4.20.3):
+  /vitest@3.2.4(@types/node@18.19.117):
     resolution: {integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -1685,8 +1643,8 @@ packages:
       tinyglobby: 0.2.14
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 7.1.3(@types/node@18.19.117)(tsx@4.20.3)
-      vite-node: 3.2.4(@types/node@18.19.117)(tsx@4.20.3)
+      vite: 7.1.3(@types/node@18.19.117)
+      vite-node: 3.2.4(@types/node@18.19.117)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - jiti
