@@ -1,6 +1,6 @@
-# Prisma Postgres Example: AWS Lambda + SST + ESBuild + Node.js + ESM
+# Prisma Postgres Example: AWS Lambda + SST + Node.js + ESM
 
-This project showcases how to use the Prisma ORM with Prisma Postgres in an TypeScript application transpiled to CommonJS (CJS) using ESBuild.
+This project showcases how to use the Prisma ORM with AWS Lambda and Prisma Postgres in an TypeScript ESM application.
 
 ## Prerequisites
 
@@ -15,9 +15,8 @@ To successfully run the project, you will need the following:
 
 - Next.js 15
   - Runtime: Node.js 20.19.0
-  - Bundler: esbuild
+  - Bundler: esbuild (used via SST)
   - `package.json` contains `{ "type": "module" }`
-  - `esbuild` specifies `--format=esm`, `--platform=node`, and `--target=node20`
 - Prisma Client with the `prisma-client` generator
   See the [Prisma schema file](./prisma/schema.prisma) for details.
   
@@ -95,15 +94,7 @@ Run:
 pnpm prisma generate
 ```
 
-### 5. Bundle the project
-
-Run
-
-```
-pnpm run build
-```
-
-### 6. Run with SST
+### 5. Run with SST
 
 - Ensure you set up your AWS Credentials and have the AWS CLI installed and logged in (see [sst docs](https://sst.dev/docs/aws-accounts))
 - Set up secrets in your SST project. You can do this by:
@@ -141,6 +132,32 @@ SST 3.17.10  ready!
 
 ✓  Complete    
    prisma-client-aws-lambda-sst: https://<...>.lambda-url.us-east-1.on.aws/
+```
+
+### 6. (Optional) Verify deployment size
+
+You can check the size of your deployment package by running:
+
+```
+pnpm build
+du -sh ./dist/index.js
+```
+
+and then
+
+```
+pnpm zip
+du -sh ./dist/lambda.zip
+```
+
+The output should look similar to:
+
+```
+❯ du -sh ./dist/index.js
+3.0M    ./dist/index.js
+
+❯ du -sh ./dist/lambda.zip
+1.1M    ./dist/lambda.zip
 ```
 
 ## Resources
