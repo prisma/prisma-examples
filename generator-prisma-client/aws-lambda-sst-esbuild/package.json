@@ -12,7 +12,8 @@
     "dotenv-cli": "^10.0.0",
     "esbuild": "^0.21.4",
     "npm-run-all2": "^6.2.0",
-    "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3"
+    "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
+    "tsx": "^4.20.4"
   },
   "dependencies": {
     "@prisma/adapter-pg": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",

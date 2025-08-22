@@ -140,7 +140,7 @@ SST 3.17.10  ready!
 ↗  Permalink   https://sst.dev/u/<...>
 
 ✓  Complete    
-   aws-lambda: https://<...>.lambda-url.us-east-1.on.aws/
+   prisma-client-aws-lambda-sst: https://<...>.lambda-url.us-east-1.on.aws/
 ```
 
 ## Resources

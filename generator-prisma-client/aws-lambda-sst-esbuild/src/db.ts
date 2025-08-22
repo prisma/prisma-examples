@@ -1,5 +1,4 @@
 import { PrismaPg } from '@prisma/adapter-pg'
-import { Resource } from "sst";
 import { PrismaClient } from './generated/prisma/client'
 
 export type { PrismaClient } from './generated/prisma/client'
@@ -14,6 +13,3 @@ export function getDb({ connectionString }: GetDbParams) {
 
   return prisma
 }
-
-const prisma = getDb({ connectionString: Resource.DIRECT_URL.value })
-export default prisma
