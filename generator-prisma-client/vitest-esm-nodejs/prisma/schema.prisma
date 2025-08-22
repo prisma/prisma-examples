@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// See: https://www.prisma.io/docs/orm/prisma-schema/overview/generators#field-reference-1
+generator client {
+  provider = "prisma-client"
+  output = "../src/generated/prisma"
+  previewFeatures = ["driverAdapters", "queryCompiler"]
+}
+
+datasource db {
+  provider  = "sqlite"
+  url       = "file:./dev.db"
+}
+
+enum QuoteKind {
+  Fact
+  Opinion
+}
+
+model Quotes {
+  id        Int      @id @default(autoincrement())
+  quote     String
+  kind      QuoteKind @default(Opinion)
+  createdAt DateTime @default(now())
+}
