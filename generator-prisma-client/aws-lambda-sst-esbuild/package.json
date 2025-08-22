@@ -3,9 +3,8 @@
   "type": "module",
   "scripts": {
     "build": "esbuild --bundle --outfile=./dist/index.js --format=esm --platform=node --target=node20 ./src/index.ts",
-    "deploy": "run-s build zip update",
-    "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name prisma-client-aws-lambda-sst",
-    "zip": "zip -j lambda.zip dist/index.js"
+    "deploy": "sst deploy",
+    "zip": "zip -j dist/lambda.zip dist/index.js"
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.152",
@@ -13,8 +12,7 @@
     "dotenv-cli": "^10.0.0",
     "esbuild": "^0.21.4",
     "npm-run-all2": "^6.2.0",
-    "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
-    "sst": "^3.17.10"
+    "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3"
   },
   "dependencies": {
     "@prisma/adapter-pg": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",

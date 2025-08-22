@@ -9,7 +9,7 @@ declare module "sst" {
       "type": "sst.sst.Secret"
       "value": string
     }
-    "aws-lambda": {
+    "prisma-client-aws-lambda-sst": {
       "name": string
       "type": "sst.aws.Function"
       "url": string
