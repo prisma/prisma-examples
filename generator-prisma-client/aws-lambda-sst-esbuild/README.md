@@ -13,8 +13,8 @@ To successfully run the project, you will need the following:
 
 ## Tech Stack
 
-- Next.js 15
-  - Runtime: Node.js 20.19.0
+- SST 3 + AWS Lambda
+  - Runtime: Nodejs 20.x
   - Bundler: esbuild (used via SST)
   - `package.json` contains `{ "type": "module" }`
 - Prisma Client with the `prisma-client` generator
@@ -64,8 +64,6 @@ DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
 
 # Postgres connection string (used for queries by Prisma Client)
 DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
-
-NEXT_PUBLIC_URL="http://localhost:3000"
 ```
 
 Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres + Accelerate connection string. Notice that the Accelerate connection string has the following structure: `prisma+postgres://accelerate.prisma-data.net/?api_key=<api_key_value>`.
