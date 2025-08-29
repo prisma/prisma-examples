@@ -1,0 +1,16 @@
+{
+  "name": "bun",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest",
+    "prisma": "^6.15.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "@prisma/extension-accelerate": "^2.0.2"
+  }
+}
