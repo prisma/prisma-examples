@@ -1,6 +1,6 @@
-# `prisma-client` Example: Nuxt 3 Starter (Vite, Node.js, ESM)
+# `prisma-client` Example: Nuxt 4 Starter (Vite, Node.js, ESM)
 
-This project showcases how to use the Prisma ORM with the `prisma-client` generator and the Prisma Postgres database in an ESM Nuxt 3 application.
+This project showcases how to use the Prisma ORM with the `prisma-client` generator and the Prisma Postgres database in an ESM Nuxt 4 application.
 
 ## Prerequisites
 
@@ -13,9 +13,9 @@ To successfully run the project, you will need the following:
 
 ## Tech Stack
 
-- Nuxt 3
+- Nuxt 4
   - Runtime: Node.js
-  - Bundler: Vite 6
+  - Bundler: Vite 7
 - ESM
   - `package.json` contains `{ "type": "module" }`
 - Prisma Client with the `prisma-client` generator
@@ -24,7 +24,7 @@ To successfully run the project, you will need the following:
   ```prisma
   generator client {
     provider = "prisma-client"
-    output = "../lib/generated/prisma"
+    output = "../shared/generated/prisma"
     previewFeatures = ["driverAdapters", "queryCompiler"]
   }
   ```
@@ -37,7 +37,7 @@ Clone the repository, navigate into it and install dependencies:
 
 ```
 git clone git@github.com:prisma/prisma-examples.git --depth=1
-cd prisma-examples/generator-prisma-client/nuxt3-starter-nodejs
+cd prisma-examples/generator-prisma-client/nuxt4-starter-nodejs
 pnpm install
 ```
 

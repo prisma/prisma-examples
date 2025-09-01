@@ -1,0 +1,20 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html,
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background-color: white;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: rgb(2, 6, 23);
+    color-scheme: dark;
+  }
+}
