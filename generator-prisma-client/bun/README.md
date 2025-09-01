@@ -36,7 +36,7 @@ Get the database URL and paste it in your `.env` file:
 DATABASE_URL="your_postgresql_connection_string_here"
 ```
 
-> Learn more about npx create-db` [in our docs](https://www.prisma.io/docs/postgres/introduction/npx-create-db).
+> Learn more about `npx create-db` [in our docs](https://www.prisma.io/docs/postgres/introduction/npx-create-db).
 
 ### 2. Install dependencies
 

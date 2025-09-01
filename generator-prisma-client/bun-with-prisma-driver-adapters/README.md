@@ -76,7 +76,7 @@ DIRECT_URL="your_direct_connection_string_here"
 - The `DATABASE_URL` is the connection string optimized for Prisma ORM and helps you perform migrations.
 - The `DIRECT_URL` is the connection string for everything else and in this case helps you [perform database queries](./db.ts) using driver adapters.
 
-> Learn more about npx create-db` [in our docs](https://www.prisma.io/docs/postgres/introduction/npx-create-db).
+> Learn more about `npx create-db` [in our docs](https://www.prisma.io/docs/postgres/introduction/npx-create-db).
 
 ### 2. Install dependencies
 
