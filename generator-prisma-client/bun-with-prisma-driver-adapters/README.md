@@ -61,7 +61,7 @@ You should have a similar output to the following:
 │
 │    https://create-db.prisma.io?projectID=proj_cmf0tcods01d6z1ff9eyvqgd0&utm_source=create-db&utm_medium=cli
 │
-│    Your database will be deleted on 9/2/2025, 1:44:06 PM if not claimed.
+│     Your temporary database will be deleted in 24 hours if not claimed.
 │
 └
 ```
@@ -130,12 +130,12 @@ You should see `Listening on http://localhost:3000` in the console, and when you
 
 ## Project structure
 
-```
+```text
 ├── prisma/
 │   └── schema.prisma         # Database schema and Prisma configuration
 │   └── seed.ts               # Database seed file
 ├── generated/                # Generated Prisma Client (custom output location)
-├── db.ts                     # Database connection with Prisma Accelerate
+├── db.ts                     # Database connection with Prisma driver adapters
 ├── index.ts                  # Main server file
 ├── package.json              # Dependencies and scripts
 ├── prisma.config.ts           # Prisma configuration

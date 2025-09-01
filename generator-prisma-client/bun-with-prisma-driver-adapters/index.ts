@@ -5,7 +5,7 @@ const server = Bun.serve({
   async fetch(req) {
     const { pathname } = new URL(req.url)
 
-    // Do not create a user for the favicon request
+    // Ignore favicon requests
     if (pathname === '/favicon.ico') {
       return new Response(null, { status: 204 }) // or serve an icon if you have one
     }

@@ -60,11 +60,11 @@ Server runs on `http://localhost:3000`. Each request creates a new user and retu
 
 ## Project structure
 
-```
+```text
 ├── prisma/
 │   └── schema.prisma          # Database schema and Prisma configuration
 ├── generated/                 # Generated Prisma Client (custom output location)
-├── db.ts                     # Database connection with Prisma Accelerate
+├── db.ts                     # Database connection with Prisma Postgres
 ├── index.ts                  # Main server file
 ├── package.json              # Dependencies and scripts
 └── .env.example              # Environment variables template
