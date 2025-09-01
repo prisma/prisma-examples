@@ -1,4 +1,4 @@
-# Bun + Prisma example
+# Bun + Prisma ORM example
 
 ## Introduction
 
