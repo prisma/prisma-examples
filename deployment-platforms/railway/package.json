@@ -1,0 +1,19 @@
+{
+  "name": "railway",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.11.2",
+    "@prisma/client": "^6.15.0",
+    "dotenv": "^17.2.2",
+    "hono": "^4.9.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "prisma": "^6.15.0",
+    "tsx": "^4.20.5"
+  }
+}
