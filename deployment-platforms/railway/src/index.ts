@@ -1,12 +1,12 @@
-import "dotenv/config";
-import { Hono } from "hono";
-import { PrismaClient } from "./generated/prisma/client";
-import { serve } from "@hono/node-server";
+import 'dotenv/config'
+import { Hono } from 'hono'
+import { PrismaClient } from './generated/prisma/client'
+import { serve } from '@hono/node-server'
 
-const prisma = new PrismaClient();
-const app = new Hono();
+const prisma = new PrismaClient()
+const app = new Hono()
 
-app.get("/", (c) => {
+app.get('/', (c) => {
   const html = `
     <!DOCTYPE html>
     <html>
@@ -56,71 +56,71 @@ app.get("/", (c) => {
         </script>
       </body>
     </html>
-  `;
-  return c.html(html);
-});
+  `
+  return c.html(html)
+})
 
-app.get("/api", async (c) => {
-  return c.json({ up: true });
-});
+app.get('/api', async (c) => {
+  return c.json({ up: true })
+})
 
-app.get("/api/seed", async (c) => {
+app.get('/api/seed', async (c) => {
   try {
-    await prisma.post.deleteMany({});
-    await prisma.user.deleteMany({});
+    await prisma.post.deleteMany({})
+    await prisma.user.deleteMany({})
 
     const author1 = await prisma.user.create({
       data: {
-        email: "jane@prisma.io",
-        name: "Jane Doe",
+        email: 'jane@prisma.io',
+        name: 'Jane Doe',
         posts: {
           create: {
-            title: "Comparing Database Types",
+            title: 'Comparing Database Types',
             content:
-              "https://www.prisma.io/blog/comparison-of-database-models-1iz9u29nwn37/",
+              'https://www.prisma.io/blog/comparison-of-database-models-1iz9u29nwn37/',
             published: true,
           },
         },
       },
       include: { posts: true },
-    });
+    })
 
     const author2 = await prisma.user.create({
       data: {
-        email: "john@prisma.io",
-        name: "John Smith",
+        email: 'john@prisma.io',
+        name: 'John Smith',
         posts: {
           create: {
-            title: "Getting Started with Prisma",
-            content: "https://www.prisma.io/docs/getting-started",
+            title: 'Getting Started with Prisma',
+            content: 'https://www.prisma.io/docs/getting-started',
             published: true,
           },
         },
       },
       include: { posts: true },
-    });
+    })
 
     return c.json({
-      message: "Database seeded successfully",
+      message: 'Database seeded successfully',
       authors: [author1, author2],
-    });
+    })
   } catch (e) {
-    return c.json({ error: "Failed to seed database" }, 500);
+    return c.json({ error: 'Failed to seed database' }, 500)
   }
-});
+})
 
-app.get("/api/feed", async (c) => {
+app.get('/api/feed', async (c) => {
   const posts = await prisma.post.findMany({
     where: { published: true },
     include: { author: true },
-  });
-  return c.json(posts);
-});
+  })
+  return c.json(posts)
+})
 
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
-console.log(`Server is running on port http://localhost:${port}`);
+const port = process.env.PORT ? Number(process.env.PORT) : 3000
+console.log(`Server is running at http://localhost:${port}`)
 
 serve({
   fetch: app.fetch,
   port,
-});
+})
