@@ -3,17 +3,17 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "bun-types": "^1.2.21",
-    "prisma": "^6.15.0"
+    "bun-types": "1.2.21",
+    "prisma": "6.15.0"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "5.9.2"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^6.15.0",
-    "@prisma/client": "^6.15.0",
-    "add": "^2.0.6",
-    "bun": "^1.2.21",
-    "dotenv": "^17.2.1"
+    "@prisma/adapter-pg": "6.15.0",
+    "@prisma/client": "6.15.0",
+    "add": "2.0.6",
+    "bun": "1.2.21",
+    "dotenv": "17.2.2"
   }
 }

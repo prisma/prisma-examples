@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.30.1",
-    "@prisma/extension-accelerate": "^2.0.2",
+    "@clerk/nextjs": "6.31.9",
+    "@prisma/extension-accelerate": "2.0.2",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@tailwindcss/postcss": "4.1.13",
+    "@types/node": "20.19.13",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "prisma": "^6.14.0",
-    "tailwindcss": "^4",
-    "tsx": "^4.20.4",
-    "typescript": "^5"
+    "prisma": "6.15.0",
+    "tailwindcss": "4.1.13",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2"
   }
 }

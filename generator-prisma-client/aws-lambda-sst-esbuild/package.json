@@ -8,12 +8,12 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.152",
-    "dotenv": "^17.2.1",
-    "dotenv-cli": "^10.0.0",
-    "esbuild": "^0.25.0",
-    "npm-run-all2": "^6.2.0",
+    "dotenv": "17.2.1",
+    "dotenv-cli": "10.0.0",
+    "esbuild": "0.25.9",
+    "npm-run-all2": "6.2.6",
     "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
-    "tsx": "^4.20.4"
+    "tsx": "4.20.4"
   },
   "dependencies": {
     "@prisma/adapter-pg": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",

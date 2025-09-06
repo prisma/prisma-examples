@@ -20,22 +20,22 @@ devDependencies:
     specifier: 8.10.152
     version: 8.10.152
   dotenv:
-    specifier: ^17.2.1
+    specifier: 17.2.1
     version: 17.2.1
   dotenv-cli:
-    specifier: ^10.0.0
+    specifier: 10.0.0
     version: 10.0.0
   esbuild:
-    specifier: ^0.25.0
+    specifier: 0.25.9
     version: 0.25.9
   npm-run-all2:
-    specifier: ^6.2.0
+    specifier: 6.2.6
     version: 6.2.6
   prisma:
     specifier: 6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3
     version: 6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3
   tsx:
-    specifier: ^4.20.4
+    specifier: 4.20.4
     version: 4.20.4
 
 packages:

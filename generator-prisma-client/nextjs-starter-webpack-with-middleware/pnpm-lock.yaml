@@ -53,7 +53,7 @@ devDependencies:
     specifier: 10.4.21
     version: 10.4.21(postcss@8.5.6)
   dotenv:
-    specifier: ^17.2.1
+    specifier: 17.2.1
     version: 17.2.1
   eslint:
     specifier: 8.57.1

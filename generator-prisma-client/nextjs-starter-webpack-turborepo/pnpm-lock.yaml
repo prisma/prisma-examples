@@ -91,7 +91,7 @@ importers:
         specifier: 20.19.13
         version: 20.19.13
       dotenv:
-        specifier: ^17.2.1
+        specifier: 17.2.1
         version: 17.2.1
       eslint:
         specifier: 8.57.1
