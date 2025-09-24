@@ -18,7 +18,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
     "@prisma/client": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
-    "sst": "3.17.10"
+    "sst": "3.17.14"
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81"
 }
