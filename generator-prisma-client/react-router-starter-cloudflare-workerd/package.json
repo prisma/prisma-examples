@@ -35,7 +35,7 @@
 		"dotenv": "17.2.0",
 		"prisma": "6.14.0",
 		"tailwindcss": "4.1.13",
-		"tsx": "4.20.3",
+		"tsx": "4.20.6",
 		"typescript": "5.8.3",
 		"vite": "6.3.5",
 		"vite-tsconfig-paths": "5.1.4",

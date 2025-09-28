@@ -13,7 +13,7 @@
     "esbuild": "0.25.9",
     "npm-run-all2": "6.2.6",
     "prisma": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",
-    "tsx": "4.20.4"
+    "tsx": "4.20.6"
   },
   "dependencies": {
     "@prisma/adapter-pg": "6.15.0-integration-fix-prisma-client-dirname-aws-lambda.3",

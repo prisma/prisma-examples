@@ -50,7 +50,7 @@
     "@types/node": "22.15.32",
     "@types/pg": "8.15.5",
     "prisma": "6.14.0",
-    "tsx": "4.20.3",
+    "tsx": "4.20.6",
     "typescript": "5.8.3"
   },
   "license": "MIT",
