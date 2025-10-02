@@ -29,7 +29,7 @@ git clone git@github.com:prisma/prisma-examples.git --depth=1
 Install npm dependencies:
 
 ```
-cd prisma-examples/orm/nuxtjs
+cd prisma-examples/orm/nuxt
 npm install
 ```
 
@@ -115,13 +115,19 @@ Now, paste the URL into it as a value for the `DATABASE_URL` environment variabl
 DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
 ```
 
+Generate the Prisma client:
+
+```terminal
+npx prisma generate
+```
+
 Run the following command to create tables in your database. This creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
 ```terminal
 npx prisma migrate dev --name init
 ```
 
-Execute the seed file in [`prisma/seed.js`](./prisma/seed.js) to populate your database with some sample data, by running:
+Execute the seed file in [`prisma/seed.ts`](./prisma/seed.ts) to populate your database with some sample data, by running:
 
 ```terminal
 npx prisma db seed
@@ -139,23 +145,23 @@ The app is now running, navigate to [`http://localhost:3000/`](http://localhost:
 
 <br />
 
-**Blog** (located in [`./pages/index.vue`](./pages/index.vue)
+**Blog** (located in [`./app/pages/index.vue`](./app/pages/index.vue)
 
 ![](https://imgur.com/eepbOUO.png)
 
-**Signup** (located in [`./pages/signup.vue`](./pages/signup.vue))
+**Signup** (located in [`./app/pages/signup.vue`](./app/pages/signup.vue))
 
 ![](https://imgur.com/iE6OaBI.png)
 
-**Create post (draft)** (located in [`./pages/create.vue`](./pages/create.vue))
+**Create post (draft)** (located in [`./app/pages/create.vue`](./app/pages/create.vue))
 
 ![](https://imgur.com/olCWRNv.png)
 
-**Drafts** (located in [`./pages/drafts.vue`](./pages/drafts.vue))
+**Drafts** (located in [`./app/pages/drafts.vue`](./app/pages/drafts.vue))
 
 ![](https://imgur.com/PSMzhcd.png)
 
-**View post** (located in [`./pages/p/_id.vue`](./pages/p/_id.vue)) (delete or publish here)
+**View post** (located in [`./app/pages/p/[id].vue`](./app/pages/p/[id].vue)) (delete or publish here)
 
 ![](https://imgur.com/zS1B11O.png)
 
@@ -193,7 +199,7 @@ You can also access the REST API of the API server directly. It is running on th
 
 ## Switch to another database (e.g. SQLite, MySQL, SQL Server, MongoDB)
 
-If you want to try this example with another database than Postgres, you can adjust the the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
+If you want to try this example with another database than PostgreSQL, you can adjust the database connection in [`prisma/schema.prisma`](./prisma/schema.prisma) by reconfiguring the `datasource` block.
 
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
