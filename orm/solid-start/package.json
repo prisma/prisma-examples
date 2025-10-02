@@ -13,14 +13,14 @@
     "@prisma/client": "6.16.3",
     "@prisma/extension-accelerate": "2.0.2",
     "@solidjs/start": "1.1.7",
-    "solid-js": "1.9.7",
+    "solid-js": "1.9.9",
     "vinxi": "0.5.8"
   },
   "engines": {
     "node": "23.11.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.1.11",
+    "@tailwindcss/postcss": "4.1.13",
     "postcss": "8.5.6",
     "prisma": "6.16.3",
     "tailwindcss": "4.1.11",

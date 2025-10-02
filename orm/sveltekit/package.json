@@ -31,7 +31,7 @@
 		"prisma": "6.9.0",
 		"svelte": "5.35.4",
 		"svelte-check": "4.2.2",
-		"tsx": "4.20.3",
+		"tsx": "4.20.6",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.41.0",
 		"vite": "6.3.5"

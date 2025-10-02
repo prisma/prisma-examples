@@ -10,7 +10,6 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^6.16.3",
     "@prisma/nuxt": "^0.3.0",
     "@prisma/client": "^6.16.3",
     "@prisma/extension-accelerate": "^2.0.2",

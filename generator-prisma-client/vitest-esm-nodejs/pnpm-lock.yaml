@@ -17,7 +17,7 @@ devDependencies:
     specifier: 18.19.117
     version: 18.19.117
   execa:
-    specifier: ^9.6.0
+    specifier: 9.6.0
     version: 9.6.0
   prisma:
     specifier: 6.14.0
@@ -29,7 +29,7 @@ devDependencies:
     specifier: 5.8.3
     version: 5.8.3
   vitest:
-    specifier: ^3.2.4
+    specifier: 3.2.4
     version: 3.2.4(@types/node@18.19.117)
 
 packages:

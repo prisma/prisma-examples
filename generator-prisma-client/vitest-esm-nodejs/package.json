@@ -15,10 +15,10 @@
   },
   "devDependencies": {
     "@types/node": "18.19.117",
-    "execa": "^9.6.0",
+    "execa": "9.6.0",
     "prisma": "6.14.0",
     "rimraf": "6.0.1",
     "typescript": "5.8.3",
-    "vitest": "^3.2.4"
+    "vitest": "3.2.4"
   }
 }
