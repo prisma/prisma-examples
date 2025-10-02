@@ -21,19 +21,61 @@ The app demonstrates:
    cd nuxt-prisma-module
    ```
 
-3. Create a `.env` file:
+3. Install dependencies:
 
    ```terminal
-   DATABASE_URL="file:./dev.db"
+   npm install
    ```
 
-4. Start the development server:
+4. Set up your Prisma Postgres database:
+
+   ```terminal
+   npx prisma init --db
+   ```
+
+   This will prompt you to:
+   - Select a region (e.g., `ap-southeast-1`)
+   - Enter a project name
+   - Copy the provided database URL to your `.env` file
+
+5. Create a `.env` file with your Prisma Postgres database URL:
+
+   ```bash
+   # .env
+   DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=..."
+   ```
+
+6. Apply database migrations:
+
+   ```terminal
+   npx prisma migrate dev
+   ```
+
+7. Seed the database with sample data:
+
+   ```terminal
+   npx prisma db seed
+   ```
+
+8. Start the development server:
 
    ```terminal
    npm run dev
    ```
 
-5. Follow the instructions in the terminal to launch Prisma Studio integrated in the Nuxt devtools within your browser.
+9. Follow the instructions in the terminal to launch Prisma Studio integrated in the Nuxt devtools within your browser.
+
+## Prisma Postgres Setup
+
+This example uses Prisma Postgres, which requires the Prisma Accelerate extension. The extension is already included in the project dependencies and configured in [`lib/prisma.ts`](./lib/prisma.ts).
+
+The Prisma Client is extended with the Accelerate extension to enable querying against your Prisma Postgres database:
+
+```typescript
+import { withAccelerate } from '@prisma/extension-accelerate'
+
+const prisma = new PrismaClient().$extends(withAccelerate())
+```
 
 ## Resources
 

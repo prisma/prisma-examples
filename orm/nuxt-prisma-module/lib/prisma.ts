@@ -1,8 +1,10 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from "../prisma/generated/prisma/client"
+import { withAccelerate } from '@prisma/extension-accelerate'
 
 const prismaClientSingleton = () => {
+
   // Custom extended Prisma ORM instance with client extensions, adding a method to verify the existence of a database entry.
-  return new PrismaClient().$extends({
+  return new PrismaClient().$extends(withAccelerate()).$extends({
     model: {
       $allModels: {
         async exists<T>(

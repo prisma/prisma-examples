@@ -1,4 +1,5 @@
-import prisma from '~/lib/prisma'
+import prisma from "../../lib/prisma"
+
 
 export default eventHandler(async () => {
   const user = await prisma.user.exists({
