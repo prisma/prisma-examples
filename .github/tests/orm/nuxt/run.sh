@@ -54,7 +54,6 @@ popd > /dev/null  # Back to orm/nuxt
 
 # Run migration + seed
 npx prisma migrate dev --name init
-npx prisma generate
 npx prisma db seed
 
 # Start the app
