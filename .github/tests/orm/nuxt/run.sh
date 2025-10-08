@@ -54,7 +54,7 @@ popd > /dev/null  # Back to orm/nuxt
 
 # Run migration + seed
 npx prisma migrate dev --name init
-# npx prisma db seed temporary disabled
+npx prisma db seed
 
 # Start the app
 echo "🧪 Starting Nuxt app..."
