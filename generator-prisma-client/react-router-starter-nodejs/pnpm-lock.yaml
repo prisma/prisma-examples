@@ -33,10 +33,10 @@ dependencies:
 devDependencies:
   '@react-router/dev':
     specifier: 7.6.3
-    version: 7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.20)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.5)
+    version: 7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.20)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.6)
   '@tailwindcss/vite':
     specifier: 4.1.13
-    version: 4.1.13(vite@6.3.5)
+    version: 4.1.13(vite@6.3.6)
   '@types/node':
     specifier: 20.19.20
     version: 20.19.20
@@ -62,11 +62,11 @@ devDependencies:
     specifier: 5.8.3
     version: 5.8.3
   vite:
-    specifier: 6.3.5
-    version: 6.3.5(@types/node@20.19.20)(tsx@4.20.6)
+    specifier: 6.3.6
+    version: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
   vite-tsconfig-paths:
     specifier: 5.1.4
-    version: 5.1.4(typescript@5.8.3)(vite@6.3.5)
+    version: 5.1.4(typescript@5.8.3)(vite@6.3.6)
 
 packages:
 
@@ -775,7 +775,7 @@ packages:
     dependencies:
       '@prisma/debug': 6.14.0
 
-  /@react-router/dev@7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.20)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.5):
+  /@react-router/dev@7.6.3(@react-router/serve@7.6.3)(@types/node@20.19.20)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.6):
     resolution: {integrity: sha512-nnJQMVeE+LDViFTQDxeQV5FcfJ48a6aCScrFHwPHWgViQmiJxUBtDU1Pl7XZKEoTus5KDg/W3Vz2spiY6wXg3Q==}
     engines: {node: '>=20.0.0'}
     hasBin: true
@@ -822,7 +822,7 @@ packages:
       tinyglobby: 0.2.14
       typescript: 5.8.3
       valibot: 0.41.0(typescript@5.8.3)
-      vite: 6.3.5(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
       vite-node: 3.2.4(@types/node@20.19.20)(tsx@4.20.6)
     transitivePeerDependencies:
       - '@types/node'
@@ -1201,7 +1201,7 @@ packages:
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.13
     dev: true
 
-  /@tailwindcss/vite@4.1.13(vite@6.3.5):
+  /@tailwindcss/vite@4.1.13(vite@6.3.6):
     resolution: {integrity: sha512-0PmqLQ010N58SbMTJ7BVJ4I2xopiQn/5i6nlb4JmxzQf8zcS5+m2Cv6tqh+sfDwtIdjoEnOvwsGQ1hkUi8QEHQ==}
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7
@@ -1209,7 +1209,7 @@ packages:
       '@tailwindcss/node': 4.1.13
       '@tailwindcss/oxide': 4.1.13
       tailwindcss: 4.1.13
-      vite: 6.3.5(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
     dev: true
 
   /@types/estree@1.0.8:
@@ -2909,7 +2909,7 @@ packages:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.5(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -2925,7 +2925,7 @@ packages:
       - yaml
     dev: true
 
-  /vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.5):
+  /vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.6):
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
     peerDependencies:
       vite: '*'
@@ -2936,14 +2936,14 @@ packages:
       debug: 4.4.1
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.8.3)
-      vite: 6.3.5(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite@6.3.5(@types/node@20.19.20)(tsx@4.20.6):
-    resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
+  /vite@6.3.6(@types/node@20.19.20)(tsx@4.20.6):
+    resolution: {integrity: sha512-0msEVHJEScQbhkbVTb/4iHZdJ6SXp/AvxL2sjwYQFfBqleHtnCqv1J3sa9zbWz/6kW1m9Tfzn92vW+kZ1WV6QA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
