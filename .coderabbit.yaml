@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# yaml template to refer to https://docs.coderabbit.ai/reference/yaml-template#enterprise
+language: 'en-US'
+reviews:
+  collapse_walkthrough: false
+  profile: 'chill'
+  high_level_summary: true
+  request_changes_workflow: true
+  poem: false
+  in_progress_fortune: false
+  sequence_diagrams: true
+  suggested_labels: false
+  suggested_reviewers: false
+  auto_review:
+    enabled: true
+    drafts: false
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+chat:
+  art: false
