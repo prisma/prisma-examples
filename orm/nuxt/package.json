@@ -10,9 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@prisma/client": "^6.16.3",
-    "@prisma/extension-accelerate": "^2.0.2",
     "@nuxt/eslint": "1.9.0",
+    "@prisma/client": "^6.17.1",
+    "@prisma/extension-accelerate": "^2.0.2",
     "eslint": "^9.0.0",
     "nuxt": "^4.1.2",
     "vue": "^3.5.22",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.6.1",
-    "prisma": "^6.16.3",
+    "prisma": "^6.17.1",
     "tsx": "^4.20.6"
   },
   "prisma": {
