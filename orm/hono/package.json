@@ -10,16 +10,16 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@hono/node-server": "^1.19.5",
-    "@prisma/client": "^6.16.3",
-    "@prisma/extension-accelerate": "^2.0.2",
-    "dotenv": "^17.2.3",
-    "hono": "^4.9.9"
+    "@hono/node-server": "1.19.5",
+    "@prisma/client": "6.17.1",
+    "@prisma/extension-accelerate": "2.0.2",
+    "dotenv": "17.2.3",
+    "hono": "4.9.12"
   },
   "devDependencies": {
-    "@types/node": "^20.11.17",
-    "prisma": "^6.16.3",
-    "tsx": "^4.20.6",
-    "typescript": "^5.8.3"
+    "@types/node": "20.19.21",
+    "prisma": "6.17.1",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
   }
 }
