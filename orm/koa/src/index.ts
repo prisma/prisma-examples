@@ -1,7 +1,8 @@
 import Koa from 'koa'
 import Router from '@koa/router'
 
-import { Prisma, PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from './generated/prisma/client'
+import 'dotenv/config'
 
 import { koaBody } from 'koa-body'
 import { withAccelerate } from '@prisma/extension-accelerate'
