@@ -1,5 +1,6 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient, Prisma } from '../src/generated/prisma/client'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import 'dotenv/config'
 
 const prisma = new PrismaClient().$extends(withAccelerate())
 
