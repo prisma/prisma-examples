@@ -1,6 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../generated/prisma/client'
 import Hapi from '@hapi/hapi'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import 'dotenv/config'
 
 const prismaClientSingleton = () =>
   new PrismaClient().$extends(withAccelerate())

@@ -3,23 +3,24 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "tsx src/index.ts"
   },
   "dependencies": {
     "@hapi/hapi": "21.4.0",
-    "@prisma/client": "6.9.0",
+    "@prisma/client": "6.17.1",
+    "@prisma/extension-accelerate": "2.0.2",
     "@types/node": "22.15.32",
-    "@prisma/extension-accelerate": "2.0.2"
+    "dotenv": "^17.2.3"
   },
   "devDependencies": {
     "@types/express": "5.0.3",
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.15.32",
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
+    "prisma": "6.17.1",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   }
 }
