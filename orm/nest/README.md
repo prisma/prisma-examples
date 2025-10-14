@@ -348,7 +348,7 @@ import {
   Post as PostModel,
   Prisma,
   Profile,
-} from '@prisma/client';
+} from './generated/prisma/client';
 ```
 
 #### 2.2 Testing out your new endpoint
