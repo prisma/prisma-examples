@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import fastify from 'fastify'
 import mercurius from 'mercurius'
 import { schema } from './schema'
