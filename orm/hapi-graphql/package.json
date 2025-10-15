@@ -9,7 +9,7 @@
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only src/schema"
+    "generate:nexus": "tsx src/schema"
   },
   "dependencies": {
     "@apollo/server": "4.12.2",
