@@ -2,7 +2,7 @@ const NodeEnvironment = require('jest-environment-node').default
 const randomString = require('randomstring')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('./generated/client')
 
 class PrismaTestEnvironment extends NodeEnvironment {
   constructor(config) {
