@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma, User } from '../node_modules/.prisma/client'
+import { PrismaClient, Prisma, User } from '../prisma/generated/client'
 
 const NUM_USERS = 1000
 const COUNT_BLUE = 300
@@ -67,11 +67,11 @@ async function createEvents(
 ) {
   const eventsData = users.map(
     (user) =>
-      ({
-        variant,
-        type: event,
-        userId: user.id,
-      } satisfies Prisma.TrackingEventCreateManyInput),
+    ({
+      variant,
+      type: event,
+      userId: user.id,
+    } satisfies Prisma.TrackingEventCreateManyInput),
   )
   await prisma.trackingEvent.createMany({ data: eventsData })
 }
