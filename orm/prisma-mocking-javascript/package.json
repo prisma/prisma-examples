@@ -4,13 +4,14 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "dev": "node ./script.js"
+    "dev": "node ./client.js"
   },
   "dependencies": {
-    "@prisma/client": "6.9.0"
+    "@prisma/adapter-better-sqlite3": "^6.17.1",
+    "@prisma/client": "^6.17.1"
   },
   "devDependencies": {
     "jest-mock-extended": "3.0.7",
-    "prisma": "6.9.0"
+    "prisma": "^6.17.1"
   }
 }
