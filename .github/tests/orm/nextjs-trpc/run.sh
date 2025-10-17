@@ -20,7 +20,7 @@ npm install
 # Go to Node script dir and install its deps
 NODE_SCRIPT_DIR="../../.github/get-ppg-dev"
 pushd "$NODE_SCRIPT_DIR" > /dev/null
-npm install
+npm install --legacy-peer-deps
 
 # Start Prisma Dev server
 LOG_FILE="./ppg-dev-url.log"
