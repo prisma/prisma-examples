@@ -1,27 +1,30 @@
 'use client';
 import { useState } from 'react';
-import { trpc } from '@/utils/trpc';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useTRPC } from '@/utils/trpc';
 
 export default function Home() {
+
+	const trpc = useTRPC();
+
 	const [newTodoText, setNewTodoText] = useState('');
 
-	const todos = trpc.todo.getAll.useQuery();
-	const utils = trpc.useUtils();
+	const todos = useQuery(trpc.todo.getAll.queryOptions());
 
-	const createMutation = trpc.todo.create.useMutation({
+	const createMutation = useMutation(trpc.todo.create.mutationOptions({
 		onSuccess: () => {
 			setNewTodoText('');
-			utils.todo.getAll.invalidate();
+			todos.refetch();
 		},
-	});
+	}));
 
-	const toggleMutation = trpc.todo.toggle.useMutation({
-		onSuccess: () => utils.todo.getAll.invalidate(),
-	});
+	const toggleMutation = useMutation(trpc.todo.toggle.mutationOptions({
+		onSuccess: () => todos.refetch(),
+	}));
 
-	const deleteMutation = trpc.todo.delete.useMutation({
-		onSuccess: () => utils.todo.getAll.invalidate(),
-	});
+	const deleteMutation = useMutation(trpc.todo.delete.mutationOptions({
+		onSuccess: () => todos.refetch(),
+	}));
 
 	const handleAddTodo = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -75,6 +78,7 @@ export default function Home() {
 								</label>
 								<button
 									onClick={() => deleteMutation.mutate({ id: todo.id })}
+									aria-label={`Delete "${todo.text}"`}
 									className="text-sm text-red-600 transition hover:text-red-700"
 								>
 									Delete
