@@ -1,7 +1,7 @@
 {
   "name": "typescript-graphql",
   "scripts": {
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server"
+    "dev": "tsx src/server"
   },
   "prettier": {
     "semi": false,
@@ -19,7 +19,6 @@
   "devDependencies": {
     "@types/node": "22.15.32",
     "prisma": "^6.17.1",
-    "ts-node-dev": "2.0.0",
     "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },

@@ -2,13 +2,13 @@
   "name": "typescript-graphql-nexus",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "dev": "tsx src/server",
     "start": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only src/schema"
+    "generate:nexus": "tsx src/schema"
   },
   "prettier": {
     "semi": false,
@@ -27,7 +27,6 @@
   "devDependencies": {
     "@types/node": "22.15.32",
     "prisma": "^6.17.1",
-    "ts-node-dev": "2.0.0",
     "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },

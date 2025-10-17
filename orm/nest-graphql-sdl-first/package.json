@@ -48,6 +48,7 @@
     "@nestjs/platform-express": "10.4.19",
     "@prisma/client": "^6.17.1",
     "@prisma/extension-accelerate": "^2.0.2",
+    "dotenv": "^17.2.3",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "graphql-tools": "9.0.20",

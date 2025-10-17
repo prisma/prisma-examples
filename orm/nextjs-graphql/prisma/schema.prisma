@@ -1,7 +1,8 @@
 generator client {
-  provider   = "prisma-client"
-  output     = "./generated"
-  engineType = "client"
+  provider            = "prisma-client"
+  output              = "./generated"
+  engineType          = "client"
+  importFileExtension = "ts"
 }
 
 generator pothos {
