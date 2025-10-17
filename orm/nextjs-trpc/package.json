@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
-    "@tanstack/react-query-devtools": "^5.85.5",
+    "@tanstack/react-query-devtools": "^5.90.2",
     "@types/node": "^22.13.11",
     "@types/react": "~19.1.10",
     "@types/react-dom": "^19",
