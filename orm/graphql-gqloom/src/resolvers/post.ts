@@ -22,7 +22,7 @@ export const postResolver = resolver.of(Post, {
 
   postById: query(Post.nullable())
     .input({
-      id: z.number().int(),
+      id: z.int(),
     })
     .resolve(({ id }) =>
       prisma.post.findUnique({
@@ -78,7 +78,6 @@ export const postResolver = resolver.of(Post, {
       userUniqueInput: z.object({
         __typename: z.literal('UserUniqueInput').nullish(),
         id: z
-          .number()
           .int()
           .nullish()
           .transform((x) => x ?? undefined),
@@ -122,7 +121,7 @@ export const postResolver = resolver.of(Post, {
 
   togglePublishPost: mutation(Post)
     .input({
-      id: z.number().int(),
+      id: z.int(),
     })
     .resolve(async ({ id }) => {
       // Toggling become simpler once this bug is resolved: https://github.com/prisma/prisma/issues/16715
@@ -140,7 +139,7 @@ export const postResolver = resolver.of(Post, {
 
   incrementPostViewCount: mutation(Post)
     .input({
-      id: z.number().int(),
+      id: z.int(),
     })
     .resolve(({ id }) => {
       return prisma.post.update({
@@ -152,7 +151,7 @@ export const postResolver = resolver.of(Post, {
 
   deletePost: mutation(Post)
     .input({
-      id: z.number().int(),
+      id: z.int(),
     })
     .resolve(({ id }) => {
       return prisma.post.delete({

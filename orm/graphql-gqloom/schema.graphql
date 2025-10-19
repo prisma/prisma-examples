@@ -52,10 +52,10 @@ input IntNullableFilter {
 
 type Mutation {
   createDraft(authorEmail: String!, data: PostCreateInput!): Post!
-  deletePost(id: Float!): Post!
-  incrementPostViewCount(id: Float!): Post!
+  deletePost(id: Int!): Post!
+  incrementPostViewCount(id: Int!): Post!
   signupUser(data: SignupUserDataInput!): User!
-  togglePublishPost(id: Float!): Post!
+  togglePublishPost(id: Int!): Post!
 }
 
 input NestedBoolFilter {
@@ -173,7 +173,7 @@ input PostWhereInput {
 type Query {
   draftsByUser(userUniqueInput: UserUniqueInput!): [Post!]!
   feed(orderBy: FeedOrderByInput, searchString: String, skip: Float, take: Float): [Post!]!
-  postById(id: Float!): Post
+  postById(id: Int!): Post
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
 }
 
@@ -255,7 +255,7 @@ enum UserScalarFieldEnum {
 
 input UserUniqueInput {
   email: String
-  id: Float
+  id: Int
 }
 
 input UserWhereInput {
