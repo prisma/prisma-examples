@@ -15,7 +15,7 @@ export const userResolver = resolver.of(User, {
   signupUser: mutation(User)
     .input({
       data: z.object({
-        email: z.string(),
+        email: z.email(),
         name: z.string().optional(),
         posts: z.array(PostCreateInput),
       }),
