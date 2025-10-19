@@ -1,5 +1,6 @@
 import { mutation, resolver } from '@gqloom/core'
 import { PrismaResolverFactory } from '@gqloom/prisma'
+import { useSelectedFields } from '@gqloom/prisma/context'
 import * as z from 'zod'
 import { User } from '../generated/gqloom'
 import { prisma } from '../db'
@@ -22,6 +23,7 @@ export const userResolver = resolver.of(User, {
     })
     .resolve(({ data }) => {
       return prisma.user.create({
+        select: useSelectedFields(User),
         data: {
           email: data.email,
           name: data.name,

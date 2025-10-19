@@ -2,6 +2,7 @@ import * as fs from 'node:fs'
 import { createServer } from 'node:http'
 import path from 'node:path'
 import { weave } from '@gqloom/core'
+import { asyncContextProvider } from '@gqloom/core/context'
 import { PrismaWeaver } from '@gqloom/prisma'
 import { ZodWeaver } from '@gqloom/zod'
 import { lexicographicSortSchema, printSchema } from 'graphql'
@@ -20,6 +21,7 @@ const schema = weave(
       }
     },
   }),
+  asyncContextProvider,
   userResolver,
   postResolver,
 )

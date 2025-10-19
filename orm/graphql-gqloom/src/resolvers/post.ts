@@ -2,6 +2,7 @@ import { field, mutation, query, resolver } from '@gqloom/core'
 import * as z from 'zod'
 import { Post } from '../generated/gqloom'
 import { PrismaResolverFactory } from '@gqloom/prisma'
+import { useSelectedFields } from '@gqloom/prisma/context'
 import { prisma } from '../db'
 
 export const PostCreateInput = z.object({
@@ -25,6 +26,7 @@ export const postResolver = resolver.of(Post, {
     })
     .resolve(({ id }) =>
       prisma.post.findUnique({
+        select: useSelectedFields(Post),
         where: { id },
       }),
     ),
@@ -63,6 +65,7 @@ export const postResolver = resolver.of(Post, {
         : {}
 
       return prisma.post.findMany({
+        select: useSelectedFields(Post),
         where: { ...or, published: true },
         take,
         skip,
@@ -87,6 +90,7 @@ export const postResolver = resolver.of(Post, {
     })
     .resolve(({ userUniqueInput }) => {
       return prisma.post.findMany({
+        select: useSelectedFields(Post),
         where: {
           published: false,
           author: {
@@ -104,6 +108,7 @@ export const postResolver = resolver.of(Post, {
     })
     .resolve(({ data, authorEmail }) => {
       return prisma.post.create({
+        select: useSelectedFields(Post),
         data: {
           title: data.title,
           content: data.content,
@@ -127,6 +132,7 @@ export const postResolver = resolver.of(Post, {
       })
       console.log(postPublished)
       return prisma.post.update({
+        select: useSelectedFields(Post),
         where: { id },
         data: { published: !postPublished?.published },
       })
@@ -138,6 +144,7 @@ export const postResolver = resolver.of(Post, {
     })
     .resolve(({ id }) => {
       return prisma.post.update({
+        select: useSelectedFields(Post),
         where: { id },
         data: { viewCount: { increment: 1 } },
       })
@@ -149,6 +156,7 @@ export const postResolver = resolver.of(Post, {
     })
     .resolve(({ id }) => {
       return prisma.post.delete({
+        select: useSelectedFields(Post),
         where: { id },
       })
     }),
