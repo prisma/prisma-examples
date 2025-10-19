@@ -3,12 +3,9 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "init-tables": "node scripts/init_tables.cjs",
-    "generate": "prisma generate",
-    "start": "tsx watch src/server.ts",
-    "postinstall": "npm run generate",
-    "push": "prisma db push",
-    "seed": "prisma db seed"
+    "dev": "tsx watch --env-file=.env src/server.ts",
+    "start": "tsx --env-file=.env src/server.ts",
+    "generate": "prisma generate"
   },
   "devDependencies": {
     "@types/node": "^24.8.1",
@@ -20,9 +17,9 @@
     "@gqloom/core": "^0.12.1",
     "@gqloom/prisma": "^0.12.2",
     "@gqloom/zod": "^0.12.2",
-    "@prisma/adapter-better-sqlite3": "^6.17.1",
-    "@prisma/adapter-libsql": "^6.17.1",
+    "@prisma/adapter-pg": "^6.17.1",
     "@prisma/client": "^6.17.1",
+    "@prisma/extension-accelerate": "^2.0.2",
     "graphql": "^16.11.0",
     "graphql-scalars": "^1.25.0",
     "graphql-yoga": "^5.16.0",

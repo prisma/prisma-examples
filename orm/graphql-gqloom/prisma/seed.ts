@@ -1,11 +1,11 @@
-import * as path from 'node:path'
-import { PrismaLibSQL } from '@prisma/adapter-libsql'
+import { PrismaPg } from '@prisma/adapter-pg'
 import { type Prisma, PrismaClient } from '../src/generated/prisma/client'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-const adapter = new PrismaLibSQL({
-  url: `file:${path.join(__dirname, '../prisma/dev.db')}`,
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
 })
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient({ adapter }).$extends(withAccelerate())
 
 const userData: Prisma.UserCreateInput[] = [
   {
