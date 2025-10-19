@@ -171,10 +171,10 @@ input PostWhereInput {
 }
 
 type Query {
-  allUsers(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
   draftsByUser(userUniqueInput: UserUniqueInput!): [Post!]!
   feed(orderBy: FeedOrderByInput, searchString: String, skip: Float, take: Float): [Post!]!
   postById(id: Float!): Post
+  users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
 }
 
 input SignupUserDataInput {

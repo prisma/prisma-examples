@@ -8,7 +8,7 @@ import { PostCreateInput } from './post'
 const userFactory = new PrismaResolverFactory(User, prisma)
 
 export const userResolver = resolver.of(User, {
-  allUsers: userFactory.findManyQuery(),
+  users: userFactory.findManyQuery(),
 
   posts: userFactory.relationField('posts'),
 
