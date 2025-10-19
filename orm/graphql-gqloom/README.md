@@ -3,7 +3,7 @@
 This example shows how to implement a **GraphQL server with TypeScript** with the following stack:
 
 - [**GraphQL Yoga**](https://the-guild.dev/graphql/yoga-server): GraphQL server
-- [**GQLoom**](https://gqloom.dev/): GraphQL schema library that weaves runtime types, validation libraries (Zod, Valibot, Yup), and ORMs (Prisma, Drizzle, MikroORM) into GraphQL schemas
+- [**GQLoom**](https://gqloom.dev/): Code-First GraphQL Schema library that weaves TypeScript runtime types into GraphQL schemas
 - [**Zod**](https://zod.dev/): Schema validation library for input types
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
