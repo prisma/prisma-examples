@@ -1,0 +1,34 @@
+{
+  "name": "typescript-graphql-gqloom",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "init-tables": "node scripts/init_tables.cjs",
+    "generate": "prisma generate",
+    "start": "tsx watch src/server.ts",
+    "postinstall": "npm run generate",
+    "push": "prisma db push",
+    "seed": "prisma db seed"
+  },
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "prisma": "^6.17.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@gqloom/core": "^0.12.1",
+    "@gqloom/prisma": "^0.12.2",
+    "@gqloom/zod": "^0.12.2",
+    "@prisma/adapter-better-sqlite3": "^6.17.1",
+    "@prisma/adapter-libsql": "^6.17.1",
+    "@prisma/client": "^6.17.1",
+    "graphql": "^16.11.0",
+    "graphql-scalars": "^1.25.0",
+    "graphql-yoga": "^5.16.0",
+    "zod": "^4.1.12"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}
