@@ -25,10 +25,16 @@ const schema = weave(
   userResolver,
   postResolver,
 )
-fs.writeFileSync(
-  path.join(__dirname, '../schema.graphql'),
-  printSchema(lexicographicSortSchema(schema)),
-)
+try {
+  fs.writeFileSync(
+    path.join(__dirname, '../schema.graphql'),
+    printSchema(lexicographicSortSchema(schema)),
+  )
+  console.info('✅ GraphQL schema written to schema.graphql')
+} catch (error) {
+  console.error('⚠️  Failed to write schema file:', error)
+  // Non-fatal: server can still run without the file
+}
 
 const yoga = createYoga({
   graphqlEndpoint: '/',
