@@ -28,7 +28,7 @@ export const userResolver = resolver.of(User, {
           email: data.email,
           name: data.name,
           posts: {
-            create: data.posts,
+            create: data.posts.map(({ __typename, ...post }) => post),
           },
         },
       })
