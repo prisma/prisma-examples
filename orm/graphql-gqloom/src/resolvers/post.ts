@@ -72,12 +72,12 @@ export const postResolver = resolver.of(Post, {
         orderBy,
       })
     }),
-
   draftsByUser: query(Post.list())
     .input({
       userUniqueInput: z.object({
         __typename: z.literal('UserUniqueInput').nullish(),
         id: z
+          .number()
           .int()
           .nullish()
           .transform((x) => x ?? undefined),
@@ -93,13 +93,14 @@ export const postResolver = resolver.of(Post, {
         where: {
           published: false,
           author: {
-            id: userUniqueInput.id,
-            email: userUniqueInput.email,
+            is: {
+              id: userUniqueInput.id,
+              email: userUniqueInput.email,
+            },
           },
         },
       })
     }),
-
   createDraft: mutation(Post)
     .input({
       data: PostCreateInput,
