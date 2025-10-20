@@ -83,6 +83,7 @@ npx newman run "$REPO_ROOT/.github/tests/postman_collections/graphql.json" --bai
 
 # Cleanup
 echo "🛑 Shutting down app (PID $pid) and Prisma Dev (PID $NODE_PID)..."
-kill "$pid"
+kill "$pid" 2>/dev/null || true
 kill "$NODE_PID"
-wait "$NODE_PID" || true
+wait "$NODE_PID" 2>/dev/null || true
+wait "$pid" 2>/dev/null || true
