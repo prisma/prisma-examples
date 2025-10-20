@@ -121,15 +121,17 @@ export const postResolver = resolver.of(Post, {
 
   togglePublishPost: mutation(Post)
     .input({
-      id: z.int(),
+      id: z.number().int(),
     })
     .resolve(async ({ id }) => {
-      // Toggling become simpler once this bug is resolved: https://github.com/prisma/prisma/issues/16715
+      // TODO: Simplify once https://github.com/prisma/prisma/issues/16715 is fixed
       const postPublished = await prisma.post.findUnique({
         where: { id },
         select: { published: true },
       })
-      console.log(postPublished)
+      if (!postPublished) {
+        throw new Error('Post not found')
+      }
       return prisma.post.update({
         select: useSelectedFields(Post),
         where: { id },
