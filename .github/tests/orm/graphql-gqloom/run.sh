@@ -61,7 +61,21 @@ npx prisma db seed
 npm run dev &
 pid=$!
 
-sleep 20
+# Wait for app to be ready
+echo "🔎 Waiting for app to be ready..."
+MAX_WAIT=60
+WAITED=0
+until curl -s http://localhost:4000/ > /dev/null 2>&1; do
+  sleep 1
+  WAITED=$((WAITED + 1))
+  if [ "$WAITED" -ge "$MAX_WAIT" ]; then
+    echo "❌ Timeout waiting for app to start"
+    kill "$pid" 2>/dev/null || true
+    kill "$NODE_PID" 2>/dev/null || true
+    exit 1
+  fi
+done
+echo "✅ App is ready"
 
 # Run GraphQL Postman collection
 echo "🧪 Running Postman tests..."
