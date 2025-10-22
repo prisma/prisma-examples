@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { ApolloServer, BaseContext } from '@apollo/server'
 import hapiApollo from "@as-integrations/hapi"
 import { Server } from '@hapi/hapi'
