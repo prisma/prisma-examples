@@ -52,9 +52,8 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 
 popd > /dev/null  # Back to orm/fastify-graphql
 
-# Run migrations and seed
-npx prisma migrate reset --force --skip-seed
-npx prisma migrate dev --name init
+# Run migrations
+npx prisma migrate dev --name init --skip-seed
 npx prisma db seed
 
 # Start the app
