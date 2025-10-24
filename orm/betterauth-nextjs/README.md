@@ -76,7 +76,7 @@ npx @better-auth/cli@latest secret
 ```diff
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
-    provider: 'sqlite',
+    provider: 'postgres',
   }),
   emailAndPassword: {
     enabled: true,
