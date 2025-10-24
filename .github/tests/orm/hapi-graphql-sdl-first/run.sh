@@ -52,8 +52,8 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 
 popd > /dev/null  # Back to orm/hapi-graphql-sdl-first
 
-# Run migrations
-npx prisma migrate dev --name init --skip-seed
+# Run migrations and seed
+npx prisma migrate dev --name init
 npx prisma db seed
 
 # Start the app
