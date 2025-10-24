@@ -8,6 +8,7 @@ if (!Astro.locals.user?.id) return Astro.redirect('/sign-in')
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
   </head>
   <body>
     <pre>{JSON.stringify(Astro.locals.user, null, 2)}</pre>
