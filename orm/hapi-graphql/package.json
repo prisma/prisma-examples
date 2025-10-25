@@ -15,7 +15,7 @@
     "@apollo/server": "4.12.2",
     "@as-integrations/hapi": "2.0.1",
     "@hapi/hapi": "21.4.0",
-    "@prisma/client": "^6.17.1",
+    "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@types/node": "22.15.32",
     "dotenv": "^16.4.7",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.15.32",
-    "prisma": "^6.17.1",
+    "prisma": "^6.18.0",
     "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },

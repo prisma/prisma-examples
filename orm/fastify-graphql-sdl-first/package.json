@@ -10,18 +10,18 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "fastify": "5.6.1",
     "@graphql-tools/schema": "10.0.25",
-    "@prisma/client": "^6.17.1",
+    "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "dotenv": "^16.4.7",
+    "fastify": "5.6.1",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "mercurius": "16.2.0"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
-    "prisma": "^6.17.1",
+    "prisma": "^6.18.0",
     "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },
