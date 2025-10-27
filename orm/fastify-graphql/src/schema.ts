@@ -11,7 +11,7 @@ import {
 } from 'nexus'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Context } from './context'
-import { Post } from '.prisma/client'
+import { Post } from '../prisma/generated/client'
 
 export const DateTime = asNexusMethod(DateTimeResolver, 'date')
 
@@ -50,11 +50,11 @@ const Query = objectType({
       resolve: (_parent, args, context) => {
         const or = args.searchString
           ? {
-              OR: [
-                { title: { contains: args.searchString } },
-                { content: { contains: args.searchString } },
-              ],
-            }
+            OR: [
+              { title: { contains: args.searchString } },
+              { content: { contains: args.searchString } },
+            ],
+          }
           : {}
 
         return context.prisma.post.findMany({
@@ -306,7 +306,7 @@ export const schema = makeSchema({
   sourceTypes: {
     modules: [
       {
-        module: '@prisma/client',
+        module: require.resolve('../prisma/generated/client'),
         alias: 'prisma',
       },
     ],

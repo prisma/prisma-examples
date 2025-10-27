@@ -66,11 +66,11 @@ const Query = objectType({
       resolve: (_parent, args, context: Context) => {
         const or = args.searchString
           ? {
-              OR: [
-                { title: { contains: args.searchString } },
-                { content: { contains: args.searchString } },
-              ],
-            }
+            OR: [
+              { title: { contains: args.searchString } },
+              { content: { contains: args.searchString } },
+            ],
+          }
           : {}
 
         return context.prisma.post.findMany({
@@ -355,7 +355,7 @@ const schemaWithoutPermissions = makeSchema({
   sourceTypes: {
     modules: [
       {
-        module: '@prisma/client',
+        module: require.resolve('../prisma/generated/client'),
         alias: 'prisma',
       },
     ],

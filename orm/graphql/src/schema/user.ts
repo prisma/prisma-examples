@@ -3,7 +3,7 @@ import { prisma } from '../db'
 import { PostCreateInput } from './post'
 
 builder.prismaObject('User', {
-  fields: (t) => ({
+  fields: (t: any) => ({
     id: t.exposeInt('id'),
     name: t.exposeString('name', { nullable: true }),
     email: t.exposeString('email'),

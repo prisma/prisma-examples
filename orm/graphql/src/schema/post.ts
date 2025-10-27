@@ -3,7 +3,7 @@ import { prisma } from '../db'
 import { UserUniqueInput } from './user'
 
 builder.prismaObject('Post', {
-  fields: (t) => ({
+  fields: (t: any) => ({
     id: t.exposeInt('id'),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
@@ -64,11 +64,11 @@ builder.queryFields((t) => ({
     resolve: (query, parent, args) => {
       const or = args.searchString
         ? {
-            OR: [
-              { title: { contains: args.searchString } },
-              { content: { contains: args.searchString } },
-            ],
-          }
+          OR: [
+            { title: { contains: args.searchString } },
+            { content: { contains: args.searchString } },
+          ],
+        }
         : {}
 
       return prisma.post.findMany({

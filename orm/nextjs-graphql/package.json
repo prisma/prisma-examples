@@ -14,26 +14,26 @@
     "@apollo/client": "3.13.8",
     "@pothos/core": "4.7.0",
     "@pothos/plugin-prisma": "4.9.1",
-    "@prisma/client": "6.9.0",
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "graphql-yoga": "5.14.0",
     "next": "15.3.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-markdown": "10.1.0",
-    "@prisma/extension-accelerate": "2.0.2"
+    "react-markdown": "10.1.0"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
     "@types/node": "22.15.32",
     "@types/react": "19.1.8",
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
+    "prisma": "^6.18.0",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "pkg": {
     "assets": [

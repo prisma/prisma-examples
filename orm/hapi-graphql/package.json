@@ -3,34 +3,34 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/server",
+    "dev": "tsx src/server",
     "start": "node dist/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc",
     "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
     "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only src/schema"
+    "generate:nexus": "tsx src/schema"
   },
   "dependencies": {
     "@apollo/server": "4.12.2",
     "@as-integrations/hapi": "2.0.1",
     "@hapi/hapi": "21.4.0",
-    "@prisma/client": "6.9.0",
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
     "@types/node": "22.15.32",
+    "dotenv": "^16.4.7",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
-    "nexus": "1.3.0",
-    "@prisma/extension-accelerate": "2.0.2"
+    "nexus": "1.3.0"
   },
   "devDependencies": {
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.15.32",
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
-    "ts-node-dev": "2.0.0",
+    "prisma": "^6.18.0",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   }
 }

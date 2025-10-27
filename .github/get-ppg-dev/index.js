@@ -1,4 +1,10 @@
+import { context, trace } from "@opentelemetry/api";
+import { AsyncLocalStorageContextManager } from "@opentelemetry/context-async-hooks";
+import { BasicTracerProvider } from "@opentelemetry/sdk-trace-base";
 import { unstable_startServer } from '@prisma/dev'
+
+context.setGlobalContextManager(new AsyncLocalStorageContextManager());
+trace.setGlobalTracerProvider(new BasicTracerProvider());
 
 async function main() {
   const server = await unstable_startServer({

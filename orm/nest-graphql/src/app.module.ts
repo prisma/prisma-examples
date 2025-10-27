@@ -5,6 +5,7 @@ import { PostResolver } from './resolvers.post'
 import { UserResolver } from './resolvers.user'
 import { join } from 'path'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -13,8 +14,9 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       buildSchemaOptions: { dateScalarMode: 'timestamp' },
     }),
+    ConfigModule.forRoot()
   ],
   controllers: [],
   providers: [PrismaService, UserResolver, PostResolver],
 })
-export class AppModule {}
+export class AppModule { }
