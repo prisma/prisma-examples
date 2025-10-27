@@ -4,7 +4,11 @@ import fs from 'fs'
 import { nanoid } from 'nanoid'
 import { TestEnvironment } from 'jest-environment-node'
 import { exec } from 'child_process'
+import { promisify } from 'util'
 import { fileURLToPath } from 'url'
+import "dotenv/config"
+
+const execAsync = promisify(exec)
 
 // fix for 'How to fix "__dirname is not defined in ES module scope"'
 const __filename = fileURLToPath(import.meta.url);
@@ -24,20 +28,22 @@ class PrismaTestEnvironment extends TestEnvironment {
   constructor(config, _context) {
     super(config, _context)
 
-    // Generate a unique sqlite identifier for this test context
+    // Generate a unique database file for this test context
     this.dbName = `test_${nanoid()}.db`
-    process.env.DB_URL = `file:${this.dbName}`
-    this.global.process.env.DB_URL = `file:${this.dbName}`
+    const dbUrl = `file:${this.dbName}`
+    process.env.DATABASE_URL = dbUrl
+    this.global.process.env.DATABASE_URL = dbUrl
     this.dbPath = path.join(__dirname, this.dbName)
   }
 
   async setup() {
     // Run the migrations to ensure our schema has the required structure
-    await exec(`${prismaBinary} db push  `)
+    await execAsync(`${prismaBinary} db push --skip-generate`)
     return super.setup()
   }
 
   async teardown() {
+    // Clean up the test database file
     try {
       await fs.promises.unlink(this.dbPath)
     } catch (error) {

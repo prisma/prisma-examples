@@ -2,9 +2,10 @@
   "name": "testing-express",
   "version": "1.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "test": "jest --detectOpenHandles"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles"
   },
   "prettier": {
     "semi": false,
@@ -14,7 +15,7 @@
     "@prisma/client": "^6.17.1",
     "@prisma/extension-accelerate": "^2.0.2",
     "@types/node": "22.15.32",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.6.1",
     "express": "5.1.0",
     "jest-config": "29.7.0"
   },
