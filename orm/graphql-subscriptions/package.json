@@ -17,11 +17,11 @@
   },
   "dependencies": {
     "@apollo/server": "4.12.2",
-    "@as-integrations/express5": "^1.1.2",
-    "@prisma/client": "^6.18.0",
-    "@prisma/extension-accelerate": "^2.0.2",
+    "@as-integrations/express5": "1.1.2",
+    "@prisma/client": "6.18.0",
+    "@prisma/extension-accelerate": "2.0.2",
     "cors": "2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "16.6.1",
     "express": "5.1.0",
     "graphql": "16.11.0",
     "graphql-subscriptions": "3.0.0",
@@ -34,8 +34,8 @@
     "@types/express": "5.0.3",
     "@types/node": "22.15.32",
     "@types/ws": "8.18.1",
-    "prisma": "^6.18.0",
-    "tsx": "^4.20.6",
+    "prisma": "6.18.0",
+    "tsx": "4.20.6",
     "typescript": "5.8.2"
   },
   "prisma": {
