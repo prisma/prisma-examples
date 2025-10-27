@@ -10,16 +10,16 @@
     "@as-integrations/hapi": "2.0.1",
     "@graphql-tools/schema": "10.0.25",
     "@hapi/hapi": "21.4.0",
-    "@prisma/client": "^6.18.0",
-    "@prisma/extension-accelerate": "^2.0.2",
-    "dotenv": "^16.4.7",
+    "@prisma/client": "6.18.0",
+    "@prisma/extension-accelerate": "2.0.2",
+    "dotenv": "16.6.1",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
-    "prisma": "^6.18.0",
-    "tsx": "^4.20.6",
+    "prisma": "6.18.0",
+    "tsx": "4.20.6",
     "typescript": "5.8.2"
   },
   "prisma": {
