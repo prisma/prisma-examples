@@ -1,8 +1,9 @@
 import 'dotenv/config'
 import { PrismaClient } from '../prisma/generated/client'
 import express from 'express'
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-export const prisma = new PrismaClient()
+export const prisma = new PrismaClient().$extends(withAccelerate())
 const app = express()
 
 app.use(express.json())
@@ -54,8 +55,8 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   try {
     const locations = await prisma.$queryRaw`
       select * from "locations_near_user"(${parseInt(
-        userId,
-      )}::int, ${distance}::int)
+      userId,
+    )}::int, ${distance}::int)
     `
     res.json({ data: { locations } })
   } catch (e) {
