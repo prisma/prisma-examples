@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { createYoga } from 'graphql-yoga'
 import { createServer } from 'http'
 import { schema } from './schema'

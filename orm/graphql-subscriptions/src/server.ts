@@ -1,7 +1,7 @@
+import 'dotenv/config';
 import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
+import { expressMiddleware } from '@as-integrations/express5';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import { useServer } from 'graphql-ws/lib/use/ws';
@@ -42,7 +42,7 @@ async function start() {
   })
 
   await server.start()
-  app.use('/graphql', cors<cors.CorsRequest>(), bodyParser.json(), expressMiddleware(server, { context: async () => context }));
+  app.use('/graphql', cors<cors.CorsRequest>(), express.json(), expressMiddleware(server, { context: async () => context }));
 
   httpServer.listen(PORT, () => {
     console.log(`🚀 Server ready at http://localhost:4000/graphql`)

@@ -1,9 +1,14 @@
 generator client {
-  provider = "prisma-client-js"
+  provider   = "prisma-client"
+  output     = "./generated"
+  engineType = "client"
 }
 
 generator pothos {
-  provider = "prisma-pothos-types"
+  provider          = "prisma-pothos-types"
+  clientOutput      = "../prisma/generated/client"
+  output            = "../lib/pothos-prisma-types.ts"
+  generateDatamodel = "true"
 }
 
 datasource db {

@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import fastify from 'fastify'
 import mercurius, {
   IFieldResolver,
@@ -7,7 +8,7 @@ import mercurius, {
 import { schema } from './schema'
 import { context } from './context'
 
-declare module 'mercurius' {}
+declare module 'mercurius' { }
 const app = fastify()
 
 app.register(mercurius, {

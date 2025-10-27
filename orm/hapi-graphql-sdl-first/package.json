@@ -3,25 +3,26 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "tsx src/index.ts"
   },
   "dependencies": {
     "@apollo/server": "4.12.2",
     "@as-integrations/hapi": "2.0.1",
     "@graphql-tools/schema": "10.0.25",
     "@hapi/hapi": "21.4.0",
-    "@prisma/client": "6.9.0",
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "dotenv": "^16.4.7",
     "graphql": "16.11.0",
-    "graphql-scalars": "1.24.2",
-    "@prisma/extension-accelerate": "2.0.2"
+    "graphql-scalars": "1.24.2"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
+    "prisma": "^6.18.0",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts"
   }
 }

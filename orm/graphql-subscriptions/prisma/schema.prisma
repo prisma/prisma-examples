@@ -1,10 +1,12 @@
+generator client {
+  provider   = "prisma-client"
+  output     = "./generated"
+  engineType = "client"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator photon {
-  provider = "prisma-client-js"
 }
 
 model User {

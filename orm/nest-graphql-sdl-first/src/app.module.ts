@@ -3,6 +3,8 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { schema } from './schema'
 import { context } from './context'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { ConfigModule } from '@nestjs/config';
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -10,6 +12,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
       context: context,
       driver: ApolloDriver,
     }),
+    ConfigModule.forRoot()
   ],
 })
-export class AppModule {}
+export class AppModule { }
