@@ -12,7 +12,7 @@
     "hono": "4.9.6"
   },
   "devDependencies": {
-    "@types/node": "22.18.1",
+    "@types/node": "22.18.12",
     "prisma": "6.15.0",
     "tsx": "4.20.6"
   }
