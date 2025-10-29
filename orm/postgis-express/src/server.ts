@@ -2,8 +2,10 @@ import 'dotenv/config'
 import { PrismaClient } from '../prisma/generated/client'
 import express from 'express'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaPg } from '@prisma/adapter-pg'
 
-export const prisma = new PrismaClient().$extends(withAccelerate())
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+export const prisma = new PrismaClient({ adapter }).$extends(withAccelerate())
 const app = express()
 
 app.use(express.json())

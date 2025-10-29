@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^6.18.0",
     "@prisma/client": "^6.18.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@types/node": "22.15.32",
