@@ -1,0 +1,46 @@
+---
+export const prerender = false;
+
+if (Astro.locals.user?.id) return Astro.redirect('/')
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign In</title>
+  </head>
+  <body>
+    <form id="signin-form">
+      <input type="email" name="email" placeholder="Email" required />
+      <input required type="password" name="password" placeholder="Password" />
+      <button type="submit">Sign In</button>
+    </form>
+    <p id="error-message" style="color: red; display: none;"></p>
+    <p>Don't have an account? <a href="/sign-up">Sign up here</a>.</p>
+    <script>
+      import { authClient } from "../../lib/auth-client"
+      const errorElement = document.getElementById('error-message')
+      document.getElementById('signin-form')?.addEventListener('submit', async (event) => {
+        event.preventDefault()
+        if (errorElement) {
+          errorElement.style.display = 'none'
+          errorElement.textContent = ''
+        }
+        const formData = new FormData(event.target as HTMLFormElement)
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+        const tmp = await authClient.signIn.email({
+          email,
+          password,
+        })
+        if (Boolean(tmp.error) === false) {
+          window.location.href = '/'
+        } else if (errorElement && tmp.error) {
+          errorElement.textContent = tmp.error.message || 'Sign in failed'
+          errorElement.style.display = 'block'
+        }
+      })
+    </script>
+  </body>
+</html>

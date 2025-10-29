@@ -1,6 +1,4 @@
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
+import prisma from "../lib/prisma"
 
 const userData = [
   {
@@ -25,7 +23,6 @@ const userData = [
           title: 'Follow Prisma on Twitter',
           content: 'https://www.twitter.com/prisma',
           published: true,
-          viewCount: 42,
         },
       ],
     },
@@ -39,7 +36,6 @@ const userData = [
           title: 'Ask a question about Prisma on GitHub',
           content: 'https://www.github.com/prisma/prisma/discussions',
           published: true,
-          viewCount: 128,
         },
         {
           title: 'Prisma on YouTube',
@@ -53,10 +49,12 @@ const userData = [
 async function main() {
   console.log(`Start seeding ...`)
   for (const u of userData) {
-    const user = await prisma.user.create({
-      data: u,
+    const user = await prisma.user.upsert({
+      where: { email: u.email },
+      update: {},
+      create: u,
     })
-    console.log(`Created user with id: ${user.id}`)
+    console.log(`Created/updated user with id: ${user.id}`)
   }
   console.log(`Seeding finished.`)
 }

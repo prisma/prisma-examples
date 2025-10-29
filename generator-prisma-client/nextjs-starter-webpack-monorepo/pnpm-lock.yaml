@@ -15,7 +15,7 @@ importers:
         version: link:../prisma
       '@t3-oss/env-core':
         specifier: 0.13.8
-        version: 0.13.8(typescript@5.8.3)(zod@3.25.71)
+        version: 0.13.8(typescript@5.8.3)(zod@3.25.76)
       next:
         specifier: 15.3.5
         version: 15.3.5(react-dom@19.1.0)(react@19.1.0)
@@ -35,12 +35,12 @@ importers:
         specifier: 3.4.17
         version: 3.4.17
       zod:
-        specifier: 3.25.71
-        version: 3.25.71
+        specifier: 3.25.76
+        version: 3.25.76
     devDependencies:
       '@types/node':
-        specifier: 22.15.32
-        version: 22.15.32
+        specifier: 22.18.12
+        version: 22.18.12
       '@types/react':
         specifier: 19.1.8
         version: 19.1.8
@@ -76,8 +76,8 @@ importers:
         version: 8.16.3
     devDependencies:
       '@types/node':
-        specifier: 22.15.32
-        version: 22.15.32
+        specifier: 22.18.12
+        version: 22.18.12
       '@types/pg':
         specifier: 8.15.5
         version: 8.15.5
@@ -858,7 +858,7 @@ packages:
       tslib: 2.8.1
     dev: false
 
-  /@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.71):
+  /@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.76):
     resolution: {integrity: sha512-L1inmpzLQyYu4+Q1DyrXsGJYCXbtXjC4cICw1uAKv0ppYPQv656lhZPU91Qd1VS6SO/bou1/q5ufVzBGbNsUpw==}
     peerDependencies:
       arktype: ^2.1.0
@@ -876,7 +876,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.8.3
-      zod: 3.25.71
+      zod: 3.25.76
     dev: false
 
   /@tybys/wasm-util@0.9.0:
@@ -891,8 +891,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/node@22.15.32:
-    resolution: {integrity: sha512-3jigKqgSjsH6gYZv2nEsqdXfZqIFGAV36XYYjf9KGZ3PSG+IhLecqPnI310RvjutyMwifE2hhhNEklOUrvx/wA==}
+  /@types/node@22.18.12:
+    resolution: {integrity: sha512-BICHQ67iqxQGFSzfCFTT7MRQ5XcBjG5aeKh5Ok38UBbPe5fxTyE+aHFxwVrGyr8GNlqFMLKD1D3P2K/1ks8tog==}
     dependencies:
       undici-types: 6.21.0
     dev: true
@@ -900,7 +900,7 @@ packages:
   /@types/pg@8.15.5:
     resolution: {integrity: sha512-LF7lF6zWEKxuT3/OR8wAZGzkg4ENGXFNyiV/JeOt9z5B+0ZVwbql9McqX5c/WStFq1GaGso7H1AzP/qSzmlCKQ==}
     dependencies:
-      '@types/node': 22.15.32
+      '@types/node': 22.18.12
       pg-protocol: 1.10.3
       pg-types: 2.2.0
     dev: true
@@ -4239,6 +4239,6 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /zod@3.25.71:
-    resolution: {integrity: sha512-BsBc/NPk7h8WsUWYWYL+BajcJPY8YhjelaWu2NMLuzgraKAz4Lb4/6K11g9jpuDetjMiqhZ6YaexFLOC0Ogi3Q==}
+  /zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
     dev: false
