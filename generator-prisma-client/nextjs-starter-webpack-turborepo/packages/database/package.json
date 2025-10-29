@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "20.19.20",
+    "@types/node": "20.19.24",
     "dotenv": "17.2.1",
     "eslint": "8.57.1",
     "prisma": "6.14.0",

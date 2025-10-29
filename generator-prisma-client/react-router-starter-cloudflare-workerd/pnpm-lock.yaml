@@ -33,13 +33,13 @@ devDependencies:
     version: 1.8.0(vite@6.3.6)(wrangler@4.28.0)
   '@react-router/dev':
     specifier: 7.6.3
-    version: 7.6.3(@types/node@20.19.20)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.6)(wrangler@4.28.0)
+    version: 7.6.3(@types/node@20.19.24)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.6)(wrangler@4.28.0)
   '@tailwindcss/vite':
     specifier: 4.1.13
     version: 4.1.13(vite@6.3.6)
   '@types/node':
-    specifier: 20.19.20
-    version: 20.19.20
+    specifier: 20.19.24
+    version: 20.19.24
   '@types/react':
     specifier: ^19.1.2
     version: 19.1.10
@@ -63,7 +63,7 @@ devDependencies:
     version: 5.8.3
   vite:
     specifier: 6.3.6
-    version: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
+    version: 6.3.6(@types/node@20.19.24)(tsx@4.20.6)
   vite-tsconfig-paths:
     specifier: 5.1.4
     version: 5.1.4(typescript@5.8.3)(vite@6.3.6)
@@ -422,7 +422,7 @@ packages:
       picocolors: 1.1.1
       tinyglobby: 0.2.14
       unenv: 2.0.0-rc.17
-      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.24)(tsx@4.20.6)
       wrangler: 4.28.0
       ws: 8.18.0
     transitivePeerDependencies:
@@ -1379,7 +1379,7 @@ packages:
     dependencies:
       '@prisma/debug': 6.14.0
 
-  /@react-router/dev@7.6.3(@types/node@20.19.20)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.6)(wrangler@4.28.0):
+  /@react-router/dev@7.6.3(@types/node@20.19.24)(react-router@7.6.3)(tsx@4.20.6)(typescript@5.8.3)(vite@6.3.6)(wrangler@4.28.0):
     resolution: {integrity: sha512-nnJQMVeE+LDViFTQDxeQV5FcfJ48a6aCScrFHwPHWgViQmiJxUBtDU1Pl7XZKEoTus5KDg/W3Vz2spiY6wXg3Q==}
     engines: {node: '>=20.0.0'}
     hasBin: true
@@ -1425,8 +1425,8 @@ packages:
       tinyglobby: 0.2.14
       typescript: 5.8.3
       valibot: 0.41.0(typescript@5.8.3)
-      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
-      vite-node: 3.2.4(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.24)(tsx@4.20.6)
+      vite-node: 3.2.4(@types/node@20.19.24)(tsx@4.20.6)
       wrangler: 4.28.0
     transitivePeerDependencies:
       - '@types/node'
@@ -1815,15 +1815,15 @@ packages:
       '@tailwindcss/node': 4.1.13
       '@tailwindcss/oxide': 4.1.13
       tailwindcss: 4.1.13
-      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.24)(tsx@4.20.6)
     dev: true
 
   /@types/estree@1.0.8:
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
     dev: true
 
-  /@types/node@20.19.20:
-    resolution: {integrity: sha512-2Q7WS25j4pS1cS8yw3d6buNCVJukOTeQ39bAnwR6sOJbaxvyCGebzTMypDFN82CxBLnl+lSWVdCCWbRY6y9yZQ==}
+  /@types/node@20.19.24:
+    resolution: {integrity: sha512-FE5u0ezmi6y9OZEzlJfg37mqqf6ZDSF2V/NLjUyGrR9uTZ7Sb9F7bLNZ03S4XVUNRWGA7Ck4c1kK+YnuWjl+DA==}
     dependencies:
       undici-types: 6.21.0
     dev: true
@@ -3295,7 +3295,7 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
 
-  /vite-node@3.2.4(@types/node@20.19.20)(tsx@4.20.6):
+  /vite-node@3.2.4(@types/node@20.19.24)(tsx@4.20.6):
     resolution: {integrity: sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -3304,7 +3304,7 @@ packages:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.24)(tsx@4.20.6)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -3331,13 +3331,13 @@ packages:
       debug: 4.4.1
       globrex: 0.1.2
       tsconfck: 3.1.6(typescript@5.8.3)
-      vite: 6.3.6(@types/node@20.19.20)(tsx@4.20.6)
+      vite: 6.3.6(@types/node@20.19.24)(tsx@4.20.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /vite@6.3.6(@types/node@20.19.20)(tsx@4.20.6):
+  /vite@6.3.6(@types/node@20.19.24)(tsx@4.20.6):
     resolution: {integrity: sha512-0msEVHJEScQbhkbVTb/4iHZdJ6SXp/AvxL2sjwYQFfBqleHtnCqv1J3sa9zbWz/6kW1m9Tfzn92vW+kZ1WV6QA==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -3377,7 +3377,7 @@ packages:
       yaml:
         optional: true
     dependencies:
-      '@types/node': 20.19.20
+      '@types/node': 20.19.24
       esbuild: 0.25.9
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
