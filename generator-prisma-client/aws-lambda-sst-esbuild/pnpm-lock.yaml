@@ -17,8 +17,8 @@ dependencies:
 
 devDependencies:
   '@types/aws-lambda':
-    specifier: 8.10.152
-    version: 8.10.152
+    specifier: 8.10.157
+    version: 8.10.157
   dotenv:
     specifier: 17.2.1
     version: 17.2.1
@@ -367,8 +367,8 @@ packages:
     resolution: {integrity: sha512-udGrGJBNQdXGVulehc1aWT73wkR9wdaGBtB6yL70RJsqwW/yJhIg6ZbRlPOfIUiFNrnBuYLBi9CSmMKfDC7dvA==}
     dev: false
 
-  /@types/aws-lambda@8.10.152:
-    resolution: {integrity: sha512-soT/c2gYBnT5ygwiHPmd9a1bftj462NWVk2tKCc1PYHSIacB2UwbTS2zYG4jzag1mRDuzg/OjtxQjQ2NKRB6Rw==}
+  /@types/aws-lambda@8.10.157:
+    resolution: {integrity: sha512-ofjcRCO1N7tMZDSO11u5bFHPDfUFD3Q9YK9g4S4w8UDKuG3CNlw2lNK1sd3Itdo7JORygZmG4h9ZykS8dlXvMA==}
     dev: true
 
   /accepts@2.0.0:
