@@ -79,8 +79,8 @@ importers:
         specifier: 22.18.12
         version: 22.18.12
       '@types/pg':
-        specifier: 8.15.5
-        version: 8.15.5
+        specifier: 8.15.6
+        version: 8.15.6
       prisma:
         specifier: 6.14.0
         version: 6.14.0(typescript@5.8.3)
@@ -897,8 +897,8 @@ packages:
       undici-types: 6.21.0
     dev: true
 
-  /@types/pg@8.15.5:
-    resolution: {integrity: sha512-LF7lF6zWEKxuT3/OR8wAZGzkg4ENGXFNyiV/JeOt9z5B+0ZVwbql9McqX5c/WStFq1GaGso7H1AzP/qSzmlCKQ==}
+  /@types/pg@8.15.6:
+    resolution: {integrity: sha512-NoaMtzhxOrubeL/7UZuNTrejB4MPAJ0RpxZqXQf2qXuVlTPuG6Y8p4u9dKRaue4yjmC7ZhzVO2/Yyyn25znrPQ==}
     dependencies:
       '@types/node': 22.18.12
       pg-protocol: 1.10.3
