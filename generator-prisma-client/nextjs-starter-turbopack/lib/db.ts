@@ -13,5 +13,5 @@ export function getDb({ connectionString }: GetDbParams) {
   return prisma
 }
 
-const prisma = getDb({ connectionString: env.DIRECT_URL })
+const prisma = getDb({ connectionString: env.DATABASE_URL })
 export default prisma
