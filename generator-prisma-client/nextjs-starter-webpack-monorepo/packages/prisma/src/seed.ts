@@ -2,10 +2,10 @@ import { getDb } from './index'
 import { QuoteKind } from './enums'
 
 const main = async () => {
-  
+
   console.log('Seeding database...')
   const prisma = getDb({
-    connectionString: process.env.DIRECT_URL!,
+    connectionString: process.env.DATABASE_URL!,
   })
   console.time('Seeding complete 🌱')
 
