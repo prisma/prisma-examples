@@ -19,15 +19,15 @@
     "studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.14.0",
-    "@prisma/client": "6.14.0"
+    "@prisma/adapter-pg": "6.18.0",
+    "@prisma/client": "6.18.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "20.19.24",
     "dotenv": "17.2.1",
     "eslint": "8.57.1",
-    "prisma": "6.14.0",
+    "prisma": "6.18.0",
     "rimraf": "5.0.10",
     "tsup": "8.5.0",
     "tsx": "4.20.6",
