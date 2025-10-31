@@ -47,7 +47,7 @@ bun install
 ### 3. Run database migrations
 
 ```bash
-bun prisma migrate dev
+bun --bun prisma migrate dev
 ```
 
 ### 4. Start the server
