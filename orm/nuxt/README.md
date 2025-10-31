@@ -67,20 +67,21 @@ We found an existing schema.prisma file in your current project directory.
 
 Connect Prisma ORM to your Prisma Postgres database with this URL:
 
-prisma+postgres://accelerate.prisma-data.net/?api_key=...
+postgres://<username>:<password>@<host>:<port>/<database>
 
 --- Next steps ---
 
 Go to https://pris.ly/ppg-init for detailed instructions.
 
-1. Install and use the Prisma Accelerate extension
-Prisma Postgres requires the Prisma Accelerate extension for querying. If you haven't already installed it, install it in your project:
-npm install @prisma/extension-accelerate
-
-...and add it to your Prisma Client instance:
-import { withAccelerate } from "@prisma/extension-accelerate"
-
-const prisma = new PrismaClient().$extends(withAccelerate())
+Use the @prisma/adapter-pg driver adapter and configure your Prisma Client instance:
+```bash
+npm install @prisma/adapter-pg
+```
+```ts
+import { PrismaPg } from '@prisma/adapter-pg'
+const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter: pool })
+```
 
 2. Apply migrations
 Run the following command to create and apply a migration:
@@ -112,7 +113,7 @@ Now, paste the URL into it as a value for the `DATABASE_URL` environment variabl
 
 ```bash
 # .env
-DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
+DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<database>
 ```
 
 Generate the Prisma client:

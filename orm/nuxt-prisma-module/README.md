@@ -42,7 +42,7 @@ The app demonstrates:
 
    ```bash
    # .env
-   DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=..."
+   DATABASE_URL="postgres://<username>:<password>@<host>:<port>/<database>"
    ```
 
 6. Apply database migrations:
@@ -67,14 +67,14 @@ The app demonstrates:
 
 ## Prisma Postgres Setup
 
-This example uses Prisma Postgres, which requires the Prisma Accelerate extension. The extension is already included in the project dependencies and configured in [`lib/prisma.ts`](./lib/prisma.ts).
-
-The Prisma Client is extended with the Accelerate extension to enable querying against your Prisma Postgres database:
+This example uses Prisma Postgres with the `@prisma/adapter-pg` driver adapter configured in [`lib/prisma.ts`](./lib/prisma.ts):
 
 ```typescript
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from '../prisma/generated/prisma/client'
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter: pool })
 ```
 
 ## Resources

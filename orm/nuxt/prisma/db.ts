@@ -1,9 +1,10 @@
 // https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
+import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from './generated/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
 
 const prismaClientSingleton = () => {
-  return new PrismaClient().$extends(withAccelerate())
+  const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+  return new PrismaClient({ adapter: pool })
 }
 
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>
