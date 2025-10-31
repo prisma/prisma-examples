@@ -1,5 +1,5 @@
 import { PrismaPg } from '@prisma/adapter-pg'
-import { PrismaClient } from './generated/prisma/client.ts'
+import { PrismaClient } from '../prisma/generated/client.ts'
 
 export type GetDbParams = {
   connectionString: string

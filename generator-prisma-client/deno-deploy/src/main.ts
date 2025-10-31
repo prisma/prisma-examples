@@ -6,12 +6,12 @@ export default {
       return new Response("Method Not Allowed", { status: 405 });
     }
 
-    if (!Deno.env.get("DIRECT_URL")) {
-      return new Response("DIRECT_URL environment variable is not set", { status: 500 });
+    if (!Deno.env.get("DATABASE_URL")) {
+      return new Response("DATABASE_URL environment variable is not set", { status: 500 });
     }
 
     const prisma = getDb({
-      connectionString: Deno.env.get("DIRECT_URL")!,
+      connectionString: Deno.env.get("DATABASE_URL")!,
     });
 
     const quotes = await prisma.quotes.findMany({})

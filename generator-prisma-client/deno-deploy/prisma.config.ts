@@ -1,4 +1,4 @@
-import { defineConfig } from 'prisma/config'
+import { defineConfig, env } from 'prisma/config'
 
 // Note: this wouldn't be needed if `deno task --env-file=.env ...` was supported.
 // See: https://github.com/denoland/deno/issues/27236 
@@ -9,5 +9,9 @@ export default defineConfig({
   migrations: {
     path: './prisma/migrations',
     seed: 'deno run --allow-all ./prisma/seed.ts',
+  },
+  engine: "classic",
+  datasource: {
+    url: env("DATABASE_URL"),
   },
 })
