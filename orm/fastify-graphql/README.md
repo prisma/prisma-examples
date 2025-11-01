@@ -72,22 +72,21 @@ We found an existing schema.prisma file in your current project directory.
 
 --- Database URL ---
 
-Connect Prisma ORM to your Prisma Postgres database with this URL:
-
-prisma+postgres://accelerate.prisma-data.net/?api_key=...
+Connect Prisma ORM to your Prisma Postgres database with the provided URL. Add it to your `.env` as `DATABASE_URL`.
 
 --- Next steps ---
 
 Go to https://pris.ly/ppg-init for detailed instructions.
 
-1. Install and use the Prisma Accelerate extension
-Prisma Postgres requires the Prisma Accelerate extension for querying. If you haven't already installed it, install it in your project:
-npm install @prisma/extension-accelerate
-
-...and add it to your Prisma Client instance:
-import { withAccelerate } from "@prisma/extension-accelerate"
-
-const prisma = new PrismaClient().$extends(withAccelerate())
+1. Install the `@prisma/adapter-pg` driver adapter and configure your Prisma Client instance
+```bash
+npm install @prisma/adapter-pg
+```
+```ts
+import { PrismaPg } from '@prisma/adapter-pg'
+const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter: pool })
+```
 
 2. Apply migrations
 Run the following command to create and apply a migration:
@@ -119,7 +118,7 @@ Now, paste the URL into it as a value for the `DATABASE_URL` environment variabl
 
 ```bash
 # .env
-DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
+DATABASE_URL=postgres://<username>:<password>@<host>:<port>/<database>
 ```
 
 Run the following command to create tables in your database. This creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
@@ -584,24 +583,9 @@ Learn more about the different connection configurations in the [docs](https://w
 
 <details><summary>Expand for an overview of example configurations with different databases</summary>
 
-### Remove the Prisma Client extension
-
-Before you proceed to use your own database, you should remove the Prisma client extension required for Prisma Postgres:
-
-```terminal
-npm uninstall @prisma/extension-accelerate
-```
-
-Remove the client extension from your `PrismaClient`:
-
-```diff
-- const prisma = new PrismaClient().$extends(withAccelerate())
-+ const prisma = new PrismaClient()
-```
-
 ### Your own PostgreSQL database
 
-To use your own PostgreSQL database remove the `@prisma/extension-accelerate` package and remove the Prisma client extension.
+To use your own PostgreSQL database, set `DATABASE_URL` to your connection string (e.g. `postgres://<username>:<password>@<host>:<port>/<database>`). Ensure your app initializes `PrismaClient` with the `@prisma/adapter-pg` driver adapter as shown above.
 
 ### SQLite
 
