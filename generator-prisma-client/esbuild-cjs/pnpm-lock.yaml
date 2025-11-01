@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@hono/node-server':
-    specifier: 1.15.0
-    version: 1.15.0(hono@4.9.6)
+    specifier: 1.19.6
+    version: 1.19.6(hono@4.9.6)
   '@prisma/adapter-pg':
     specifier: 6.14.0
     version: 6.14.0
@@ -277,8 +277,8 @@ packages:
     dev: true
     optional: true
 
-  /@hono/node-server@1.15.0(hono@4.9.6):
-    resolution: {integrity: sha512-MjmK4l5N4dQpZ9OSWN0tCj7ejuc7WvuWMzSKtc89bnknJykAeHxzRigXBTYZk85H6Awrii6RM59iUiUluApu2A==}
+  /@hono/node-server@1.19.6(hono@4.9.6):
+    resolution: {integrity: sha512-Shz/KjlIeAhfiuE93NDKVdZ7HdBVLQAfdbaXEaoAVO3ic9ibRSLGIQGkcBbFyuLr+7/1D5ZCINM8B+6IvXeMtw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4

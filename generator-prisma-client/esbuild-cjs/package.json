@@ -13,7 +13,7 @@
   "license": "MIT",
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
   "dependencies": {
-    "@hono/node-server": "1.15.0",
+    "@hono/node-server": "1.19.6",
     "@prisma/adapter-pg": "6.14.0",
     "@prisma/client": "6.14.0",
     "hono": "4.9.6"
