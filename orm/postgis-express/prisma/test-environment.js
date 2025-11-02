@@ -3,6 +3,9 @@ const randomString = require('randomstring')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
 const { PrismaClient } = require('./generated/client')
+const { PrismaPg } = require('@prisma/adapter-pg')
+
+const adapter = new PrismaPg({ connectionString: process.env.DB_URL })
 
 class PrismaTestEnvironment extends NodeEnvironment {
   constructor(config) {
@@ -19,7 +22,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     this.databaseUrl = 'postgres://postgres:password@localhost:5432/testing'
     process.env.DB_URL = this.databaseUrl
     this.global.process.env.DB_URL = this.databaseUrl
-    this.client = new PrismaClient()
+    this.client = new PrismaClient({ adapter })
   }
 
   async setup() {
