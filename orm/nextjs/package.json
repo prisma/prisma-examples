@@ -10,11 +10,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "^6.18.0",
+    "@prisma/client": "6.18.0",
     "next": "15.3.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "@prisma/extension-accelerate": "^2.0.2"
+    "@prisma/extension-accelerate": "2.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
@@ -24,7 +24,7 @@
     "eslint": "9.30.1",
     "eslint-config-next": "15.3.5",
     "postcss": "8.5.6",
-    "prisma": "^6.18.0",
+    "prisma": "6.18.0",
     "tailwindcss": "3.4.17",
     "tsx": "4.20.6",
     "typescript": "5.8.2"

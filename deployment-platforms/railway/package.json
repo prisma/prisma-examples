@@ -6,7 +6,7 @@
     "start": "tsx src/index.ts"
   },
   "dependencies": {
-    "@hono/node-server": "1.19.1",
+    "@hono/node-server": "1.19.6",
     "@prisma/client": "6.15.0",
     "dotenv": "17.2.2",
     "hono": "4.9.6"
