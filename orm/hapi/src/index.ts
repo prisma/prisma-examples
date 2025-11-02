@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import Hapi from '@hapi/hapi'
 import prisma from './plugins/prisma'
 import users from './plugins/users'

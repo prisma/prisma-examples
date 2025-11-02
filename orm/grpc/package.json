@@ -1,31 +1,29 @@
 {
   "name": "typescript-grpc",
   "scripts": {
-    "dev": "ts-node ./server/server.ts",
-    "seed": "ts-node prisma/seed.ts",
-    "feed": "ts-node ./client/feed.ts",
-    "filterPosts": "ts-node ./client/filterPosts.ts",
-    "post": "ts-node ./client/post.ts",
-    "signupUser": "ts-node ./client/signupUser.ts",
-    "createDraft": "ts-node ./client/createDraft.ts",
-    "publish": "ts-node ./client/publish.ts",
-    "deletePost": "ts-node ./client/deletePost.ts"
+    "dev": "tsx ./server/server.ts",
+    "seed": "tsx prisma/seed.ts",
+    "feed": "tsx ./client/feed.ts",
+    "filterPosts": "tsx ./client/filterPosts.ts",
+    "post": "tsx ./client/post.ts",
+    "signupUser": "tsx ./client/signupUser.ts",
+    "createDraft": "tsx ./client/createDraft.ts",
+    "publish": "tsx ./client/publish.ts",
+    "deletePost": "tsx ./client/deletePost.ts"
   },
   "dependencies": {
     "@grpc/proto-loader": "0.7.15",
-    "@prisma/client": "6.9.0",
+    "@prisma/client": "6.18.0",
+    "@prisma/adapter-pg": "6.18.0",
     "chalk": "4.1.2",
     "grpc": "1.24.11",
-    "protobufjs": "7.5.3",
-    "@prisma/extension-accelerate": "2.0.2"
+    "protobufjs": "7.5.3"
   },
   "devDependencies": {
     "@types/node": "22.18.12",
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
+    "dotenv": "^17.2.1",
+    "prisma": "6.18.0",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
   }
 }

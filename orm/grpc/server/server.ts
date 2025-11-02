@@ -1,12 +1,14 @@
+import 'dotenv/config'
 import chalk from 'chalk'
 const PROTO_PATH = __dirname + '/../service.proto'
 
-import { PrismaClient } from '@prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaClient } from '../prisma/generated/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 import * as protoLoader from '@grpc/proto-loader'
 import * as grpc from 'grpc'
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter: pool })
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
