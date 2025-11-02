@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@apollo/server": "4.12.2",
-    "@graphql-tools/schema": "10.0.25",
+    "@graphql-tools/schema": "10.0.26",
     "@nestjs/apollo": "12.2.2",
     "@nestjs/common": "10.4.19",
     "@nestjs/config": "4.0.2",
@@ -51,7 +51,7 @@
     "dotenv": "17.2.3",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
-    "graphql-tools": "9.0.20",
+    "graphql-tools": "9.0.21",
     "reflect-metadata": "0.2.2",
     "rimraf": "6.0.1",
     "rxjs": "7.8.2"
