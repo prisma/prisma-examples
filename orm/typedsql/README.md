@@ -37,7 +37,7 @@ npm install
 
 ### 2. Create and seed the database
 
-Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+Run the following command to create your SQLite database file. This also creates the `User` and `TrackingEvent` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
 ```
 npx prisma migrate dev --name init
@@ -62,7 +62,7 @@ This command runs `prisma generate --sql`, which will generate the Prisma Client
 npm run dev
 ```
 
-This command will run [`index.ts`](./index.ts), which will execute the SQL query defined in [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql) and print the results to the console.
+This command will run [`src/index.ts`](./src/index.ts), which will execute the SQL query defined in [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql) and print the results to the console.
 
 ## Project Structure
 
@@ -73,7 +73,7 @@ This example project is structured similarly to the [starter example](https://gi
 
 Key areas to look at:
 1. Database schema: [`prisma/schema.prisma`](./prisma/schema.prisma)
-2. Example SQL query: [`prisma/sql/conversionByVariant.sql`](./prisma/sql/conversionByVariant.sql)
+2. Example SQL queries: [`prisma/sql/`](./prisma/sql/)
 3. Query execution: [`src/index.ts`](./src/index.ts)
 4. Data seeding: [`prisma/seed.ts`](./prisma/seed.ts)
 5. Build and run scripts: [`package.json`](./package.json)

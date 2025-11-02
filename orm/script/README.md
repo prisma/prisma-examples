@@ -71,32 +71,21 @@ postgresql://user:password@host:port/database
 
 --- Next steps ---
 
-1. Install the PostgreSQL adapter
-This example uses the PostgreSQL driver adapter. If you haven't already installed it, install it in your project:
-npm install @prisma/adapter-pg
-
-...and configure it in your Prisma Client instance:
-import { PrismaClient } from './prisma/generated/client'
-import { PrismaPg } from '@prisma/adapter-pg'
-
-const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
-const prisma = new PrismaClient({ adapter: pool })
-
-2. Apply migrations
+1. Apply migrations
 Run the following command to create and apply a migration:
 npx prisma migrate dev
 
-3. Manage your data
+2. Manage your data
 View and edit your data locally by running this command:
 npx prisma studio
 
 ...or online in Console:
 https://console.prisma.io/{workspaceId}/{projectId}/studio
 
-4. Send queries from your app
+3. Send queries from your app
 If you already have an existing app with Prisma ORM, you can now run it and it will send queries against your newly created Prisma Postgres instance.
 
-5. Learn more
+4. Learn more
 For more info, visit the Prisma Postgres docs: https://pris.ly/ppg-docs
 ```
 
@@ -231,18 +220,6 @@ If you want to try this example with another database than Postgres, you can adj
 Learn more about the different connection configurations in the [docs](https://www.prisma.io/docs/reference/database-reference/connection-urls).
 
 <details><summary>Expand for an overview of example configurations with different databases</summary>
-
-### 2.1. Configure Prisma Client with the adapter
-
-This example uses the PostgreSQL driver adapter. The Prisma Client is configured in [`script.ts`](./script.ts):
-
-```ts
-import { PrismaClient } from './prisma/generated/client'
-import { PrismaPg } from '@prisma/adapter-pg'
-
-const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
-const prisma = new PrismaClient({ adapter: pool })
-```
 
 ### Your own PostgreSQL database
 
