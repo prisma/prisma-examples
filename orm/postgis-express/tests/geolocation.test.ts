@@ -1,9 +1,5 @@
 import request from 'supertest'
-import { app, prisma } from '../src/server'
-
-afterAll(async () => {
-  await prisma.$disconnect()
-})
+import { app } from '../src/server'
 
 let userId = 0
 
