@@ -1,7 +1,11 @@
-import { PrismaClient } from '@prisma/client'
+import 'dotenv/config'
+import { PrismaClient } from '../prisma/generated/client'
+import { PrismaPg } from "@prisma/adapter-pg"
 import express from 'express'
 
-export const prisma = new PrismaClient()
+const adapter = new PrismaPg({ connectionString: process.env.DB_URL })
+export const prisma = new PrismaClient({ adapter })
+
 const app = express()
 
 app.use(express.json())
@@ -53,8 +57,8 @@ app.get(`/:userId/nearby-places`, async (req, res) => {
   try {
     const locations = await prisma.$queryRaw`
       select * from "locations_near_user"(${parseInt(
-        userId,
-      )}::int, ${distance}::int)
+      userId,
+    )}::int, ${distance}::int)
     `
     res.json({ data: { locations } })
   } catch (e) {

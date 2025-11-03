@@ -6,13 +6,13 @@
     "dev": "ts-node src/index.ts"
   },
   "dependencies": {
-    "@hapi/hapi": "21.4.0",
+    "@hapi/hapi": "21.4.3",
     "@prisma/client": "6.9.0",
     "@types/node": "22.18.12",
     "@prisma/extension-accelerate": "2.0.2"
   },
   "devDependencies": {
-    "@types/express": "5.0.3",
+    "@types/express": "5.0.5",
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.18.12",
     "prisma": "6.9.0",
