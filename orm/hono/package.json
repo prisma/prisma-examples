@@ -10,7 +10,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@hono/node-server": "1.19.5",
+    "@hono/node-server": "1.19.6",
     "@prisma/client": "6.17.1",
     "@prisma/extension-accelerate": "2.0.2",
     "dotenv": "17.2.3",

@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client'
+import 'dotenv/config'
+import { PrismaClient } from '../prisma/generated/client.js'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import express from 'express'
 

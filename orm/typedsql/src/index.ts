@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client'
-import { conversionByVariant } from '@prisma/client/sql'
-import { filterTrackingEvents } from '@prisma/client/sql'
-import { getTrackingEvents } from '@prisma/client/sql'
+import { PrismaClient } from '../prisma/generated/client'
+import { conversionByVariant } from '../prisma/generated/sql'
+import { filterTrackingEvents } from '../prisma/generated/sql'
+import { getTrackingEvents } from '../prisma/generated/sql'
 
 async function main() {
   const prisma = new PrismaClient()

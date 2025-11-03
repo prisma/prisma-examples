@@ -2,16 +2,17 @@
   "name": "script",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node ./script.ts"
+    "dev": "tsx ./script.ts"
   },
   "dependencies": {
-    "@prisma/client": "6.9.0",
-    "@types/node": "22.18.12",
-    "@prisma/extension-accelerate": "2.0.2"
+    "@prisma/client": "^6.18.0",
+    "@prisma/extension-accelerate": "^2.0.2",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
+    "@types/node": "22.15.32",
+    "prisma": "^6.18.0",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   }
 }
