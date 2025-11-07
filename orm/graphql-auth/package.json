@@ -19,7 +19,7 @@
     "@apollo/server": "4.12.2",
     "@prisma/client": "6.18.0",
     "@prisma/extension-accelerate": "2.0.2",
-    "bcryptjs": "3.0.2",
+    "bcryptjs": "3.0.3",
     "dotenv": "16.6.1",
     "graphql": "16.11.0",
     "graphql-middleware": "6.1.35",
