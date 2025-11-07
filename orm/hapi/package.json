@@ -12,7 +12,7 @@
     "@prisma/adapter-pg": "6.18.0"
   },
   "devDependencies": {
-    "@types/express": "5.0.3",
+    "@types/express": "5.0.5",
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.18.12",
     "dotenv": "^17.2.1",

@@ -1,5 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
+  provider   = "prisma-client"
+  output     = "./generated"
+  engineType = "client"
 }
 
 datasource db {
@@ -16,9 +18,9 @@ model User {
 }
 
 model Post {
-  id      Int    @id @default(autoincrement())
-  title   String
-  content String
-  author    User  @relation(fields: [authorId], references: [id])
-  authorId  Int
+  id       Int    @id @default(autoincrement())
+  title    String
+  content  String
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId Int
 }
