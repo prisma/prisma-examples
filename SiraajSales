@@ -1,0 +1,168 @@
+// 1. Data Source: Configure your database connection
+// You can switch 'postgresql' to 'mysql', 'sqlserver', or 'sqlite'
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 2. Generator: Configure the ORM client for your language (e.g., TypeScript)
+generator client {
+  provider = "prisma-client-js"
+}
+
+// --- Data Models (Tables) ---
+
+// 3. User: Internal Employees (Sales Reps, Drivers, Admins)
+model User {
+  id              Int               @id @default(autoincrement())
+  email           String            @unique
+  name            String
+  role            Role              @default(SALES_REP) // Use Enum for restricted roles
+  phone           String?
+  
+  // Relations
+  opportunities   Opportunity[]     @relation("SalesRepsOpportunities")
+  deliveries      FuelDelivery[]    @relation("DriverDeliveries")
+  
+  @@map("users") // Maps model name to database table name
+}
+
+// 4. Account: The Customers (Companies) purchasing the fuel
+model Account {
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  industryType    String?
+  creditLimit     Float             @default(0.00)
+  paymentTerms    String
+  billingAddress  String?
+  
+  // Relations
+  contacts        Contact[]
+  opportunities   Opportunity[]
+  contracts       Contract[]
+  deliveries      FuelDelivery[]
+  
+  @@map("accounts")
+}
+
+// 5. Contact: Individuals at the customer companies
+model Contact {
+  id              Int               @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  email           String            @unique
+  phone           String?
+  role            String?
+  
+  // Foreign Key to Account
+  accountId       Int
+  account         Account           @relation(fields: [accountId], references: [id])
+  
+  @@map("contacts")
+}
+
+// 6. Product: Fuel Types and Services
+model Product {
+  id                    Int               @id @default(autoincrement())
+  productName           String            @unique
+  unitOfMeasure         String            @default("Liters")
+  currentPricePerUnit   Float             @default(0.00)
+  taxRate               Float             @default(0.00) // Stored as a decimal (e.g., 0.05 for 5%)
+  
+  // Relations
+  contracts             Contract[]
+  deliveries            FuelDelivery[]
+  
+  @@map("products")
+}
+
+// 7. Opportunity: Sales Deals
+model Opportunity {
+  id                    Int               @id @default(autoincrement())
+  name                  String
+  stage                 OpportunityStage  @default(PROSPECTING)
+  forecastedVolume      Float
+  expectedCloseDate     DateTime?
+  leadSource            String?
+  createdAt             DateTime          @default(now())
+  
+  // Foreign Keys (Relations)
+  accountId             Int
+  account               Account           @relation(fields: [accountId], references: [id])
+  
+  salesRepId            Int
+  salesRep              User              @relation("SalesRepsOpportunities", fields: [salesRepId], references: [id])
+  
+  @@map("opportunities")
+}
+
+// 8. Contract: Long-term Supply Agreements
+model Contract {
+  id              Int               @id @default(autoincrement())
+  contractId      String            @unique // Human-readable contract number
+  startDate       DateTime
+  endDate         DateTime
+  agreedVolume    Float
+  priceFormula    String?           @db.Text // Store the pricing calculation logic
+  status          ContractStatus    @default(ACTIVE)
+  
+  // Foreign Keys (Relations)
+  accountId       Int
+  account         Account           @relation(fields: [accountId], references: [id])
+  
+  productId       Int
+  product         Product           @relation(fields: [productId], references: [id])
+
+  @@map("contracts")
+}
+
+// 9. FuelDelivery: Records of every fuel transaction/invoice
+model FuelDelivery {
+  id                      Int               @id @default(autoincrement())
+  invoiceNumber           String            @unique
+  deliveryDate            DateTime
+  deliveredVolume         Float
+  unitPriceAtDelivery     Float
+  totalAmount             Float?            // Calculated total (Volume * Price * (1 + Tax))
+  deliveryAddress         String?           @db.Text
+  
+  // Foreign Keys (Relations)
+  accountId               Int
+  account                 Account           @relation(fields: [accountId], references: [id])
+  
+  productId               Int
+  product                 Product           @relation(fields: [productId], references: [id])
+  
+  driverId                Int?
+  driver                  User?             @relation("DriverDeliveries", fields: [driverId], references: [id])
+
+  @@map("fuel_deliveries")
+}
+
+// --- Enums ---
+
+// Defines the restricted set of values for the User.role field
+enum Role {
+  ADMIN
+  SALES_REP
+  DRIVER
+  DISPATCHER
+}
+
+// Defines the restricted set of values for the Opportunity.stage field
+enum OpportunityStage {
+  PROSPECTING
+  QUALIFICATION
+  QUOTE_SENT
+  NEGOTIATION
+  CLOSED_WON
+  CLOSED_LOST
+}
+
+// Defines the restricted set of values for the Contract.status field
+enum ContractStatus {
+  ACTIVE
+  PENDING_RENEWAL
+  EXPIRED
+  TERMINATED
+}
