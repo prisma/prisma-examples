@@ -11,8 +11,9 @@ async function main() {
     persistenceMode: 'stateless',
   })
 
-  // Emit only the Prisma-compatible URL for CI shell script to capture
+  // Emit both the Accelerate URL and the direct TCP URL
   console.log(server.ppg.url)
+  console.log(server.database.prismaORMConnectionString)
 
   // Wait for shutdown signal
   process.once('SIGTERM', async () => {

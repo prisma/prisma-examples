@@ -14,10 +14,7 @@ echo "📌 Detected repo root: $REPO_ROOT"
 cd "$REPO_ROOT/orm/nextjs"
 echo "📂 Changed directory to: $(pwd)"
 
-echo "📦 Installing test deps..."
-npm install
-
-# Go to Node script dir and install its deps
+# Go to Node script dir and install its deps FIRST
 NODE_SCRIPT_DIR="../../.github/get-ppg-dev"
 pushd "$NODE_SCRIPT_DIR" > /dev/null
 npm install
@@ -35,7 +32,7 @@ NODE_PID=$!
 echo "🔎 Waiting for Prisma Dev to emit DATABASE_URL..."
 MAX_WAIT=60
 WAITED=0
-until grep -q '^prisma+postgres://' "$LOG_FILE"; do
+until grep -q '^postgres://' "$LOG_FILE"; do
   sleep 1
   WAITED=$((WAITED + 1))
   if [ "$WAITED" -ge "$MAX_WAIT" ]; then
@@ -46,11 +43,19 @@ until grep -q '^prisma+postgres://' "$LOG_FILE"; do
   fi
 done
 
-DB_URL=$(grep '^prisma+postgres://' "$LOG_FILE" | tail -1)
-export DATABASE_URL="$DB_URL"
-echo "✅ DATABASE_URL: $DATABASE_URL"
+# Extract both URLs: first line is Accelerate URL, second is TCP URL
+ACCELERATE_URL=$(sed -n '1p' "$LOG_FILE")
+TCP_URL=$(sed -n '2p' "$LOG_FILE")
+
+# Use TCP URL for everything (including seed with driver adapters)
+export DATABASE_URL="$TCP_URL"
+echo "✅ Accelerate URL: $ACCELERATE_URL"
+echo "✅ TCP URL (used): $TCP_URL"
 
 popd > /dev/null  # Back to orm/nextjs
+
+echo "📦 Installing test deps..."
+npm install
 
 # Run migrations and seed
 npx prisma migrate dev --name init
