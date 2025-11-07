@@ -52,6 +52,10 @@ export DATABASE_URL="$TCP_URL"
 echo "✅ Accelerate URL: $ACCELERATE_URL"
 echo "✅ TCP URL (used): $TCP_URL"
 
+# Give Prisma Dev a moment to fully initialize
+echo "⏳ Waiting for Prisma Dev to fully initialize..."
+sleep 8
+
 popd > /dev/null  # Back to orm/nextjs
 
 echo "📦 Installing test deps..."

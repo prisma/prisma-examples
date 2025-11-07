@@ -13,7 +13,7 @@ async function main() {
 
   // Emit both the Accelerate URL and the direct TCP URL
   console.log(server.ppg.url)
-  console.log(server.database.prismaORMConnectionString)
+  console.log(server.database.connectionString)
 
   // Wait for shutdown signal
   process.once('SIGTERM', async () => {
