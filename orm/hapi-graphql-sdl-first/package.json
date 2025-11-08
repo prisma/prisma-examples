@@ -9,7 +9,7 @@
     "@apollo/server": "4.12.2",
     "@as-integrations/hapi": "2.0.2",
     "@graphql-tools/schema": "10.0.26",
-    "@hapi/hapi": "21.4.3",
+    "@hapi/hapi": "21.4.4",
     "@prisma/client": "6.18.0",
     "@prisma/extension-accelerate": "2.0.2",
     "dotenv": "16.6.1",
