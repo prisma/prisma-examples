@@ -6,7 +6,7 @@ import { DisplayPrismaEnums } from '~/components/display-prisma-enums'
 import type { Route } from "./+types/home";
 import { getDb } from '~/db'
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
     { title: "New React Router App" },
     { name: "description", content: "Welcome to React Router!" },
@@ -15,7 +15,7 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({ context }: Route.LoaderArgs) {
   const prisma = getDb({
-    connectionString: context.cloudflare.env.DIRECT_URL!,
+    connectionString: context.cloudflare.env.DATABASE_URL!,
   })
 
   const quotes = await prisma.quotes.findMany({
