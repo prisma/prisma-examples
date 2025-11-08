@@ -1,7 +1,10 @@
-import { PrismaClient } from '@prisma/client'
+import "dotenv/config"
+import { PrismaClient } from './generated/client'
 import { faker } from '@faker-js/faker'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+  accelerateUrl: process.env.DATABASE_URL,
+})
 
 const main = async () => {
   await prisma.post.deleteMany()
