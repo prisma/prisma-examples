@@ -6,10 +6,7 @@ This project showcases how to use the Prisma ORM with AWS Lambda and Prisma Post
 
 To successfully run the project, you will need the following:
 
-- Two **Prisma Postgres** connection strings:
-  - Your **Prisma Postgres + Accelerate connection string** (containing your **Prisma API key**) which you can get by enabling Postgres in a project in your [Prisma Data Platform](https://pris.ly/pdp) account. You will use this connection string to run Prisma migrations.
-  - Your **Prisma Postgres direct TCP connection string** which you will use with Prisma Client.
-    Learn more in the [docs](https://www.prisma.io/docs/postgres/database/direct-connections).
+- A **Prisma Postgres** connection string which you can get by enabling Postgres in a project in your [Prisma Data Platform](https://pris.ly/pdp) account. This connection string will be used for both Prisma migrations and Prisma Client queries.
 
 ## Tech Stack
 
@@ -24,13 +21,11 @@ To successfully run the project, you will need the following:
   generator client {
     provider = "prisma-client"
     output = "../src/generated/prisma"
-    previewFeatures = ["driverAdapters", "queryCompiler"]
   }
 
   datasource db {
     provider  = "postgresql"
     url       = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
   }
   ```
 
@@ -54,21 +49,16 @@ Create a `.env` in the root of the project directory:
 touch .env
 ```
 
-Now, open the `.env` file and set the `DATABASE_URL` environment variables with the values of your connection string and your Prisma Postgres connection string:
+Now, open the `.env` file and set the `DATABASE_URL` environment variable with your Prisma Postgres connection string:
 
 ```bash
 # .env
 
-# Prisma Postgres connection string (used for migrations)
+# Prisma Postgres connection string
 DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
-
-# Postgres connection string (used for queries by Prisma Client)
-DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 ```
 
-Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres + Accelerate connection string. Notice that the Accelerate connection string has the following structure: `prisma+postgres://accelerate.prisma-data.net/?api_key=<api_key_value>`.
-
-Note that `__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres direct TCP connection string. The direct connection string has the following structure: `postgres://<username>:<password>@<host>:<port>/<database>`.
+Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with your Prisma Postgres connection string. You can get this by enabling Postgres in a project in your [Prisma Data Platform](https://pris.ly/pdp) account.
 
 ### 3. Run a migration to create the database structure and seed the database
 
@@ -96,13 +86,13 @@ pnpm prisma generate
 
 - Ensure you set up your AWS Credentials and have the AWS CLI installed and logged in (see [sst docs](https://sst.dev/docs/aws-accounts))
 - Set up secrets in your SST project. You can do this by:
-  - Manually adding the `DIRECT_URL` connection string that you previously set in your `.env` file, via:
+  - Manually adding the `DATABASE_URL` connection string that you previously set in your `.env` file, via:
   ```
-  pnpm sst secrets add DIRECT_URL __YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__
+  pnpm sst secret set DATABASE_URL __YOUR_PRISMA_POSTGRES_CONNECTION_STRING__
   ```
-  - Or, by loading the `.env` file first and piping it to the `sst secrets add` command:
+  - Or, by loading the `.env` file first and piping it to the `sst secret set` command:
   ```
-  pnpm dotenv -- bash -c 'pnpm sst secret set DIRECT_URL "${DIRECT_URL}"'
+  pnpm dotenv -- bash -c 'pnpm sst secret set DATABASE_URL "${DATABASE_URL}"'
   ```
 - Run the following command to deploy the project to AWS Lambda using sst:
 

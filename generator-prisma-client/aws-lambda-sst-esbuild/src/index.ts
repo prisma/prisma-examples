@@ -2,7 +2,7 @@ import { APIGatewayProxyEventV2 } from 'aws-lambda';
 import { Resource } from 'sst';
 import { getDb } from './db';
 
-const prisma = getDb({ connectionString: Resource.DIRECT_URL.value })
+const prisma = getDb({ connectionString: Resource.DATABASE_URL.value })
 
 export const handler = async (evt: APIGatewayProxyEventV2) => {
   if (evt.requestContext.http.method !== 'GET') {
@@ -17,7 +17,7 @@ export const handler = async (evt: APIGatewayProxyEventV2) => {
       }),
     };
   }
-  
+
   try {
     const quotes = await prisma.quotes.findMany({ take: 2 })
     return {
