@@ -1,4 +1,5 @@
 import { PrismaClient, Prisma, User } from '../src/generated/prisma/client'
+import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3';
 
 const NUM_USERS = 1000
 const COUNT_BLUE = 300
@@ -16,7 +17,8 @@ enum EventType {
   CheckedOut = 'CheckedOut',
 }
 
-const prisma = new PrismaClient()
+const adapter = new PrismaBetterSQLite3({ url: 'file:./prisma/dev.db' })
+const prisma = new PrismaClient({ adapter })
 
 async function main() {
   const usersInput: Prisma.UserCreateInput[] = []
@@ -67,11 +69,11 @@ async function createEvents(
 ) {
   const eventsData = users.map(
     (user) =>
-      ({
-        variant,
-        type: event,
-        userId: user.id,
-      } satisfies Prisma.TrackingEventCreateManyInput),
+    ({
+      variant,
+      type: event,
+      userId: user.id,
+    } satisfies Prisma.TrackingEventCreateManyInput),
   )
   await prisma.trackingEvent.createMany({ data: eventsData })
 }
