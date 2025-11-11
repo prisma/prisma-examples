@@ -1,11 +1,11 @@
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["tracing"]
+  provider   = "prisma-client"
+  output     = "./generated"
+  engineType = "client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
