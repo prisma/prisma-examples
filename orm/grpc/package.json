@@ -20,7 +20,7 @@
     "@prisma/extension-accelerate": "2.0.2"
   },
   "devDependencies": {
-    "@types/node": "22.18.12",
+    "@types/node": "22.19.0",
     "prisma": "6.9.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.2"

@@ -39,7 +39,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.16",
     "@tanstack/react-query-devtools": "5.90.2",
-    "@types/node": "22.18.12",
+    "@types/node": "22.19.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "prisma": "6.18.0",
