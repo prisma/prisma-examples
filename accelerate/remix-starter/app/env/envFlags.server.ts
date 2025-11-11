@@ -2,7 +2,6 @@ import z from "zod";
 import { generateErrorMessage } from "zod-error";
 
 export const serverEnvSchema = z.object({
-  DIRECT_DATABASE_URL: z.string(),
   DATABASE_URL: z.string(),
   NODE_ENV: z.string(),
 });

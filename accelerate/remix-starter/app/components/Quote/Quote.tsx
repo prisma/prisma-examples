@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import { QuoteWrapper } from "./QuoteWrapper";
 import { QuoteCacheType, QuoteResult } from "./../../lib/types";
-import pkg from "openflights-cached";
-const { findIATA } = pkg;
 
 export const Quote: React.FC<{
   title: string;
@@ -35,7 +33,7 @@ export const Quote: React.FC<{
           <p>
             Cache Node Region ⸺
             <span className="font-bold" style={{ marginLeft: "4px" }}>
-              {findIATA(region)?.city ?? region}
+              {region}
             </span>
           </p>
           <br />
@@ -49,11 +47,10 @@ export const Quote: React.FC<{
           <p>
             Cache status ⸺
             <span
-              className={`font-bold ${
-                cacheStatus === "swr" || cacheStatus === "ttl"
-                  ? "text-green-400"
-                  : "text-red-400"
-              }`}
+              className={`font-bold ${cacheStatus === "swr" || cacheStatus === "ttl"
+                ? "text-green-400"
+                : "text-red-400"
+                }`}
               style={{ marginLeft: "4px" }}
             >
               {cacheStatus

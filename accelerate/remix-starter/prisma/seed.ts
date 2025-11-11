@@ -1,5 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { PrismaClient } from "./generated/client";
+import "dotenv/config";
+
+const prisma = new PrismaClient({
+  accelerateUrl: process.env.DATABASE_URL,
+});
 
 async function main() {
   console.log("Seeding started...");
