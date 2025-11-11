@@ -1,5 +1,7 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider   = "prisma-client"
+  output     = "./generated"
+  engineType = "client"
 }
 
 datasource db {
@@ -25,7 +27,7 @@ model Post {
   authorId  String
   author    User      @relation(fields: [authorId], references: [id])
   comments  Comment[]
-  tags      Tag[]  
+  tags      Tag[]
 }
 
 model Comment {

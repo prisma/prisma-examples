@@ -1,8 +1,9 @@
-import { PrismaClient } from '@prisma/client';
-import { withAccelerate } from '@prisma/extension-accelerate';
+import { PrismaClient } from '../prisma/generated/client';
+import 'dotenv/config';
 
-const prisma = new PrismaClient()
-  .$extends(withAccelerate());
+const prisma = new PrismaClient({
+  accelerateUrl: process.env.DATABASE_URL,
+});
 
 // A `main` function so that we can use async/await
 async function main() {
