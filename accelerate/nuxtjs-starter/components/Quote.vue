@@ -18,7 +18,6 @@
 		  <p>
 			Cache Node Region ⸺
 			<span class="font-bold">
-			  {{ findIATA(region)?.city || region }}
 			</span>
 		  </p>
 		  <br />
@@ -56,7 +55,6 @@
   import { defineProps, computed, ref, onMounted } from 'vue';
   import QuoteWrapper from './QuoteWrapper.vue';
   import type { QuoteResult, QuoteCacheType } from '@/lib/types';
-  import { findIATA } from 'openflights-cached';
   
   const props = defineProps<{
 	title: string;

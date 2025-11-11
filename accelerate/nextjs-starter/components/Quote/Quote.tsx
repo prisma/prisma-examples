@@ -1,6 +1,5 @@
 import { QuoteWrapper } from "./QuoteWrapper";
 import { QuoteCacheType, QuoteResult } from "@/lib/types";
-import { findIATA } from "openflights-cached";
 
 export const Quote: React.FC<{
   title: string;
@@ -35,7 +34,7 @@ export const Quote: React.FC<{
             Cache Node Region ⸺
             <span className="font-bold">
               {" "}
-              {findIATA(region)?.city ?? region}
+              {region}
             </span>
           </p>
           <br />

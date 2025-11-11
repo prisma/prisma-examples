@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount, afterUpdate } from 'svelte'
   import QuoteWrapper from './QuoteWrapper.svelte'
-  import pkg from 'openflights-cached'
-  const { findIATA } = pkg
   import { format } from 'date-fns'
   import type { QuoteResult, QuoteCacheType } from '../lib/types'
 
@@ -61,9 +59,7 @@
       <div>
         <br />
         <p>
-          Cache Node Region ⸺ <span class="font-bold"
-            >{findIATA(region ?? '')?.city || region}</span
-          >
+          Cache Node Region ⸺ <span class="font-bold">{region}</span>
         </p>
         <br />
         <p>
