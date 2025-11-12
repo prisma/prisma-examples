@@ -15,6 +15,7 @@
     "dotenv": "^17.2.3",
     "nuxt": "3.17.6",
     "@prisma/client": "6.20.0-integration-next.3",
+    "@prisma/extension-accelerate": "^2.0.2",
     "tsx": "4.20.6",
     "zod": "3.25.76"
   },

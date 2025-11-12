@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "6.20.0-integration-next.3",
+    "@prisma/client": "6.20.0-integration-next.8",
+    "@prisma/extension-accelerate": "^2.0.2",
     "next": "15.3.5",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -22,7 +23,7 @@
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.5",
     "postcss": "8.5.6",
-    "prisma": "6.20.0-integration-next.3",
+    "prisma": "6.20.0-integration-next.8",
     "tailwindcss": "3.4.17",
     "tsx": "4.20.6",
     "typescript": "5.8.2"

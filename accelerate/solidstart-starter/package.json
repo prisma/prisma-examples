@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.20.0-integration-next.3",
+    "@prisma/extension-accelerate": "^2.0.2",
     "@solidjs/router": "0.15.3",
     "@solidjs/start": "1.1.7",
     "dotenv": "^17.2.3",

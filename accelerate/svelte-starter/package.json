@@ -28,6 +28,7 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "6.20.0-integration-next.3",
+		"@prisma/extension-accelerate": "^2.0.2",
 		"date-fns": "4.1.0",
 		"zod": "3.25.76"
 	}

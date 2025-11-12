@@ -16,7 +16,8 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
-    "@prisma/client": "6.20.0-integration-next.3"
+    "@prisma/client": "6.20.0-integration-next.3",
+    "@prisma/extension-accelerate": "^2.0.2"
   },
   "prettier": {
     "trailingComma": "all",
