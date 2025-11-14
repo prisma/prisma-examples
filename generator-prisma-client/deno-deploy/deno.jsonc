@@ -10,10 +10,10 @@
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@std/http": "jsr:@std/http@1",
-    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@6.14.0",
-    "@prisma/client": "npm:@prisma/client@6.14.0",
+    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@^6.18.0",
+    "@prisma/client": "npm:@prisma/client@^6.18.0",
     "dotenv": "npm:dotenv@^17.2.1",
-    "prisma": "npm:prisma@6.14.0"
+    "prisma": "npm:prisma@^6.18.0"
   },
   "nodeModulesDir": "auto",
   "deploy": {

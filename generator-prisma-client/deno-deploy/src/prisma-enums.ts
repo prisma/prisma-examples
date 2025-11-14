@@ -1,1 +1,1 @@
-export * from "./generated/prisma/enums.ts";
+export * from "../prisma/generated/enums.ts";

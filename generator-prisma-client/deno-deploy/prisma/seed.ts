@@ -3,12 +3,12 @@ import { QuoteKind } from '../src/prisma-enums.ts'
 
 const main = async () => {
   console.log('Seeding database...')
-  
-  if (!Deno.env.get("DIRECT_URL")) {
-    throw new Error("DIRECT_URL environment variable is not set");
+
+  if (!Deno.env.get("DATABASE_URL")) {
+    throw new Error("DATABASE_URL environment variable is not set");
   }
 
-  const prisma = getDb({ connectionString: Deno.env.get("DIRECT_URL")! })
+  const prisma = getDb({ connectionString: Deno.env.get("DATABASE_URL")! })
 
   console.time('Seeding complete 🌱')
 
