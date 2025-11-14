@@ -9,11 +9,11 @@ import {
   Query,
 } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import { User as UserModel, Post as PostModel, Prisma } from '@prisma/client';
+import { User as UserModel, Post as PostModel, Prisma } from '../prisma/generated/client';
 
 @Controller()
 export class AppController {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) { }
 
   @Get('post/:id')
   async getPostById(@Param('id') id: string): Promise<PostModel> {
@@ -29,11 +29,11 @@ export class AppController {
   ): Promise<PostModel[]> {
     const or = searchString
       ? {
-          OR: [
-            { title: { contains: searchString } },
-            { content: { contains: searchString } },
-          ],
-        }
+        OR: [
+          { title: { contains: searchString } },
+          { content: { contains: searchString } },
+        ],
+      }
       : {};
 
     return this.prismaService.extendedPrismaClient().post.findMany({

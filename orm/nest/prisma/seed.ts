@@ -1,7 +1,8 @@
-import { PrismaClient, Prisma } from '@prisma/client';
-import { withAccelerate } from '@prisma/extension-accelerate';
+import { PrismaClient, Prisma } from './generated/client';
+import { PrismaPg } from '@prisma/adapter-pg';
 
-const prisma = new PrismaClient().$extends(withAccelerate());
+const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const prisma = new PrismaClient({ adapter: pool });
 
 const userData: Prisma.UserCreateInput[] = [
   {
@@ -51,6 +52,11 @@ const userData: Prisma.UserCreateInput[] = [
 
 async function main() {
   console.log(`Start seeding ...`);
+
+  // Clear existing data
+  await prisma.post.deleteMany();
+  await prisma.user.deleteMany();
+
   for (const u of userData) {
     const user = await prisma.user.create({
       data: u,

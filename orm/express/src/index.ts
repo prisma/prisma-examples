@@ -1,8 +1,10 @@
-import { Prisma, PrismaClient } from '@prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import 'dotenv/config'
+import { Prisma, PrismaClient } from '../prisma/generated/client'
+import { PrismaPg } from '@prisma/adapter-pg'
 import express from 'express'
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+const prisma = new PrismaClient({ adapter: pool })
 
 const app = express()
 
@@ -121,11 +123,11 @@ app.get('/feed', async (req, res) => {
 
   const or: Prisma.PostWhereInput = searchString
     ? {
-        OR: [
-          { title: { contains: searchString as string } },
-          { content: { contains: searchString as string } },
-        ],
-      }
+      OR: [
+        { title: { contains: searchString as string } },
+        { content: { contains: searchString as string } },
+      ],
+    }
     : {}
 
   const posts = await prisma.post.findMany({

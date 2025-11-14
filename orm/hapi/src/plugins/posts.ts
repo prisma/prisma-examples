@@ -4,7 +4,7 @@ import Hapi from '@hapi/hapi'
  * In 2.12.0, this will be namespaced under Prisma and can be used as Prisma.PostGetPayload
  * Once 2.12.0 is release, we can adjust this example.
  */
-// import { PostGetPayload } from '@prisma/client'
+// import { PostGetPayload } from '../../prisma/generated/client'
 
 // plugin to instantiate Prisma Client
 const usersPlugin = {
@@ -70,11 +70,11 @@ async function feedHandler(request: Hapi.Request, h: Hapi.ResponseToolkit) {
 
   const or = searchString
     ? {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
-      }
+      OR: [
+        { title: { contains: searchString } },
+        { content: { contains: searchString } },
+      ],
+    }
     : {}
 
   try {

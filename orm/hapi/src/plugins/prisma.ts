@@ -1,9 +1,11 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../../prisma/generated/client'
 import Hapi from '@hapi/hapi'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaPg } from '@prisma/adapter-pg'
 
-const prismaClientSingleton = () =>
-  new PrismaClient().$extends(withAccelerate())
+const prismaClientSingleton = () => {
+  const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
+  return new PrismaClient({ adapter: pool })
+}
 
 declare module '@hapi/hapi' {
   interface ServerApplicationState {
