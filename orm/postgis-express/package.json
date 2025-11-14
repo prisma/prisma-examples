@@ -9,8 +9,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "6.18.0",
     "@prisma/client": "6.18.0",
-    "@prisma/extension-accelerate": "2.0.2",
-    "dotenv": "16.6.1",
+    "dotenv": "^16.4.7",
     "express": "5.1.0"
   },
   "devDependencies": {

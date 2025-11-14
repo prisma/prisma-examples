@@ -53,10 +53,8 @@ Now, open the `.env` file and update the `DATABASE_URL` environment variables wi
 
 ```bash
 # .env
-DATABASE_URL="__YOUR_DATABASE_CONNECTION_STRING__"
+DATABASE_URL="postgresql://user:password@host:port/database"
 ```
-
-Note that `__YOUR_DATABASE_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your connection string.
 
 ### 3. Run a database migration to create the `User` table
 

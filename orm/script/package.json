@@ -5,14 +5,14 @@
     "dev": "tsx ./script.ts"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "6.18.0",
     "@prisma/client": "6.18.0",
-    "@prisma/extension-accelerate": "2.0.2",
-    "dotenv": "16.6.1"
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
     "prisma": "6.18.0",
-    "tsx": "4.20.6",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   }
 }
