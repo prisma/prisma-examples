@@ -10,12 +10,12 @@ export default $config({
       home: "aws",
     };
   },
-  
+
   // Your app's resources.
   // Note: The Global `sst` library is only available in the run function of your sst.config.ts.
   async run() {
     const secrets = {
-      directUrl: new sst.Secret("DIRECT_URL", '<placeholder_value>'),
+      databaseUrl: new sst.Secret("DATABASE_URL", '<placeholder_value>'),
     }
     const allSecrets = Object.values(secrets)
 

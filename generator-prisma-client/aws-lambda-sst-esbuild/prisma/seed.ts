@@ -1,7 +1,7 @@
 import { getDb } from '../src/db'
 import { QuoteKind } from '../src/prisma-enums'
 
-const prisma = getDb({ connectionString: process.env.DIRECT_URL! })
+const prisma = getDb({ connectionString: process.env.DATABASE_URL! })
 
 const main = async () => {
   console.log('Seeding database...')
