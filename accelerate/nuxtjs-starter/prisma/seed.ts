@@ -1,6 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./generated/client";
+import "dotenv/config";
+import { withAccelerate } from '@prisma/extension-accelerate'
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  accelerateUrl: process.env.DATABASE_URL,
+}).$extends(withAccelerate());
 
 const main = async () => {
   console.time("Seeding complete 🌱");

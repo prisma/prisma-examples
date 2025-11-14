@@ -1,11 +1,13 @@
 /* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PrismaClient } from "@prisma/client";
-import { withAccelerate } from "@prisma/extension-accelerate";
+import { PrismaClient } from "../../../prisma/generated/client";
+import { withAccelerate } from '@prisma/extension-accelerate'
 import { SERVER_ENV } from "~/env/envFlags.server";
 
 function buildClient() {
-  const client = new PrismaClient().$extends(withAccelerate());
+  const client = new PrismaClient({
+    accelerateUrl: SERVER_ENV.DATABASE_URL,
+  }).$extends(withAccelerate());
 
   return client;
 }
