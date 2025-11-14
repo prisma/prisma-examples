@@ -1,7 +1,14 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../prisma/generated/client'
 import prettyjson from 'prettyjson'
+import { PrismaPg } from '@prisma/adapter-pg'
+import 'dotenv/config'
 
-const prisma = new PrismaClient()
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL,
+})
+const prisma = new PrismaClient({
+  adapter,
+})
 
 // A `main` function so that we can use async/await
 async function main() {
