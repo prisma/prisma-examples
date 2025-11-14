@@ -11,19 +11,21 @@
   "author": "Igal Klebanov",
   "license": "ISC",
   "devDependencies": {
-    "@prisma/extension-optimize": "2.0.0",
+    "@prisma/extension-optimize": "2.0.1",
     "@types/express": "5.0.5",
     "@types/node": "22.18.12",
-    "prisma": "6.9.0",
+    "prisma": "6.20.0-integration-next.8",
     "tsx": "4.20.6",
     "typescript": "5.8.2"
   },
   "dependencies": {
-    "@prisma/client": "6.9.0",
+    "@prisma/adapter-pg": "6.20.0-integration-next.8",
+    "@prisma/client": "6.20.0-integration-next.8",
     "@trpc/server": "next",
     "@types/cors": "2.8.19",
     "cors": "2.8.5",
     "express": "5.1.0",
-    "zod": "3.25.76"
+    "zod": "3.25.76",
+    "dotenv": "^17.2.3"
   }
 }

@@ -1,7 +1,11 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from './generated/client'
+import { PrismaPg } from "@prisma/adapter-pg"
 import { faker } from '@faker-js/faker'
 
-const prisma = new PrismaClient()
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+const prisma = new PrismaClient({
+  adapter,
+})
 const TOTAL = 20
 
 const main = async () => {
