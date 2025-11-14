@@ -2,17 +2,18 @@
   "name": "hello-prisma",
   "license": "MIT",
   "scripts": {
-    "queries": "tsx ./src/queries.ts",
-    "caching": "tsx ./src/caching.ts"
+    "queries": "ts-node ./src/queries.ts",
+    "caching": "ts-node ./src/caching.ts"
   },
   "dependencies": {
-    "@prisma/client": "6.20.0-integration-next.3",
-    "@types/node": "22.18.12",
+    "@prisma/client": "6.9.0",
+    "@prisma/extension-accelerate": "2.0.2",
+    "@types/node": "22.19.0",
     "dotenv": "16.6.1"
   },
   "devDependencies": {
-    "prisma": "6.20.0-integration-next.3",
-    "typescript": "5.8.2",
-    "tsx": "^4.20.6"
+    "prisma": "6.9.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.2"
   }
 }

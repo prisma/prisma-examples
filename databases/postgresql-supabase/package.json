@@ -3,19 +3,21 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx script.ts",
+    "dev": "ts-node script.ts",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/node": "22.18.12",
-    "prisma": "6.20.0-integration-next.3",
+    "@types/node": "22.19.0",
+    "prisma": "6.9.0",
     "supabase": "2.30.4",
-    "typescript": "5.8.2",
-    "tsx": "^4.20.6"
+    "ts-node": "10.9.2",
+    "typescript": "5.8.2"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.20.0-integration-next.3",
-    "@prisma/client": "6.20.0-integration-next.3"
+    "@prisma/client": "6.9.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
