@@ -46,7 +46,7 @@
     "@nestjs/graphql": "12.2.2",
     "@nestjs/platform-express": "10.4.20",
     "@prisma/client": "6.18.0",
-    "@prisma/extension-accelerate": "2.0.2",
+    "@prisma/adapter-pg": "6.18.0",
     "class-validator": "0.14.2",
     "graphql": "16.11.0",
     "graphql-tools": "9.0.21",
@@ -69,6 +69,7 @@
     "eslint-plugin-prettier": "5.5.4",
     "jest": "29.7.0",
     "prettier": "3.6.2",
+    "dotenv": "^17.2.1",
     "prisma": "6.18.0",
     "supertest": "7.1.4",
     "ts-jest": "29.4.5",
@@ -76,8 +77,5 @@
     "tsconfig-paths": "4.2.0",
     "tsx": "4.20.6",
     "typescript": "5.8.2"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   }
 }

@@ -47,7 +47,7 @@
     "@nestjs/graphql": "12.2.2",
     "@nestjs/platform-express": "10.4.20",
     "@prisma/client": "6.18.0",
-    "@prisma/extension-accelerate": "2.0.2",
+    "@prisma/adapter-pg": "6.18.0",
     "dotenv": "17.2.3",
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
@@ -78,8 +78,5 @@
     "tsconfig-paths": "4.2.0",
     "tsx": "4.20.6",
     "typescript": "5.8.2"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   }
 }
