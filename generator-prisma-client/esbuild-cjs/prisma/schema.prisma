@@ -6,12 +6,10 @@ generator client {
   provider     = "prisma-client"
   output       = "../src/generated/prisma"
   moduleFormat = "cjs"
-  engineType   = "client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum QuoteKind {

@@ -1,7 +1,6 @@
 generator client {
   provider   = "prisma-client"
   output     = "../app/generated/prisma"
-  engineType = "client"
   runtime    = "workerd"
 }
 
@@ -12,7 +11,6 @@ generator seed {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum QuoteKind {

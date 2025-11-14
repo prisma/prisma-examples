@@ -1,7 +1,6 @@
 generator client {
   provider   = "prisma-client"
   output     = "./generated"
-  engineType = "client"
 }
 
 generator pothos {
@@ -13,7 +12,6 @@ generator pothos {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {

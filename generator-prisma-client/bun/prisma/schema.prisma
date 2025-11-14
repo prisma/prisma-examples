@@ -5,12 +5,10 @@ generator client {
   provider   = "prisma-client"
   output     = "./generated/"
   runtime    = "bun"
-  engineType = "client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {

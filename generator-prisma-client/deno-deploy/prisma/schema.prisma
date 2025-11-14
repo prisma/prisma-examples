@@ -2,12 +2,10 @@ generator client {
   provider   = "prisma-client"
   output     = "./generated/"
   runtime    = "deno"
-  engineType = "client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum QuoteKind {

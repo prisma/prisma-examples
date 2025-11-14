@@ -10,7 +10,6 @@ export default defineConfig({
     path: './prisma/migrations',
     seed: 'deno run --allow-all ./prisma/seed.ts',
   },
-  engine: "classic",
   datasource: {
     url: env("DATABASE_URL"),
   },

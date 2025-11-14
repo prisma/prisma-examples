@@ -5,30 +5,29 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Post {
-  id        Int      @default(autoincrement()) @id
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   title     String
   content   String?
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id]) // renamed from `User` -> `author`
-  authorId  Int     // relation scalar field
+  authorId  Int // relation scalar field
 }
 
 model Profile {
-  id     Int     @default(autoincrement()) @id
+  id     Int     @id @default(autoincrement())
   bio    String?
-  userId Int     @unique  // relation scalar field
+  userId Int     @unique // relation scalar field
   user   User    @relation(fields: [userId], references: [id]) // renamed from `User` -> `user`
 }
 
 model User {
-  id      Int      @default(autoincrement()) @id
+  id      Int      @id @default(autoincrement())
   email   String   @unique
   name    String?
-  posts   Post[]   // renamed from `Post` -> `posts`
+  posts   Post[] // renamed from `Post` -> `posts`
   profile Profile? // renamed from `Profile` -> `profile`
 }

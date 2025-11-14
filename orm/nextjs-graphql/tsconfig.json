@@ -33,9 +33,4 @@
     "**/*.ts",
     "**/*.tsx"
   ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
 }
