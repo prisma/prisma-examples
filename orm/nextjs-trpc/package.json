@@ -16,7 +16,7 @@
     "@prisma/client": "6.18.0",
     "@prisma/extension-accelerate": "2.0.2",
     "@tanstack/react-form": "1.23.8",
-    "@tanstack/react-query": "5.90.6",
+    "@tanstack/react-query": "5.90.9",
     "@trpc/client": "11.7.0",
     "@trpc/next": "11.7.0",
     "@trpc/react-query": "11.7.0",
