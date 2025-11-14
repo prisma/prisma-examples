@@ -36,12 +36,7 @@ It also demonstrates that [@prisma/nextjs-monorepo-workaround-plugin](https://ww
 
 ## Prerequisites
 
-To successfully run the project, you will need the following:
-
-- Two **Prisma Postgres** connection strings:
-  - Your **Prisma Postgres + Accelerate connection string** (containing your **Prisma API key**) which you can get by enabling Postgres in a project in your [Prisma Data Platform](https://pris.ly/pdp) account. You will use this connection string to run Prisma migrations.
-  - Your **Prisma Postgres direct TCP connection string** which you will use with Prisma Client.
-    Learn more in the [docs](https://www.prisma.io/docs/postgres/database/direct-connections).
+To successfully run the project, you will need a **Prisma Postgres** connection string from your [Prisma Data Platform](https://pris.ly/pdp) project.
 - [`pnpm`](https://pnpm.io/) installed globally to manage the monorepo workspace.
 
 ## Tech Stack
@@ -59,10 +54,9 @@ To successfully run the project, you will need the following:
   
   ```prisma
   generator client {
-    provider = "prisma-client"
-    output = "../lib/generated/prisma"
-    previewFeatures = ["driverAdapters", "queryCompiler"]
-    runtime = "nodejs"
+    provider   = "prisma-client"
+    output     = "../src/generated/prisma"
+    engineType = "client"
   }
   ```
 
@@ -86,16 +80,12 @@ Create an `.env` file in the `packages/database` directory:
 cd packages/database; touch .env
 ```
 
-Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environment variables with the values of your connection string and your Prisma Postgres connection string:
+Now, open the `.env` file and set the `DATABASE_URL` environment variable with your connection string:
 
 ```bash
 # packages/database/.env
 
-# Prisma Postgres connection string (used for migrations)
 DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
-
-# Postgres connection string (used for queries by Prisma Client)
-DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
@@ -106,20 +96,17 @@ Then, create an `.env` file in the `apps/web` directory:
 cd apps/web; touch .env
 ```
 
-Now, open the `.env` file and set the `DIRECT_URL` environment variable with the values of your connection string and your Prisma Postgres connection string:
+Now, open the `.env` file and set the `DATABASE_URL` environment variable with your connection string:
 
 ```bash
 # apps/web/.env
 
-# Postgres connection string (used for queries by Prisma Client)
-DIRECT_URL="__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__"
+DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
 
 NEXT_PUBLIC_URL="http://localhost:3000"
 ```
 
-Note that `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres + Accelerate connection string. Notice that the Accelerate connection string has the following structure: `prisma+postgres://accelerate.prisma-data.net/?api_key=<api_key_value>`.
-
-Note that `__YOUR_PRISMA_POSTGRES_DIRECT_CONNECTION_STRING__` is a placeholder value that you need to replace with the values of your Prisma Postgres direct TCP connection string. The direct connection string has the following structure: `postgres://<username>:<password>@<host>:<port>/<database>`.
+Replace `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` with your actual Prisma Postgres connection string.
 
 ### 3. Build the Prisma Client and the Next.js app
 

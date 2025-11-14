@@ -5,13 +5,24 @@
   ],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-      "env": ["DIRECT_URL"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env*"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ],
+      "env": []
     },
     "db:migrate:dev": {
-      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "env": [
+        "DATABASE_URL"
+      ],
       "inputs": [
         "packages/database"
       ],
@@ -19,21 +30,27 @@
     },
     "db:migrate:deploy": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "env": [
+        "DATABASE_URL"
+      ],
       "inputs": [
         "packages/database"
       ]
     },
     "db:push": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "env": [
+        "DATABASE_URL"
+      ],
       "inputs": [
         "packages/database"
       ]
     },
     "db:seed": {
       "cache": false,
-      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "env": [
+        "DATABASE_URL"
+      ],
       "inputs": [
         "packages/database"
       ]
@@ -41,11 +58,15 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "env": ["DIRECT_URL"]
+      "env": []
     },
     "generate": {
-      "dependsOn": ["^generate"],
-      "env": ["DATABASE_URL", "DIRECT_URL"],
+      "dependsOn": [
+        "^generate"
+      ],
+      "env": [
+        "DATABASE_URL"
+      ],
       "cache": false
     },
     "lint": {}

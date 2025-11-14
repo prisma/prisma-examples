@@ -1,4 +1,3 @@
-import { withAccelerate } from '@prisma/extension-accelerate'
 import { PrismaClient } from './generated/prisma-edge/client'
 import { env } from './env/server'
 
@@ -9,7 +8,7 @@ export type GetDbParams = {
 export function getDb({ connectionString }: GetDbParams) {
   const prisma = new PrismaClient({
     datasourceUrl: connectionString,
-  }).$extends(withAccelerate())
+  })
 
   return prisma
 }

@@ -3,8 +3,7 @@ import { z } from 'zod'
 
 export const env = createEnv({
   server: {
-    DATABASE_URL: z.string().url().startsWith('prisma+postgres://'),
-    DIRECT_URL: z.string().url().startsWith('postgres://'),
+    DATABASE_URL: z.string(),
   },
   runtimeEnv: process.env,
 })
