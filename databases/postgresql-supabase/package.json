@@ -9,13 +9,13 @@
   },
   "devDependencies": {
     "@types/node": "22.18.12",
-    "prisma": "6.20.0-integration-next.3",
+    "prisma": "7.0.0",
     "supabase": "2.30.4",
     "typescript": "5.8.2",
     "tsx": "^4.20.6"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "6.20.0-integration-next.3",
-    "@prisma/client": "6.20.0-integration-next.3"
+    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.0.0"
   }
 }
