@@ -19,7 +19,6 @@ To successfully run the project, you will need the following:
   generator client {
     provider = "prisma-client"
     output = "../src/generated/prisma"
-    previewFeatures = ["driverAdapters", "queryCompiler"]
     runtime = "deno"
   }
   ```

@@ -33,19 +33,16 @@ Create a `.env` in the root of the project directory:
 cp .env.example .env
 ```
 
-Now, open the `.env` file and set the `DATABASE_URL` and `DIRECT_URL` environment variables with the values of your connection string and your Accelerate connection string:
+Now, open the `.env` file and set the `DATABASE_URL` environment variable with the value of your Accelerate connection string:
 
 ```bash
 # .env
 
 # Accelerate connection string (used for queries by Prisma Client)
 DATABASE_URL="__YOUR_ACCELERATE_CONNECTION_STRING__"
-
-# Database connection string (used for migrations by Prisma Migrate)
-DIRECT_URL="__YOUR_DATABASE_CONNECTION_STRING__"
 ```
 
-Note that `__YOUR_DATABASE_CONNECTION_STRING__` and `__YOUR_ACCELERATE_CONNECTION_STRING__` are placeholder values that you need to replace with the values of your database and Accelerate connection strings. Notice that the Accelerate connection string has the following structure: `prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__`.
+Note that `__YOUR_ACCELERATE_CONNECTION_STRING__` is a placeholder value that you need to replace with the value of your Accelerate connection string. Notice that the Accelerate connection string has the following structure: `prisma://accelerate.prisma-data.net/?api_key=__YOUR_ACCELERATE_API_KEY__`.
 
 ### 3. Run a migration to create the `Post` table
 
@@ -55,12 +52,12 @@ The Prisma schema file contains a single `Post` model. You can map this model to
 npx prisma migrate dev --name init
 ```
 
-### 4. Generate Prisma Client for Accelerate
+### 4. Generate Prisma Client
 
-When using Accelerate, Prisma Client doesn't need a query engine. That's why you should generate it as follows:
+Generate Prisma Client with the following command:
 
 ```
-npx prisma generate --no-engine
+npx prisma generate
 ```
 
 ### 5. Start the app

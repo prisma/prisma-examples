@@ -25,7 +25,6 @@ To successfully run the project, you will need the following:
 
   datasource db {
     provider  = "postgresql"
-    url       = env("DATABASE_URL")
   }
   ```
 

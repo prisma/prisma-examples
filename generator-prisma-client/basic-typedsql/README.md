@@ -37,7 +37,7 @@ pnpm install
 
 ### 2. Create and seed the database
 
-Run the following command to create your SQLite database file. This also creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+Run the following command to create your SQLite database file. This also creates the `User` and `TrackingEvent` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
 
 ```
 pnpm prisma migrate dev --name init

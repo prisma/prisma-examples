@@ -50,13 +50,12 @@ To successfully run the project, you will need a **Prisma Postgres** connection 
   - `next.config.js` -> `next.config.mjs`
   - `postcss.config.js` -> `postcss.config.mjs`
 - Prisma Client with the `prisma-client` generator
-  See the [Prisma schema file](./packages/prisma/prisma/schema.prisma) for details.
+  See the [Prisma schema file](./packages/database/prisma/schema.prisma) for details.
   
   ```prisma
   generator client {
     provider   = "prisma-client"
     output     = "../src/generated/prisma"
-    engineType = "client"
   }
   ```
 
@@ -118,13 +117,13 @@ pnpm build
 
 ### 4. Run a migration to create the database structure and seed the database
 
-The [Prisma schema file](./packages/prisma/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
+The [Prisma schema file](./packages/database/prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
 
 ```sh
 pnpm db:migrate:dev -- --name init
 ```
 
-You now have an empty `Quotes` table in your database. Next, run the [seed script](./packages/prisma/prisma/seed.ts) to create some sample records in the table:
+You now have an empty `Quotes` table in your database. Next, run the [seed script](./packages/database/src/seed.ts) to create some sample records in the table:
 
 ```sh
 pnpm db:seed

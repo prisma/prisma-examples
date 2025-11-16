@@ -24,7 +24,6 @@ To successfully run the project, you will need a **Prisma Postgres** connection 
   generator client {
     provider   = "prisma-client"
     output     = "../lib/generated/prisma"
-    engineType = "client"
   }
 
   generator edge {

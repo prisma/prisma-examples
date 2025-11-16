@@ -50,15 +50,14 @@ Create a `.env` in the root of the project directory:
 touch .env
 ```
 
-Now, open the `.env` file and update the `DATABASE_URL` environment variables with the values of your connection string:
+Now, open the `.env` file and update the `DATABASE_URL` environment variable with the value of your Accelerate connection string:
 
 ```bash
 # .env
 DATABASE_URL="__ACCELERATE_CONNECTION_STRING_PLACEHOLDER__"
-DIRECT_URL="__DIRECT_DATABASE_CONNECTION_STRING_PLACEHOLDER__"
 ```
 
-Note that you need to replace the placeholder values with the actual values.
+Note that you need to replace the placeholder value with the actual value of your Accelerate connection string.
 
 ### 3. Run a database migration to create the `User` table
 

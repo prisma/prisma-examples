@@ -4,7 +4,7 @@ This project showcases how to use the Prisma ORM with the `prisma-client` genera
 
 ## Tech Stack
 
-- Next.js 15
+- Vitest 3
   - Runtime: Node.js 20.19.0
   - Test runner: Vitest 3
   - `package.json` contains `{ "type": "module" }`
@@ -15,7 +15,6 @@ This project showcases how to use the Prisma ORM with the `prisma-client` genera
   generator client {
     provider = "prisma-client"
     output = "../src/generated/prisma"
-    previewFeatures = ["driverAdapters", "queryCompiler"]
   }
 
   datasource db {
