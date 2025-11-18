@@ -13,13 +13,15 @@
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "mercurius": "16.2.0",
-    "nexus": "1.3.0"
+    "nexus": "1.3.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/node": "22.18.12",
     "dotenv": "^17.2.1",
     "prisma": "6.18.0",
     "tsx": "4.20.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@types/pg": "^8.15.6"
   }
 }

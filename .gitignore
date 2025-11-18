@@ -15,6 +15,8 @@ tmp-resolvers
 package-lock.json
 flow-typed
 yarn.lock
+bun.lock
+pnpm-lock.yaml
 orm/**/migrations/
 misc/**/migrations/
 databases/**/migrations/

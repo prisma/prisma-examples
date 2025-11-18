@@ -10,7 +10,8 @@
     "@prisma/adapter-pg": "6.18.0",
     "@prisma/client": "6.18.0",
     "dotenv": "^16.4.7",
-    "express": "5.1.0"
+    "express": "5.1.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/body-parser": "1.19.6",
@@ -25,6 +26,7 @@
     "supertest": "7.1.4",
     "ts-jest": "29.4.5",
     "tsx": "4.20.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@types/pg": "^8.15.6"
   }
 }

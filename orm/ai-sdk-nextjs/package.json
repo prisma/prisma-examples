@@ -11,22 +11,24 @@
   "dependencies": {
     "@ai-sdk/openai": "2.0.24",
     "@ai-sdk/react": "2.0.34",
-    "@prisma/client": "6.15.0",
-    "@prisma/extension-accelerate": "2.0.2",
+    "@prisma/adapter-pg": "6.20.0-integration-next.10",
+    "@prisma/client": "6.20.0-integration-next.10",
     "ai": "5.0.34",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "zod": "4.1.5"
+    "zod": "4.1.5",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.13",
     "@types/node": "20.19.24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "prisma": "6.15.0",
+    "prisma": "6.20.0-integration-next.10",
     "tailwindcss": "4.1.13",
     "tsx": "4.20.6",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "@types/pg": "^8.15.6"
   }
 }

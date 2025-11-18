@@ -1,146 +1,74 @@
-# REST API Example with Hono & Prisma Postgres
+# REST API Example with Hono & Prisma
 
-This example shows how to implement a **REST API with TypeScript** using [Hono](https://hono.dev/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It uses a [Prisma Postgres](https://www.prisma.io/postgres) database.
+This example shows how to implement a **REST API with TypeScript** using [Hono](https://hono.dev/) and [Prisma Client](https://www.prisma.io/docs/concepts/components/prisma-client). It connects to a Postgres database via the [`@prisma/adapter-pg`](https://www.prisma.io/docs/orm/overview/databases/postgresql/pg-driver-adapter) driver adapter and a normal `postgresql://` connection string (no Accelerate/Data Proxy required).
+
+## Project structure
+
+- `src/index.ts` – defines the Hono server and the REST routes (`/signup`, `/post`, `/feed`, …).
+- `src/lib/prisma.ts` – lightweight middleware that creates a Prisma Client using `@prisma/adapter-pg` and exposes it via Hono’s context.
+- `prisma/schema.prisma` – Prisma schema with the `User` and `Post` models that back the API.
+- `prisma/seed.ts` – seeds the database with sample users and posts.
 
 ## Getting started
 
-### 1. Download example and navigate into the project directory
+### 1. Download the example and install dependencies
 
-Download this example:
-
-```
-npx try-prisma@latest --template orm/hono --install npm --name hono
-```
-
-Then, navigate into the project directory:
-
-```
+```bash
+npx try-prisma@latest --template orm/hono --name hono
 cd hono
+bun install
 ```
 
-<details><summary><strong>Alternative:</strong> Clone the entire repo</summary>
+> Alternatively clone this repo and run `bun install` inside `prisma-examples/orm/hono`.
 
-Clone this repository:
+### 2. Configure `DATABASE_URL`
 
-```
-git clone git@github.com:prisma/prisma-examples.git --depth=1
-```
-
-Install npm dependencies:
+Create a Postgres database (Prisma Postgres, Supabase, Railway, Docker, etc.) and copy the direct connection string:
 
 ```
-cd prisma-examples/orm/hono
-npm install
+postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require
 ```
 
-</details>
-
-### 2. Create and seed the database
-
-Create a new [Prisma Postgres](https://www.prisma.io/docs/postgres/overview) database by executing:
-
-```terminal
-npx prisma init --db
-```
-
-If you don't have a [Prisma Data Platform](https://console.prisma.io/) account yet, or if you are not logged in, the command will prompt you to log in using one of the available authentication providers. A browser window will open so you can log in or create an account. Return to the CLI after you have completed this step.
-
-Once logged in (or if you were already logged in), the CLI will prompt you to:
-1. Select a **region** (e.g. `us-west-1`)
-1. Enter a **project name**
-
-After successful creation, you will see output similar to the following:
-
-<details>
-
-<summary>CLI output</summary>
-
-```terminal
-Let's set up your Prisma Postgres database!
-? Select your region: ap-northeast-1 - Asia Pacific (Tokyo)
-? Enter a project name: testing-migration
-✔ Success! Your Prisma Postgres database is ready ✅
-
-We found an existing schema.prisma file in your current project directory.
-
---- Database URL ---
-
-Connect Prisma ORM to your Prisma Postgres database with this URL:
-
-prisma+postgres://accelerate.prisma-data.net/?api_key=...
-
---- Next steps ---
-
-Go to https://pris.ly/ppg-init for detailed instructions.
-
-1. Install and use the Prisma Accelerate extension
-Prisma Postgres requires the Prisma Accelerate extension for querying. If you haven't already installed it, install it in your project:
-npm install @prisma/extension-accelerate
-
-...and add it to your Prisma Client instance:
-import { withAccelerate } from "@prisma/extension-accelerate"
-
-const prisma = new PrismaClient().$extends(withAccelerate())
-
-2. Apply migrations
-Run the following command to create and apply a migration:
-npx prisma migrate dev
-
-3. Manage your data
-View and edit your data locally by running this command:
-npx prisma studio
-
-...or online in Console:
-https://console.prisma.io/{workspaceId}/{projectId}/studio
-
-4. Send queries from your app
-If you already have an existing app with Prisma ORM, you can now run it and it will send queries against your newly created Prisma Postgres instance.
-
-5. Learn more
-For more info, visit the Prisma Postgres docs: https://pris.ly/ppg-docs
-```
-
-</details>
-
-Locate and copy the database URL provided in the CLI output. Then, create a `.env` file in the project root:
+Create a `.env` file in the project root and add the URL:
 
 ```bash
 touch .env
+
+# .env
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:5432/DATABASE?sslmode=require"
 ```
 
-Now, paste the URL into it as a value for the `DATABASE_URL` environment variable. For example:
+### 3. Migrate & seed the database
 
 ```bash
-# .env
-DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=ey...
+bunx prisma migrate dev --name init
+bunx prisma db seed
 ```
 
-Run the following command to create tables in your database. This creates the `User` and `Post` tables that are defined in [`prisma/schema.prisma`](./prisma/schema.prisma):
+This creates the tables defined in [`prisma/schema.prisma`](./prisma/schema.prisma) and runs [`prisma/seed.ts`](./prisma/seed.ts) to insert demo data.
 
-```terminal
-npx prisma migrate dev --name init
+### 4. Start the REST API server
+
+```bash
+bun run dev
 ```
 
-Execute the seed file in [`prisma/seed.ts`](./prisma/seed.ts) to populate your database with some sample data, by running:
+The server listens on `http://localhost:3000`. Example requests:
 
-```terminal
-npx prisma db seed
-```
+- `POST /signup` – create a user (and optional posts).
+- `POST /post` – create a post for an existing user.
+- `PUT /publish/:id` – toggle the `published` flag.
+- `GET /users` – list all users with their posts.
+- `GET /feed?searchString=hello&take=5` – filter/paginate published posts.
 
-### 3. Start the REST API server
-
-```
-npm run dev
-```
-
-The server is now running on `http://localhost:3000`. You can send now the API requests, e.g. [`http://localhost:3000/users`](http://localhost:3000/users).
+Each route pulls the Prisma Client from the Hono context via `withPrisma`, so a single client instance is reused per request.
 
 ## Switch to another database
 
-If you want to try this example with another database rather than Prisma Postgres, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in our documentation
+If you want to try this example with another database, refer to the [Databases](https://www.prisma.io/docs/orm/overview/databases) section in the Prisma docs.
 
 ## Next steps
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-- Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
-- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+- Share feedback on the [Prisma Discord](https://pris.ly/discord/)
+- Create issues or ask questions on [GitHub](https://github.com/prisma/prisma/)

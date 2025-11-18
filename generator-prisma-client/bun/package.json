@@ -3,13 +3,15 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "prisma": "^6.18.0"
+    "@types/pg": "^8.15.6",
+    "prisma": "7.0.0"
   },
   "peerDependencies": {
     "typescript": "5.9.2"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^6.18.0",
-    "@prisma/client": "^6.18.0"
+    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.0.0",
+    "pg": "^8.16.3"
   }
 }

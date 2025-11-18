@@ -6,20 +6,19 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
-  },
   "dependencies": {
     "@hono/node-server": "1.19.6",
-    "@prisma/client": "6.17.1",
-    "@prisma/extension-accelerate": "2.0.2",
+    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.0.0",
     "dotenv": "17.2.3",
+    "pg": "^8.16.3",
     "hono": "4.9.12"
   },
   "devDependencies": {
     "@types/node": "20.19.24",
-    "prisma": "6.17.1",
+    "prisma": "7.0.0",
     "tsx": "4.20.6",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "@types/pg": "^8.15.6"
   }
 }

@@ -11,7 +11,8 @@
     "@prisma/adapter-pg": "^6.19.0",
     "@solidjs/start": "1.1.7",
     "solid-js": "1.9.10",
-    "vinxi": "0.5.8"
+    "vinxi": "0.5.8",
+    "pg": "^8.16.3"
   },
   "engines": {
     "node": "23.11.1"
@@ -22,6 +23,7 @@
     "postcss": "8.5.6",
     "prisma": "6.19.0",
     "tailwindcss": "4.1.11",
-    "tsx": "4.20.6"
+    "tsx": "4.20.6",
+    "@types/pg": "^8.15.6"
   }
 }

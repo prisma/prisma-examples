@@ -9,7 +9,8 @@
     "@hapi/hapi": "21.4.0",
     "@prisma/client": "6.18.0",
     "@types/node": "22.18.12",
-    "@prisma/adapter-pg": "6.18.0"
+    "@prisma/adapter-pg": "6.18.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/express": "5.0.5",
@@ -18,6 +19,7 @@
     "dotenv": "^17.2.1",
     "prisma": "6.18.0",
     "tsx": "^4.20.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@types/pg": "^8.15.6"
   }
 }

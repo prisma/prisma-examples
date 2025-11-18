@@ -22,7 +22,8 @@
     "next": "15.3.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-markdown": "10.1.0"
+    "react-markdown": "10.1.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
@@ -31,7 +32,8 @@
     "dotenv": "^17.2.1",
     "prisma": "6.18.0",
     "tsx": "4.20.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@types/pg": "^8.15.6"
   },
   "pkg": {
     "assets": [

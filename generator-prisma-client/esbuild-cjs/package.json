@@ -16,7 +16,8 @@
     "@hono/node-server": "1.19.6",
     "@prisma/adapter-pg": "6.19.0",
     "@prisma/client": "6.19.0",
-    "hono": "4.9.6"
+    "hono": "4.9.6",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/node": "18.19.117",
@@ -25,6 +26,7 @@
     "prisma": "6.19.0",
     "rimraf": "6.0.1",
     "tsx": "4.20.6",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "@types/pg": "^8.15.6"
   }
 }

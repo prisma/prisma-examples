@@ -1,31 +1,33 @@
 ---
-import type { User, Post } from "../generated/prisma";
-type UserWithPosts = User & { posts: Post[] };
-const response = await fetch("http://localhost:4321/api/users");
-const users: UserWithPosts[] = await response.json();
+import type { User, Post } from '../generated/client'
+type UserWithPosts = User & { posts: Post[] }
+const response = await fetch('http://localhost:4321/api/users')
+const users: UserWithPosts[] = await response.json()
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro + Prisma</h1>
-		<ul>
-			{users.map((user: UserWithPosts) => (
-				<li>
-					<h2>{user.name}</h2>
-					<ul>
-						{user.posts.map((post: Post) => (
-							<li>{post.title}</li>
-						))}
-					</ul>
-				</li>
-			))}
-		</ul>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <h1>Astro + Prisma</h1>
+    <ul>
+      {
+        users.map((user: UserWithPosts) => (
+          <li>
+            <h2>{user.name}</h2>
+            <ul>
+              {user.posts.map((post: Post) => (
+                <li>{post.title}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </body>
 </html>

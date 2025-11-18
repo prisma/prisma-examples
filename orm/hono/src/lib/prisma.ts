@@ -1,6 +1,6 @@
 import type { Context, Next } from 'hono'
 import { PrismaClient } from '../generated/prisma/client.js'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaPg } from "@prisma/adapter-pg";
 
 import * as dotenv from 'dotenv'
 dotenv.config()
@@ -11,9 +11,8 @@ function withPrisma(c: Context, next: Next) {
     if (!databaseUrl) {
       throw new Error('DATABASE_URL is not set')
     }
-    const prisma = new PrismaClient({ datasourceUrl: databaseUrl }).$extends(
-      withAccelerate(),
-    )
+    const adapter = new PrismaPg({ connectionString: databaseUrl });
+    const prisma = new PrismaClient({ adapter })
 
     c.set('prisma', prisma)
   }

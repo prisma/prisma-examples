@@ -1,7 +1,8 @@
-import { withAccelerate } from '@prisma/extension-accelerate'
-import { PrismaClient, Prisma } from '../src/generated/prisma'
+import { PrismaClient, Prisma } from '../src/generated/client'
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 const userData: Prisma.UserCreateInput[] = [
   {

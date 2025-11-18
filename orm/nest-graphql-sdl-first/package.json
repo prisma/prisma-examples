@@ -54,7 +54,8 @@
     "graphql-tools": "9.0.21",
     "reflect-metadata": "0.2.2",
     "rimraf": "6.0.1",
-    "rxjs": "7.8.2"
+    "rxjs": "7.8.2",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@nestjs/cli": "10.4.9",
@@ -77,6 +78,7 @@
     "ts-loader": "9.5.4",
     "tsconfig-paths": "4.2.0",
     "tsx": "4.20.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@types/pg": "^8.15.6"
   }
 }

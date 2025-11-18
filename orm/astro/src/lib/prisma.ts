@@ -1,6 +1,7 @@
-import { withAccelerate } from '@prisma/extension-accelerate'
-import { PrismaClient } from '../generated/prisma'
+import { PrismaClient } from '../generated/client'
+import { PrismaPg } from "@prisma/adapter-pg";
 
-const prisma = new PrismaClient().$extends(withAccelerate())
+const adapter = new PrismaPg({ connectionString: import.meta.env.DATABASE_URL });
+const prisma = new PrismaClient({ adapter });
 
 export default prisma

@@ -10,7 +10,8 @@
     "@prisma/client": "6.18.0",
     "@prisma/adapter-pg": "6.18.0",
     "koa": "3.0.0",
-    "koa-body": "6.0.1"
+    "koa-body": "6.0.1",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/koa": "2.15.0",
@@ -19,6 +20,7 @@
     "dotenv": "^17.2.1",
     "prisma": "6.18.0",
     "tsx": "^4.20.6",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "@types/pg": "^8.15.6"
   }
 }

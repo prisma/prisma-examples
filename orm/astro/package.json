@@ -8,16 +8,16 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
-  },
   "dependencies": {
-    "@prisma/client": "6.9.0",
-    "@prisma/extension-accelerate": "2.0.2",
-    "astro": "5.10.2"
+    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.0.0",
+    "astro": "5.10.2",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
-    "prisma": "6.9.0",
+    "@types/pg": "^8.15.6",
+    "prisma": "7.0.0",
     "tsx": "4.20.6"
   }
 }

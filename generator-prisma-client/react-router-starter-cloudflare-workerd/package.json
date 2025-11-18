@@ -1,45 +1,46 @@
 {
-	"name": "generator-prisma-client-react-router-starter-cloudflare-workerd",
-	"private": true,
-	"type": "module",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/prisma/prisma-examples.git",
-		"directory": "generator-prisma-client/react-router-starter-cloudflare-workerd"
-	},
-	"scripts": {
-		"build": "react-router build",
-		"cf-typegen": "wrangler types",
-		"deploy": "pnpm run build && wrangler deploy",
-		"dev": "react-router dev",
-		"postinstall": "npm run cf-typegen",
-		"preview": "pnpm run build && vite preview",
-		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
-	},
-	"dependencies": {
-		"@prisma/adapter-pg": "6.19.0",
-		"@prisma/client": "6.19.0",
-		"isbot": "5.1.31",
-		"pg": "8.16.3",
-		"react": "19.1.0",
-		"react-dom": "19.1.0",
-		"react-router": "7.6.3"
-	},
-	"devDependencies": {
-		"@cloudflare/vite-plugin": "1.8.0",
-		"@react-router/dev": "7.6.3",
-		"@tailwindcss/vite": "4.1.13",
-		"@types/node": "20.19.24",
-		"@types/react": "^19.1.2",
-		"@types/react-dom": "^19.1.2",
-		"dotenv": "17.2.0",
-		"prisma": "6.19.0",
-		"tailwindcss": "4.1.13",
-		"tsx": "4.20.6",
-		"typescript": "5.8.3",
-		"vite": "6.3.6",
-		"vite-tsconfig-paths": "5.1.4",
-		"wrangler": "4.28.0"
-	},
-	"packageManager": "pnpm@8.15.9+"
+  "name": "generator-prisma-client-react-router-starter-cloudflare-workerd",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prisma/prisma-examples.git",
+    "directory": "generator-prisma-client/react-router-starter-cloudflare-workerd"
+  },
+  "scripts": {
+    "build": "react-router build",
+    "cf-typegen": "wrangler types",
+    "deploy": "pnpm run build && wrangler deploy",
+    "dev": "react-router dev",
+    "postinstall": "npm run cf-typegen",
+    "preview": "pnpm run build && vite preview",
+    "typecheck": "npm run cf-typegen && react-router typegen && tsc -b"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "6.19.0",
+    "@prisma/client": "6.19.0",
+    "isbot": "5.1.31",
+    "pg": "^8.16.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-router": "7.6.3"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.8.0",
+    "@react-router/dev": "7.6.3",
+    "@tailwindcss/vite": "4.1.13",
+    "@types/node": "20.19.24",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "dotenv": "17.2.0",
+    "prisma": "6.19.0",
+    "tailwindcss": "4.1.13",
+    "tsx": "4.20.6",
+    "typescript": "5.8.3",
+    "vite": "6.3.6",
+    "vite-tsconfig-paths": "5.1.4",
+    "wrangler": "4.28.0",
+    "@types/pg": "^8.15.6"
+  },
+  "packageManager": "pnpm@8.15.9+"
 }

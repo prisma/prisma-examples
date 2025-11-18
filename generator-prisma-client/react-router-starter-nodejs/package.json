@@ -16,7 +16,8 @@
     "isbot": "5.1.31",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-router": "7.6.3"
+    "react-router": "7.6.3",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@react-router/dev": "7.6.3",
@@ -30,7 +31,8 @@
     "tsx": "4.20.6",
     "typescript": "5.8.3",
     "vite": "6.3.6",
-    "vite-tsconfig-paths": "5.1.4"
+    "vite-tsconfig-paths": "5.1.4",
+    "@types/pg": "^8.15.6"
   },
   "packageManager": "pnpm@8.15.9+"
 }
