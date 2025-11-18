@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/script.ts"
+    "dev": "tsx src/script.ts"
   },
   "keywords": [],
   "author": "",
@@ -11,14 +11,14 @@
   "description": "",
   "devDependencies": {
     "@types/node": "22.18.12",
-    "prisma": "6.9.0",
-    "ts-node": "10.9.2",
+    "prisma": "7.0.0",
+    "tsx": "^4.20.6",
     "typescript": "5.8.2"
   },
   "dependencies": {
     "@libsql/client": "0.15.14",
-    "@prisma/adapter-libsql": "6.9.0",
-    "@prisma/client": "6.9.0",
+    "@prisma/adapter-libsql": "7.0.0",
+    "@prisma/client": "7.0.0",
     "dotenv": "16.6.1"
   }
 }

@@ -5,13 +5,12 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-   previewFeatures = ["driverAdapters", "typedSql"]
+  provider = "prisma-client"
+  output   = "./generated"
 }
 
 datasource db {
-   provider = "sqlite"
-   url      = "file:./dev.db"
+  provider = "sqlite"
 }
 
 model User {
