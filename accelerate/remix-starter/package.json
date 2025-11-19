@@ -52,7 +52,7 @@
     "@testing-library/react": "16.3.0",
     "@types/accept-language-parser": "1.5.8",
     "@types/lodash": "4.17.20",
-    "@types/node": "22.18.12",
+    "@types/node": "22.19.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@typescript-eslint/eslint-plugin": "8.41.0",
@@ -71,7 +71,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-testing-library": "7.6.8",
     "jsdom": "26.1.0",
-    "lint-staged": "16.2.3",
+    "lint-staged": "16.2.6",
     "prettier": "3.6.2",
     "prisma": "7.0.0",
     "tailwindcss": "3.4.17",
@@ -83,6 +83,6 @@
     "vitest": "3.2.4"
   },
   "engines": {
-    "node": "22.21.0"
+    "node": "22.21.1"
   }
 }
