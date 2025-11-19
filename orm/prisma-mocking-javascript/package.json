@@ -7,11 +7,11 @@
     "dev": "node ./client.js"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "6.18.0",
-    "@prisma/client": "6.18.0"
+    "@prisma/adapter-better-sqlite3": "7.0.0",
+    "@prisma/client": "7.0.0"
   },
   "devDependencies": {
     "jest-mock-extended": "3.0.7",
-    "prisma": "6.18.0"
+    "prisma": "7.0.0"
   }
 }

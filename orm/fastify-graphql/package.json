@@ -6,8 +6,8 @@
     "dev": "tsx src/server"
   },
   "dependencies": {
-    "@prisma/client": "6.18.0",
-    "@prisma/adapter-pg": "6.18.0",
+    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.0.0",
     "dotenv": "16.6.1",
     "fastify": "5.6.1",
     "graphql": "16.11.0",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/node": "22.18.12",
     "dotenv": "^17.2.1",
-    "prisma": "6.18.0",
+    "prisma": "7.0.0",
     "tsx": "4.20.6",
     "typescript": "5.8.2",
     "@types/pg": "^8.15.6"

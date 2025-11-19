@@ -1,5 +1,5 @@
 import { PrismaClient, Prisma, User } from '../src/generated/prisma/client'
-import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 
 const NUM_USERS = 1000
 const COUNT_BLUE = 300
@@ -17,7 +17,7 @@ enum EventType {
   CheckedOut = 'CheckedOut',
 }
 
-const adapter = new PrismaBetterSQLite3({ url: 'file:./prisma/dev.db' })
+const adapter = new PrismaBetterSqlite3({ url: 'file:./prisma/dev.db' })
 const prisma = new PrismaClient({ adapter })
 
 async function main() {

@@ -1,13 +1,11 @@
 generator client {
   provider        = "prisma-client"
   output          = "./generated"
-  engineType      = "client"
   previewFeatures = ["typedSql"]
 }
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
 }
 
 model User {
