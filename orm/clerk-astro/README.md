@@ -76,6 +76,19 @@ https://a60b-99-42-62-240.ngrok-free.app/api/webhooks/clerk
 
 Copy the **_Signing Secret_** and add it to your `.env` file:
 
+Add your ngrok url without the `https://` to the allowedHosts array in your `astro.config.mjs` file:
+
+```
+import { defineConfig } from 'astro/config';
+
+export default defineConfig({
+  // ...
+  server: {
+    allowedHosts: ['your-ngrok-url'],
+  },
+});
+```
+
 ### 4. Start the development server
 
 ```
