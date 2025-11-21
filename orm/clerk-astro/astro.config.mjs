@@ -7,6 +7,6 @@ export default defineConfig({
   adapter: node({ mode: 'standalone' }),
   output: 'server',
   server: {
-    allowedHosts: ['localhost', '3ac48b56ee41.ngrok-free.app'],
+    allowedHosts: ['localhost'], // Add your ngrok URL here (without https://)
   },
 })
