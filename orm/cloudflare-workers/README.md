@@ -60,7 +60,40 @@ npm run generate
 npm run dev
 ```
 
-The server is now running at http://localhost:8787
+The server is now running at http://localhost:8788
+
+### 5. Test the API
+
+The API supports full CRUD operations. Here are some example `curl` commands:
+
+**Create a user:**
+```bash
+curl -X POST http://localhost:8788/users \
+  -H "Content-Type: application/json" \
+  -d '{"email":"john@example.com","name":"John Doe"}'
+```
+
+**Get all users:**
+```bash
+curl http://localhost:8788/users
+```
+
+**Get a specific user:**
+```bash
+curl http://localhost:8788/users/1
+```
+
+**Update a user:**
+```bash
+curl -X PUT http://localhost:8788/users/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name":"John Updated"}'
+```
+
+**Delete a user:**
+```bash
+curl -X DELETE http://localhost:8788/users/1
+```
 
 ## Next steps
 
