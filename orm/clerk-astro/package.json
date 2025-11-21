@@ -1,0 +1,25 @@
+{
+  "name": "prisma-clerk-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.1",
+    "@clerk/astro": "^2.16.2",
+    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "^7.0.0",
+    "astro": "^5.16.0",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.6",
+    "prisma": "^7.0.0",
+    "tsx": "^4.20.6"
+  }
+}
