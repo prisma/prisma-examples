@@ -53,7 +53,7 @@ That's it, your project is now configured to use Prisma Postgres!
 
 Create a new app at [dashboard.clerk.com/apps/new](https://dashboard.clerk.com/apps/new). Provide a name and select whichever sign-in options you would like.
 
-Skip to Step 2 and copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and the `CLERK_SECRET_KEY`. Paste those into their respective positions in `.env`
+Skip to Step 2 and copy the `PUBLIC_CLERK_PUBLISHABLE_KEY` and the `CLERK_SECRET_KEY`. Paste those into their respective positions in `.env`
 
 #### 3.2. Expose your server via [ngrok](https://ngrok.com)
 
