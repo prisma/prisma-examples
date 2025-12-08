@@ -19,9 +19,9 @@
     "graphql": "16.11.0",
     "graphql-scalars": "1.24.2",
     "graphql-yoga": "5.14.0",
-    "next": "15.3.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "next": "15.3.6",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-markdown": "10.1.0",
     "pg": "^8.16.3"
   },

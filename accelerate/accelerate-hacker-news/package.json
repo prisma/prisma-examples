@@ -11,9 +11,9 @@
   "dependencies": {
     "@prisma/client": "7.0.0",
     "@prisma/extension-accelerate": "^2.0.2",
-    "next": "15.3.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "15.3.6",
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@faker-js/faker": "9.9.0",
