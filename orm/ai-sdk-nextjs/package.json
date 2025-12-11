@@ -14,9 +14,9 @@
     "@prisma/adapter-pg": "6.20.0-integration-next.10",
     "@prisma/client": "6.20.0-integration-next.10",
     "ai": "5.0.34",
-    "next": "15.4.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "next": "15.4.8",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "zod": "4.1.5",
     "pg": "^8.16.3"
   },

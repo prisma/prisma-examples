@@ -32,3 +32,4 @@ experimental/**/*.db
 dev.db
 *.env*
 !.env.example
+config.bat
