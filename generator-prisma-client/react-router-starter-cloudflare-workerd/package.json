@@ -21,8 +21,8 @@
     "@prisma/client": "7.0.0",
     "isbot": "5.1.31",
     "pg": "^8.16.3",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-router": "7.6.3"
   },
   "devDependencies": {

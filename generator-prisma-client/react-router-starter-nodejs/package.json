@@ -14,8 +14,8 @@
     "@react-router/node": "7.6.3",
     "@react-router/serve": "7.6.3",
     "isbot": "5.1.31",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "react-router": "7.6.3",
     "pg": "^8.16.3"
   },

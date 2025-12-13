@@ -15,8 +15,8 @@
     "@tanstack/react-query": "5.90.9",
     "@trpc/client": "next",
     "@trpc/react-query": "next",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "server": "0.0.1"
   },
   "devDependencies": {
