@@ -1,68 +1,155 @@
 <template>
   <div class="page">
-    <form @submit="signup">
-      <h1>Signup user</h1>
-      <input autoFocus placeholder="Name" type="text" v-model="name" />
-      <input placeholder="Email address" type="text" v-model="email" />
-      <input :disabled="!name || !email" type="submit" value="Signup" />
-      <NuxtLink class="back" to="/"> or Cancel </NuxtLink>
-    </form>
+    <div class="form-container">
+      <div class="form-header">
+        <div class="icon">👤</div>
+        <h1>Create Account</h1>
+        <p>Join our community of writers</p>
+      </div>
+
+      <form @submit.prevent="signup" class="form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            id="name"
+            v-model="name"
+            type="text"
+            placeholder="Your name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            v-model="email"
+            type="email"
+            placeholder="your@email.com"
+            required
+          />
+        </div>
+
+        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+        <div class="form-actions">
+          <NuxtLink to="/" class="btn btn-ghost">Cancel</NuxtLink>
+          <button
+            type="submit"
+            class="btn btn-success"
+            :disabled="!name || !email || isSubmitting"
+          >
+            {{ isSubmitting ? 'Creating...' : 'Sign Up' }}
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
-<script setup>
-  const router = useRouter();
 
-  let name = ref();
-  let email = ref();
+<script setup lang="ts">
+const router = useRouter()
 
-  const signup = async (e) => {
-      e.preventDefault()
+const name = ref('')
+const email = ref('')
+const isSubmitting = ref(false)
+const errorMessage = ref('')
 
-      try {
-        const body = {
-          name: name.value,
-          email: email.value,
-        }
+const signup = async () => {
+  if (!name.value || !email.value) return
 
-        await fetch(`/user`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        })
-        .then(()=>{
-          router.push({ path: '/' })
-        })
-        .catch((error)=>{
-          console.error(error);
-        })
-      } catch (error) {
-        console.error(error)
+  isSubmitting.value = true
+  errorMessage.value = ''
+
+  try {
+    await $fetch('/api/users', {
+      method: 'POST',
+      body: {
+        name: name.value,
+        email: email.value
       }
+    })
+    router.push('/')
+  } catch (error: any) {
+    if (error.statusCode === 409) {
+      errorMessage.value = 'A user with this email already exists'
+    } else {
+      errorMessage.value = 'Failed to create account. Please try again.'
     }
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script>
+
 <style scoped>
-  .page {
-    background: white;
-    padding: 3rem;
-    display: flex;
-    justify-content: center;
-  }
+.page {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+}
 
-  input[type='text'] {
-    width: 100%;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    border-radius: 0.25rem;
-    border: 0.125rem solid rgba(0, 0, 0, 0.2);
-  }
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
 
-  input[type='submit'] {
-    background: #ececec;
-    border: 0;
-    padding: 1rem 2rem;
-  }
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-  .back {
-    margin-left: 1rem;
-  }
+.icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.form-header h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-header p {
+  color: var(--text-secondary);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.error-message {
+  font-size: 0.85rem;
+  color: var(--accent-danger);
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(248, 81, 73, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
 </style>

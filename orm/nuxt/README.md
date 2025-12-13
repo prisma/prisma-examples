@@ -174,29 +174,32 @@ You can also access the REST API of the API server directly. It is running on th
 
 ### `GET`
 
-- `/api/post/:id`: Fetch a single post by its `id`
+- `/api/posts/:id`: Fetch a single post by its `id`
 - `/api/feed`: Fetch all _published_ posts
-- `/api/filterPosts?searchString={searchString}`: Filter posts by `title` or `content`
+- `/api/drafts`: Fetch all _unpublished_ posts (drafts)
 
 ### `POST`
 
-- `/api/post`: Create a new post
+- `/api/posts`: Create a new post
   - Body:
     - `title: String` (required): The title of the post
     - `content: String` (optional): The content of the post
     - `authorEmail: String` (required): The email of the user that creates the post
-- `/api/user`: Create a new user
+- `/api/users`: Create a new user
   - Body:
     - `email: String` (required): The email address of the user
-    - `name: String` (optional): The name of the user
+    - `name: String` (required): The name of the user
+- `/api/users/check`: Check if a user exists
+  - Body:
+    - `email: String` (required): The email address to check
 
 ### `PUT`
 
-- `/api/publish/:id`: Publish a post by its `id`
+- `/api/posts/:id/publish`: Publish a post by its `id`
 
 ### `DELETE`
 
-- `/api/post/:id`: Delete a post by its `id`
+- `/api/posts/:id`: Delete a post by its `id`
 
 ## Switch to another database (e.g. SQLite, MySQL, SQL Server, MongoDB)
 
