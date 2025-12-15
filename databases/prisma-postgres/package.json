@@ -1,18 +1,18 @@
 {
-  "name": "hello-prisma",
+  "name": "prisma-postgres-example",
   "license": "MIT",
   "scripts": {
-    "queries": "tsx ./src/queries.ts",
-    "caching": "tsx ./src/caching.ts"
+    "dev": "tsx src/index.ts"
   },
   "dependencies": {
-    "@prisma/client": "7.0.0",
-    "@types/node": "22.18.12",
-    "dotenv": "16.6.1"
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "dotenv": "^17.2.3"
   },
   "devDependencies": {
-    "prisma": "7.0.0",
-    "typescript": "5.8.2",
-    "tsx": "^4.20.6"
+    "@types/node": "^22.15.21",
+    "prisma": "^7.1.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   }
 }
