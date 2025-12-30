@@ -1,102 +1,119 @@
-# Prisma Postgres Example: Deno Deploy (Deno 2, ESM)
+# Prisma + Deno Deploy Example
 
-This project showcases how to use the Prisma ORM with Prisma Postgres in an ESM Deno Deploy application.
+This project showcases how to use Prisma ORM with Prisma Postgres in a Deno Deploy application. It implements a simple Task API with full CRUD operations.
 
 ## Prerequisites
 
-To successfully run the project, you will need the following:
-
-- A **Prisma Postgres** connection string. You can create a project in your [Prisma Data Platform](https://pris.ly/pdp) account and enable Postgres to obtain one.
+- [Deno](https://docs.deno.com/runtime/#install-deno) v2.0 or later installed
+- A [Prisma Data Platform](https://console.prisma.io/login) account for Prisma Postgres
 
 ## Tech Stack
 
 - Deno 2
-- ESM
-- Prisma Client with the `prisma-client` generator
-  See the [Prisma schema file](./prisma/schema.prisma) for details.
-  
-  ```prisma
-  generator client {
-    provider = "prisma-client"
-    output = "../src/generated/prisma"
-    runtime = "deno"
-  }
-  ```
+- Prisma Client with the `prisma-client` generator and Deno runtime
+- Prisma Postgres
 
-## Getting started
+## Getting Started
 
 ### 1. Clone the repository
 
-Clone the repository, navigate into it and install dependencies:
-
-```
+```bash
 git clone git@github.com:prisma/prisma-examples.git --depth=1
 cd prisma-examples/generator-prisma-client/deno-deploy
+```
+
+### 2. Install dependencies
+
+```bash
 deno install
+deno install --allow-scripts
 ```
 
-### 2. Configure environment variables
+### 3. Configure environment variables
 
-Create a `.env` in the root of the project directory:
+Create a `.env` file with your Prisma Postgres connection string:
 
 ```bash
-touch .env
+cp .env.example .env
 ```
 
-Now, open the `.env` file and set the `DATABASE_URL` environment variable with your Prisma Postgres connection string:
+Then edit `.env` and set your `DATABASE_URL`:
+
+```env
+DATABASE_URL="postgresql://user:password@db.prisma.io:5432/database"
+```
+
+### 4. Push schema and generate client
 
 ```bash
-# .env
-
-DATABASE_URL="__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__"
+deno task db:push
 ```
 
-Replace `__YOUR_PRISMA_POSTGRES_CONNECTION_STRING__` with your actual Prisma Postgres connection string.
+This creates the `Task` table and generates the Prisma Client.
 
-### 3. Generate Prisma Client
+### 5. Start the development server
 
-Run:
-
-```
-deno task prisma generate
-```
-
-### 4. Run a migration to create the database structure and seed the database
-
-The [Prisma schema file](./prisma/schema.prisma) contains a single `Quotes` model and a `QuoteKind` enum. You can map this model to the database and create the corresponding `Quotes` table using the following command:
-
-```
-deno task prisma migrate dev --name init
-```
-
-You now have an empty `Quotes` table in your database. Next, run the [seed script](./prisma/seed.ts) to create some sample records in the table:
-
-```
-deno task prisma db seed
-```
-
-### 5. Start the app
-
-You can run the app with the following command:
-
-```
+```bash
 deno task dev
 ```
 
-### 6. Deploy to Deno Deploy
+The API will be available at `http://localhost:8000`.
 
-To deploy your application to Deno Deploy, follow these steps:
+### 6. Test the API
 
+```bash
+# Get API info
+curl http://localhost:8000/
+
+# Create a task
+curl -X POST http://localhost:8000/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Learn Prisma", "description": "Complete the Deno guide"}'
+
+# List all tasks
+curl http://localhost:8000/tasks
+
+# Update a task
+curl -X PATCH http://localhost:8000/tasks/1 \
+  -H "Content-Type: application/json" \
+  -d '{"completed": true}'
+
+# Delete a task
+curl -X DELETE http://localhost:8000/tasks/1
 ```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | API info |
+| GET | `/tasks` | List all tasks |
+| POST | `/tasks` | Create a new task |
+| GET | `/tasks/:id` | Get a specific task |
+| PATCH | `/tasks/:id` | Update a task |
+| DELETE | `/tasks/:id` | Delete a task |
+
+## Deploy to Deno Deploy
+
+1. Push your code to GitHub
+2. Go to [dash.deno.com](https://dash.deno.com/) and create a new project
+3. Configure the deployment:
+   - **Install command**: `deno install`
+   - **Build command**: `deno run -A npm:prisma generate`
+   - **Entrypoint**: `src/main.ts`
+4. Add `DATABASE_URL` environment variable in Settings
+5. Deploy!
+
+Or use the Deno Deploy CLI:
+
+```bash
 deno install -gArf jsr:@deno/deployctl
-deployctl deploy --project=prisma-client-deno-deploy --env-file=.env
+deployctl deploy --project=your-project-name --env-file=.env
 ```
 
 ## Resources
 
 - [Prisma Postgres documentation](https://www.prisma.io/docs/postgres)
-- Check out the [Prisma docs](https://www.prisma.io/docs)
-- [Join our community on Discord](https://pris.ly/discord?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) to share feedback and interact with other users.
-- [Subscribe to our YouTube channel](https://pris.ly/youtube?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for live demos and video tutorials.
-- [Follow us on X](https://pris.ly/x?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section) for the latest updates.
-- Report issues or ask [questions on GitHub](https://pris.ly/github?utm_source=github&utm_medium=prisma_examples&utm_content=next_steps_section).
+- [Deploy to Deno Deploy guide](https://www.prisma.io/docs/orm/prisma-client/deployment/edge/deploy-to-deno-deploy)
+- [Prisma documentation](https://www.prisma.io/docs)
+- [Join our Discord community](https://pris.ly/discord)

@@ -1,0 +1,23 @@
+{
+  "nodeModulesDir": "auto",
+  "compilerOptions": {
+    "lib": ["deno.window"],
+    "types": ["node"]
+  },
+  "imports": {
+    "@prisma/adapter-pg": "npm:@prisma/adapter-pg@^7.0.0",
+    "@prisma/client": "npm:@prisma/client@^7.0.0",
+    "prisma": "npm:prisma@^7.0.0"
+  },
+  "tasks": {
+    "dev": "deno run -A --env=.env --watch src/main.ts",
+    "db:generate": "deno run -A --env=.env npm:prisma generate",
+    "db:push": "deno run -A --env=.env npm:prisma db push",
+    "db:migrate": "deno run -A --env=.env npm:prisma migrate dev",
+    "db:seed": "deno run -A --env=.env npm:prisma db seed"
+  },
+  "deploy": {
+    "exclude": ["**/node_modules"],
+    "entrypoint": "src/main.ts"
+  }
+}

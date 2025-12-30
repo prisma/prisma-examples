@@ -1,21 +1,18 @@
 generator client {
-  provider   = "prisma-client"
-  output     = "./generated/"
-  runtime    = "deno"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  runtime  = "deno"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-enum QuoteKind {
-  Fact
-  Opinion
-}
-
-model Quotes {
-  id        Int       @id @default(autoincrement())
-  quote     String
-  kind      QuoteKind @default(Opinion)
-  createdAt DateTime  @default(now())
+model Task {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
