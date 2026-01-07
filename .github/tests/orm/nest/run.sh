@@ -53,7 +53,7 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 popd > /dev/null  # Back to orm/nest
 
 # Run migrations and seed
-npx prisma migrate reset --force --skip-seed
+npx prisma migrate reset --force
 npx prisma migrate dev --name init
 npx prisma db seed
 

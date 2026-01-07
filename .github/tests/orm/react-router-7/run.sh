@@ -54,7 +54,7 @@ popd > /dev/null  # Back to orm/react-router-7
 
 # Run migrations and seed
 echo "📐 Running Prisma migrations and seeding..."
-DATABASE_URL="$DATABASE_URL" npx prisma migrate reset --force --skip-seed
+DATABASE_URL="$DATABASE_URL" npx prisma migrate reset --force
 DATABASE_URL="$DATABASE_URL" npx prisma migrate dev --name init
 DATABASE_URL="$DATABASE_URL" npx prisma db seed
 
