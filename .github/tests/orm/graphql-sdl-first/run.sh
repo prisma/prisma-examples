@@ -35,7 +35,7 @@ NODE_PID=$!
 echo "🔎 Waiting for Prisma Dev to emit DATABASE_URL..."
 MAX_WAIT=60
 WAITED=0
-until grep -q '^prisma+postgres://' "$LOG_FILE"; do
+until grep -q '^postgres://' "$LOG_FILE"; do
   sleep 1
   WAITED=$((WAITED + 1))
   if [ "$WAITED" -ge "$MAX_WAIT" ]; then
@@ -46,7 +46,7 @@ until grep -q '^prisma+postgres://' "$LOG_FILE"; do
   fi
 done
 
-DB_URL=$(grep '^prisma+postgres://' "$LOG_FILE" | tail -1)
+DB_URL=$(grep '^postgres://' "$LOG_FILE" | tail -1)
 export DATABASE_URL="$DB_URL"
 echo "✅ DATABASE_URL: $DATABASE_URL"
 

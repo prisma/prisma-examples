@@ -2,4 +2,6 @@
 
 set -eu
 
-npm install && npm run test
+npm install
+npx prisma generate
+npm run test
