@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { PrismaClient, Prisma, User } from '../prisma/generated/client'
-import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3'
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 
 const NUM_USERS = 1000
 const COUNT_BLUE = 300
@@ -18,7 +18,7 @@ enum EventType {
   CheckedOut = 'CheckedOut',
 }
 
-const adapter = new PrismaBetterSQLite3({ url: process.env.DATABASE_URL || 'file:./dev.db' })
+const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL || 'file:./dev.db' })
 const prisma = new PrismaClient({ adapter })
 
 async function main() {

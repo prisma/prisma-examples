@@ -1,9 +1,9 @@
 import { PrismaClient } from './generated/prisma/client'
-import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { conversionByVariant, filterTrackingEvents, getTrackingEvents } from './generated/prisma/sql'
 
 async function main() {
-  const adapter = new PrismaBetterSQLite3({ url: 'file:./prisma/dev.db' })
+  const adapter = new PrismaBetterSqlite3({ url: 'file:./prisma/dev.db' })
   const prisma = new PrismaClient({ adapter })
 
   const stats = await prisma.$queryRawTyped(conversionByVariant())

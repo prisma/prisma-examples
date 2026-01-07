@@ -1,12 +1,12 @@
 import 'dotenv/config'
 import { PrismaClient } from '../prisma/generated/client'
-import { PrismaBetterSQLite3 } from '@prisma/adapter-better-sqlite3'
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 import { conversionByVariant } from '../prisma/generated/sql'
 import { filterTrackingEvents } from '../prisma/generated/sql'
 import { getTrackingEvents } from '../prisma/generated/sql'
 
 async function main() {
-  const adapter = new PrismaBetterSQLite3({ url: process.env.DATABASE_URL || 'file:./dev.db' })
+  const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL || 'file:./dev.db' })
   const prisma = new PrismaClient({ adapter })
 
   const stats = await prisma.$queryRawTyped(conversionByVariant())
