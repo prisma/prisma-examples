@@ -7,7 +7,7 @@ context.setGlobalContextManager(new AsyncLocalStorageContextManager());
 trace.setGlobalTracerProvider(new BasicTracerProvider());
 
 async function main() {
-  const server = await startPrismaDevServer({ databaseIdleTimeoutMillis: 300 })
+  const server = await startPrismaDevServer()
 
   // Emit only the Prisma-compatible URL for CI shell script to capture
   console.log(server.database.connectionString)
