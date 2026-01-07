@@ -53,6 +53,7 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 popd > /dev/null  # Back to orm/script
 
 # Run migrations (reset and dev)
+npx prisma generate
 npx prisma migrate dev --name init
 
 # Run script (assumes it terminates; remove `&` if it blocks)

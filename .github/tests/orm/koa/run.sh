@@ -54,6 +54,7 @@ popd > /dev/null  # Back to orm/koa
 
 # Run migrations and seed
 npx prisma migrate reset --force
+npx prisma generate
 npx prisma migrate dev --name init
 npx prisma db seed
 

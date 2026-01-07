@@ -53,6 +53,7 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 popd > /dev/null
 
 npm install
+npx prisma generate
 npx prisma migrate dev --name init --schema prisma/schema.prisma
 npx prisma db seed
 npm run dev &

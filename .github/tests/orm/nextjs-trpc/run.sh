@@ -53,6 +53,7 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 popd > /dev/null
 
 # Run migrations
+npx prisma generate
 npx prisma migrate dev --name init
 
 # Start the app

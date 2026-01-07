@@ -45,6 +45,7 @@ popd > /dev/null  # Go back to databases/prisma-postgres
 
 # Run migration
 echo "📐 Running prisma migrate dev..."
+npx prisma generate
 npx prisma migrate dev --name init
 
 # Run queries (if any)

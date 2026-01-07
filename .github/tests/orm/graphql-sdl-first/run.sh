@@ -53,6 +53,7 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 popd > /dev/null  # Back to orm/graphql-sdl-first
 
 # Run migrations and seed
+npx prisma generate
 npx prisma migrate dev --name init
 npx prisma db seed
 

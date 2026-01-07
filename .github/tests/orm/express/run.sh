@@ -52,7 +52,8 @@ echo "✅ DATABASE_URL: $DATABASE_URL"
 
 popd > /dev/null  # Back to databases/prisma-postgres
 
-# Run migrations + seed
+# Generate client + run migrations + seed
+npx prisma generate
 npx prisma migrate dev --name init
 npx prisma db seed
 
