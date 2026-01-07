@@ -1,6 +1,7 @@
 // We want to connect to the MongoDB datasource
 datasource db {
   provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
