@@ -4,7 +4,6 @@ on:
     paths:
       - orm/**
       - databases/**
-      - data-modeling/**
       - tests/**
       - package.json
       - vitest.config.ts
@@ -19,35 +18,15 @@ env:
   SKIP_PRISMA_VERSION_CHECK: true
 
 jobs:
-  # Generate test matrix from test files
-  test-matrix:
-    if: github.repository_owner == 'prisma'
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: set-matrix
-        run: |
-          # Find all test files and create matrix JSON
-          tests=$(find tests -name "*.test.ts" | sed 's|tests/||' | sed 's|\.test\.ts||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          echo "matrix={\"test\":$tests}" >> $GITHUB_OUTPUT
-
   test:
-    needs: test-matrix
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix: ${{ fromJson(needs.test-matrix.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-
-      - name: Install root dependencies
+      - name: Install dependencies
         run: npm install
-
-      - name: Run test - ${{ matrix.test }}
-        run: npx vitest run tests/${{ matrix.test }}.test.ts
+      - name: Run tests
+        run: npm test
