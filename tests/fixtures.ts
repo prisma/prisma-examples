@@ -12,7 +12,7 @@ export interface TestExampleOptions {
 }
 
 export function testExample(examplePath: string, options?: TestExampleOptions) {
-  describe.concurrent(examplePath, () => {
+  describe(examplePath, () => {
     let server: Server
 
     afterAll(async () => {
@@ -57,7 +57,7 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
 
 // For SQLite examples that don't need @prisma/dev server
 export function testSqliteExample(examplePath: string, options?: { generateSql?: boolean }) {
-  describe.concurrent(examplePath, () => {
+  describe(examplePath, () => {
     test('prisma setup', async () => {
       const cwd = path.join(process.cwd(), examplePath)
 

@@ -10,8 +10,11 @@ export default defineConfig({
         singleFork: false,
       },
     },
-    maxConcurrency: 4,
+    maxConcurrency: 8,
     fileParallelism: true,
+    sequence: {
+      concurrent: true,
+    },
     include: ['tests/**/*.test.ts'],
   },
 })
