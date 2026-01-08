@@ -3,6 +3,11 @@ on:
   push:
     paths:
       - orm/**
+      - databases/**
+      - data-modeling/**
+      - tests/**
+      - package.json
+      - vitest.config.ts
     branches:
       - latest
   pull_request:
@@ -11,65 +16,38 @@ env:
   CI: 1
   PRISMA_TELEMETRY_INFORMATION: 'prisma-examples test.yaml'
   SLACK_WEBHOOK_URL_FAILING: ${{ secrets.SLACK_WEBHOOK_URL_FAILING }}
-  SKIP_PRISMA_VERSION_CHECK: true # Skip Prisma version check in typegraphl-prisma (https://github.com/MichalLytek/typegraphql-prisma/blob/fc7cfa756a60dd6671a902c38f00ee74698a681a/Readme.md#lifting-prisma-version-restriction)
+  SKIP_PRISMA_VERSION_CHECK: true
 
 jobs:
-  projects-matrix:
+  # Generate test matrix from test files
+  test-matrix:
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22.21.1'
-
-      - name: install deps
-        run: cd .github/scripts && yarn install
-
-      - name: get list of projects as json array
-        id: set-matrix
-        run: node .github/scripts/get-packages.js
-  test-prisma-postgres:
-    if: github.repository_owner == 'prisma'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run prisma-postgres test
-        working-directory: .github/tests/databases/prisma-postgres
+      - id: set-matrix
         run: |
-          chmod +x run.sh
-          ./run.sh
+          # Find all test files and create matrix JSON
+          tests=$(find tests -name "*.test.ts" | sed 's|tests/||' | sed 's|\.test\.ts||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          echo "matrix={\"test\":$tests}" >> $GITHUB_OUTPUT
+
   test:
-    needs: projects-matrix
+    needs: test-matrix
     if: github.repository_owner == 'prisma'
     runs-on: ubuntu-latest
-    env:
-      PPG_TEST_DATABASE_URL: ${{ secrets.PPG_TEST_DATABASE_URL }}
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(needs.projects-matrix.outputs.matrix)}}
-    services:
-      postgres:
-        image: postgis/postgis:14-3.1-alpine
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: testing
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - '5432:5432'
+      matrix: ${{ fromJson(needs.test-matrix.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.21.1'
+          node-version: '22'
 
-      - name: test
-        run: bash .github/scripts/test-all.sh ./${{ matrix.path }}/package.json
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Run test - ${{ matrix.test }}
+        run: npx vitest run tests/${{ matrix.test }}.test.ts

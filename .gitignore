@@ -23,6 +23,7 @@ databases/**/migrations/
 orm/**/package-lock.json
 misc/**/package-lock.json
 experimental/**/package-lock.json
+.output/
 
 databases/**/package-lock.json
 experimental/**/*.db
