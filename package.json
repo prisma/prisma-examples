@@ -3,17 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:orm": "vitest run tests/orm",
-    "test:databases": "vitest run tests/databases",
-    "test:data-modeling": "vitest run tests/data-modeling",
-    "test:single": "vitest run"
+    "test": "vitest run"
   },
   "devDependencies": {
-    "@opentelemetry/api": "^1.9.0",
-    "@opentelemetry/context-async-hooks": "^1.30.1",
-    "@opentelemetry/sdk-trace-base": "^1.30.1",
     "@prisma/dev": "latest",
     "@types/node": "^25.0.3",
     "execa": "^9.5.2",
