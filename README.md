@@ -159,6 +159,7 @@ The projects in the [`deployment-platforms`](./deployment-platforms) directory s
 - [Saas Kit Prisma](https://github.com/Saas-Starter-Kit/Saas-Kit-prisma): Full-stack SaaS starter kit using React.js, Next.js, TypeScript, Tailwind, Shadcn, Stripe, NextAuth, Prisma, Postgres, and Playwright.
 - [Saas Kit Prisma by BoxyHQ](https://github.com/boxyhq/saas-starter-kit): An open-source enterprise SaaS starter kit using Prisma ORM.
 - [NextReady](https://nextready.dev): A ready-to-use Next.js boilerplate with Prisma, TypeScript, Tailwind CSS, and more.
+- [Makerkit Prisma](https://makerkit.dev/prisma): A production-ready SaaS Starter Kit with Next.js 16, Prisma 7, Shadcn Base UI, Zod4 and Stripe
 
 ## Badges
 
