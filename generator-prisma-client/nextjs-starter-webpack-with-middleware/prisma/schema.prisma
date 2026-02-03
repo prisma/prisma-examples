@@ -10,7 +10,7 @@ generator client {
 generator edge {
   provider = "prisma-client"
   output   = "../lib/generated/prisma-edge"
-  runtime  = "vercel"
+  runtime  = "vercel-edge"
 }
 
 datasource db {

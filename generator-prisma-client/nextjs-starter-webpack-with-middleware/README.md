@@ -29,7 +29,7 @@ To successfully run the project, you will need a **Prisma Postgres** connection 
   generator edge {
     provider = "prisma-client"
     output   = "../lib/generated/prisma-edge"
-    runtime  = "vercel"
+    runtime  = "vercel-edge"
   }
   ```
 

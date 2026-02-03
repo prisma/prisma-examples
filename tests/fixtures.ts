@@ -22,8 +22,11 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
     test('prisma setup', async () => {
       server = await startPrismaDevServer({ databaseIdleTimeoutMillis: 300000 })
       const url = server.database.connectionString
+      const databaseUrl = url.startsWith('postgres://')
+        ? url.replace('postgres://', 'postgresql://')
+        : url
       const cwd = path.join(process.cwd(), examplePath)
-      const env = { ...process.env, DATABASE_URL: url }
+      const env = { ...process.env, DATABASE_URL: databaseUrl, DIRECT_URL: databaseUrl }
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
       await execa('npm', ['install'], { cwd, env, stdio: 'inherit' })
@@ -65,10 +68,12 @@ export function testSqliteExample(
       const cwd = path.join(process.cwd(), examplePath)
       const env = { ...process.env, ...options?.env }
 
-      // Remove existing SQLite database to ensure clean state
-      const dbPath = path.join(cwd, 'dev.db')
-      if (fs.existsSync(dbPath)) {
-        fs.unlinkSync(dbPath)
+      // Remove existing SQLite databases to ensure clean state
+      const dbPaths = [path.join(cwd, 'dev.db'), path.join(cwd, 'prisma', 'dev.db')]
+      for (const dbPath of dbPaths) {
+        if (fs.existsSync(dbPath)) {
+          fs.unlinkSync(dbPath)
+        }
       }
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
