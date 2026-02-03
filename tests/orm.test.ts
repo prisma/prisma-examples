@@ -43,8 +43,20 @@ describe.concurrent('ORM Examples', () => {
     test.skip('npm install has peer dependency conflicts', () => {})
   })
 
+  describe('orm/elysia', () => {
+    test.skip('requires Bun runtime', () => {})
+  })
+
   describe('orm/grpc', () => {
     test.skip('grpc dependencies have issues', () => {})
+  })
+
+  describe('orm/graphql-typegraphql', () => {
+    test.skip('README-only example (no runnable project)', () => {})
+  })
+
+  describe('orm/graphql-typegraphql-crud', () => {
+    test.skip('README-only example (no runnable project)', () => {})
   })
 
   describe('orm/hapi-graphql', () => {
@@ -61,5 +73,9 @@ describe.concurrent('ORM Examples', () => {
 
   describe('orm/postgis-express', () => {
     test.skip('requires PostGIS extension', () => {})
+  })
+
+  describe('orm/remix', () => {
+    test.skip('README-only example (no runnable project)', () => {})
   })
 })

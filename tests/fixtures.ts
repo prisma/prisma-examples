@@ -56,10 +56,14 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
 }
 
 // For SQLite examples that don't need @prisma/dev server
-export function testSqliteExample(examplePath: string, options?: { generateSql?: boolean }) {
+export function testSqliteExample(
+  examplePath: string,
+  options?: { generateSql?: boolean; env?: NodeJS.ProcessEnv }
+) {
   describe(examplePath, () => {
     test('prisma setup', async () => {
       const cwd = path.join(process.cwd(), examplePath)
+      const env = { ...process.env, ...options?.env }
 
       // Remove existing SQLite database to ensure clean state
       const dbPath = path.join(cwd, 'dev.db')
@@ -68,20 +72,21 @@ export function testSqliteExample(examplePath: string, options?: { generateSql?:
       }
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
-      await execa('npm', ['install'], { cwd, stdio: 'inherit' })
+      await execa('npm', ['install'], { cwd, env, stdio: 'inherit' })
 
       console.log(`\n[${examplePath}] Running prisma generate...`)
-      await execa('npx', ['prisma', 'generate'], { cwd, stdio: 'inherit' })
+      await execa('npx', ['prisma', 'generate'], { cwd, env, stdio: 'inherit' })
 
       console.log(`\n[${examplePath}] Running prisma db push...`)
       await execa('npx', ['prisma', 'db', 'push', '--accept-data-loss'], {
         cwd,
+        env,
         stdio: 'inherit',
       })
 
       if (options?.generateSql) {
         console.log(`\n[${examplePath}] Running prisma generate --sql...`)
-        await execa('npx', ['prisma', 'generate', '--sql'], { cwd, stdio: 'inherit' })
+        await execa('npx', ['prisma', 'generate', '--sql'], { cwd, env, stdio: 'inherit' })
       }
 
       // Check for seed in prisma.config.ts (Prisma v7+)
@@ -90,7 +95,7 @@ export function testSqliteExample(examplePath: string, options?: { generateSql?:
         const content = fs.readFileSync(configPath, 'utf-8')
         if (content.includes('seed:')) {
           console.log(`\n[${examplePath}] Running prisma db seed...`)
-          await execa('npx', ['prisma', 'db', 'seed'], { cwd, stdio: 'inherit' })
+          await execa('npx', ['prisma', 'db', 'seed'], { cwd, env, stdio: 'inherit' })
         }
       }
 
