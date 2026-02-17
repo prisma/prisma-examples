@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "8.10.157",
-    "dotenv": "17.2.1",
+    "dotenv": "17.3.1",
     "dotenv-cli": "10.0.0",
     "esbuild": "0.25.12",
     "npm-run-all2": "6.2.6",

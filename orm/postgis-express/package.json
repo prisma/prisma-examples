@@ -9,7 +9,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "dotenv": "^16.4.7",
+    "dotenv": "^17.0.0",
     "express": "5.1.0",
     "pg": "^8.16.3"
   },
