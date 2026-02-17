@@ -41,7 +41,7 @@
     "tailwindcss-animate": "1.0.7",
     "zod": "3.25.76",
     "zod-error": "1.5.0",
-    "zod-form-data": "2.0.7"
+    "zod-form-data": "2.0.8"
   },
   "devDependencies": {
     "@faker-js/faker": "9.9.0",
