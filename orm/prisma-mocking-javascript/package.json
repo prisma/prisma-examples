@@ -11,7 +11,7 @@
     "@prisma/client": "7.0.0"
   },
   "devDependencies": {
-    "jest-mock-extended": "3.0.7",
+    "jest-mock-extended": "4.0.0",
     "prisma": "7.0.0"
   }
 }
