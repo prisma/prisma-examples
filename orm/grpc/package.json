@@ -17,7 +17,7 @@
     "@prisma/adapter-pg": "7.0.0",
     "chalk": "4.1.2",
     "grpc": "1.24.11",
-    "protobufjs": "7.5.3",
+    "protobufjs": "7.5.4",
     "pg": "^8.16.3"
   },
   "devDependencies": {
