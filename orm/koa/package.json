@@ -7,8 +7,8 @@
   },
   "dependencies": {
     "@koa/router": "13.1.1",
-    "@prisma/client": "7.0.0",
-    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.4.1",
+    "@prisma/adapter-pg": "7.4.1",
     "koa": "3.0.0",
     "koa-body": "6.0.1",
     "pg": "^8.16.3"
@@ -18,7 +18,7 @@
     "@types/koa__router": "12.0.4",
     "@types/node": "22.18.12",
     "dotenv": "^17.2.1",
-    "prisma": "7.0.0",
+    "prisma": "7.4.1",
     "tsx": "^4.20.6",
     "typescript": "5.8.2",
     "@types/pg": "^8.15.6"

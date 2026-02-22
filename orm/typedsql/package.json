@@ -13,13 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-better-sqlite3": "7.4.1",
+    "@prisma/client": "7.4.1",
     "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@types/node": "22.15.32",
-    "prisma": "7.0.0",
+    "prisma": "7.4.1",
     "tsx": "^4.20.6"
   }
 }

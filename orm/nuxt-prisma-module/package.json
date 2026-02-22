@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/node": "^24.6.1",
     "dotenv": "^17.2.1",
-    "prisma": "6.19.0",
+    "prisma": "6.19.2",
     "tsx": "^4.20.6",
     "@types/pg": "^8.15.6"
   }

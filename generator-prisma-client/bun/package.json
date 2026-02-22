@@ -4,14 +4,14 @@
   "type": "module",
   "devDependencies": {
     "@types/pg": "^8.15.6",
-    "prisma": "7.0.0"
+    "prisma": "7.4.1"
   },
   "peerDependencies": {
     "typescript": "5.9.2"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.4.1",
+    "@prisma/client": "7.4.1",
     "pg": "^8.16.3"
   }
 }

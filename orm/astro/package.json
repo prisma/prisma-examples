@@ -9,15 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.4.1",
+    "@prisma/client": "7.4.1",
     "astro": "5.10.2",
     "dotenv": "^17.2.3",
     "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/pg": "^8.15.6",
-    "prisma": "7.0.0",
+    "prisma": "7.4.1",
     "tsx": "4.20.6"
   }
 }

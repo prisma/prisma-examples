@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@nuxt/eslint": "1.9.0",
-    "@prisma/client": "7.0.0",
-    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.4.1",
+    "@prisma/adapter-pg": "7.4.1",
     "eslint": "^9.0.0",
     "nuxt": "^4.1.2",
     "vue": "^3.5.22",
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/node": "^24.6.1",
     "dotenv": "^17.2.1",
-    "prisma": "7.0.0",
+    "prisma": "7.4.1",
     "tsx": "^4.20.6",
     "@types/pg": "^8.15.6"
   }

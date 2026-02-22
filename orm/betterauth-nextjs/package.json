@@ -25,7 +25,7 @@
     "@types/react-dom": "19.1.0",
     "eslint": "9.36.0",
     "eslint-config-next": "15.5.9",
-    "prisma": "7.0.0",
+    "prisma": "7.4.1",
     "tailwindcss": "4.1.14",
     "typescript": "5.9.3",
     "@types/pg": "^8.15.6"

@@ -14,8 +14,8 @@
   "packageManager": "pnpm@10.21.0",
   "dependencies": {
     "@hono/node-server": "1.19.6",
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.4.1",
+    "@prisma/client": "7.4.1",
     "hono": "4.9.6",
     "pg": "^8.16.3"
   },
@@ -23,7 +23,7 @@
     "@types/node": "18.19.130",
     "dotenv": "17.1.0",
     "esbuild": "0.25.12",
-    "prisma": "7.0.0",
+    "prisma": "7.4.1",
     "rimraf": "6.0.1",
     "tsx": "4.20.6",
     "typescript": "5.8.3",
