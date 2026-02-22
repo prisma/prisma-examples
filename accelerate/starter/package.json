@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/node": "22.19.0",
-    "nodemon": "3.1.10",
+    "nodemon": "3.1.14",
     "prisma": "7.0.0",
     "tsx": "4.20.6",
     "typescript": "5.8.2"
