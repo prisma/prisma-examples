@@ -20,7 +20,7 @@
     "astro": "5.10.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "tailwindcss": "3.4.17",
+    "tailwindcss": "4.2.1",
     "typescript": "5.8.2"
   },
   "devDependencies": {
