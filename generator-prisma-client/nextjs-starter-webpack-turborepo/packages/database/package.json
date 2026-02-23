@@ -27,7 +27,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "20.19.24",
     "dotenv": "17.2.1",
-    "eslint": "8.57.1",
+    "eslint": "10.0.2",
     "prisma": "7.0.0",
     "rimraf": "5.0.10",
     "tsup": "8.5.0",

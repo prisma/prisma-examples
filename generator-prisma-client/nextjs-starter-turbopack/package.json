@@ -42,7 +42,7 @@
     "@types/react-dom": "19.2.2",
     "autoprefixer": "10.4.21",
     "dotenv": "17.2.1",
-    "eslint": "^9",
+    "eslint": "^10.0.0",
     "eslint-config-next": "16.0.10",
     "prisma": "7.0.0",
     "tsx": "4.20.6",

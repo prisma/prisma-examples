@@ -39,7 +39,7 @@
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "autoprefixer": "10.4.21",
-    "eslint": "8.57.1",
+    "eslint": "10.0.2",
     "eslint-config-next": "15.3.8",
     "tsx": "4.20.6",
     "typescript": "5.8.3"
