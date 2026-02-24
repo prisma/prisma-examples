@@ -23,17 +23,17 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-markdown": "10.1.0",
-    "pg": "^8.16.3"
+    "pg": "8.18.0"
   },
   "devDependencies": {
     "@types/graphql": "14.5.0",
     "@types/node": "22.19.0",
     "@types/react": "19.1.8",
-    "dotenv": "^17.2.1",
+    "dotenv": "17.3.1",
     "prisma": "7.0.0",
     "tsx": "4.20.6",
     "typescript": "5.8.2",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.16.0"
   },
   "pkg": {
     "assets": [

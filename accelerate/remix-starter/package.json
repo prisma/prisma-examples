@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@prisma/client": "7.0.0",
-    "@prisma/extension-accelerate": "^2.0.2",
+    "@prisma/extension-accelerate": "2.0.2",
     "@remix-run/node": "2.16.8",
     "@remix-run/react": "2.16.8",
     "@remix-run/serve": "2.16.8",

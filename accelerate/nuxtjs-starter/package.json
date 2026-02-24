@@ -12,10 +12,10 @@
   "dependencies": {
     "@nuxtjs/tailwindcss": "6.14.0",
     "@prisma/nuxt": "0.3.0",
-    "dotenv": "^17.2.3",
+    "dotenv": "17.3.1",
     "nuxt": "3.17.6",
     "@prisma/client": "7.0.0",
-    "@prisma/extension-accelerate": "^2.0.2",
+    "@prisma/extension-accelerate": "2.0.2",
     "tsx": "4.20.6",
     "zod": "3.25.76"
   },
