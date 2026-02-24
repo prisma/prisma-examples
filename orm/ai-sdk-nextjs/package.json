@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ai-sdk/openai": "2.0.24",
+    "@ai-sdk/openai": "2.0.94",
     "@ai-sdk/react": "2.0.34",
     "@prisma/adapter-pg": "7.2.0",
     "@prisma/client": "7.2.0",
