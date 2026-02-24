@@ -20,5 +20,5 @@
     "node": "24.4.0"
   },
   "name": "with-prisma",
-  "packageManager": "pnpm@8.15.9"
+  "packageManager": "pnpm@10.30.2"
 }
