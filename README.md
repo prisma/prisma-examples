@@ -88,6 +88,22 @@ The following examples are fullstack examples using the new [`prisma-client`](ht
 | [`nextjs-starter-webpack-with-middleware`](https://github.com/prisma/prisma-examples/tree/latest/generator-prisma-client/nextjs-starter-webpack-with-middleware) | A Next.js 15 starter with Webpack 5, running on Node.js for main pages and Vercel Edge Light for middleware. |
 
 
+## Database examples
+
+The [`databases`](./databases) folder contains examples focused on specific databases and Prisma Postgres integrations.
+
+| Demo                                                                                                                       | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [`cockroachdb`](https://github.com/prisma/prisma-examples/tree/latest/databases/cockroachdb)                             | [Prisma ORM](https://www.prisma.io/orm) with [CockroachDB](https://www.cockroachlabs.com/) in a script and test setup.  |
+| [`mongodb`](https://github.com/prisma/prisma-examples/tree/latest/databases/mongodb)                                     | [Prisma ORM](https://www.prisma.io/orm) with [MongoDB](https://www.mongodb.com/) in script and test examples.            |
+| [`postgresql-supabase`](https://github.com/prisma/prisma-examples/tree/latest/databases/postgresql-supabase)             | [Prisma ORM](https://www.prisma.io/orm) with [Supabase Postgres](https://supabase.com/).                                 |
+| [`prisma-postgres`](https://github.com/prisma/prisma-examples/tree/latest/databases/prisma-postgres)                     | [Prisma ORM](https://www.prisma.io/orm) with [Prisma Postgres](https://www.prisma.io/postgres).                          |
+| [`sql-server`](https://github.com/prisma/prisma-examples/tree/latest/databases/sql-server)                               | [Prisma ORM](https://www.prisma.io/orm) with [Microsoft SQL Server](https://www.microsoft.com/sql-server).               |
+| [`turso`](https://github.com/prisma/prisma-examples/tree/latest/databases/turso)                                         | [Prisma ORM](https://www.prisma.io/orm) with [Turso](https://turso.tech/).                                                |
+| [`typeorm-prisma-postgres`](https://github.com/prisma/prisma-examples/tree/latest/databases/typeorm-prisma-postgres)     | [TypeORM](https://typeorm.io/) with [Prisma Postgres](https://www.prisma.io/postgres).                                   |
+| [`drizzle-prisma-postgres`](https://github.com/prisma/prisma-examples/tree/latest/databases/drizzle-prisma-postgres)     | [Drizzle ORM](https://orm.drizzle.team/) with [Prisma Postgres](https://www.prisma.io/postgres).                         |
+| [`kysely-prisma-postgres`](https://github.com/prisma/prisma-examples/tree/latest/databases/kysely-prisma-postgres)       | [Kysely](https://kysely.dev/) with [Prisma Postgres](https://www.prisma.io/postgres).                                    |
+
 ## Prisma Accelerate
 
 The [`accelerate`](./accelerate) folder contains examples of projects using [Prisma Accelerate](https://www.prisma.io/data-platform/accelerate) for connection pooling and global caching.
