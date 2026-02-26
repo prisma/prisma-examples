@@ -54,6 +54,10 @@ async function main() {
     })
     .returning();
 
+  if (!newPost) {
+    throw new Error("Failed to create post.");
+  }
+
   console.log("Created user with post:", { ...newUser, post: newPost });
 
   // Query all published posts and include each author.
@@ -76,10 +80,6 @@ async function main() {
   console.log("All published posts:", publishedPosts);
 
   // Update one post.
-  if (!newPost) {
-    throw new Error("Failed to create post.");
-  }
-
   const [updatedPost] = await db
     .update(posts)
     .set({ title: "Hello from Prisma Postgres via Drizzle! (updated)" })

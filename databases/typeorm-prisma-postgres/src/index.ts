@@ -8,10 +8,12 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not set. Add it to your .env file.");
 }
 
+const allowInvalidCert = process.env.DB_ALLOW_INVALID_CERT === "true";
+
 const dataSource = new DataSource({
   type: "postgres",
   url: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: { rejectUnauthorized: !allowInvalidCert },
   synchronize: true,
   logging: false,
   entities: [User, Post],
