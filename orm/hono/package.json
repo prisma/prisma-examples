@@ -7,7 +7,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@hono/node-server": "1.19.6",
+    "@hono/node-server": "1.19.9",
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "dotenv": "17.2.3",
