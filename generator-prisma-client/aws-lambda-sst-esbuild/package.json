@@ -7,7 +7,7 @@
     "zip": "zip -j dist/lambda.zip dist/index.js"
   },
   "devDependencies": {
-    "@types/aws-lambda": "8.10.157",
+    "@types/aws-lambda": "8.10.161",
     "dotenv": "17.2.1",
     "dotenv-cli": "10.0.0",
     "esbuild": "0.25.12",
