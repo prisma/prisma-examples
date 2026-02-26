@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.13",
-    "@types/node": "20.19.24",
+    "@types/node": "20.19.35",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "prisma": "7.0.0",

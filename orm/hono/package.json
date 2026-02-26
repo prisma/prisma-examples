@@ -15,7 +15,7 @@
     "hono": "4.9.12"
   },
   "devDependencies": {
-    "@types/node": "20.19.24",
+    "@types/node": "20.19.35",
     "prisma": "7.0.0",
     "tsx": "4.20.6",
     "typescript": "5.9.3",
