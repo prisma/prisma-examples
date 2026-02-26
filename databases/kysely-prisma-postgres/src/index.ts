@@ -27,10 +27,18 @@ if (!process.env.DATABASE_URL) {
 
 const db = new Kysely<Database>({
   dialect: new PostgresDialect({
+const allowInsecureSsl = process.env.PG_SSL_INSECURE === "true";
+
+const db = new Kysely<Database>({
+  dialect: new PostgresDialect({
     pool: new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false },
+      ssl: allowInsecureSsl
+        ? { rejectUnauthorized: false }
+        : { rejectUnauthorized: true },
     }),
+  }),
+});
   }),
 });
 
