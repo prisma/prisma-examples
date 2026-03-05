@@ -24,7 +24,7 @@
     "@prisma/client": "7.0.0",
     "@trpc/server": "next",
     "@types/cors": "2.8.19",
-    "cors": "2.8.5",
+    "cors": "2.8.6",
     "express": "5.1.0",
     "zod": "3.25.76",
     "dotenv": "^17.2.3",

@@ -20,7 +20,7 @@
     "@as-integrations/express5": "1.1.2",
     "@prisma/client": "7.0.0",
     "@prisma/adapter-pg": "7.0.0",
-    "cors": "2.8.5",
+    "cors": "2.8.6",
     "dotenv": "16.6.1",
     "express": "5.1.0",
     "graphql": "16.11.0",
