@@ -38,7 +38,7 @@
     "@types/node": "22.19.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
-    "autoprefixer": "10.4.21",
+    "autoprefixer": "10.4.27",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.8",
     "tsx": "4.20.6",
