@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@prisma/client": "6.9.0",
-    "body-parser": "2.2.0",
+    "body-parser": "2.2.2",
     "express": "5.1.0",
     "prisma": "6.9.0"
   },
