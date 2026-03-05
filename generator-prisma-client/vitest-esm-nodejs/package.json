@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@types/node": "18.19.130",
-    "execa": "9.6.0",
+    "execa": "9.6.1",
     "prisma": "6.19.0",
     "rimraf": "6.0.1",
     "typescript": "5.8.3",
