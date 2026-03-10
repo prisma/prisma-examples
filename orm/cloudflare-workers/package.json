@@ -13,7 +13,7 @@
 		"studio": "prisma studio"
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"@cloudflare/vitest-pool-workers": "^0.12.0",
 		"@types/pg": "^8.15.6",
 		"dotenv-cli": "^11.0.0",
 		"prisma": "^7.0.0",
