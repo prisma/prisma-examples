@@ -10,7 +10,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@graphql-tools/schema": "10.0.26",
+    "@graphql-tools/schema": "10.0.31",
     "@prisma/client": "7.0.0",
     "@prisma/adapter-pg": "7.0.0",
     "dotenv": "^17.2.1",
