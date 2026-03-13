@@ -19,7 +19,7 @@
     "@apollo/server": "4.13.0",
     "@prisma/client": "7.0.0",
     "@prisma/adapter-pg": "7.0.0",
-    "bcryptjs": "3.0.2",
+    "bcryptjs": "3.0.3",
     "dotenv": "^17.2.1",
     "graphql": "16.11.0",
     "graphql-middleware": "6.1.35",
