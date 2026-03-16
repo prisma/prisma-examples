@@ -33,7 +33,7 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
       const scripts = packageJson.scripts ?? {}
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
-      await execa('bun', ['install'], { cwd, env, stdio: 'inherit' })
+      await execa('npm', ['install'], { cwd, env, stdio: 'inherit' })
 
       console.log(`\n[${examplePath}] Running prisma generate...`)
       await execa('npx', ['prisma', 'generate'], { cwd, env, stdio: 'inherit' })
@@ -59,7 +59,7 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
 
       if (options?.runBuild && scripts.build) {
         console.log(`\n[${examplePath}] Running build...`)
-        await execa('bun', ['run', 'build'], { cwd, env, stdio: 'inherit' })
+        await execa('npm', ['run', 'build'], { cwd, env, stdio: 'inherit' })
       }
 
       console.log(`\n[${examplePath}] Completed successfully!`)
@@ -89,7 +89,7 @@ export function testSqliteExample(
       }
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
-      await execa('bun', ['install'], { cwd, env, stdio: 'inherit' })
+      await execa('npm', ['install'], { cwd, env, stdio: 'inherit' })
 
       console.log(`\n[${examplePath}] Running prisma generate...`)
       await execa('npx', ['prisma', 'generate'], { cwd, env, stdio: 'inherit' })
@@ -118,7 +118,7 @@ export function testSqliteExample(
 
       if (options?.runBuild && scripts.build) {
         console.log(`\n[${examplePath}] Running build...`)
-        await execa('bun', ['run', 'build'], { cwd, env, stdio: 'inherit' })
+        await execa('npm', ['run', 'build'], { cwd, env, stdio: 'inherit' })
       }
 
       console.log(`\n[${examplePath}] Completed successfully!`)
