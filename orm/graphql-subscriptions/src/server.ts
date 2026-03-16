@@ -4,7 +4,10 @@ import { expressMiddleware } from '@as-integrations/express5';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import cors from 'cors';
 import express from 'express';
-import { useServer } from 'graphql-ws/lib/use/ws';
+// graphql-ws v6 ships this subpath through package exports, but TS's legacy node
+// resolution in this example can't see the declaration without a broader tsconfig change.
+// @ts-expect-error compile against the runtime-resolved export path
+import { useServer } from 'graphql-ws/use/ws';
 import { createServer } from 'http';
 import { WebSocketServer } from 'ws';
 import { Context, context } from './context';
@@ -45,8 +48,8 @@ async function start() {
   app.use('/graphql', cors<cors.CorsRequest>(), express.json(), expressMiddleware(server, { context: async () => context }));
 
   httpServer.listen(PORT, () => {
-    console.log(`🚀 Server ready at http://localhost:4000/graphql`)
-    console.log(`⏰ Subscriptions ready at http://localhost:4000/graphql`)
+    console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)
+    console.log(`⏰ Subscriptions ready at http://localhost:${PORT}/graphql`)
     console.log(
       `⭐️ See sample queries: http://pris.ly/e/ts/graphql-subscriptions#using-the-graphql-api`,
     )

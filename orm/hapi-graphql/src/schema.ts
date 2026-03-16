@@ -234,7 +234,7 @@ const Post = objectType({
             author: true,
           },
         })
-        return post.author
+        return post?.author ?? null
       },
     })
   },

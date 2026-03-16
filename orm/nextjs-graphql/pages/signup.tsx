@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import Layout from "../components/Layout"
 import Router from "next/router"
-import gql from "graphql-tag"
-import { useMutation } from "@apollo/client"
+import { gql } from "@apollo/client/core"
+import { useMutation } from "@apollo/client/react"
 
 const SignupMutation = gql`
   mutation SignupMutation($name: String, $email: String!) {

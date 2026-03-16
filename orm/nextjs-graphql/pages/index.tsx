@@ -1,5 +1,5 @@
 import Layout from "../components/Layout"
-import gql from "graphql-tag"
+import { gql } from "@apollo/client/core"
 import client from "../lib/apollo-client"
 import Post, { PostProps } from "../components/Post"
 

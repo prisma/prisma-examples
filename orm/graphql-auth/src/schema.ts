@@ -247,7 +247,7 @@ const User = objectType({
     t.nonNull.list.nonNull.field('posts', {
       type: 'Post',
       resolve: (parent, _, context: Context) => {
-        return context.prisma.post.findFirst({
+        return context.prisma.post.findMany({
           where: {
             author: { id: parent.id || undefined },
           },

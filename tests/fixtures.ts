@@ -9,6 +9,7 @@ type Server = Awaited<ReturnType<typeof startPrismaDevServer>>
 export interface TestExampleOptions {
   skipSeed?: boolean
   skipMigrate?: boolean
+  runBuild?: boolean
 }
 
 export function testExample(examplePath: string, options?: TestExampleOptions) {
@@ -27,9 +28,12 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
         : url
       const cwd = path.join(process.cwd(), examplePath)
       const env = { ...process.env, DATABASE_URL: databaseUrl, DIRECT_URL: databaseUrl }
+      const packageJsonPath = path.join(cwd, 'package.json')
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
+      const scripts = packageJson.scripts ?? {}
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
-      await execa('npm', ['install'], { cwd, env, stdio: 'inherit' })
+      await execa('bun', ['install'], { cwd, env, stdio: 'inherit' })
 
       console.log(`\n[${examplePath}] Running prisma generate...`)
       await execa('npx', ['prisma', 'generate'], { cwd, env, stdio: 'inherit' })
@@ -53,6 +57,11 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
         }
       }
 
+      if (options?.runBuild && scripts.build) {
+        console.log(`\n[${examplePath}] Running build...`)
+        await execa('bun', ['run', 'build'], { cwd, env, stdio: 'inherit' })
+      }
+
       console.log(`\n[${examplePath}] Completed successfully!`)
     })
   })
@@ -61,12 +70,15 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
 // For SQLite examples that don't need @prisma/dev server
 export function testSqliteExample(
   examplePath: string,
-  options?: { generateSql?: boolean; env?: NodeJS.ProcessEnv }
+  options?: { generateSql?: boolean; env?: NodeJS.ProcessEnv; runBuild?: boolean }
 ) {
   describe(examplePath, () => {
     test('prisma setup', async () => {
       const cwd = path.join(process.cwd(), examplePath)
       const env = { ...process.env, ...options?.env }
+      const packageJsonPath = path.join(cwd, 'package.json')
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
+      const scripts = packageJson.scripts ?? {}
 
       // Remove existing SQLite databases to ensure clean state
       const dbPaths = [path.join(cwd, 'dev.db'), path.join(cwd, 'prisma', 'dev.db')]
@@ -77,7 +89,7 @@ export function testSqliteExample(
       }
 
       console.log(`\n[${examplePath}] Installing dependencies...`)
-      await execa('npm', ['install'], { cwd, env, stdio: 'inherit' })
+      await execa('bun', ['install'], { cwd, env, stdio: 'inherit' })
 
       console.log(`\n[${examplePath}] Running prisma generate...`)
       await execa('npx', ['prisma', 'generate'], { cwd, env, stdio: 'inherit' })
@@ -102,6 +114,11 @@ export function testSqliteExample(
           console.log(`\n[${examplePath}] Running prisma db seed...`)
           await execa('npx', ['prisma', 'db', 'seed'], { cwd, env, stdio: 'inherit' })
         }
+      }
+
+      if (options?.runBuild && scripts.build) {
+        console.log(`\n[${examplePath}] Running build...`)
+        await execa('bun', ['run', 'build'], { cwd, env, stdio: 'inherit' })
       }
 
       console.log(`\n[${examplePath}] Completed successfully!`)

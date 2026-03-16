@@ -157,20 +157,20 @@ export const Subscription = subscriptionType({
     t.field('newPost', {
       type: 'Post',
       subscribe(_root, _args, ctx) {
-        return ctx.pubsub.asyncIterator('newPost')
+        return ctx.pubsub.asyncIterableIterator('newPost')
       },
       resolve(payload) {
-        return payload
+        return payload as Awaited<ReturnType<Context['prisma']['post']['create']>>
       },
     })
 
     t.field('postPublished', {
       type: 'Post',
       subscribe(_root, _args, ctx) {
-        return ctx.pubsub.asyncIterator('postPublished')
+        return ctx.pubsub.asyncIterableIterator('postPublished')
       },
       resolve(payload) {
-        return payload
+        return payload as Awaited<ReturnType<Context['prisma']['post']['create']>>
       },
     })
   },

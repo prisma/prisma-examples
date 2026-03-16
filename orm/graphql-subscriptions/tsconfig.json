@@ -2,8 +2,10 @@
   "compilerOptions": {
     "sourceMap": true,
     "module": "commonjs",
-    "target": "ES2018",
+    "moduleResolution": "node",
+    "target": "ES2022",
     "outDir": "dist",
+    "rootDir": ".",
     "lib": [
       "esnext",
       "dom"
@@ -16,5 +18,9 @@
     "skipLibCheck": true,
     "noUnusedParameters": false,
     "esModuleInterop": true
-  }
+  },
+  "include": [
+    "src/**/*",
+    "prisma/generated/**/*"
+  ]
 }

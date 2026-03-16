@@ -3,7 +3,7 @@
  * Do not make changes to this file directly
  */
 
-
+import type * as prisma from "./../../prisma/generated/client"
 import type { Context } from "./../context"
 import type { core } from "nexus"
 declare global {
@@ -62,21 +62,9 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Mutation: {};
-  Post: { // root type
-    content?: string | null; // String
-    createdAt: NexusGenScalars['DateTime']; // DateTime!
-    id: number; // Int!
-    published: boolean; // Boolean!
-    title: string; // String!
-    updatedAt: NexusGenScalars['DateTime']; // DateTime!
-    viewCount: number; // Int!
-  }
+  Post: prisma.Post;
   Query: {};
-  User: { // root type
-    email: string; // String!
-    id: number; // Int!
-    name?: string | null; // String
-  }
+  User: prisma.User;
 }
 
 export interface NexusGenInterfaces {

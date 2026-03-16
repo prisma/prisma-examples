@@ -3,7 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx src/server",
-    "start": "node dist/server",
+    "start": "node dist/src/server",
     "clean": "rm -rf dist",
     "build": "npm -s run clean && npm -s run generate && tsc && npm run build:schema",
     "build:schema": "tsx src/schema/index.ts",
@@ -16,22 +16,21 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@pothos/core": "4.7.0",
-    "@pothos/plugin-prisma": "4.9.1",
-    "@prisma/client": "7.0.0",
-    "@prisma/adapter-pg": "7.0.0",
-    "dotenv": "16.6.1",
-    "graphql": "16.11.0",
-    "graphql-scalars": "1.24.2",
-    "graphql-yoga": "5.14.0",
-    "pg": "^8.16.3"
+    "@pothos/core": "4.12.0",
+    "@pothos/plugin-prisma": "4.14.2",
+    "@prisma/client": "7.5.0",
+    "@prisma/adapter-pg": "7.5.0",
+    "dotenv": "17.3.1",
+    "graphql": "16.13.1",
+    "graphql-scalars": "1.25.0",
+    "graphql-yoga": "5.18.1",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
-    "@types/node": "22.18.12",
-    "dotenv": "^17.2.1",
-    "prisma": "7.0.0",
-    "tsx": "4.20.6",
-    "typescript": "5.8.2",
-    "@types/pg": "^8.15.6"
+    "@types/node": "25.5.0",
+    "prisma": "7.5.0",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "@types/pg": "^8.18.0"
   }
 }

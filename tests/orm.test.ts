@@ -13,20 +13,21 @@ describe.concurrent('ORM Examples', () => {
   testExample('orm/fastify')
   testExample('orm/fastify-graphql')
   testExample('orm/fastify-graphql-sdl-first')
-  testExample('orm/graphql')
-  testExample('orm/graphql-auth')
-  testExample('orm/graphql-nexus')
+  testExample('orm/graphql', { runBuild: true })
+  testExample('orm/graphql-auth', { runBuild: true })
+  testExample('orm/graphql-nexus', { runBuild: true })
   testExample('orm/graphql-sdl-first')
-  testExample('orm/graphql-subscriptions')
+  testExample('orm/graphql-subscriptions', { runBuild: true })
   testExample('orm/hapi')
+  testExample('orm/hapi-graphql', { runBuild: true })
   testExample('orm/hapi-graphql-sdl-first')
   testExample('orm/hono')
   testExample('orm/koa')
   testExample('orm/nest')
-  testExample('orm/nest-graphql')
-  testExample('orm/nest-graphql-sdl-first')
+  testExample('orm/nest-graphql', { runBuild: true })
+  testExample('orm/nest-graphql-sdl-first', { runBuild: true })
   testExample('orm/nextjs')
-  testExample('orm/nextjs-graphql')
+  testExample('orm/nextjs-graphql', { runBuild: true })
   testExample('orm/nextjs-trpc')
   testExample('orm/prisma-mocking-javascript')
   testExample('orm/react-router-7')
@@ -57,10 +58,6 @@ describe.concurrent('ORM Examples', () => {
 
   describe('orm/graphql-typegraphql-crud', () => {
     test.skip('README-only example (no runnable project)', () => {})
-  })
-
-  describe('orm/hapi-graphql', () => {
-    test.skip('prisma generate fails', () => {})
   })
 
   describe('orm/nuxt', () => {
