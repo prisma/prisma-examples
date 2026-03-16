@@ -11,7 +11,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "astro": "5.10.2",
+    "astro": "5.18.1",
     "dotenv": "^17.2.3",
     "pg": "^8.16.3"
   },
