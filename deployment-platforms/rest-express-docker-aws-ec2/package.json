@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsx src/index.ts",
+    "build": "prisma generate && tsc",
+    "dev": "prisma generate && tsx src/index.ts",
     "start": "node dist/index.js"
   },
   "dependencies": {
