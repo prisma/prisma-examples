@@ -15,25 +15,33 @@ function parsePostId(id: string | string[], res: Response): number | null {
 
 // GET /feed — all published posts
 postRouter.get('/feed', async (_req: Request, res: Response) => {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    include: { author: true },
-  })
-  res.json(posts)
+  try {
+    const posts = await prisma.post.findMany({
+      where: { published: true },
+      include: { author: true },
+    })
+    res.json(posts)
+  } catch {
+    res.status(500).json({ error: 'Internal server error' })
+  }
 })
 
 // GET /post/:id — single post by id
 postRouter.get('/post/:id', async (req: Request, res: Response) => {
   const postId = parsePostId(req.params.id, res)
   if (postId === null) return
-  const post = await prisma.post.findUnique({
-    where: { id: postId },
-  })
-  if (!post) {
-    res.status(404).json({ error: `Post with ID ${req.params.id} not found` })
-    return
+  try {
+    const post = await prisma.post.findUnique({
+      where: { id: postId },
+    })
+    if (!post) {
+      res.status(404).json({ error: `Post with ID ${req.params.id} not found` })
+      return
+    }
+    res.json(post)
+  } catch {
+    res.status(500).json({ error: 'Internal server error' })
   }
-  res.json(post)
 })
 
 // POST /post — create post
@@ -43,19 +51,23 @@ postRouter.post('/post', async (req: Request, res: Response) => {
     res.status(400).json({ error: 'title and authorEmail are required' })
     return
   }
-  const author = await prisma.user.findUnique({ where: { email: authorEmail } })
-  if (!author) {
-    res.status(404).json({ error: `No user found for email: ${authorEmail}` })
-    return
+  try {
+    const author = await prisma.user.findUnique({ where: { email: authorEmail } })
+    if (!author) {
+      res.status(404).json({ error: `No user found for email: ${authorEmail}` })
+      return
+    }
+    const post = await prisma.post.create({
+      data: {
+        title,
+        content,
+        author: { connect: { email: authorEmail } },
+      },
+    })
+    res.status(201).json(post)
+  } catch {
+    res.status(500).json({ error: 'Internal server error' })
   }
-  const post = await prisma.post.create({
-    data: {
-      title,
-      content,
-      author: { connect: { email: authorEmail } },
-    },
-  })
-  res.status(201).json(post)
 })
 
 // PUT /publish/:id — publish a post

@@ -19,7 +19,7 @@ userRouter.post('/user', async (req: Request, res: Response) => {
     const user = await prisma.user.create({
       data: { email, name },
     })
-    res.json(user)
+    res.status(201).json(user)
   } catch (error: unknown) {
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
