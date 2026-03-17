@@ -9,7 +9,7 @@ services:
       postgres:
         condition: service_healthy
     command: >
-      sh -c "npx prisma migrate deploy && node dist/index.js"
+      sh -c "npx prisma migrate deploy && node dist/src/index.js"
 
   postgres:
     image: postgres:16-alpine
