@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express'
+import { Prisma } from '../../prisma/generated/client'
 import { prisma } from '../lib/prisma'
 
 export const postRouter = Router()
@@ -15,8 +16,13 @@ postRouter.get('/feed', async (_req: Request, res: Response) => {
 // GET /post/:id — single post by id
 postRouter.get('/post/:id', async (req: Request, res: Response) => {
   const { id } = req.params
+  const postId = Number(id)
+  if (!Number.isInteger(postId)) {
+    res.status(400).json({ error: `Invalid post ID: ${id}` })
+    return
+  }
   const post = await prisma.post.findUnique({
-    where: { id: Number(id) },
+    where: { id: postId },
   })
   if (!post) {
     res.status(404).json({ error: `Post with ID ${id} not found` })
@@ -41,26 +47,50 @@ postRouter.post('/post', async (req: Request, res: Response) => {
 // PUT /publish/:id — publish a post
 postRouter.put('/publish/:id', async (req: Request, res: Response) => {
   const { id } = req.params
+  const postId = Number(id)
+  if (!Number.isInteger(postId)) {
+    res.status(400).json({ error: `Invalid post ID: ${id}` })
+    return
+  }
   try {
     const post = await prisma.post.update({
-      where: { id: Number(id) },
+      where: { id: postId },
       data: { published: true },
     })
     res.json(post)
-  } catch {
-    res.status(404).json({ error: `Post with ID ${id} not found` })
+  } catch (error: unknown) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === 'P2025'
+    ) {
+      res.status(404).json({ error: `Post with ID ${id} not found` })
+      return
+    }
+    res.status(500).json({ error: 'Internal server error' })
   }
 })
 
 // DELETE /post/:id — delete post
 postRouter.delete('/post/:id', async (req: Request, res: Response) => {
   const { id } = req.params
+  const postId = Number(id)
+  if (!Number.isInteger(postId)) {
+    res.status(400).json({ error: `Invalid post ID: ${id}` })
+    return
+  }
   try {
     const post = await prisma.post.delete({
-      where: { id: Number(id) },
+      where: { id: postId },
     })
     res.json(post)
-  } catch {
-    res.status(404).json({ error: `Post with ID ${id} not found` })
+  } catch (error: unknown) {
+    if (
+      error instanceof Prisma.PrismaClientKnownRequestError &&
+      error.code === 'P2025'
+    ) {
+      res.status(404).json({ error: `Post with ID ${id} not found` })
+      return
+    }
+    res.status(500).json({ error: 'Internal server error' })
   }
 })

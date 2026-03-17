@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma
 COPY prisma.config.ts ./
-RUN npm ci
+RUN npm install
 RUN npx prisma generate
 
 COPY tsconfig.json ./
@@ -23,7 +23,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 COPY package*.json ./
 COPY prisma ./prisma
 COPY prisma.config.ts ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma/generated ./prisma/generated

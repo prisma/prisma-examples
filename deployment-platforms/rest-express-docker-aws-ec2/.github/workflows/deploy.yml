@@ -69,6 +69,12 @@ jobs:
               docker rm "$CONTAINER_NAME"
             fi
 
+            # Run database migrations
+            docker run --rm \
+              -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+              "$ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}" \
+              npx prisma migrate deploy
+
             # Run new container
             docker run -d \
               --name "$CONTAINER_NAME" \
