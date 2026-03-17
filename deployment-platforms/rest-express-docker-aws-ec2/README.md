@@ -132,6 +132,13 @@ sudo service docker start
 sudo usermod -aG docker ec2-user
 ```
 
+The EC2 instance needs permission to pull images from ECR. Choose one option:
+
+- **Option 1 (recommended):** Attach an IAM instance role with the `AmazonEC2ContainerRegistryReadOnly` policy. No credentials are stored on the instance.
+- **Option 2:** Run `aws configure` on the instance and enter an IAM access key that has ECR read permissions.
+
+This is required by the `deploy.yml` step that runs `aws ecr get-login-password` on the instance before pulling the Docker image.
+
 Make sure port `3000` (or your chosen `CONTAINER_PORT`) is open in the instance's security group.
 
 ### 2. Configure GitHub secrets and variables
@@ -160,4 +167,15 @@ In your repository, go to **Settings → Secrets and variables → Actions** and
 
 ### 3. How deployment works
 
-Copy [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) to `.github/workflows/` at the root of **your own repository**. Pushing to `main` then triggers the workflow. It authenticates with AWS, builds a Docker image using Buildx (with GitHub Actions layer caching for faster rebuilds) and pushes it to ECR tagged with both the commit SHA and `latest`. It then SSHs into your EC2 instance, runs `prisma migrate deploy` against your production database using a one-off container, pulls the new image, gracefully stops and removes the old container if one exists, starts the new one with `DATABASE_URL` injected at runtime, waits 5 seconds and verifies the container is running — printing logs and exiting non-zero if it isn't. Finally it prunes old images to keep the EC2 disk clean.
+Copy [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) to `.github/workflows/` at the root of **your own repository**. Pushing to `main` or `latest` triggers the workflow, which performs the following steps:
+
+1. Authenticates with AWS using the configured IAM credentials.
+2. Builds a Docker image using Buildx with GitHub Actions layer caching for faster rebuilds.
+3. Pushes the image to ECR tagged with both the commit SHA and `latest`.
+4. SSHs into your EC2 instance.
+5. Runs `prisma migrate deploy` against your production database in a one-off container.
+6. Pulls the new image.
+7. Stops and removes the old container if one is running.
+8. Starts the new container with `DATABASE_URL` injected at runtime.
+9. Waits 5 seconds and verifies the container is running — prints logs and exits non-zero on failure.
+10. Prunes old images to keep the EC2 disk clean.

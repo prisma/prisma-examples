@@ -43,6 +43,11 @@ postRouter.post('/post', async (req: Request, res: Response) => {
     res.status(400).json({ error: 'title and authorEmail are required' })
     return
   }
+  const author = await prisma.user.findUnique({ where: { email: authorEmail } })
+  if (!author) {
+    res.status(404).json({ error: `No user found for email: ${authorEmail}` })
+    return
+  }
   const post = await prisma.post.create({
     data: {
       title,
@@ -50,7 +55,7 @@ postRouter.post('/post', async (req: Request, res: Response) => {
       author: { connect: { email: authorEmail } },
     },
   })
-  res.json(post)
+  res.status(201).json(post)
 })
 
 // PUT /publish/:id — publish a post

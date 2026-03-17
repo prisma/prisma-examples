@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "build": "prisma generate && tsc",
-    "dev": "prisma generate && tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "dev": "prisma generate && npm run typecheck && tsx src/index.ts",
     "start": "node dist/index.js"
   },
   "dependencies": {
