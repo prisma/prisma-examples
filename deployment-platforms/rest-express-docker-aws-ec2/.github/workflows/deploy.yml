@@ -1,0 +1,92 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+      CONTAINER_NAME: ${{ vars.CONTAINER_NAME }}
+      CONTAINER_PORT: ${{ vars.CONTAINER_PORT }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@8743aa11bfbda97acb45c151ae7a2e0b203f1914
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          envs: ECR_REGISTRY,ECR_REPOSITORY,AWS_REGION,CONTAINER_NAME,CONTAINER_PORT
+          script: |
+            set -eu
+
+            # Auth
+            aws ecr get-login-password --region "$AWS_REGION" | \
+              docker login --username AWS --password-stdin "$ECR_REGISTRY"
+
+            # Pull latest image
+            docker pull "$ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}"
+
+            # Stop and remove existing container if running
+            if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+              docker stop "$CONTAINER_NAME"
+              docker rm "$CONTAINER_NAME"
+            fi
+
+            # Run new container
+            docker run -d \
+              --name "$CONTAINER_NAME" \
+              --restart unless-stopped \
+              -p "$CONTAINER_PORT:3000" \
+              -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+              "$ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}"
+
+            # Verify container is running
+            sleep 5
+            if docker ps --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+              echo "Container $CONTAINER_NAME is running"
+              docker ps --filter "name=$CONTAINER_NAME" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+            else
+              echo "Container $CONTAINER_NAME failed to start"
+              docker logs "$CONTAINER_NAME" --tail 50
+              exit 1
+            fi
+
+            # Prune old images
+            docker image prune -f
