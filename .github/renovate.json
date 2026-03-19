@@ -9,7 +9,7 @@
     "automerge": false
   },
   "rangeStrategy": "pin",
-  "baseBranches": ["latest"],
+  "baseBranchPatterns": ["latest"],
   "reviewers": ["nikolasburk", "jharrell"],
   "configMigration": true,
   "packageRules": [
