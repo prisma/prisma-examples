@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "6.31.9",
+    "@clerk/nextjs": "6.39.0",
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "next": "15.4.10",
