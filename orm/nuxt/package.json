@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.9.0",
+    "@nuxt/eslint": "1.15.2",
     "@prisma/client": "7.0.0",
     "@prisma/adapter-pg": "7.0.0",
     "eslint": "^9.0.0",
