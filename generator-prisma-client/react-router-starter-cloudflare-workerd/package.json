@@ -39,7 +39,7 @@
     "typescript": "5.8.3",
     "vite": "6.4.1",
     "vite-tsconfig-paths": "5.1.4",
-    "wrangler": "4.28.0",
+    "wrangler": "4.76.0",
     "@types/pg": "^8.15.6"
   },
   "packageManager": "pnpm@8.15.9+"
