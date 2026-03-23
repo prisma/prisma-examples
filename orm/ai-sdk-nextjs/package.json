@@ -13,7 +13,7 @@
     "@ai-sdk/react": "2.0.34",
     "@prisma/adapter-pg": "7.2.0",
     "@prisma/client": "7.2.0",
-    "ai": "5.0.34",
+    "ai": "5.0.52",
     "next": "15.4.10",
     "react": "19.2.3",
     "react-dom": "19.2.3",
