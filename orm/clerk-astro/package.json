@@ -9,17 +9,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^9.5.1",
-    "@clerk/astro": "^2.16.2",
-    "@prisma/adapter-pg": "^7.0.0",
-    "@prisma/client": "^7.0.0",
-    "astro": "^5.16.0",
-    "dotenv": "^17.2.3",
-    "pg": "^8.16.3"
+    "@astrojs/node": "9.5.5",
+    "@clerk/astro": "2.17.9",
+    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.5.0",
+    "astro": "5.18.1",
+    "dotenv": "17.3.1",
+    "pg": "8.20.0"
   },
   "devDependencies": {
-    "@types/pg": "^8.15.6",
-    "prisma": "^7.0.0",
-    "tsx": "^4.20.6"
+    "@types/pg": "8.20.0",
+    "prisma": "7.5.0",
+    "tsx": "4.21.0"
   }
 }

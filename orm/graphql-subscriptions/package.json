@@ -28,7 +28,7 @@
     "graphql-ws": "6.0.7",
     "nexus": "1.3.0",
     "ws": "8.19.0",
-    "pg": "^8.20.0"
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "@types/cors": "2.8.19",
@@ -38,6 +38,6 @@
     "prisma": "7.5.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "@types/pg": "^8.18.0"
+    "@types/pg": "8.20.0"
   }
 }

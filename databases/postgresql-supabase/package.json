@@ -12,12 +12,12 @@
     "prisma": "7.0.0",
     "supabase": "2.82.0",
     "typescript": "5.8.2",
-    "tsx": "^4.20.6",
-    "@types/pg": "^8.15.6"
+    "tsx": "4.21.0",
+    "@types/pg": "8.20.0"
   },
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   }
 }

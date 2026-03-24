@@ -13,18 +13,18 @@
     "@graphql-tools/schema": "10.0.31",
     "@prisma/client": "7.5.0",
     "@prisma/adapter-pg": "7.5.0",
-    "dotenv": "^17.3.1",
+    "dotenv": "17.3.1",
     "fastify": "5.8.2",
     "graphql": "16.13.1",
     "graphql-scalars": "1.25.0",
     "mercurius": "16.8.0",
-    "pg": "^8.20.0"
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "@types/node": "25.5.0",
     "prisma": "7.5.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
-    "@types/pg": "^8.18.0"
+    "@types/pg": "8.20.0"
   }
 }

@@ -9,15 +9,15 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@prisma/client": "^7.0.0",
-    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "7.5.0",
+    "@prisma/adapter-pg": "7.5.0",
     "@react-router/node": "7.6.3",
     "@react-router/serve": "7.6.3",
     "isbot": "5.1.31",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-router": "7.6.3",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "@react-router/dev": "7.6.3",
@@ -25,13 +25,13 @@
     "@types/node": "22.19.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
-    "dotenv": "^17.2.1",
+    "dotenv": "17.3.1",
     "prisma": "7.0.0",
     "react-router-devtools": "5.0.6",
     "tailwindcss": "4.1.13",
     "typescript": "5.8.2",
     "vite": "6.4.1",
     "vite-tsconfig-paths": "5.1.4",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   }
 }

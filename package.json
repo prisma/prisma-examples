@@ -7,9 +7,9 @@
   },
   "devDependencies": {
     "@prisma/dev": "latest",
-    "@types/node": "^25.0.3",
-    "execa": "^9.5.2",
-    "typescript": "^5.7.2",
-    "vitest": "^3.0.4"
+    "@types/node": "25.5.0",
+    "execa": "9.6.1",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
   }
 }

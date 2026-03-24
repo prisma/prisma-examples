@@ -21,7 +21,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
@@ -33,6 +33,6 @@
     "tsup": "8.5.0",
     "tsx": "4.20.6",
     "typescript": "5.5.4",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   }
 }

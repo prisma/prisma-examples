@@ -18,7 +18,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "zod": "4.1.5",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.1.13",
@@ -29,6 +29,6 @@
     "tailwindcss": "4.1.13",
     "tsx": "4.20.6",
     "typescript": "5.9.2",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   }
 }

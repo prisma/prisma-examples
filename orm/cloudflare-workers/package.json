@@ -13,18 +13,18 @@
 		"studio": "prisma studio"
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.12.0",
-		"@types/pg": "^8.15.6",
-		"dotenv-cli": "^11.0.0",
-		"prisma": "^7.0.0",
-		"typescript": "^5.5.2",
-		"vitest": "~3.2.0",
-		"wrangler": "^4.49.1"
+		"@cloudflare/vitest-pool-workers": "0.12.21",
+		"@types/pg": "8.20.0",
+		"dotenv-cli": "11.0.0",
+		"prisma": "7.5.0",
+		"typescript": "5.9.3",
+		"vitest": "3.2.4",
+		"wrangler": "4.77.0"
 	},
 	"dependencies": {
-		"@prisma/adapter-pg": "^7.0.0",
-		"@prisma/client": "^7.0.0",
-		"dotenv": "^17.2.3",
-		"pg": "^8.16.3"
+		"@prisma/adapter-pg": "7.5.0",
+		"@prisma/client": "7.5.0",
+		"dotenv": "17.3.1",
+		"pg": "8.20.0"
 	}
 }

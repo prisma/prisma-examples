@@ -9,14 +9,14 @@
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "@prisma/extension-optimize": "2.0.1",
-    "dotenv": "^17.2.3",
-    "pg": "^8.16.3"
+    "dotenv": "17.3.1",
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "prisma": "7.0.0",
     "typescript": "5.8.2",
-    "tsx": "^4.20.6",
+    "tsx": "4.21.0",
     "@types/node": "22.18.12",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   }
 }

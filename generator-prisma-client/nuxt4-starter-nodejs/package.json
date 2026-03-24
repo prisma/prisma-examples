@@ -15,7 +15,7 @@
     "nuxt": "4.0.3",
     "vue": "3.5.30",
     "vue-router": "4.5.1",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   },
   "packageManager": "pnpm@8.15.9+sha512.499434c9d8fdd1a2794ebf4552b3b25c0a633abcee5bb15e7b5de90f32f47b513aca98cd5cfd001c31f0db454bc3804edccd578501e4ca293a6816166bbd9f81",
   "devDependencies": {
@@ -25,6 +25,6 @@
     "prisma": "7.0.0",
     "tailwindcss": "3.4.17",
     "tsx": "4.20.6",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   }
 }

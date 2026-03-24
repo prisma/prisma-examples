@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/pg": "^8.15.6",
+    "@types/pg": "8.20.0",
     "prisma": "7.0.0"
   },
   "peerDependencies": {
@@ -12,6 +12,6 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   }
 }

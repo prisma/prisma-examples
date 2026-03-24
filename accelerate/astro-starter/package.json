@@ -14,7 +14,7 @@
     "@astrojs/react": "4.4.2",
     "@astrojs/tailwind": "6.0.2",
     "@prisma/client": "7.0.0",
-    "@prisma/extension-accelerate": "^2.0.2",
+    "@prisma/extension-accelerate": "2.0.2",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "astro": "5.18.1",

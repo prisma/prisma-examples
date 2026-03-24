@@ -5,14 +5,14 @@
     "dev": "tsx src/index.ts"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.1.0",
-    "@prisma/client": "^7.1.0",
-    "dotenv": "^17.2.3"
+    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.5.0",
+    "dotenv": "17.3.1"
   },
   "devDependencies": {
-    "@types/node": "^22.15.21",
-    "prisma": "^7.1.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "@types/node": "22.19.15",
+    "prisma": "7.5.0",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
   }
 }

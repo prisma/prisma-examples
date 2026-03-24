@@ -20,7 +20,7 @@
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "isbot": "5.1.31",
-    "pg": "^8.16.3",
+    "pg": "8.20.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-router": "7.6.3"
@@ -40,7 +40,7 @@
     "vite": "6.4.1",
     "vite-tsconfig-paths": "5.1.4",
     "wrangler": "4.76.0",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   },
   "packageManager": "pnpm@8.15.9+"
 }

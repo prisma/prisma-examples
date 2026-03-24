@@ -14,13 +14,13 @@
     "npm-run-all2": "6.2.6",
     "prisma": "7.0.0",
     "tsx": "4.20.6",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   },
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "sst": "3.17.14",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   },
   "packageManager": "pnpm@8.15.9+"
 }

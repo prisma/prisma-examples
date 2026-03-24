@@ -17,7 +17,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-router": "7.6.3",
-    "pg": "^8.16.3"
+    "pg": "8.20.0"
   },
   "devDependencies": {
     "@react-router/dev": "7.6.3",
@@ -32,7 +32,7 @@
     "typescript": "5.8.3",
     "vite": "6.4.1",
     "vite-tsconfig-paths": "5.1.4",
-    "@types/pg": "^8.15.6"
+    "@types/pg": "8.20.0"
   },
   "packageManager": "pnpm@8.15.9+"
 }
