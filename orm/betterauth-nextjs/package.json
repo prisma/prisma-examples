@@ -10,7 +10,7 @@
   "dependencies": {
     "@prisma/client": "7.5.0",
     "@prisma/adapter-pg": "7.5.0",
-    "better-auth": "1.3.24",
+    "better-auth": "1.4.5",
     "next": "15.5.9",
     "react": "19.2.3",
     "react-dom": "19.2.3",
