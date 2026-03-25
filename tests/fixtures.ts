@@ -21,7 +21,10 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
     })
 
     test('prisma setup', async () => {
-      server = await startPrismaDevServer({ databaseIdleTimeoutMillis: 300000 })
+      server = await startPrismaDevServer({
+        databaseIdleTimeoutMillis: 300000,
+        name: examplePath.replace(/\//g, '-'),
+      })
       const url = server.database.connectionString
       const databaseUrl = url.startsWith('postgres://')
         ? url.replace('postgres://', 'postgresql://')
