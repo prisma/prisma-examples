@@ -23,7 +23,7 @@
     "@types/node": "24.6.2",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
-    "eslint": "9.36.0",
+    "eslint": "9.39.4",
     "eslint-config-next": "15.5.9",
     "prisma": "7.0.0",
     "tailwindcss": "4.1.14",
