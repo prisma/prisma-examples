@@ -1,6 +1,6 @@
 import { describe, test } from 'vitest'
 
-describe.concurrent('Deployment Platform Examples', () => {
+describe('Deployment Platform Examples', () => {
   describe('deployment-platforms/aws-lambda', () => {
     test.skip('requires AWS Lambda setup', () => {})
   })

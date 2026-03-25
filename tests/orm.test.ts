@@ -1,7 +1,7 @@
 import { testExample, testSqliteExample } from './fixtures.js'
 import { describe, test } from 'vitest'
 
-describe.concurrent('ORM Examples', () => {
+describe('ORM Examples', () => {
   testExample('orm/ai-sdk-nextjs')
   testExample('orm/astro')
   testExample('orm/betterauth-astro')

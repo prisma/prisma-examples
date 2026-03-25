@@ -1,7 +1,7 @@
 import { describe, test } from 'vitest'
 import { testExample, testSqliteExample } from './fixtures.js'
 
-describe.concurrent('Generator Prisma Client Examples', () => {
+describe('Generator Prisma Client Examples', () => {
   testExample('generator-prisma-client/esbuild-cjs')
   testExample('generator-prisma-client/nextjs-starter-turbopack')
   testExample('generator-prisma-client/nextjs-starter-webpack')

@@ -1,7 +1,7 @@
 import { testExample, testSqliteExample } from './fixtures.js'
 import { describe, test } from 'vitest'
 
-describe.concurrent('Database Examples', () => {
+describe('Database Examples', () => {
   // PostgreSQL examples
   testExample('databases/prisma-postgres')
   testSqliteExample('databases/turso')
