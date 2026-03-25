@@ -35,10 +35,12 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
 
     test('prisma setup', async () => {
       const ports = getUniquePorts()
+      console.log(`[${examplePath}] Requesting ports:`, JSON.stringify(ports))
       server = await startPrismaDevServer({
         databaseIdleTimeoutMillis: 300000,
         ...ports,
       })
+      console.log(`[${examplePath}] Server started - HTTP: ${server.http.url}, DB: ${server.database.connectionString}`)
       const url = server.database.connectionString
       const databaseUrl = url.startsWith('postgres://')
         ? url.replace('postgres://', 'postgresql://')
