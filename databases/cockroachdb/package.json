@@ -23,7 +23,7 @@
     "@types/prettyjson": "0.0.33",
     "prettyjson": "1.2.5",
     "prisma": "7.0.0",
-    "ts-jest": "29.4.5",
+    "ts-jest": "29.4.6",
     "tsx": "4.21.0",
     "typescript": "5.8.2",
     "@types/pg": "8.20.0"
