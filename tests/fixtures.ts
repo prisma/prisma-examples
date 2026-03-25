@@ -6,6 +6,19 @@ import * as path from 'node:path'
 
 type Server = Awaited<ReturnType<typeof startPrismaDevServer>>
 
+// Each dev server needs 3 ports (server, database, shadow database).
+// Assign unique ports per test to avoid EADDRINUSE races when tests run concurrently.
+const BASE_PORT = 52000
+let portOffset = 0
+function getUniquePorts() {
+  const i = portOffset++
+  return {
+    port: BASE_PORT + i * 3,
+    databasePort: BASE_PORT + i * 3 + 1,
+    shadowDatabasePort: BASE_PORT + i * 3 + 2,
+  }
+}
+
 export interface TestExampleOptions {
   skipSeed?: boolean
   skipMigrate?: boolean
@@ -21,9 +34,10 @@ export function testExample(examplePath: string, options?: TestExampleOptions) {
     })
 
     test('prisma setup', async () => {
+      const ports = getUniquePorts()
       server = await startPrismaDevServer({
         databaseIdleTimeoutMillis: 300000,
-        name: examplePath.replace(/\//g, '-'),
+        ...ports,
       })
       const url = server.database.connectionString
       const databaseUrl = url.startsWith('postgres://')
