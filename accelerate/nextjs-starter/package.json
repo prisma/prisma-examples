@@ -17,7 +17,7 @@
     "autoprefixer": "10.4.27",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.8",
-    "next": "15.3.8",
+    "next": "15.5.14",
     "node-fetch": "3.3.2",
     "postcss": "8.5.8",
     "react": "19.2.3",
