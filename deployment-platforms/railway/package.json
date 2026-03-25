@@ -9,7 +9,7 @@
     "@hono/node-server": "1.19.9",
     "@prisma/client": "6.15.0",
     "dotenv": "17.2.2",
-    "hono": "4.9.6"
+    "hono": "4.12.7"
   },
   "devDependencies": {
     "@types/node": "22.19.0",

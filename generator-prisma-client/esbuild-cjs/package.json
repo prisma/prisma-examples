@@ -16,7 +16,7 @@
     "@hono/node-server": "1.19.9",
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "hono": "4.9.6",
+    "hono": "4.12.7",
     "pg": "8.20.0"
   },
   "devDependencies": {
