@@ -118,16 +118,6 @@ The [`accelerate`](./accelerate) folder contains examples of projects using [Pri
 | [`nuxt-starter`](./accelerate/nuxtjs-starter/)           | A Nuxt.js project using Prisma Accelerate's caching and connection pooling        |
 | [`astro-starter`](./accelerate/astro-starter/)           | An Astro project using Prisma Accelerate's caching and connection pooling         |
 
-## Prisma Optimize
-
-The [`optimize`](./optimize) folder contains examples of projects using [Prisma Optimize](https://www.prisma.io/data-platform/optimize) to identify and improve the performance of slow queries.
-| Demo                                                                | Description                                                                                                          |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [`starter`](./optimize/starter)                                     | A Prisma Optimize starter app                                                                                        |
-| [`optimize-excessive-rows`](./optimize/optimize-excessive-rows)     | An example app demonstrating the "Excessive number of rows returned" recommendation provided by Optimize.            |
-| [`optimize-full-table-scan`](./optimize/optimize-full-table-scan)   | An example app demonstrating the "Full table scans caused by `LIKE` operations" recommendation provided by Optimize. |
-| [`optimize-unindexed-column`](./optimize/optimize-unindexed-column) | An example app demonstrating the "Query filtering on an unindexed column" recommendation provided by Optimize.       |
-
 ## Deployment platforms
 
 The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
