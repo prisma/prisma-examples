@@ -17,7 +17,7 @@
     "pg": "8.20.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.3.1",
+    "@eslint/eslintrc": "3.3.5",
     "@types/node": "22.19.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",

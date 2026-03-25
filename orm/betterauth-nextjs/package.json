@@ -17,7 +17,7 @@
     "pg": "8.20.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.3.1",
+    "@eslint/eslintrc": "3.3.5",
     "dotenv": "17.3.1",
     "@tailwindcss/postcss": "4.1.14",
     "@types/node": "24.6.2",
