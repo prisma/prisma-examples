@@ -9,7 +9,7 @@
     "@koa/router": "13.1.1",
     "@prisma/client": "7.0.0",
     "@prisma/adapter-pg": "7.0.0",
-    "koa": "3.0.0",
+    "koa": "3.1.2",
     "koa-body": "6.0.1",
     "pg": "8.20.0"
   },
