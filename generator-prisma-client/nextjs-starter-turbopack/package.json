@@ -26,7 +26,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
-    "@t3-oss/env-core": "0.13.10",
+    "@t3-oss/env-core": "0.13.11",
     "next": "16.0.10",
     "postcss": "8.5.8",
     "react": "19.2.3",

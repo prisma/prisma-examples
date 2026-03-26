@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@nextjs-starter-webpack-monorepo/prisma": "workspace:*",
-    "@t3-oss/env-core": "0.13.10",
+    "@t3-oss/env-core": "0.13.11",
     "next": "15.3.8",
     "postcss": "8.5.8",
     "react": "19.2.3",
