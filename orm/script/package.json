@@ -11,7 +11,7 @@
     "pg": "8.20.0"
   },
   "devDependencies": {
-    "@types/node": "22.15.32",
+    "@types/node": "22.19.15",
     "prisma": "7.0.0",
     "tsx": "4.21.0",
     "typescript": "5.8.2",

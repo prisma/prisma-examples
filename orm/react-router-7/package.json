@@ -22,7 +22,7 @@
   "devDependencies": {
     "@react-router/dev": "7.6.3",
     "@tailwindcss/vite": "4.1.13",
-    "@types/node": "22.19.0",
+    "@types/node": "22.19.15",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "dotenv": "17.3.1",

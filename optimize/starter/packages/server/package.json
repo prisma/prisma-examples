@@ -13,7 +13,7 @@
   "devDependencies": {
     "@prisma/extension-optimize": "2.0.1",
     "@types/express": "5.0.5",
-    "@types/node": "22.18.12",
+    "@types/node": "22.19.15",
     "prisma": "7.0.0",
     "tsx": "4.20.6",
     "typescript": "5.8.2",

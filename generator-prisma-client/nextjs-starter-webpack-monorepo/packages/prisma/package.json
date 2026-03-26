@@ -47,7 +47,7 @@
     "pg": "8.20.0"
   },
   "devDependencies": {
-    "@types/node": "22.18.12",
+    "@types/node": "22.19.15",
     "@types/pg": "8.20.0",
     "prisma": "7.0.0",
     "tsx": "4.20.6",
