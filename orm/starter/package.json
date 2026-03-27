@@ -11,14 +11,14 @@
   "devDependencies": {
     "@types/node": "22.19.0",
     "nodemon": "3.1.10",
-    "prisma": "7.0.0",
+    "prisma": "7.6.0",
     "tsx": "4.21.0",
     "typescript": "5.8.2",
     "@types/pg": "8.20.0"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.6.0",
+    "@prisma/client": "7.6.0",
     "dotenv": "16.6.1",
     "pg": "8.20.0"
   },

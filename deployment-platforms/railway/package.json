@@ -7,13 +7,13 @@
   },
   "dependencies": {
     "@hono/node-server": "1.19.10",
-    "@prisma/client": "6.15.0",
+    "@prisma/client": "6.19.2",
     "dotenv": "17.2.2",
     "hono": "4.12.7"
   },
   "devDependencies": {
     "@types/node": "22.19.0",
-    "prisma": "6.15.0",
+    "prisma": "6.19.2",
     "tsx": "4.20.6"
   }
 }

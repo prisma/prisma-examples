@@ -18,8 +18,8 @@
   "dependencies": {
     "@apollo/server": "5.4.0",
     "@as-integrations/express5": "1.1.2",
-    "@prisma/client": "7.5.0",
-    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.6.0",
+    "@prisma/adapter-pg": "7.6.0",
     "cors": "2.8.6",
     "dotenv": "17.3.1",
     "express": "5.2.1",
@@ -35,7 +35,7 @@
     "@types/express": "5.0.6",
     "@types/node": "25.5.0",
     "@types/ws": "8.18.1",
-    "prisma": "7.5.0",
+    "prisma": "7.6.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "@types/pg": "8.20.0"

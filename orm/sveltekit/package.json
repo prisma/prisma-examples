@@ -25,7 +25,7 @@
 		"globals": "16.5.0",
 		"prettier": "3.8.1",
 		"prettier-plugin-svelte": "3.5.1",
-		"prisma": "7.0.0",
+		"prisma": "7.6.0",
 		"svelte": "5.54.0",
 		"svelte-check": "4.4.5",
 		"tsx": "4.20.6",
@@ -34,8 +34,8 @@
 		"vite": "6.4.1"
 	},
 	"dependencies": {
-		"@prisma/adapter-pg": "7.0.0",
-		"@prisma/client": "7.0.0",
+		"@prisma/adapter-pg": "7.6.0",
+		"@prisma/client": "7.6.0",
 		"pg": "8.20.0"
 	}
 }

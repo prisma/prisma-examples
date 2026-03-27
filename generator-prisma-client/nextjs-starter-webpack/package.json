@@ -24,8 +24,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.6.0",
+    "@prisma/client": "7.6.0",
     "@t3-oss/env-core": "0.13.10",
     "next": "15.3.8",
     "postcss": "8.5.8",
@@ -44,7 +44,7 @@
     "dotenv": "17.2.1",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.8",
-    "prisma": "7.0.0",
+    "prisma": "7.6.0",
     "tsx": "4.20.6",
     "typescript": "5.8.3",
     "@types/pg": "8.20.0"

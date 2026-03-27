@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "7.5.0",
-    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.6.0",
+    "@prisma/adapter-pg": "7.6.0",
     "better-auth": "1.4.5",
     "next": "15.5.9",
     "react": "19.2.3",
@@ -25,7 +25,7 @@
     "@types/react-dom": "19.1.0",
     "eslint": "9.39.4",
     "eslint-config-next": "15.5.9",
-    "prisma": "7.0.0",
+    "prisma": "7.6.0",
     "tailwindcss": "4.1.14",
     "typescript": "5.9.3",
     "@types/pg": "8.20.0"

@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.10.0",
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.6.0",
+    "@prisma/client": "7.6.0",
     "next": "15.4.10",
     "next-auth": "5.0.0-beta.30",
     "react": "19.2.3",
@@ -23,7 +23,7 @@
     "@types/node": "20.19.35",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "prisma": "7.0.0",
+    "prisma": "7.6.0",
     "tailwindcss": "4.1.13",
     "typescript": "5.9.2",
     "@types/pg": "8.20.0"

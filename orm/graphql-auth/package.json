@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@apollo/server": "5.4.0",
-    "@prisma/client": "7.5.0",
-    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.6.0",
+    "@prisma/adapter-pg": "7.6.0",
     "bcryptjs": "3.0.3",
     "dotenv": "17.3.1",
     "graphql": "16.13.1",
@@ -33,7 +33,7 @@
     "@types/bcryptjs": "3.0.0",
     "@types/jsonwebtoken": "9.0.10",
     "@types/node": "25.5.0",
-    "prisma": "7.5.0",
+    "prisma": "7.6.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
     "@types/pg": "8.20.0"

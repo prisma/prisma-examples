@@ -7,9 +7,9 @@
   },
   "dependencies": {
     "@hapi/hapi": "21.4.7",
-    "@prisma/client": "7.0.0",
+    "@prisma/client": "7.6.0",
     "@types/node": "22.18.12",
-    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/adapter-pg": "7.6.0",
     "pg": "8.20.0"
   },
   "devDependencies": {
@@ -17,7 +17,7 @@
     "@types/hapi__hapi": "21.0.0",
     "@types/node": "22.18.12",
     "dotenv": "17.3.1",
-    "prisma": "7.0.0",
+    "prisma": "7.6.0",
     "tsx": "4.21.0",
     "typescript": "5.8.2",
     "@types/pg": "8.20.0"
