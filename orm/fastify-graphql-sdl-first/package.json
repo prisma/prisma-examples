@@ -15,7 +15,7 @@
     "@prisma/adapter-pg": "7.5.0",
     "dotenv": "17.3.1",
     "fastify": "5.8.2",
-    "graphql": "16.13.1",
+    "graphql": "16.13.2",
     "graphql-scalars": "1.25.0",
     "mercurius": "16.8.0",
     "pg": "8.20.0"
