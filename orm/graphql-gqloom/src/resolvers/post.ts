@@ -12,7 +12,7 @@ export const PostCreateInput = z.object({
     .string()
     .nullish()
     .transform((x) => x ?? undefined),
-})
+}).transform(({ __typename, ...rest }) => rest)
 
 const postFactory = new PrismaResolverFactory(Post, prisma)
 
@@ -58,8 +58,8 @@ export const postResolver = resolver.of(Post, {
       const or = searchString
         ? {
             OR: [
-              { title: { contains: searchString } },
-              { content: { contains: searchString } },
+              { title: { contains: searchString, mode: 'insensitive' } },
+              { content: { contains: searchString, mode: 'insensitive' } },
             ],
           }
         : {}

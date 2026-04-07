@@ -18,7 +18,7 @@ export const userResolver = resolver.of(User, {
       data: z.object({
         email: z.email(),
         name: z.string().optional(),
-        posts: z.array(PostCreateInput),
+        posts: z.array(PostCreateInput).default([]),
       }),
     })
     .resolve(({ data }) => {
@@ -28,7 +28,7 @@ export const userResolver = resolver.of(User, {
           email: data.email,
           name: data.name,
           posts: {
-            create: data.posts.map(({ __typename, ...post }) => post),
+            create: data.posts,
           },
         },
       })
