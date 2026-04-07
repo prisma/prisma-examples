@@ -9,12 +9,12 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.5.0",
     "dotenv": "^17.2.1",
     "express": "5.1.0",
     "pg": "^8.16.3",
-    "prisma": "7.0.0"
+    "prisma": "7.5.0"
   },
   "devDependencies": {
     "@types/express": "5.0.5",

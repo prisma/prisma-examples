@@ -32,4 +32,8 @@ describe('Deployment Platform Examples', () => {
   describe('deployment-platforms/vercel', () => {
     test.skip('requires Vercel setup', () => {})
   })
+
+  describe('deployment-platforms/rest-express-docker-aws-ec2', () => {
+    test.skip('requires Docker and AWS EC2 setup', () => {})
+  })
 })
