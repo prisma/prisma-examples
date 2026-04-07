@@ -10,7 +10,7 @@ import {
   arg,
   inputObjectType,
 } from 'nexus'
-import { Post as PrismaPost } from '../prisma/generated/client'
+import type { Post } from '../prisma/generated/client'
 import { Context } from './context'
 
 const User = objectType({
@@ -160,7 +160,7 @@ export const Subscription = subscriptionType({
       subscribe(_root, _args, ctx) {
         return ctx.pubsub.asyncIterableIterator('newPost')
       },
-      resolve(payload: PrismaPost) {
+      resolve(payload: Post) {
         return payload
       },
     })
@@ -170,7 +170,7 @@ export const Subscription = subscriptionType({
       subscribe(_root, _args, ctx) {
         return ctx.pubsub.asyncIterableIterator('postPublished')
       },
-      resolve(payload: PrismaPost) {
+      resolve(payload: Post) {
         return payload
       },
     })
