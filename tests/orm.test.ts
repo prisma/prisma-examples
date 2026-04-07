@@ -15,6 +15,7 @@ describe('ORM Examples', () => {
   testExample('orm/fastify-graphql-sdl-first')
   testExample('orm/graphql', { runBuild: true })
   testExample('orm/graphql-auth', { runBuild: true })
+  testExample('orm/graphql-gqloom')
   testExample('orm/graphql-nexus', { runBuild: true })
   testExample('orm/graphql-sdl-first')
   testExample('orm/graphql-subscriptions', { runBuild: true })

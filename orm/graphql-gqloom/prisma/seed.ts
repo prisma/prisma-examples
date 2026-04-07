@@ -1,6 +1,4 @@
-import { PrismaPg } from '@prisma/adapter-pg'
-import { type Prisma, PrismaClient } from '../src/generated/prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { type Prisma } from '../src/generated/prisma/client'
 import { prisma } from '../src/db'
 
 const userData: Prisma.UserCreateInput[] = [
