@@ -1,0 +1,33 @@
+{
+  "name": "prisma-compute-hono",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
+    "compute:login": "prisma-cli auth login",
+    "compute:deploy": "prisma-cli app deploy --framework hono --http-port 8080 --env DATABASE_URL=\"$DATABASE_URL\"",
+    "compute:open": "prisma-cli app open",
+    "compute:logs": "prisma-cli app logs"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.0.4",
+    "@prisma/adapter-pg": "7.8.0",
+    "@prisma/client": "7.8.0",
+    "dotenv": "17.4.2",
+    "hono": "4.12.23",
+    "pg": "8.21.0"
+  },
+  "devDependencies": {
+    "@prisma/cli": "3.0.0-beta.1",
+    "@types/node": "24.12.4",
+    "@types/pg": "8.20.0",
+    "prisma": "7.8.0",
+    "tsx": "4.22.4",
+    "typescript": "5.9.3"
+  }
+}

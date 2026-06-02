@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #111;
+}
+
+.shell {
+  max-width: 720px;
+  margin: 48px auto;
+  padding: 0 20px;
+}
+
+a {
+  color: #0c6;
+}
+
+li {
+  margin: 12px 0;
+}
+
+code {
+  background: #f4f4f4;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+

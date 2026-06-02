@@ -1,0 +1,7 @@
+node_modules
+.output
+.tanstack
+.env
+.prisma
+prisma/migrations
+src/generated/prisma

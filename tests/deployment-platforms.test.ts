@@ -36,4 +36,16 @@ describe('Deployment Platform Examples', () => {
   describe('deployment-platforms/rest-express-docker-aws-ec2', () => {
     test.skip('requires Docker and AWS EC2 setup', () => {})
   })
+
+  describe('deployment-platforms/prisma-compute/hono', () => {
+    test.skip('requires Prisma Compute account setup', () => {})
+  })
+
+  describe('deployment-platforms/prisma-compute/nextjs', () => {
+    test.skip('requires Prisma Compute account setup', () => {})
+  })
+
+  describe('deployment-platforms/prisma-compute/tanstack-start', () => {
+    test.skip('requires Prisma Compute account setup', () => {})
+  })
 })

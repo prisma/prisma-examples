@@ -1,0 +1,7 @@
+node_modules
+.next
+.env
+.prisma
+prisma/migrations
+src/generated/prisma
+next-env.d.ts

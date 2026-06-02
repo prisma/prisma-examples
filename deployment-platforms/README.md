@@ -2,6 +2,14 @@
 
 The projects in this directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
 
+## Prisma Compute
+
+| Demo | Description |
+| --- | --- |
+| [`prisma-compute/hono`](./prisma-compute/hono) | Hono API deployed to Prisma Compute with `@prisma/cli`. |
+| [`prisma-compute/nextjs`](./prisma-compute/nextjs) | Next.js App Router app using standalone output for Prisma Compute. |
+| [`prisma-compute/tanstack-start`](./prisma-compute/tanstack-start) | TanStack Start app using the Nitro output supported by Prisma Compute. |
+
 ## Additional resources
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
