@@ -27,19 +27,23 @@ Authenticate once:
 npm run compute:login
 ```
 
-Load your database URL into the shell, then deploy:
+Create and link a Prisma project, then load your database URL into the shell
+and add it to the production environment:
 
 ```bash
+npm exec prisma-cli -- project create prisma-compute-hono
+
 set -a
 source .env
 set +a
-npm run compute:deploy
+
+npm run compute:env:add
 ```
 
-The deploy script runs:
+Deploy the app:
 
 ```bash
-prisma-cli app deploy --framework hono --http-port 8080 --env DATABASE_URL="$DATABASE_URL"
+npm run compute:deploy
 ```
 
 After a successful deploy, inspect the app with:
@@ -48,4 +52,3 @@ After a successful deploy, inspect the app with:
 npm run compute:open
 npm run compute:logs
 ```
-

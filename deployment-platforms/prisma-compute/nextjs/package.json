@@ -10,7 +10,9 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
     "compute:login": "prisma-cli auth login",
-    "compute:deploy": "prisma-cli app deploy --framework nextjs --env DATABASE_URL=\"$DATABASE_URL\"",
+    "compute:env:add": "prisma-cli project env add DATABASE_URL --role production",
+    "compute:env:update": "prisma-cli project env update DATABASE_URL --role production",
+    "compute:deploy": "prisma-cli app deploy --framework nextjs",
     "compute:open": "prisma-cli app open",
     "compute:logs": "prisma-cli app logs"
   },
