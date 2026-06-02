@@ -18,16 +18,16 @@
     "@prisma/adapter-pg": "7.8.0",
     "@prisma/client": "7.8.0",
     "dotenv": "17.4.2",
-    "next": "16.2.6",
+    "next": "16.2.7",
     "pg": "8.21.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@prisma/cli": "3.0.0-beta.1",
+    "@prisma/cli": "3.0.0-beta.2",
     "@types/node": "24.12.4",
     "@types/pg": "8.20.0",
-    "@types/react": "19.2.15",
+    "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "prisma": "7.8.0",
     "tsx": "4.22.4",

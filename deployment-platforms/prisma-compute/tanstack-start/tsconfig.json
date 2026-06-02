@@ -4,6 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
+    "paths": {
+      "#/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    },
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -12,4 +16,3 @@
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"]
 }
-

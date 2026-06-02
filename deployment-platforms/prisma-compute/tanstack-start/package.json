@@ -2,6 +2,9 @@
   "name": "prisma-compute-tanstack-start",
   "private": true,
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -22,19 +25,19 @@
     "dotenv": "17.4.2",
     "nitro": "3.0.260522-beta",
     "pg": "8.21.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@prisma/cli": "3.0.0-beta.1",
+    "@prisma/cli": "3.0.0-beta.2",
     "@types/node": "24.12.4",
     "@types/pg": "8.20.0",
-    "@types/react": "19.2.15",
+    "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "prisma": "7.8.0",
     "tsx": "4.22.4",
     "typescript": "5.9.3",
-    "vite": "8.0.15"
+    "vite": "8.0.16"
   }
 }
