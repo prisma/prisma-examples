@@ -9,12 +9,11 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "compute:login": "prisma-cli auth login",
-    "compute:env:add": "prisma-cli project env add DATABASE_URL --role production",
-    "compute:env:update": "prisma-cli project env update DATABASE_URL --role production",
-    "compute:deploy": "prisma-cli app deploy --framework nextjs",
-    "compute:open": "prisma-cli app open",
-    "compute:logs": "prisma-cli app logs"
+    "compute:login": "npx @prisma/cli@latest auth login",
+    "compute:database:create": "npx @prisma/cli@latest database create prisma-compute-nextjs --branch main",
+    "compute:deploy": "npx @prisma/cli@latest app deploy --env .env",
+    "compute:open": "npx @prisma/cli@latest app open",
+    "compute:logs": "npx @prisma/cli@latest app logs"
   },
   "dependencies": {
     "@prisma/adapter-pg": "7.8.0",
@@ -26,7 +25,6 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@prisma/cli": "3.0.0-beta.2",
     "@types/node": "24.12.4",
     "@types/pg": "8.20.0",
     "@types/react": "19.2.16",

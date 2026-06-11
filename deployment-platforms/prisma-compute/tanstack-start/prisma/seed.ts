@@ -42,7 +42,7 @@ async function main() {
         create: [
           {
             title: "Deploy with @prisma/cli",
-            content: "Run npm run compute:deploy after loading DATABASE_URL.",
+            content: "Run npm run compute:deploy after setting DATABASE_URL in .env.",
             published: true,
           },
         ],
@@ -60,4 +60,3 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
-
