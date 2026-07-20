@@ -118,15 +118,19 @@ The [`accelerate`](./accelerate) folder contains examples of projects using [Pri
 | [`nuxt-starter`](./accelerate/nuxtjs-starter/)           | A Nuxt.js project using Prisma Accelerate's caching and connection pooling        |
 | [`astro-starter`](./accelerate/astro-starter/)           | An Astro project using Prisma Accelerate's caching and connection pooling         |
 
+## Prisma Compute
+
+The [`compute`](./compute) directory contains applications ready to deploy to Prisma Compute.
+
+| Demo                                                                                                    | Description                                                                                          |
+| ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [`compute/hono`](https://github.com/prisma/prisma-examples/tree/latest/compute/hono)                     | [Hono](https://hono.dev/) API deployed to Prisma Compute with `@prisma/cli`.                         |
+| [`compute/nextjs`](https://github.com/prisma/prisma-examples/tree/latest/compute/nextjs)                 | [Next.js](https://nextjs.org/) App Router app using standalone output for Prisma Compute.            |
+| [`compute/tanstack-start`](https://github.com/prisma/prisma-examples/tree/latest/compute/tanstack-start) | [TanStack Start](https://tanstack.com/start) app using the Nitro output supported by Prisma Compute. |
+
 ## Deployment platforms
 
 The projects in the [`deployment-platforms`](./deployment-platforms) directory show what "Prisma Client"-based deployment setups look like for various deployment providers. Learn more about [deployment](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/deployment) in the Prisma documentation.
-
-| Demo                                                                                                                                | Description                                                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`prisma-compute/hono`](https://github.com/prisma/prisma-examples/tree/latest/deployment-platforms/prisma-compute/hono)             | [Hono](https://hono.dev/) API deployed to Prisma Compute with `@prisma/cli`.                                     |
-| [`prisma-compute/nextjs`](https://github.com/prisma/prisma-examples/tree/latest/deployment-platforms/prisma-compute/nextjs)         | [Next.js](https://nextjs.org/) App Router app using standalone output for Prisma Compute.                        |
-| [`prisma-compute/tanstack-start`](https://github.com/prisma/prisma-examples/tree/latest/deployment-platforms/prisma-compute/tanstack-start) | [TanStack Start](https://tanstack.com/start) app using the Nitro output supported by Prisma Compute.             |
 
 ## Real-world & production-ready example projects with Prisma
 

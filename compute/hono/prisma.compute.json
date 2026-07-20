@@ -1,0 +1,7 @@
+{
+  "app": {
+    "name": "prisma-compute-hono",
+    "framework": "hono",
+    "httpPort": 8080
+  }
+}

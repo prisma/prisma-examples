@@ -1,0 +1,6 @@
+{
+  "app": {
+    "name": "prisma-compute-nextjs",
+    "framework": "nextjs"
+  }
+}

@@ -13,6 +13,7 @@ dist/
 .idea
 tmp-resolvers
 package-lock.json
+!compute/*/package-lock.json
 flow-typed
 yarn.lock
 bun.lock

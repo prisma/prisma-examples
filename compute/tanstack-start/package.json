@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "prisma generate && vite build",
     "start": "node .output/server/index.mjs",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",

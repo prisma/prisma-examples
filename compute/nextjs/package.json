@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "node .next/standalone/server.js",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
