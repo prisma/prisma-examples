@@ -42,7 +42,7 @@ async function main() {
         create: [
           {
             title: "Deploy with @prisma/cli",
-            content: "Run npm run compute:deploy after setting DATABASE_URL in .env.",
+            content: "Run bun run compute:deploy after setting DATABASE_URL in .env.",
             published: true,
           },
         ],

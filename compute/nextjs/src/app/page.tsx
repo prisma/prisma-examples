@@ -28,7 +28,7 @@ export default function Home() {
         .
       </p>
       <p>
-        Deploy it with <code style={styles.code}>npm run compute:deploy</code>.
+        Deploy it with <code style={styles.code}>bun run compute:deploy</code>.
       </p>
     </main>
   );

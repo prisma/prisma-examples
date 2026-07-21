@@ -12,5 +12,5 @@ latest `@prisma/cli`.
 Each example includes Prisma ORM, a PostgreSQL schema, seed data, and scripts for
 local development and Prisma Compute deployment.
 
-The Compute scripts call `npx @prisma/cli@latest` directly, so the examples do
+The Compute scripts call `bunx @prisma/cli@latest` directly, so the examples do
 not pin or install the Prisma CLI.

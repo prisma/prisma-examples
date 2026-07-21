@@ -11,7 +11,8 @@ const smokeRouteByFramework = new Map([
   ['nextjs', 'src/app/page.tsx'],
   ['tanstack-start', 'src/routes/index.tsx'],
 ])
-const supportedLockfiles = new Set([
+const packageManager = 'bun@1.3.14'
+const lockfileNames = new Set([
   'bun.lock',
   'bun.lockb',
   'package-lock.json',
@@ -75,18 +76,33 @@ describe('Prisma Compute examples', () => {
       expect(
         rootEntries.filter((entry) => entry === 'prisma.compute.json'),
       ).toHaveLength(1)
-      expect(
-        rootEntries.filter((entry) => supportedLockfiles.has(entry)),
-      ).toHaveLength(1)
+      expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
+        'bun.lock',
+      ])
+
+      const packageJson = JSON.parse(
+        await readFile(path.join(templateDirectory, 'package.json'), 'utf8'),
+      ) as {
+        packageManager?: string
+        scripts?: Record<string, string>
+      }
+      expect(packageJson.packageManager).toBe(packageManager)
+
+      const computeScripts = Object.entries(packageJson.scripts ?? {}).filter(
+        ([name]) => name.startsWith('compute:'),
+      )
+      expect(computeScripts).toHaveLength(5)
+      for (const [, command] of computeScripts) {
+        expect(command).toMatch(/^bunx @prisma\/cli@latest /)
+      }
 
       await execa(
-        'npm',
+        'bun',
         [
-          'ci',
+          'install',
+          '--frozen-lockfile',
           '--dry-run',
           '--ignore-scripts',
-          '--audit=false',
-          '--fund=false',
         ],
         { cwd: templateDirectory },
       )
