@@ -1,0 +1,6 @@
+{
+  "app": {
+    "name": "prisma-compute-tanstack-start",
+    "framework": "tanstack-start"
+  }
+}

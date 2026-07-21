@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "hono",
+      "name": "Hono API",
+      "description": "Hono REST API with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/hono",
+      "framework": "hono",
+      "smoke": {
+        "path": "/",
+        "expectedText": "Hono on Prisma Compute"
+      }
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "description": "Next.js App Router app with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/nextjs",
+      "framework": "nextjs",
+      "smoke": {
+        "path": "/",
+        "expectedText": "Next.js on Prisma Compute"
+      }
+    },
+    {
+      "id": "tanstack-start",
+      "name": "TanStack Start",
+      "description": "TanStack Start app with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/tanstack-start",
+      "framework": "tanstack-start",
+      "smoke": {
+        "path": "/",
+        "expectedText": "TanStack Start on Prisma Compute"
+      }
+    }
+  ]
+}
