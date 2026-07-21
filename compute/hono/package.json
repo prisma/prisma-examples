@@ -2,6 +2,7 @@
   "name": "prisma-compute-hono",
   "private": true,
   "type": "module",
+  "packageManager": "bun@1.3.14",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "prisma generate && tsc",
@@ -9,11 +10,11 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "compute:login": "npx @prisma/cli@latest auth login",
-    "compute:database:create": "npx @prisma/cli@latest database create prisma-compute-hono --branch main",
-    "compute:deploy": "npx @prisma/cli@latest app deploy --env .env",
-    "compute:open": "npx @prisma/cli@latest app open",
-    "compute:logs": "npx @prisma/cli@latest app logs"
+    "compute:login": "bunx @prisma/cli@latest auth login",
+    "compute:database:create": "bunx @prisma/cli@latest database create prisma-compute-hono --branch main",
+    "compute:deploy": "bunx @prisma/cli@latest app deploy --env .env",
+    "compute:open": "bunx @prisma/cli@latest app open",
+    "compute:logs": "bunx @prisma/cli@latest app logs"
   },
   "dependencies": {
     "@hono/node-server": "2.0.4",
