@@ -2,6 +2,7 @@
   "app": {
     "name": "prisma-compute-hono",
     "framework": "hono",
+    "entry": "src/index.ts",
     "httpPort": 8080
   }
 }
