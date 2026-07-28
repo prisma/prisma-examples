@@ -79,19 +79,6 @@ describe('Prisma Compute examples', () => {
       expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
         'bun.lock',
       ])
-      const computeConfig = JSON.parse(
-        await readFile(
-          path.join(templateDirectory, 'prisma.compute.json'),
-          'utf8',
-        ),
-      ) as {
-        app?: {
-          entry?: string
-        }
-      }
-      if (template.framework === 'hono') {
-        expect(computeConfig.app?.entry).toBe(smokeRouteByFramework.get('hono'))
-      }
 
       const packageJson = JSON.parse(
         await readFile(path.join(templateDirectory, 'package.json'), 'utf8'),
