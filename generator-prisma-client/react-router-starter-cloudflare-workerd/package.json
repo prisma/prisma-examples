@@ -37,7 +37,7 @@
     "tailwindcss": "4.1.13",
     "tsx": "4.20.6",
     "typescript": "5.8.3",
-    "vite": "6.4.1",
+    "vite": "6.4.3",
     "vite-tsconfig-paths": "5.1.4",
     "wrangler": "4.76.0",
     "@types/pg": "8.20.0"
