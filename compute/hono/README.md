@@ -1,7 +1,7 @@
 # Prisma Compute Hono example
 
 This is a small Hono API that uses Prisma ORM with PostgreSQL and deploys to
-Prisma Compute with the latest `@prisma/cli`.
+Prisma Compute with `@prisma/cli@next` (Prisma 8 release candidate).
 
 ## Run locally
 
@@ -26,16 +26,22 @@ available at [http://localhost:8080/api/users](http://localhost:8080/api/users).
 
 ## Deploy to Prisma Compute
 
-Deploy the app. The script passes `.env` to Prisma Compute, so the deployed app
-uses the same seeded database.
+Connect this repository to a Prisma Compute project. Every push to the
+connected branch then builds and deploys automatically.
 
 ```bash
-bun run compute:deploy
+bun run compute:connect
 ```
 
-After a successful deploy, inspect the app with:
+After connecting, open the running service with:
 
 ```bash
 bun run compute:open
-bun run compute:logs
+```
+
+Each push creates a build. To stream the full build log, copy the build ID
+from the GitHub check run and run:
+
+```bash
+npx -y @prisma/cli@next build logs <build-id>
 ```

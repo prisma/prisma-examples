@@ -10,11 +10,10 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "compute:login": "bunx @prisma/cli@latest auth login",
-    "compute:database:create": "bunx @prisma/cli@latest database create prisma-compute-hono --branch main",
-    "compute:deploy": "bunx @prisma/cli@latest app deploy --env .env",
-    "compute:open": "bunx @prisma/cli@latest app open",
-    "compute:logs": "bunx @prisma/cli@latest app logs"
+    "compute:login": "bunx @prisma/cli@next auth login",
+    "compute:database:create": "bunx @prisma/cli@next postgres create prisma-compute-hono --branch main",
+    "compute:connect": "bunx @prisma/cli@next git connect",
+    "compute:open": "bunx @prisma/cli@next service open"
   },
   "dependencies": {
     "@hono/node-server": "2.0.4",

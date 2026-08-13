@@ -1,7 +1,7 @@
 # Prisma Compute Next.js example
 
 This is a Next.js App Router app that uses Prisma ORM with PostgreSQL and
-deploys to Prisma Compute with the latest `@prisma/cli`.
+deploys to Prisma Compute with `@prisma/cli@next` (Prisma 8 release candidate).
 
 The app sets `output: "standalone"` in `next.config.ts`, which is the output
 shape Prisma Compute expects for Next.js.
@@ -29,16 +29,22 @@ available at [http://localhost:3000/api/users](http://localhost:3000/api/users).
 
 ## Deploy to Prisma Compute
 
-Deploy the app. The script passes `.env` to Prisma Compute, so the deployed app
-uses the same seeded database.
+Connect this repository to a Prisma Compute project. Every push to the
+connected branch then builds and deploys automatically.
 
 ```bash
-bun run compute:deploy
+bun run compute:connect
 ```
 
-After a successful deploy, inspect the app with:
+After connecting, open the running service with:
 
 ```bash
 bun run compute:open
-bun run compute:logs
+```
+
+Each push creates a build. To stream the full build log, copy the build ID
+from the GitHub check run and run:
+
+```bash
+npx -y @prisma/cli@next build logs <build-id>
 ```
