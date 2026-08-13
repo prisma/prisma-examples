@@ -91,9 +91,9 @@ describe('Prisma Compute examples', () => {
       const computeScripts = Object.entries(packageJson.scripts ?? {}).filter(
         ([name]) => name.startsWith('compute:'),
       )
-      expect(computeScripts).toHaveLength(5)
+      expect(computeScripts).toHaveLength(4)
       for (const [, command] of computeScripts) {
-        expect(command).toMatch(/^bunx @prisma\/cli@latest /)
+        expect(command).toMatch(/^bunx @prisma\/cli@next /)
       }
 
       await execa(
