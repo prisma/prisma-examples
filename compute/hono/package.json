@@ -5,11 +5,13 @@
   "packageManager": "bun@1.3.14",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "prisma generate && tsc",
+    "build": "bun run contract:emit && tsc",
     "start": "node dist/index.js",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:seed": "prisma db seed",
+    "contract:emit": "prisma-next contract emit",
+    "migration:plan": "prisma-next migration plan",
+    "db:init": "prisma-next db init",
+    "db:update": "prisma-next db update",
+    "db:seed": "tsx src/prisma/seed.ts",
     "compute:login": "bunx @prisma/cli@next auth login",
     "compute:database:create": "bunx @prisma/cli@next postgres create prisma-compute-hono --branch main",
     "compute:connect": "bunx @prisma/cli@next git connect",
@@ -17,16 +19,15 @@
   },
   "dependencies": {
     "@hono/node-server": "2.0.4",
-    "@prisma/adapter-pg": "7.8.0",
-    "@prisma/client": "7.8.0",
+    "@prisma/composer": "0.6.0-dev.20",
+    "@prisma/composer-prisma-cloud": "0.6.0-dev.20",
+    "@prisma/orm-postgres": "8.0.0-rc.1",
     "dotenv": "17.4.2",
-    "hono": "4.12.23",
-    "pg": "8.21.0"
+    "hono": "4.12.23"
   },
   "devDependencies": {
     "@types/node": "24.12.4",
-    "@types/pg": "8.20.0",
-    "prisma": "7.8.0",
+    "alchemy": "2.0.0-beta.67",
     "tsx": "4.22.4",
     "typescript": "5.9.3"
   }

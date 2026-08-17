@@ -74,8 +74,10 @@ describe('Prisma Compute examples', () => {
       const templateDirectory = path.join(repositoryRoot, template.path)
       const rootEntries = await readdir(templateDirectory)
       expect(
-        rootEntries.filter((entry) => entry === 'prisma.compute.json'),
+        rootEntries.filter((entry) => entry === 'prisma-composer.config.ts'),
       ).toHaveLength(1)
+      expect(rootEntries).toContain('module.ts')
+      expect(rootEntries).not.toContain('prisma.compute.json')
       expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
         'bun.lock',
       ])
@@ -83,10 +85,31 @@ describe('Prisma Compute examples', () => {
       const packageJson = JSON.parse(
         await readFile(path.join(templateDirectory, 'package.json'), 'utf8'),
       ) as {
+        dependencies?: Record<string, string>
         packageManager?: string
         scripts?: Record<string, string>
       }
       expect(packageJson.packageManager).toBe(packageManager)
+      expect(packageJson.dependencies?.['@prisma/composer']).toBe(
+        '0.6.0-dev.20',
+      )
+      expect(packageJson.dependencies?.['@prisma/composer-prisma-cloud']).toBe(
+        '0.6.0-dev.20',
+      )
+      expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
+        '8.0.0-rc.1',
+      )
+      expect(packageJson.scripts?.['contract:emit']).toBe(
+        'prisma-next contract emit',
+      )
+
+      const workflowPath = path.join(
+        templateDirectory,
+        '.github/workflows/prisma-deploy.yml',
+      )
+      const workflowContents = await readFile(workflowPath, 'utf8')
+      expect(workflowContents).toContain('prisma/cloud-deploy-action@v1')
+      expect(workflowContents).toContain('id-token: write')
 
       const computeScripts = Object.entries(packageJson.scripts ?? {}).filter(
         ([name]) => name.startsWith('compute:'),
@@ -98,14 +121,10 @@ describe('Prisma Compute examples', () => {
 
       await execa(
         'bun',
-        [
-          'install',
-          '--frozen-lockfile',
-          '--dry-run',
-          '--ignore-scripts',
-        ],
+        ['install', '--frozen-lockfile', '--ignore-scripts'],
         { cwd: templateDirectory },
       )
+      await execa('bun', ['run', 'build'], { cwd: templateDirectory })
 
       const smokeRoute = smokeRouteByFramework.get(template.framework)
       expect(smokeRoute).toBeDefined()

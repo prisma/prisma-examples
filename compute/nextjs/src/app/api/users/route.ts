@@ -1,10 +1,10 @@
-import { prisma } from "../../../lib/prisma";
+import { getDb } from '../../../prisma/db'
 
 export async function GET() {
-  const users = await prisma.user.findMany({
-    include: { posts: true },
-    orderBy: { createdAt: "desc" },
-  });
+  const users = await getDb()
+    .orm.public.User.include('posts')
+    .orderBy((user) => user.createdAt.desc())
+    .all()
 
-  return Response.json(users);
+  return Response.json(users)
 }

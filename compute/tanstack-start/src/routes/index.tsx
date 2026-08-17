@@ -1,13 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
+import { createFileRoute } from '@tanstack/react-router'
+import { createServerFn } from '@tanstack/react-start'
 
-import { prisma } from "../lib/prisma.server";
+import { getDb } from '../prisma/db'
 
-const listUsers = createServerFn({ method: "GET" }).handler(async () => {
-  const users = await prisma.user.findMany({
-    include: { posts: true },
-    orderBy: { createdAt: "desc" },
-  });
+const listUsers = createServerFn({ method: 'GET' }).handler(async () => {
+  const users = await getDb()
+    .orm.public.User.include('posts')
+    .orderBy((user) => user.createdAt.desc())
+    .all()
 
   return users.map((user) => ({
     id: user.id,
@@ -16,16 +16,16 @@ const listUsers = createServerFn({ method: "GET" }).handler(async () => {
     name: user.name,
     createdAt: user.createdAt.toISOString(),
     postCount: user.posts.length,
-  }));
-});
+  }))
+})
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   loader: () => listUsers(),
   component: Home,
-});
+})
 
 function Home() {
-  const users = Route.useLoaderData();
+  const users = Route.useLoaderData()
 
   return (
     <main className="shell">
@@ -37,13 +37,12 @@ function Home() {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            <strong>{user.name ?? user.email}</strong>{" "}
-            <span>@{user.username ?? "no-handle"}</span>{" "}
+            <strong>{user.name ?? user.email}</strong>{' '}
+            <span>@{user.username ?? 'no-handle'}</span>{' '}
             <span>{user.postCount} post(s)</span>
           </li>
         ))}
       </ul>
     </main>
-  );
+  )
 }
-

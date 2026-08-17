@@ -1,6 +1,7 @@
 # Prisma Compute examples
 
-These examples show Prisma ORM apps deployed to Prisma Compute.
+These examples show Prisma 8 apps deployed to Prisma Compute with Prisma
+Composer.
 
 | Example | Description |
 | --- | --- |
@@ -8,11 +9,11 @@ These examples show Prisma ORM apps deployed to Prisma Compute.
 | [`nextjs`](./nextjs) | Next.js App Router app using standalone output for Prisma Compute. |
 | [`tanstack-start`](./tanstack-start) | TanStack Start app using the Nitro Vite plugin output supported by Prisma Compute. |
 
-Each example includes Prisma ORM, a PostgreSQL schema, seed data, and scripts for
-local development and Prisma Compute deployment.
+Each example includes a Prisma 8 contract, generated typed client metadata,
+seed data, a Composer module, and a GitHub Actions deployment workflow.
 
-The Compute scripts call `bunx @prisma/cli@next` directly, so the examples do
-not pin or install the Prisma CLI. They use `@next` because these examples
-target the Prisma 8 release candidate, while the `latest` npm tag still points
-at the earlier 3.x beta CLI with a different command set. When Prisma 8 reaches
-general availability, the `@next` references will switch to `@latest`.
+The templates pin the Prisma 8 release candidate and its compatible Composer
+integration. They use `bunx @prisma/cli@next` for Prisma Cloud commands because
+the `latest` tag still points at the earlier CLI command set. These pins can
+move to stable releases after Prisma 8 and the matching Composer integration
+reach general availability.
