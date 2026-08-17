@@ -11,6 +11,8 @@ Composer.
 
 Each example includes a Prisma 8 contract, generated typed client metadata,
 seed data, a Composer module, and a GitHub Actions deployment workflow.
+Deploy the companion Console change before publishing these templates so the
+one-click flow can validate and copy their Composer files.
 
 The templates pin the Prisma 8 release candidate and its compatible Composer
 integration. They use `bunx @prisma/cli@next` for Prisma Cloud commands because

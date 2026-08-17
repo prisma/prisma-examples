@@ -110,6 +110,9 @@ describe('Prisma Compute examples', () => {
       const workflowContents = await readFile(workflowPath, 'utf8')
       expect(workflowContents).toContain('prisma/cloud-deploy-action@v1')
       expect(workflowContents).toContain('id-token: write')
+      expect(workflowContents).toContain(
+        "prisma-deploy-${{ github.event_name == 'delete' && github.event.ref || github.ref_name }}",
+      )
 
       const computeScripts = Object.entries(packageJson.scripts ?? {}).filter(
         ([name]) => name.startsWith('compute:'),
