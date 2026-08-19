@@ -14,8 +14,11 @@ seed data, a Composer module, and a GitHub Actions deployment workflow.
 Deploy the companion Console change before publishing these templates so the
 one-click flow can validate and copy their Composer files.
 
-The templates pin the Prisma 8 release candidate and its compatible Composer
-integration. They use `bunx @prisma/cli@next` for Prisma Cloud commands because
-the `latest` tag still points at the earlier CLI command set. These pins can
-move to stable releases after Prisma 8 and the matching Composer integration
-reach general availability.
+The templates pin the released toolchain as exact versions: the consolidated
+`prisma` CLI (8.0.0-rc.6, published on the `next` npm tag until the Prisma 8
+cutover) runs every ORM and cloud script, and `@prisma/composer-cli` at the
+same version as the `@prisma/composer` libraries provides the local
+`prisma-composer` bin, which `prisma/cloud-deploy-action` prefers over its npx
+fallback — so deploys run the exact Composer version each app depends on.
+These pins can move to stable releases once Prisma 8 reaches general
+availability.

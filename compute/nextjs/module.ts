@@ -9,7 +9,7 @@ export default module('prisma-compute-nextjs', ({ provision }) => {
     pnPostgres({
       name: 'database',
       contract: databaseContract,
-      config: 'prisma-next.config.ts',
+      config: 'prisma.config.ts',
     }),
   )
 

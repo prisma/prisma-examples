@@ -9,6 +9,7 @@ export default compute({
   deps: { db: pnPostgres(databaseContract) },
   build: node({
     module: import.meta.url,
-    entry: '../dist/index.js',
+    dir: '../dist',
+    entry: 'index.js',
   }),
 })

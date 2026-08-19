@@ -57,5 +57,5 @@ Each push creates a build. To stream the full build log, copy the build ID
 from the GitHub check run and run:
 
 ```bash
-npx -y @prisma/cli@next build logs <build-id>
+bunx prisma build logs <build-id>
 ```

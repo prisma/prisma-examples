@@ -77,6 +77,8 @@ describe('Prisma Compute examples', () => {
         rootEntries.filter((entry) => entry === 'prisma-composer.config.ts'),
       ).toHaveLength(1)
       expect(rootEntries).toContain('module.ts')
+      expect(rootEntries).toContain('prisma.config.ts')
+      expect(rootEntries).not.toContain('prisma-next.config.ts')
       expect(rootEntries).not.toContain('prisma.compute.json')
       expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
         'bun.lock',
@@ -86,21 +88,28 @@ describe('Prisma Compute examples', () => {
         await readFile(path.join(templateDirectory, 'package.json'), 'utf8'),
       ) as {
         dependencies?: Record<string, string>
+        devDependencies?: Record<string, string>
         packageManager?: string
         scripts?: Record<string, string>
       }
       expect(packageJson.packageManager).toBe(packageManager)
-      expect(packageJson.dependencies?.['@prisma/composer']).toBe(
-        '0.6.0-dev.20',
-      )
+      expect(packageJson.dependencies?.['@prisma/composer']).toBe('0.10.0')
       expect(packageJson.dependencies?.['@prisma/composer-prisma-cloud']).toBe(
-        '0.6.0-dev.20',
+        '0.10.0',
       )
       expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
-        '8.0.0-rc.1',
+        '8.0.0-rc.4',
+      )
+      // The consolidated Prisma CLI runs every ORM and cloud script; the
+      // matching @prisma/composer-cli provides the local prisma-composer bin
+      // that prisma/cloud-deploy-action prefers over its npx fallback, so the
+      // deploy runs the same Composer version the app depends on.
+      expect(packageJson.devDependencies?.['prisma']).toBe('8.0.0-rc.6')
+      expect(packageJson.devDependencies?.['@prisma/composer-cli']).toBe(
+        '0.10.0',
       )
       expect(packageJson.scripts?.['contract:emit']).toBe(
-        'prisma-next contract emit',
+        'prisma contract emit',
       )
 
       const workflowPath = path.join(
@@ -119,7 +128,7 @@ describe('Prisma Compute examples', () => {
       )
       expect(computeScripts).toHaveLength(4)
       for (const [, command] of computeScripts) {
-        expect(command).toMatch(/^bunx @prisma\/cli@next /)
+        expect(command).toMatch(/^prisma /)
       }
 
       await execa(
@@ -128,6 +137,14 @@ describe('Prisma Compute examples', () => {
         { cwd: templateDirectory },
       )
       await execa('bun', ['run', 'build'], { cwd: templateDirectory })
+
+      // Every build re-emits the contract, so a contract.prisma edit that was
+      // committed without re-emitting shows up here as a dirty working tree.
+      await execa(
+        'git',
+        ['diff', '--exit-code', '--', `${template.path}/src/prisma`],
+        { cwd: repositoryRoot },
+      )
 
       const smokeRoute = smokeRouteByFramework.get(template.framework)
       expect(smokeRoute).toBeDefined()
