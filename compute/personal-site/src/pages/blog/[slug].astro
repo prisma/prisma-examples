@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const formatter = new Intl.DateTimeFormat("en", { dateStyle: "long" });
+const formatter = new Intl.DateTimeFormat("en", { dateStyle: "long", timeZone: "UTC" });
 ---
 
 <Base title={post.data.title} description={post.data.description}>

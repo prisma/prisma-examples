@@ -1,6 +1,6 @@
 # personal-site
 
-A simple personal site template built with [Astro](https://astro.build). No database, no CMS — your identity lives in one config file and your posts are markdown files. The whole site builds to static HTML you can host anywhere.
+A simple personal site template built with [Astro](https://astro.build) that deploys to Prisma Compute with `@prisma/cli@next` (Prisma 8 release candidate). No database, no CMS — your identity lives in one config file and your posts are markdown files.
 
 It ships fully populated with a fictional persona (**Riley Nakamura**, a photographer) so you can see everything working before you make it yours.
 
@@ -28,13 +28,23 @@ Then open http://localhost:4321.
 2. **Your writing** — replace the markdown files in `src/content/blog/`. The filename becomes the URL (`my-post.md` → `/blog/my-post`). Each file needs `title`, `description`, and `publishedAt` in its frontmatter; add `draft: true` to keep a post hidden — the template includes one draft as an example.
 3. **Your look** — colors and typography are CSS custom properties in `src/layouts/Base.astro`; page styles are scoped in each `.astro` file.
 
-## Deploy
+## Deploy to Prisma Compute
+
+Connect this repository to a Prisma Compute project. Every push to the
+connected branch then builds and deploys automatically.
 
 ```bash
-bun run build
+bun run compute:login
+bun run compute:connect
 ```
 
-The site is output to `dist/` as plain static files — deploy them to any static host (Netlify, Vercel, Cloudflare Pages, GitHub Pages, or a plain web server).
+After connecting, open the running service with:
+
+```bash
+bun run compute:open
+```
+
+The site builds with the [`@astrojs/node`](https://docs.astro.build/en/guides/integrations-guide/node/) adapter in standalone mode, so `bun run build` produces a Node server at `dist/server/entry.mjs`. To host it yourself instead, run that entrypoint with Node (or switch `astro.config.mjs` to `output: "static"` and serve `dist/` from any static host).
 
 ## Project layout
 

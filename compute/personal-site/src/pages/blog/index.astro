@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import { getPublishedPosts } from "../../lib/blog";
 
-const formatter = new Intl.DateTimeFormat("en", { dateStyle: "medium" });
+const formatter = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" });
 
 const posts = await getPublishedPosts();
 ---

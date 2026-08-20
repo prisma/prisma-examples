@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import { getPublishedPosts } from "../lib/blog";
 import { projects, site } from "../site.config";
 
-const formatter = new Intl.DateTimeFormat("en", { dateStyle: "medium" });
+const formatter = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" });
 
 const posts = (await getPublishedPosts()).slice(0, 3);
 const featured = projects.filter((project) => project.featured);

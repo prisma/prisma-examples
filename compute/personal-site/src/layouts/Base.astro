@@ -57,7 +57,7 @@ function isActive(href: string) {
               {index < site.links.length - 1 && <span class="dot">·</span>}
             </>
           ))}
-          <span class="dot">·</span>
+          {site.links.length > 0 && <span class="dot">·</span>}
           <a href={`mailto:${site.email}`}>Email</a>
         </p>
         <p class="colophon">© {new Date().getFullYear()} {site.name}</p>
@@ -71,7 +71,7 @@ function isActive(href: string) {
     --bg: #ffffff;
     --fg: #1a1a1a;
     --muted: #6b6b6b;
-    --faint: #9a9a9a;
+    --faint: #767676;
     --border: #e6e6e6;
     --surface: #f7f7f7;
     --accent: #2563eb;
@@ -82,7 +82,7 @@ function isActive(href: string) {
       --bg: #121212;
       --fg: #eaeaea;
       --muted: #9d9d9d;
-      --faint: #737373;
+      --faint: #8a8a8a;
       --border: #2a2a2a;
       --surface: #1c1c1c;
       --accent: #7ba3f5;
