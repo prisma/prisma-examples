@@ -1,12 +1,3 @@
-generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
-}
-
-datasource db {
-  provider = "postgresql"
-}
-
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -14,7 +5,7 @@ model User {
   name      String?
   posts     Post[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt temporal.updatedAt()
 }
 
 model Post {
@@ -25,6 +16,5 @@ model Post {
   authorId  Int
   author    User     @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt temporal.updatedAt()
 }
-

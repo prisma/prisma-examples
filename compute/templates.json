@@ -6,44 +6,28 @@
       "name": "Hono API",
       "description": "Hono REST API with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/hono",
-      "framework": "hono",
-      "smoke": {
-        "path": "/",
-        "expectedText": "Hono on Prisma Compute"
-      }
+      "framework": "hono"
     },
     {
       "id": "nextjs",
       "name": "Next.js",
       "description": "Next.js App Router app with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/nextjs",
-      "framework": "nextjs",
-      "smoke": {
-        "path": "/",
-        "expectedText": "Next.js on Prisma Compute"
-      }
+      "framework": "nextjs"
     },
     {
       "id": "tanstack-start",
       "name": "TanStack Start",
       "description": "TanStack Start app with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/tanstack-start",
-      "framework": "tanstack-start",
-      "smoke": {
-        "path": "/",
-        "expectedText": "TanStack Start on Prisma Compute"
-      }
+      "framework": "tanstack-start"
     },
     {
       "id": "personal-site",
       "name": "Personal Site",
       "description": "Simple personal website built with Astro and deployed to Prisma Compute.",
       "path": "compute/personal-site",
-      "framework": "astro",
-      "smoke": {
-        "path": "/",
-        "expectedText": "Selected projects"
-      }
+      "framework": "astro"
     }
   ]
 }

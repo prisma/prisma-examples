@@ -1,7 +1,8 @@
 # Prisma Compute Hono example
 
-This is a small Hono API that uses Prisma ORM with PostgreSQL and deploys to
-Prisma Compute with `@prisma/cli@next` (Prisma 8 release candidate).
+This is a small Hono API that uses Prisma 8 with PostgreSQL. Prisma Composer
+provisions its database and service, applies its schema, and deploys it to
+Prisma Compute.
 
 ## Run locally
 
@@ -15,8 +16,8 @@ bun run compute:database:create
 
 # Copy the printed DATABASE_URL into .env.
 
-bun run db:generate
-bun run db:migrate --name init
+bun run contract:emit
+bun run db:init
 bun run db:seed
 bun run dev
 ```
@@ -26,11 +27,21 @@ available at [http://localhost:8080/api/users](http://localhost:8080/api/users).
 
 ## Deploy to Prisma Compute
 
-Connect this repository to a Prisma Compute project. Every push to the
-connected branch then builds and deploys automatically.
+Connect this repository to Prisma Cloud, then push the branch. The included
+GitHub Actions workflow runs Composer, which provisions Prisma Postgres,
+applies the Prisma 8 contract, and deploys the Hono service.
 
 ```bash
 bun run compute:connect
+```
+
+When you change `src/prisma/contract.prisma`, emit the updated contract and
+author a migration before pushing:
+
+```bash
+bun run contract:emit
+bun run migration:plan --name describe-the-change
+bun run db:update
 ```
 
 After connecting, open the running service with:
@@ -43,5 +54,5 @@ Each push creates a build. To stream the full build log, copy the build ID
 from the GitHub check run and run:
 
 ```bash
-npx -y @prisma/cli@next build logs <build-id>
+bunx prisma build logs <build-id>
 ```
