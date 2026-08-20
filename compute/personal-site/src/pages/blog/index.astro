@@ -1,0 +1,88 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getPublishedPosts } from "../../lib/blog";
+
+const formatter = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" });
+
+const posts = await getPublishedPosts();
+---
+
+<Base title="Writing" description="Field notes on photography: technique, printing, and works in progress.">
+  <h1>Writing</h1>
+
+  {posts.length === 0 ? (
+    <p class="empty">Nothing published yet.</p>
+  ) : (
+    <ul class="posts">
+      {posts.map((post) => (
+        <li>
+          <time datetime={post.data.publishedAt.toISOString()}>
+            {formatter.format(post.data.publishedAt)}
+          </time>
+          <div>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            <p>{post.data.description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
+
+<style>
+  h1 {
+    margin: 0 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .empty {
+    color: var(--muted);
+    font-size: 0.925rem;
+  }
+
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .posts li {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  time {
+    color: var(--faint);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .posts a {
+    font-weight: 550;
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+  }
+
+  .posts a:hover {
+    text-decoration-color: var(--fg);
+  }
+
+  .posts p {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+    font-size: 0.925rem;
+  }
+
+  @media (max-width: 480px) {
+    .posts li {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

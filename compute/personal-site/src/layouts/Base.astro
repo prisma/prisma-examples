@@ -1,0 +1,201 @@
+---
+import { site } from "../site.config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} — ${site.role}`;
+const pageDescription = description ?? site.tagline;
+const currentPath = Astro.url.pathname;
+
+const nav = [
+  { label: "Home", href: "/" },
+  { label: "Writing", href: "/blog" },
+  { label: "Projects", href: "/projects" },
+];
+
+function isActive(href: string) {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <a class="wordmark" href="/">{site.name}</a>
+        <nav>
+          {nav.map((item) => (
+            <a href={item.href} aria-current={isActive(item.href) ? "page" : undefined}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer>
+        <p>
+          {site.links.map((link, index) => (
+            <>
+              <a href={link.url}>{link.label}</a>
+              {index < site.links.length - 1 && <span class="dot">·</span>}
+            </>
+          ))}
+          {site.links.length > 0 && <span class="dot">·</span>}
+          <a href={`mailto:${site.email}`}>Email</a>
+        </p>
+        <p class="colophon">© {new Date().getFullYear()} {site.name}</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --faint: #767676;
+    --border: #e6e6e6;
+    --surface: #f7f7f7;
+    --accent: #2563eb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121212;
+      --fg: #eaeaea;
+      --muted: #9d9d9d;
+      --faint: #8a8a8a;
+      --border: #2a2a2a;
+      --surface: #1c1c1c;
+      --accent: #7ba3f5;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  code {
+    padding: 0.125rem 0.3rem;
+    border-radius: 0.25rem;
+    background: var(--surface);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.875em;
+  }
+</style>
+
+<style>
+  .shell {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .wordmark {
+    font-weight: 650;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  nav a:hover {
+    color: var(--fg);
+  }
+
+  nav a[aria-current="page"] {
+    color: var(--fg);
+    font-weight: 550;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  footer p {
+    margin: 0 0 0.25rem;
+  }
+
+  footer a {
+    color: var(--muted);
+  }
+
+  footer a:hover {
+    color: var(--fg);
+  }
+
+  .dot {
+    margin: 0 0.5rem;
+    color: var(--faint);
+  }
+
+  .colophon {
+    color: var(--faint);
+  }
+
+  @media (max-width: 480px) {
+    header {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+.prisma
+.prisma-composer
+.alchemy
+.astro

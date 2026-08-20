@@ -1,0 +1,24 @@
+{
+  "name": "personal-site",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "bun@1.3.14",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "compute:login": "bunx @prisma/cli@next auth login",
+    "compute:deploy": "bunx @prisma/cli@next app deploy",
+    "compute:connect": "bunx @prisma/cli@next git connect",
+    "compute:open": "bunx @prisma/cli@next service open"
+  },
+  "dependencies": {
+    "@astrojs/node": "^10",
+    "astro": "^6.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "typescript": "^5.9.3"
+  }
+}

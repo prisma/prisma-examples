@@ -5,8 +5,9 @@ import { execa } from 'execa'
 import { describe, expect, test } from 'vitest'
 
 const repositoryRoot = path.resolve(import.meta.dirname, '..')
-const supportedFrameworks = new Set(['hono', 'nextjs', 'tanstack-start'])
+const supportedFrameworks = new Set(['astro', 'hono', 'nextjs', 'tanstack-start'])
 const smokeRouteByFramework = new Map([
+  ['astro', 'src/pages/index.astro'],
   ['hono', 'src/index.ts'],
   ['nextjs', 'src/app/page.tsx'],
   ['tanstack-start', 'src/routes/index.tsx'],
@@ -43,12 +44,13 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(3)
+    expect(manifest.templates).toHaveLength(4)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
       'nextjs',
       'tanstack-start',
+      'personal-site',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,
