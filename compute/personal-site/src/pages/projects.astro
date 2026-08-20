@@ -1,0 +1,79 @@
+---
+import Base from "../layouts/Base.astro";
+import { projects } from "../site.config";
+
+const sorted = [...projects].sort((a, b) => b.year - a.year);
+---
+
+<Base title="Projects" description="Photo series and long-running projects.">
+  <h1>Projects</h1>
+
+  {sorted.length === 0 ? (
+    <p class="empty">Nothing here yet.</p>
+  ) : (
+    <ul class="projects">
+      {sorted.map((project) => (
+        <li>
+          <div class="title-row">
+            {project.url ? <a href={project.url}>{project.name}</a> : <span class="name">{project.name}</span>}
+            <span class="year">{project.year}</span>
+          </div>
+          <p>{project.summary}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
+
+<style>
+  h1 {
+    margin: 0 0 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .empty {
+    color: var(--muted);
+    font-size: 0.925rem;
+  }
+
+  .projects {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+  }
+
+  .title-row a,
+  .name {
+    font-weight: 550;
+  }
+
+  .title-row a {
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+  }
+
+  .title-row a:hover {
+    text-decoration-color: var(--fg);
+  }
+
+  .year {
+    color: var(--faint);
+    font-size: 0.8rem;
+  }
+
+  .projects p {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+    font-size: 0.925rem;
+  }
+</style>
