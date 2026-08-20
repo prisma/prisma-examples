@@ -33,6 +33,17 @@
         "path": "/",
         "expectedText": "TanStack Start on Prisma Compute"
       }
+    },
+    {
+      "id": "personal-site",
+      "name": "Personal Site",
+      "description": "Simple personal website built with Astro and deployed to Prisma Compute.",
+      "path": "compute/personal-site",
+      "framework": "astro",
+      "smoke": {
+        "path": "/",
+        "expectedText": "Selected projects"
+      }
     }
   ]
 }

@@ -4,6 +4,8 @@ import { render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { getPublishedPosts } from "../../lib/blog";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
