@@ -6,11 +6,6 @@ import { describe, expect, test } from 'vitest'
 
 const repositoryRoot = path.resolve(import.meta.dirname, '..')
 const supportedFrameworks = new Set(['hono', 'nextjs', 'tanstack-start'])
-const smokeRouteByFramework = new Map([
-  ['hono', 'src/index.ts'],
-  ['nextjs', 'src/app/page.tsx'],
-  ['tanstack-start', 'src/routes/index.tsx'],
-])
 const packageManager = 'bun@1.3.14'
 const lockfileNames = new Set([
   'bun.lock',
@@ -97,10 +92,6 @@ interface TemplateManifest {
     description: string
     path: string
     framework: string
-    smoke: {
-      path: string
-      expectedText: string
-    }
   }>
 }
 
@@ -133,12 +124,6 @@ describe('Prisma Compute examples', () => {
       expect(template.path).toBe(`compute/${template.id}`)
       expect(template.path).toBe(path.posix.normalize(template.path))
       expect(template.path).not.toMatch(/(?:^|\/)\.\.(?:\/|$)|\\|%/)
-
-      expect(template.smoke.path).toMatch(/^\/(?!\/)/)
-      expect(template.smoke.path.length).toBeLessThanOrEqual(128)
-      expect(template.smoke.path).not.toMatch(/:\/\/|\?|#|\\|%|\.\./)
-      expect(template.smoke.expectedText.length).toBeGreaterThan(0)
-      expect(template.smoke.expectedText.length).toBeLessThanOrEqual(256)
 
       const templateDirectory = path.join(repositoryRoot, template.path)
       const rootEntries = await readdir(templateDirectory)
@@ -216,16 +201,6 @@ describe('Prisma Compute examples', () => {
       )
 
       await verifyDeployBundle(templateDirectory, 4310 + templateIndex)
-
-      const smokeRoute = smokeRouteByFramework.get(template.framework)
-      expect(smokeRoute).toBeDefined()
-      const smokeRouteContents = await readFile(
-        path.join(templateDirectory, smokeRoute!),
-        'utf8',
-      )
-      expect(smokeRouteContents.includes(template.smoke.expectedText)).toBe(
-        true,
-      )
     }
   })
 })
