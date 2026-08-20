@@ -21,6 +21,13 @@
       "description": "TanStack Start app with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/tanstack-start",
       "framework": "tanstack-start"
+    },
+    {
+      "id": "personal-site",
+      "name": "Personal Site",
+      "description": "Simple personal website built with Astro and deployed to Prisma Compute.",
+      "path": "compute/personal-site",
+      "framework": "astro"
     }
   ]
 }

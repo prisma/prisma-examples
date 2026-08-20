@@ -1,0 +1,42 @@
+name: prisma-deploy
+
+on:
+  push:
+  delete:
+
+concurrency:
+  group: prisma-deploy-${{ github.event_name == 'delete' && github.event.ref || github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    if: github.event_name == 'push' && github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: prisma/cloud-deploy-action@v1
+        with:
+          build-command: bun run build
+
+  teardown:
+    if: github.event_name == 'delete' && github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: prisma/cloud-deploy-action@v1
+        with:
+          mode: destroy
+          stage: ${{ github.event.ref }}

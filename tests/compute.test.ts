@@ -5,7 +5,13 @@ import { execa } from 'execa'
 import { describe, expect, test } from 'vitest'
 
 const repositoryRoot = path.resolve(import.meta.dirname, '..')
-const supportedFrameworks = new Set(['hono', 'nextjs', 'tanstack-start'])
+const supportedFrameworks = new Set([
+  'astro',
+  'hono',
+  'nextjs',
+  'tanstack-start',
+])
+const databaseTemplateIds = new Set(['hono', 'nextjs', 'tanstack-start'])
 const packageManager = 'bun@1.3.14'
 const lockfileNames = new Set([
   'bun.lock',
@@ -15,70 +21,86 @@ const lockfileNames = new Set([
   'yarn.lock',
 ])
 
-// A framework build succeeding says nothing about whether Composer can turn
-// its output into a bootable bundle, so each template's service is assembled
-// through the same control assembler a deploy uses, booted with node, and
-// probed over HTTP. Any response counts: without a database the app may
-// answer 500, but a bundle missing files never answers at all.
+// A framework build does not prove that Composer emitted a bootable bundle.
+// Database templates may return 500 here, but any response proves they booted.
 const bundleVerifyScript = `import path from 'node:path'
 import { rm } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
+import { createServer } from 'node:net'
 
-const port = process.argv[2]
-const service = (await import('./src/service.ts')).default
-const control = await import(\`\${service.build.extension}/control\`)
-const bundle = await control.assemble({
-  cwd: process.cwd(),
-  address: 'ci-verify',
-  build: service.build,
+const port = await new Promise<number>((resolve, reject) => {
+  const server = createServer()
+  server.once('error', reject)
+  server.listen(0, '127.0.0.1', () => {
+    const address = server.address()
+    if (address === null || typeof address === 'string') {
+      server.close()
+      reject(new Error('could not allocate a local port'))
+      return
+    }
+    server.close((error) => {
+      if (error) reject(error)
+      else resolve(address.port)
+    })
+  })
 })
-const entry = path.join(bundle.dir, bundle.entry)
-const child = spawn(process.execPath, [entry], {
-  env: {
-    ...process.env,
-    PORT: port,
-    DATABASE_URL: 'postgresql://placeholder:placeholder@localhost:5432/db',
-  },
-  stdio: 'inherit',
-})
-let exited = false
-child.on('exit', () => {
-  exited = true
-})
-const deadline = Date.now() + 60_000
-let status
-while (status === undefined && !exited && Date.now() < deadline) {
-  try {
-    status = (await fetch(\`http://127.0.0.1:\${port}/\`)).status
-  } catch {
-    await new Promise((resolve) => setTimeout(resolve, 500))
+
+let child
+try {
+  const service = (await import('./src/service.ts')).default
+  const control = await import(\`\${service.build.extension}/control\`)
+  const bundle = await control.assemble({
+    cwd: process.cwd(),
+    address: 'ci-verify',
+    build: service.build,
+  })
+  const entry = path.join(bundle.dir, bundle.entry)
+  child = spawn(process.execPath, [entry], {
+    env: {
+      ...process.env,
+      PORT: String(port),
+      DATABASE_URL: 'postgresql://placeholder:placeholder@localhost:5432/db',
+    },
+    stdio: 'inherit',
+  })
+  let exited = false
+  child.once('exit', () => {
+    exited = true
+  })
+  const deadline = Date.now() + 60_000
+  let status
+  while (status === undefined && !exited && Date.now() < deadline) {
+    try {
+      status = (await fetch(\`http://127.0.0.1:\${port}/\`)).status
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 500))
+    }
   }
+  if (status === undefined) {
+    throw new Error(
+      exited
+        ? 'the assembled bundle exited before serving a request'
+        : 'the assembled bundle never answered on its port',
+    )
+  }
+  console.log(\`bundle answered with HTTP \${status}\`)
+} finally {
+  child?.kill('SIGKILL')
+  await rm(path.join(process.cwd(), '.prisma-composer'), {
+    recursive: true,
+    force: true,
+  })
 }
-child.kill('SIGKILL')
-await rm(path.join(process.cwd(), '.prisma-composer'), {
-  recursive: true,
-  force: true,
-})
-if (status === undefined) {
-  console.error(
-    exited
-      ? 'the assembled bundle exited before serving a request'
-      : 'the assembled bundle never answered on its port',
-  )
-  process.exit(1)
-}
-console.log(\`bundle answered with HTTP \${status}\`)
 `
 
-async function verifyDeployBundle(templateDirectory: string, port: number) {
+async function verifyDeployBundle(templateDirectory: string) {
   const scriptPath = path.join(templateDirectory, '.bundle-verify.mts')
   await writeFile(scriptPath, bundleVerifyScript)
   try {
-    await execa(
-      path.join(templateDirectory, 'node_modules', '.bin', 'tsx'),
-      ['.bundle-verify.mts', String(port)],
-      { cwd: templateDirectory, stdio: 'inherit' },
-    )
+    await execa('bun', ['.bundle-verify.mts'], {
+      cwd: templateDirectory,
+      stdio: 'inherit',
+    })
   } finally {
     await rm(scriptPath, { force: true })
   }
@@ -103,18 +125,19 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(3)
+    expect(manifest.templates).toHaveLength(4)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
       'nextjs',
       'tanstack-start',
+      'personal-site',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,
     ).toBe(manifest.templates.length)
 
-    for (const [templateIndex, template] of manifest.templates.entries()) {
+    for (const template of manifest.templates) {
       expect(template.id).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
       expect(template.id.length).toBeLessThanOrEqual(64)
       expect(template.name.trim()).not.toBe('')
@@ -131,7 +154,9 @@ describe('Prisma Compute examples', () => {
         rootEntries.filter((entry) => entry === 'prisma-composer.config.ts'),
       ).toHaveLength(1)
       expect(rootEntries).toContain('module.ts')
-      expect(rootEntries).toContain('prisma.config.ts')
+      expect(rootEntries.includes('prisma.config.ts')).toBe(
+        databaseTemplateIds.has(template.id),
+      )
       expect(rootEntries).not.toContain('prisma-next.config.ts')
       expect(rootEntries).not.toContain('prisma.compute.json')
       expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
@@ -151,20 +176,23 @@ describe('Prisma Compute examples', () => {
       expect(packageJson.dependencies?.['@prisma/composer-prisma-cloud']).toBe(
         '0.10.0',
       )
-      expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
-        '8.0.0-rc.4',
-      )
-      // The consolidated Prisma CLI runs every ORM and cloud script; the
-      // matching @prisma/composer-cli provides the local prisma-composer bin
-      // that prisma/cloud-deploy-action prefers over its npx fallback, so the
-      // deploy runs the same Composer version the app depends on.
       expect(packageJson.devDependencies?.['prisma']).toBe('8.0.0-rc.6')
       expect(packageJson.devDependencies?.['@prisma/composer-cli']).toBe(
         '0.10.0',
       )
-      expect(packageJson.scripts?.['contract:emit']).toBe(
-        'prisma contract emit',
-      )
+      if (databaseTemplateIds.has(template.id)) {
+        expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
+          '8.0.0-rc.4',
+        )
+        expect(packageJson.scripts?.['contract:emit']).toBe(
+          'prisma contract emit',
+        )
+      } else {
+        expect(
+          packageJson.dependencies?.['@prisma/orm-postgres'],
+        ).toBeUndefined()
+        expect(packageJson.scripts?.['contract:emit']).toBeUndefined()
+      }
 
       const workflowPath = path.join(
         templateDirectory,
@@ -180,27 +208,28 @@ describe('Prisma Compute examples', () => {
       const computeScripts = Object.entries(packageJson.scripts ?? {}).filter(
         ([name]) => name.startsWith('compute:'),
       )
-      expect(computeScripts).toHaveLength(4)
+      expect(computeScripts).toHaveLength(
+        databaseTemplateIds.has(template.id) ? 4 : 3,
+      )
       for (const [, command] of computeScripts) {
         expect(command).toMatch(/^prisma /)
       }
 
-      await execa(
-        'bun',
-        ['install', '--frozen-lockfile', '--ignore-scripts'],
-        { cwd: templateDirectory },
-      )
+      await execa('bun', ['install', '--frozen-lockfile', '--ignore-scripts'], {
+        cwd: templateDirectory,
+      })
       await execa('bun', ['run', 'build'], { cwd: templateDirectory })
 
-      // Every build re-emits the contract, so a contract.prisma edit that was
-      // committed without re-emitting shows up here as a dirty working tree.
-      await execa(
-        'git',
-        ['diff', '--exit-code', '--', `${template.path}/src/prisma`],
-        { cwd: repositoryRoot },
-      )
+      if (databaseTemplateIds.has(template.id)) {
+        // The generated contract must match the source contract committed with it.
+        await execa(
+          'git',
+          ['diff', '--exit-code', '--', `${template.path}/src/prisma`],
+          { cwd: repositoryRoot },
+        )
+      }
 
-      await verifyDeployBundle(templateDirectory, 4310 + templateIndex)
+      await verifyDeployBundle(templateDirectory)
     }
   })
 })

@@ -1,0 +1,179 @@
+---
+import Base from "../layouts/Base.astro";
+import { getPublishedPosts } from "../lib/blog";
+import { projects, site } from "../site.config";
+
+const formatter = new Intl.DateTimeFormat("en", { dateStyle: "medium", timeZone: "UTC" });
+
+const posts = (await getPublishedPosts()).slice(0, 3);
+const featured = projects.filter((project) => project.featured);
+---
+
+<Base>
+  <section class="hero">
+    <h1>{site.name}</h1>
+    <p class="role">{site.role} · {site.location}</p>
+    <p class="tagline">{site.tagline}</p>
+    {site.bio.map((paragraph) => <p class="bio">{paragraph}</p>)}
+  </section>
+
+  {featured.length > 0 && (
+    <section>
+      <div class="section-header">
+        <h2>Selected projects</h2>
+        <a href="/projects">All projects →</a>
+      </div>
+      <ul class="projects">
+        {featured.map((project) => (
+          <li>
+            <div class="project-title">
+              {project.url ? <a href={project.url}>{project.name}</a> : <span>{project.name}</span>}
+              <span class="year">{project.year}</span>
+            </div>
+            <p>{project.summary}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {posts.length > 0 && (
+    <section>
+      <div class="section-header">
+        <h2>Recent writing</h2>
+        <a href="/blog">All posts →</a>
+      </div>
+      <ul class="posts">
+        {posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {formatter.format(post.data.publishedAt)}
+            </time>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  .hero {
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .role {
+    margin: 0.25rem 0 1.25rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .tagline {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .bio {
+    margin: 0 0 0.75rem;
+    color: var(--muted);
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header a {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+
+  .section-header a:hover {
+    color: var(--fg);
+  }
+
+  .projects {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .project-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    font-weight: 550;
+  }
+
+  .project-title a {
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+  }
+
+  .year {
+    color: var(--faint);
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+  .projects p {
+    margin: 0.25rem 0 0;
+    color: var(--muted);
+    font-size: 0.925rem;
+  }
+
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  .posts li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .posts a {
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+  }
+
+  .posts a:hover {
+    text-decoration-color: var(--fg);
+  }
+
+  time {
+    color: var(--faint);
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+</style>

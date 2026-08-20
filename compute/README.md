@@ -8,9 +8,11 @@ Composer.
 | [`hono`](./hono) | Hono API on Node.js. |
 | [`nextjs`](./nextjs) | Next.js App Router app using standalone output for Prisma Compute. |
 | [`tanstack-start`](./tanstack-start) | TanStack Start app using the Nitro Vite plugin output supported by Prisma Compute. |
+| [`personal-site`](./personal-site) | Astro personal site with no database. |
 
-Each example includes a Prisma 8 contract, generated typed client metadata,
-seed data, a Composer module, and a GitHub Actions deployment workflow.
+Each example includes a Composer module and a GitHub Actions deployment
+workflow. The database-backed examples also include a Prisma 8 contract,
+generated typed client metadata, and seed data.
 Deploy the companion Console change before publishing these templates so the
 one-click flow can validate and copy their Composer files.
 
