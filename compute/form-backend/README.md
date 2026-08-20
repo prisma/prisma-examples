@@ -4,7 +4,8 @@ A self-hostable form endpoint. Deploy it once, create a form in the dashboard,
 then point any static site's `<form action="...">` at the endpoint it gives you.
 Submissions land in your database, browsable and exportable as CSV.
 
-No JavaScript required on the sending page. No third party sees your form data.
+No JavaScript required on the sending page. No form-processing vendor in the
+middle — submissions go straight into your own Prisma Postgres database.
 
 Built with [Hono](https://hono.dev), [Prisma Next](https://www.prisma.io), and
 [Prisma Composer](https://www.prisma.io) on Prisma Compute + Prisma Postgres.
@@ -187,7 +188,7 @@ bunx prisma@next composer destroy module.ts --stage preview
 
 ## Project structure
 
-```
+```text
 module.ts                    Composer app: database + service, ADMIN_PASSWORD binding
 service.ts                   Service declaration: deps, input schema, build
 prisma.config.ts             Prisma Next CLI config

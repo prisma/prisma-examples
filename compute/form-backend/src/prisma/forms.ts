@@ -87,17 +87,34 @@ export async function exampleForm(): Promise<Form | null> {
     .first();
 }
 
-export async function createForm(input: {
-  name: string;
-  slug: string;
-  redirectUrl: string | null;
-}): Promise<Form> {
+/** Postgres reports a unique-constraint violation as SQLSTATE 23505. */
+function isUniqueViolation(error: unknown): boolean {
+  for (let cursor: unknown = error; cursor instanceof Error; cursor = cursor.cause) {
+    const code = (cursor as { code?: unknown }).code;
+    if (code === "23505" || /unique/i.test(cursor.message)) return true;
+  }
+  return false;
+}
+
+/**
+ * Create a form, deriving a free slug from its name. Two requests can pick the
+ * same slug between the check and the insert, so a unique-constraint error
+ * simply re-derives the slug and tries again.
+ */
+export async function createForm(input: { name: string; redirectUrl: string | null }): Promise<Form> {
   await ready();
-  return await db.orm.public.Form.create({
-    name: input.name,
-    slug: input.slug,
-    redirectUrl: input.redirectUrl,
-  });
+  for (let attempt = 0; ; attempt += 1) {
+    const slug = await uniqueSlug(input.name);
+    try {
+      return await db.orm.public.Form.create({
+        name: input.name,
+        slug,
+        redirectUrl: input.redirectUrl,
+      });
+    } catch (error) {
+      if (attempt >= 2 || !isUniqueViolation(error)) throw error;
+    }
+  }
 }
 
 export async function setFormActive(id: number, active: boolean): Promise<void> {

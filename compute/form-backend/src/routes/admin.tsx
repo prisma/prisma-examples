@@ -15,7 +15,6 @@ import {
   listForms,
   listSubmissions,
   setFormActive,
-  uniqueSlug,
 } from "../prisma/forms.ts";
 import { AdminHeader, Layout, formatDate } from "../ui.tsx";
 
@@ -36,6 +35,9 @@ function parseId(raw: string | undefined): number | null {
 
 const requireSession = createMiddleware(async (c, next) => {
   if (!isSignedIn(c)) return c.redirect("/admin", 303);
+  // Dashboard pages hold submission data — keep them out of the browser cache
+  // so they don't linger after sign-out on a shared machine.
+  c.header("Cache-Control", "no-store");
   await next();
 });
 
@@ -232,8 +234,7 @@ admin.post("/forms", async (c) => {
     }
   }
 
-  const slug = await uniqueSlug(name);
-  const form = await createForm({ name: name.slice(0, 120), slug, redirectUrl });
+  const form = await createForm({ name: name.slice(0, 120), redirectUrl });
   return c.redirect(`/admin/forms/${form.id}`, 303);
 });
 

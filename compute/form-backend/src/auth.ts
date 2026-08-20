@@ -7,10 +7,14 @@ import service from "../service.ts";
 export const SESSION_COOKIE = "form_backend_session";
 
 /**
- * The session cookie carries an HMAC-SHA256 of this constant, keyed by the
- * admin password. Rotating the password invalidates every session.
+ * The session cookie is `<expiresAt>.<hmac>`, where the HMAC-SHA256 covers this
+ * constant plus the expiry and is keyed by the admin password. Rotating the
+ * password invalidates every session; the expiry is enforced server-side, so a
+ * copied cookie stops working after `SESSION_TTL_SECONDS` regardless of
+ * whether the client honours `Max-Age`.
  */
 const SESSION_SUBJECT = "form-backend/admin/v1";
+const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7;
 
 /** `prisma-composer dev` mints this prefix when a secret is unset in the shell. */
 const LOCAL_PLACEHOLDER_PREFIX = "local-placeholder-";
@@ -46,8 +50,12 @@ export function adminEnabled(): boolean {
   return adminPassword() !== undefined;
 }
 
-function sessionToken(password: string): string {
-  return createHmac("sha256", password).update(SESSION_SUBJECT).digest("hex");
+function sign(password: string, payload: string): string {
+  return createHmac("sha256", password).update(payload).digest("hex");
+}
+
+function sessionToken(password: string, expiresAt: number): string {
+  return `${expiresAt}.${sign(password, `${SESSION_SUBJECT}:${expiresAt}`)}`;
 }
 
 /** Constant-time comparison of two equal-length hex digests. */
@@ -62,18 +70,19 @@ function digestsMatch(a: string, b: string): boolean {
 export function passwordMatches(candidate: string): boolean {
   const password = adminPassword();
   if (password === undefined) return false;
-  return digestsMatch(sessionToken(candidate), sessionToken(password));
+  return digestsMatch(sign(candidate, SESSION_SUBJECT), sign(password, SESSION_SUBJECT));
 }
 
 export function startSession(c: Context): void {
   const password = adminPassword();
   if (password === undefined) return;
-  setCookie(c, SESSION_COOKIE, sessionToken(password), {
+  const expiresAt = Math.floor(Date.now() / 1000) + SESSION_TTL_SECONDS;
+  setCookie(c, SESSION_COOKIE, sessionToken(password, expiresAt), {
     httpOnly: true,
     sameSite: "Lax",
     path: "/",
     secure: new URL(c.req.url).protocol === "https:",
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: SESSION_TTL_SECONDS,
   });
 }
 
@@ -86,5 +95,11 @@ export function isSignedIn(c: Context): boolean {
   if (password === undefined) return false;
   const cookie = getCookie(c, SESSION_COOKIE);
   if (!cookie) return false;
-  return digestsMatch(cookie, sessionToken(password));
+
+  const separator = cookie.indexOf(".");
+  if (separator === -1) return false;
+  const expiresAt = Number(cookie.slice(0, separator));
+  if (!Number.isSafeInteger(expiresAt) || expiresAt <= Math.floor(Date.now() / 1000)) return false;
+
+  return digestsMatch(cookie, sessionToken(password, expiresAt));
 }

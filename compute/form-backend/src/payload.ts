@@ -25,9 +25,18 @@ function prefersJson(c: Context): boolean {
 }
 
 /** Read the raw body, aborting as soon as it exceeds `max` bytes. */
-async function readCappedText(request: Request, max: number): Promise<string | null> {
+/**
+ * Read at most `max` bytes of the body. Returns `null` once the cap is
+ * exceeded so callers can answer 413 without buffering the rest. This runs
+ * before any parser, so a chunked or mis-declared `Content-Length` can't
+ * smuggle a large body past the limit.
+ */
+async function readCappedBytes(
+  request: Request,
+  max: number,
+): Promise<Uint8Array<ArrayBuffer> | null> {
   const body = request.body;
-  if (!body) return "";
+  if (!body) return new Uint8Array(new ArrayBuffer(0));
 
   const reader = body.getReader();
   const chunks: Uint8Array[] = [];
@@ -45,7 +54,15 @@ async function readCappedText(request: Request, max: number): Promise<string | n
     chunks.push(value);
   }
 
-  return new TextDecoder().decode(Buffer.concat(chunks));
+  const joined = Buffer.concat(chunks);
+  const out = new Uint8Array(new ArrayBuffer(joined.byteLength));
+  out.set(joined);
+  return out;
+}
+
+async function readCappedText(request: Request, max: number): Promise<string | null> {
+  const bytes = await readCappedBytes(request, max);
+  return bytes === null ? null : new TextDecoder().decode(bytes);
 }
 
 function stringifyJsonValue(value: unknown): PayloadValue {
@@ -134,14 +151,22 @@ export async function parseSubmissionBody(c: Context): Promise<ParsedBody> {
     }
     raw = collect(new URLSearchParams(text));
   } else if (type.includes("multipart/form-data")) {
+    // Cap the raw bytes first, then hand the bounded body to the multipart parser.
+    const bytes = await readCappedBytes(c.req.raw, MAX_BODY_BYTES);
+    if (bytes === null) {
+      return { ok: false, status: 413, message: "Submission too large.", wantsJson };
+    }
     let form: FormData;
     try {
-      form = await c.req.raw.formData();
+      form = await new Request(c.req.url, {
+        method: "POST",
+        headers: { "content-type": c.req.header("content-type") ?? type },
+        body: bytes,
+      }).formData();
     } catch {
       return { ok: false, status: 400, message: "Could not parse multipart body.", wantsJson };
     }
     const entries: Array<readonly [string, string]> = [];
-    let bytes = 0;
     for (const [key, value] of form.entries()) {
       if (typeof value !== "string") {
         return {
@@ -151,10 +176,6 @@ export async function parseSubmissionBody(c: Context): Promise<ParsedBody> {
             "File uploads are not supported yet — send text fields only, or strip the file input before posting.",
           wantsJson,
         };
-      }
-      bytes += key.length + value.length;
-      if (bytes > MAX_BODY_BYTES) {
-        return { ok: false, status: 413, message: "Submission too large.", wantsJson };
       }
       entries.push([key, value]);
     }

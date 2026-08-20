@@ -45,6 +45,11 @@ async function runSeed(): Promise<void> {
     conflictOn: { slug: demoForm.slug },
   });
 
+  // Compute can cold-start several instances at once; the upsert above is
+  // idempotent, but the demo submissions are not — re-check before inserting.
+  const alreadySeeded = await db.orm.public.Submission.first({ formId: form.id });
+  if (alreadySeeded) return;
+
   await db.orm.public.Submission.createAll(
     demoSubmissions.map((payload) => ({
       formId: form.id,
