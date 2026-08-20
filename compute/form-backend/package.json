@@ -1,0 +1,42 @@
+{
+  "name": "prisma-compute-form-backend",
+  "private": true,
+  "packageManager": "bun@1.3.14",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/server.mjs --banner:js=\"import { createRequire as __nodeCreateRequire } from 'node:module'; const require = __nodeCreateRequire(import.meta.url);\"",
+    "composer:deploy": "bunx prisma@next composer deploy module.ts",
+    "composer:destroy": "bunx prisma@next composer destroy module.ts --production",
+    "composer:dev": "bunx prisma@next composer dev module.ts",
+    "contract:emit": "bunx prisma@next contract emit",
+    "db:init": "bunx prisma@next db init",
+    "db:update": "bunx prisma@next db update",
+    "db:verify": "bunx prisma@next db verify",
+    "deploy": "bun run build && bun run composer:deploy",
+    "dev": "bun --watch src/index.ts",
+    "dev:composer": "bun run build && bun run composer:dev",
+    "migrate": "bunx prisma@next migrate",
+    "migration:plan": "bunx prisma@next migration plan",
+    "migration:show": "bunx prisma@next migration show",
+    "migration:status": "bunx prisma@next migration status",
+    "start": "node dist/server.mjs"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.9",
+    "@prisma/composer": "0.10.0",
+    "@prisma/composer-prisma-cloud": "0.10.0",
+    "@prisma/orm-postgres": "8.0.0-rc.4",
+    "alchemy": "2.0.0-beta.67",
+    "arktype": "^2.2.3",
+    "hono": "^4.12.2"
+  },
+  "devDependencies": {
+    "@prisma/cli-engine": "0.2.0",
+    "@types/node": "^25.6.2",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "effect": "4.0.0-beta.103"
+  }
+}

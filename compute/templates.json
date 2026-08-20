@@ -44,6 +44,17 @@
         "path": "/",
         "expectedText": "Selected projects"
       }
+    },
+    {
+      "id": "form-backend",
+      "name": "Form Backend",
+      "description": "Self-hosted form endpoint (Formspree-style) with a Hono dashboard and CSV export, built on Prisma Composer and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/form-backend",
+      "framework": "hono",
+      "smoke": {
+        "path": "/",
+        "expectedText": "Form Backend"
+      }
     }
   ]
 }

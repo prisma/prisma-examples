@@ -12,6 +12,10 @@ const smokeRouteByFramework = new Map([
   ['nextjs', 'src/app/page.tsx'],
   ['tanstack-start', 'src/routes/index.tsx'],
 ])
+// Templates that deploy through Prisma Composer (`module.ts` + `bun run deploy`)
+// instead of `prisma.compute.json` + `@prisma/cli@next git connect`.
+const composerTemplates = new Set(['form-backend'])
+const smokeRouteByTemplate = new Map([['form-backend', 'src/routes/home.tsx']])
 const packageManager = 'bun@1.3.14'
 const lockfileNames = new Set([
   'bun.lock',
@@ -44,13 +48,14 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(4)
+    expect(manifest.templates).toHaveLength(5)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
       'nextjs',
       'tanstack-start',
       'personal-site',
+      'form-backend',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,
@@ -75,9 +80,15 @@ describe('Prisma Compute examples', () => {
 
       const templateDirectory = path.join(repositoryRoot, template.path)
       const rootEntries = await readdir(templateDirectory)
-      expect(
-        rootEntries.filter((entry) => entry === 'prisma.compute.json'),
-      ).toHaveLength(1)
+      const usesComposer = composerTemplates.has(template.id)
+      if (usesComposer) {
+        expect(rootEntries).toContain('module.ts')
+        expect(rootEntries).toContain('prisma-composer.config.ts')
+      } else {
+        expect(
+          rootEntries.filter((entry) => entry === 'prisma.compute.json'),
+        ).toHaveLength(1)
+      }
       expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
         'bun.lock',
       ])
@@ -90,12 +101,19 @@ describe('Prisma Compute examples', () => {
       }
       expect(packageJson.packageManager).toBe(packageManager)
 
-      const computeScripts = Object.entries(packageJson.scripts ?? {}).filter(
-        ([name]) => name.startsWith('compute:'),
-      )
-      expect(computeScripts).toHaveLength(4)
-      for (const [, command] of computeScripts) {
-        expect(command).toMatch(/^bunx @prisma\/cli@next /)
+      if (usesComposer) {
+        expect(packageJson.scripts?.deploy).toBeDefined()
+        expect(packageJson.scripts?.['composer:deploy']).toMatch(
+          /^bunx prisma@next composer deploy /,
+        )
+      } else {
+        const computeScripts = Object.entries(
+          packageJson.scripts ?? {},
+        ).filter(([name]) => name.startsWith('compute:'))
+        expect(computeScripts).toHaveLength(4)
+        for (const [, command] of computeScripts) {
+          expect(command).toMatch(/^bunx @prisma\/cli@next /)
+        }
       }
 
       await execa(
@@ -109,7 +127,9 @@ describe('Prisma Compute examples', () => {
         { cwd: templateDirectory },
       )
 
-      const smokeRoute = smokeRouteByFramework.get(template.framework)
+      const smokeRoute =
+        smokeRouteByTemplate.get(template.id) ??
+        smokeRouteByFramework.get(template.framework)
       expect(smokeRoute).toBeDefined()
       const smokeRouteContents = await readFile(
         path.join(templateDirectory, smokeRoute!),
