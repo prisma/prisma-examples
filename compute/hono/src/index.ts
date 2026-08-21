@@ -1,15 +1,15 @@
-import { serve } from "@hono/node-server";
-import { Hono } from "hono";
+import { serve } from '@hono/node-server'
+import { Hono } from 'hono'
 
-import { prisma } from "./lib/prisma.js";
+import { getDb } from './prisma/db.js'
 
-const app = new Hono();
+const app = new Hono()
 
-app.get("/", async (c) => {
-  const users = await prisma.user.findMany({
-    include: { posts: true },
-    orderBy: { createdAt: "desc" },
-  });
+app.get('/', async (c) => {
+  const users = await getDb()
+    .orm.public.User.include('posts')
+    .orderBy((user) => user.createdAt.desc())
+    .all()
 
   return c.html(`<!doctype html>
 <html lang="en">
@@ -32,26 +32,25 @@ app.get("/", async (c) => {
       ${users
         .map(
           (user) =>
-            `<li><strong>${user.name ?? user.email}</strong> <span>@${user.username ?? "no-handle"}</span> - ${user.posts.length} post(s)</li>`,
+            `<li><strong>${user.name ?? user.email}</strong> <span>@${user.username ?? 'no-handle'}</span> - ${user.posts.length} post(s)</li>`,
         )
-        .join("")}
+        .join('')}
     </ul>
   </body>
-</html>`);
-});
+</html>`)
+})
 
-app.get("/api/users", async (c) => {
-  const users = await prisma.user.findMany({
-    include: { posts: true },
-    orderBy: { createdAt: "desc" },
-  });
+app.get('/api/users', async (c) => {
+  const users = await getDb()
+    .orm.public.User.include('posts')
+    .orderBy((user) => user.createdAt.desc())
+    .all()
 
-  return c.json(users);
-});
+  return c.json(users)
+})
 
-const port = Number(process.env.PORT ?? 8080);
+const port = Number(process.env.PORT ?? 8080)
 
 serve({ fetch: app.fetch, port }, (info) => {
-  console.log(`Server is running on http://localhost:${info.port}`);
-});
-
+  console.log(`Server is running on http://localhost:${info.port}`)
+})

@@ -1,6 +1,6 @@
 import { serve } from "@hono/node-server";
 
-import service from "../service.ts";
+import service from "./service.ts";
 import { app } from "./app.tsx";
 
 // Compute scales to zero; a dropped database socket must not take the process

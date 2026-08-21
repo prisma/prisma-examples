@@ -2,5 +2,5 @@ node_modules
 dist
 .env
 .prisma
-prisma/migrations
-src/generated/prisma
+.prisma-composer
+.alchemy

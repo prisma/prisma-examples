@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import type { Context } from "hono";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 
-import service from "../service.ts";
+import service from "./service.ts";
 
 export const SESSION_COOKIE = "form_backend_session";
 

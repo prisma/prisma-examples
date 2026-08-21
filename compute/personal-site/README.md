@@ -1,6 +1,6 @@
 # personal-site
 
-A simple personal site template built with [Astro](https://astro.build) that deploys to Prisma Compute with `@prisma/cli@next` (Prisma 8 release candidate). No database, no CMS — your identity lives in one config file and your posts are markdown files.
+A simple personal site template built with [Astro](https://astro.build) that deploys to Prisma Compute with Prisma Composer. No database, no CMS — your identity lives in one config file and your posts are markdown files.
 
 It ships fully populated with a fictional persona (**Riley Nakamura**, a photographer) so you can see everything working before you make it yours.
 
@@ -30,8 +30,9 @@ Then open http://localhost:4321.
 
 ## Deploy to Prisma Compute
 
-Connect this repository to a Prisma Compute project. Every push to the
-connected branch then builds and deploys automatically.
+Connect this repository to Prisma Cloud. Every push to the connected branch
+then runs the included GitHub Actions workflow, which builds the site and
+deploys it to Prisma Compute with Composer.
 
 ```bash
 bun run compute:login

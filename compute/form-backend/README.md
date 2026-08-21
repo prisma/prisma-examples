@@ -7,7 +7,7 @@ Submissions land in your database, browsable and exportable as CSV.
 No JavaScript required on the sending page. No form-processing vendor in the
 middle — submissions go straight into your own Prisma Postgres database.
 
-Built with [Hono](https://hono.dev), [Prisma Next](https://www.prisma.io), and
+Built with [Hono](https://hono.dev), [Prisma ORM](https://www.prisma.io), and
 [Prisma Composer](https://www.prisma.io) on Prisma Compute + Prisma Postgres.
 
 ## Features
@@ -46,8 +46,8 @@ The dashboard lives at `/admin`. Sign in with the password you exported.
 
 > `bun run dev:composer` captures `ADMIN_PASSWORD` from your shell on the first
 > run and remembers it in `.prisma-composer/dev/`. To change it later, run
-> `bunx prisma@next composer dev module.ts --fresh` (this also wipes local data).
-> Tail the running app with `bunx prisma@next composer log module.ts`.
+> `bun run composer:dev -- --fresh` (this also wipes local data). Tail the
+> running app with `bunx prisma composer log module.ts`.
 
 <details>
 <summary>Troubleshooting: <code>A Prisma Dev server with the name "pcdev-form-backend-database" is already running</code></summary>
@@ -147,11 +147,11 @@ Field names beginning with `_` are control fields and are never stored, so
 | `ADMIN_PASSWORD` | For the dashboard | Password for `/admin`. **There is no default** — with nothing set, the dashboard shows a "disabled" notice and refuses every login, while `/f/:slug` keeps collecting. |
 | `DATABASE_URL` | Only for `bun run dev` | Direct (non-Composer) mode. `dev:composer` and deploys get their database from Composer. |
 
-`ADMIN_PASSWORD` is declared as a secret on the service (`service.ts`) and
+`ADMIN_PASSWORD` is declared as a secret on the service (`src/service.ts`) and
 bound from the environment in `module.ts`:
 
 ```ts
-// service.ts
+// src/service.ts
 input: type({ adminPassword: secretString() })
 
 // module.ts
@@ -163,8 +163,21 @@ compared in constant time — so rotating the password invalidates every session
 
 ## Deploy
 
-Deploys go to Prisma Compute + Prisma Postgres. Export a service token, a
-workspace, and the admin password, then:
+Deploys go to Prisma Compute + Prisma Postgres. Connect this repository to
+Prisma Cloud and push the branch — the included GitHub Actions workflow
+(`.github/workflows/prisma-deploy.yml`) runs Composer, which provisions the
+database, applies the contract, and deploys the service:
+
+```bash
+bun run compute:connect
+```
+
+Set `ADMIN_PASSWORD` on the service in Prisma Cloud so the dashboard is
+reachable; without it the collection endpoint still works and `/admin` stays
+disabled. Open the running service with `bun run compute:open`.
+
+To deploy from your machine instead, export a service token, a workspace, and
+the admin password, then:
 
 ```bash
 export PRISMA_SERVICE_TOKEN=...
@@ -175,25 +188,25 @@ bun run deploy
 ```
 
 `bun run deploy` builds the esbuild bundle and runs
-`prisma-composer deploy module.ts`, which provisions the database, applies
+`prisma composer deploy module.ts`, which provisions the database, applies
 migrations, and starts the service. The deploy prints the public URL — that
 origin plus `/f/<slug>` is what your `<form action>` points at.
 
 Deploy an isolated environment with a stage, and tear it down the same way:
 
 ```bash
-bunx prisma@next composer deploy module.ts --stage preview
-bunx prisma@next composer destroy module.ts --stage preview
+bunx prisma composer deploy module.ts --stage preview
+bunx prisma composer destroy module.ts --stage preview
 ```
 
 ## Project structure
 
 ```text
 module.ts                    Composer app: database + service, ADMIN_PASSWORD binding
-service.ts                   Service declaration: deps, input schema, build
-prisma.config.ts             Prisma Next CLI config
+prisma.config.ts             Prisma CLI config
 prisma-composer.config.ts    Deploy config (Prisma Cloud target)
 src/
+  service.ts                 Service declaration: deps, input schema, build
   index.ts                   Boot: binds 0.0.0.0 on service.port()
   app.tsx                    Route mounting, 404 and error pages
   auth.ts                    Admin password resolution + HMAC session cookie

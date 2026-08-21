@@ -1,6 +1,0 @@
-{
-  "app": {
-    "name": "prisma-compute-personal-site",
-    "framework": "astro"
-  }
-}

@@ -1,24 +1,31 @@
 # Prisma Compute examples
 
-These examples show Prisma ORM apps deployed to Prisma Compute.
+These examples show Prisma 8 apps deployed to Prisma Compute with Prisma
+Composer.
 
 | Example | Description |
 | --- | --- |
 | [`hono`](./hono) | Hono API on Node.js. |
 | [`nextjs`](./nextjs) | Next.js App Router app using standalone output for Prisma Compute. |
 | [`tanstack-start`](./tanstack-start) | TanStack Start app using the Nitro Vite plugin output supported by Prisma Compute. |
-| [`form-backend`](./form-backend) | Self-hosted form endpoint (Formspree-style) with a dashboard and CSV export, built with Hono and Prisma Composer. |
+| [`personal-site`](./personal-site) | Astro personal site with no database. |
+| [`form-backend`](./form-backend) | Self-hosted form endpoint (Formspree-style) with a dashboard and CSV export, built with Hono. |
 
-Each example includes Prisma ORM, a PostgreSQL schema, seed data, and scripts for
-local development and Prisma Compute deployment.
+Each example includes a Composer module and a GitHub Actions deployment
+workflow. The database-backed examples also include a Prisma 8 contract,
+generated typed client metadata, and seed data.
+Deploy the companion Console change before publishing these templates so the
+one-click flow can validate and copy their Composer files.
 
-`form-backend` is a full application rather than a framework starter: it uses
-[Prisma Composer](./form-backend/README.md#deploy) to provision its database
-and deploy the service (`bun run deploy`) instead of the `prisma.compute.json`
-+ `git connect` flow the framework templates use.
+The templates pin the released toolchain as exact versions: the consolidated
+`prisma` CLI (8.0.0-rc.6, published on the `next` npm tag until the Prisma 8
+cutover) runs every ORM and cloud script, and `@prisma/composer-cli` at the
+same version as the `@prisma/composer` libraries provides the local
+`prisma-composer` bin, which `prisma/cloud-deploy-action` prefers over its npx
+fallback — so deploys run the exact Composer version each app depends on.
+These pins can move to stable releases once Prisma 8 reaches general
+availability.
 
-The Compute scripts call `bunx @prisma/cli@next` directly, so the examples do
-not pin or install the Prisma CLI. They use `@next` because these examples
-target the Prisma 8 release candidate, while the `latest` npm tag still points
-at the earlier 3.x beta CLI with a different command set. When Prisma 8 reaches
-general availability, the `@next` references will switch to `@latest`.
+`form-backend` is a full application rather than a framework starter: it is the
+one template that ships a UI, an admin dashboard, and a public write endpoint,
+so it doubles as a reference for shaping a real app around a Prisma contract.
