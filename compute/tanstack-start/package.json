@@ -21,8 +21,8 @@
     "compute:open": "prisma service open"
   },
   "dependencies": {
-    "@prisma/composer": "0.10.0",
-    "@prisma/composer-prisma-cloud": "0.10.0",
+    "@prisma/composer": "0.11.0",
+    "@prisma/composer-prisma-cloud": "0.11.0",
     "@prisma/orm-postgres": "8.0.0-rc.4",
     "@tanstack/react-router": "1.170.10",
     "@tanstack/react-start": "1.168.18",
@@ -33,13 +33,12 @@
   },
   "devDependencies": {
     "@prisma/cli-engine": "0.2.0",
-    "@prisma/composer-cli": "0.10.0",
     "@types/node": "24.12.4",
     "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "alchemy": "2.0.0-beta.67",
-    "prisma": "8.0.0-rc.6",
+    "prisma": "8.0.0-rc.7",
     "tsx": "4.22.4",
     "typescript": "5.9.3",
     "vite": "8.0.16"
