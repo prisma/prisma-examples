@@ -172,14 +172,22 @@ describe('Prisma Compute examples', () => {
         scripts?: Record<string, string>
       }
       expect(packageJson.packageManager).toBe(packageManager)
-      expect(packageJson.dependencies?.['@prisma/composer']).toBe('0.10.0')
+      const isDatabaseTemplate = databaseTemplateIds.has(template.id)
+      expect(packageJson.dependencies?.['@prisma/composer']).toBe(
+        isDatabaseTemplate ? '0.11.0' : '0.10.0',
+      )
       expect(packageJson.dependencies?.['@prisma/composer-prisma-cloud']).toBe(
-        '0.10.0',
+        isDatabaseTemplate ? '0.11.0' : '0.10.0',
       )
-      expect(packageJson.devDependencies?.['prisma']).toBe('8.0.0-rc.6')
+      expect(packageJson.devDependencies?.['prisma']).toBe(
+        isDatabaseTemplate ? '8.0.0-rc.7' : '8.0.0-rc.6',
+      )
       expect(packageJson.devDependencies?.['@prisma/composer-cli']).toBe(
-        '0.10.0',
+        isDatabaseTemplate ? undefined : '0.10.0',
       )
+      expect(
+        packageJson.dependencies?.['@prisma/composer-cli'],
+      ).toBeUndefined()
       if (databaseTemplateIds.has(template.id)) {
         expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
           '8.0.0-rc.4',
