@@ -185,6 +185,9 @@ describe('Prisma Compute examples', () => {
       expect(packageJson.devDependencies?.['@prisma/composer-cli']).toBe(
         isDatabaseTemplate ? undefined : '0.10.0',
       )
+      expect(
+        packageJson.dependencies?.['@prisma/composer-cli'],
+      ).toBeUndefined()
       if (databaseTemplateIds.has(template.id)) {
         expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
           '8.0.0-rc.4',
