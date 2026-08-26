@@ -173,18 +173,14 @@ describe('Prisma Compute examples', () => {
       }
       expect(packageJson.packageManager).toBe(packageManager)
       const isDatabaseTemplate = databaseTemplateIds.has(template.id)
-      expect(packageJson.dependencies?.['@prisma/composer']).toBe(
-        isDatabaseTemplate ? '0.11.0' : '0.10.0',
-      )
+      expect(packageJson.dependencies?.['@prisma/composer']).toBe('0.15.0')
       expect(packageJson.dependencies?.['@prisma/composer-prisma-cloud']).toBe(
-        isDatabaseTemplate ? '0.11.0' : '0.10.0',
+        '0.15.0',
       )
-      expect(packageJson.devDependencies?.['prisma']).toBe(
-        isDatabaseTemplate ? '8.0.0-rc.7' : '8.0.0-rc.6',
-      )
-      expect(packageJson.devDependencies?.['@prisma/composer-cli']).toBe(
-        isDatabaseTemplate ? undefined : '0.10.0',
-      )
+      expect(packageJson.devDependencies?.['prisma']).toBe('8.0.0-rc.11')
+      expect(
+        packageJson.devDependencies?.['@prisma/composer-cli'],
+      ).toBeUndefined()
       expect(
         packageJson.dependencies?.['@prisma/composer-cli'],
       ).toBeUndefined()
