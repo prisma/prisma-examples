@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "@prisma/cli-engine": "0.2.0",
-    "@types/node": "^25.6.2",
+    "@types/node": "25.9.5",
     "alchemy": "2.0.0-beta.74",
     "prisma": "8.0.0-rc.11",
-    "typescript": "^5.9.3"
+    "typescript": "5.9.3"
   }
 }
