@@ -139,7 +139,7 @@ builder.mutationFields((t) => ({
       id: t.arg.int({ required: true }),
     },
     resolve: async (query, parent, args) => {
-      // Toggling become simpler once this bug is resolved: https://github.com/prisma/prisma/issues/16715
+      // Toggling become simpler once this bug is resolved: https://github.com/prisma/orm/issues/16715
       const postPublished = await prisma.post.findUnique({
         where: { id: args.id },
         select: { published: true },

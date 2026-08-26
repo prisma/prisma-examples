@@ -71,4 +71,4 @@ If you want to try this example with another database, refer to the [Databases](
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share feedback on the [Prisma Discord](https://pris.ly/discord/)
-- Create issues or ask questions on [GitHub](https://github.com/prisma/prisma/)
+- Create issues or ask questions on [GitHub](https://github.com/prisma/orm/)
