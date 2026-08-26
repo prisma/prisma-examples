@@ -1,6 +1,6 @@
-import { pnContract } from '@prisma/composer-prisma-cloud/prisma-next'
+import { dataContract } from '@prisma/composer-prisma-cloud/orm'
 
 import type { Contract } from './contract.d.js'
 import contractJson from './contract.json' with { type: 'json' }
 
-export const databaseContract = pnContract<Contract>(contractJson)
+export const databaseContract = dataContract<Contract>(contractJson)
