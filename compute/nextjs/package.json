@@ -20,7 +20,7 @@
   "dependencies": {
     "@prisma/composer": "0.15.0",
     "@prisma/composer-prisma-cloud": "0.15.0",
-    "@prisma/orm-postgres": "8.0.0-rc.4",
+    "@prisma/orm-postgres": "8.0.0-rc.8",
     "dotenv": "17.4.2",
     "next": "16.2.7",
     "react": "19.2.4",
