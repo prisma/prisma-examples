@@ -18,8 +18,8 @@
     "compute:open": "prisma service open"
   },
   "dependencies": {
-    "@prisma/composer": "0.15.0",
-    "@prisma/composer-prisma-cloud": "0.15.0",
+    "@prisma/composer": "0.16.0",
+    "@prisma/composer-prisma-cloud": "0.16.0",
     "@prisma/orm-postgres": "8.0.0-rc.8",
     "dotenv": "17.4.2",
     "next": "16.2.7",
