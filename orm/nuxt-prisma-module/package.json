@@ -14,7 +14,7 @@
     "@prisma/client": "6.19.2",
     "@prisma/adapter-pg": "6.19.2",
     "nuxt": "4.4.2",
-    "vue": "3.5.30",
+    "vue": "3.5.42",
     "vue-router": "4.6.4",
     "pg": "8.20.0"
   },
