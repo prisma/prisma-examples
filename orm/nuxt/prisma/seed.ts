@@ -40,7 +40,7 @@ const userData = [
       create: [
         {
           title: 'Ask a question about Prisma on GitHub',
-          content: 'https://www.github.com/prisma/prisma/discussions',
+          content: 'https://www.github.com/prisma/orm/discussions',
           published: true,
           viewCount: 128,
         },

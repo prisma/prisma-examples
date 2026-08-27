@@ -70,4 +70,4 @@ If you want to try this example with another database rather than Prisma Postgre
 
 - Check out the [Prisma docs](https://www.prisma.io/docs)
 - Share your feedback on the [Prisma Discord](https://pris.ly/discord/)
-- Create issues and ask questions on [GitHub](https://github.com/prisma/prisma/)
+- Create issues and ask questions on [GitHub](https://github.com/prisma/orm/)

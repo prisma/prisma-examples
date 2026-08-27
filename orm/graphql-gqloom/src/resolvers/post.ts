@@ -125,7 +125,7 @@ export const postResolver = resolver.of(Post, {
       id: z.number().int(),
     })
     .resolve(async ({ id }) => {
-      // TODO: Simplify once https://github.com/prisma/prisma/issues/16715 is fixed
+      // TODO: Simplify once https://github.com/prisma/orm/issues/16715 is fixed
       const postPublished = await prisma.post.findUnique({
         where: { id },
         select: { published: true },
