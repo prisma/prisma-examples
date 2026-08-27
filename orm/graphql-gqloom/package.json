@@ -8,23 +8,23 @@
     "generate": "prisma generate"
   },
   "devDependencies": {
-    "@types/node": "^24.8.1",
+    "@types/node": "24.13.3",
     "prisma": "7.5.0",
-    "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "tsx": "4.23.12",
+    "typescript": "5.9.3"
   },
   "dependencies": {
-    "@gqloom/core": "^0.12.1",
-    "@gqloom/prisma": "^0.12.2",
-    "@gqloom/zod": "^0.12.2",
+    "@gqloom/core": "0.12.1",
+    "@gqloom/prisma": "0.12.2",
+    "@gqloom/zod": "0.12.2",
     "@prisma/adapter-pg": "7.5.0",
     "@prisma/client": "7.5.0",
     "dotenv": "16.6.1",
-    "graphql": "^16.11.0",
-    "graphql-scalars": "^1.25.0",
-    "graphql-yoga": "^5.16.0",
-    "pg": "^8.16.0",
-    "zod": "^4.1.12"
+    "graphql": "16.14.2",
+    "graphql-scalars": "1.26.0",
+    "graphql-yoga": "5.22.0",
+    "pg": "8.23.0",
+    "zod": "4.4.3"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

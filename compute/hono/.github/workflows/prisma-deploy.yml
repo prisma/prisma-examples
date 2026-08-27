@@ -18,12 +18,12 @@ jobs:
     if: github.event_name == 'push' && github.ref_type == 'branch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4.4.0
+      - uses: oven-sh/setup-bun@v2.2.0
+      - uses: actions/setup-node@v4.4.0
         with:
-          node-version: 22
-      - uses: prisma/cloud-deploy-action@v1
+          node-version: 22.23.2
+      - uses: prisma/cloud-deploy-action@v1.6.0
         with:
           build-command: bun run build
 
@@ -31,12 +31,12 @@ jobs:
     if: github.event_name == 'delete' && github.event.ref_type == 'branch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4.4.0
+      - uses: oven-sh/setup-bun@v2.2.0
+      - uses: actions/setup-node@v4.4.0
         with:
-          node-version: 22
-      - uses: prisma/cloud-deploy-action@v1
+          node-version: 22.23.2
+      - uses: prisma/cloud-deploy-action@v1.6.0
         with:
           mode: destroy
           stage: ${{ github.event.ref }}
