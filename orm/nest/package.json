@@ -67,7 +67,7 @@
     "prisma": "7.0.0",
     "supertest": "7.1.4",
     "ts-jest": "29.4.6",
-    "ts-loader": "9.5.4",
+    "ts-loader": "9.6.2",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
     "tsx": "4.21.0",
