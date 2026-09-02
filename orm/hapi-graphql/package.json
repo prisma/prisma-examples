@@ -14,7 +14,7 @@
   "dependencies": {
     "@apollo/server": "5.4.0",
     "@as-integrations/hapi": "2.0.2",
-    "@hapi/hapi": "21.4.7",
+    "@hapi/hapi": "21.4.10",
     "@prisma/client": "7.5.0",
     "@prisma/adapter-pg": "7.5.0",
     "dotenv": "17.3.1",
