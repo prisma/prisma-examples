@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@astrojs/node": "9.5.5",
-    "@clerk/astro": "2.17.9",
+    "@clerk/astro": "2.17.11",
     "@prisma/adapter-pg": "7.5.0",
     "@prisma/client": "7.5.0",
     "astro": "5.18.1",
