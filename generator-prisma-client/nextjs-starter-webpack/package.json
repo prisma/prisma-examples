@@ -27,7 +27,7 @@
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "@t3-oss/env-core": "0.13.10",
-    "next": "15.3.8",
+    "next": "16.2.11",
     "postcss": "8.5.23",
     "react": "19.2.3",
     "react-dom": "19.2.3",
