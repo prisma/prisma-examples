@@ -14,7 +14,7 @@
     "@prisma/adapter-pg": "7.2.0",
     "@prisma/client": "7.2.0",
     "ai": "5.0.52",
-    "next": "15.4.10",
+    "next": "16.2.11",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "zod": "4.1.5",
