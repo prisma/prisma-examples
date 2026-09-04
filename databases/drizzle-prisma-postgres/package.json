@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "dotenv": "17.3.1",
-    "drizzle-orm": "0.44.7",
+    "drizzle-orm": "0.45.2",
     "postgres": "3.4.8"
   },
   "devDependencies": {
