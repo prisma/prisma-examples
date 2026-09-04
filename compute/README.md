@@ -9,6 +9,7 @@ Composer.
 | [`nextjs`](./nextjs) | Next.js App Router app using standalone output for Prisma Compute. |
 | [`tanstack-start`](./tanstack-start) | TanStack Start app using the Nitro Vite plugin output supported by Prisma Compute. |
 | [`personal-site`](./personal-site) | Astro personal site with no database. |
+| [`form-backend`](./form-backend) | Self-hosted form endpoint (Formspree-style) with a dashboard and CSV export, built with Hono. |
 
 Each example includes a Composer module and a GitHub Actions deployment
 workflow. The database-backed examples also include a Prisma 8 contract,
@@ -24,3 +25,7 @@ same version as the `@prisma/composer` libraries provides the local
 fallback — so deploys run the exact Composer version each app depends on.
 These pins can move to stable releases once Prisma 8 reaches general
 availability.
+
+`form-backend` is a full application rather than a framework starter: it is the
+one template that ships a UI, an admin dashboard, and a public write endpoint,
+so it doubles as a reference for shaping a real app around a Prisma contract.

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+
+.env*
+!.env.example
+
+.prisma/
+.prisma-composer/
+.alchemy/
+
+*.log
+.DS_Store

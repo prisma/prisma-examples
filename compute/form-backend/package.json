@@ -1,0 +1,42 @@
+{
+  "name": "prisma-compute-form-backend",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.14",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun run contract:emit && esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/server.mjs --banner:js=\"import { createRequire as __nodeCreateRequire } from 'node:module'; const require = __nodeCreateRequire(import.meta.url);\"",
+    "start": "node dist/server.mjs",
+    "composer:dev": "prisma composer dev module.ts",
+    "composer:deploy": "prisma composer deploy module.ts",
+    "composer:destroy": "prisma composer destroy module.ts --production",
+    "dev:composer": "bun run build && bun run composer:dev",
+    "deploy": "bun run build && bun run composer:deploy",
+    "contract:emit": "prisma contract emit",
+    "migration:plan": "prisma migration plan",
+    "db:init": "prisma db init",
+    "db:update": "prisma db update",
+    "compute:login": "prisma auth login",
+    "compute:database:create": "prisma postgres create prisma-compute-form-backend --branch main",
+    "compute:connect": "prisma git connect",
+    "compute:open": "prisma service open"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.0.4",
+    "@prisma/composer": "0.10.0",
+    "@prisma/composer-prisma-cloud": "0.10.0",
+    "@prisma/orm-postgres": "8.0.0-rc.4",
+    "arktype": "2.2.3",
+    "dotenv": "17.4.2",
+    "hono": "4.12.23"
+  },
+  "devDependencies": {
+    "@prisma/cli-engine": "0.2.0",
+    "@prisma/composer-cli": "0.10.0",
+    "@types/node": "24.12.4",
+    "alchemy": "2.0.0-beta.67",
+    "esbuild": "0.28.1",
+    "prisma": "8.0.0-rc.6",
+    "typescript": "5.9.3"
+  }
+}
