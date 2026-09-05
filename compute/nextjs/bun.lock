@@ -19,7 +19,7 @@
         "@types/react": "19.2.16",
         "@types/react-dom": "19.2.3",
         "alchemy": "2.0.0-beta.74",
-        "prisma": "8.0.0-rc.12",
+        "prisma": "8.0.0-rc.13",
         "tsx": "4.22.4",
         "typescript": "5.9.3",
       },
@@ -374,7 +374,7 @@
 
     "@prisma/composer": ["@prisma/composer@0.16.0", "", { "dependencies": { "@effect/sql-d1": "4.0.0-rc.112", "@effect/sql-sqlite-do": "4.0.0-rc.112", "@prisma/management-api-sdk": "^1.60.0", "@standard-schema/spec": "^1.1.0", "alchemy": "2.0.0-beta.74", "arktype": "^2.2.3", "c12": "^3.3.4", "effect": "4.0.0-rc.112", "esbuild": "^0.28.1" } }, "sha512-cT5Qll+H3aZaxCi2KO4s0z23De9y4JsrLtzz3MLvFTA10jRPX4Qobyv3TG3E8SeTklebu6IkMcrKHWHUQyLWFg=="],
 
-    "@prisma/composer-cli": ["@prisma/composer-cli@0.16.0", "", { "dependencies": { "@prisma/composer": "0.16.0", "alchemy": "2.0.0-beta.74", "c12": "^3.3.4", "effect": "4.0.0-rc.112", "esbuild": "^0.28.1" }, "peerDependencies": { "@prisma/cli-engine": "0.3.0" }, "bin": { "prisma-composer": "dist/bin.mjs" } }, "sha512-JuVokK1tpR+SlVJu4OAlJck+94EgJXWx54J6QiDxBtqvHRDJLt9iEzhFa/mshjpDwQoNwQeiHh3Cjb4O+lXqPQ=="],
+    "@prisma/composer-cli": ["@prisma/composer-cli@0.17.0", "", { "dependencies": { "@prisma/composer": "0.17.0", "alchemy": "2.0.0-beta.74", "c12": "^3.3.4", "cross-spawn": "^7.0.6", "effect": "4.0.0-rc.112", "esbuild": "^0.28.1" }, "peerDependencies": { "@prisma/cli-engine": "0.3.0" }, "bin": { "prisma-composer": "dist/bin.mjs" } }, "sha512-I7dNTDtVH6hoUlExxZUfu0iIQuT17i2xcPiTv58atunkn777wYJLOJ/lvO0LsOYcYGbItGkG3F7R36dZNf4HsQ=="],
 
     "@prisma/composer-prisma-cloud": ["@prisma/composer-prisma-cloud@0.16.0", "", { "dependencies": { "@effect/platform-bun": "4.0.0-rc.112", "@effect/platform-node": "4.0.0-rc.112", "@effect/platform-node-shared": "4.0.0-rc.112", "@prisma/composer": "0.16.0", "@prisma/management-api-sdk": "^1.60.0", "@prisma/orm-toolchain": "8.0.0-rc.8", "@standard-schema/spec": "^1.1.0", "alchemy": "2.0.0-beta.74", "arktype": "^2.2.3", "effect": "4.0.0-rc.112", "jose": "^6.1.3", "pathe": "^2.0.3", "pg": "8.22.0", "tsdown": "^0.22.7" }, "peerDependencies": { "@prisma/orm-postgres": "8.0.0-rc.8" } }, "sha512-244Yx4ShH+XFIpiy5x2fPRISesYvqJNhhcxexuaZKfGZjvlZQs5EdkZXle4MnUB41bUAys1o7DjFghfv4PcuAQ=="],
 
@@ -1004,7 +1004,7 @@
 
     "pretty-ms": ["pretty-ms@9.3.0", "", { "dependencies": { "parse-ms": "^4.0.0" } }, "sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ=="],
 
-    "prisma": ["prisma@8.0.0-rc.12", "", { "dependencies": { "@manypkg/tools": "^2.1.2", "@prisma/cli-engine": "0.3.0", "@prisma/composer-cli": "0.16.0", "@prisma/compute-sdk": "0.42.0", "@prisma/management-api-sdk": "1.69.0", "@prisma/orm-toolchain": "8.0.0-rc.8", "@vercel/detect-agent": "^1.2.3", "better-result": "^2.9.2", "dotenv": "^17.4.2", "execa": "^9.6.1", "open": "^11.0.0" }, "bin": { "prisma": "./dist/prisma.js" } }, "sha512-a+o+2lMsUeBl2Fm+DduUrXuHcU7DaI6EO3YmEDa4kVyS2LYVj9hSwl1tcpx4It/fMYq7mQiGaibVL+rIYFjAvQ=="],
+    "prisma": ["prisma@8.0.0-rc.13", "", { "dependencies": { "@manypkg/tools": "^2.1.2", "@prisma/cli-engine": "0.3.0", "@prisma/composer-cli": "0.17.0", "@prisma/compute-sdk": "0.42.0", "@prisma/management-api-sdk": "1.69.0", "@prisma/orm-toolchain": "8.0.0-rc.8", "@vercel/detect-agent": "^1.2.3", "better-result": "^2.9.2", "dotenv": "^17.4.2", "execa": "^9.6.1", "open": "^11.0.0" }, "bin": { "prisma": "./dist/prisma.js" } }, "sha512-wemarrP3RtLUThfJr8sfkdlqKO8zG/wQW83NdcRo9sC+HlBqtQ4s3faa372uzk2e5K/giXeMadGWLTrc2jmFbA=="],
 
     "process-nextick-args": ["process-nextick-args@2.0.1", "", {}, "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="],
 
@@ -1240,6 +1240,8 @@
 
     "@prisma/composer/esbuild": ["esbuild@0.28.2", "", { "optionalDependencies": { "@esbuild/aix-ppc64": "0.28.2", "@esbuild/android-arm": "0.28.2", "@esbuild/android-arm64": "0.28.2", "@esbuild/android-x64": "0.28.2", "@esbuild/darwin-arm64": "0.28.2", "@esbuild/darwin-x64": "0.28.2", "@esbuild/freebsd-arm64": "0.28.2", "@esbuild/freebsd-x64": "0.28.2", "@esbuild/linux-arm": "0.28.2", "@esbuild/linux-arm64": "0.28.2", "@esbuild/linux-ia32": "0.28.2", "@esbuild/linux-loong64": "0.28.2", "@esbuild/linux-mips64el": "0.28.2", "@esbuild/linux-ppc64": "0.28.2", "@esbuild/linux-riscv64": "0.28.2", "@esbuild/linux-s390x": "0.28.2", "@esbuild/linux-x64": "0.28.2", "@esbuild/netbsd-arm64": "0.28.2", "@esbuild/netbsd-x64": "0.28.2", "@esbuild/openbsd-arm64": "0.28.2", "@esbuild/openbsd-x64": "0.28.2", "@esbuild/openharmony-arm64": "0.28.2", "@esbuild/sunos-x64": "0.28.2", "@esbuild/win32-arm64": "0.28.2", "@esbuild/win32-ia32": "0.28.2", "@esbuild/win32-x64": "0.28.2" }, "bin": { "esbuild": "bin/esbuild" } }, "sha512-HKVLS8dvII+xoKW9kmqxbRKrnWEXfJJr/FZhhJmiqIB0e053QNYFqOBouTMO/k5sID4MvCiUCvv8b9M4h32wIA=="],
 
+    "@prisma/composer-cli/@prisma/composer": ["@prisma/composer@0.17.0", "", { "dependencies": { "@effect/sql-d1": "4.0.0-rc.112", "@effect/sql-sqlite-do": "4.0.0-rc.112", "@prisma/management-api-sdk": "^1.60.0", "@standard-schema/spec": "^1.1.0", "alchemy": "2.0.0-beta.74", "arktype": "^2.2.3", "c12": "^3.3.4", "cross-spawn": "^7.0.6", "effect": "4.0.0-rc.112", "esbuild": "^0.28.1" } }, "sha512-JySMDC1q1KzU1tbE0s6ZPDRlbTed5maQ2jNYzvQ6/a0MNgEwfTPQAjB80rD5SxHTEczsHmVB2rnr/g0+JHPagA=="],
+
     "@prisma/composer-cli/esbuild": ["esbuild@0.28.2", "", { "optionalDependencies": { "@esbuild/aix-ppc64": "0.28.2", "@esbuild/android-arm": "0.28.2", "@esbuild/android-arm64": "0.28.2", "@esbuild/android-x64": "0.28.2", "@esbuild/darwin-arm64": "0.28.2", "@esbuild/darwin-x64": "0.28.2", "@esbuild/freebsd-arm64": "0.28.2", "@esbuild/freebsd-x64": "0.28.2", "@esbuild/linux-arm": "0.28.2", "@esbuild/linux-arm64": "0.28.2", "@esbuild/linux-ia32": "0.28.2", "@esbuild/linux-loong64": "0.28.2", "@esbuild/linux-mips64el": "0.28.2", "@esbuild/linux-ppc64": "0.28.2", "@esbuild/linux-riscv64": "0.28.2", "@esbuild/linux-s390x": "0.28.2", "@esbuild/linux-x64": "0.28.2", "@esbuild/netbsd-arm64": "0.28.2", "@esbuild/netbsd-x64": "0.28.2", "@esbuild/openbsd-arm64": "0.28.2", "@esbuild/openbsd-x64": "0.28.2", "@esbuild/openharmony-arm64": "0.28.2", "@esbuild/sunos-x64": "0.28.2", "@esbuild/win32-arm64": "0.28.2", "@esbuild/win32-ia32": "0.28.2", "@esbuild/win32-x64": "0.28.2" }, "bin": { "esbuild": "bin/esbuild" } }, "sha512-HKVLS8dvII+xoKW9kmqxbRKrnWEXfJJr/FZhhJmiqIB0e053QNYFqOBouTMO/k5sID4MvCiUCvv8b9M4h32wIA=="],
 
     "@prisma/orm-toolchain/esbuild": ["esbuild@0.28.2", "", { "optionalDependencies": { "@esbuild/aix-ppc64": "0.28.2", "@esbuild/android-arm": "0.28.2", "@esbuild/android-arm64": "0.28.2", "@esbuild/android-x64": "0.28.2", "@esbuild/darwin-arm64": "0.28.2", "@esbuild/darwin-x64": "0.28.2", "@esbuild/freebsd-arm64": "0.28.2", "@esbuild/freebsd-x64": "0.28.2", "@esbuild/linux-arm": "0.28.2", "@esbuild/linux-arm64": "0.28.2", "@esbuild/linux-ia32": "0.28.2", "@esbuild/linux-loong64": "0.28.2", "@esbuild/linux-mips64el": "0.28.2", "@esbuild/linux-ppc64": "0.28.2", "@esbuild/linux-riscv64": "0.28.2", "@esbuild/linux-s390x": "0.28.2", "@esbuild/linux-x64": "0.28.2", "@esbuild/netbsd-arm64": "0.28.2", "@esbuild/netbsd-x64": "0.28.2", "@esbuild/openbsd-arm64": "0.28.2", "@esbuild/openbsd-x64": "0.28.2", "@esbuild/openharmony-arm64": "0.28.2", "@esbuild/sunos-x64": "0.28.2", "@esbuild/win32-arm64": "0.28.2", "@esbuild/win32-ia32": "0.28.2", "@esbuild/win32-x64": "0.28.2" }, "bin": { "esbuild": "bin/esbuild" } }, "sha512-HKVLS8dvII+xoKW9kmqxbRKrnWEXfJJr/FZhhJmiqIB0e053QNYFqOBouTMO/k5sID4MvCiUCvv8b9M4h32wIA=="],
@@ -1327,6 +1329,8 @@
     "@octokit/plugin-paginate-rest/@octokit/types/@octokit/openapi-types": ["@octokit/openapi-types@27.0.0", "", {}, "sha512-whrdktVs1h6gtR+09+QsNk2+FO+49j6ga1c55YZudfEG+oKJVvJLQi3zkOm5JjiUXAagWK2tI2kTGKJ2Ys7MGA=="],
 
     "@octokit/plugin-rest-endpoint-methods/@octokit/types/@octokit/openapi-types": ["@octokit/openapi-types@27.0.0", "", {}, "sha512-whrdktVs1h6gtR+09+QsNk2+FO+49j6ga1c55YZudfEG+oKJVvJLQi3zkOm5JjiUXAagWK2tI2kTGKJ2Ys7MGA=="],
+
+    "@prisma/composer-cli/@prisma/composer/@effect/sql-d1": ["@effect/sql-d1@4.0.0-rc.112", "", { "dependencies": { "@cloudflare/workers-types": "^5.20260822.1" }, "peerDependencies": { "effect": "^4.0.0-rc.112" } }, "sha512-Wxdr6aU3pBHqhyBiybzbHmEK7qZ2w4iy0IxBgJHe9BLleYzCxObOaBQI9qq/VZSqEvc0IaOBMpbk2zh3dlPNSQ=="],
 
     "@prisma/composer-cli/esbuild/@esbuild/aix-ppc64": ["@esbuild/aix-ppc64@0.28.2", "", { "os": "aix", "cpu": "ppc64" }, "sha512-XExcO+dvLKvVtNTibSTBej1NCAbaGhWn9Ww1ZPx80qsahhPFe/8jgWP0IchNe0F3HwkU7n8ejhH8bjonqht8mQ=="],
 
@@ -1549,5 +1553,7 @@
     "vite/rolldown/@rolldown/binding-win32-arm64-msvc": ["@rolldown/binding-win32-arm64-msvc@1.2.4", "", { "os": "win32", "cpu": "arm64" }, "sha512-AWLi0uBRYh6QlE7OKhiz+phZC0qwtij2QZmhmOdsLdFn64m7oMpooE9ICE3lhm9xMb4SpDo2WbHcxX1iFLFtqw=="],
 
     "vite/rolldown/@rolldown/binding-win32-x64-msvc": ["@rolldown/binding-win32-x64-msvc@1.2.4", "", { "os": "win32", "cpu": "x64" }, "sha512-UwSDJOg3dqCAejWdxclJjCsh3Qq4vLYMDxmyHqo1btz3stK2VqgwNd3mm5tuIwzSlGIQ/1H9Hr+Zn09mrezNqQ=="],
+
+    "@prisma/composer-cli/@prisma/composer/@effect/sql-d1/@cloudflare/workers-types": ["@cloudflare/workers-types@5.20260826.1", "", {}, "sha512-hyW0QHvJYKhsMTAx1YZkbhcXBr17Brl1xZwvVExYmB5pAExJCCzAEouKNGwag2H+yBlqLay3X3kZoiJoGu2DRw=="],
   }
 }
