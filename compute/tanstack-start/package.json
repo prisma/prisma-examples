@@ -37,7 +37,7 @@
     "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
-    "alchemy": "2.0.0-beta.74",
+    "alchemy": "2.0.0-beta.76",
     "prisma": "8.0.0-rc.12",
     "tsx": "4.22.4",
     "typescript": "5.9.3",
