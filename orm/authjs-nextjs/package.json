@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "2.10.0",
+    "@auth/prisma-adapter": "2.11.3",
     "@prisma/adapter-pg": "7.0.0",
     "@prisma/client": "7.0.0",
     "next": "15.4.10",
