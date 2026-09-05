@@ -1,0 +1,21 @@
+// use prisma-next
+
+model Form {
+  id          Int          @id @default(autoincrement())
+  name        String
+  slug        String       @unique
+  redirectUrl String?
+  active      Boolean      @default(true)
+  submissions Submission[]
+  createdAt   DateTime     @default(now())
+  updatedAt   temporal.updatedAt()
+}
+
+model Submission {
+  id        Int      @id @default(autoincrement())
+  form      Form     @relation(fields: [formId], references: [id])
+  formId    Int
+  data      String
+  referrer  String?
+  createdAt DateTime @default(now())
+}

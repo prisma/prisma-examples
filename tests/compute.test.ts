@@ -11,7 +11,12 @@ const supportedFrameworks = new Set([
   'nextjs',
   'tanstack-start',
 ])
-const databaseTemplateIds = new Set(['hono', 'nextjs', 'tanstack-start'])
+const databaseTemplateIds = new Set([
+  'hono',
+  'nextjs',
+  'tanstack-start',
+  'form-backend',
+])
 const packageManager = 'bun@1.3.14'
 const lockfileNames = new Set([
   'bun.lock',
@@ -125,13 +130,14 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(4)
+    expect(manifest.templates).toHaveLength(5)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
       'nextjs',
       'tanstack-start',
       'personal-site',
+      'form-backend',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,

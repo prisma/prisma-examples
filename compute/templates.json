@@ -28,6 +28,13 @@
       "description": "Simple personal website built with Astro and deployed to Prisma Compute.",
       "path": "compute/personal-site",
       "framework": "astro"
+    },
+    {
+      "id": "form-backend",
+      "name": "Form Backend",
+      "description": "Self-hosted form endpoint with a Hono dashboard and CSV export, using Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/form-backend",
+      "framework": "hono"
     }
   ]
 }
