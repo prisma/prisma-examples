@@ -9,8 +9,8 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@prisma/client": "7.5.0",
-    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.10.0",
+    "@prisma/adapter-pg": "7.10.0",
     "dotenv": "17.3.1",
     "graphql": "16.13.1",
     "graphql-scalars": "1.25.0",

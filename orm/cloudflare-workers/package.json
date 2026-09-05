@@ -22,8 +22,8 @@
 		"wrangler": "4.77.0"
 	},
 	"dependencies": {
-		"@prisma/adapter-pg": "7.5.0",
-		"@prisma/client": "7.5.0",
+		"@prisma/adapter-pg": "7.10.0",
+		"@prisma/client": "7.10.0",
 		"dotenv": "17.3.1",
 		"pg": "8.20.0"
 	}

@@ -16,7 +16,7 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
-    "@prisma/client": "7.0.0",
+    "@prisma/client": "7.10.0",
     "@prisma/extension-accelerate": "2.0.2"
   },
   "prettier": {

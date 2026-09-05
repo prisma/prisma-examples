@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "7.5.0",
-    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.10.0",
+    "@prisma/adapter-pg": "7.10.0",
     "better-auth": "1.6.22",
     "next": "15.5.9",
     "react": "19.2.3",

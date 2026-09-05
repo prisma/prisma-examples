@@ -6,9 +6,9 @@
     "dev": "tsx src/index.ts"
   },
   "dependencies": {
-    "@prisma/client": "7.0.0",
+    "@prisma/client": "7.10.0",
     "fastify": "5.7.3",
-    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
     "pg": "8.20.0"
   },
   "devDependencies": {

@@ -8,8 +8,8 @@
     "db:seed": "bun run prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.5.0",
-    "@prisma/client": "7.5.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "elysia": "latest",
     "pg": "8.20.0",
     "prismabox": "1.1.26"
