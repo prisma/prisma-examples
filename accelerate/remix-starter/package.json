@@ -51,7 +51,7 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
     "@types/accept-language-parser": "1.5.8",
-    "@types/lodash": "4.17.20",
+    "@types/lodash": "4.17.25",
     "@types/node": "22.19.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
