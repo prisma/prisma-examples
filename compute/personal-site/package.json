@@ -15,7 +15,7 @@
   "dependencies": {
     "@prisma/composer": "0.15.0",
     "@prisma/composer-prisma-cloud": "0.15.0",
-    "@astrojs/node": "^10",
+    "@astrojs/node": "^11.0.2",
     "astro": "^6.3.3"
   },
   "devDependencies": {
