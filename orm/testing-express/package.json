@@ -12,8 +12,8 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "dotenv": "16.6.1",
     "express": "5.1.0",
     "jest-config": "29.7.0",

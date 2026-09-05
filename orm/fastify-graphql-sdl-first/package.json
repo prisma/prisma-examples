@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "10.0.31",
-    "@prisma/client": "7.5.0",
-    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.10.0",
+    "@prisma/adapter-pg": "7.10.0",
     "dotenv": "17.3.1",
     "fastify": "5.8.2",
     "graphql": "16.13.1",

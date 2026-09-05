@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.11.3",
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "next": "15.4.10",
     "next-auth": "5.0.0-beta.32",
     "react": "19.2.3",

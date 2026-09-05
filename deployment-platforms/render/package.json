@@ -12,7 +12,7 @@
   "author": "@jess-render",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "6.9.0",
+    "@prisma/client": "6.19.3",
     "body-parser": "2.3.0",
     "express": "5.1.0"
   },

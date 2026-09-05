@@ -10,8 +10,8 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "pg": "8.20.0"
   }
 }

@@ -17,8 +17,8 @@
     "@types/pg": "8.20.0"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "sst": "3.17.14",
     "pg": "8.20.0"
   },

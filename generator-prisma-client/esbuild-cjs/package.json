@@ -14,8 +14,8 @@
   "packageManager": "pnpm@10.21.0",
   "dependencies": {
     "@hono/node-server": "1.19.10",
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "hono": "4.12.34",
     "pg": "8.20.0"
   },

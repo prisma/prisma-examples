@@ -21,7 +21,7 @@
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix"
   },
   "dependencies": {
-    "@prisma/client": "7.0.0",
+    "@prisma/client": "7.10.0",
     "@prisma/extension-accelerate": "2.0.2",
     "@remix-run/node": "2.17.2",
     "@remix-run/react": "2.17.3",

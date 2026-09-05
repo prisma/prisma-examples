@@ -24,8 +24,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.0.0",
-    "@prisma/client": "7.0.0",
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
     "@prisma/extension-accelerate": "2.0.2",
     "@t3-oss/env-core": "0.13.10",
     "next": "15.3.8",

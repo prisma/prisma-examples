@@ -10,8 +10,8 @@
   "license": "MIT",
   "packageManager": "pnpm@10.21.0",
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "6.19.0",
-    "@prisma/client": "6.19.0"
+    "@prisma/adapter-better-sqlite3": "6.19.3",
+    "@prisma/client": "6.19.3"
   },
   "devDependencies": {
     "@types/node": "18.19.130",
