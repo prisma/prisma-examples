@@ -10,6 +10,6 @@
   },
   "devDependencies": {
     "azure-functions-core-tools": "4.8.0",
-    "prisma": "6.9.0"
+    "prisma": "6.19.3"
   }
 }
