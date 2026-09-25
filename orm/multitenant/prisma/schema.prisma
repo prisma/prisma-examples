@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Tenant {
+  id     String  @id @default(cuid())
+  name   String  @unique
+  slug   String  @unique
+  users  User[]
+  orders Order[]
+}
+
+model User {
+  id       String  @id @default(cuid())
+  email    String
+  name     String?
+  tenantId String
+  tenant   Tenant  @relation(fields: [tenantId], references: [id])
+  orders   Order[]
+
+  // Same email can exist across different tenants
+  @@unique([email, tenantId])
+  @@index([tenantId])
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  reference String
+  amount    Float
+  status    OrderStatus @default(PENDING)
+  tenantId  String
+  tenant    Tenant      @relation(fields: [tenantId], references: [id])
+  userId    String
+  user      User        @relation(fields: [userId], references: [id])
+  createdAt DateTime    @default(now())
+
+  @@unique([reference, tenantId])
+  @@index([tenantId])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
