@@ -10,6 +10,31 @@ Composer.
 | [`tanstack-start`](./tanstack-start) | TanStack Start app using the Nitro Vite plugin output supported by Prisma Compute. |
 | [`personal-site`](./personal-site) | Astro personal site with no database. |
 
+## Adding a template
+
+`templates.json` is the manifest behind [prisma.io/apps](https://www.prisma.io/apps).
+To list a template there, add a folder under `compute/` with a README and a
+Composer module, then add an entry to the manifest and open a pull request:
+
+```json
+{
+  "id": "my-template",
+  "name": "My Template",
+  "description": "One sentence on what it is and what it runs on.",
+  "path": "compute/my-template",
+  "framework": "nextjs",
+  "author": {
+    "name": "Your name or company",
+    "url": "https://github.com/your-handle",
+    "logo": "https://example.com/logo.svg"
+  }
+}
+```
+
+`framework` is a lowercase slug such as `nextjs`, `hono`, `tanstack-start` or
+`astro`. `author` is who gets credited on the gallery card; leave it out for
+templates maintained by Prisma. `logo` is optional and must be an absolute URL.
+
 Each example includes a Composer module and a GitHub Actions deployment
 workflow. The database-backed examples also include a Prisma 8 contract,
 generated typed client metadata, and seed data.
