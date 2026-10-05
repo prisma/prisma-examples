@@ -16,11 +16,9 @@ generated typed client metadata, and seed data.
 Deploy the companion Console change before publishing these templates so the
 one-click flow can validate and copy their Composer files.
 
-The templates pin the released toolchain as exact versions: the consolidated
-`prisma` CLI (8.0.0-rc.6, published on the `next` npm tag until the Prisma 8
-cutover) runs every ORM and cloud script, and `@prisma/composer-cli` at the
-same version as the `@prisma/composer` libraries provides the local
-`prisma-composer` bin, which `prisma/cloud-deploy-action` prefers over its npx
-fallback — so deploys run the exact Composer version each app depends on.
-These pins can move to stable releases once Prisma 8 reaches general
-availability.
+The templates pin the released toolchain as exact versions. The consolidated
+`prisma` CLI, a Prisma 8 release candidate published on the `latest` npm tag,
+runs every ORM and cloud script. Each template carries `prisma` as a
+devDependency, and `prisma/cloud-deploy-action` deploys with that installed
+version, so deploys run the exact version each app depends on. These pins can
+move to stable releases once Prisma 8 reaches general availability.
