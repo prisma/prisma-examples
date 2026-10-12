@@ -13,16 +13,15 @@
     "compute:open": "prisma service open"
   },
   "dependencies": {
-    "@prisma/composer": "0.15.0",
-    "@prisma/composer-prisma-cloud": "0.15.0",
+    "@prisma/composer": "0.29.1",
+    "@prisma/composer-prisma-cloud": "0.29.1",
     "@astrojs/node": "^10",
     "astro": "^6.3.3"
   },
   "devDependencies": {
-    "@prisma/cli-engine": "0.2.0",
     "@types/node": "25.9.5",
-    "alchemy": "2.0.0-beta.74",
-    "prisma": "8.0.0-rc.11",
+    "alchemy": "2.0.0-beta.78",
+    "prisma": "8.0.0-rc.22",
     "typescript": "5.9.3"
   }
 }

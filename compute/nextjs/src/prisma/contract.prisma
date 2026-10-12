@@ -1,4 +1,4 @@
-// use prisma-next
+// use prisma-8
 
 model User {
   id        Int      @id @default(autoincrement())
@@ -8,6 +8,8 @@ model User {
   posts     Post[]
   createdAt DateTime @default(now())
   updatedAt temporal.updatedAt()
+
+  @@map("user")
 }
 
 model Post {
@@ -19,4 +21,6 @@ model Post {
   author    User     @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
   updatedAt temporal.updatedAt()
+
+  @@map("post")
 }

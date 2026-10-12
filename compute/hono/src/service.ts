@@ -11,5 +11,7 @@ export default compute({
     module: import.meta.url,
     dir: '../dist',
     entry: 'index.js',
+    // tsc leaves packages as imports, so deploy stages them from node_modules.
+    dependencies: 'external',
   }),
 })
