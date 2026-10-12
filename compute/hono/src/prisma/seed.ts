@@ -13,12 +13,26 @@ async function createUserOnce(
   const existing = await db.orm.public.User.where({ email }).first()
   if (existing) return
 
-  await db.orm.public.User.create({
-    email,
-    username,
-    name,
-    posts: (posts) => posts.create([{ ...post, published: true }]),
-  })
+  try {
+    await db.orm.public.User.create({
+      email,
+      username,
+      name,
+      posts: (posts) => posts.create([{ ...post, published: true }]),
+    })
+  } catch (error) {
+    // Another seed run created this user after the lookup above.
+    if (isEmailConflict(error)) return
+    throw error
+  }
+}
+
+function isEmailConflict(error: unknown) {
+  const { sqlState, constraint } = (error ?? {}) as {
+    sqlState?: string
+    constraint?: string
+  }
+  return sqlState === '23505' && constraint === 'user_email_key'
 }
 
 async function main() {
