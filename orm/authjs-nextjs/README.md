@@ -72,10 +72,10 @@ npx prisma migrate dev --name init
 
 ### 4. Set up Auth.js
 
-1. Generate a Auth.js secret.
+1. Generate a Auth.js secret. The command pins `auth@1.2.3`, the last release of the Auth.js CLI. Later versions of the `auth` package on npm are the Better Auth CLI.
 
 ```
-npx auth secret --copy
+npx auth@1.2.3 secret --copy
 ```
 
 2. Add the secret to the `.env`.
