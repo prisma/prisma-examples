@@ -14,7 +14,7 @@ const listUsers = createServerFn({ method: 'GET' }).handler(async () => {
     email: user.email,
     username: user.username,
     name: user.name,
-    createdAt: user.createdAt.toISOString(),
+    createdAt: user.createdAt.toString(),
     postCount: user.posts.length,
   }))
 })
