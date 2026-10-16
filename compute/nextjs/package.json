@@ -31,7 +31,7 @@
     "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
     "alchemy": "2.0.0-beta.78",
-    "prisma": "8.0.0-rc.22",
+    "prisma": "8.0.0-rc.23",
     "tsx": "4.22.4",
     "typescript": "5.9.3"
   }
