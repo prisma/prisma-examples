@@ -1,4 +1,6 @@
 import 'dotenv/config'
+// The ORM maps timestamptz columns to Temporal.Instant; Node.js 22 has no global Temporal.
+import 'temporal-polyfill/global'
 import postgres from '@prisma/orm-postgres/runtime'
 
 import service from '../service.js'
