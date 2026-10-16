@@ -53,9 +53,9 @@ After connecting, open the running service with:
 bun run compute:open
 ```
 
-Each push creates a build. To stream the full build log, copy the build ID
-from the GitHub check run and run:
+Each push runs the `prisma-deploy` workflow in GitHub Actions, and the build
+log is in that workflow run. To read the logs of the running service, run:
 
 ```bash
-bunx prisma build logs <build-id>
+bunx prisma service logs
 ```
