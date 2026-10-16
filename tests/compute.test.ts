@@ -13,6 +13,11 @@ const supportedFrameworks = new Set([
 ])
 const databaseTemplateIds = new Set(['hono', 'nextjs', 'tanstack-start'])
 const packageManager = 'bun@1.3.14'
+// @prisma/composer matches the @prisma/composer-cli that this prisma depends
+// on; @prisma/orm-postgres is the peer @prisma/composer-prisma-cloud requires.
+const composerVersion = '0.29.1'
+const prismaVersion = '8.0.0-rc.22'
+const ormPostgresVersion = '8.0.0-rc.17'
 const lockfileNames = new Set([
   'bun.lock',
   'bun.lockb',
@@ -23,8 +28,11 @@ const lockfileNames = new Set([
 
 // A framework build does not prove that Composer emitted a bootable bundle.
 // Database templates may return 500 here, but any response proves they booted.
-const bundleVerifyScript = `import path from 'node:path'
-import { rm } from 'node:fs/promises'
+// The bundle boots from a copy outside the repository, so it cannot resolve
+// packages from the template's node_modules that deploy would not ship.
+const bundleVerifyScript = `import os from 'node:os'
+import path from 'node:path'
+import { cp, mkdtemp, rm } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { createServer } from 'node:net'
 
@@ -46,6 +54,7 @@ const port = await new Promise<number>((resolve, reject) => {
 })
 
 let child
+const isolated = await mkdtemp(path.join(os.tmpdir(), 'compute-bundle-'))
 try {
   const service = (await import('./src/service.ts')).default
   const control = await import(\`\${service.build.extension}/control\`)
@@ -54,7 +63,8 @@ try {
     address: 'ci-verify',
     build: service.build,
   })
-  const entry = path.join(bundle.dir, bundle.entry)
+  await cp(bundle.dir, isolated, { recursive: true, verbatimSymlinks: true })
+  const entry = path.join(isolated, bundle.entry)
   child = spawn(process.execPath, [entry], {
     env: {
       ...process.env,
@@ -90,6 +100,7 @@ try {
     recursive: true,
     force: true,
   })
+  await rm(isolated, { recursive: true, force: true })
 }
 `
 
@@ -150,13 +161,14 @@ describe('Prisma Compute examples', () => {
 
       const templateDirectory = path.join(repositoryRoot, template.path)
       const rootEntries = await readdir(templateDirectory)
-      expect(
-        rootEntries.filter((entry) => entry === 'prisma-composer.config.ts'),
-      ).toHaveLength(1)
+      // Composer reads its config only from the composer section of
+      // prisma.config.ts and refuses the retired file beside it.
+      expect(rootEntries).not.toContain('prisma-composer.config.ts')
       expect(rootEntries).toContain('module.ts')
-      expect(rootEntries.includes('prisma.config.ts')).toBe(
-        databaseTemplateIds.has(template.id),
-      )
+      expect(rootEntries).toContain('prisma.config.ts')
+      expect(
+        await readFile(path.join(templateDirectory, 'prisma.config.ts'), 'utf8'),
+      ).toMatch(/composer:\s*composer\(/)
       expect(rootEntries.includes('migrations')).toBe(
         databaseTemplateIds.has(template.id),
       )
@@ -175,9 +187,6 @@ describe('Prisma Compute examples', () => {
         scripts?: Record<string, string>
       }
       expect(packageJson.packageManager).toBe(packageManager)
-      const isDatabaseTemplate = databaseTemplateIds.has(template.id)
-      const composerVersion = isDatabaseTemplate ? '0.16.0' : '0.15.0'
-      const prismaVersion = isDatabaseTemplate ? '8.0.0-rc.12' : '8.0.0-rc.11'
       expect(packageJson.dependencies?.['@prisma/composer']).toBe(
         composerVersion,
       )
@@ -193,7 +202,7 @@ describe('Prisma Compute examples', () => {
       ).toBeUndefined()
       if (databaseTemplateIds.has(template.id)) {
         expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
-          '8.0.0-rc.8',
+          ormPostgresVersion,
         )
         expect(packageJson.scripts?.['contract:emit']).toBe(
           'prisma contract emit',
