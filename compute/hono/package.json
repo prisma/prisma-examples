@@ -23,7 +23,7 @@
     "@prisma/composer-prisma-cloud": "0.29.1",
     "@prisma/orm-postgres": "8.0.0-rc.17",
     "dotenv": "17.4.2",
-    "hono": "4.12.34",
+    "hono": "4.13.7",
     "temporal-polyfill": "1.0.5"
   },
   "devDependencies": {
