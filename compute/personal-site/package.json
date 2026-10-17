@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/node": "25.9.5",
     "alchemy": "2.0.0-beta.78",
-    "prisma": "8.0.0-rc.22",
+    "prisma": "8.0.0-rc.23",
     "typescript": "5.9.3"
   }
 }
