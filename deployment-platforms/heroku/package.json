@@ -11,7 +11,7 @@
     "@prisma/client": "6.9.0",
     "body-parser": "2.3.0",
     "express": "5.1.0",
-    "prisma": "6.9.0"
+    "prisma": "6.19.3"
   },
   "devDependencies": {}
 }
