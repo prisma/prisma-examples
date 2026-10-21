@@ -25,8 +25,6 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL is not set. Add it to your .env file.");
 }
 
-const db = new Kysely<Database>({
-  dialect: new PostgresDialect({
 const allowInsecureSsl = process.env.PG_SSL_INSECURE === "true";
 
 const db = new Kysely<Database>({
@@ -37,8 +35,6 @@ const db = new Kysely<Database>({
         ? { rejectUnauthorized: false }
         : { rejectUnauthorized: true },
     }),
-  }),
-});
   }),
 });
 

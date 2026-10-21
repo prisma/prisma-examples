@@ -125,3 +125,21 @@ export function testSqliteExample(
     })
   })
 }
+
+// For examples that use another query builder or ORM with Prisma Postgres and
+// have no Prisma schema to generate or push
+export function testTypecheckExample(examplePath: string) {
+  describe(examplePath, () => {
+    test('typecheck', async () => {
+      const cwd = path.join(process.cwd(), examplePath)
+
+      console.log(`\n[${examplePath}] Installing dependencies...`)
+      await execa('npm', ['install'], { cwd, stdio: 'inherit' })
+
+      console.log(`\n[${examplePath}] Running typecheck...`)
+      await execa('npm', ['run', 'typecheck'], { cwd, stdio: 'inherit' })
+
+      console.log(`\n[${examplePath}] Completed successfully!`)
+    })
+  })
+}
