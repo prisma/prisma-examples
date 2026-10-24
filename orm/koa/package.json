@@ -14,7 +14,7 @@
     "pg": "8.20.0"
   },
   "devDependencies": {
-    "@types/koa": "2.15.0",
+    "@types/koa": "2.15.2",
     "@types/koa__router": "12.0.4",
     "@types/node": "22.18.12",
     "dotenv": "17.3.1",
