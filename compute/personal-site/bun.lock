@@ -5,7 +5,7 @@
     "": {
       "name": "personal-site",
       "dependencies": {
-        "@astrojs/node": "^10",
+        "@astrojs/node": "10.1.4",
         "@prisma/composer": "0.29.1",
         "@prisma/composer-prisma-cloud": "0.29.1",
         "astro": "^6.3.3",
