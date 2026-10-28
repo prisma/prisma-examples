@@ -28,6 +28,14 @@
       "description": "Simple personal website built with Astro and deployed to Prisma Compute.",
       "path": "compute/personal-site",
       "framework": "astro"
+    },
+    {
+      "id": "room-booking-prisma-template",
+      "name": "Room Booking",
+      "description": "Next.js meeting room booking on a Resource Scheduler timeline that never double-books, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/room-booking-prisma-template",
+      "framework": "nextjs",
+      "author": "Mohammed Obaid"
     }
   ]
 }

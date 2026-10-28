@@ -1,0 +1,734 @@
+/* Page styles. The scheduler brings its own scoped stylesheet
+   (resource-scheduler/style.css) and is themed below with its --rs-* variables. */
+
+:root {
+  color-scheme: light dark;
+  --paper: #f2f4f7;
+  --surface: #ffffff;
+  --ink: #172033;
+  --muted: #5a6476;
+  --line: #dde2ea;
+  --line-strong: #c6cdd8;
+  --action: #172033;
+  --action-fg: #ffffff;
+  --link: #4338ca;
+  --free: #11804f;
+  --busy: #c2410c;
+  --danger: #c0262d;
+  --pending: #94a3b8;
+  --mark: #172033;
+  /* One color per floor, for its plates and bookings. */
+  --floor-1: #0b8783;
+  --floor-2: #5146d8;
+  --floor-3: #b86200;
+  --floor-4: #b4237f;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 12px 32px -16px rgb(16 24 40 / 0.18);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0d121b;
+    --surface: #151c28;
+    --ink: #e6eaf1;
+    --muted: #9aa5b6;
+    --line: #253042;
+    --line-strong: #344157;
+    --action: #e6eaf1;
+    --action-fg: #0d121b;
+    --link: #a9a3ff;
+    --free: #3ccf8e;
+    --busy: #fb8c4c;
+    --danger: #ff7a7f;
+    --pending: #64748b;
+    --mark: #222c3d;
+    --floor-1: #2cc4bd;
+    --floor-2: #8f86ff;
+    --floor-3: #f0a63a;
+    --floor-4: #ee6bbd;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  }
+}
+
+/* The scheduler, in the page's colors. :root[data-theme] outranks the
+   package's own :root and [data-theme=system] rules in both modes. */
+:root[data-theme] {
+  --rs-background: var(--surface);
+  --rs-foreground: var(--ink);
+  --rs-card: var(--surface);
+  --rs-card-foreground: var(--ink);
+  --rs-popover: var(--surface);
+  --rs-popover-foreground: var(--ink);
+  --rs-primary: var(--link);
+  --rs-secondary: var(--paper);
+  --rs-secondary-foreground: var(--ink);
+  --rs-muted: var(--paper);
+  --rs-muted-foreground: var(--muted);
+  --rs-accent: color-mix(in srgb, var(--link) 12%, var(--surface));
+  --rs-accent-foreground: var(--link);
+  --rs-destructive: var(--danger);
+  --rs-border: var(--line);
+  --rs-input: var(--line-strong);
+  --rs-ring: var(--link);
+  --rs-surface: var(--surface);
+  --rs-surface-muted: color-mix(in srgb, var(--paper) 55%, var(--surface));
+  --rs-surface-hover: color-mix(in srgb, var(--link) 6%, var(--surface));
+  --rs-today: var(--surface);
+  --rs-radius: var(--radius);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-text), sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.2em;
+}
+
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.shell {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2.5rem) 2.5rem;
+}
+
+/* Top bar */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--ink);
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.topbar-link {
+  color: var(--muted);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.topbar-link:hover {
+  color: var(--ink);
+}
+
+/* Intro */
+
+.intro {
+  margin: clamp(1.75rem, 4vw, 3rem) 0 1.75rem;
+}
+
+.intro h1 {
+  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
+  letter-spacing: -0.015em;
+}
+
+.intro p {
+  max-width: 42rem;
+  margin: 0.625rem 0 0;
+  color: var(--muted);
+  font-size: 1.125rem;
+}
+
+/* Right now: one plate per room */
+
+.now {
+  margin-bottom: 2.5rem;
+}
+
+.now-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.875rem;
+}
+
+.now-head h2,
+.board-head h2 {
+  font-size: 1.375rem;
+}
+
+.clock {
+  margin: 0;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.plates {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  padding: 0.875rem 1rem 1rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+/* The floor's color down the left edge, like a wayfinding sign. */
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--floor);
+}
+
+.plate-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.plate-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.plate-seats,
+.plate-floor {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.plate-floor {
+  color: var(--floor);
+  font-weight: 600;
+}
+
+.plate-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.plate-status::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.plate[data-state="free"] .plate-status {
+  color: var(--free);
+}
+
+.plate[data-state="busy"] .plate-status {
+  color: var(--busy);
+}
+
+.plate[data-state="closed"] .plate-status {
+  color: var(--muted);
+}
+
+.plate-title {
+  margin: 0.125rem 0 0 1rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.plate-book {
+  align-self: flex-start;
+  margin-top: 0.75rem;
+}
+
+/* Timeline */
+
+.board-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.875rem;
+}
+
+.board-head p {
+  flex: 1 1 24rem;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.loading {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* The scheduler fills its parent, so the parent needs a height. */
+.board-frame {
+  height: min(35rem, 78vh);
+  min-height: 26rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Messages after a change */
+
+.toast-region {
+  position: fixed;
+  inset: auto 0 1.25rem;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 36rem;
+  padding: 0.625rem 0.625rem 0.625rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: 0.9375rem;
+  pointer-events: auto;
+  animation: toast-in 180ms ease-out;
+}
+
+.toast::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--free);
+}
+
+.toast.error::before {
+  background: var(--danger);
+}
+
+.toast-close {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.toast-close:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}
+
+/* Buttons */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.375rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 120ms, border-color 120ms;
+}
+
+.button:hover {
+  background: color-mix(in srgb, var(--ink) 5%, var(--surface));
+}
+
+.button.primary {
+  border-color: var(--action);
+  background: var(--action);
+  color: var(--action-fg);
+}
+
+.button.primary:hover {
+  background: color-mix(in srgb, var(--action) 86%, var(--paper));
+}
+
+.button.danger {
+  border-color: color-mix(in srgb, var(--danger) 45%, transparent);
+  color: var(--danger);
+}
+
+.button.small {
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* Booking form */
+
+.dialog {
+  width: min(28rem, calc(100vw - 2rem));
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 24px 64px -16px rgb(10 15 30 / 0.4);
+}
+
+.dialog::backdrop {
+  background: rgb(13 18 27 / 0.5);
+}
+
+.dialog h2 {
+  font-size: 1.75rem;
+}
+
+.dialog-when {
+  margin: 0.375rem 0 1.25rem;
+  font-size: 0.9375rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.field input {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.field input:focus-visible {
+  outline-offset: 0;
+  border-color: var(--link);
+}
+
+.field input[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.field-error {
+  margin: 0.375rem 0 0;
+  color: var(--danger);
+  font-size: 0.8125rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* A booking's details, opened from the timeline */
+
+.details {
+  display: grid;
+  gap: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.details p {
+  margin: 0;
+}
+
+.details-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* How it works */
+
+.how {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+
+.how h2,
+.stack h2 {
+  max-width: 40rem;
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  max-width: 40rem;
+  margin: 0.75rem 0 2rem;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+/* The three checks, in the order a booking meets them. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  counter-increment: step;
+}
+
+.steps h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 1.25rem;
+}
+
+.steps h3::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9375rem;
+}
+
+.steps p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.steps code {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.proof {
+  margin: 1.25rem 0 0;
+  font-weight: 600;
+}
+
+/* Built on Prisma */
+
+.stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: 2rem clamp(2rem, 5vw, 5rem);
+  margin-top: clamp(3rem, 7vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+
+.live {
+  margin: 0.875rem 0 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+}
+
+.live strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 1.5rem;
+}
+
+.agent-note {
+  max-width: 30rem;
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.stack-list {
+  margin: 0;
+}
+
+.stack-list div {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 0.25rem 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.stack-list div:first-child {
+  padding-top: 0.25rem;
+}
+
+.stack-list dt {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.stack-list dt a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.stack-list dt a:hover {
+  color: var(--link);
+}
+
+.stack-list dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.footer {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .topbar-link {
+    display: none;
+  }
+
+  .stack-list div {
+    grid-template-columns: 1fr;
+  }
+}

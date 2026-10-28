@@ -1,0 +1,27 @@
+// use prisma-8
+
+// A meeting room: one row of the scheduler.
+model Room {
+  id       String    @id @default(cuid(2))
+  name     String    @unique
+  floor    String
+  seats    Int
+  bookings Booking[]
+}
+
+// One booking of one room. `endsAt` is exclusive: a booking that ends at 10:00
+// does not collide with one that starts at 10:00, the same rule the scheduler
+// uses. Times are `timestamptz`, read in the app as JavaScript `Date`s.
+model Booking {
+  id        String            @id @default(cuid(2))
+  title     String
+  booker    String
+  room      Room              @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId    String
+  startsAt  TimestamptzJsDate
+  endsAt    TimestamptzJsDate
+  createdAt TimestamptzJsDate @default(now())
+
+  @@index([roomId, startsAt])
+  @@check(expression: "\"endsAt\" > \"startsAt\"", name: "booking_ends_after_start")
+}

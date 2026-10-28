@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# build output
+dist/
+/build/
+/coverage/
+
+# env files: commit .env.example only
+.env
+.env*.local
+
+# Prisma Composer and its deploy engine
+/.alchemy
+/.prisma-composer
+/.prisma
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+
+# local AI assistant files
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+
+# local browser-automation output
+.playwright-mcp/

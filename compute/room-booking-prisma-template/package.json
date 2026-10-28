@@ -1,0 +1,58 @@
+{
+  "name": "room-booking-prisma-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Room booking without double bookings: Next.js, Resource Scheduler, Prisma ORM, Prisma Postgres and Prisma Compute.",
+  "license": "MIT",
+  "packageManager": "npm@10.9.4",
+  "type": "module",
+  "engines": {
+    "node": ">=24.11.1"
+  },
+  "scripts": {
+    "build": "next build",
+    "composer:deploy": "prisma deploy module.ts",
+    "composer:dev": "prisma dev module.ts",
+    "contract:emit": "prisma contract emit",
+    "db:migrate": "prisma db migrate --yes",
+    "db:seed": "node --env-file-if-exists=.env.local src/prisma/seed-cli.ts",
+    "db:verify": "prisma db verify",
+    "deploy": "npm run build && npm run composer:deploy",
+    "dev": "next dev",
+    "dev:composer": "npm run build && npm run composer:dev",
+    "lint": "eslint",
+    "migration:plan": "prisma migration plan",
+    "migration:show": "prisma migration show",
+    "migration:status": "prisma migration status",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/composer": "0.29.1",
+    "@prisma/composer-prisma-cloud": "0.29.1",
+    "@prisma/orm-postgres": "8.0.0-rc.17",
+    "alchemy": "2.0.0-beta.78",
+    "effect": "4.0.0-rc.115",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "resource-scheduler": "^1.6.0",
+    "temporal-polyfill": "^1.0.6",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@prisma/dev": "0.25.2",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.13.0",
+    "eslint-config-next": "16.4.2",
+    "prisma": "8.0.0-rc.22",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  },
+  "overrides": {
+    "@vitejs/devtools": "0.7.6"
+  }
+}
