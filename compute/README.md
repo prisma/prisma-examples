@@ -9,6 +9,7 @@ Composer.
 | [`nextjs`](./nextjs) | Next.js App Router app using standalone output for Prisma Compute. |
 | [`tanstack-start`](./tanstack-start) | TanStack Start app using the Nitro Vite plugin output supported by Prisma Compute. |
 | [`personal-site`](./personal-site) | Astro personal site with no database. |
+| [`room-booking-prisma-template`](./room-booking-prisma-template) | Next.js room booking app: Resource Scheduler timeline, row locks and an exclusion constraint against double booking. |
 
 Each example includes a Composer module and a GitHub Actions deployment
 workflow. The database-backed examples also include a Prisma 8 contract,
