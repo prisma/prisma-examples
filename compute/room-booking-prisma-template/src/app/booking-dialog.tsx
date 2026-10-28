@@ -53,6 +53,17 @@ export function BookingDialog({
   const [errors, setErrors] = useState<Record<string, string[]>>(draft.errors ?? {});
   const [booker] = useState(() => draft.values?.booker ?? rememberedBooker());
 
+  // Editing a field clears the server message about it.
+  function clearError(event: { target: EventTarget }) {
+    const { name } = event.target as HTMLInputElement;
+    if (!errors[name]) return;
+    setErrors((all) => {
+      const rest = { ...all };
+      delete rest[name];
+      return rest;
+    });
+  }
+
   useEffect(() => {
     dialog.current?.showModal();
   }, []);
@@ -75,7 +86,7 @@ export function BookingDialog({
 
   return (
     <dialog ref={dialog} className="dialog" aria-labelledby={headingId} onClose={onCancel}>
-      <form onSubmit={submit} noValidate>
+      <form onSubmit={submit} onInput={clearError} noValidate>
         <h2 id={headingId}>Book {draft.roomName}</h2>
         <p className="dialog-when">
           {formatOfficeDay(draft.start)}, {formatOfficeTime(draft.start)} to {formatOfficeTime(draft.end)}

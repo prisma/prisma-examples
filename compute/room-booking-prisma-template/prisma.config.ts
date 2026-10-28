@@ -11,8 +11,9 @@ import { prismaCloud, prismaState } from "@prisma/composer-prisma-cloud/control"
 // that `prisma deploy` uploads, and a local database URL has no business there.
 try {
   process.loadEnvFile(".env.local");
-} catch {
+} catch (error) {
   // no .env.local: use the environment as it is (CI, Composer deploys)
+  if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
 }
 
 export default definePrismaConfig({

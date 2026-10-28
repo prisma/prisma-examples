@@ -43,6 +43,8 @@ const messageOf = (error: unknown) =>
 
 const isGone = (error: unknown) => error instanceof ApiRequestError && error.code === "not_found";
 const isConflict = (error: unknown) => error instanceof ApiRequestError && error.code === "conflict";
+/** A conflict, or a failure that may have reached the server: show what is saved now. */
+const shouldRefresh = (error: unknown) => isConflict(error) || !(error instanceof ApiRequestError);
 
 /**
  * The calendar. Every change is optimistic: it shows at once, is sent to the
@@ -133,7 +135,7 @@ export function Board({
     } catch (error) {
       setBookings((all) => all.filter((b) => b.id !== tempId)); // roll back
       setNotice({ kind: "error", text: messageOf(error) });
-      if (isConflict(error)) void refresh(); // show what is in the way
+      if (shouldRefresh(error)) void refresh(); // show what is in the way, or what was saved
       if (error instanceof ApiRequestError && error.code === "invalid") {
         setDraft({ ...slot, values: details, errors: error.fields }); // reopen the form with the server's messages
       }
@@ -155,7 +157,7 @@ export function Board({
         isGone(error) ? all.filter((b) => b.id !== id) : all.map((b) => (b.id === id ? before : b)), // roll back
       );
       setNotice({ kind: "error", text: messageOf(error) });
-      if (isConflict(error)) void refresh(); // show what is in the way
+      if (shouldRefresh(error)) void refresh(); // show what is in the way, or what was saved
     }
   }
 
@@ -175,6 +177,7 @@ export function Board({
       }
       setBookings((all) => [...all, before]); // roll back
       setNotice({ kind: "error", text: messageOf(error) });
+      if (shouldRefresh(error)) void refresh();
     }
   }
 

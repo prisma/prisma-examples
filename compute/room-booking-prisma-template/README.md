@@ -71,7 +71,7 @@ npm run dev                    # http://localhost:3000, seeds demo data on first
 No database at hand? `npx create-db@latest` creates a temporary Prisma Postgres database and prints its connection string. Or run PostgreSQL in Docker:
 
 ```bash
-docker run -d --name rooms-db -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres:17
+docker run -d --name rooms-db -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=rooms postgres:17
 ```
 
 Use `.env.local`, not `.env`: `next build` copies `.env` into the bundle that a deploy uploads.
