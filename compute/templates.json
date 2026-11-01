@@ -35,7 +35,10 @@
       "description": "Next.js meeting room booking on a Resource Scheduler timeline that never double-books, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/room-booking-prisma-template",
       "framework": "nextjs",
-      "author": "Mohammed Obaid"
+      "author": {
+        "name": "Mohammed Obaid",
+        "url": "https://github.com/mdobaid311"
+      }
     }
   ]
 }
