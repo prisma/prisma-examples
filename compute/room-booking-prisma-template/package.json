@@ -40,7 +40,9 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@effect/platform-bun": "4.0.3",
     "@effect/platform-node": "4.0.3",
+    "@effect/platform-node-shared": "4.0.3",
     "@prisma/dev": "0.25.2",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
