@@ -172,6 +172,16 @@ describe('Prisma Compute examples', () => {
       expect(rootEntries.includes('migrations')).toBe(
         databaseTemplateIds.has(template.id),
       )
+      // A first deploy into a project the Console created has no default
+      // database, so Composer 0.29 cannot resolve an inherited database region.
+      if (databaseTemplateIds.has(template.id)) {
+        expect(
+          await readFile(
+            path.join(templateDirectory, 'prisma.config.ts'),
+            'utf8',
+          ),
+        ).toMatch(/prismaCloud\(\{\s*region:\s*['"][a-z0-9-]+['"]/)
+      }
       expect(rootEntries).not.toContain('prisma-next.config.ts')
       expect(rootEntries).not.toContain('prisma.compute.json')
       expect(rootEntries.filter((entry) => lockfileNames.has(entry))).toEqual([
