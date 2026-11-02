@@ -1,5 +1,6 @@
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import postgres from "@prisma/orm-postgres/runtime";
+import { contractFromJson } from "@prisma/orm-postgres/static";
 
 import type { Contract } from "../src/prisma/contract.d.ts";
 import contractJson from "../src/prisma/contract.json" with { type: "json" };
@@ -17,7 +18,7 @@ const NOW = new Date("2026-10-26T06:00:00Z");
 const tue = (hhmm: string) => new Date(`2026-10-27T${hhmm}:00+01:00`);
 
 describe.skipIf(!url)("bookings against PostgreSQL", () => {
-  const db = postgres<Contract>({ contractJson, url: url! }) as unknown as Db;
+  const db = postgres({ contract: contractFromJson<Contract>(contractJson), url: url! }) as unknown as Db;
   let atlas: string;
   let borealis: string;
 

@@ -1,4 +1,5 @@
 import postgres from "@prisma/orm-postgres/runtime";
+import { contractFromJson } from "@prisma/orm-postgres/static";
 
 import "temporal-polyfill/global";
 
@@ -7,6 +8,8 @@ import type { Contract } from "./contract.d.ts";
 import contractJson from "./contract.json" with { type: "json" };
 import { officeTime } from "../lib/office.ts";
 import { seedDayIfEmpty, seedIfEmpty } from "./seed.ts";
+
+export const contract = contractFromJson<Contract>(contractJson);
 
 // On Prisma Compute, and under `prisma dev module.ts`, Composer hands the
 // service a client for the database declared in module.ts. Under plain
@@ -23,8 +26,8 @@ function loadComposerDatabase() {
 export const db =
   loadComposerDatabase() ??
   (process.env.DATABASE_URL
-    ? postgres<Contract>({ contractJson, url: process.env.DATABASE_URL })
-    : postgres<Contract>({ contractJson }));
+    ? postgres({ contract, url: process.env.DATABASE_URL })
+    : postgres({ contract }));
 
 export type Db = typeof db;
 export type Tx = Parameters<Parameters<Db["transaction"]>[0]>[0];

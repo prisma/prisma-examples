@@ -51,7 +51,7 @@ The tests prove each layer separately, including a race where 25 requests book t
 
 ## Run it locally
 
-You need **Node.js 24** (`.nvmrc`, the version this template is tested on; the Prisma CLI itself needs 22.18 or newer) and **[Bun](https://bun.sh)**, because Prisma Compute runs your app on Bun and so does its local emulator.
+You need **Node.js 24.11 or newer** (`.nvmrc` pins the version this template is tested on; the Prisma CLI itself needs 22.18 or newer) and **[Bun](https://bun.sh)**, because Prisma Compute runs your app on Bun and so does its local emulator.
 
 The local emulator runs on macOS and Linux only: `prisma dev` stops on Windows with `local dev is not supported on Windows yet`. On Windows, run it in WSL or a Linux container, or use [hot reload with your own database](#with-hot-reload-and-your-own-database) below.
 
