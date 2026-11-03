@@ -34,6 +34,9 @@ Connect this repository to Prisma Cloud, then push the branch. The included
 GitHub Actions workflow runs Composer, which provisions Prisma Postgres,
 applies the Prisma 8 contract, and deploys the Next.js service.
 
+The first deploy creates the database in `us-east-1`. To use another region,
+change `prismaCloud({ region })` in `prisma.config.ts` before the first deploy.
+
 ```bash
 bun run compute:connect
 ```

@@ -7,7 +7,7 @@ import { definePrismaConfig } from 'prisma/config'
 
 export default definePrismaConfig({
   composer: composer({
-    extensions: [prismaCloud(), nodeBuild()],
+    extensions: [prismaCloud({ region: 'us-east-1' }), nodeBuild()],
     state: prismaState(),
   }),
   orm: orm({
