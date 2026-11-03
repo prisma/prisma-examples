@@ -2,7 +2,7 @@
 
 // A meeting room: one row of the scheduler.
 model Room {
-  id       String    @id @default(cuid(2))
+  id       String    @id @onCreate(cuid(2))
   name     String    @unique
   floor    String
   seats    Int
@@ -13,7 +13,7 @@ model Room {
 // does not collide with one that starts at 10:00, the same rule the scheduler
 // uses. Times are `timestamptz`, read in the app as JavaScript `Date`s.
 model Booking {
-  id        String            @id @default(cuid(2))
+  id        String            @id @onCreate(cuid(2))
   title     String
   booker    String
   room      Room              @relation(fields: [roomId], references: [id], onDelete: Cascade)
@@ -23,5 +23,5 @@ model Booking {
   createdAt TimestamptzJsDate @default(now())
 
   @@index([roomId, startsAt])
-  @@check(expression: "\"endsAt\" > \"startsAt\"", name: "booking_ends_after_start")
+  @@check(expression: sql`"endsAt" > "startsAt"`, name: "booking_ends_after_start")
 }

@@ -19,7 +19,7 @@ export type BookingDraft = SlotSelection & {
 
 const BOOKER_KEY = "room-booking:booker";
 
-function rememberedBooker(): string {
+export function rememberedBooker(): string {
   try {
     return localStorage.getItem(BOOKER_KEY) ?? "";
   } catch {

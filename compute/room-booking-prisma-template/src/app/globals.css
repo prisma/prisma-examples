@@ -1,79 +1,113 @@
 /* Page styles. The scheduler brings its own scoped stylesheet
    (resource-scheduler/style.css) and is themed below with its --rs-* variables. */
 
+/* Frosted glass over fields of color, in light and dark. The tokens build on
+   each other: the scene behind the window, the glass, ink and lines, the one
+   violet, room states, then depth and shape. Components use only these, and
+   the scheduler's --rs-* variables map onto them, so a new look is a change to
+   this block. Every color is light-dark(light, dark): the OS setting picks one,
+   unless the theme button set data-theme="light" or "dark" on <html>. */
 :root {
   color-scheme: light dark;
-  --paper: #f2f4f7;
-  --surface: #ffffff;
-  --ink: #172033;
-  --muted: #5a6476;
-  --line: #dde2ea;
-  --line-strong: #c6cdd8;
-  --action: #172033;
-  --action-fg: #ffffff;
-  --link: #4338ca;
-  --free: #11804f;
-  --busy: #c2410c;
-  --danger: #c0262d;
-  --pending: #94a3b8;
-  --mark: #172033;
-  /* One color per floor, for its plates and bookings. */
-  --floor-1: #0b8783;
-  --floor-2: #5146d8;
-  --floor-3: #b86200;
-  --floor-4: #b4237f;
-  --radius: 10px;
-  --shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 12px 32px -16px rgb(16 24 40 / 0.18);
+
+  /* The scene: a pale or deep page, and shapes of color for the glass to blur. */
+  --page: light-dark(#e3eaf7, #090b27);
+  --orb-blue: light-dark(#8db2f5, #2a54c6);
+  --orb-indigo: light-dark(#6b7bf0, #3a3bcb);
+  --orb-violet: light-dark(#c2acf5, #6a2caf);
+  --orb-coral: light-dark(#f4a088, #df5e39);
+  --orb-mist: light-dark(rgb(255 255 255 / 0.8), rgb(176 184 208 / 0.55));
+
+  /* Glass, from the window down: cards on it, controls raised off them, and
+     what floats above everything (dialogs, popovers, toasts, and the room
+     column the timeline scrolls under). */
+  --glass: light-dark(rgb(255 255 255 / 0.5), rgb(19 21 40 / 0.68));
+  --glass-card: light-dark(rgb(255 255 255 / 0.48), rgb(255 255 255 / 0.035));
+  --glass-raised: light-dark(rgb(255 255 255 / 0.88), rgb(255 255 255 / 0.1));
+  --glass-float: light-dark(rgb(247 248 255 / 0.82), rgb(27 29 52 / 0.84));
+  --glass-edge: light-dark(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.09));
+  --glass-shine: inset 0 1px 0 light-dark(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.07));
+  --blur: blur(28px) saturate(170%);
+
+  /* Ink and lines */
+  --fg: light-dark(#191a2e, #eff0fb);
+  --muted: light-dark(#4e536d, #a5aac5);
+  --faint: light-dark(#8a8ea6, #6f7493);
+  --line: light-dark(rgb(26 30 72 / 0.1), rgb(255 255 255 / 0.08));
+  --band: light-dark(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0.03));
+  --track: light-dark(rgb(26 30 72 / 0.07), rgb(255 255 255 / 0.07));
+  --hover: light-dark(rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.06));
+
+  /* The one violet: a fill (a gradient to --accent-to), a tint, and text. */
+  --accent: light-dark(#7c3aed, #a78bfa);
+  --accent-to: light-dark(#a855f7, #c9a7fc);
+  --accent-fill: linear-gradient(135deg, var(--accent), var(--accent-to));
+  --accent-ink: light-dark(#6d28d9, #c4b5fd);
+  --on-accent: light-dark(#ffffff, #1a1033);
+  --tint: light-dark(rgb(124 58 237 / 0.12), rgb(167 139 250 / 0.17));
+  --tint-hover: light-dark(rgb(124 58 237 / 0.19), rgb(167 139 250 / 0.26));
+
+  /* A room's state, only ever as a dot beside the words, and the one red. */
+  --free: light-dark(#16a34a, #4ade80);
+  --busy: light-dark(#d97706, #fbbf24);
+  --danger: light-dark(#dc2626, #f87171);
+
+  /* Depth and shape */
+  --shadow-xs: 0 1px 2px light-dark(rgb(40 48 120 / 0.1), rgb(0 0 0 / 0.35));
+  --shadow-card: 0 12px 32px -20px light-dark(rgb(40 48 120 / 0.4), rgb(0 0 0 / 0.7));
+  --shadow: 0 32px 80px -32px light-dark(rgb(40 48 120 / 0.5), rgb(0 0 0 / 0.8));
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --frame: clamp(0.5rem, 2.5vw, 2rem);
+  --pad: clamp(1rem, 2.5vw, 1.75rem);
+  /* DM Sans, loaded in layout.tsx */
+  --font: var(--font-sans), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #0d121b;
-    --surface: #151c28;
-    --ink: #e6eaf1;
-    --muted: #9aa5b6;
-    --line: #253042;
-    --line-strong: #344157;
-    --action: #e6eaf1;
-    --action-fg: #0d121b;
-    --link: #a9a3ff;
-    --free: #3ccf8e;
-    --busy: #fb8c4c;
-    --danger: #ff7a7f;
-    --pending: #64748b;
-    --mark: #222c3d;
-    --floor-1: #2cc4bd;
-    --floor-2: #8f86ff;
-    --floor-3: #f0a63a;
-    --floor-4: #ee6bbd;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
-  }
+:root[data-theme="light"] {
+  color-scheme: light;
 }
 
-/* The scheduler, in the page's colors. :root[data-theme] outranks the
-   package's own :root and [data-theme=system] rules in both modes. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* The scheduler, in glass: its surfaces are see-through, so the card under it
+   shows. :root[data-theme] outranks the package's own :root and
+   [data-theme=system] rules in both modes. */
 :root[data-theme] {
-  --rs-background: var(--surface);
-  --rs-foreground: var(--ink);
-  --rs-card: var(--surface);
-  --rs-card-foreground: var(--ink);
-  --rs-popover: var(--surface);
-  --rs-popover-foreground: var(--ink);
-  --rs-primary: var(--link);
-  --rs-secondary: var(--paper);
-  --rs-secondary-foreground: var(--ink);
-  --rs-muted: var(--paper);
+  --rs-background: var(--glass-float);
+  --rs-foreground: var(--fg);
+  --rs-card: var(--glass-float);
+  --rs-card-foreground: var(--fg);
+  --rs-popover: var(--glass-float);
+  --rs-popover-foreground: var(--fg);
+  --rs-primary: var(--accent);
+  --rs-primary-foreground: var(--on-accent);
+  --rs-primary-text-mix: 100%;
+  --rs-secondary: var(--track);
+  --rs-secondary-foreground: var(--fg);
+  --rs-muted: var(--band);
   --rs-muted-foreground: var(--muted);
-  --rs-accent: color-mix(in srgb, var(--link) 12%, var(--surface));
-  --rs-accent-foreground: var(--link);
+  --rs-accent: var(--hover);
+  --rs-accent-foreground: var(--fg);
   --rs-destructive: var(--danger);
+  --rs-destructive-foreground: #ffffff;
+  --rs-warning: var(--busy);
   --rs-border: var(--line);
-  --rs-input: var(--line-strong);
-  --rs-ring: var(--link);
-  --rs-surface: var(--surface);
-  --rs-surface-muted: color-mix(in srgb, var(--paper) 55%, var(--surface));
-  --rs-surface-hover: color-mix(in srgb, var(--link) 6%, var(--surface));
-  --rs-today: var(--surface);
+  --rs-input: var(--line);
+  --rs-ring: var(--accent);
+  --rs-surface: transparent;
+  --rs-surface-muted: var(--track);
+  --rs-surface-hover: var(--tint);
+  --rs-today: light-dark(rgb(124 58 237 / 0.05), rgb(167 139 250 / 0.06));
+  --rs-unavailable: var(--line);
+  --rs-tooltip: var(--fg);
+  --rs-shadow-xs: var(--shadow-xs);
+  --rs-shadow-sm: var(--shadow-xs);
+  --rs-shadow-md: var(--shadow);
   --rs-radius: var(--radius);
 }
 
@@ -81,37 +115,69 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--page);
+}
+
 body {
+  min-height: 100dvh;
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-text), system-ui, sans-serif;
-  font-size: 1rem;
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 0.9375rem;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
+/* The scene: soft fields of color and a few crisp shapes, fixed, so the window
+   and its cards blur them differently as the page scrolls over them. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  inset: 0;
+  background:
+    radial-gradient(circle 8.5rem at 6% 22%, var(--orb-blue) 97%, transparent),
+    radial-gradient(circle 7rem at 2% 94%, var(--orb-coral) 97%, transparent),
+    radial-gradient(circle 2.25rem at 94% 6%, var(--orb-mist) 94%, transparent),
+    radial-gradient(48% 42% at 86% 80%, color-mix(in srgb, var(--orb-coral) 60%, transparent), transparent),
+    radial-gradient(44% 40% at 62% 104%, var(--orb-violet), transparent),
+    radial-gradient(40% 46% at 100% 30%, color-mix(in srgb, var(--orb-violet) 70%, transparent), transparent),
+    radial-gradient(46% 50% at 0% 0%, color-mix(in srgb, var(--orb-blue) 60%, transparent), transparent);
+}
+
+body::after {
+  top: -7rem;
+  left: 28%;
+  width: 44%;
+  height: 22rem;
+  border-radius: 10rem;
+  background: linear-gradient(120deg, var(--orb-indigo) 30%, var(--orb-violet));
+}
+
 h1,
-h2,
-h3 {
-  font-family: var(--font-display), var(--font-text), sans-serif;
-  font-weight: 700;
-  line-height: 1.1;
+h2 {
   margin: 0;
+  line-height: 1.25;
 }
 
 a {
-  color: var(--link);
-  text-underline-offset: 0.2em;
+  color: inherit;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
 }
 
-code {
-  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  font-size: 0.8125rem;
+a:hover {
+  text-decoration-color: currentColor;
 }
 
 :focus-visible {
-  outline: 2px solid var(--link);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -128,230 +194,572 @@ code {
   white-space: nowrap;
 }
 
-.shell {
-  max-width: 90rem;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 2.5rem) 2.5rem;
+/* The window: on wide screens the sidebar beside the header and timeline, on
+   narrow ones the brand, the header, "Find a time", then the timeline. */
+
+.app {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-areas: "brand" "head" "side" "main";
+  width: min(100% - 2 * var(--frame), 100rem);
+  min-height: calc(100dvh - 2 * var(--frame));
+  margin: var(--frame) auto;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
 }
 
-/* Top bar */
+/* The glass is a layer of its own: a backdrop-filter on .app itself would make
+   it the containing block of the fixed toasts and pin them to the window. */
+.app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--glass);
+  box-shadow: var(--glass-shine);
+  backdrop-filter: var(--blur);
+}
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--line);
+@media (min-width: 64rem) {
+  .app {
+    grid-template-columns: 16.5rem minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "brand head" "side main";
+  }
+
+  .brand,
+  .sidebar {
+    border-right: 1px solid var(--line);
+  }
 }
 
 .brand {
-  display: inline-flex;
+  grid-area: brand;
+  display: flex;
   align-items: center;
   gap: 0.625rem;
-  color: var(--ink);
-  font-family: var(--font-display), sans-serif;
-  font-size: 1.375rem;
-  font-weight: 700;
+  padding: 1rem var(--pad) 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 
 .brand-mark {
+  flex: none;
   width: 1.75rem;
   height: 1.75rem;
 }
 
-.topbar-nav {
+.head {
+  grid-area: head;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1.5rem;
-  font-size: 0.9375rem;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 1rem var(--pad);
+  border-bottom: 1px solid var(--line);
 }
 
-.topbar-link {
-  color: var(--muted);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.topbar-link:hover {
-  color: var(--ink);
-}
-
-/* Intro */
-
-.intro {
-  margin: clamp(1.75rem, 4vw, 3rem) 0 1.75rem;
-}
-
-.intro h1 {
-  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem);
+.head h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
   letter-spacing: -0.015em;
 }
 
-.intro p {
-  max-width: 42rem;
-  margin: 0.625rem 0 0;
+.head p {
+  max-width: 40rem;
+  margin: 0.125rem 0 0;
   color: var(--muted);
-  font-size: 1.125rem;
+  font-size: 0.8125rem;
 }
 
-/* Right now: one plate per room */
-
-.now {
-  margin-bottom: 2.5rem;
-}
-
-.now-head {
+.head-tools {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 1rem;
-  margin-bottom: 0.875rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.now-head h2,
-.board-head h2 {
-  font-size: 1.375rem;
-}
-
+/* The office clock, drawn like a search field. */
 .clock {
-  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+  padding: 0 0.875rem;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-sm);
+  background: var(--glass-card);
   color: var(--muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sidebar {
+  grid-area: side;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+  padding: 1.25rem var(--pad);
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 64rem) {
+  .brand {
+    padding: 0 1.25rem;
+  }
+
+  .sidebar {
+    padding: 1.25rem;
+    border-bottom: 0;
+  }
+}
+
+/* Links at the foot of the sidebar, drawn like its rows. */
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: auto;
+  padding: 0.5rem 0.625rem;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background-color 150ms, color 150ms;
+}
+
+.side-link:hover {
+  background: var(--hover);
+  color: var(--fg);
+}
+
+.main {
+  grid-area: main;
+  min-width: 0;
+  padding: 1.5rem var(--pad) 2rem;
+}
+
+/* Section names, small and spaced, like the sidebar's in a mail app. */
+.panel h2,
+.stack-section h2 {
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Find a time */
+
+.choice {
+  min-width: 0;
+  margin: 1rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.choice legend {
+  margin-bottom: 0.375rem;
+  padding: 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+/* Radio buttons, drawn as a segmented control. */
+.choice-options {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--track);
+}
+
+.choice label {
+  position: relative;
+  padding: 0.3125rem 0;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 150ms, background-color 150ms, box-shadow 150ms;
+}
+
+.choice label:hover {
+  color: var(--fg);
+}
+
+.choice label:has(:checked) {
+  background: var(--glass-raised);
+  color: var(--fg);
+  box-shadow: var(--shadow-xs);
+}
+
+.choice label:has(:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.choice input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.picks {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pick-time {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
-.plates {
+.pick-rooms {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
-  gap: 0.75rem;
+  gap: 2px;
+  margin: 0 -0.625rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* A whole room is its button, lifted like a chosen row on hover; "Book" takes
+   the place of the seats. */
+.pick {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 0 0.625rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: start;
+  cursor: pointer;
+  transition: background-color 150ms, border-color 150ms, box-shadow 150ms;
+}
+
+.pick:is(:hover, :focus-visible) {
+  border-color: var(--glass-edge);
+  background: var(--hover);
+  box-shadow: var(--shadow-xs);
+}
+
+.pick-seats,
+.pick-go {
+  grid-area: 1 / 2;
+  justify-self: end;
+  font-size: 0.75rem;
+  transition: opacity 150ms;
+}
+
+/* A count, like the badges beside a sidebar's rows. */
+.pick-seats {
+  padding: 0 0.4375rem;
+  border: 1px solid var(--glass-edge);
+  border-radius: 6px;
+  background: var(--glass-card);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.375rem;
+}
+
+.pick-go {
+  color: var(--accent-ink);
+  font-weight: 600;
+  opacity: 0;
+}
+
+.pick:is(:hover, :focus-visible) .pick-seats {
+  opacity: 0;
+}
+
+.pick:is(:hover, :focus-visible) .pick-go {
+  opacity: 1;
+}
+
+.picks-empty {
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Timeline */
+
+/* The scheduler grows to fit its rooms and scrolls sideways through the day.
+   With many rooms, give the frame a fixed height instead: the scheduler then
+   scrolls inside it and only draws the rows on screen. */
+.board-frame {
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-lg);
+  background: var(--glass-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* Three of the scheduler's parts need a surface of their own: the date
+   buttons, the chosen view, and the room column, which frosts the bookings
+   that scroll under it. */
+.rs-root .rs-nav {
+  border-color: var(--glass-edge);
+  background: var(--glass-raised);
+}
+
+.rs-toolbar [aria-pressed="true"] {
+  background: var(--glass-raised);
+}
+
+.rs-root .rs-resources {
+  background: var(--glass-float);
+  backdrop-filter: blur(16px);
+}
+
+.rs-scroll {
+  scrollbar-color: light-dark(rgb(26 30 72 / 0.25), rgb(255 255 255 / 0.2)) transparent;
+  scrollbar-width: thin;
+}
+
+/* A booking's details: a frosted card over the timeline, grown from the booking. */
+.rs-root[data-slot="popover-content"] {
+  border-color: var(--glass-edge);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), var(--glass-shine);
+  backdrop-filter: var(--blur);
+}
+
+.rs-root[data-slot="popover-content"][data-state="open"] {
+  animation: pop 160ms ease-out;
+}
+
+/* Every other slot ends on the half hour (the day opens on the hour). "of .slot"
+   skips the bookings layer that some rows start with. */
+.slot:nth-child(odd of .slot) {
+  border-inline-end-color: color-mix(in srgb, var(--line) 45%, transparent);
+}
+
+/* A room in the resource column, drawn by renderResourceHeader. */
+.room {
+  display: grid;
+  gap: 0.125rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.room-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.room-name {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.room-seats {
+  flex: none;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.room-status {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.room-status::before {
+  content: "";
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  margin: 0 0.375rem 0.0625rem 0;
+  border-radius: 50%;
+  background: var(--faint);
+  vertical-align: middle;
+}
+
+.room-status[data-state="free"]::before {
+  background: var(--free);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--free) 20%, transparent);
+}
+
+.room-status[data-state="busy"]::before {
+  background: var(--busy);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--busy) 20%, transparent);
+}
+
+/* A booking on the timeline, drawn by renderTimeSlot: a tint of the violet, or
+   the violet itself when it is yours. */
+.rs-root [data-rs-event] {
+  border-radius: var(--radius-sm);
+}
+
+.booking {
+  position: absolute;
+  inset: 0 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  padding: 0 0.5rem 0 0.625rem;
+  border-radius: var(--radius-sm);
+  background: var(--tint);
+  box-shadow: inset 2px 0 0 var(--accent);
+  color: var(--fg);
+  font-size: 0.8125rem;
+  line-height: 1.25;
+  container-type: inline-size;
+  transition: background-color 150ms, filter 150ms;
+}
+
+[data-rs-event]:hover .booking {
+  background: var(--tint-hover);
+}
+
+.booking[data-mine] {
+  background: var(--accent-fill);
+  box-shadow: 0 6px 16px -8px var(--accent);
+  color: var(--on-accent);
+}
+
+[data-rs-event]:hover .booking[data-mine] {
+  background: var(--accent-fill);
+  filter: brightness(1.08);
+}
+
+.booking[data-pending] {
+  border: 1px dashed var(--accent);
+  background: var(--band);
+  box-shadow: none;
+  color: var(--fg);
+}
+
+.booking-title,
+.booking-time {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.booking-title {
+  font-weight: 600;
+}
+
+.booking-time {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+
+/* Too narrow for the times: the title gets the room. */
+@container (max-width: 6rem) {
+  .booking-time {
+    display: none;
+  }
+}
+
+.board-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.875rem;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+/* The key: one swatch per kind of booking, drawn like the bookings. */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.plate {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  min-width: 0;
-  padding: 0.875rem 1rem 1rem 1.25rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  overflow: hidden;
-}
-
-/* The floor's color down the left edge, like a wayfinding sign. */
-.plate::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 5px;
-  background: var(--floor);
-}
-
-.plate-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.plate-name {
-  font-family: var(--font-display), sans-serif;
-  font-size: 1.625rem;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-.plate-seats,
-.plate-floor {
-  color: var(--muted);
-  font-size: 0.8125rem;
-  white-space: nowrap;
-}
-
-.plate-floor {
-  color: var(--floor);
-  font-weight: 600;
-}
-
-.plate-status {
-  display: flex;
+.legend li {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  margin: 0.75rem 0 0;
-  font-weight: 600;
-  font-size: 0.9375rem;
+  gap: 0.375rem;
 }
 
-.plate-status::before {
+.legend li::before {
   content: "";
-  flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: currentColor;
+  width: 0.875rem;
+  height: 0.625rem;
+  border-radius: 3px;
+  background: var(--tint);
+  box-shadow: inset 2px 0 0 var(--accent);
 }
 
-.plate[data-state="free"] .plate-status {
-  color: var(--free);
+.legend .mine::before {
+  background: var(--accent-fill);
+  box-shadow: none;
 }
 
-.plate[data-state="busy"] .plate-status {
-  color: var(--busy);
+.legend .pending::before {
+  border: 1px dashed var(--accent);
+  background: none;
+  box-shadow: none;
 }
 
-.plate[data-state="closed"] .plate-status {
-  color: var(--muted);
-}
+/* A booking's details, opened from the timeline */
 
-.plate-title {
-  margin: 0.125rem 0 0 1rem;
-  overflow: hidden;
-  color: var(--muted);
+.details {
+  display: grid;
+  gap: 0.875rem;
   font-size: 0.875rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.plate-book {
-  align-self: flex-start;
-  margin-top: 0.75rem;
+.details p {
+  margin: 0;
 }
 
-/* Timeline */
+.details .details-title {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
 
-.board-head {
+.details-actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 1rem;
-  margin-bottom: 0.875rem;
-}
-
-.board-head p {
-  flex: 1 1 24rem;
-  margin: 0;
-  font-size: 0.9375rem;
-}
-
-.loading {
-  color: var(--muted);
-  font-size: 0.875rem;
-}
-
-/* The scheduler fills its parent, so the parent needs a height. */
-.board-frame {
-  height: min(35rem, 78vh);
-  min-height: 26rem;
-  border: 1px solid var(--line);
-  border-radius: calc(var(--radius) + 2px);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  overflow: hidden;
+  gap: 0.5rem;
 }
 
 /* Messages after a change */
@@ -371,14 +779,14 @@ code {
   align-items: center;
   gap: 0.75rem;
   max-width: 36rem;
-  padding: 0.625rem 0.625rem 0.625rem 1rem;
-  border: 1px solid var(--line-strong);
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border: 1px solid var(--glass-edge);
   border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  font-size: 0.9375rem;
+  background: var(--glass-float);
+  box-shadow: var(--shadow), var(--glass-shine);
+  backdrop-filter: var(--blur);
   pointer-events: auto;
-  animation: toast-in 180ms ease-out;
+  animation: rise 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .toast::before {
@@ -408,92 +816,144 @@ code {
 }
 
 .toast-close:hover {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--hover);
+  color: var(--fg);
 }
 
-@keyframes toast-in {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(0.5rem);
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem) scale(0.97);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toast {
+  .toast,
+  .dialog[open],
+  .dialog[open]::backdrop,
+  .rs-root[data-slot="popover-content"][data-state="open"] {
     animation: none;
   }
 }
 
-/* Buttons */
+/* Buttons: glass raised off the window, and the violet for the main action. */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.375rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: var(--surface);
-  color: var(--ink);
+  gap: 0.5rem;
+  min-height: 2.25rem;
+  padding: 0 0.875rem;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-sm);
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-xs);
+  color: var(--fg);
   font: inherit;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 120ms, border-color 120ms;
+  transition: background-color 150ms, border-color 150ms, color 150ms, filter 150ms;
 }
 
 .button:hover {
-  background: color-mix(in srgb, var(--ink) 5%, var(--surface));
+  background: light-dark(#ffffff, rgb(255 255 255 / 0.16));
+}
+
+.button svg {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
 }
 
 .button.primary {
-  border-color: var(--action);
-  background: var(--action);
-  color: var(--action-fg);
+  border-color: transparent;
+  background: var(--accent-fill);
+  box-shadow: 0 8px 20px -10px var(--accent);
+  color: var(--on-accent);
 }
 
 .button.primary:hover {
-  background: color-mix(in srgb, var(--action) 86%, var(--paper));
+  filter: brightness(1.08);
 }
 
 .button.danger {
-  border-color: color-mix(in srgb, var(--danger) 45%, transparent);
   color: var(--danger);
+}
+
+.button.danger:hover {
+  border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+}
+
+.button.icon {
+  width: 2.25rem;
+  padding: 0;
+  color: var(--muted);
+}
+
+.button.icon:hover {
+  color: var(--fg);
 }
 
 .button.small {
   min-height: 2rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
+  padding: 0 0.75rem;
+  font-size: 0.8125rem;
 }
 
-/* Booking form */
+/* Booking form: a frosted card over a dimmed, blurred page. */
 
 .dialog {
-  width: min(28rem, calc(100vw - 2rem));
+  width: min(26rem, calc(100vw - 2rem));
   padding: 1.5rem;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: 0 24px 64px -16px rgb(10 15 30 / 0.4);
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-lg);
+  background: var(--glass-float);
+  box-shadow: var(--shadow), var(--glass-shine);
+  color: var(--fg);
+  backdrop-filter: var(--blur);
+}
+
+.dialog[open] {
+  animation: pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .dialog::backdrop {
-  background: rgb(13 18 27 / 0.5);
+  background: light-dark(rgb(40 46 110 / 0.18), rgb(3 4 18 / 0.55));
+  backdrop-filter: blur(4px);
+}
+
+.dialog[open]::backdrop {
+  animation: fade 220ms ease-out;
 }
 
 .dialog h2 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 .dialog-when {
   margin: 0.375rem 0 1.25rem;
-  font-size: 0.9375rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .field {
@@ -504,22 +964,24 @@ code {
   display: block;
   margin-bottom: 0.375rem;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .field input {
   width: 100%;
-  padding: 0.625rem 0.75rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: var(--paper);
-  color: var(--ink);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--glass-raised);
+  color: var(--fg);
   font: inherit;
+  transition: border-color 150ms, box-shadow 150ms;
 }
 
 .field input:focus-visible {
-  outline-offset: 0;
-  border-color: var(--link);
+  outline: 0;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--tint);
 }
 
 .field input[aria-invalid="true"] {
@@ -539,196 +1001,151 @@ code {
   margin-top: 1.5rem;
 }
 
-/* A booking's details, opened from the timeline */
+/* Built with: one card per part, the whole card its link. */
 
-.details {
-  display: grid;
-  gap: 0.625rem;
-  font-size: 0.875rem;
+.stack-section {
+  margin-top: 2.5rem;
 }
 
-.details p {
-  margin: 0;
-}
-
-.details-title {
-  font-family: var(--font-display), sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-
-/* How it works */
-
-.how {
-  margin-top: clamp(3rem, 7vw, 5rem);
-  padding-top: clamp(2rem, 4vw, 3rem);
-  border-top: 1px solid var(--line);
-}
-
-.how h2,
-.stack h2 {
-  max-width: 40rem;
-  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
-  letter-spacing: -0.01em;
-}
-
-.lede {
-  max-width: 40rem;
-  margin: 0.75rem 0 2rem;
-  color: var(--muted);
-  font-size: 1.0625rem;
-}
-
-/* The three checks, in the order a booking meets them. */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: step;
-}
-
-.steps li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.25rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  counter-increment: step;
-}
-
-.steps h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  font-size: 1.25rem;
-}
-
-.steps h3::before {
-  content: counter(step);
-  display: grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.9375rem;
-}
-
-.steps p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.steps code {
-  align-self: flex-start;
-  margin-top: auto;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  background: var(--paper);
-  color: var(--ink);
-}
-
-.proof {
-  margin: 1.25rem 0 0;
-  font-weight: 600;
-}
-
-/* Built on Prisma */
-
+/* Narrow enough for all five in a row from a 1280-pixel screen up. */
 .stack {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
-  gap: 2rem clamp(2rem, 5vw, 5rem);
-  margin-top: clamp(3rem, 7vw, 5rem);
-  padding-top: clamp(2rem, 4vw, 3rem);
-  border-top: 1px solid var(--line);
-}
-
-.live {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr));
+  gap: 0.875rem;
   margin: 0.875rem 0 0;
-  color: var(--muted);
-  font-size: 1.0625rem;
+  padding: 0;
+  list-style: none;
 }
 
-.live strong {
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-
-.actions {
+.card {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.625rem;
-  margin-top: 1.5rem;
+  flex-direction: column;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--radius-lg);
+  background: var(--glass-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 200ms;
 }
 
-.agent-note {
-  max-width: 30rem;
-  margin: 1.25rem 0 0;
-  color: var(--muted);
-  font-size: 0.9375rem;
+.card:hover {
+  box-shadow: var(--shadow-card), 0 0 0 1px var(--glass-edge);
+  transform: translateY(-2px);
 }
 
-.stack-list {
-  margin: 0;
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
 }
 
-.stack-list div {
+.card-top {
   display: grid;
-  grid-template-columns: 11rem 1fr;
-  gap: 0.25rem 1.5rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--line);
+  gap: 0.875rem;
+  padding: 1rem 1rem 0.875rem;
+  background: var(--band);
 }
 
-.stack-list div:first-child {
-  padding-top: 0.25rem;
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
-.stack-list dt {
-  font-family: var(--font-display), sans-serif;
-  font-size: 1.125rem;
-  font-weight: 700;
-}
-
-.stack-list dt a {
-  color: var(--ink);
+.card-title a {
+  font-size: 0.9375rem;
+  font-weight: 600;
   text-decoration: none;
 }
 
-.stack-list dt a:hover {
-  color: var(--link);
+.card-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
-.stack-list dd {
-  margin: 0;
+.tag {
+  flex: none;
+  padding: 0 0.5rem;
+  border: 1px solid var(--glass-edge);
+  border-radius: 6px;
+  background: var(--glass-raised);
   color: var(--muted);
+  font-size: 0.6875rem;
+  line-height: 1.375rem;
 }
 
-.footer {
-  margin-top: clamp(3rem, 6vw, 4.5rem);
-  padding-top: 1.5rem;
+.card p {
+  margin: 0;
+  padding: 0.875rem 1rem 1rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
-.footer p {
-  margin: 0;
+/* Each logo on a small tile, the same size whatever its shape. */
+.stack-logo {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--glass-edge);
+  border-radius: 10px;
+  background: var(--glass-raised);
+  box-shadow: var(--shadow-xs);
 }
 
-@media (max-width: 40rem) {
-  .topbar-link {
+.stack-logo svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* Print the timeline alone, in light, without the glass; the scheduler's own
+   print styles lay it out. */
+@media print {
+  :root[data-theme] {
+    color-scheme: light;
+  }
+
+  html {
+    background: none;
+  }
+
+  body::before,
+  body::after,
+  .app::before,
+  .brand,
+  .head-tools,
+  .sidebar,
+  .board-foot,
+  .stack-section,
+  .toast-region {
     display: none;
   }
 
-  .stack-list div {
-    grid-template-columns: 1fr;
+  .app {
+    display: block;
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .head {
+    padding: 0 0 1rem;
+    border: 0;
+  }
+
+  .main {
+    padding: 0;
+  }
+
+  .board-frame {
+    border: 0;
+    background: none;
+    box-shadow: none;
   }
 }

@@ -12,20 +12,22 @@ production-ready starter built end to end on the Prisma platform:
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/screenshot-dark.png" />
-  <img src="docs/screenshot-light.png" alt="Six room plates saying which rooms are free right now, above a timeline of the day's bookings colored by floor" width="1440" />
+  <img src="docs/screenshot-light.png" alt="The booking board in its glass theme: a Find a time panel beside a day timeline of rooms grouped by floor, each with its status and a utilization bar, above cards for the stack it is built with" width="1440" />
 </picture>
 
 <!-- GIF placeholder: a 10-second clip of drag-to-book, a red footprint on a taken slot, and a second tab losing the race. -->
 
 ## What it does
 
-- A plate per room, like the sign by a meeting room door, says whether it is free right now and until when. **Book now** takes the current half hour.
-- Rooms are rows, half hours from 08:00 to 18:00 are columns, grouped by floor. Each floor has a color, on its plates and its bookings, and every room shows how much of its day is booked.
+- Rooms are rows, grouped by floor, and half hours from 08:00 to 18:00 are columns, in a day view or a week view. Each room says, like the sign by a meeting room door, whether it is free right now and until when (`Free until 6:00 PM`, `In use until 3:30 PM`), and a utilization bar shows how much of its day is booked.
+- **Find a time** sits beside the timeline: pick a length (30 minutes to 2 hours) and a group size, and it suggests the first free time of every room that fits. Picking one opens the booking form.
 - Drag across free time and your own booking form opens (`onSlotSelect`). Drag a booking to move it, drag its edge to resize it, click it to cancel it.
+- Export the bookings on screen, or a single booking, as a calendar file (`.ics`), or print the page.
+- A glass theme in light and dark: frosted layers over soft fields of color, built from the design tokens at the top of `src/app/globals.css`, with the scheduler's `--rs-*` variables mapped onto them. It follows the system setting, and the theme button switches it.
 - A taken slot, a time outside opening hours, or one that has already started turns red before you drop (`eventOverlap`, `isValidDrop`), so most mistakes never reach the server.
 - The server checks again inside a transaction, with the same rules, so two people booking the same slot at the same moment cannot both win. The loser's change rolls back on screen with a message that says what is in the way.
 - Times are shown and checked on the office's clock (`Europe/Berlin` by default), whatever zone the visitor or the server is in.
-- An empty database gets six demo rooms and a day of bookings on the first visit.
+- An empty database gets six demo rooms and a day of bookings on the first visit. After that, a day the board opens on with no bookings at all gets the same day of demo bookings, so the demo never shows an empty timeline; a day with any booking is left alone.
 
 ## How double booking is prevented
 
@@ -49,7 +51,7 @@ The tests prove each layer separately, including a race where 25 requests book t
 
 ## Run it locally
 
-You need **Node.js 24** (`.nvmrc`, the version this template is tested on; the Prisma CLI itself needs 22.18 or newer) and **[Bun](https://bun.sh)**, because Prisma Compute runs your app on Bun and so does its local emulator.
+You need **Node.js 24.11.1 or newer** (`engines` in `package.json`; `.nvmrc` selects Node 24 for `nvm use`; the Prisma CLI itself needs 22.18 or newer) and **[Bun](https://bun.sh)**, because Prisma Compute runs your app on Bun and so does its local emulator.
 
 The local emulator runs on macOS and Linux only: `prisma dev` stops on Windows with `local dev is not supported on Windows yet`. On Windows, run it in WSL or a Linux container, or use [hot reload with your own database](#with-hot-reload-and-your-own-database) below.
 
@@ -107,7 +109,7 @@ There is no `prisma.compute.ts` or `compute:deploy` script. That was the Prisma 
 | --- | --- | --- |
 | `DATABASE_URL` | `.env.local`, local only | The database for `npm run dev`, `npm run db:*`. Not used on Prisma Compute, where the app gets its database from Composer (`service.load()`). |
 | `TEST_DATABASE_URL` | shell or `.env.local` | A disposable PostgreSQL database for the integration tests. |
-| `PRISMA_SERVICE_TOKEN`, `PRISMA_WORKSPACE_ID` | CI secrets only | To run `prisma deploy` in CI without a connected repository: another CI system, or the `prisma-deploy` workflow before the repository is connected (see Troubleshooting). |
+| `PRISMA_SERVICE_TOKEN` | CI secrets only | To run `prisma deploy` in CI without a connected repository: another CI system, or the `prisma-deploy` workflow before the repository is connected (see Troubleshooting). Add `PRISMA_WORKSPACE_ID` only when the token can see more than one workspace. |
 
 **Host and port:** the app needs no settings. Prisma Compute sets `PORT`, and the Next.js standalone server it runs listens on `PORT` and on `HOSTNAME`, which defaults to `0.0.0.0` (all interfaces), as Compute requires. Do not add `HOSTNAME` or `HOST` to the project's environment variables: a server bound to `localhost` deploys fine but cannot be reached.
 
@@ -136,14 +138,20 @@ next.config.ts               output: "standalone", which Prisma Compute runs
 migrations/                  planned migrations, applied by every deploy (init adds the exclusion constraint)
 src/
   app/
-    page.tsx                 server component: rooms and the day's bookings, seeds an empty database
+    page.tsx                 server component: rooms and the day's bookings, seeds an empty database or day
     board.tsx                client component: <ResourceScheduler>, optimistic updates and rollback
     booking-dialog.tsx       the booking form opened by onSlotSelect
+    find-time.tsx            "Find a time": the first free slot of each room that fits
+    room-status.tsx          what each room's row says: free until, in use until
+    theme-toggle.tsx         the light and dark switch
+    about.tsx                the "Built with" cards
+    globals.css              the glass theme: design tokens, then components
     api/bookings/route.ts    GET (a date range) and POST
     api/bookings/[id]/route.ts  PATCH (move, resize) and DELETE
   lib/                       shared by browser and server
     office.ts                office time zone, opening hours, slot length
     rules.ts                 bookingRules(): the placement rules both sides run
+    free-slots.ts            the free-time search behind "Find a time"
     validation.ts            zod schemas for every request
     api-types.ts, api-client.ts  what crosses the network
   server/
@@ -169,7 +177,7 @@ docker run -d --name rooms-test -p 5433:5432 -e POSTGRES_PASSWORD=postgres postg
 TEST_DATABASE_URL="postgresql://postgres:postgres@localhost:5433/postgres" npm test
 ```
 
-They apply the migrations, then check create, move and cancel, 25 simultaneous bookings of one slot (exactly one wins), a create and a move racing, bookings swapping rooms without deadlocks, the room lock alone (constraint dropped), the constraint alone, and concurrent seeding.
+They apply the migrations, then check create, move and cancel, 25 simultaneous bookings of one slot (exactly one wins), a create and a move racing, bookings swapping rooms without deadlocks, the room lock alone (constraint dropped), the constraint alone, and concurrent seeding of the database and of an empty day.
 
 ## Make it yours
 
@@ -185,7 +193,7 @@ They apply the migrations, then check create, move and cancel, 25 simultaneous b
 
 - **`alchemy: node <version> is not supported (module.registerHooks needs node 22.15+, 23.5+, or 24+)`** from `npm run dev:composer` or `npm run deploy`: switch to Node 24 (`nvm use`, the repository has an `.nvmrc`).
 - **`local dev is not supported on Windows yet`** (`DEV.PLATFORM_UNSUPPORTED`) from `npm run dev:composer`: Prisma's local emulator does not run on Windows. Run it in WSL or a Linux container, or use `npm run dev` with a `DATABASE_URL`.
-- **The `prisma-deploy` run is green but nothing deployed** (its log shows `skipped-no-credential` and "This repository is not connected to a Prisma workspace"): the repository is not connected to a Prisma project, so the workflow gets no credential. Copies made with the Deploy button currently end up like this. Connect the repository as in [Deploy to Prisma Compute](#deploy-to-prisma-compute) and push again, or deploy with a service token: create one in the Prisma Console, add it and the workspace ID (from the workspace settings) as the Actions secrets `PRISMA_SERVICE_TOKEN` and `PRISMA_WORKSPACE_ID`, pass them to the deploy step in `.github/workflows/prisma-deploy.yml`, and push:
+- **The `prisma-deploy` run is green but nothing deployed** (its log shows `skipped-no-credential` and "This repository is not connected to a Prisma workspace"): the repository is not connected to a Prisma project, so the workflow gets no credential. Connect the repository as in [Deploy to Prisma Compute](#deploy-to-prisma-compute) and push again, or deploy with a service token: create one in the Prisma Console, add it as the Actions secret `PRISMA_SERVICE_TOKEN`, pass it to the deploy step in `.github/workflows/prisma-deploy.yml` (the secret alone is not enough: a re-run without the `env:` lines still skips), and push:
 
   ```yaml
         - uses: prisma/cloud-deploy-action@v1
@@ -193,10 +201,9 @@ They apply the migrations, then check create, move and cancel, 25 simultaneous b
             build-command: npm run build
           env:
             PRISMA_SERVICE_TOKEN: ${{ secrets.PRISMA_SERVICE_TOKEN }}
-            PRISMA_WORKSPACE_ID: ${{ secrets.PRISMA_WORKSPACE_ID }}
   ```
 
-  The token can deploy anything in the workspace, so keep it in secrets only. Once that deploy has created the project, `npx prisma project link room-booking-prisma-template` and `npx prisma git connect` switch the workflow to deploys without a token; then remove the `env:` lines and the two secrets.
+  The token can deploy anything in the workspace, so keep it in secrets only. Once that deploy has created the project, `npx prisma project link room-booking-prisma-template` and `npx prisma git connect` switch the workflow to deploys without a token; then remove the `env:` lines and the secret.
 - **The deployed URL answers 504:** `next.config.ts` must keep `output: "standalone"`.
 - **`HostedStateBootstrapError` on deploy:** a project with the module's name already exists in your workspace and was created from another checkout. Rename the module in `module.ts`, or deploy with `--name <unique-name>`.
 - **The integration tests are skipped:** set `TEST_DATABASE_URL` (see Tests).

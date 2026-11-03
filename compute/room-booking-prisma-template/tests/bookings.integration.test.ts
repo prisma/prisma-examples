@@ -1,10 +1,11 @@
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import postgres from "@prisma/orm-postgres/runtime";
+import { contractFromJson } from "@prisma/orm-postgres/static";
 
 import type { Contract } from "../src/prisma/contract.d.ts";
 import contractJson from "../src/prisma/contract.json" with { type: "json" };
 import type { Db } from "../src/prisma/db.ts";
-import { seedIfEmpty } from "../src/prisma/seed.ts";
+import { seedDayIfEmpty, seedIfEmpty } from "../src/prisma/seed.ts";
 import { BookingError, createBooking, deleteBooking, moveBooking } from "../src/server/bookings.ts";
 
 // These run against a real PostgreSQL (TEST_DATABASE_URL), because they are
@@ -17,7 +18,7 @@ const NOW = new Date("2026-10-26T06:00:00Z");
 const tue = (hhmm: string) => new Date(`2026-10-27T${hhmm}:00+01:00`);
 
 describe.skipIf(!url)("bookings against PostgreSQL", () => {
-  const db = postgres<Contract>({ contractJson, url: url! }) as unknown as Db;
+  const db = postgres({ contract: contractFromJson<Contract>(contractJson), url: url! }) as unknown as Db;
   let atlas: string;
   let borealis: string;
 
@@ -197,7 +198,31 @@ describe.skipIf(!url)("bookings against PostgreSQL", () => {
       const inserted = await Promise.all(Array.from({ length: 5 }, () => seedIfEmpty(db, NOW)));
       expect(inserted.filter(Boolean)).toHaveLength(1);
       expect(await db.orm.public.Room.select("id").all()).toHaveLength(6);
-      expect(await count()).toBe(15);
+      expect(await count()).toBe(12);
+    });
+
+    it("fills an empty day with the demo bookings once, even when called five times at once", async () => {
+      const filled = await Promise.all(Array.from({ length: 5 }, () => seedDayIfEmpty(db, 1, NOW)));
+      expect(filled.filter(Boolean)).toHaveLength(1);
+      const tuesday = await db.orm.public.Booking.all();
+      expect(tuesday).toHaveLength(5); // the demo day's bookings for Atlas and Borealis, the rooms that exist here
+      expect(tuesday.map(({ roomId, startsAt, endsAt }) => ({ roomId, startsAt, endsAt }))).toEqual(
+        expect.arrayContaining([
+          { roomId: atlas, startsAt: tue("09:00"), endsAt: tue("09:30") },
+          { roomId: atlas, startsAt: tue("10:00"), endsAt: tue("11:30") },
+          { roomId: atlas, startsAt: tue("14:00"), endsAt: tue("15:00") },
+          { roomId: borealis, startsAt: tue("09:30"), endsAt: tue("10:30") },
+          { roomId: borealis, startsAt: tue("13:00"), endsAt: tue("13:30") },
+        ]),
+      );
+    });
+
+    it("leaves a day with any booking alone, and fills another day", async () => {
+      await book(atlas, "16:00", "17:00");
+      expect(await seedDayIfEmpty(db, 1, NOW)).toBe(false);
+      expect(await count()).toBe(1);
+      expect(await seedDayIfEmpty(db, 0, NOW)).toBe(true); // Monday is still empty
+      expect(await count()).toBe(6);
     });
   });
 });

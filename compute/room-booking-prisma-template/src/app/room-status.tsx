@@ -1,16 +1,8 @@
-import type { CSSProperties } from "react";
-
 import type { RoomDTO } from "@/lib/api-types";
-import { CLOSE_HOUR, OFFICE_TIME_ZONE, OPEN_HOUR, SLOT_MINUTES, formatOfficeDay, formatOfficeTime, officeTime } from "@/lib/office";
-import { checkBookingRules, startOfCurrentSlot } from "@/lib/rules";
+import { CLOSE_HOUR, OPEN_HOUR, formatOfficeTime, officeTime } from "@/lib/office";
 
-type Span = { roomId: string; title: string; startsAt: Date; endsAt: Date };
-type Slot = { start: Date; end: Date };
-
-type Status =
-  | { state: "closed"; text: string }
-  | { state: "busy"; text: string; title: string }
-  | { state: "free"; text: string; slot: Slot | null };
+type Span = { roomId: string; startsAt: Date; endsAt: Date };
+type Status = { state: "free" | "busy" | "closed"; text: string };
 
 /** What a sign on the room's door would say at `now`, on the office clock. */
 function statusOf(roomId: string, bookings: Span[], now: Date): Status {
@@ -21,71 +13,31 @@ function statusOf(roomId: string, bookings: Span[], now: Date): Status {
 
   const room = bookings.filter((b) => b.roomId === roomId);
   const current = room.find((b) => b.startsAt <= now && b.endsAt > now);
-  if (current) return { state: "busy", text: `In use until ${formatOfficeTime(current.endsAt)}`, title: current.title };
+  if (current) return { state: "busy", text: `In use until ${formatOfficeTime(current.endsAt)}` };
 
   const next = room.filter((b) => b.startsAt > now && b.startsAt < close).sort((a, b) => +a.startsAt - +b.startsAt)[0];
-  // "Book now" offers the current slot, which the rules still accept.
-  const start = startOfCurrentSlot(now);
-  const end = new Date(start.getTime() + SLOT_MINUTES * 60_000);
-  const free =
-    !room.some((b) => b.startsAt < end && b.endsAt > start) && checkBookingRules({ start, end }, now) === null;
-  return { state: "free", text: `Free until ${formatOfficeTime(next?.startsAt ?? close)}`, slot: free ? { start, end } : null };
+  return { state: "free", text: `Free until ${formatOfficeTime(next?.startsAt ?? close)}` };
 }
 
-const city = OFFICE_TIME_ZONE.split("/").pop()!.replaceAll("_", " ");
-
-/** One plate per room, like the signs next to meeting room doors. */
-export function RoomStatus({
-  rooms,
-  bookings,
-  now,
-  floorColor,
-  onBook,
-}: {
-  rooms: RoomDTO[];
-  bookings: Span[];
-  now: Date;
-  floorColor: (floor: string) => string;
-  onBook: (room: RoomDTO, slot: Slot) => void;
-}) {
+/**
+ * A room in the scheduler's resource column (`renderResourceHeader`): its name
+ * and seats, and while today is on screen (`now` is set), what the sign on its
+ * door would say. The scheduler draws the room's utilization bar below it.
+ */
+export function RoomLabel({ room, bookings, now }: { room: RoomDTO; bookings: Span[]; now: Date | null }) {
+  const status = now && statusOf(room.id, bookings, now);
   return (
-    <section className="now" aria-labelledby="now-heading">
-      <div className="now-head">
-        <h2 id="now-heading">Right now</h2>
-        {/* Intl output can differ by a space between the server's runtime and the browser. */}
-        <p className="clock" suppressHydrationWarning>
-          {formatOfficeTime(now)} in {city}, {formatOfficeDay(now)}
-        </p>
-      </div>
-
-      <ul className="plates">
-        {rooms.map((room) => {
-          const status = statusOf(room.id, bookings, now);
-          return (
-            <li
-              key={room.id}
-              className="plate"
-              data-state={status.state}
-              style={{ "--floor": floorColor(room.floor) } as CSSProperties}
-            >
-              <div className="plate-head">
-                <span className="plate-name">{room.name}</span>
-                <span className="plate-seats">{room.seats} seats</span>
-              </div>
-              <span className="plate-floor">{room.floor}</span>
-              <p className="plate-status" suppressHydrationWarning>
-                {status.text}
-              </p>
-              {status.state === "busy" && <p className="plate-title">{status.title}</p>}
-              {status.state === "free" && status.slot && (
-                <button type="button" className="button small plate-book" onClick={() => onBook(room, status.slot!)}>
-                  Book now<span className="sr-only"> {room.name}</span>
-                </button>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </section>
+    <span className="room">
+      <span className="room-head">
+        <span className="room-name">{room.name}</span>
+        <span className="room-seats">{room.seats} seats</span>
+      </span>
+      {status && (
+        // Intl output can differ by a space between the server's runtime and the browser.
+        <span className="room-status" data-state={status.state} suppressHydrationWarning>
+          {status.text}
+        </span>
+      )}
+    </span>
   );
 }
