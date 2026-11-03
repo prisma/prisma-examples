@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { Prisma, PrismaClient } from '../prisma/generated/client'
 import { PrismaPg } from '@prisma/adapter-pg'
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 
 const pool = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
 const prisma = new PrismaClient({ adapter: pool })
@@ -9,6 +9,43 @@ const prisma = new PrismaClient({ adapter: pool })
 const app = express()
 
 app.use(express.json())
+
+// WARNING: this example has no real authentication. The `x-user-id` header is a
+// placeholder for "the id of the logged-in user" and can be set to anything by
+// any client. Before shipping this to production, replace `getCurrentUserId`
+// with a real auth check (e.g. a verified session cookie or JWT) — the
+// ownership checks below only protect your data once that id can be trusted.
+function getCurrentUserId(req: Request): number | undefined {
+  const userId = Number(req.header('x-user-id'))
+  return Number.isInteger(userId) && userId > 0 ? userId : undefined
+}
+
+function requireUser(req: Request, res: Response, next: NextFunction) {
+  const userId = getCurrentUserId(req)
+  if (!userId) {
+    res.status(401).json({ error: 'Authentication required' })
+    return
+  }
+  res.locals.userId = userId
+  next()
+}
+
+// Loads the post and makes sure the current user is its author. Sends the
+// error response itself and returns `null` when the request must stop.
+async function findOwnedPost(id: number, res: Response) {
+  const post = Number.isInteger(id)
+    ? await prisma.post.findUnique({ where: { id } })
+    : null
+  if (!post) {
+    res.status(404).json({ error: `Post with ID ${id} does not exist in the database` })
+    return null
+  }
+  if (post.authorId !== res.locals.userId) {
+    res.status(403).json({ error: 'You can only modify your own posts' })
+    return null
+  }
+  return post
+}
 
 app.post(`/signup`, async (req, res) => {
   const { name, email, posts } = req.body
@@ -41,6 +78,10 @@ app.post(`/post`, async (req, res) => {
   res.json(result)
 })
 
+// Counting a view is something every reader does, so this route is public on
+// purpose — an ownership check would mean only the author could add views.
+// In production, protect it against inflation with rate limiting and/or
+// de-duplication (e.g. one view per user or session).
 app.put('/post/:id/views', async (req, res) => {
   const { id } = req.params
 
@@ -60,35 +101,29 @@ app.put('/post/:id/views', async (req, res) => {
   }
 })
 
-app.put('/publish/:id', async (req, res) => {
+app.put('/publish/:id', requireUser, async (req, res) => {
   const { id } = req.params
 
-  try {
-    const postData = await prisma.post.findUnique({
-      where: { id: Number(id) },
-      select: {
-        published: true,
-      },
-    })
+  const post = await findOwnedPost(Number(id), res)
+  if (!post) return
 
-    const updatedPost = await prisma.post.update({
-      where: { id: Number(id) || undefined },
-      data: { published: !postData?.published },
-    })
-    res.json(updatedPost)
-  } catch (error) {
-    res.json({ error: `Post with ID ${id} does not exist in the database` })
-  }
+  const updatedPost = await prisma.post.update({
+    where: { id: post.id },
+    data: { published: !post.published },
+  })
+  res.json(updatedPost)
 })
 
-app.delete(`/post/:id`, async (req, res) => {
+app.delete(`/post/:id`, requireUser, async (req, res) => {
   const { id } = req.params
-  const post = await prisma.post.delete({
-    where: {
-      id: Number(id),
-    },
+
+  const post = await findOwnedPost(Number(id), res)
+  if (!post) return
+
+  const deletedPost = await prisma.post.delete({
+    where: { id: post.id },
   })
-  res.json(post)
+  res.json(deletedPost)
 })
 
 app.get('/users', async (req, res) => {
