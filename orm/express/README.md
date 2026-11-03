@@ -213,7 +213,7 @@ curl -X POST http://localhost:3000/signup \
 ##### Toggle the publish status of a post
 
 ```sh
-curl -X PUT http://localhost:3000/publish/4 -H "x-user-id: 1"
+curl -X PUT http://localhost:3000/publish/4 -H "x-user-id: 3"
 ```
 
 ##### Increase the view count of a post

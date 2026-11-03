@@ -30,12 +30,17 @@ function requireUser(req: Request, res: Response, next: NextFunction) {
   next()
 }
 
+// `Post.id` is a PostgreSQL `INTEGER`, so ids outside this range can't exist
+// and would make Prisma throw instead of finding nothing.
+const MAX_POST_ID = 2_147_483_647
+
 // Loads the post and makes sure the current user is its author. Sends the
 // error response itself and returns `null` when the request must stop.
 async function findOwnedPost(id: number, res: Response) {
-  const post = Number.isInteger(id)
-    ? await prisma.post.findUnique({ where: { id } })
-    : null
+  const post =
+    Number.isInteger(id) && id >= 1 && id <= MAX_POST_ID
+      ? await prisma.post.findUnique({ where: { id } })
+      : null
   if (!post) {
     res.status(404).json({ error: `Post with ID ${id} does not exist in the database` })
     return null
