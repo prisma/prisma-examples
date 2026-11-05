@@ -16,7 +16,7 @@
     "@prisma/composer": "0.29.1",
     "@prisma/composer-prisma-cloud": "0.29.1",
     "@astrojs/node": "^10",
-    "astro": "^6.3.3"
+    "astro": "6.4.8"
   },
   "devDependencies": {
     "@types/node": "25.9.5",
