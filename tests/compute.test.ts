@@ -11,13 +11,28 @@ const supportedFrameworks = new Set([
   'nextjs',
   'tanstack-start',
 ])
-const databaseTemplateIds = new Set(['hono', 'nextjs', 'tanstack-start'])
+const databaseTemplateIds = new Set([
+  'hono',
+  'nextjs',
+  'tanstack-start',
+  'room-booking-prisma-template',
+])
 const packageManager = 'bun@1.3.14'
 // @prisma/composer matches the @prisma/composer-cli that this prisma depends
 // on; @prisma/orm-postgres is the peer @prisma/composer-prisma-cloud requires.
-const composerVersion = '0.29.1'
-const prismaVersion = '8.0.0-rc.22'
-const ormPostgresVersion = '8.0.0-rc.17'
+const firstPartyToolchain = {
+  composer: '0.29.1',
+  prisma: '8.0.0-rc.22',
+  ormPostgres: '8.0.0-rc.17',
+}
+// Community templates pin their own toolchain and have no compute:* scripts.
+const communityToolchains: Record<string, typeof firstPartyToolchain> = {
+  'room-booking-prisma-template': {
+    composer: '0.35.0',
+    prisma: '8.0.0-rc.28',
+    ormPostgres: '8.0.0-rc.20',
+  },
+}
 const lockfileNames = new Set([
   'bun.lock',
   'bun.lockb',
@@ -35,6 +50,7 @@ import path from 'node:path'
 import { cp, mkdtemp, rm } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { createServer } from 'node:net'
+import { pathToFileURL } from 'node:url'
 
 const port = await new Promise<number>((resolve, reject) => {
   const server = createServer()
@@ -56,7 +72,8 @@ const port = await new Promise<number>((resolve, reject) => {
 let child
 const isolated = await mkdtemp(path.join(os.tmpdir(), 'compute-bundle-'))
 try {
-  const service = (await import('./src/service.ts')).default
+  const service = (await import(pathToFileURL(path.resolve(process.argv[2])).href))
+    .default
   const control = await import(\`\${service.build.extension}/control\`)
   const bundle = await control.assemble({
     cwd: process.cwd(),
@@ -104,11 +121,14 @@ try {
 }
 `
 
-async function verifyDeployBundle(templateDirectory: string) {
+async function verifyDeployBundle(
+  templateDirectory: string,
+  serviceModule: string,
+) {
   const scriptPath = path.join(templateDirectory, '.bundle-verify.mts')
   await writeFile(scriptPath, bundleVerifyScript)
   try {
-    await execa('bun', ['.bundle-verify.mts'], {
+    await execa('bun', ['.bundle-verify.mts', serviceModule], {
       cwd: templateDirectory,
       stdio: 'inherit',
     })
@@ -136,13 +156,14 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(4)
+    expect(manifest.templates).toHaveLength(5)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
       'nextjs',
       'tanstack-start',
       'personal-site',
+      'room-booking-prisma-template',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,
@@ -167,7 +188,10 @@ describe('Prisma Compute examples', () => {
       expect(rootEntries).toContain('module.ts')
       expect(rootEntries).toContain('prisma.config.ts')
       expect(
-        await readFile(path.join(templateDirectory, 'prisma.config.ts'), 'utf8'),
+        await readFile(
+          path.join(templateDirectory, 'prisma.config.ts'),
+          'utf8',
+        ),
       ).toMatch(/composer:\s*composer\(/)
       expect(rootEntries.includes('migrations')).toBe(
         databaseTemplateIds.has(template.id),
@@ -187,22 +211,21 @@ describe('Prisma Compute examples', () => {
         scripts?: Record<string, string>
       }
       expect(packageJson.packageManager).toBe(packageManager)
+      const toolchain = communityToolchains[template.id] ?? firstPartyToolchain
       expect(packageJson.dependencies?.['@prisma/composer']).toBe(
-        composerVersion,
+        toolchain.composer,
       )
       expect(packageJson.dependencies?.['@prisma/composer-prisma-cloud']).toBe(
-        composerVersion,
+        toolchain.composer,
       )
-      expect(packageJson.devDependencies?.['prisma']).toBe(prismaVersion)
+      expect(packageJson.devDependencies?.['prisma']).toBe(toolchain.prisma)
       expect(
         packageJson.devDependencies?.['@prisma/composer-cli'],
       ).toBeUndefined()
-      expect(
-        packageJson.dependencies?.['@prisma/composer-cli'],
-      ).toBeUndefined()
+      expect(packageJson.dependencies?.['@prisma/composer-cli']).toBeUndefined()
       if (databaseTemplateIds.has(template.id)) {
         expect(packageJson.dependencies?.['@prisma/orm-postgres']).toBe(
-          ormPostgresVersion,
+          toolchain.ormPostgres,
         )
         expect(packageJson.scripts?.['contract:emit']).toBe(
           'prisma contract emit',
@@ -229,7 +252,11 @@ describe('Prisma Compute examples', () => {
         ([name]) => name.startsWith('compute:'),
       )
       expect(computeScripts).toHaveLength(
-        databaseTemplateIds.has(template.id) ? 4 : 3,
+        template.id in communityToolchains
+          ? 0
+          : databaseTemplateIds.has(template.id)
+            ? 4
+            : 3,
       )
       for (const [, command] of computeScripts) {
         expect(command).toMatch(/^prisma /)
@@ -254,7 +281,12 @@ describe('Prisma Compute examples', () => {
         )
       }
 
-      await verifyDeployBundle(templateDirectory)
+      await verifyDeployBundle(
+        templateDirectory,
+        rootEntries.includes('service.ts')
+          ? './service.ts'
+          : './src/service.ts',
+      )
     }
   })
 
