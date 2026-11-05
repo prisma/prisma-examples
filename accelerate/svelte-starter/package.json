@@ -30,6 +30,6 @@
 		"@prisma/client": "7.0.0",
 		"@prisma/extension-accelerate": "2.0.2",
 		"date-fns": "4.1.0",
-		"zod": "3.25.76"
+		"zod": "4.6.6"
 	}
 }
