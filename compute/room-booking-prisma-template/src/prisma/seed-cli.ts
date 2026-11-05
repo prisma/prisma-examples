@@ -1,5 +1,5 @@
-// npm run db:seed            insert the demo rooms and bookings if there are no rooms
-// npm run db:seed -- --reset delete every room and booking, then insert the demo data
+// bun run db:seed          insert the demo rooms and bookings if there are no rooms
+// bun run db:seed --reset  delete every room and booking, then insert the demo data
 import { db } from "./db.ts";
 import { reseed, seedIfEmpty } from "./seed.ts";
 
