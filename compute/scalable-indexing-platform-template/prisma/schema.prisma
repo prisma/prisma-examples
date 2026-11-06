@@ -1,0 +1,42 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  username  String?
+  name      String?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  resources Resource[]
+}
+
+model Resource {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  url         String
+  category    String   // Web Dev, Machine Learning, DevOps, Cybersecurity, Cloud Computing, Mobile Dev
+  difficulty  String   // Beginner, Intermediate, Advanced
+  tags        String[] // PostgreSQL native text[] array
+  stars       Int      @default(0)
+  author      String?
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([difficulty])
+  @@index([stars])
+  @@index([createdAt])
+  @@index([category, id])
+  @@index([difficulty, id])
+  @@index([category, difficulty, id])
+  @@index([category, stars(sort: Desc)])
+}

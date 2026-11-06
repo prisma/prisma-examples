@@ -1,0 +1,48 @@
+name: prisma-deploy
+
+on:
+  push:
+  delete:
+
+concurrency:
+  group: prisma-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+jobs:
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: oven-sh/setup-bun@v2
+      - uses: prisma/cloud-deploy-action@v1
+        with:
+          build-command: npm run build
+          prisma-version: 8.0.0-rc.30
+
+  teardown:
+    # The delete event also fires for tags; only branch deletions map to a preview.
+    if: github.event_name == 'delete' && github.event.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      # The deleted ref no longer exists, so checkout gives the default branch.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: prisma/cloud-deploy-action@v1
+        with:
+          mode: destroy
+          stage: ${{ github.event.ref }}
