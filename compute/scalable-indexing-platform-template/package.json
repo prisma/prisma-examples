@@ -1,0 +1,49 @@
+{
+  "name": "dev-shelf-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "npx --yes prisma@7.10.1 generate --config prisma/orm.config.ts && next build",
+    "postinstall": "npx --yes prisma@7.10.1 generate --config prisma/orm.config.ts",
+    "start": "next start",
+    "lint": "eslint",
+    "db:init": "npx --yes prisma@7.10.1 db push --config prisma/orm.config.ts && npx --yes prisma@7.10.1 generate --config prisma/orm.config.ts",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:seed:1m": "tsx prisma/seed-1m.ts",
+    "composer:deploy": "npx --yes prisma@8.0.0-rc.30 deploy"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.9.0",
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.5.2",
+    "dotenv": "^18.0.9",
+    "lucide-react": "^1.67.0",
+    "next": "16.4.4",
+    "next-themes": "^0.4.6",
+    "pg": "^8.23.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "shadcn": "^1.0.0",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@prisma/cli-engine": "0.9.0",
+    "@prisma/composer": "^0.6.0",
+    "@prisma/composer-prisma-cloud": "^0.6.0",
+    "@prisma/config": "7.10.1",
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.29",
+    "prisma": "^7.10.1",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}

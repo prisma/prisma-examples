@@ -39,6 +39,17 @@
         "name": "Mohammed Obaid",
         "url": "https://github.com/mdobaid311"
       }
+    },
+    {
+      "id": "scalable-indexing-platform-template",
+      "name": "Dev Shelf",
+      "description": "Next.js Scalable bulk insertion and search with indexing, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/scalable-indexing-platform-template",
+      "framework": "nextjs",
+      "author": {
+        "name": "Anas Ibn Belal",
+        "url": "https://github.com/anas20023"
+      }
     }
   ]
 }
