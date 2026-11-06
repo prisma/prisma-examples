@@ -203,9 +203,9 @@ export interface Resource {
 
 ## 👤 Author
 
-Built with craft by **Anas**.
+Built with craft by **Anas Ibn Belal**.
 
-- Website: [devshelf.io](https://devshelf.io)
+- Website: [devshelf.io](https://shelf.anasi.me)
 - GitHub: [anas20023](https://github.com/anas20023)
 - LinkedIn: [anasibelal004](https://www.linkedin.com/in/anasibelal004/)
 - Facebook: [anasib2000004](https://www.facebook.com/anasib2000004)
