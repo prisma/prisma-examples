@@ -1,8 +1,8 @@
 import nextjs from "@prisma/composer/nextjs";
-import { compute, rawPostgres } from "@prisma/composer-prisma-cloud";
+import { compute, postgres } from "@prisma/composer-prisma-cloud";
 
 export default compute({
   name: "app",
-  deps: { db: rawPostgres() },
+  deps: { db: postgres() },
   build: nextjs({ module: import.meta.url, appDir: "." }),
 });
