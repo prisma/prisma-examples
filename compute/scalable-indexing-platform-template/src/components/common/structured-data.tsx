@@ -1,13 +1,16 @@
 import { INITIAL_RESOURCES } from "@/lib/data";
 
+// Where this copy of the app is served; see the same setting in layout.tsx.
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+
 export function StructuredData() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://devshelf.io/#website",
-        "url": "https://devshelf.io",
+        "@id": `${siteUrl}/#website`,
+        "url": `${siteUrl}`,
         "name": "DevShelf",
         "description": "High-performance search engine indexing 1M+ open-source developer tutorials, project templates, and code repositories.",
         "publisher": {
@@ -18,17 +21,17 @@ export function StructuredData() {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://devshelf.io/?q={search_term_string}"
+            "urlTemplate": `${siteUrl}/?q={search_term_string}`
           },
           "query-input": "required name=search_term_string"
         }
       },
       {
         "@type": "DataCatalog",
-        "@id": "https://devshelf.io/#catalog",
+        "@id": `${siteUrl}/#catalog`,
         "name": "DevShelf Open-Source Learning Index",
         "description": "Comprehensive index catalog of over 1,000,000 developer tutorials, open source repositories, and technical guides.",
-        "url": "https://devshelf.io",
+        "url": `${siteUrl}`,
         "provider": {
           "@type": "Organization",
           "name": "DevShelf Inc.",
@@ -48,7 +51,7 @@ export function StructuredData() {
       },
       {
         "@type": "ItemPage",
-        "@id": "https://devshelf.io/#itempage",
+        "@id": `${siteUrl}/#itempage`,
         "name": "DevShelf Discovery Portal",
         "mainEntity": {
           "@type": "ItemList",
