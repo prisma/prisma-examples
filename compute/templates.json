@@ -42,8 +42,8 @@
     },
     {
       "id": "scalable-indexing-platform-template",
-      "name": "Dev Shelf",
-      "description": "Next.js Scalable bulk insertion and search with indexing, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "name": "Resource Discovery",
+      "description": "Next.js searchable resource directory with full-text search, filters, cursor pagination and bulk seeding, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/scalable-indexing-platform-template",
       "framework": "nextjs",
       "author": {
