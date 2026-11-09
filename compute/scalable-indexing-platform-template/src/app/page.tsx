@@ -1,14 +1,13 @@
-import { INITIAL_RESOURCES } from "@/lib/data";
 import { DevShelfDashboard } from "@/components/features/resources/devshelf-dashboard";
 import { NewsletterSection } from "@/components/features/resources/newsletter-section";
-import { getCachedResources } from "@/lib/resources";
+import { CATEGORIES, DIFFICULTIES, getCachedResources } from "@/lib/resources";
 import { Category, Difficulty } from "@/lib/types";
 
 const PAGE_SIZE = 20;
 
-// Enable Incremental Static Regeneration / Next.js segment revalidation Rechecked
+// Every request reads the URL's filters and cursor, so the page is rendered
+// per request. The hot queries are cached in src/lib/resources.ts.
 export const dynamic = "force-dynamic";
-export const revalidate = 60;
 
 interface PageProps {
   searchParams: Promise<{
@@ -27,39 +26,20 @@ export default async function Home({ searchParams }: PageProps) {
   const cursor = typeof params.cursor === "string" && params.cursor.trim() ? params.cursor.trim() : null;
   const direction = params.dir === "prev" ? "prev" : "next";
   const query = typeof params.q === "string" ? params.q.trim() : "";
-  const categoryParam = typeof params.category === "string" ? params.category : "All Categories";
+  const categoryParam =
+    typeof params.category === "string" && (CATEGORIES as readonly string[]).includes(params.category)
+      ? (params.category as Category)
+      : "All Categories";
   const difficultyParam =
-    typeof params.difficulty === "string" && ["Beginner", "Intermediate", "Advanced"].includes(params.difficulty)
+    typeof params.difficulty === "string" && (DIFFICULTIES as readonly string[]).includes(params.difficulty)
       ? (params.difficulty as Difficulty)
       : "All";
   const viewParam = params.view === "list" ? "list" : "grid";
 
-  let resources = INITIAL_RESOURCES;
-  let hasNextPage = false;
-  let hasPrevPage = false;
-  let nextCursor: string | null = null;
-  let prevCursor: string | null = null;
-  let totalEstimatedCount = 2000000;
-
-  try {
-    const data = await getCachedResources(
-      cursor,
-      direction,
-      query,
-      categoryParam,
-      difficultyParam,
-      PAGE_SIZE
-    );
-
-    resources = data.resources;
-    hasNextPage = data.hasNextPage;
-    hasPrevPage = data.hasPrevPage;
-    nextCursor = data.nextCursor;
-    prevCursor = data.prevCursor;
-    totalEstimatedCount = data.totalEstimatedCount;
-  } catch (error) {
-    console.error("Failed to load cached resources, using fallback:", error);
-  }
+  // A failed query throws, so the visitor gets the error boundary
+  // (src/app/error.tsx) with a retry button instead of placeholder data.
+  const { resources, hasNextPage, hasPrevPage, nextCursor, prevCursor, totalEstimatedCount } =
+    await getCachedResources(cursor, direction, query, categoryParam, difficultyParam, PAGE_SIZE);
 
   return (
     <>
@@ -74,7 +54,7 @@ export default async function Home({ searchParams }: PageProps) {
         totalEstimatedCount={totalEstimatedCount}
         pageSize={PAGE_SIZE}
         initialQuery={query}
-        initialCategory={categoryParam as Category}
+        initialCategory={categoryParam}
         initialDifficulty={difficultyParam}
         initialView={viewParam}
       />

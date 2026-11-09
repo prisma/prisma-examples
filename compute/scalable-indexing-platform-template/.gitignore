@@ -9,7 +9,12 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+
+# Prisma Composer and its deploy engine
+/.alchemy
 /.prisma-composer
+/.prisma
+
 # testing
 /coverage
 
@@ -30,8 +35,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files: commit .env.example only
 .env
+.env*.local
 
 # vercel
 .vercel
