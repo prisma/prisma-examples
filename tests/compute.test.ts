@@ -21,17 +21,23 @@ const packageManager = 'bun@1.3.14'
 // @prisma/composer matches the @prisma/composer-cli that this prisma depends
 // on; @prisma/orm-postgres is the peer @prisma/composer-prisma-cloud requires.
 // alchemy and effect must be the versions this Composer release pins.
-const firstPartyToolchain = {
+const toolchain = {
   composer: '0.38.0',
   prisma: '8.0.0-rc.33',
   ormPostgres: '8.0.0-rc.23',
   alchemy: '2.0.0-beta.84',
   effect: '4.0.5',
 }
-// Community templates pin their own toolchain and have no compute:* scripts.
-const communityToolchains: Record<string, typeof firstPartyToolchain> = {
-  'room-booking-prisma-template': firstPartyToolchain,
-}
+// Every package that pulls effect in must resolve to the one pinned version.
+const effectPackages = [
+  'effect',
+  '@effect/platform-bun',
+  '@effect/platform-node',
+  '@effect/platform-node-shared',
+  '@effect/vitest',
+]
+// Community templates have no compute:* scripts.
+const communityTemplateIds = new Set(['room-booking-prisma-template'])
 const lockfileNames = new Set([
   'bun.lock',
   'bun.lockb',
@@ -186,12 +192,13 @@ describe('Prisma Compute examples', () => {
       expect(rootEntries).not.toContain('prisma-composer.config.ts')
       expect(rootEntries).toContain('module.ts')
       expect(rootEntries).toContain('prisma.config.ts')
-      expect(
-        await readFile(
-          path.join(templateDirectory, 'prisma.config.ts'),
-          'utf8',
-        ),
-      ).toMatch(/composer:\s*composer\(/)
+      const prismaConfig = await readFile(
+        path.join(templateDirectory, 'prisma.config.ts'),
+        'utf8',
+      )
+      expect(prismaConfig).toMatch(/composer:\s*composer\(/)
+      // prisma deploy and prisma dev take the entry file only from here.
+      expect(prismaConfig).toMatch(/entry:\s*['"]\.\/module\.ts['"]/)
       expect(rootEntries.includes('migrations')).toBe(
         databaseTemplateIds.has(template.id),
       )
@@ -211,7 +218,6 @@ describe('Prisma Compute examples', () => {
         scripts?: Record<string, string>
       }
       expect(packageJson.packageManager).toBe(packageManager)
-      const toolchain = communityToolchains[template.id] ?? firstPartyToolchain
       expect(packageJson.dependencies?.['@prisma/composer']).toBe(
         toolchain.composer,
       )
@@ -223,7 +229,9 @@ describe('Prisma Compute examples', () => {
         packageJson.dependencies?.['alchemy'] ??
           packageJson.devDependencies?.['alchemy'],
       ).toBe(toolchain.alchemy)
-      expect(packageJson.overrides?.['effect']).toBe(toolchain.effect)
+      for (const name of effectPackages) {
+        expect(packageJson.overrides?.[name], name).toBe(toolchain.effect)
+      }
       expect(
         packageJson.devDependencies?.['@prisma/composer-cli'],
       ).toBeUndefined()
@@ -247,7 +255,7 @@ describe('Prisma Compute examples', () => {
         '.github/workflows/prisma-deploy.yml',
       )
       const workflowContents = await readFile(workflowPath, 'utf8')
-      expect(workflowContents).toContain('prisma/cloud-deploy-action@v1')
+      expect(workflowContents).toMatch(/prisma\/cloud-deploy-action@v1$/m)
       expect(workflowContents).toContain('id-token: write')
       expect(workflowContents).toContain(
         "prisma-deploy-${{ github.event_name == 'delete' && github.event.ref || github.ref_name }}",
@@ -257,7 +265,7 @@ describe('Prisma Compute examples', () => {
         ([name]) => name.startsWith('compute:'),
       )
       expect(computeScripts).toHaveLength(
-        template.id in communityToolchains
+        communityTemplateIds.has(template.id)
           ? 0
           : databaseTemplateIds.has(template.id)
             ? 4
