@@ -39,6 +39,17 @@
         "name": "Mohammed Obaid",
         "url": "https://github.com/mdobaid311"
       }
+    },
+    {
+      "id": "scalable-indexing-platform-template",
+      "name": "Resource Discovery",
+      "description": "Next.js searchable resource directory with full-text search, filters, cursor pagination and bulk seeding, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/scalable-indexing-platform-template",
+      "framework": "nextjs",
+      "author": {
+        "name": "Anas Ibn Belal",
+        "url": "https://github.com/anas20023"
+      }
     }
   ]
 }
