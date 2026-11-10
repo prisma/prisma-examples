@@ -16,6 +16,7 @@ const databaseTemplateIds = new Set([
   'nextjs',
   'tanstack-start',
   'room-booking-prisma-template',
+  'scalable-indexing-platform-template',
 ])
 const packageManager = 'bun@1.3.14'
 // @prisma/composer matches the @prisma/composer-cli that this prisma depends
@@ -28,6 +29,11 @@ const firstPartyToolchain = {
 // Community templates pin their own toolchain and have no compute:* scripts.
 const communityToolchains: Record<string, typeof firstPartyToolchain> = {
   'room-booking-prisma-template': {
+    composer: '0.35.0',
+    prisma: '8.0.0-rc.28',
+    ormPostgres: '8.0.0-rc.20',
+  },
+  'scalable-indexing-platform-template': {
     composer: '0.35.0',
     prisma: '8.0.0-rc.28',
     ormPostgres: '8.0.0-rc.20',
@@ -156,7 +162,7 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(5)
+    expect(manifest.templates).toHaveLength(6)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
@@ -164,6 +170,7 @@ describe('Prisma Compute examples', () => {
       'tanstack-start',
       'personal-site',
       'room-booking-prisma-template',
+      'scalable-indexing-platform-template',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,

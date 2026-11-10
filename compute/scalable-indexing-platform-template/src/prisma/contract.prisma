@@ -1,0 +1,33 @@
+// use prisma-8
+
+model User {
+  id        String     @id @onCreate(uuid())
+  email     String     @unique
+  username  String?
+  name      String?
+  createdAt TimestamptzJsDate @default(now())
+  updatedAt TimestamptzJsDate @default(now()) @onUpdate(now())
+  resources Resource[]
+}
+
+model Resource {
+  id          String   @id @onCreate(uuid())
+  title       String
+  description String
+  url         String
+  category    String // Web Dev, Machine Learning, DevOps, Cybersecurity, Cloud Computing, Mobile Dev
+  difficulty  String // Beginner, Intermediate, Advanced
+  tags        String[] // PostgreSQL native text[] array
+  stars       Int      @default(0)
+  author      String?
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt   TimestamptzJsDate @default(now())
+  updatedAt   TimestamptzJsDate @default(now()) @onUpdate(now())
+
+  @@index([category, id])
+  @@index([difficulty, id])
+  @@index([category, difficulty, id])
+  @@index([tags], type: "gin", name: "resource_tags")
+  @@fullTextIndex([title, description], name: "resource_search")
+}
