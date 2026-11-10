@@ -20,18 +20,17 @@ const databaseTemplateIds = new Set([
 const packageManager = 'bun@1.3.14'
 // @prisma/composer matches the @prisma/composer-cli that this prisma depends
 // on; @prisma/orm-postgres is the peer @prisma/composer-prisma-cloud requires.
+// alchemy and effect must be the versions this Composer release pins.
 const firstPartyToolchain = {
-  composer: '0.29.1',
-  prisma: '8.0.0-rc.22',
-  ormPostgres: '8.0.0-rc.17',
+  composer: '0.38.0',
+  prisma: '8.0.0-rc.33',
+  ormPostgres: '8.0.0-rc.23',
+  alchemy: '2.0.0-beta.84',
+  effect: '4.0.5',
 }
 // Community templates pin their own toolchain and have no compute:* scripts.
 const communityToolchains: Record<string, typeof firstPartyToolchain> = {
-  'room-booking-prisma-template': {
-    composer: '0.35.0',
-    prisma: '8.0.0-rc.28',
-    ormPostgres: '8.0.0-rc.20',
-  },
+  'room-booking-prisma-template': firstPartyToolchain,
 }
 const lockfileNames = new Set([
   'bun.lock',
@@ -207,6 +206,7 @@ describe('Prisma Compute examples', () => {
       ) as {
         dependencies?: Record<string, string>
         devDependencies?: Record<string, string>
+        overrides?: Record<string, string>
         packageManager?: string
         scripts?: Record<string, string>
       }
@@ -219,6 +219,11 @@ describe('Prisma Compute examples', () => {
         toolchain.composer,
       )
       expect(packageJson.devDependencies?.['prisma']).toBe(toolchain.prisma)
+      expect(
+        packageJson.dependencies?.['alchemy'] ??
+          packageJson.devDependencies?.['alchemy'],
+      ).toBe(toolchain.alchemy)
+      expect(packageJson.overrides?.['effect']).toBe(toolchain.effect)
       expect(
         packageJson.devDependencies?.['@prisma/composer-cli'],
       ).toBeUndefined()

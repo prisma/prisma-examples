@@ -18,9 +18,9 @@
     "compute:open": "prisma service open"
   },
   "dependencies": {
-    "@prisma/composer": "0.29.1",
-    "@prisma/composer-prisma-cloud": "0.29.1",
-    "@prisma/orm-postgres": "8.0.0-rc.17",
+    "@prisma/composer": "0.38.0",
+    "@prisma/composer-prisma-cloud": "0.38.0",
+    "@prisma/orm-postgres": "8.0.0-rc.23",
     "dotenv": "17.4.2",
     "next": "16.2.7",
     "react": "19.2.4",
@@ -31,9 +31,16 @@
     "@types/node": "24.12.4",
     "@types/react": "19.2.16",
     "@types/react-dom": "19.2.3",
-    "alchemy": "2.0.0-beta.78",
-    "prisma": "8.0.0-rc.22",
+    "alchemy": "2.0.0-beta.84",
+    "prisma": "8.0.0-rc.33",
     "tsx": "4.22.4",
     "typescript": "5.9.3"
+  },
+  "overrides": {
+    "effect": "4.0.5",
+    "@effect/platform-bun": "4.0.5",
+    "@effect/platform-node": "4.0.5",
+    "@effect/platform-node-shared": "4.0.5",
+    "@effect/vitest": "4.0.5"
   }
 }
