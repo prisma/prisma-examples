@@ -38,7 +38,10 @@ const effectPackages = [
   '@effect/vitest',
 ]
 // Community templates have no compute:* scripts.
-const communityTemplateIds = new Set(['room-booking-prisma-template'])
+const communityTemplateIds = new Set([
+  'room-booking-prisma-template',
+  'scalable-indexing-platform-template',
+])
 const lockfileNames = new Set([
   'bun.lock',
   'bun.lockb',
