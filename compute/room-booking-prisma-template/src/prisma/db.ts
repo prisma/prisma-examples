@@ -11,7 +11,7 @@ import { seedDayIfEmpty, seedIfEmpty } from "./seed.ts";
 
 export const contract = contractFromJson<Contract>(contractJson);
 
-// On Prisma Compute, and under `prisma dev module.ts`, Composer hands the
+// On Prisma Compute, and under `prisma dev`, Composer hands the
 // service a client for the database declared in module.ts. Under plain
 // `next dev`, tests and scripts there is no Composer, so fall back to
 // DATABASE_URL.
