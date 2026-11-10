@@ -97,7 +97,7 @@ git push                                               # from now on, GitHub Act
 A deploy creates the Prisma project (named after the module in `module.ts`) if it does not exist, provisions a Prisma Postgres database, applies the migrations in `migrations/`, deploys the app and prints its URL; on GitHub, the URL is in the workflow run's log. The first visit seeds the demo data. Later deploys apply only what changed.
 
 - **Region:** the first deploy creates the project in `us-east-1`. To use another region, change `prismaCloud({ region })` in `prisma.config.ts` **before** the first deploy; it cannot change later.
-- **Previews:** push a branch to get an isolated copy with its own empty database; deleting the branch removes it. Without GitHub: `bun run build && bunx prisma deploy module.ts --stage my-branch`.
+- **Previews:** push a branch to get an isolated copy with its own empty database; deleting the branch removes it. Without GitHub: `bun run build && bunx prisma deploy --environment my-branch`. Branch previews and teardown from GitHub Actions do not work yet: `prisma/cloud-deploy-action` v1.10.0 passes `--stage`, which `prisma` 8.0.0-rc.33 refuses. Deploys of the default branch work. The workflow uses `@v1`, so it picks up the fixed release when it ships.
 - **Without a push:** `bun run deploy` ships the current checkout to production from your machine.
 - **Logs and rollback:** `bunx prisma service logs app` or `bunx prisma service version rollback app --to <id> --confirm <id>`, from a folder linked with `bunx prisma project link room-booking-prisma-template`.
 
