@@ -4,16 +4,44 @@
     "label": "Create extension \"btree_gist\"",
     "operationClass": "additive",
     "target": {
-      "id": "postgres"
+      "id": "postgres",
+      "details": {
+        "objectType": "dependency",
+        "name": "btree_gist"
+      }
     },
-    "precheck": [],
+    "precheck": [
+      {
+        "description": "verify extension \"btree_gist\" is not installed",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_extension\" WHERE \"extname\" = $1) AS \"result\"",
+        "params": [
+          "btree_gist"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "extension \"btree_gist\""
+        }
+      }
+    ],
     "execute": [
       {
-        "description": "Create extension \"btree_gist\"",
+        "description": "create extension \"btree_gist\"",
         "sql": "CREATE EXTENSION IF NOT EXISTS \"btree_gist\""
       }
     ],
-    "postcheck": []
+    "postcheck": [
+      {
+        "description": "confirm extension \"btree_gist\" is installed",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_extension\" WHERE \"extname\" = $1) AS \"result\"",
+        "params": [
+          "btree_gist"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "extension \"btree_gist\""
+        }
+      }
+    ]
   },
   {
     "id": "schema.public",
@@ -51,7 +79,11 @@
         "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
         "params": [
           "\"public\".\"Booking\""
-        ]
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"Booking\""
+        }
       }
     ],
     "execute": [
@@ -64,10 +96,16 @@
     "postcheck": [
       {
         "description": "verify table \"Booking\" exists",
-        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
         "params": [
-          "\"public\".\"Booking\""
-        ]
+          "\"public\".\"Booking\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"Booking\""
+        }
       }
     ]
   },
@@ -90,7 +128,11 @@
         "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
         "params": [
           "\"public\".\"Room\""
-        ]
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"Room\""
+        }
       }
     ],
     "execute": [
@@ -103,10 +145,16 @@
     "postcheck": [
       {
         "description": "verify table \"Room\" exists",
-        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
         "params": [
-          "\"public\".\"Room\""
-        ]
+          "\"public\".\"Room\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"Room\""
+        }
       }
     ]
   },
@@ -131,7 +179,11 @@
           "Room_name_key",
           "public",
           "\"public\".\"Room\""
-        ]
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"Room_name_key\" on \"Room\""
+        }
       }
     ],
     "execute": [
@@ -142,12 +194,14 @@
     ],
     "postcheck": [
       {
-        "description": "verify constraint \"Room_name_key\" exists",
-        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "description": "verify unique constraint \"Room_name_key\" exists on (name)",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb)) AS \"result\"",
         "params": [
           "Room_name_key",
           "public",
-          "\"public\".\"Room\""
+          "\"public\".\"Room\"",
+          "u",
+          "[\"name\"]"
         ]
       }
     ]
@@ -171,7 +225,11 @@
         "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
         "params": [
           "\"public\".\"Booking_roomId_idx_fe51d647\""
-        ]
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"Booking_roomId_idx_fe51d647\""
+        }
       }
     ],
     "execute": [
@@ -183,10 +241,15 @@
     ],
     "postcheck": [
       {
-        "description": "verify index \"Booking_roomId_idx_fe51d647\" exists",
-        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "description": "verify index \"Booking_roomId_idx_fe51d647\" exists on \"Booking\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
         "params": [
-          "\"public\".\"Booking_roomId_idx_fe51d647\""
+          "\"public\".\"Booking_roomId_idx_fe51d647\"",
+          "i",
+          "I",
+          "\"public\".\"Booking\"",
+          "btree",
+          "[\"roomId\"]"
         ]
       }
     ]
@@ -210,7 +273,11 @@
         "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
         "params": [
           "\"public\".\"Booking_roomId_startsAt_idx_4f44cd3f\""
-        ]
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"Booking_roomId_startsAt_idx_4f44cd3f\""
+        }
       }
     ],
     "execute": [
@@ -222,10 +289,15 @@
     ],
     "postcheck": [
       {
-        "description": "verify index \"Booking_roomId_startsAt_idx_4f44cd3f\" exists",
-        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "description": "verify index \"Booking_roomId_startsAt_idx_4f44cd3f\" exists on \"Booking\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
         "params": [
-          "\"public\".\"Booking_roomId_startsAt_idx_4f44cd3f\""
+          "\"public\".\"Booking_roomId_startsAt_idx_4f44cd3f\"",
+          "i",
+          "I",
+          "\"public\".\"Booking\"",
+          "btree",
+          "[\"roomId\",\"startsAt\"]"
         ]
       }
     ]
@@ -251,7 +323,11 @@
           "Booking_roomId_fkey",
           "public",
           "\"public\".\"Booking\""
-        ]
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "FK \"Booking_roomId_fkey\" on \"Booking\""
+        }
       }
     ],
     "execute": [
@@ -262,12 +338,18 @@
     ],
     "postcheck": [
       {
-        "description": "verify FK \"Booking_roomId_fkey\" exists",
-        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "description": "verify FK \"Booking_roomId_fkey\" exists with the planned columns, referenced table and actions",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3) AND \"c\".\"contype\" = $4 AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"conkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"conrelid\" AND key_attribute.attnum = key_column.attnum) = ($5)::jsonb AND \"c\".\"confrelid\" = to_regclass($6) AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"c\".\"confkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"c\".\"confrelid\" AND key_attribute.attnum = key_column.attnum) = ($7)::jsonb AND \"c\".\"confdeltype\" = $8 AND \"c\".\"confupdtype\" = $9)) AS \"result\"",
         "params": [
           "Booking_roomId_fkey",
           "public",
-          "\"public\".\"Booking\""
+          "\"public\".\"Booking\"",
+          "f",
+          "[\"roomId\"]",
+          "\"public\".\"Room\"",
+          "[\"id\"]",
+          "c",
+          "a"
         ]
       }
     ]
@@ -282,7 +364,11 @@
     "precheck": [
       {
         "description": "constraint \"booking_no_overlap\" does not exist",
-        "sql": "SELECT NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'booking_no_overlap')"
+        "sql": "SELECT NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'booking_no_overlap')",
+        "expectation": {
+          "expects": "absent",
+          "object": "constraint \"booking_no_overlap\""
+        }
       }
     ],
     "execute": [
@@ -294,7 +380,11 @@
     "postcheck": [
       {
         "description": "constraint \"booking_no_overlap\" exists",
-        "sql": "SELECT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'booking_no_overlap')"
+        "sql": "SELECT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'booking_no_overlap')",
+        "expectation": {
+          "expects": "present",
+          "object": "constraint \"booking_no_overlap\""
+        }
       }
     ]
   }

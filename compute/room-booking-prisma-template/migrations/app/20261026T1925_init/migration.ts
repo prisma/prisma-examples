@@ -6,7 +6,6 @@ import {
   MigrationCLI,
   checkExpression,
   col,
-  createExtension,
   fn,
   primaryKey,
   rawSql,
@@ -18,7 +17,7 @@ export default class M extends Migration<never, End> {
   override get operations() {
     return [
       // Needed by the exclusion constraint at the end: GiST equality on text.
-      createExtension('btree_gist'),
+      this.createExtension({ extension: 'btree_gist' }),
       this.createSchema({ schema: 'public' }),
       this.createTable({
         schema: 'public',
@@ -98,6 +97,7 @@ export default class M extends Migration<never, End> {
           {
             description: 'constraint "booking_no_overlap" does not exist',
             sql: `SELECT NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'booking_no_overlap')`,
+            expectation: { expects: 'absent', object: 'constraint "booking_no_overlap"' },
           },
         ],
         execute: [
@@ -110,6 +110,7 @@ export default class M extends Migration<never, End> {
           {
             description: 'constraint "booking_no_overlap" exists',
             sql: `SELECT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'booking_no_overlap')`,
+            expectation: { expects: 'present', object: 'constraint "booking_no_overlap"' },
           },
         ],
       }),

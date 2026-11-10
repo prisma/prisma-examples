@@ -31,8 +31,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Where this copy of the app is served. Set NEXT_PUBLIC_SITE_URL to your own
+// address so Open Graph and Twitter image URLs resolve against it.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://devshelf.io"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "DevShelf — Search 1M+ Open Source Learning Projects & Blueprints",
     template: "%s | DevShelf",
@@ -49,7 +53,7 @@ export const metadata: Metadata = {
     "Next.js architectures",
     "Anas",
   ],
-  authors: [{ name: "Anas", url: "https://devshelf.io" }],
+  authors: [{ name: "Anas", url: "https://github.com/anas20023" }],
   creator: "Anas",
   publisher: "DevShelf",
   applicationName: "DevShelf",
@@ -65,12 +69,12 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://devshelf.io",
+    canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://devshelf.io",
+    url: "/",
     siteName: "DevShelf",
     title: "DevShelf — Search 1M+ Open Source Learning Projects & Blueprints",
     description:
