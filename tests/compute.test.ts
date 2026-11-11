@@ -16,6 +16,7 @@ const databaseTemplateIds = new Set([
   'nextjs',
   'tanstack-start',
   'room-booking-prisma-template',
+  'scalable-indexing-platform-template',
 ])
 const packageManager = 'bun@1.3.14'
 // @prisma/composer matches the @prisma/composer-cli that this prisma depends
@@ -37,7 +38,10 @@ const effectPackages = [
   '@effect/vitest',
 ]
 // Community templates have no compute:* scripts.
-const communityTemplateIds = new Set(['room-booking-prisma-template'])
+const communityTemplateIds = new Set([
+  'room-booking-prisma-template',
+  'scalable-indexing-platform-template',
+])
 const lockfileNames = new Set([
   'bun.lock',
   'bun.lockb',
@@ -161,7 +165,7 @@ describe('Prisma Compute examples', () => {
 
     expect(Buffer.byteLength(manifestContents)).toBeLessThanOrEqual(256 * 1024)
     expect(manifest.version).toBe(1)
-    expect(manifest.templates).toHaveLength(5)
+    expect(manifest.templates).toHaveLength(6)
     expect(manifest.templates.length).toBeLessThanOrEqual(100)
     expect(manifest.templates.map((template) => template.id)).toEqual([
       'hono',
@@ -169,6 +173,7 @@ describe('Prisma Compute examples', () => {
       'tanstack-start',
       'personal-site',
       'room-booking-prisma-template',
+      'scalable-indexing-platform-template',
     ])
     expect(
       new Set(manifest.templates.map((template) => template.id)).size,
