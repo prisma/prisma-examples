@@ -16,7 +16,7 @@
     "dotenv": "17.3.1",
     "fastify": "5.8.2",
     "graphql": "16.13.1",
-    "graphql-scalars": "1.25.0",
+    "graphql-scalars": "2.0.1",
     "mercurius": "16.8.0",
     "pg": "8.20.0"
   },
