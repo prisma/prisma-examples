@@ -13,7 +13,7 @@
 		"@sveltejs/adapter-auto": "6.0.1",
 		"@sveltejs/kit": "2.69.1",
 		"@sveltejs/vite-plugin-svelte": "5.1.1",
-		"@tailwindcss/typography": "0.5.19",
+		"@tailwindcss/typography": "0.5.20",
 		"autoprefixer": "10.4.27",
 		"postcss": "8.5.23",
 		"prisma": "7.0.0",
