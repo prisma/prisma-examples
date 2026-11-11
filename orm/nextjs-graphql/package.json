@@ -17,7 +17,7 @@
     "@prisma/client": "7.5.0",
     "@prisma/adapter-pg": "7.5.0",
     "graphql": "16.13.1",
-    "graphql-scalars": "1.25.0",
+    "graphql-scalars": "2.0.1",
     "graphql-yoga": "5.18.1",
     "next": "16.1.6",
     "react": "19.2.4",
