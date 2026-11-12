@@ -27,7 +27,7 @@
     "@prisma/composer": "0.38.0",
     "@prisma/composer-prisma-cloud": "0.38.0",
     "@prisma/orm-postgres": "8.0.0-rc.23",
-    "alchemy": "2.0.0-beta.84",
+    "alchemy": "2.0.0-beta.87",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
     "lucide-react": "^1.67.0",
