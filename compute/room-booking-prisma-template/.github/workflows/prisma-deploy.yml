@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v4.4.0
         with:
           node-version-file: .nvmrc
-      - uses: prisma/cloud-deploy-action@v1
+      - uses: prisma/cloud-deploy-action@v1.11.0
 
   teardown:
     if: github.event_name == 'delete' && github.event.ref_type == 'branch'
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-node@v4.4.0
         with:
           node-version-file: .nvmrc
-      - uses: prisma/cloud-deploy-action@v1
+      - uses: prisma/cloud-deploy-action@v1.11.0
         with:
           mode: destroy
           stage: ${{ github.event.ref }}
