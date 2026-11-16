@@ -208,10 +208,12 @@ curl -X POST http://localhost:3000/signup \
 
 #### `PUT`
 
+> **Note:** Publishing and deleting a post are restricted to the post's author. This example identifies the caller with an `x-user-id` header, which is **only a placeholder** — any client can set it. Replace `getCurrentUserId` in `src/index.ts` with real authentication (a verified session or JWT) before using this code in production.
+
 ##### Toggle the publish status of a post
 
 ```sh
-curl -X PUT http://localhost:3000/publish/4
+curl -X PUT http://localhost:3000/publish/4 -H "x-user-id: 3"
 ```
 
 ##### Increase the view count of a post
@@ -225,7 +227,7 @@ curl -X PUT http://localhost:3000/post/2/views
 ##### Delete a post by its ID
 
 ```sh
-curl -X DELETE http://localhost:3000/post/1
+curl -X DELETE http://localhost:3000/post/1 -H "x-user-id: 1"
 ```
 
 ### API endpoints
@@ -259,12 +261,12 @@ curl -X DELETE http://localhost:3000/post/1
 
 ### `PUT`
 
-- `/publish/:id`: Toggle the publish value of a post by its `id`
-- `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id`
+- `/publish/:id`: Toggle the publish value of a post by its `id` (author only, requires the `x-user-id` header)
+- `/post/:id/views`: Increases the `viewCount` of a `Post` by one `id` (public — add rate limiting in production)
 
 ### `DELETE`
 
-- `/post/:id`: Delete a post by its `id`
+- `/post/:id`: Delete a post by its `id` (author only, requires the `x-user-id` header)
 
 </details>
 
