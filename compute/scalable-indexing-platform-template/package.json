@@ -31,7 +31,7 @@
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
     "lucide-react": "^1.67.0",
-    "next": "16.4.4",
+    "next": "16.4.5",
     "next-themes": "^0.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0",
