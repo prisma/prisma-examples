@@ -32,7 +32,7 @@
     "@prisma/composer-prisma-cloud": "0.38.0",
     "@prisma/orm-postgres": "8.0.0-rc.23",
     "alchemy": "2.0.0-beta.84",
-    "next": "16.4.2",
+    "next": "16.4.5",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "resource-scheduler": "^1.6.0",
