@@ -1,0 +1,20 @@
+{{--
+  A link that marks itself with aria-current="page" when the current URL
+  matches its route. By default nested URLs count as a match, so a
+  "Settings" link stays active on "/settings/security". Pass `exact: true`
+  to only match the route itself.
+--}}
+@let(linkHref = urlFor($props.get('route')))
+@let(currentPath = request.url())
+@let(isActive = $props.get('exact')
+  ? currentPath === linkHref
+  : currentPath === linkHref || currentPath.startsWith(`${linkHref}/`))
+
+<a {{
+  $props
+    .except(['route', 'exact'])
+    .merge({ href: linkHref, 'aria-current': isActive ? 'page' : false })
+    .toAttrs()
+}}>
+  {{{ await $slots.main() }}}
+</a>

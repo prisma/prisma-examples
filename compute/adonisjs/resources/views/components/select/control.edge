@@ -1,0 +1,24 @@
+@let(classes = [])
+
+<select {{
+  $props
+    .except(['options'])
+    .merge({
+      name: $context.name,
+      id: $context.id,
+      class: classes,
+      'aria-invalid': $context.hasErrors ? 'true' : false,
+      'data-invalid': $context.hasErrors ? 'true' : false,
+      'aria-describedby': $context.hasErrors ? `${$context.id}-error` : '',
+    })
+    .toAttrs()
+}}>
+  @each(option in $props.get('options'))
+    @let(isSelected = option.isSelected
+      ? true
+      : $context.oldValue && $context.oldValue === option.value)
+    <option value="{{ option.value }}" {{ isSelected ? 'selected' : '' }}>
+      {{ option.name ?? option.value }}
+    </option>
+  @end
+</select>

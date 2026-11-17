@@ -1,0 +1,27 @@
+{{--
+  The frame for an app page: renders an optional heading and description,
+  and optional actions (buttons, links) passed through the `actions` slot.
+  The document title is set on the layout, for example
+  @layouts.app({ title: 'Reports' }).
+--}}
+@let(pageTitle = $props.get('title'))
+@let(pageDescription = $props.get('description'))
+
+<div class="page">
+  @if(pageTitle || pageDescription || $slots.actions)
+    <header class="page__header">
+      <div>
+        @if(pageTitle)
+          <h1 class="page__title">{{ pageTitle }}</h1>
+        @end
+        @if(pageDescription)
+          <p class="page__description">{{ pageDescription }}</p>
+        @end
+      </div>
+      @if($slots.actions)
+        <div class="page__actions">{{{ await $slots.actions() }}}</div>
+      @end
+    </header>
+  @end
+  {{{ await $slots.main() }}}
+</div>

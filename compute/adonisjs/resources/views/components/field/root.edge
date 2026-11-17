@@ -1,0 +1,30 @@
+@if($context.groupCounter)
+  {{--
+    When there is a groupCounter, then the field.root is within
+    a group and we must re-share the entire context with the
+    root children.
+
+    Also, each control should get a counter incremented id
+  --}}
+  @assign($context.groupCounter = $context.groupCounter + 1)
+  @inject({
+    ...$context,
+    id: `${$context.id}_${$context.groupCounter}`,
+  })
+@else
+  {{--
+    Otherwise the field.root is not wrapped and it must share a
+    fresh context with its children components like error, label
+    and control.
+  --}}
+  @let(fieldKey = $props.get('name'))
+  @inject({
+    name: fieldKey,
+    id: $props.get('id') ?? fieldKey,
+    oldValue: old(fieldKey) || '',
+    errors: flashMessages.get('inputErrorsBag', {})[fieldKey],
+    hasErrors: fieldKey in flashMessages.get('inputErrorsBag', {}),
+  })
+@end
+
+<div class="field">{{{ await $slots.main() }}}</div>

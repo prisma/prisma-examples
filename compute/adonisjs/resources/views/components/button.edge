@@ -1,0 +1,15 @@
+@let(buttonTextFromSlot = await $slots.main())
+@let(buttonText = buttonTextFromSlot.trim() ? buttonTextFromSlot : ($props.get('text') ?? ''))
+@let(variant = $props.get('variant', 'primary'))
+@let(sizeMod = $props.get('size') === 'sm' ? 'btn--sm' : '')
+@let(block = $props.get('block') ? 'btn--block' : '')
+@let(classes = ['btn', `btn--${variant}`, sizeMod, block].filter(Boolean))
+
+<button {{
+  $props
+    .except(['text', 'variant', 'size', 'block'])
+    .merge({ class: classes })
+    .toAttrs()
+}}>
+  {{{ buttonText }}}
+</button>

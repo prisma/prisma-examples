@@ -1,0 +1,5 @@
+@let(descriptionFromSlot = await $slots.main())
+@let(description = descriptionFromSlot.trim() ? descriptionFromSlot : $props.get('text'))
+@let(classes = ['alert__description'])
+
+<p {{ $props.except(['text']).merge({ class: classes }).toAttrs() }}>{{{ description }}}</p>

@@ -1,0 +1,3 @@
+[install]
+# Deployable builds cannot contain symlinks, so keep node_modules flat.
+linker = "hoisted"

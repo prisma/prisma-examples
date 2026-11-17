@@ -50,6 +50,13 @@
         "name": "Anas Ibn Belal",
         "url": "https://github.com/anas20023"
       }
+    },
+    {
+      "id": "adonisjs",
+      "name": "AdonisJS + Prisma Postgres",
+      "description": "AdonisJS 7 task manager with Lucid ORM, session auth and Edge templates on Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/adonisjs",
+      "framework": "custom"
     }
   ]
 }

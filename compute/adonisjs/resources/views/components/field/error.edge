@@ -1,0 +1,8 @@
+@let(classes = ['field__error'])
+@if($context.hasErrors)
+  <span {{ $props.merge({ id: `${$context.id}-error`, class: classes }).toAttrs() }}>
+    @each(message in $context.errors)
+      {{ message }}
+    @end
+  </span>
+@end

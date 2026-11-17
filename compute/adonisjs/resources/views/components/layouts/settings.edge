@@ -1,0 +1,31 @@
+{{--
+  The pages of the settings area, listed in the sidebar. Register a route
+  for each page and add it here, for example:
+
+  { label: 'Profile', route: 'settings.profile', icon: 'lucide:user' }
+
+  Each settings page renders inside this layout, which renders the app
+  layout itself:
+  @layouts.settings({ title: 'Profile' })
+--}}
+@let(items = [])
+@layouts.app({ title: $props.get('title') ?? 'Settings' })
+  @page({
+    title: 'Settings',
+    description: 'Manage your account settings and preferences.',
+  })
+    <div class="sidebar-layout">
+      <nav class="sidebar-layout__nav" aria-label="Settings">
+        @each(item in items)
+          @navLink({ route: item.route, exact: true, class: 'sidebar-layout__item' })
+            @if(item.icon)
+              @svg(item.icon, { width: 16, height: 16 })
+            @end
+            {{ item.label }}
+          @end
+        @end
+      </nav>
+      <div class="sidebar-layout__content panel">{{{ await $slots.main() }}}</div>
+    </div>
+  @end
+@end

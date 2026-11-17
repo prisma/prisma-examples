@@ -1,0 +1,22 @@
+{{--
+  A group of content within a page, such as a group of form fields, with
+  an optional title and description. Stack several sections and they are
+  separated by a divider.
+--}}
+@let(sectionTitle = $props.get('title'))
+@let(sectionDescription = $props.get('description'))
+
+<section class="section">
+  @if(sectionTitle || sectionDescription)
+    <header class="section__header">
+      @if(sectionTitle)
+        <h2 class="section__title">{{ sectionTitle }}</h2>
+      @end
+      @if(sectionDescription)
+        <p class="section__description">{{ sectionDescription }}</p>
+      @end
+    </header>
+  @end
+
+  <div class="section__body">{{{ await $slots.main() }}}</div>
+</section>

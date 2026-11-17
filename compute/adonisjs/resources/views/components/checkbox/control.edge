@@ -1,0 +1,15 @@
+@assign($context.counter = $context.counter + 1)
+@let(classes = [])
+
+<input {{
+  $props
+    .except(['type'])
+    .merge({
+      type: 'checkbox',
+      name: $context.name,
+      id: $context.id,
+      class: classes,
+      checked: $context.oldValue && $context.oldValue.includes($props.get('value')),
+    })
+    .toAttrs()
+}} />

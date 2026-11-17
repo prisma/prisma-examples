@@ -1,0 +1,15 @@
+@let(classes = [])
+
+<textarea {{
+  $props
+    .except(['value'])
+    .merge({
+      name: $context.name,
+      id: $context.id,
+      class: classes,
+      'aria-invalid': $context.hasErrors ? 'true' : false,
+      'data-invalid': $context.hasErrors ? 'true' : false,
+      'aria-describedby': $context.hasErrors ? `${$context.id}-error` : '',
+    })
+    .toAttrs()
+}}>{{{ $context.oldValue || $props.get('value') || '' }}}</textarea>

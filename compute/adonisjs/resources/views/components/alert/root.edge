@@ -1,0 +1,25 @@
+@let(variant = $props.get('variant') || 'success')
+@inject({ variant, autoDismiss: $props.get('autoDismiss') })
+@let(classes = ['alert', `alert--${variant}`])
+
+<div {{
+  $props
+    .except(['variant', 'autoDismiss'])
+    .merge({
+      role: 'alert',
+      class: classes,
+      'x-data': 'alert',
+      'x-show': 'isVisible',
+      'x-cloak': true,
+    })
+    .toAttrs()
+}}>
+  <span class="alert__icon">
+    @if(variant === 'destructive')
+      @svg('lucide:circle-alert', { width: 18, height: 18 })
+    @else
+      @svg('lucide:circle-check', { width: 18, height: 18 })
+    @end
+  </span>
+  <div class="alert__body">{{{ await $slots.main() }}}</div>
+</div>

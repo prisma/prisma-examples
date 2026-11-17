@@ -1,0 +1,16 @@
+@let(linkTextFromSlot = await $slots.main())
+@let(linkText = linkTextFromSlot.trim() ? linkTextFromSlot : ($props.get('text') ?? ''))
+@let(linkHref = $props.has('href')
+  ? $props.get('href')
+  : $props.get('route')
+    ? urlFor($props.get('route'), $props.get('routeParams'), $props.get('routeOptions'))
+    : undefined)
+
+<a {{
+  $props
+    .except(['href', 'text', 'route', 'routeParams', 'routeOptions'])
+    .merge({ href: linkHref })
+    .toAttrs()
+}}>
+  {{{ linkText }}}
+</a>

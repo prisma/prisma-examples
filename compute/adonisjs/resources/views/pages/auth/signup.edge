@@ -1,0 +1,61 @@
+@layouts.auth()
+  <h1 class="auth__title">Create your account</h1>
+  <p class="auth__sub">Start building with the starter kit.</p>
+  @form({
+    route: 'new_account.store',
+    method: 'POST',
+    class: 'auth__form',
+    'x-data': '{ submitting: false }',
+    'x-on:submit': 'submitting = true',
+  })
+    @field.root({ name: 'fullName' })
+      @!field.label({ text: 'Full name' })
+      @!input.control({ autocomplete: 'name', placeholder: 'Ada Lovelace' })
+      @!field.error()
+    @end
+    @field.root({ name: 'email' })
+      @!field.label({ text: 'Email' })
+      @!input.control({
+        type: 'email',
+        autocomplete: 'email',
+        placeholder: 'you@example.com',
+      })
+      @!field.error()
+    @end
+    @field.root({ name: 'password' })
+      @!field.label({ text: 'Password' })
+      @!input.control({
+        type: 'password',
+        autocomplete: 'new-password',
+        placeholder: '••••••••',
+      })
+      @!field.error()
+    @end
+    @field.root({ name: 'passwordConfirmation' })
+      @!field.label({ text: 'Confirm password' })
+      @!input.control({
+        type: 'password',
+        autocomplete: 'new-password',
+        placeholder: '••••••••',
+      })
+      @!field.error()
+    @end
+    @!button({
+      text: 'Create account',
+      type: 'submit',
+      block: true,
+      style: 'margin-top: 4px;',
+      'x-bind:disabled': 'submitting',
+      'x-text': "submitting ? 'One moment…' : 'Create account'",
+    })
+  @end
+
+  <p class="auth__foot">
+    
+    Already have an account?
+
+    @link({ route: 'session.create', class: 'il' })
+      Sign in
+    @end
+  </p>
+@end

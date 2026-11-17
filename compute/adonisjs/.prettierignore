@@ -1,0 +1,6 @@
+.adonisjs
+node_modules
+build
+.prisma
+.prisma-composer
+.alchemy

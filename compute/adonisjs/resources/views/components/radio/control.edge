@@ -1,0 +1,15 @@
+@assign($context.counter = $context.counter + 1)
+@let(classes = [])
+
+<input {{
+  $props
+    .except(['type'])
+    .merge({
+      type: 'radio',
+      id: $context.id,
+      name: $context.name,
+      class: classes,
+      checked: $context.oldValue && $context.oldValue === $props.get('value'),
+    })
+    .toAttrs()
+}} />
