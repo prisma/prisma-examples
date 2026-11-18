@@ -1,0 +1,7 @@
+node_modules
+.next
+.env
+.prisma
+.prisma-composer
+.alchemy
+next-env.d.ts
