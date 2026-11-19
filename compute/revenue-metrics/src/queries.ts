@@ -3,8 +3,9 @@
 // queries, read back with db.toSql(), so what you see is what runs.
 //
 // Amounts are in cents. Months are UTC. "Previous" values compare with 30
-// days ago; the subscription and MRR ones use created/ended_at and today's
-// prices, so they are approximate.
+// days ago. For subscriptions and MRR, a subscription counts as active then
+// if it was created before then and is active now or has ended since; with
+// today's prices, so those are approximate.
 
 import { getDb } from './prisma/db'
 
@@ -42,7 +43,7 @@ SELECT
     FILTER (WHERE status = 'active')), 0)::int8 AS "mrrCents",
   COALESCE(ROUND(SUM(monthly)
     FILTER (WHERE created < now() - interval '30 days'
-      AND (ended_at IS NULL
+      AND (status = 'active'
         OR ended_at >= now() - interval '30 days'))), 0)::int8 AS "previousCents"
 FROM items
 `.returnsRow(returns.mrr).build(),
@@ -51,7 +52,7 @@ FROM items
 SELECT
   count(*) FILTER (WHERE status = 'active')::int4 AS "active",
   count(*) FILTER (WHERE created < now() - interval '30 days'
-    AND (ended_at IS NULL
+    AND (status = 'active'
       OR ended_at >= now() - interval '30 days'))::int4 AS "previous"
 FROM stripe_subscriptions
 `.returnsRow(returns.subs).build(),

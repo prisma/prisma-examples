@@ -11,7 +11,7 @@
     "migration:plan": "prisma migration plan",
     "db:init": "prisma db init",
     "db:update": "prisma db update",
-    "db:seed": "tsx src/prisma/seed.ts",
+    "db:seed": "tsx src/prisma/seed-cli.ts",
     "compute:login": "prisma auth login",
     "compute:database:create": "prisma postgres create prisma-compute-nextjs --branch main",
     "compute:connect": "prisma git connect",

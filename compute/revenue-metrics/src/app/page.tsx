@@ -1,5 +1,7 @@
 import { unstable_cache } from 'next/cache'
 
+import { getDb } from '../prisma/db'
+import { ensureSeeded } from '../prisma/seed'
 import { loadDashboard, type MetricKey } from '../queries'
 import { Dashboard, type Bar, type Card, type Panel } from './dashboard'
 
@@ -9,7 +11,11 @@ import { Dashboard, type Bar, type Card, type Panel } from './dashboard'
 export const dynamic = 'force-dynamic'
 
 const getDashboard = unstable_cache(
-  async () => ({ ...(await loadDashboard()), loadedAt: new Date().toISOString() }),
+  async () => {
+    // A fresh database gets the demo data on the first visit.
+    await ensureSeeded(getDb())
+    return { ...(await loadDashboard()), loadedAt: new Date().toISOString() }
+  },
   ['revenue-metrics-dashboard'],
   { revalidate: 60 },
 )
@@ -111,7 +117,7 @@ export default async function Home() {
       title: 'Active subscriptions',
       sql: sql.subs,
       returns: returnsCode(returns.subs),
-      note: 'Subscriptions with status active; trialing and past_due are left out. The previous value counts subscriptions created before, and not ended by, 30 days ago.',
+      note: 'Subscriptions with status active; trialing and past_due are left out. The previous value counts subscriptions created before 30 days ago that are active now or have ended since.',
     },
     rev30: {
       title: 'Revenue, last 30 days',
