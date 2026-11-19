@@ -4,12 +4,20 @@
   "target": "postgres",
   "profileHash": "3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2",
   "roots": {
-    "post": {
-      "model": "Post",
+    "stripe_invoices": {
+      "model": "StripeInvoice",
       "namespace": "public"
     },
-    "user": {
-      "model": "User",
+    "stripe_prices": {
+      "model": "StripePrice",
+      "namespace": "public"
+    },
+    "stripe_subscription_items": {
+      "model": "StripeSubscriptionItem",
+      "namespace": "public"
+    },
+    "stripe_subscriptions": {
+      "model": "StripeSubscription",
       "namespace": "public"
     }
   },
@@ -17,189 +25,564 @@
     "namespaces": {
       "public": {
         "models": {
-          "Post": {
+          "StripeInvoice": {
             "fields": {
-              "authorId": {
-                "nullable": false,
+              "amount_due": {
+                "nullable": true,
                 "type": {
                   "codecId": "pg/int4@1",
                   "kind": "scalar"
                 }
               },
-              "content": {
+              "amount_paid": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "created": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "currency": {
                 "nullable": true,
                 "type": {
                   "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
               },
-              "createdAt": {
+              "customer": {
                 "nullable": false,
                 "type": {
-                  "codecId": "pg/timestamptz-temporal@1",
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "data": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/jsonb@1",
+                  "kind": "scalar"
+                }
+              },
+              "description": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
               },
               "id": {
                 "nullable": false,
                 "type": {
-                  "codecId": "pg/int4@1",
+                  "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
               },
-              "published": {
+              "livemode": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/bool@1",
                   "kind": "scalar"
                 }
               },
-              "title": {
+              "status": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
               },
-              "updatedAt": {
-                "nullable": false,
+              "synced_at": {
+                "nullable": true,
                 "type": {
-                  "codecId": "pg/timestamptz-temporal@1",
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "total": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/int4@1",
                   "kind": "scalar"
                 }
               }
             },
-            "relations": {
-              "author": {
-                "cardinality": "N:1",
-                "nullable": false,
-                "on": {
-                  "localFields": [
-                    "authorId"
-                  ],
-                  "targetFields": [
-                    "id"
-                  ]
-                },
-                "to": {
-                  "model": "User",
-                  "namespace": "public"
-                }
-              }
-            },
+            "relations": {},
             "storage": {
               "fields": {
-                "authorId": {
-                  "column": "authorId"
+                "amount_due": {
+                  "column": "amount_due"
                 },
-                "content": {
-                  "column": "content"
+                "amount_paid": {
+                  "column": "amount_paid"
                 },
-                "createdAt": {
-                  "column": "createdAt"
+                "created": {
+                  "column": "created"
+                },
+                "currency": {
+                  "column": "currency"
+                },
+                "customer": {
+                  "column": "customer"
+                },
+                "data": {
+                  "column": "data"
+                },
+                "description": {
+                  "column": "description"
                 },
                 "id": {
                   "column": "id"
                 },
-                "published": {
-                  "column": "published"
+                "livemode": {
+                  "column": "livemode"
                 },
-                "title": {
-                  "column": "title"
+                "status": {
+                  "column": "status"
                 },
-                "updatedAt": {
-                  "column": "updatedAt"
+                "synced_at": {
+                  "column": "synced_at"
+                },
+                "total": {
+                  "column": "total"
                 }
               },
               "namespaceId": "public",
-              "table": "post"
+              "table": "stripe_invoices"
             }
           },
-          "User": {
+          "StripePrice": {
             "fields": {
-              "createdAt": {
-                "nullable": false,
+              "active": {
+                "nullable": true,
                 "type": {
-                  "codecId": "pg/timestamptz-temporal@1",
+                  "codecId": "pg/bool@1",
                   "kind": "scalar"
                 }
               },
-              "email": {
+              "created": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "currency": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "data": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/jsonb@1",
                   "kind": "scalar"
                 }
               },
               "id": {
                 "nullable": false,
                 "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "livemode": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "product": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "recurring_interval": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "recurring_interval_count": {
+                "nullable": true,
+                "type": {
                   "codecId": "pg/int4@1",
                   "kind": "scalar"
                 }
               },
-              "name": {
-                "nullable": true,
-                "type": {
-                  "codecId": "pg/text@1",
-                  "kind": "scalar"
-                }
-              },
-              "updatedAt": {
+              "synced_at": {
                 "nullable": false,
                 "type": {
-                  "codecId": "pg/timestamptz-temporal@1",
-                  "kind": "scalar"
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
                 }
               },
-              "username": {
-                "nullable": true,
+              "type": {
+                "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
-              }
-            },
-            "relations": {
-              "posts": {
-                "cardinality": "1:N",
-                "on": {
-                  "localFields": [
-                    "id"
-                  ],
-                  "targetFields": [
-                    "authorId"
-                  ]
-                },
-                "to": {
-                  "model": "Post",
-                  "namespace": "public"
+              },
+              "unit_amount": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
                 }
               }
             },
+            "relations": {},
             "storage": {
               "fields": {
-                "createdAt": {
-                  "column": "createdAt"
+                "active": {
+                  "column": "active"
                 },
-                "email": {
-                  "column": "email"
+                "created": {
+                  "column": "created"
+                },
+                "currency": {
+                  "column": "currency"
+                },
+                "data": {
+                  "column": "data"
                 },
                 "id": {
                   "column": "id"
                 },
-                "name": {
-                  "column": "name"
+                "livemode": {
+                  "column": "livemode"
                 },
-                "updatedAt": {
-                  "column": "updatedAt"
+                "product": {
+                  "column": "product"
                 },
-                "username": {
-                  "column": "username"
+                "recurring_interval": {
+                  "column": "recurring_interval"
+                },
+                "recurring_interval_count": {
+                  "column": "recurring_interval_count"
+                },
+                "synced_at": {
+                  "column": "synced_at"
+                },
+                "type": {
+                  "column": "type"
+                },
+                "unit_amount": {
+                  "column": "unit_amount"
                 }
               },
               "namespaceId": "public",
-              "table": "user"
+              "table": "stripe_prices"
+            }
+          },
+          "StripeSubscription": {
+            "fields": {
+              "cancel_at_period_end": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "canceled_at": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "created": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "currency": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "current_period_end": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "current_period_start": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "customer": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "data": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/jsonb@1",
+                  "kind": "scalar"
+                }
+              },
+              "default_payment_method": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "description": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "ended_at": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "livemode": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "status": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "synced_at": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "cancel_at_period_end": {
+                  "column": "cancel_at_period_end"
+                },
+                "canceled_at": {
+                  "column": "canceled_at"
+                },
+                "created": {
+                  "column": "created"
+                },
+                "currency": {
+                  "column": "currency"
+                },
+                "current_period_end": {
+                  "column": "current_period_end"
+                },
+                "current_period_start": {
+                  "column": "current_period_start"
+                },
+                "customer": {
+                  "column": "customer"
+                },
+                "data": {
+                  "column": "data"
+                },
+                "default_payment_method": {
+                  "column": "default_payment_method"
+                },
+                "description": {
+                  "column": "description"
+                },
+                "ended_at": {
+                  "column": "ended_at"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "livemode": {
+                  "column": "livemode"
+                },
+                "status": {
+                  "column": "status"
+                },
+                "synced_at": {
+                  "column": "synced_at"
+                }
+              },
+              "namespaceId": "public",
+              "table": "stripe_subscriptions"
+            }
+          },
+          "StripeSubscriptionItem": {
+            "fields": {
+              "created": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "data": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/jsonb@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "livemode": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "price_id": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "product_id": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "quantity": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "subscription": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "synced_at": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "kind": "scalar",
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "created": {
+                  "column": "created"
+                },
+                "data": {
+                  "column": "data"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "livemode": {
+                  "column": "livemode"
+                },
+                "price_id": {
+                  "column": "price_id"
+                },
+                "product_id": {
+                  "column": "product_id"
+                },
+                "quantity": {
+                  "column": "quantity"
+                },
+                "subscription": {
+                  "column": "subscription"
+                },
+                "synced_at": {
+                  "column": "synced_at"
+                }
+              },
+              "namespaceId": "public",
+              "table": "stripe_subscription_items"
             }
           }
         }
@@ -211,84 +594,88 @@
       "public": {
         "entries": {
           "table": {
-            "post": {
+            "stripe_invoices": {
               "columns": {
-                "authorId": {
+                "amount_due": {
                   "codecId": "pg/int4@1",
                   "dataType": "pg/int4",
-                  "nullable": false
+                  "nullable": true
                 },
-                "content": {
+                "amount_paid": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "nullable": true
+                },
+                "created": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "currency": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
                   "nullable": true
                 },
-                "createdAt": {
-                  "codecId": "pg/timestamptz-temporal@1",
+                "customer": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "data": {
+                  "codecId": "pg/jsonb@1",
+                  "dataType": "pg/jsonb",
+                  "nullable": true
+                },
+                "description": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "livemode": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "nullable": false
+                },
+                "status": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "synced_at": {
+                  "codecId": "pg/timestamptz-date@1",
                   "dataType": "pg/timestamptz",
                   "default": {
                     "expression": "now()",
                     "kind": "function"
                   },
-                  "nullable": false
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
                 },
-                "id": {
+                "total": {
                   "codecId": "pg/int4@1",
                   "dataType": "pg/int4",
-                  "default": {
-                    "expression": "autoincrement()",
-                    "kind": "function"
-                  },
-                  "nullable": false
-                },
-                "published": {
-                  "codecId": "pg/bool@1",
-                  "dataType": "pg/bool",
-                  "default": {
-                    "kind": "literal",
-                    "value": false
-                  },
-                  "nullable": false
-                },
-                "title": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": false
-                },
-                "updatedAt": {
-                  "codecId": "pg/timestamptz-temporal@1",
-                  "dataType": "pg/timestamptz",
-                  "nullable": false
+                  "nullable": true
                 }
               },
-              "foreignKeys": [
-                {
-                  "index": {
-                    "name": "post_authorId_idx_e47547ed"
-                  },
-                  "source": {
-                    "columns": [
-                      "authorId"
-                    ],
-                    "namespaceId": "public",
-                    "tableName": "post"
-                  },
-                  "target": {
-                    "columns": [
-                      "id"
-                    ],
-                    "namespaceId": "public",
-                    "tableName": "user"
-                  }
-                }
-              ],
+              "foreignKeys": [],
               "indexes": [
                 {
                   "columns": [
-                    "authorId"
+                    "status",
+                    "created"
                   ],
-                  "name": "post_authorId_idx_e47547ed",
-                  "prefix": "post_authorId_idx",
+                  "name": "stripe_invoices_status_created_idx_d2187d43",
+                  "prefix": "stripe_invoices_status_created_idx",
                   "unique": false
                 }
               ],
@@ -299,44 +686,80 @@
               },
               "uniques": []
             },
-            "user": {
+            "stripe_prices": {
               "columns": {
-                "createdAt": {
-                  "codecId": "pg/timestamptz-temporal@1",
+                "active": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "default": {
+                    "kind": "literal",
+                    "value": true
+                  },
+                  "nullable": true
+                },
+                "created": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "currency": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "data": {
+                  "codecId": "pg/jsonb@1",
+                  "dataType": "pg/jsonb",
+                  "nullable": true
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "livemode": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "nullable": false
+                },
+                "product": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "recurring_interval": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "recurring_interval_count": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "nullable": true
+                },
+                "synced_at": {
+                  "codecId": "pg/timestamptz-date@1",
                   "dataType": "pg/timestamptz",
                   "default": {
                     "expression": "now()",
                     "kind": "function"
                   },
-                  "nullable": false
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
                 },
-                "email": {
+                "type": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
                   "nullable": false
                 },
-                "id": {
+                "unit_amount": {
                   "codecId": "pg/int4@1",
                   "dataType": "pg/int4",
-                  "default": {
-                    "expression": "autoincrement()",
-                    "kind": "function"
-                  },
-                  "nullable": false
-                },
-                "name": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
-                  "nullable": true
-                },
-                "updatedAt": {
-                  "codecId": "pg/timestamptz-temporal@1",
-                  "dataType": "pg/timestamptz",
-                  "nullable": false
-                },
-                "username": {
-                  "codecId": "pg/text@1",
-                  "dataType": "pg/text",
                   "nullable": true
                 }
               },
@@ -347,18 +770,209 @@
                   "id"
                 ]
               },
-              "uniques": [
-                {
-                  "columns": [
-                    "email"
-                  ]
+              "uniques": []
+            },
+            "stripe_subscription_items": {
+              "columns": {
+                "created": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
                 },
+                "data": {
+                  "codecId": "pg/jsonb@1",
+                  "dataType": "pg/jsonb",
+                  "nullable": true
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "livemode": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "nullable": false
+                },
+                "price_id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "product_id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "quantity": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "default": {
+                    "kind": "literal",
+                    "value": 1
+                  },
+                  "nullable": true
+                },
+                "subscription": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "synced_at": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [
                 {
                   "columns": [
-                    "username"
-                  ]
+                    "subscription"
+                  ],
+                  "name": "stripe_subscription_items_subscription_idx_903ec21d",
+                  "prefix": "stripe_subscription_items_subscription_idx",
+                  "unique": false
                 }
-              ]
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": []
+            },
+            "stripe_subscriptions": {
+              "columns": {
+                "cancel_at_period_end": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "default": {
+                    "kind": "literal",
+                    "value": false
+                  },
+                  "nullable": true
+                },
+                "canceled_at": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "created": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "currency": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "current_period_end": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "current_period_start": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "customer": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "data": {
+                  "codecId": "pg/jsonb@1",
+                  "dataType": "pg/jsonb",
+                  "nullable": true
+                },
+                "default_payment_method": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "description": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": true
+                },
+                "ended_at": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                },
+                "id": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "livemode": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "nullable": false
+                },
+                "status": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "synced_at": {
+                  "codecId": "pg/timestamptz-date@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": true,
+                  "typeParams": {
+                    "precision": 3
+                  }
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [
+                {
+                  "columns": [
+                    "status"
+                  ],
+                  "name": "stripe_subscriptions_status_idx_e98638ab",
+                  "prefix": "stripe_subscriptions_status_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": []
             }
           }
         },
@@ -366,44 +980,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "7eb72e5dca77a2eb6054b989b2b7b5356eebb195089f208b095cc5f6e5cef10a"
-  },
-  "execution": {
-    "executionHash": "6a7e0075fa02bc6701b490ef0d823cce013f1ea29fc049f30df0b0676b8dde07",
-    "mutations": {
-      "defaults": [
-        {
-          "onCreate": {
-            "id": "instantNow",
-            "kind": "generator"
-          },
-          "onUpdate": {
-            "id": "instantNow",
-            "kind": "generator"
-          },
-          "ref": {
-            "entry": "post",
-            "field": "updatedAt",
-            "namespace": "public"
-          }
-        },
-        {
-          "onCreate": {
-            "id": "instantNow",
-            "kind": "generator"
-          },
-          "onUpdate": {
-            "id": "instantNow",
-            "kind": "generator"
-          },
-          "ref": {
-            "entry": "user",
-            "field": "updatedAt",
-            "namespace": "public"
-          }
-        }
-      ]
-    }
+    "storageHash": "bcf4cf6e695be2d386e8ca5a493e06891fc9440f6e40a2832e71f0faca8a303c"
   },
   "capabilities": {
     "postgres": {

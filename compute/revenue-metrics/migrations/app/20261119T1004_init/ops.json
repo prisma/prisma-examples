@@ -1,0 +1,359 @@
+[
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.stripe_invoices",
+    "label": "Create table \"stripe_invoices\"",
+    "summary": "Creates table \"stripe_invoices\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "stripe_invoices"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"stripe_invoices\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_invoices\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"stripe_invoices\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"stripe_invoices\"",
+        "sql": "CREATE TABLE \"public\".\"stripe_invoices\" (\n  \"amount_due\" int4,\n  \"amount_paid\" int4,\n  \"created\" timestamptz(3),\n  \"currency\" text,\n  \"customer\" text NOT NULL,\n  \"data\" jsonb,\n  \"description\" text,\n  \"id\" text NOT NULL,\n  \"livemode\" bool NOT NULL,\n  \"status\" text NOT NULL,\n  \"synced_at\" timestamptz(3) DEFAULT (now()),\n  \"total\" int4,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"stripe_invoices\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_invoices\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"stripe_invoices\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.stripe_prices",
+    "label": "Create table \"stripe_prices\"",
+    "summary": "Creates table \"stripe_prices\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "stripe_prices"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"stripe_prices\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_prices\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"stripe_prices\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"stripe_prices\"",
+        "sql": "CREATE TABLE \"public\".\"stripe_prices\" (\n  \"active\" bool DEFAULT true,\n  \"created\" timestamptz(3) NOT NULL,\n  \"currency\" text NOT NULL,\n  \"data\" jsonb,\n  \"id\" text NOT NULL,\n  \"livemode\" bool NOT NULL,\n  \"product\" text NOT NULL,\n  \"recurring_interval\" text,\n  \"recurring_interval_count\" int4,\n  \"synced_at\" timestamptz(3) DEFAULT (now()) NOT NULL,\n  \"type\" text NOT NULL,\n  \"unit_amount\" int4,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"stripe_prices\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_prices\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"stripe_prices\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.stripe_subscription_items",
+    "label": "Create table \"stripe_subscription_items\"",
+    "summary": "Creates table \"stripe_subscription_items\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "stripe_subscription_items"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"stripe_subscription_items\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscription_items\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"stripe_subscription_items\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"stripe_subscription_items\"",
+        "sql": "CREATE TABLE \"public\".\"stripe_subscription_items\" (\n  \"created\" timestamptz(3) NOT NULL,\n  \"data\" jsonb,\n  \"id\" text NOT NULL,\n  \"livemode\" bool NOT NULL,\n  \"price_id\" text,\n  \"product_id\" text,\n  \"quantity\" int4 DEFAULT 1,\n  \"subscription\" text NOT NULL,\n  \"synced_at\" timestamptz(3) DEFAULT (now()) NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"stripe_subscription_items\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscription_items\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"stripe_subscription_items\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "table.stripe_subscriptions",
+    "label": "Create table \"stripe_subscriptions\"",
+    "summary": "Creates table \"stripe_subscriptions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "stripe_subscriptions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"stripe_subscriptions\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscriptions\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"stripe_subscriptions\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"stripe_subscriptions\"",
+        "sql": "CREATE TABLE \"public\".\"stripe_subscriptions\" (\n  \"cancel_at_period_end\" bool DEFAULT false,\n  \"canceled_at\" timestamptz(3),\n  \"created\" timestamptz(3),\n  \"currency\" text,\n  \"current_period_end\" timestamptz(3),\n  \"current_period_start\" timestamptz(3),\n  \"customer\" text NOT NULL,\n  \"data\" jsonb,\n  \"default_payment_method\" text,\n  \"description\" text,\n  \"ended_at\" timestamptz(3),\n  \"id\" text NOT NULL,\n  \"livemode\" bool NOT NULL,\n  \"status\" text NOT NULL,\n  \"synced_at\" timestamptz(3) DEFAULT (now()),\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"stripe_subscriptions\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3))) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscriptions\"",
+          "r",
+          "p"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"stripe_subscriptions\""
+        }
+      }
+    ]
+  },
+  {
+    "id": "index.stripe_invoices.stripe_invoices_status_created_idx_d2187d43",
+    "label": "Create index \"stripe_invoices_status_created_idx_d2187d43\" on \"stripe_invoices\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "stripe_invoices_status_created_idx_d2187d43",
+        "table": "stripe_invoices"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"stripe_invoices_status_created_idx_d2187d43\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_invoices_status_created_idx_d2187d43\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"stripe_invoices_status_created_idx_d2187d43\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"stripe_invoices_status_created_idx_d2187d43\"",
+        "sql": "CREATE INDEX \"stripe_invoices_status_created_idx_d2187d43\" ON \"public\".\"stripe_invoices\" (\"status\", \"created\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"stripe_invoices_status_created_idx_d2187d43\" exists on \"stripe_invoices\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_invoices_status_created_idx_d2187d43\"",
+          "i",
+          "I",
+          "\"public\".\"stripe_invoices\"",
+          "btree",
+          "[\"status\",\"created\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.stripe_subscription_items.stripe_subscription_items_subscription_idx_903ec21d",
+    "label": "Create index \"stripe_subscription_items_subscription_idx_903ec21d\" on \"stripe_subscription_items\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "stripe_subscription_items_subscription_idx_903ec21d",
+        "table": "stripe_subscription_items"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"stripe_subscription_items_subscription_idx_903ec21d\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscription_items_subscription_idx_903ec21d\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"stripe_subscription_items_subscription_idx_903ec21d\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"stripe_subscription_items_subscription_idx_903ec21d\"",
+        "sql": "CREATE INDEX \"stripe_subscription_items_subscription_idx_903ec21d\" ON \"public\".\"stripe_subscription_items\" (\"subscription\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"stripe_subscription_items_subscription_idx_903ec21d\" exists on \"stripe_subscription_items\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscription_items_subscription_idx_903ec21d\"",
+          "i",
+          "I",
+          "\"public\".\"stripe_subscription_items\"",
+          "btree",
+          "[\"subscription\"]"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.stripe_subscriptions.stripe_subscriptions_status_idx_e98638ab",
+    "label": "Create index \"stripe_subscriptions_status_idx_e98638ab\" on \"stripe_subscriptions\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "index",
+        "name": "stripe_subscriptions_status_idx_e98638ab",
+        "table": "stripe_subscriptions"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"stripe_subscriptions_status_idx_e98638ab\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscriptions_status_idx_e98638ab\""
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "index \"stripe_subscriptions_status_idx_e98638ab\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"stripe_subscriptions_status_idx_e98638ab\"",
+        "sql": "CREATE INDEX \"stripe_subscriptions_status_idx_e98638ab\" ON \"public\".\"stripe_subscriptions\" (\"status\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"stripe_subscriptions_status_idx_e98638ab\" exists on \"stripe_subscriptions\" with the planned definition",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_class\" AS \"c\" INNER JOIN \"pg_index\" AS \"i\" ON \"i\".\"indexrelid\" = \"c\".\"oid\" INNER JOIN \"pg_am\" AS \"m\" ON \"m\".\"oid\" = \"c\".\"relam\" WHERE (\"c\".\"oid\" = to_regclass($1) AND (\"c\".\"relkind\" = $2 OR \"c\".\"relkind\" = $3) AND \"i\".\"indrelid\" = to_regclass($4) AND NOT (\"i\".\"indisunique\") AND \"m\".\"amname\" = $5 AND (\"i\".\"indexprs\" IS NULL AND (SELECT coalesce(jsonb_agg(key_attribute.attname ORDER BY key_column.position), '[]'::jsonb) FROM unnest(\"i\".\"indkey\"::int2[]) WITH ORDINALITY AS key_column(attnum, position) JOIN pg_attribute key_attribute ON key_attribute.attrelid = \"i\".\"indrelid\" AND key_attribute.attnum = key_column.attnum) = ($6)::jsonb) AND \"i\".\"indpred\" IS NULL)) AS \"result\"",
+        "params": [
+          "\"public\".\"stripe_subscriptions_status_idx_e98638ab\"",
+          "i",
+          "I",
+          "\"public\".\"stripe_subscriptions\"",
+          "btree",
+          "[\"status\"]"
+        ]
+      }
+    ]
+  }
+]

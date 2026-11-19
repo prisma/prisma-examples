@@ -1,26 +1,77 @@
 // use prisma-8
 
-model User {
-  id        Int                    @id @default(autoincrement())
-  email     String                 @unique
-  username  String?                @unique
-  name      String?
-  posts     Post[]
-  createdAt DateTime(as: temporal) @default(now())
-  updatedAt DateTime(as: temporal) @onCreate(now()) @onUpdate(now())
+// Stripe billing tables, with the same columns, types and nulls as the
+// tables Codeless Sync (codelesssync.com) creates, so real Stripe data can be
+// synced into them. Amounts are in minor units (cents). No foreign keys:
+// synced rows can arrive in any order.
 
-  @@map("user")
+model StripeSubscription {
+  id                     String    @id
+  customer               String
+  status                 String
+  description            String?
+  current_period_start   DateTime?
+  current_period_end     DateTime?
+  cancel_at_period_end   Boolean?  @default(false)
+  canceled_at            DateTime?
+  ended_at               DateTime?
+  currency               String?
+  default_payment_method String?
+  data                   Jsonb?
+  livemode               Boolean
+  created                DateTime?
+  synced_at              DateTime? @default(now())
+
+  @@index([status])
+  @@map("stripe_subscriptions")
 }
 
-model Post {
-  id        Int                    @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean                @default(false)
-  authorId  Int
-  author    User                   @relation(fields: [authorId], references: [id])
-  createdAt DateTime(as: temporal) @default(now())
-  updatedAt DateTime(as: temporal) @onCreate(now()) @onUpdate(now())
+model StripeSubscriptionItem {
+  id           String   @id
+  subscription String
+  price_id     String?
+  product_id   String?
+  quantity     Int?     @default(1)
+  data         Jsonb?
+  livemode     Boolean
+  created      DateTime
+  synced_at    DateTime @default(now())
 
-  @@map("post")
+  @@index([subscription])
+  @@map("stripe_subscription_items")
+}
+
+model StripePrice {
+  id                       String   @id
+  product                  String
+  active                   Boolean? @default(true)
+  currency                 String
+  unit_amount              Int?
+  type                     String
+  recurring_interval       String?
+  recurring_interval_count Int?
+  data                     Jsonb?
+  livemode                 Boolean
+  created                  DateTime
+  synced_at                DateTime @default(now())
+
+  @@map("stripe_prices")
+}
+
+model StripeInvoice {
+  id          String    @id
+  customer    String
+  description String?
+  status      String
+  total       Int?
+  amount_paid Int?
+  amount_due  Int?
+  currency    String?
+  data        Jsonb?
+  livemode    Boolean
+  created     DateTime?
+  synced_at   DateTime? @default(now())
+
+  @@index([status, created])
+  @@map("stripe_invoices")
 }

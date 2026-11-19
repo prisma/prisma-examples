@@ -23,9 +23,8 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'7eb72e5dca77a2eb6054b989b2b7b5356eebb195089f208b095cc5f6e5cef10a'>;
-export type ExecutionHash =
-  ExecutionHashBase<'6a7e0075fa02bc6701b490ef0d823cce013f1ea29fc049f30df0b0676b8dde07'>;
+  StorageHashBase<'bcf4cf6e695be2d386e8ca5a493e06891fc9440f6e40a2832e71f0faca8a303c'>;
+export type ExecutionHash = ExecutionHashBase<string>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
 
@@ -309,33 +308,74 @@ export type StorageColumnInputTypes = ColumnTypesFromStorage<
 >;
 
 export namespace Models {
-  export type public_Post = {
-    authorId: FieldOutputTypes['public']['Post']['authorId'];
-    content: FieldOutputTypes['public']['Post']['content'];
-    createdAt: FieldOutputTypes['public']['Post']['createdAt'];
-    id: FieldOutputTypes['public']['Post']['id'];
-    published: FieldOutputTypes['public']['Post']['published'];
-    title: FieldOutputTypes['public']['Post']['title'];
-    updatedAt: FieldOutputTypes['public']['Post']['updatedAt'];
-    author: public_User;
-    readonly [RelationKeys]?: 'author';
+  export type public_StripeInvoice = {
+    amount_due: FieldOutputTypes['public']['StripeInvoice']['amount_due'];
+    amount_paid: FieldOutputTypes['public']['StripeInvoice']['amount_paid'];
+    created: FieldOutputTypes['public']['StripeInvoice']['created'];
+    currency: FieldOutputTypes['public']['StripeInvoice']['currency'];
+    customer: FieldOutputTypes['public']['StripeInvoice']['customer'];
+    data: FieldOutputTypes['public']['StripeInvoice']['data'];
+    description: FieldOutputTypes['public']['StripeInvoice']['description'];
+    id: FieldOutputTypes['public']['StripeInvoice']['id'];
+    livemode: FieldOutputTypes['public']['StripeInvoice']['livemode'];
+    status: FieldOutputTypes['public']['StripeInvoice']['status'];
+    synced_at: FieldOutputTypes['public']['StripeInvoice']['synced_at'];
+    total: FieldOutputTypes['public']['StripeInvoice']['total'];
+    readonly [RelationKeys]?: never;
   };
-  export type public_User = {
-    createdAt: FieldOutputTypes['public']['User']['createdAt'];
-    email: FieldOutputTypes['public']['User']['email'];
-    id: FieldOutputTypes['public']['User']['id'];
-    name: FieldOutputTypes['public']['User']['name'];
-    updatedAt: FieldOutputTypes['public']['User']['updatedAt'];
-    username: FieldOutputTypes['public']['User']['username'];
-    posts: public_Post[];
-    readonly [RelationKeys]?: 'posts';
+  export type public_StripePrice = {
+    active: FieldOutputTypes['public']['StripePrice']['active'];
+    created: FieldOutputTypes['public']['StripePrice']['created'];
+    currency: FieldOutputTypes['public']['StripePrice']['currency'];
+    data: FieldOutputTypes['public']['StripePrice']['data'];
+    id: FieldOutputTypes['public']['StripePrice']['id'];
+    livemode: FieldOutputTypes['public']['StripePrice']['livemode'];
+    product: FieldOutputTypes['public']['StripePrice']['product'];
+    recurring_interval: FieldOutputTypes['public']['StripePrice']['recurring_interval'];
+    recurring_interval_count: FieldOutputTypes['public']['StripePrice']['recurring_interval_count'];
+    synced_at: FieldOutputTypes['public']['StripePrice']['synced_at'];
+    type: FieldOutputTypes['public']['StripePrice']['type'];
+    unit_amount: FieldOutputTypes['public']['StripePrice']['unit_amount'];
+    readonly [RelationKeys]?: never;
+  };
+  export type public_StripeSubscription = {
+    cancel_at_period_end: FieldOutputTypes['public']['StripeSubscription']['cancel_at_period_end'];
+    canceled_at: FieldOutputTypes['public']['StripeSubscription']['canceled_at'];
+    created: FieldOutputTypes['public']['StripeSubscription']['created'];
+    currency: FieldOutputTypes['public']['StripeSubscription']['currency'];
+    current_period_end: FieldOutputTypes['public']['StripeSubscription']['current_period_end'];
+    current_period_start: FieldOutputTypes['public']['StripeSubscription']['current_period_start'];
+    customer: FieldOutputTypes['public']['StripeSubscription']['customer'];
+    data: FieldOutputTypes['public']['StripeSubscription']['data'];
+    default_payment_method: FieldOutputTypes['public']['StripeSubscription']['default_payment_method'];
+    description: FieldOutputTypes['public']['StripeSubscription']['description'];
+    ended_at: FieldOutputTypes['public']['StripeSubscription']['ended_at'];
+    id: FieldOutputTypes['public']['StripeSubscription']['id'];
+    livemode: FieldOutputTypes['public']['StripeSubscription']['livemode'];
+    status: FieldOutputTypes['public']['StripeSubscription']['status'];
+    synced_at: FieldOutputTypes['public']['StripeSubscription']['synced_at'];
+    readonly [RelationKeys]?: never;
+  };
+  export type public_StripeSubscriptionItem = {
+    created: FieldOutputTypes['public']['StripeSubscriptionItem']['created'];
+    data: FieldOutputTypes['public']['StripeSubscriptionItem']['data'];
+    id: FieldOutputTypes['public']['StripeSubscriptionItem']['id'];
+    livemode: FieldOutputTypes['public']['StripeSubscriptionItem']['livemode'];
+    price_id: FieldOutputTypes['public']['StripeSubscriptionItem']['price_id'];
+    product_id: FieldOutputTypes['public']['StripeSubscriptionItem']['product_id'];
+    quantity: FieldOutputTypes['public']['StripeSubscriptionItem']['quantity'];
+    subscription: FieldOutputTypes['public']['StripeSubscriptionItem']['subscription'];
+    synced_at: FieldOutputTypes['public']['StripeSubscriptionItem']['synced_at'];
+    readonly [RelationKeys]?: never;
   };
 }
 
 export declare const models: {
   public: {
-    Post: Models.public_Post;
-    User: Models.public_User;
+    StripeInvoice: Models.public_StripeInvoice;
+    StripePrice: Models.public_StripePrice;
+    StripeSubscription: Models.public_StripeSubscription;
+    StripeSubscriptionItem: Models.public_StripeSubscriptionItem;
   };
 };
 
@@ -357,57 +397,81 @@ type ContractBase = Omit<
         readonly kind: 'postgres-schema';
         readonly entries: {
           readonly table: {
-            readonly post: {
+            readonly stripe_invoices: {
               columns: {
-                readonly authorId: {
+                readonly amount_due: {
                   readonly dataType: 'pg/int4';
                   readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
+                  readonly nullable: true;
                   readonly many: false;
                 };
-                readonly content: {
+                readonly amount_paid: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly created: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly currency: {
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: true;
                   readonly many: false;
                 };
-                readonly createdAt: {
-                  readonly dataType: 'pg/timestamptz';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
-                  readonly nullable: false;
-                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
-                  readonly many: false;
-                };
-                readonly id: {
-                  readonly dataType: 'pg/int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
-                  readonly many: false;
-                };
-                readonly published: {
-                  readonly dataType: 'pg/bool';
-                  readonly codecId: 'pg/bool@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/bool@1', false>;
-                  };
-                  readonly many: false;
-                };
-                readonly title: {
+                readonly customer: {
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                   readonly many: false;
                 };
-                readonly updatedAt: {
-                  readonly dataType: 'pg/timestamptz';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
+                readonly data: {
+                  readonly dataType: 'pg/jsonb';
+                  readonly codecId: 'pg/jsonb@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly description: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
                   readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly livemode: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly status: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly synced_at: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly total: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
                   readonly many: false;
                 };
               };
@@ -415,77 +479,291 @@ type ContractBase = Omit<
               uniques: readonly [];
               indexes: readonly [
                 {
-                  readonly name: 'post_authorId_idx_e47547ed';
-                  readonly prefix: 'post_authorId_idx';
-                  readonly columns: readonly ['authorId'];
+                  readonly name: 'stripe_invoices_status_created_idx_d2187d43';
+                  readonly prefix: 'stripe_invoices_status_created_idx';
+                  readonly columns: readonly ['status', 'created'];
                   readonly unique: false;
                 },
               ];
-              foreignKeys: readonly [
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'post';
-                    readonly columns: readonly ['authorId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'user';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-              ];
+              foreignKeys: readonly [];
             };
-            readonly user: {
+            readonly stripe_prices: {
               columns: {
-                readonly createdAt: {
-                  readonly dataType: 'pg/timestamptz';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
-                  readonly nullable: false;
-                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                readonly active: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: true;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
                   readonly many: false;
                 };
-                readonly email: {
+                readonly created: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: false;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly currency: {
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                   readonly many: false;
                 };
-                readonly id: {
-                  readonly dataType: 'pg/int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
+                readonly data: {
+                  readonly dataType: 'pg/jsonb';
+                  readonly codecId: 'pg/jsonb@1';
+                  readonly nullable: true;
                   readonly many: false;
                 };
-                readonly name: {
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly livemode: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly product: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly recurring_interval: {
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: true;
                   readonly many: false;
                 };
-                readonly updatedAt: {
+                readonly recurring_interval_count: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly synced_at: {
                   readonly dataType: 'pg/timestamptz';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly type: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                   readonly many: false;
                 };
-                readonly username: {
-                  readonly dataType: 'pg/text';
-                  readonly codecId: 'pg/text@1';
+                readonly unit_amount: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
                   readonly nullable: true;
                   readonly many: false;
                 };
               };
               primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [
-                { readonly columns: readonly ['email'] },
-                { readonly columns: readonly ['username'] },
-              ];
+              uniques: readonly [];
               indexes: readonly [];
+              foreignKeys: readonly [];
+            };
+            readonly stripe_subscription_items: {
+              columns: {
+                readonly created: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: false;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly data: {
+                  readonly dataType: 'pg/jsonb';
+                  readonly codecId: 'pg/jsonb@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly livemode: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly price_id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly product_id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly quantity: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/int4@1', 1>;
+                  };
+                  readonly many: false;
+                };
+                readonly subscription: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly synced_at: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'stripe_subscription_items_subscription_idx_903ec21d';
+                  readonly prefix: 'stripe_subscription_items_subscription_idx';
+                  readonly columns: readonly ['subscription'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [];
+            };
+            readonly stripe_subscriptions: {
+              columns: {
+                readonly cancel_at_period_end: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: true;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', false>;
+                  };
+                  readonly many: false;
+                };
+                readonly canceled_at: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly created: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly currency: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly current_period_end: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly current_period_start: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly customer: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly data: {
+                  readonly dataType: 'pg/jsonb';
+                  readonly codecId: 'pg/jsonb@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly default_payment_method: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly description: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly ended_at: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly livemode: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly status: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly synced_at: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly nullable: true;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly typeParams: { readonly precision: 3 };
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'stripe_subscriptions_status_idx_e98638ab';
+                  readonly prefix: 'stripe_subscriptions_status_idx';
+                  readonly columns: readonly ['status'];
+                  readonly unique: false;
+                },
+              ];
               foreignKeys: readonly [];
             };
           };
@@ -499,128 +777,356 @@ type ContractBase = Omit<
   readonly target: 'postgres';
   readonly targetFamily: 'sql';
   readonly roots: {
-    readonly post: { readonly namespace: 'public' & NamespaceId; readonly model: 'Post' };
-    readonly user: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
+    readonly stripe_invoices: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'StripeInvoice';
+    };
+    readonly stripe_prices: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'StripePrice';
+    };
+    readonly stripe_subscription_items: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'StripeSubscriptionItem';
+    };
+    readonly stripe_subscriptions: {
+      readonly namespace: 'public' & NamespaceId;
+      readonly model: 'StripeSubscription';
+    };
   };
   readonly domain: {
     readonly namespaces: {
       readonly public: {
         readonly models: {
-          readonly Post: {
+          readonly StripeInvoice: {
             readonly fields: {
-              readonly authorId: {
-                readonly nullable: false;
+              readonly amount_due: {
+                readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
-              readonly content: {
+              readonly amount_paid: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly created: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly currency: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly createdAt: {
+              readonly customer: {
                 readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
-                };
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly data: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/jsonb@1' };
+              };
+              readonly description: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
               readonly id: {
                 readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly published: {
+              readonly livemode: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
               };
-              readonly title: {
+              readonly status: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly updatedAt: {
-                readonly nullable: false;
+              readonly synced_at: {
+                readonly nullable: true;
                 readonly type: {
                   readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
                 };
               };
-            };
-            readonly relations: {
-              readonly author: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
-                readonly cardinality: 'N:1';
-                readonly nullable: false;
-                readonly on: {
-                  readonly localFields: readonly ['authorId'];
-                  readonly targetFields: readonly ['id'];
-                };
+              readonly total: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
             };
+            readonly relations: Record<string, never>;
             readonly storage: {
-              readonly table: 'post';
+              readonly table: 'stripe_invoices';
               readonly namespaceId: 'public';
               readonly fields: {
-                readonly authorId: { readonly column: 'authorId' };
-                readonly content: { readonly column: 'content' };
-                readonly createdAt: { readonly column: 'createdAt' };
+                readonly amount_due: { readonly column: 'amount_due' };
+                readonly amount_paid: { readonly column: 'amount_paid' };
+                readonly created: { readonly column: 'created' };
+                readonly currency: { readonly column: 'currency' };
+                readonly customer: { readonly column: 'customer' };
+                readonly data: { readonly column: 'data' };
+                readonly description: { readonly column: 'description' };
                 readonly id: { readonly column: 'id' };
-                readonly published: { readonly column: 'published' };
-                readonly title: { readonly column: 'title' };
-                readonly updatedAt: { readonly column: 'updatedAt' };
+                readonly livemode: { readonly column: 'livemode' };
+                readonly status: { readonly column: 'status' };
+                readonly synced_at: { readonly column: 'synced_at' };
+                readonly total: { readonly column: 'total' };
               };
             };
           };
-          readonly User: {
+          readonly StripePrice: {
             readonly fields: {
-              readonly createdAt: {
+              readonly active: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly created: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
                 };
               };
-              readonly email: {
+              readonly currency: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly data: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/jsonb@1' };
               };
               readonly id: {
                 readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly name: {
+              readonly livemode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly product: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly recurring_interval: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly updatedAt: {
+              readonly recurring_interval_count: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly synced_at: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-temporal@1';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
                 };
               };
-              readonly username: {
+              readonly type: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly unit_amount: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'stripe_prices';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly active: { readonly column: 'active' };
+                readonly created: { readonly column: 'created' };
+                readonly currency: { readonly column: 'currency' };
+                readonly data: { readonly column: 'data' };
+                readonly id: { readonly column: 'id' };
+                readonly livemode: { readonly column: 'livemode' };
+                readonly product: { readonly column: 'product' };
+                readonly recurring_interval: { readonly column: 'recurring_interval' };
+                readonly recurring_interval_count: { readonly column: 'recurring_interval_count' };
+                readonly synced_at: { readonly column: 'synced_at' };
+                readonly type: { readonly column: 'type' };
+                readonly unit_amount: { readonly column: 'unit_amount' };
+              };
+            };
+          };
+          readonly StripeSubscription: {
+            readonly fields: {
+              readonly cancel_at_period_end: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly canceled_at: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly created: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly currency: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-            };
-            readonly relations: {
-              readonly posts: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'Post' };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['authorId'];
+              readonly current_period_end: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly current_period_start: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly customer: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly data: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/jsonb@1' };
+              };
+              readonly default_payment_method: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly description: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly ended_at: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly livemode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly synced_at: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
                 };
               };
             };
+            readonly relations: Record<string, never>;
             readonly storage: {
-              readonly table: 'user';
+              readonly table: 'stripe_subscriptions';
               readonly namespaceId: 'public';
               readonly fields: {
-                readonly createdAt: { readonly column: 'createdAt' };
-                readonly email: { readonly column: 'email' };
+                readonly cancel_at_period_end: { readonly column: 'cancel_at_period_end' };
+                readonly canceled_at: { readonly column: 'canceled_at' };
+                readonly created: { readonly column: 'created' };
+                readonly currency: { readonly column: 'currency' };
+                readonly current_period_end: { readonly column: 'current_period_end' };
+                readonly current_period_start: { readonly column: 'current_period_start' };
+                readonly customer: { readonly column: 'customer' };
+                readonly data: { readonly column: 'data' };
+                readonly default_payment_method: { readonly column: 'default_payment_method' };
+                readonly description: { readonly column: 'description' };
+                readonly ended_at: { readonly column: 'ended_at' };
                 readonly id: { readonly column: 'id' };
-                readonly name: { readonly column: 'name' };
-                readonly updatedAt: { readonly column: 'updatedAt' };
-                readonly username: { readonly column: 'username' };
+                readonly livemode: { readonly column: 'livemode' };
+                readonly status: { readonly column: 'status' };
+                readonly synced_at: { readonly column: 'synced_at' };
+              };
+            };
+          };
+          readonly StripeSubscriptionItem: {
+            readonly fields: {
+              readonly created: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+              readonly data: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/jsonb@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly livemode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly price_id: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly product_id: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly quantity: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly subscription: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly synced_at: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-date@1';
+                  readonly typeParams: { readonly precision: 3 };
+                };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'stripe_subscription_items';
+              readonly namespaceId: 'public';
+              readonly fields: {
+                readonly created: { readonly column: 'created' };
+                readonly data: { readonly column: 'data' };
+                readonly id: { readonly column: 'id' };
+                readonly livemode: { readonly column: 'livemode' };
+                readonly price_id: { readonly column: 'price_id' };
+                readonly product_id: { readonly column: 'product_id' };
+                readonly quantity: { readonly column: 'quantity' };
+                readonly subscription: { readonly column: 'subscription' };
+                readonly synced_at: { readonly column: 'synced_at' };
               };
             };
           };
@@ -657,31 +1163,6 @@ type ContractBase = Omit<
     };
   };
   readonly extensions: {};
-  readonly execution: {
-    readonly executionHash: ExecutionHash;
-    readonly mutations: {
-      readonly defaults: readonly [
-        {
-          readonly onCreate: { readonly id: 'instantNow'; readonly kind: 'generator' };
-          readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
-          readonly ref: {
-            readonly entry: 'post';
-            readonly field: 'updatedAt';
-            readonly namespace: 'public';
-          };
-        },
-        {
-          readonly onCreate: { readonly id: 'instantNow'; readonly kind: 'generator' };
-          readonly onUpdate: { readonly id: 'instantNow'; readonly kind: 'generator' };
-          readonly ref: {
-            readonly entry: 'user';
-            readonly field: 'updatedAt';
-            readonly namespace: 'public';
-          };
-        },
-      ];
-    };
-  };
   readonly meta: {};
   readonly profileHash: ProfileHash;
 };
