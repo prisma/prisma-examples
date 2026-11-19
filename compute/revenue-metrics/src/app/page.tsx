@@ -1,36 +1,25 @@
-import type { CSSProperties } from 'react'
+import { unstable_cache } from 'next/cache'
 
-const styles = {
-  main: {
-    fontFamily: 'system-ui, sans-serif',
-    maxWidth: '720px',
-    margin: '48px auto',
-    padding: '0 20px',
-    color: '#111',
-  },
-  code: {
-    background: '#f4f4f4',
-    padding: '2px 4px',
-    borderRadius: '4px',
-  },
-} satisfies Record<string, CSSProperties>
+import { loadDashboard } from '../queries'
 
-export default function Home() {
+// Read the database per request, not at build time. The result is cached for
+// 60 seconds, because Prisma Postgres bills per query and a busy demo page
+// would otherwise run four queries on every visit.
+export const dynamic = 'force-dynamic'
+
+const getDashboard = unstable_cache(
+  async () => ({ ...(await loadDashboard()), loadedAt: new Date().toISOString() }),
+  ['revenue-metrics-dashboard'],
+  { revalidate: 60 },
+)
+
+export default async function Home() {
+  const data = await getDashboard()
+
   return (
-    <main style={styles.main}>
-      <h1>Next.js on Prisma Compute</h1>
-      <p>This app uses Next.js App Router, Prisma ORM, and PostgreSQL.</p>
-      <p>
-        Query the seeded users at{' '}
-        <a href="/api/users">
-          <code style={styles.code}>/api/users</code>
-        </a>
-        .
-      </p>
-      <p>
-        Connect it with <code style={styles.code}>bun run compute:connect</code>
-        , then push to deploy with Prisma Composer.
-      </p>
+    <main>
+      <h1>Revenue Metrics</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </main>
   )
 }
