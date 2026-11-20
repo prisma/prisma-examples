@@ -54,7 +54,7 @@
     {
       "id": "adonisjs",
       "name": "AdonisJS + Prisma Postgres",
-      "description": "AdonisJS 7 task manager with Lucid ORM, session auth and Edge templates on Prisma Postgres, deployed to Prisma Compute.",
+      "description": "AdonisJS 7 task manager with Lucid ORM, session auth and React (Inertia) on Prisma Postgres, deployed to Prisma Compute.",
       "path": "compute/adonisjs",
       "framework": "custom"
     }

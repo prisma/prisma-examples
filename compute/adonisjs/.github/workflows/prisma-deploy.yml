@@ -22,7 +22,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2.2.0
       - uses: actions/setup-node@v4.4.0
         with:
-          node-version: 24
+          node-version: 26
       - uses: prisma/cloud-deploy-action@v1
         with:
           build-command: bun run build
@@ -35,7 +35,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2.2.0
       - uses: actions/setup-node@v4.4.0
         with:
-          node-version: 24
+          node-version: 26
       - uses: prisma/cloud-deploy-action@v1
         with:
           mode: destroy

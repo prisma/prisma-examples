@@ -13,7 +13,7 @@ import server from '@adonisjs/core/services/server'
 
 /**
  * The error handler is used to convert an exception
- * to an HTTP response.
+ * to a HTTP response.
  */
 server.errorHandler(() => import('#exceptions/handler'))
 
@@ -25,7 +25,9 @@ server.errorHandler(() => import('#exceptions/handler'))
 server.use([
   () => import('#middleware/container_bindings_middleware'),
   () => import('@adonisjs/static/static_middleware'),
+  () => import('@adonisjs/cors/cors_middleware'),
   () => import('@adonisjs/vite/vite_middleware'),
+  () => import('#middleware/inertia_middleware'),
 ])
 
 /**

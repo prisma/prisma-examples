@@ -2,18 +2,14 @@ import env from '#start/env'
 import app from '@adonisjs/core/services/app'
 import { defineConfig, stores } from '@adonisjs/session'
 
-/**
- * Session configuration.
- * Defines how user sessions are managed, stored, and secured.
- */
 const sessionConfig = defineConfig({
   /**
-   * Enable or disable session management globally.
+   * Enable or disable session support globally.
    */
   enabled: true,
 
   /**
-   * The name of the cookie used to store the session ID.
+   * Cookie name storing the session identifier.
    */
   cookieName: 'adonis-session',
 
@@ -31,31 +27,26 @@ const sessionConfig = defineConfig({
 
   /**
    * Configuration for session cookie and the
-   * cookie store
+   * cookie store.
    */
   cookie: {
     /**
-     * The path for which the cookie is valid.
-     * The cookie is accessible for all routes when the value is '/'.
+     * Restrict the cookie to a URL path. '/' means all routes.
      */
     path: '/',
 
     /**
-     * When true, the cookie is only accessible via HTTP(S) and not
-     * by client-side JavaScript, helping prevent XSS attacks.
+     * Prevent JavaScript access to the cookie in the browser.
      */
     httpOnly: true,
 
     /**
-     * When true, the cookie is only sent over HTTPS connections.
-     * Enabled in production for security.
+     * Send cookies only over HTTPS in production.
      */
     secure: app.inProduction,
 
     /**
-     * Controls when cookies are sent with cross-site requests.
-     * This setting provides reasonable security while allowing some cross-site
-     * usage (value: 'lax').
+     * Cross-site policy for cookie sending.
      */
     sameSite: 'lax',
   },
@@ -73,12 +64,12 @@ const sessionConfig = defineConfig({
    */
   stores: {
     /**
-     * Cookie store saves session data in encrypted cookies.
-     * Suitable for small session data that doesn't exceed cookie size limits.
+     * Store session data inside encrypted cookies.
      */
     cookie: stores.cookie(),
+
     /**
-     * Database store persists sessions in the configured SQL database.
+     * Store session data inside the configured database.
      */
     database: stores.database(),
   },

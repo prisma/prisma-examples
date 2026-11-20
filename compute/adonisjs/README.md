@@ -2,7 +2,7 @@
 
 A task manager built with [AdonisJS 7](https://adonisjs.com), backed by [Prisma Postgres](https://www.prisma.io/postgres) and deployed to [Prisma Compute](https://www.prisma.io/compute).
 
-It is a standard AdonisJS app, created from the Hypermedia starter kit: Lucid models and migrations, VineJS validators, Edge templates, and session auth. Prisma Postgres is a regular PostgreSQL database here, so Lucid connects to it with the `pg` driver and a connection string. The app does not use Prisma ORM.
+It is a standard AdonisJS app, created from the React starter kit: Lucid models and migrations, VineJS validators, session auth, and React pages rendered with Inertia. Prisma Postgres is a regular PostgreSQL database here, so Lucid connects to it with the `pg` driver and a connection string. The app does not use Prisma ORM.
 
 You sign up, add tasks, rename them, mark them as done, and delete them. Each task belongs to the signed-in user and is a row in the database.
 
@@ -12,16 +12,17 @@ You sign up, add tasks, rename them, mark them as done, and delete them. Each ta
 | --------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `app/controllers/tasks_controller.ts`         | Create, read, update, and delete for tasks, scoped to the signed-in user                |
 | `app/models/task.ts`, `app/models/user.ts`    | Lucid models and the `user.tasks` relationship                                          |
+| `app/transformers/task_transformer.ts`        | The task fields that the controller sends to the React pages                            |
 | `app/validators/task.ts`                      | VineJS validation for the task forms                                                    |
 | `database/migrations/`                        | Lucid migrations for `users` and `tasks`                                                |
 | `config/database.ts`                          | The `pg` connection, read from `DATABASE_URL`                                           |
-| `resources/views/pages/tasks/`                | Edge templates for the task list and the rename form                                    |
+| `inertia/pages/tasks/`                        | React pages for the task list and the rename form                                       |
 | `service.ts`, `module.ts`, `prisma.config.ts` | What Prisma Compute deploys: the server and its database                                |
 | `bin/compute.ts`                              | Entry point on Prisma Compute: sets the environment, runs migrations, starts the server |
 
 ## Run locally
 
-You need Node.js 24 or newer and [Bun](https://bun.sh), which this template uses as its package manager.
+You need Node.js 26 or newer and [Bun](https://bun.sh), which this template uses as its package manager.
 
 ```bash
 bun install
