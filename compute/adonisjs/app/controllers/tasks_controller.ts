@@ -1,3 +1,4 @@
+import TaskTransformer from '#transformers/task_transformer'
 import { createTaskValidator, updateTaskValidator } from '#validators/task'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -10,7 +11,7 @@ export default class TasksController {
   /**
    * Display the user's tasks, open ones first
    */
-  async index({ auth, view }: HttpContext) {
+  async index({ auth, inertia }: HttpContext) {
     const tasks = await auth
       .getUserOrFail()
       .related('tasks')
@@ -18,7 +19,7 @@ export default class TasksController {
       .orderBy('completed', 'asc')
       .orderBy('createdAt', 'desc')
 
-    return view.render('pages/tasks/index', { tasks })
+    return inertia.render('tasks/index', { tasks: TaskTransformer.transform(tasks) })
   }
 
   /**
@@ -34,7 +35,7 @@ export default class TasksController {
   /**
    * Display the form to rename a task
    */
-  async edit({ auth, params, view }: HttpContext) {
+  async edit({ auth, params, inertia }: HttpContext) {
     const task = await auth
       .getUserOrFail()
       .related('tasks')
@@ -42,7 +43,7 @@ export default class TasksController {
       .where('id', params.id)
       .firstOrFail()
 
-    return view.render('pages/tasks/edit', { task })
+    return inertia.render('tasks/edit', { task: TaskTransformer.transform(task) })
   }
 
   /**

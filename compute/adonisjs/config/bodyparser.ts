@@ -1,57 +1,39 @@
 import { defineConfig } from '@adonisjs/core/bodyparser'
 
-/**
- * Body parser configuration.
- * Defines how request bodies are parsed for different content types
- * including forms, JSON, and file uploads.
- */
 const bodyParserConfig = defineConfig({
   /**
-   * The bodyparser middleware will parse the request body
-   * for the following HTTP methods.
+   * Parse request bodies for these HTTP methods.
+   * Keep this aligned with methods that receive payloads in your routes.
    */
   allowedMethods: ['POST', 'PUT', 'PATCH', 'DELETE'],
 
   /**
    * Config for the "application/x-www-form-urlencoded"
-   * content-type parser
+   * content-type parser.
    */
   form: {
     /**
-     * Convert empty strings to null values.
-     * Helps maintain consistent data types in your application.
+     * Normalize empty string values to null.
      */
     convertEmptyStringsToNull: true,
 
     /**
-     * Automatically trim whitespace from the start and end of string values.
-     */
-    trimWhitespaces: true,
-
-    /**
-     * Content types that should be parsed as form data.
+     * Content types handled by the form parser.
      */
     types: ['application/x-www-form-urlencoded'],
   },
 
   /**
-   * Config for the JSON parser
+   * Config for the JSON parser.
    */
   json: {
     /**
-     * Convert empty strings to null values.
-     * Helps maintain consistent data types in your application.
+     * Normalize empty string values to null.
      */
     convertEmptyStringsToNull: true,
 
     /**
-     * Automatically trim whitespace from the start and end of string values.
-     */
-    trimWhitespaces: true,
-
-    /**
-     * Content types that should be parsed as JSON.
-     * Includes standard JSON and various JSON-based API formats.
+     * Content types handled by the JSON parser.
      */
     types: [
       'application/json',
@@ -67,37 +49,27 @@ const bodyParserConfig = defineConfig({
    */
   multipart: {
     /**
-     * Enabling auto process allows bodyparser middleware to
-     * move all uploaded files inside the tmp folder of your
-     * operating system
+     * Automatically process uploaded files into the system tmp directory.
      */
     autoProcess: true,
 
     /**
-     * Convert empty strings to null values.
-     * Helps maintain consistent data types in your application.
+     * Normalize empty string values to null.
      */
     convertEmptyStringsToNull: true,
 
     /**
-     * Automatically trim whitespace from the start and end of string values.
-     */
-    trimWhitespaces: true,
-
-    /**
-     * Routes where file uploads should be processed manually.
-     * Useful when you need custom file handling logic.
+     * Routes where multipart processing is handled manually.
      */
     processManually: [],
 
     /**
-     * Maximum limit of data to parse including all files
-     * and fields
+     * Maximum accepted payload size for multipart requests.
      */
     limit: '20mb',
 
     /**
-     * Content types that should be parsed as multipart form data.
+     * Content types handled by the multipart parser.
      */
     types: ['multipart/form-data'],
   },

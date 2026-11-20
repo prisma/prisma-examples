@@ -12,7 +12,7 @@
 
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
-import service from '../service.ts'
+import service from '../infra/service.ts'
 
 const { db } = service.load()
 
@@ -34,9 +34,13 @@ process.chdir(fileURLToPath(new URL('../', import.meta.url)))
  * A deploy does not run Lucid migrations, so apply them before the server
  * accepts requests. Lucid takes a database lock while it migrates, which
  * makes this safe when several instances start at once.
+ *
+ * Pass "env" explicitly. Prisma Compute runs Bun, and the child process of
+ * Bun does not get the variables that this file sets at runtime.
  */
 const migrate = spawnSync(process.execPath, ['ace.js', 'migration:run', '--force'], {
   stdio: 'inherit',
+  env: process.env,
 })
 
 if (migrate.status !== 0) {

@@ -14,17 +14,17 @@ export const appUrl = env.get('APP_URL')
  */
 export const http = defineConfig({
   /**
-   * Generate a unique request ID for each incoming HTTP request.
-   * Useful for request tracing and debugging in logs.
+   * Generate a unique request id for each incoming request.
+   * Useful to correlate logs and debug a request flow.
    */
   generateRequestId: true,
 
   /**
-   * Allow method spoofing via _method query parameter or form field.
-   * Enables using PUT, PATCH, DELETE methods in HTML forms by spoofing
-   * through POST requests with _method field.
+   * Allow HTTP method spoofing via the "_method" form/query parameter.
+   * This lets HTML forms target PUT/PATCH/DELETE routes while still
+   * submitting with POST.
    */
-  allowMethodSpoofing: true,
+  allowMethodSpoofing: false,
 
   /**
    * Enabling async local storage will let you access HTTP context
@@ -55,39 +55,33 @@ export const http = defineConfig({
    */
   cookie: {
     /**
-     * The domain for which the cookie is valid.
-     * Empty string means the cookie is valid for the current domain only.
+     * Restrict the cookie to a specific domain.
+     * Keep empty to use the current host.
      */
     domain: '',
 
     /**
-     * The path for which the cookie is valid.
-     * The cookie is accessible for all routes when the value is '/'.
+     * Restrict the cookie to a URL path. '/' means all routes.
      */
     path: '/',
 
     /**
-     * Maximum age of the cookie.
-     * After this time, the cookie will expire.
+     * Default lifetime for cookies managed by the HTTP layer.
      */
     maxAge: '2h',
 
     /**
-     * When true, the cookie is only accessible via HTTP(S) and not
-     * by client-side JavaScript, helping prevent XSS attacks.
+     * Prevent JavaScript access to the cookie in the browser.
      */
     httpOnly: true,
 
     /**
-     * When true, the cookie is only sent over HTTPS connections.
-     * Enabled in production for security.
+     * Send cookies only over HTTPS in production.
      */
     secure: app.inProduction,
 
     /**
-     * Controls when cookies are sent with cross-site requests.
-     * This setting provides reasonable security while allowing some cross-site
-     * usage (value: 'lax').
+     * Cross-site policy for cookie sending.
      */
     sameSite: 'lax',
   },

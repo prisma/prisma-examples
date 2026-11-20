@@ -1,0 +1,16 @@
+/**
+ * This file only exists to avoid the circular reference between the Inertia
+ * codebase and the backend codebase, which takes place because of the
+ * codegen. We have Inertia app referencing backend code and backend
+ * code referencing Inertia pages for inferring props types.
+ *
+ * The main part here is "composite: true"
+ */
+{
+  "extends": "./inertia/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./inertia",
+    "composite": true
+  },
+  "include": ["./inertia/**/*.ts", "./inertia/**/*.tsx"]
+}
