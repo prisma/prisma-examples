@@ -100,7 +100,10 @@ export function Dashboard({ cards, bars, chartLabel, panels }: Props) {
 
       <aside id="sql-panel" className="panel" aria-live="polite">
         <div>
-          <p className="panel-label">Query behind</p>
+          <div className="panel-head">
+            <p className="panel-label">Query behind</p>
+            <code className="panel-file">src/queries.ts</code>
+          </div>
           <h2>{panel.title}</h2>
         </div>
         <pre className="code">{panel.sql}</pre>

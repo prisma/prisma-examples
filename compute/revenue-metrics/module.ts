@@ -4,7 +4,7 @@ import { postgres } from '@prisma/composer-prisma-cloud/orm'
 import { databaseContract } from './src/prisma/composer'
 import service from './src/service'
 
-export default module('prisma-compute-nextjs', ({ provision }) => {
+export default module('revenue-metrics', ({ provision }) => {
   const database = provision(
     postgres({
       name: 'database',

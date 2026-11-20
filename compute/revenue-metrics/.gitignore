@@ -5,3 +5,4 @@ node_modules
 .prisma-composer
 .alchemy
 next-env.d.ts
+.env.local

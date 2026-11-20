@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "prisma-compute-nextjs",
+      "name": "revenue-metrics",
       "dependencies": {
         "@prisma/composer": "0.38.0",
         "@prisma/composer-prisma-cloud": "0.38.0",

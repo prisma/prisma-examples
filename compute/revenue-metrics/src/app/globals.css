@@ -84,6 +84,96 @@ body {
   background: #1f9d6b;
 }
 
+/* How it works */
+
+.how summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.how summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A chevron that turns down when open. */
+.how summary::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+
+.how[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.how summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.steps {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.steps strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.steps strong::before {
+  content: counter(step);
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.steps code {
+  font: 12px var(--font-mono), ui-monospace, monospace;
+  color: var(--text);
+  background: var(--page);
+  padding: 1px 4px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
 /* Layout: main column and SQL panel, stacking on narrow screens */
 
 .layout {
@@ -279,6 +369,18 @@ body {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #9aa4b8;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-file {
+  font: 12px var(--font-mono), ui-monospace, monospace;
+  color: #9fd3b5;
 }
 
 .panel h2 {

@@ -111,25 +111,25 @@ export default async function Home() {
       title: 'MRR',
       sql: sql.mrr,
       returns: returnsCode(returns.mrr),
-      note: 'Monthly recurring revenue from active subscriptions, with each price converted to a monthly amount. Discounts are not applied. The previous value uses today’s prices, so it is approximate.',
+      note: 'Reads stripe_subscriptions, stripe_subscription_items and stripe_prices. Monthly recurring revenue from active subscriptions, with each price converted to a monthly amount. Discounts are not applied. The previous value uses today’s prices, so it is approximate.',
     },
     subs: {
       title: 'Active subscriptions',
       sql: sql.subs,
       returns: returnsCode(returns.subs),
-      note: 'Subscriptions with status active; trialing and past_due are left out. The previous value counts subscriptions created before 30 days ago that are active now or have ended since.',
+      note: 'Reads stripe_subscriptions. Subscriptions with status active; trialing and past_due are left out. The previous value counts subscriptions created before 30 days ago that are active now or have ended since.',
     },
     rev30: {
       title: 'Revenue, last 30 days',
       sql: sql.rev30,
       returns: returnsCode(returns.rev30),
-      note: 'Cash from paid invoices created in the last 30 days, compared with the 30 days before.',
+      note: 'Reads stripe_invoices. Cash from paid invoices created in the last 30 days, compared with the 30 days before.',
     },
     chart: {
       title: 'Revenue by month',
       sql: sql.chart,
       returns: returnsCode(returns.chart),
-      note: 'Paid invoices grouped by the month they were created, in UTC. Months with no invoices show as $0.',
+      note: 'Reads stripe_invoices. Paid invoices grouped by the month they were created, in UTC. Months with no invoices show as $0.',
     },
   }
 
@@ -159,6 +159,29 @@ export default async function Home() {
           Updated {updated} UTC
         </span>
       </header>
+
+      <details className="how">
+        <summary>How it works: where the data and SQL come from</summary>
+        <ol className="steps">
+          <li>
+            <strong>Data</strong>
+            Stripe-shaped tables in Prisma Postgres: <code>stripe_subscriptions</code>,{' '}
+            <code>stripe_subscription_items</code>, <code>stripe_prices</code> and <code>stripe_invoices</code>. An
+            empty database gets demo data on the first visit, or you can sync your own Stripe data into the same
+            tables (see the README).
+          </li>
+          <li>
+            <strong>Query</strong>
+            Each card is one SQL query in <code>src/queries.ts</code>, computed in Postgres and typed with{' '}
+            <code>.returnsRow()</code>. View SQL shows the query that ran.
+          </li>
+          <li>
+            <strong>Deploy</strong>
+            The app runs on Prisma Compute, which provisions the database and connects it. Results are cached for 60
+            seconds, so a visit does not always re-run the queries.
+          </li>
+        </ol>
+      </details>
 
       <Dashboard cards={cards} bars={bars} chartLabel={chartLabel} panels={panels} />
 
