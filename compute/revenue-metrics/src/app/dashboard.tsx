@@ -98,7 +98,7 @@ export function Dashboard({ cards, bars, chartLabel, panels }: Props) {
           <div className="chart-head">
             <div>
               <h2>Revenue by month</h2>
-              <p className="sub">Paid invoices, by invoice date (UTC)</p>
+              <p className="sub">Paid invoices, by invoice date (UTC). *Current month to date.</p>
             </div>
             {sqlButton('chart')}
           </div>

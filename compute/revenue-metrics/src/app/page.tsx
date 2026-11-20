@@ -25,6 +25,7 @@ const usdShort = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
   notation: 'compact',
+  minimumFractionDigits: 1,
   maximumFractionDigits: 1,
 })
 
@@ -94,7 +95,8 @@ export default async function Home() {
   // The tallest bar is 200px; the rest scale to it.
   const max = Math.max(...chart.map((row) => row.revenueCents))
   const bars: Bar[] = chart.map((row, i) => ({
-    month: monthName(row.month, 'short'),
+    // The current month is not over yet, so its label is marked "*".
+    month: monthName(row.month, 'short') + (i === chart.length - 1 ? '*' : ''),
     label: usdShort.format(row.revenueCents / 100),
     height: max === 0 ? 0 : Math.round((row.revenueCents / max) * 200),
     current: i === chart.length - 1,
@@ -103,7 +105,7 @@ export default async function Home() {
   const last = chart[chart.length - 1]
   const chartLabel =
     first && last
-      ? `Bar chart of monthly revenue from paid invoices, from ${dollars(first.revenueCents)} in ${monthName(first.month, 'long')} to ${dollars(last.revenueCents)} in ${monthName(last.month, 'long')}`
+      ? `Bar chart of monthly revenue from paid invoices, from ${dollars(first.revenueCents)} in ${monthName(first.month, 'long')} to ${dollars(last.revenueCents)} so far in ${monthName(last.month, 'long')}`
       : 'Bar chart of monthly revenue from paid invoices'
 
   const panels: Record<MetricKey, Panel> = {

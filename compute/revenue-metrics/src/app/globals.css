@@ -215,10 +215,12 @@ body {
   border-color: var(--accent);
 }
 
+/* Two lines tall, so the figures line up when a label wraps. */
 .card-head {
+  min-height: 34px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
 }
 
@@ -341,8 +343,9 @@ body {
   border-radius: 6px 6px 0 0;
 }
 
+/* The current, unfinished month: hatched, so it reads as partial. */
 .bar-fill[data-current='true'] {
-  background: var(--accent);
+  background: repeating-linear-gradient(-45deg, var(--accent) 0 5px, #6f87dc 5px 10px);
 }
 
 .months {
@@ -355,7 +358,7 @@ body {
 /* SQL panel */
 
 .panel {
-  flex: 1 1 340px;
+  flex: 1 1 380px;
   min-width: 0;
   background: var(--panel);
   color: #e6e9f0;
@@ -402,14 +405,20 @@ body {
   border-radius: 10px;
   font: 12.5px/1.6 var(--font-mono), ui-monospace, monospace;
   color: #d7deeb;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  /* Keep the SQL's own line breaks; long lines scroll sideways. */
+  white-space: pre;
+  overflow-x: auto;
   /* Show the SQL exactly as written: no >= drawn as one glyph. */
   font-variant-ligatures: none;
 }
 
 .code-wrap {
   position: relative;
+}
+
+/* Room above the first line for the Copy button. */
+.code-wrap .code {
+  padding-top: 44px;
 }
 
 .copy-button {
