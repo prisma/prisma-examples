@@ -1,6 +1,8 @@
 {
   "name": "revenue-metrics",
   "private": true,
+  "description": "SaaS revenue metrics from Stripe tables, one typed SQL query per metric: Next.js, Prisma ORM, Prisma Postgres and Prisma Compute.",
+  "license": "MIT",
   "type": "module",
   "packageManager": "bun@1.3.14",
   "scripts": {
@@ -8,12 +10,13 @@
     "build": "bun run contract:emit && next build",
     "start": "node .next/standalone/server.js",
     "contract:emit": "prisma contract emit",
+    "typecheck": "tsc --noEmit",
     "migration:plan": "prisma migration plan",
-    "db:init": "prisma db init",
-    "db:update": "prisma db update",
+    "db:migrate": "prisma db migrate --yes",
     "db:seed": "tsx src/prisma/seed-cli.ts",
+    "composer:deploy": "prisma deploy",
+    "deploy": "bun run build && bun run composer:deploy",
     "compute:login": "prisma auth login",
-    "compute:database:create": "prisma postgres create revenue-metrics --branch main",
     "compute:connect": "prisma git connect",
     "compute:open": "prisma service open"
   },

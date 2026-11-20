@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { MetricKey } from '../queries'
 
@@ -38,7 +38,29 @@ function CodeIcon() {
 
 export function Dashboard({ cards, bars, chartLabel, panels }: Props) {
   const [picked, setPicked] = useState<MetricKey>('mrr')
+  const [copyLabel, setCopyLabel] = useState('Copy')
+  const sqlRef = useRef<HTMLPreElement>(null)
   const panel = panels[picked]
+
+  function showCopyLabel(label: string) {
+    setCopyLabel(label)
+    setTimeout(() => setCopyLabel('Copy'), 2000)
+  }
+
+  async function copySql() {
+    try {
+      await navigator.clipboard.writeText(panel.sql)
+      showCopyLabel('Copied')
+    } catch {
+      // The clipboard API needs a secure context (HTTPS or localhost). Without
+      // it, select the SQL so the user can copy it with the keyboard.
+      const sql = sqlRef.current
+      const selection = window.getSelection()
+      if (!sql || !selection) return
+      selection.selectAllChildren(sql)
+      showCopyLabel('Press Ctrl+C')
+    }
+  }
 
   const sqlButton = (key: MetricKey) => (
     <button
@@ -106,7 +128,14 @@ export function Dashboard({ cards, bars, chartLabel, panels }: Props) {
           </div>
           <h2>{panel.title}</h2>
         </div>
-        <pre className="code">{panel.sql}</pre>
+        <div className="code-wrap">
+          <button type="button" className="copy-button" onClick={copySql}>
+            {copyLabel}
+          </button>
+          <pre ref={sqlRef} className="code">
+            {panel.sql}
+          </pre>
+        </div>
         <div>
           <p className="panel-label">Returns</p>
           <pre className="code" data-kind="returns" style={{ marginTop: 6 }}>

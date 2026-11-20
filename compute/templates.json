@@ -50,6 +50,17 @@
         "name": "Anas Ibn Belal",
         "url": "https://github.com/anas20023"
       }
+    },
+    {
+      "id": "revenue-metrics",
+      "name": "Revenue Metrics",
+      "description": "Next.js dashboard of MRR, active subscriptions and revenue from Stripe billing tables, each metric one typed SQL query, with Prisma ORM and Prisma Postgres, deployed to Prisma Compute.",
+      "path": "compute/revenue-metrics",
+      "framework": "nextjs",
+      "author": {
+        "name": "Ilshaad Kheerdali",
+        "url": "https://github.com/ilshaad"
+      }
     }
   ]
 }

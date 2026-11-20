@@ -168,7 +168,8 @@ export default async function Home() {
             Stripe-shaped tables in Prisma Postgres: <code>stripe_subscriptions</code>,{' '}
             <code>stripe_subscription_items</code>, <code>stripe_prices</code> and <code>stripe_invoices</code>. An
             empty database gets demo data on the first visit, or you can sync your own Stripe data into the same
-            tables (see the README).
+            tables with{' '}
+            <a href="https://www.prisma.io/docs/guides/integrations/codeless-sync">Codeless Sync</a>.
           </li>
           <li>
             <strong>Query</strong>

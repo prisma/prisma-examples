@@ -165,6 +165,10 @@ body {
   justify-content: center;
 }
 
+.steps a {
+  color: var(--accent);
+}
+
 .steps code {
   font: 12px var(--font-mono), ui-monospace, monospace;
   color: var(--text);
@@ -402,6 +406,33 @@ body {
   overflow-wrap: anywhere;
   /* Show the SQL exactly as written: no >= drawn as one glyph. */
   font-variant-ligatures: none;
+}
+
+.code-wrap {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-height: 28px;
+  padding: 0 10px;
+  font: 500 12px var(--font-inter), system-ui, sans-serif;
+  color: #d7deeb;
+  background: var(--code-border);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: #33405e;
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid #9fd3b5;
+  outline-offset: 2px;
 }
 
 .code[data-kind='returns'] {

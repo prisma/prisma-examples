@@ -13,6 +13,22 @@ type Db = ReturnType<typeof getDb>
 
 export type MetricKey = 'mrr' | 'subs' | 'rev30' | 'chart'
 
+// What each query returns, column by column. Each value is a codec id: it
+// tells Prisma ORM how to turn the Postgres value into a JavaScript value,
+// and gives the row its TypeScript type.
+//
+//   pg/int8number@1  int8 (bigint) read as a JS number
+//   pg/int4@1        int4 (integer) read as a JS number
+//   pg/text@1        text read as a JS string
+//
+// A codec reads the value; it does not convert it. That is why every query
+// casts its results in SQL (::int8, ::int4). Without a cast, Postgres picks
+// the type: the MRR sum multiplies by 1.0 / 12, so it is numeric, and a
+// numeric such as 2000.0000 makes pg/int8number@1 throw RUNTIME.DECODE_FAILED
+// instead of rounding it. The casts make Postgres return exactly the type
+// declared here.
+//
+// Docs: https://www.prisma.io/docs/orm/reference/raw-queries
 const returns = {
   mrr: { mrrCents: 'pg/int8number@1', previousCents: 'pg/int8number@1' },
   subs: { active: 'pg/int4@1', previous: 'pg/int4@1' },

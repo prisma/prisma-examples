@@ -6,3 +6,4 @@ node_modules
 .alchemy
 next-env.d.ts
 .env.local
+*.tsbuildinfo
