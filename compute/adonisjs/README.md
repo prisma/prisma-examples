@@ -8,17 +8,17 @@ You sign up, add tasks, rename them, mark them as done, and delete them. Each ta
 
 ## What is in the box
 
-| Path                                          | What it does                                                                            |
-| --------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `app/controllers/tasks_controller.ts`         | Create, read, update, and delete for tasks, scoped to the signed-in user                |
-| `app/models/task.ts`, `app/models/user.ts`    | Lucid models and the `user.tasks` relationship                                          |
-| `app/transformers/task_transformer.ts`        | The task fields that the controller sends to the React pages                            |
-| `app/validators/task.ts`                      | VineJS validation for the task forms                                                    |
-| `database/migrations/`                        | Lucid migrations for `users` and `tasks`                                                |
-| `config/database.ts`                          | The `pg` connection, read from `DATABASE_URL`                                           |
-| `inertia/pages/tasks/`                        | React pages for the task list and the rename form                                       |
-| `service.ts`, `module.ts`, `prisma.config.ts` | What Prisma Compute deploys: the server and its database                                |
-| `bin/compute.ts`                              | Entry point on Prisma Compute: sets the environment, runs migrations, starts the server |
+| Path                                                      | What it does                                                                            |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `app/controllers/tasks_controller.ts`                     | Create, read, update, and delete for tasks, scoped to the signed-in user                |
+| `app/models/task.ts`, `app/models/user.ts`                | Lucid models and the `user.tasks` relationship                                          |
+| `app/transformers/task_transformer.ts`                    | The task fields that the controller sends to the React pages                            |
+| `app/validators/task.ts`                                  | VineJS validation for the task forms                                                    |
+| `database/migrations/`                                    | Lucid migrations for `users` and `tasks`                                                |
+| `config/database.ts`                                      | The `pg` connection, read from `DATABASE_URL`                                           |
+| `inertia/pages/tasks/`                                    | React pages for the task list and the rename form                                       |
+| `infra/service.ts`, `infra/module.ts`, `prisma.config.ts` | What Prisma Compute deploys: the server and its database                                |
+| `bin/compute.ts`                                          | Entry point on Prisma Compute: sets the environment, runs migrations, starts the server |
 
 ## Run locally
 
@@ -58,7 +58,7 @@ bun run compute:login
 bun run compute:deploy
 ```
 
-The first deploy creates a project named `adonisjs-prisma-postgres` in the `us-east-1` region and prints the app's URL. To use another name, change it in `module.ts`. To use another region, change `prismaCloud({ region })` in `prisma.config.ts` before the first deploy, because a project keeps its region.
+The first deploy creates a project named `adonisjs-prisma-postgres` in the `us-east-1` region and prints the app's URL. To use another name, change it in `infra/module.ts`. To use another region, change `prismaCloud({ region })` in `prisma.config.ts` before the first deploy, because a project keeps its region.
 
 ### On every push
 
@@ -81,7 +81,7 @@ npx prisma service logs adonisjs-prisma-postgres.web # read the server logs
 ## How the deployment works
 
 - **Build.** `bun run build` runs `node ace build`, bundles `bin/compute.ts` into `build/bin/compute.js`, and installs production dependencies into `build/`. Prisma Compute runs that folder as it is.
-- **Database.** `module.ts` declares the database with `rawPostgres()`, so the deploy creates it and hands its connection string to the service. `bin/compute.ts` copies that into `DATABASE_URL`, which `config/database.ts` reads, the same as on your machine.
+- **Database.** `infra/module.ts` declares the database with `rawPostgres()`, so the deploy creates it and hands its connection string to the service. `bin/compute.ts` copies that into `DATABASE_URL`, which `config/database.ts` reads, the same as on your machine.
 - **Migrations.** Prisma Compute does not run Lucid migrations during a deploy. `bin/compute.ts` runs `node ace migration:run --force` each time an instance starts. Lucid takes a database lock while it migrates, and a start with nothing to migrate adds about a second.
 - **Secrets.** `APP_KEY` is generated on the platform, once for each environment, with `generatedParam()`. It is never in the repository or on your machine.
 - **Runtime.** Prisma Compute runs the app on Bun. The app uses no Bun APIs, so it runs the same on Node.js locally.

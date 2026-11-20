@@ -13,7 +13,7 @@ export default compute({
   input: type({ appKey: secretString() }),
   build: node({
     module: import.meta.url,
-    dir: './build',
+    dir: '../build',
     entry: 'bin/compute.js',
   }),
 })

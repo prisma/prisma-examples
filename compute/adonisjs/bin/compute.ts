@@ -12,7 +12,7 @@
 
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
-import service from '../service.ts'
+import service from '../infra/service.ts'
 
 const { db } = service.load()
 
