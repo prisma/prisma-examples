@@ -1,0 +1,476 @@
+:root {
+  --page: #f6f7f9;
+  --card: #ffffff;
+  --border: #e3e6eb;
+  --text: #111827;
+  --muted: #5b6472;
+  --accent: #2448c9;
+  --accent-soft: #eef2fd;
+  --bar: #a9bbf2;
+  --up: #1f7a55;
+  --up-bg: #e8f6ef;
+  --down: #b42318;
+  --down-bg: #fef3f2;
+  --panel: #0f1420;
+  --code: #171e2e;
+  --code-border: #263048;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #1f9d6b;
+}
+
+/* How it works */
+
+.how summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.how summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A chevron that turns down when open. */
+.how summary::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+
+.how[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.how summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.steps {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.steps strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.steps strong::before {
+  content: counter(step);
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.steps a {
+  color: var(--accent);
+}
+
+.steps code {
+  font: 12px var(--font-mono), ui-monospace, monospace;
+  color: var(--text);
+  background: var(--page);
+  padding: 1px 4px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+/* Layout: main column and SQL panel, stacking on narrow screens */
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.main {
+  flex: 999 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card[data-picked='true'] {
+  border-color: var(--accent);
+}
+
+/* Two lines tall, so the figures line up when a label wraps. */
+.card-head {
+  min-height: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.delta {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--page);
+  white-space: nowrap;
+}
+
+.delta[data-tone='up'] {
+  color: var(--up);
+  background: var(--up-bg);
+}
+
+.delta[data-tone='down'] {
+  color: var(--down);
+  background: var(--down-bg);
+}
+
+.figure {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.sql-button {
+  align-self: flex-start;
+  min-height: 36px;
+  padding: 0 12px;
+  font: 500 13px var(--font-inter), system-ui, sans-serif;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sql-button:hover {
+  background: #e1e8fb;
+}
+
+.sql-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Chart */
+
+.chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chart-scroll {
+  overflow-x: auto;
+}
+
+.bars,
+.months {
+  min-width: 560px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.bars {
+  height: 260px;
+  align-items: end;
+  border-bottom: 1px solid var(--border);
+}
+
+.bar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.bar-fill {
+  width: 100%;
+  max-width: 44px;
+  background: var(--bar);
+  border-radius: 6px 6px 0 0;
+}
+
+/* The current, unfinished month: hatched, so it reads as partial. */
+.bar-fill[data-current='true'] {
+  background: repeating-linear-gradient(-45deg, var(--accent) 0 5px, #6f87dc 5px 10px);
+}
+
+.months {
+  padding-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* SQL panel */
+
+.panel {
+  flex: 1 1 380px;
+  min-width: 0;
+  background: var(--panel);
+  color: #e6e9f0;
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9aa4b8;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-file {
+  font: 12px var(--font-mono), ui-monospace, monospace;
+  color: #9fd3b5;
+}
+
+.panel h2 {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.code {
+  margin: 0;
+  padding: 16px;
+  background: var(--code);
+  border: 1px solid var(--code-border);
+  border-radius: 10px;
+  font: 12.5px/1.6 var(--font-mono), ui-monospace, monospace;
+  color: #d7deeb;
+  /* Keep the SQL's own line breaks; long lines scroll sideways. */
+  white-space: pre;
+  overflow-x: auto;
+  /* Show the SQL exactly as written: no >= drawn as one glyph. */
+  font-variant-ligatures: none;
+}
+
+.code-wrap {
+  position: relative;
+}
+
+/* Room above the first line for the Copy button. */
+.code-wrap .code {
+  padding-top: 44px;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-height: 28px;
+  padding: 0 10px;
+  font: 500 12px var(--font-inter), system-ui, sans-serif;
+  color: #d7deeb;
+  background: var(--code-border);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: #33405e;
+}
+
+.copy-button:focus-visible {
+  outline: 2px solid #9fd3b5;
+  outline-offset: 2px;
+}
+
+.code[data-kind='returns'] {
+  padding: 12px 16px;
+  color: #9fd3b5;
+}
+
+.note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #b4bccb;
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text);
+}
