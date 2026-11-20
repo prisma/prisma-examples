@@ -1,14 +1,5 @@
 import Page from '~/components/page'
 import { type ReactNode } from 'react'
-import NavLink, { type NavItem } from '~/components/nav_link'
-
-/**
- * The pages of the settings area, listed in the sidebar. Register a route
- * for each page and add it here, for example:
- *
- * `{ label: 'Profile', route: 'settings.profile', icon: User }`
- */
-const items: NavItem[] = []
 
 /**
  * Renders the settings heading, a sidebar of links and a card holding the
@@ -21,12 +12,15 @@ export default function SettingsLayout({ children }: { children: ReactNode }) {
     <Page title="Settings" description="Manage your account settings and preferences.">
       <div className="sidebar-layout">
         <nav className="sidebar-layout__nav" aria-label="Settings">
-          {items.map(({ label, route, icon: Icon }) => (
-            <NavLink key={label} route={route} exact className="sidebar-layout__item">
-              {Icon && <Icon size={16} />}
-              {label}
+          {/*
+            The pages of the settings area. Register a route for each page and
+            add a NavLink for it here, for example:
+
+            <NavLink route="settings.profile" exact className="sidebar-layout__item">
+              <User size={16} />
+              Profile
             </NavLink>
-          ))}
+          */}
         </nav>
         <div className="sidebar-layout__content panel">{children}</div>
       </div>

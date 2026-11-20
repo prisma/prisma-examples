@@ -4,13 +4,7 @@ import { ListChecks, LogOut } from 'lucide-react'
 import { Form } from '@adonisjs/inertia/react'
 import FlashToasts from '~/components/flash_toasts'
 import ThemeToggle from '~/components/theme_toggle'
-import NavLink, { type NavItem } from '~/components/nav_link'
-
-/**
- * Top-level app navigation. Add an entry here for every new area of your
- * app, and it shows up in the navigation bar with its active state handled.
- */
-const nav: NavItem[] = [{ label: 'Tasks', route: 'tasks.index', icon: ListChecks }]
+import NavLink from '~/components/nav_link'
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
@@ -31,12 +25,14 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
       <nav className="subnav">
         <div className="subnav__inner">
-          {nav.map(({ label, route, icon: Icon }) => (
-            <NavLink key={label} route={route} className="subnav__item">
-              {Icon && <Icon size={14} />}
-              {label}
-            </NavLink>
-          ))}
+          {/*
+            Top-level app navigation. Add a NavLink here for every new area of
+            your app. It marks itself active on the current page.
+          */}
+          <NavLink route="tasks.index" className="subnav__item">
+            <ListChecks size={14} />
+            Tasks
+          </NavLink>
         </div>
       </nav>
 

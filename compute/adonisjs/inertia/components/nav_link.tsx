@@ -1,16 +1,18 @@
 import { urlFor } from '~/client'
 import { usePage } from '@inertiajs/react'
-import { type LucideIcon } from 'lucide-react'
-import { type ReactNode } from 'react'
 import { Link } from '@adonisjs/inertia/react'
+import { type ComponentProps, type ReactNode } from 'react'
 
-export type NavRoute = Parameters<typeof urlFor>[0]
+type LinkRoute = NonNullable<ComponentProps<typeof Link>['route']>
 
-export type NavItem = {
-  label: string
-  route: NavRoute
-  icon?: LucideIcon
-}
+/**
+ * The props of a route `Link`, so `routeParams` is checked against the
+ * route, plus `exact`.
+ */
+type NavLinkProps<Route extends LinkRoute> = Extract<
+  Parameters<typeof Link<Route>>[0],
+  { route: Route }
+> & { exact?: boolean; className?: string; children: ReactNode }
 
 /**
  * A link that marks itself with `aria-current="page"` when the current URL
@@ -18,25 +20,28 @@ export type NavItem = {
  * "Settings" link stays active on "/settings/security". Pass `exact` to
  * only match the route itself.
  */
-export default function NavLink({
-  route,
+export default function NavLink<Route extends LinkRoute>({
   exact = false,
-  className,
-  children,
-}: {
-  route: NavRoute
-  exact?: boolean
-  className?: string
-  children: ReactNode
-}) {
+  ...props
+}: NavLinkProps<Route>) {
   const { url } = usePage()
-  const href = urlFor(route)
+
+  /**
+   * Inside this generic function TypeScript can't tie `routeParams` to
+   * `route`, so the two calls below are cast. Each caller's props are
+   * still checked against its route.
+   */
+  const href = (urlFor as (route: string, params?: unknown) => string)(
+    props.route,
+    props.routeParams
+  )
   const path = url.split('?')[0]
   const isActive = exact ? path === href : path === href || path.startsWith(`${href}/`)
 
   return (
-    <Link href={href} className={className} aria-current={isActive ? 'page' : undefined}>
-      {children}
-    </Link>
+    <Link
+      {...(props as ComponentProps<typeof Link>)}
+      aria-current={isActive ? 'page' : undefined}
+    />
   )
 }

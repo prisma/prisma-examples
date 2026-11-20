@@ -16,6 +16,16 @@ export default function TasksIndex({ tasks }: InertiaProps<{ tasks: Data.Task[] 
   const titleInput = useRef<HTMLInputElement>(null)
   const submittedTitle = useRef('')
 
+  /**
+   * Put the title back when the request fails, unless the user has
+   * already typed another one.
+   */
+  const restoreTitle = () => {
+    if (titleInput.current && titleInput.current.value === '') {
+      titleInput.current.value = submittedTitle.current
+    }
+  }
+
   return (
     <Page
       title="Tasks"
@@ -41,9 +51,9 @@ export default function TasksIndex({ tasks }: InertiaProps<{ tasks: Data.Task[] 
             submittedTitle.current = titleInput.current?.value ?? ''
             if (titleInput.current) titleInput.current.value = ''
           }}
-          onError={() => {
-            if (titleInput.current) titleInput.current.value = submittedTitle.current
-          }}
+          onError={restoreTitle}
+          onHttpException={restoreTitle}
+          onNetworkError={restoreTitle}
         >
           {({ errors }) => (
             <>

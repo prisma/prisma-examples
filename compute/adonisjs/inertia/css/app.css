@@ -925,6 +925,15 @@ input {
 }
 .task-form .field {
   flex: 1;
+  min-width: 0;
+}
+@media (max-width: 480px) {
+  .task-form {
+    flex-wrap: wrap;
+  }
+  .task-form .field {
+    flex-basis: 100%;
+  }
 }
 .tasks {
   list-style: none;
