@@ -11,6 +11,7 @@ Composer.
 | [`personal-site`](./personal-site) | Astro personal site with no database. |
 | [`room-booking-prisma-template`](./room-booking-prisma-template) | Next.js room booking app: Resource Scheduler timeline, row locks and an exclusion constraint against double booking. |
 | [`scalable-indexing-platform-template`](./scalable-indexing-platform-template) | Next.js resource directory (DevShelf): full-text search, filters, cursor pagination and batched bulk seeding. |
+| [`adonisjs`](./adonisjs) | AdonisJS 7 task manager using Lucid ORM on Prisma Postgres, with no Prisma ORM. |
 
 Each example includes a Composer module and a GitHub Actions deployment
 workflow. The database-backed examples also include a Prisma 8 contract,
