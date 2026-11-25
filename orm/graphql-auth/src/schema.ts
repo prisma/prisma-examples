@@ -2,7 +2,7 @@ import { permissions } from './permissions'
 import { APP_SECRET, getUserId } from './utils'
 import { compare, hash } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
-import { applyMiddleware } from 'graphql-middleware'
+import { guard } from 'graphql-guard'
 import {
   intArg,
   makeSchema,
@@ -362,4 +362,6 @@ const schemaWithoutPermissions = makeSchema({
   },
 })
 
-export const schema = applyMiddleware(schemaWithoutPermissions, permissions)
+export const schema = guard(schemaWithoutPermissions, permissions, {
+  suppressResolverError: true,
+})

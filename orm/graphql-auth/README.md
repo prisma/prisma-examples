@@ -4,7 +4,7 @@ This example shows how to implement a **GraphQL server with TypeScript** with th
 
 - [**Apollo Server**](https://github.com/apollographql/apollo-server): HTTP server for GraphQL APIs
 - [**GraphQL Nexus**](https://nexusjs.org/docs/): GraphQL schema definition and resolver implementation
-- [**GraphQL Shield**](https://github.com/maticzav/graphql-shield): Authorization/permission layer for GraphQL schemas
+- [**GraphQL Guard**](https://github.com/marklai1998/graphql-guard): Authorization/permission layer for GraphQL schemas
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)
 - [**Prisma Migrate**](https://www.prisma.io/docs/concepts/components/prisma-migrate): Database migrations
 - [**Prisma Postgres**](https://www.prisma.io/postgres): A serverless PostgreSQL database built on unikernels.
@@ -399,7 +399,7 @@ As mentioned before, you can set HTTP headers in the bottom-left corner of the G
 
 ### Authorization rules
 
-The following [authorization rules](./src/permissions/index.ts) are defined for the GraphQL API via GraphQL Shield:
+The following [authorization rules](./src/permissions/index.ts) are defined for the GraphQL API via GraphQL Guard:
 
 | Operation name           | Operation type | Rule                  | Description                                                                              |
 | :----------------------- | :------------- | :-------------------- | :--------------------------------------------------------------------------------------- |
