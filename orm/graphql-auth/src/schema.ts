@@ -362,4 +362,6 @@ const schemaWithoutPermissions = makeSchema({
   },
 })
 
-export const schema = guard(schemaWithoutPermissions, permissions)
+export const schema = guard(schemaWithoutPermissions, permissions, {
+  suppressResolverError: true,
+})
