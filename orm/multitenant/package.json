@@ -1,0 +1,23 @@
+{
+  "name": "multitenant",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "seed": "tsx src/seed.ts",
+    "migrate": "prisma migrate dev --name init"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.0.0",
+    "@prisma/client": "7.0.0",
+    "dotenv": "16.6.1",
+    "pg": "8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.32",
+    "@types/pg": "8.20.0",
+    "prisma": "7.0.0",
+    "tsx": "4.21.0",
+    "typescript": "5.8.2"
+  }
+}
