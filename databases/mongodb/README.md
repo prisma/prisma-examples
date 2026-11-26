@@ -1,11 +1,11 @@
 # MongoDB example
 
-This example shows how to use Prisma with MongoDB and use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **Node.js script** to read and write data in a MongoDB database. You can find the database schema in [`./prisma/schema.prisma`](./schema.sql).
+This example shows how to use Prisma with MongoDB and use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **Node.js script** to read and write data in a MongoDB database. You can find the database schema in [`./prisma/schema.prisma`](./prisma/schema.prisma).
 
 The example consists of two parts:
 
 - `tests/prisma.test.ts`: Jest test (in TypeScript) with a variety of Prisma Client queries and assertions to showcase access patterns
-- `src/prisma-examples`: TypesScript files containing different Prisma Client queries
+- `src/prisma-examples`: TypeScript files containing different Prisma Client queries
 
 ## How to use
 
