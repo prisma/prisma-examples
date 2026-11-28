@@ -23,7 +23,7 @@ jobs:
       - uses: actions/setup-node@v4.4.0
         with:
           node-version: 22.23.2
-      - uses: prisma/cloud-deploy-action@v1
+      - uses: prisma/cloud-deploy-action@v1.11.0
         with:
           build-command: bun run build
 
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/setup-node@v4.4.0
         with:
           node-version: 22.23.2
-      - uses: prisma/cloud-deploy-action@v1
+      - uses: prisma/cloud-deploy-action@v1.11.0
         with:
           mode: destroy
           stage: ${{ github.event.ref }}
